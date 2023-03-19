@@ -10,6 +10,7 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 import {ButtonModule} from 'primeng/button';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ApplySectionComponent } from '../share/apply-section/apply-section.component';
+import { WhatWeDoComponent } from '../share/what-we-do/what-we-do.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ApplySectionComponent } from '../share/apply-section/apply-section.comp
     HeaderComponent,
     FooterComponent,
     SliderComponent,
-    ApplySectionComponent
+    ApplySectionComponent,
+    WhatWeDoComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { ApplySectionComponent } from '../share/apply-section/apply-section.comp
     SplitButtonModule,
     ButtonModule,
     CarouselModule,
-    ApplySectionComponent
+    ApplySectionComponent,
+    WhatWeDoComponent
   ],
 })
 export class SharedModule {}
