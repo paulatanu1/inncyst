@@ -14,6 +14,7 @@ import { WhatWeDoComponent } from '../share/what-we-do/what-we-do.component';
 import { GetJobComponent } from '../share/get-job/get-job.component';
 import { VideoSectionComponent } from '../share/video-section/video-section.component';
 import { GallerySectionComponent } from '../share/gallery-section/gallery-section.component';
+import { OurTeamComponent } from '../share/our-team/our-team.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { GallerySectionComponent } from '../share/gallery-section/gallery-sectio
     WhatWeDoComponent,
     GetJobComponent,
     VideoSectionComponent,
-    GallerySectionComponent
+    GallerySectionComponent,
+    OurTeamComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,8 @@ import { GallerySectionComponent } from '../share/gallery-section/gallery-sectio
     WhatWeDoComponent,
     GetJobComponent,
     VideoSectionComponent,
-    GallerySectionComponent
+    GallerySectionComponent,
+    OurTeamComponent
 
   ],
 })
