@@ -14,7 +14,7 @@ export class SliderComponent implements OnInit {
     pullDrag: false,
     dots: false,
     navSpeed: 2000,
-    autoplay:false,
+    autoplay:true,
     smartSpeed: 1000,
     navText: ['<', '>'],
     responsive: {
