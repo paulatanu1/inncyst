@@ -11,6 +11,9 @@ import {ButtonModule} from 'primeng/button';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ApplySectionComponent } from '../share/apply-section/apply-section.component';
 import { WhatWeDoComponent } from '../share/what-we-do/what-we-do.component';
+import { GetJobComponent } from '../share/get-job/get-job.component';
+import { VideoSectionComponent } from '../share/video-section/video-section.component';
+import { GallerySectionComponent } from '../share/gallery-section/gallery-section.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { WhatWeDoComponent } from '../share/what-we-do/what-we-do.component';
     FooterComponent,
     SliderComponent,
     ApplySectionComponent,
-    WhatWeDoComponent
+    WhatWeDoComponent,
+    GetJobComponent,
+    VideoSectionComponent,
+    GallerySectionComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +43,11 @@ import { WhatWeDoComponent } from '../share/what-we-do/what-we-do.component';
     ButtonModule,
     CarouselModule,
     ApplySectionComponent,
-    WhatWeDoComponent
+    WhatWeDoComponent,
+    GetJobComponent,
+    VideoSectionComponent,
+    GallerySectionComponent
+
   ],
 })
 export class SharedModule {}
