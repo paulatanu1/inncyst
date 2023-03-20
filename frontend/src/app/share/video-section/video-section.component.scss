@@ -1,0 +1,34 @@
+.video-wrapper{
+    margin-bottom: -6px;
+    position: relative;
+    video{
+        width: 100%;
+        object-fit: cover;
+    }
+    .video-texts{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p{
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 26px;
+            text-align: center;
+            color: #27AE60;
+        }
+        h5{
+            font-weight: 600;
+            font-size: 40px;
+            line-height: 46px;
+            text-align: center;
+            color: #FFFFFF;
+            width: 50%;
+            margin: 0 auto;
+        }
+    }
+}
