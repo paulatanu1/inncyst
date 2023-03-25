@@ -15,6 +15,9 @@ import { GetJobComponent } from '../share/get-job/get-job.component';
 import { VideoSectionComponent } from '../share/video-section/video-section.component';
 import { GallerySectionComponent } from '../share/gallery-section/gallery-section.component';
 import { OurTeamComponent } from '../share/our-team/our-team.component';
+import { TestimonialsComponent } from '../share/testimonials/testimonials.component';
+import { VisitorsComponent } from '../share/visitors/visitors.component';
+import { ExprienceComponent } from '../share/exprience/exprience.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { OurTeamComponent } from '../share/our-team/our-team.component';
     GetJobComponent,
     VideoSectionComponent,
     GallerySectionComponent,
-    OurTeamComponent
+    OurTeamComponent,
+    TestimonialsComponent,
+    VisitorsComponent,
+    ExprienceComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +55,10 @@ import { OurTeamComponent } from '../share/our-team/our-team.component';
     GetJobComponent,
     VideoSectionComponent,
     GallerySectionComponent,
-    OurTeamComponent
+    OurTeamComponent,
+    TestimonialsComponent,
+    VisitorsComponent,
+    ExprienceComponent
 
   ],
 })
