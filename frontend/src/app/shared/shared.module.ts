@@ -9,7 +9,7 @@ import { SliderComponent } from '../share/slider/slider.component';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {ButtonModule} from 'primeng/button';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { ApplySectionComponent } from '../share/apply-section/apply-section.component';
+import { ApplySectionComponent } from '../share/intern-apply/apply-section.component';
 import { WhatWeDoComponent } from '../share/what-we-do/what-we-do.component';
 import { GetJobComponent } from '../share/get-job/get-job.component';
 import { VideoSectionComponent } from '../share/video-section/video-section.component';

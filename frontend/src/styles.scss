@@ -1,26 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-::ng-deep .p-button:focus{
-    box-shadow: none !important;
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+::ng-deep .p-button:focus {
+  box-shadow: none !important;
 }
 
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    font-family: 'Open Sans', sans-serif;
-    font-style: normal;
+body {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
 }
 
-img{
-    max-width: 100%;
-    height: auto;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-button{
-    border: none;
+button {
+  border: none;
+}
+
+@font-face {
+  font-family: "icomoon";
+  /* Import the files from the correct directory -> assets/icon/ */
+  src: url("assets/icon/icomoon.eot?112bs6");
+  src: url("assets/icon/icomoon.eot?112bs6#iefix") format("embedded-opentype"),
+    url("assets/icon/icomoon.ttf?112bs6") format("truetype"),
+    url("assets/icon/icomoon.woff?112bs6") format("woff"),
+    url("assets/icon/icomoon.svg?112bs6#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-comment:before {
+  content: "\e903";
+}
+
+.icon-checkmark:before {
+  content: "\e902";
+}
+
+.icon-calender:before {
+  content: "\e901";
+}
+
+.icon-heart-1:before {
+  content: "\e904";
+}
+
+.icon-hearts:before {
+  content: "\e905";
+}
+
+.icon-left-arrow:before {
+  content: "\e906";
+}
+
+.icon-play:before {
+  content: "\e907";
+}
+
+.icon-right-arrow:before {
+  content: "\e908";
+}
+
+.icon-search:before {
+  content: "\e909";
+}
+
+.icon-user:before {
+  content: "\e90a";
+}
+
+.icon-heart-11:before {
+  content: "\e90b";
+}
+
+.icon-group-check:before {
+  content: "\e90c";
 }
