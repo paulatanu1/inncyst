@@ -9,6 +9,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 })
 export class HeaderComponent implements OnInit {
   items: MenuItem[];
+  dropdownitems:MenuItem[]
   constructor(private messageService: MessageService) {
     this.items = [
       {label: 'As a Student', icon: 'pi pi-refresh', command: () => {
@@ -17,6 +18,11 @@ export class HeaderComponent implements OnInit {
       {label: 'As a Employer', icon: 'pi pi-refresh', command: () => {
         this.update();
     }}
+    ];
+    this.dropdownitems = [
+      {label:'Internship'},
+      {label:'Job'},
+      {label:'Project Enabler'}
     ]
    }
 

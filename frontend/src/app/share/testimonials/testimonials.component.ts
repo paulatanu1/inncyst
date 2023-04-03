@@ -9,7 +9,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class TestimonialsComponent implements OnInit {
   testimonial: OwlOptions = {
     loop: true,
-    mouseDrag: false,
+    mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
     dots: true,

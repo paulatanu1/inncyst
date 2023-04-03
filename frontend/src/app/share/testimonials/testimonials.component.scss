@@ -1,11 +1,24 @@
 .testimonial-wrapper {
+  padding: 50px 50px;
+  background: radial-gradient(
+    70.83% 70.83% at 49.97% 50%,
+    #adcbfa 0%,
+    #fefdff 100%
+  );
+}
+
+::ng-deep .owl-item {
+  // margin: 10px 0;
+}
+
+.testimonial-wrapper {
   margin-top: 130px;
   .heading {
     font-weight: 600;
     font-size: 20px;
     line-height: 26px;
     text-align: center;
-    color: #27ae60;
+    color: #522d80;
   }
   .title {
     font-weight: 600;
@@ -13,6 +26,20 @@
     line-height: 46px;
     text-align: center;
     color: #292929;
+    width: 46%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    position: relative;
+  }
+  .title::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background-color: #522d80;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translate(-50%, -20px);
   }
 }
 
@@ -21,6 +48,7 @@
   box-shadow: 0px 10px 40px rgba(41, 41, 41, 0.1);
   border-radius: 10px;
   padding: 30px;
+  margin: 5px 10px;
   .review-artical {
     p {
       font-weight: 400;

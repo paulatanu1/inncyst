@@ -1,54 +1,71 @@
-#navbarNav{
-    justify-content: center;
-    .navbar-nav{
-
-        .nav-item{
-            padding: 0 10px;
-            a{
-                font-weight: 600;
-                font-size: 18px;
-            }
-        }
+#navbarNav {
+  justify-content: center;
+  .navbar-nav {
+    .nav-item {
+      padding: 0 10px;
+      a {
+        font-weight: 600;
+        font-size: 18px;
+      }
     }
+  }
 }
 
-.navbar{
-    padding: 0 0 5px 0;
+.navbar {
+  padding: 0 0 5px 0;
 }
-.users-option{
-    display: flex;
-    align-items: center;
-    margin-right: 120px;
-    .register{
-        margin-right: 10px;
+.users-option {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+  .register {
+    margin-right: 10px;
+  }
+}
+
+.register {
+  ::ng-deep p-splitbutton {
+    .p-splitbutton {
+      .p-button {
+        background: #522d80;
+        border: 1px solid #522d80;
+      }
     }
+  }
+}
+.login {
+  .p-button {
+    background: #ffffff;
+    border: 1px solid #522d80;
+    color: #522d80;
+  }
 }
 
-.register{
-    ::ng-deep p-splitbutton{
-        .p-splitbutton {
-            .p-button{
-                background: #522D80;
-                border: 1px solid #522D80;
-            }
-        }
+.navbar-brand {
+  height: 108px;
+  width: 248px;
+  overflow: hidden;
+  margin-left: 50px;
+}
+
+::ng-deep .p-button:focus {
+  box-shadow: none;
+}
+
+.dropdown-itemss {
+  ::ng-deep .p-splitbutton {
+    .p-button {
+      background: transparent;
+      border: none;
+      padding: 10px 5px;
+
+      span {
+        color: #737373;
+      }
     }
-}
-.login{
-    .p-button{
-        background: #ffffff;
-        border: 1px solid #522D80;
-        color:#522D80 ;
+    .p-splitbutton-menubutton {
+      padding: 0 !important;
+      width: auto !important;
     }
-}
-
-.navbar-brand{
-    height: 108px;
-    width: 248px;
-    overflow: hidden;
-    margin-left: 50px;
-}
-
-::ng-deep .p-button:focus{
-    box-shadow: none;
+  }
 }
