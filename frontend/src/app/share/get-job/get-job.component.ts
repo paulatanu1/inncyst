@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./get-job.component.scss']
 })
 export class GetJobComponent implements OnInit {
+  isRegisterModal:boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  openModal(){
+    console.log('click')
+    this.isRegisterModal = true;
+  }
+  
+  onhideModal(){
+    this.isRegisterModal = false;
+  }
 }

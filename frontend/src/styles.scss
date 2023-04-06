@@ -74,17 +74,17 @@ button {
   content: "\e905";
 }
 
-.icon-left-arrow:before {
-  content: "\e906";
-}
+// .icon-left-arrow:before {
+//   content: "\e906";
+// }
 
 .icon-play:before {
   content: "\e907";
 }
 
-.icon-right-arrow:before {
-  content: "\e908";
-}
+// .icon-right-arrow:before {
+//   content: "\e908";
+// }
 
 .icon-search:before {
   content: "\e909";
@@ -100,4 +100,12 @@ button {
 
 .icon-group-check:before {
   content: "\e90c";
+}
+
+.icon-left-arrow:before {
+  content: "\e900";
+}
+
+.icon-right-arrow:before {
+  content: "\e904";
 }

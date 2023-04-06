@@ -18,6 +18,13 @@ import { OurTeamComponent } from '../share/our-team/our-team.component';
 import { TestimonialsComponent } from '../share/testimonials/testimonials.component';
 import { VisitorsComponent } from '../share/visitors/visitors.component';
 import { ExprienceComponent } from '../share/exprience/exprience.component';
+import {DialogModule} from 'primeng/dialog';
+import {TabMenuModule} from 'primeng/tabmenu';
+import {TabViewModule} from 'primeng/tabview';
+import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
+import { MiniHeaderComponent } from '../share/mini-header/mini-header.component';
+import { RippleModule } from 'primeng/ripple';
 
 
 @NgModule({
@@ -34,14 +41,21 @@ import { ExprienceComponent } from '../share/exprience/exprience.component';
     OurTeamComponent,
     TestimonialsComponent,
     VisitorsComponent,
-    ExprienceComponent
+    ExprienceComponent,
+    MiniHeaderComponent
   ],
   imports: [
     CommonModule,
      SharedRoutingModule,
      SplitButtonModule,
      ButtonModule,
-     CarouselModule
+     CarouselModule,
+     DialogModule,
+     TabMenuModule,
+     TabViewModule,
+     InputTextModule,
+     PasswordModule,
+     RippleModule
     ],
   exports: [
     HeaderComponent, 
@@ -58,7 +72,14 @@ import { ExprienceComponent } from '../share/exprience/exprience.component';
     OurTeamComponent,
     TestimonialsComponent,
     VisitorsComponent,
-    ExprienceComponent
+    ExprienceComponent,
+    DialogModule,
+    TabMenuModule,
+    TabViewModule,
+    InputTextModule,
+    PasswordModule,
+    MiniHeaderComponent,
+    RippleModule
 
   ],
 })

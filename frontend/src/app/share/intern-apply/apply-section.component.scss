@@ -111,3 +111,7 @@ button {
     }
   }
 }
+
+::ng-deep .p-dialog-content {
+  padding: 0 !important;
+}

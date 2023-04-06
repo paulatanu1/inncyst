@@ -12,7 +12,11 @@
                 <li><a href=""><span class="icon-group-check"></span>Make the world a better place</a></li>
                 <li><a href=""><span class="icon-group-check"></span>Share your love for community</a></li>
             </ul>
-            <button class="button-section" type="button">Click Here</button>
+            <button class="button-section" type="button" (click)="openModal()">Click Here</button>
         </div>
     </div>
 </div>
+
+<p-dialog [(visible)]="isRegisterModal" [style]="{width: '50vw'}" [transitionOptions]="'100ms'" (onHide)="onhideModal()">
+    <app-mini-header></app-mini-header>
+</p-dialog>

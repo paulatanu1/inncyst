@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./apply-section.component.scss']
 })
 export class ApplySectionComponent implements OnInit {
-
+  isRegisterModal:boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  openModal(){
+    this.isRegisterModal = true;
+  }
+  onhideModal(){
+    this.isRegisterModal = false;
+  }
 }

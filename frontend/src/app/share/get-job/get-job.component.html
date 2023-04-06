@@ -6,7 +6,7 @@
                     <img src="../../../assets/illus-2.svg" alt="">
                 </div>
                 <div class="text-wrapper">
-                    <h2 class="heading">INTERNSHIP</h2>
+                    <h2 class="heading">JOBS</h2>
                     <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <ul class="check-item">
                         <li><a href=""><span class="icon-group-check"></span>Support people in extreme need</a></li>
@@ -14,7 +14,7 @@
                         <li><a href=""><span class="icon-group-check"></span>Make the world a better place</a></li>
                         <li><a href=""><span class="icon-group-check"></span>Share your love for community</a></li>
                     </ul>
-                    <button class="button-section" type="button">Click Here</button>
+                    <button class="button-section" type="button" (click)="openModal()">Click Here</button>
                 </div>
             </div>
             <div class="col-sm-6 internships">
@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-6 jobs">
                 <div class="text-wrapper cs-padding">
-                    <h2 class="heading">INTERNSHIP</h2>
+                    <h2 class="heading">PROJECT/PRODUCT HELP</h2>
                     <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <ul class="check-item">
                         <li><a href=""><span class="icon-group-check"></span>Support people in extreme need</a></li>
@@ -39,9 +39,13 @@
                         <li><a href=""><span class="icon-group-check"></span>Make the world a better place</a></li>
                         <li><a href=""><span class="icon-group-check"></span>Share your love for community</a></li>
                     </ul>
-                    <button class="button-section" type="button">Click Here</button>
+                    <button class="button-section" type="button" >Click Here</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<p-dialog [(visible)]="isRegisterModal" [style]="{width: '50vw'}" [transitionOptions]="'100ms'" (onHide)="onhideModal()">
+    <app-mini-header></app-mini-header>
+</p-dialog>

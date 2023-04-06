@@ -1,0 +1,71 @@
+.header-section {
+  background: #ffffff;
+  //   margin-bottom: 20px;
+  box-shadow: 0px 4px 15px #e3e3e3;
+  padding: 20px;
+  .img-section {
+    width: 214px;
+    height: 90px;
+  }
+}
+
+.form-section {
+  margin: 25px;
+  h3 {
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 54px;
+    color: #000000;
+    text-align: center;
+  }
+  .form-area {
+    margin-top: 30px;
+    background: #ffffff;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 35px;
+    padding: 35px 25px;
+    .user-name {
+      margin-bottom: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+      ::ng-deep .p-inputtext {
+        width: 100%;
+      }
+    }
+    .password {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 30px;
+      margin-left: 10px;
+      margin-right: 10px;
+      label {
+        font-size: 15px;
+        color: #6c757d;
+      }
+      ::ng-deep .p-password {
+        width: 100%;
+        input {
+          width: 100%;
+        }
+      }
+    }
+    .button-area {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .intern,
+      .job,
+      .industry {
+        background: #522d80;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 19px;
+        line-height: 26px;
+        color: #ffffff;
+        border: none;
+        padding: 10px 40px;
+      }
+    }
+  }
+}

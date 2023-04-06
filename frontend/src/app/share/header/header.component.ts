@@ -9,14 +9,19 @@ import { MenuItem, MessageService } from 'primeng/api';
 })
 export class HeaderComponent implements OnInit {
   items: MenuItem[];
-  dropdownitems:MenuItem[]
+  dropdownitems:MenuItem[];
+  registration:boolean =false;
+  isStudent:boolean = false;
+  isEmployer:boolean = false;
+  index:number = 0;
+  value1:string = ''
   constructor(private messageService: MessageService) {
     this.items = [
-      {label: 'As a Student', icon: 'pi pi-refresh', command: () => {
-          this.update();
+      {label: 'As a Student', command: () => {
+          this.login('student');
       }},
-      {label: 'As a Employer', icon: 'pi pi-refresh', command: () => {
-        this.update();
+      {label: 'As a Employer', command: () => {
+        this.login('employer');
     }}
     ];
     this.dropdownitems = [
@@ -27,10 +32,21 @@ export class HeaderComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    
+  
+  // this.activeItem = this.registrationType[0];
   }
 
 
-  update(){
+  login(type:string){
+    console.log(type)
+    if(type === 'student'){
+      this.registration = true;
+      this.isStudent = true;
+    }else{
+      this.registration = true;
+      this.isEmployer = true;
+    }
 
   }
 
