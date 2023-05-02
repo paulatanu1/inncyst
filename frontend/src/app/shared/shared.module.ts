@@ -25,6 +25,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
 import { MiniHeaderComponent } from '../share/mini-header/mini-header.component';
 import { RippleModule } from 'primeng/ripple';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { RippleModule } from 'primeng/ripple';
      TabViewModule,
      InputTextModule,
      PasswordModule,
-     RippleModule
+     RippleModule,
+     InputNumberModule,
+     DropdownModule
     ],
   exports: [
     HeaderComponent, 
@@ -79,8 +83,9 @@ import { RippleModule } from 'primeng/ripple';
     InputTextModule,
     PasswordModule,
     MiniHeaderComponent,
-    RippleModule
-
+    RippleModule,
+    InputNumberModule,
+    DropdownModule
   ],
 })
 export class SharedModule {}

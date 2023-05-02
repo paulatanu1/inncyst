@@ -31,7 +31,8 @@
         </div>
         <div class="users-option">
           <div class="register">
-            <p-splitButton label="Register" (onClick)="register()" [model]="items"></p-splitButton>
+            <!-- <p-splitButton label="Register" (onClick)="register()" [model]="items"></p-splitButton> -->
+            <p-button label="Register" (onClick)="register()"></p-button>
           </div>
           <div class="login">
             <button pButton type="button" label="Login" ></button>
@@ -40,8 +41,8 @@
       </div>
   </nav>
 
-  <p-dialog header="Title" [(visible)]="registration" [draggable]="false">
-    <p-tabView [(activeIndex)]="index">
+  <p-dialog [(visible)]="registration" [blockScroll]="false" [modal]="true" [draggable]="false" [style]="{width: '60vw'}">
+    <!-- <p-tabView [(activeIndex)]="index">
       <p-tabPanel header="Sign In">
          Content 1
       </p-tabPanel>
@@ -64,5 +65,70 @@
           </form>
       </p-tabPanel>
       
-  </p-tabView>
+  </p-tabView> -->
+  <div class="sign-up-wrapper">
+    <div class="left-section">
+      <div class="left-image-wrapper">
+        <img src="../../../assets/signup-img.svg" alt="">
+      </div>
+    </div>
+    <div class="right-section">
+      <div class="form-wrapper">
+        <h5>Sign Up</h5>
+        <form>
+          <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field">
+            <span class="p-float-label">
+              <input id="float-input" type="text" pInputText class=""> 
+              <label for="float-input">Name</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field ">
+            <span class="p-float-label">
+              <input type="email" pInputText> 
+              <label for="float-input">Email</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-12 mt-3 mb-4 full-width-number">
+            <span class="p-float-label">
+              <p-inputNumber  ></p-inputNumber>
+              <label for="float-input">Mobile Number</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-12 mt-3 mb-4 full-width">
+            <span class="p-float-label">
+              <p-password></p-password>
+              <label for="float-input">Password</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-12 mt-3 mb-4 full-width">
+            <span class="p-float-label">
+              <p-password></p-password>
+              <label for="float-input">Confirm Password</label>
+            </span>
+          </div>
+         
+          <div class="col-12 md:col-12 mt-3 mb-4 dropdown-full-width mt-5">
+            <span class="p-float-label">
+              <p-dropdown [options]="options" optionLabel="name"></p-dropdown>
+              <label class="dropdown-lable-field" for="float-input">Select The correct option</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-12 mt-3 mb-3">
+            <span class="checkbox-sec">
+              <input type="checkbox">
+              <label>I have read and agree to the Terms of Service</label>
+             
+            </span>
+          </div>
+          <div class="submit-btn">
+            <p-button label="Sign up" ></p-button>
+          </div>
+        </form>
+
+        <div class="login-area mb-3 mt-3">
+          <a href="#">Already registered? <span>Login</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
 </p-dialog>

@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 
+interface options {
+  name: string,
+  code: string
+}
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   providers:[MessageService]
 })
+
 export class HeaderComponent implements OnInit {
   items: MenuItem[];
   dropdownitems:MenuItem[];
@@ -15,6 +20,8 @@ export class HeaderComponent implements OnInit {
   isEmployer:boolean = false;
   index:number = 0;
   value1:string = ''
+  options: options[];
+
   constructor(private messageService: MessageService) {
     this.items = [
       {label: 'As a Student', command: () => {
@@ -29,6 +36,11 @@ export class HeaderComponent implements OnInit {
       {label:'Job'},
       {label:'Project Enabler'}
     ]
+
+    this.options = [
+      {name: 'Select the option', code: '0'}
+  ];
+
    }
 
   ngOnInit(): void {
@@ -51,6 +63,6 @@ export class HeaderComponent implements OnInit {
   }
 
   register(){
-    
+    this.registration = true;
   }
 }
