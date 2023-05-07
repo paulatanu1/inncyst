@@ -1,48 +1,65 @@
 <nav class="navbar navbar-expand-lg">
-    <!-- Navbar content -->
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="../../../assets/brand-logo.png" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
-            </li>
-            <li class="nav-item dropdown-itemss">
-              <p-splitButton label=" Product/Services" [model]="dropdownitems"></p-splitButton>
-              <!-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Product/Services</a>
+  <!-- Navbar content -->
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/brand-logo.png" alt="" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        <li class="nav-item dropdown-itemss">
+          <p-splitButton
+            label=" Product/Services"
+            [model]="dropdownitems"
+          ></p-splitButton>
+          <!-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Product/Services</a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Internship</a>
                 <a class="dropdown-item" href="#">Job</a>
                 <a class="dropdown-item" href="#">Project Enabler</a>
               </div> -->
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact us</a>
-            </li>
-          </ul>
-        </div>
-        <div class="users-option">
-          <div class="register">
-            <!-- <p-splitButton label="Register" (onClick)="register()" [model]="items"></p-splitButton> -->
-            <p-button label="Register" (onClick)="register()"></p-button>
-          </div>
-          <div class="login">
-            <button pButton type="button" label="Login" ></button>
-          </div>
-        </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact us</a>
+        </li>
+      </ul>
+    </div>
+    <div class="users-option">
+      <div class="register">
+        <!-- <p-splitButton label="Register" (onClick)="register()" [model]="items"></p-splitButton> -->
+        <p-button label="Register" (onClick)="register()"></p-button>
       </div>
-  </nav>
+      <div class="login">
+        <button pButton type="button" label="Login"></button>
+      </div>
+    </div>
+  </div>
+</nav>
 
-  <p-dialog [(visible)]="registration" [blockScroll]="false" [modal]="true" [draggable]="false" [style]="{width: '60vw'}">
-    <!-- <p-tabView [(activeIndex)]="index">
+<p-dialog
+  [(visible)]="registration"
+  [blockScroll]="false"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: '60vw' }"
+>
+  <!-- <p-tabView [(activeIndex)]="index">
       <p-tabPanel header="Sign In">
          Content 1
       </p-tabPanel>
@@ -69,66 +86,94 @@
   <div class="sign-up-wrapper">
     <div class="left-section">
       <div class="left-image-wrapper">
-        <img src="../../../assets/signup-img.svg" alt="">
+        <img src="../../../assets/signup-img.svg" alt="" />
       </div>
     </div>
     <div class="right-section">
       <div class="form-wrapper">
         <h5>Sign Up</h5>
-        <form>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field">
             <span class="p-float-label">
-              <input id="float-input" type="text" pInputText class=""> 
+              <input
+                id="float-input"
+                type="text"
+                pInputText
+                class=""
+                formControlName="name"
+              />
               <label for="float-input">Name</label>
             </span>
           </div>
-          <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field ">
+          <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field">
             <span class="p-float-label">
-              <input type="email" pInputText> 
+              <input type="email" pInputText formControlName="email" />
               <label for="float-input">Email</label>
             </span>
           </div>
           <div class="col-12 md:col-12 mt-3 mb-4 full-width-number">
             <span class="p-float-label">
-              <p-inputNumber  ></p-inputNumber>
+              <p-inputNumber
+                formControlName="mobile"
+                inputId="withoutgrouping"
+                [useGrouping]="false"
+                value=""
+              ></p-inputNumber>
               <label for="float-input">Mobile Number</label>
             </span>
           </div>
           <div class="col-12 md:col-12 mt-3 mb-4 full-width">
             <span class="p-float-label">
-              <p-password></p-password>
+              <p-password formControlName="password"></p-password>
               <label for="float-input">Password</label>
             </span>
           </div>
           <div class="col-12 md:col-12 mt-3 mb-4 full-width">
             <span class="p-float-label">
-              <p-password></p-password>
+              <p-password formControlName="confirmPassword"></p-password>
               <label for="float-input">Confirm Password</label>
             </span>
           </div>
-         
+
           <div class="col-12 md:col-12 mt-3 mb-4 dropdown-full-width mt-5">
             <span class="p-float-label">
-              <p-dropdown [options]="options" optionLabel="name"></p-dropdown>
-              <label class="dropdown-lable-field" for="float-input">Select The correct option</label>
+              <p-dropdown
+                [options]="options"
+                optionLabel="name"
+                formControlName="options"
+              ></p-dropdown>
+              <label class="dropdown-lable-field" for="float-input">
+                Select The correct option
+              </label>
             </span>
           </div>
           <div class="col-12 md:col-12 mt-3 mb-3">
             <span class="checkbox-sec">
-              <input type="checkbox">
+              <input type="checkbox" formControlName="agree" />
               <label>I have read and agree to the Terms of Service</label>
-             
             </span>
           </div>
           <div class="submit-btn">
-            <p-button label="Sign up" ></p-button>
+            <p-button
+              class="submit-btns"
+              type="submit"
+              label="Sign up"
+            ></p-button>
           </div>
         </form>
 
         <div class="login-area mb-3 mt-3">
-          <a href="#">Already registered? <span>Login</span></a>
+          <a href="#">
+            Already registered?
+            <span>Login</span>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </p-dialog>
+
+<app-sign-up-questions
+  [sidebarEnable]="sidebarEnable"
+  *ngIf="isSignup"
+></app-sign-up-questions>

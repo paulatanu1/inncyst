@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuItem, MessageService } from 'primeng/api';
 
 interface options {
@@ -19,10 +20,14 @@ export class HeaderComponent implements OnInit {
   isStudent:boolean = false;
   isEmployer:boolean = false;
   index:number = 0;
-  value1:string = ''
+  value1:string = '';
   options: options[];
-
-  constructor(private messageService: MessageService) {
+  isSignup:boolean = false;
+  submitted:boolean = false
+  registerForm!: FormGroup;
+  sidebarEnable:boolean = false;
+  // registerForm:FormGroup | undefined;
+  constructor(private messageService: MessageService,private fb: FormBuilder) {
     this.items = [
       {label: 'As a Student', command: () => {
           this.login('student');
@@ -43,12 +48,28 @@ export class HeaderComponent implements OnInit {
 
    }
 
+ 
+
   ngOnInit(): void {
-    
-  
+    this.registerForm =this.fb.group({
+      name: ['',[Validators.required]],
+      email: ['',[Validators.required,Validators.email]],
+      mobile:[null,[Validators.required]],
+      password:['',[Validators.required],Validators.minLength(6)],
+      confirmPassword:['',[Validators.required]],
+      options:['',[Validators.required]],
+      agree:[false,[Validators.required,Validators.requiredTrue]],
+    },{
+      // validators: MustMatch('password', 'confirmPassword')
+    });
   // this.activeItem = this.registrationType[0];
   }
 
+  onSubmit(){
+    console.log(this.registerForm);
+    this.isSignup = true;
+    this.sidebarEnable = true
+  }
 
   login(type:string){
     console.log(type)
@@ -66,3 +87,29 @@ export class HeaderComponent implements OnInit {
     this.registration = true;
   }
 }
+
+
+// function MustMatch(controlName: string, matchingControlName: string) {
+//   return (group: AbstractControl) => {
+//     const control = group.get(controlName);
+//     const matchingControl = group.get(matchingControlName);
+
+//     if (!control || !matchingControl) {
+//         return null;
+//     }
+
+//     // return if another validator has already found an error on the matchingControl
+//     if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
+//         return null;
+//     }
+
+//     // set error on matchingControl if validation fails
+//     if (control.value !== matchingControl.value) {
+//         matchingControl.setErrors({ mustMatch: true });
+//     } else {
+//         matchingControl.setErrors(null);
+//     }
+//     return null;
+// }
+// }
+

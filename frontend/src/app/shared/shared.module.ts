@@ -27,7 +27,10 @@ import { MiniHeaderComponent } from '../share/mini-header/mini-header.component'
 import { RippleModule } from 'primeng/ripple';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {DropdownModule} from 'primeng/dropdown';
-
+import { SignUpQuestionsComponent } from '../share/sign-up-questions/sign-up-questions.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {SidebarModule} from 'primeng/sidebar';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import {DropdownModule} from 'primeng/dropdown';
     TestimonialsComponent,
     VisitorsComponent,
     ExprienceComponent,
-    MiniHeaderComponent
+    MiniHeaderComponent,
+    SignUpQuestionsComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +63,11 @@ import {DropdownModule} from 'primeng/dropdown';
      PasswordModule,
      RippleModule,
      InputNumberModule,
-     DropdownModule
+     DropdownModule,
+     FormsModule,
+     ReactiveFormsModule,
+     SidebarModule,
+     CalendarModule
     ],
   exports: [
     HeaderComponent, 
@@ -85,7 +93,9 @@ import {DropdownModule} from 'primeng/dropdown';
     MiniHeaderComponent,
     RippleModule,
     InputNumberModule,
-    DropdownModule
+    DropdownModule,
+    SidebarModule,
+    CalendarModule
   ],
 })
 export class SharedModule {}

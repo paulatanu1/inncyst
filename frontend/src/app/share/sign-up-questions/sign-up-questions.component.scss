@@ -1,5 +1,5 @@
 .form-wrapper {
-  padding: 0 20px;
+  padding: 0 0 20px 0;
   h5 {
     text-align: center;
     font-weight: 700;
@@ -140,6 +140,31 @@
   }
 }
 
+.full-width {
+  ::ng-deep .p-inputtext {
+    width: 100%;
+  }
+}
+
+.dropdown-full-width {
+  ::ng-deep .p-inputtext {
+    width: 100%;
+  }
+}
+
+.full-width-number-field {
+  width: 100%;
+  ::ng-deep .p-inputtext {
+    width: 100%;
+  }
+}
+
+.full-width-number {
+  ::ng-deep .p-inputtext {
+    width: 100%;
+  }
+}
+
 .dropdown-full-width {
   ::ng-deep .p-dropdown {
     width: 100%;
@@ -192,5 +217,22 @@
 }
 
 .submit-btns {
+  width: 100%;
+}
+
+.question-area {
+  .sidebar-heading {
+    h3 {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 35px;
+      display: flex;
+      align-items: center;
+      color: #522d80;
+    }
+  }
+}
+
+::ng-deep .p-calendar {
   width: 100%;
 }
