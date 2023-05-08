@@ -46,7 +46,12 @@
         <p-button label="Register" (onClick)="register()"></p-button>
       </div>
       <div class="login">
-        <button pButton type="button" label="Login"></button>
+        <button
+          (click)="getLoginForm()"
+          pButton
+          type="button"
+          label="Login"
+        ></button>
       </div>
     </div>
   </div>
@@ -171,6 +176,16 @@
       </div>
     </div>
   </div>
+</p-dialog>
+
+<p-dialog
+  [(visible)]="loginflow"
+  [blockScroll]="false"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: '60vw' }"
+>
+  <app-login></app-login>
 </p-dialog>
 
 <app-sign-up-questions

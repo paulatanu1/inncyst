@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
   submitted:boolean = false
   registerForm!: FormGroup;
   sidebarEnable:boolean = false;
+  loginflow:boolean = false;
   // registerForm:FormGroup | undefined;
   constructor(private messageService: MessageService,private fb: FormBuilder) {
     this.items = [
@@ -85,6 +86,10 @@ export class HeaderComponent implements OnInit {
 
   register(){
     this.registration = true;
+  }
+
+  getLoginForm(){
+    this.loginflow = true
   }
 }
 

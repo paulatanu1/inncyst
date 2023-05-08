@@ -31,6 +31,7 @@ import { SignUpQuestionsComponent } from '../share/sign-up-questions/sign-up-que
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SidebarModule} from 'primeng/sidebar';
 import {CalendarModule} from 'primeng/calendar';
+import { LoginComponent } from '../share/login/login.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {CalendarModule} from 'primeng/calendar';
     VisitorsComponent,
     ExprienceComponent,
     MiniHeaderComponent,
-    SignUpQuestionsComponent
+    SignUpQuestionsComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
