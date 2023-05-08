@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sign-up-questions',
@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SignUpQuestionsComponent implements OnInit {
   display:boolean = false;
   @Input() sidebarEnable:boolean = false
+  @Output() quistionSubmit = new EventEmitter()
   constructor() { }
 
   ngOnInit(): void {
@@ -18,4 +19,8 @@ export class SignUpQuestionsComponent implements OnInit {
     this.display = false
   }
 
+  onSubmitAnswer(){
+    this.quistionSubmit.emit(true);
+    
+  }
 }

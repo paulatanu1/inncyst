@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
   registerForm!: FormGroup;
   sidebarEnable:boolean = false;
   loginflow:boolean = false;
+  isOtpPage:boolean = false;
   // registerForm:FormGroup | undefined;
   constructor(private messageService: MessageService,private fb: FormBuilder) {
     this.items = [
@@ -69,6 +70,7 @@ export class HeaderComponent implements OnInit {
   onSubmit(){
     console.log(this.registerForm);
     this.isSignup = true;
+    this.registration = false;
     this.sidebarEnable = true
   }
 
@@ -90,6 +92,11 @@ export class HeaderComponent implements OnInit {
 
   getLoginForm(){
     this.loginflow = true
+  }
+
+  quistionSubmit(event:boolean){
+    this.isOtpPage = event;
+    this.isSignup = false;
   }
 }
 

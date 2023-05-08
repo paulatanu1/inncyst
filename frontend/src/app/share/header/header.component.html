@@ -163,8 +163,12 @@
 >
   <app-login></app-login>
 </p-dialog>
-
 <app-sign-up-questions
   [sidebarEnable]="sidebarEnable"
   *ngIf="isSignup"
+  (quistionSubmit)="quistionSubmit($event)"
 ></app-sign-up-questions>
+
+<!-- Otp page -->
+<app-registration-otp *ngIf="isOtpPage"></app-registration-otp>
+<!-- Otp page -->
