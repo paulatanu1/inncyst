@@ -1,0 +1,105 @@
+.login-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  .left-section {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    border-right: 2px solid #ededed;
+  }
+  .right-section {
+    width: 50%;
+  }
+}
+
+.form-wrapper {
+  padding: 0 20px;
+  h5 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    text-align: center;
+    letter-spacing: 0.005em;
+    color: #522d80;
+  }
+}
+
+.full-width {
+  ::ng-deep .p-password {
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
+}
+
+.full-width-number {
+  width: 100%;
+  .p-inputwrapper {
+    width: 100%;
+    ::ng-deep .p-inputnumber {
+      width: 100%;
+      width: 100%;
+      input {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.dropdown-full-width {
+  ::ng-deep .p-dropdown {
+    width: 100%;
+  }
+}
+
+.full-width-number-field {
+  ::ng-deep input {
+    width: 100%;
+  }
+}
+
+.dropdown-lable-field {
+  left: 0;
+  top: -22px;
+}
+
+.checkbox-sec input {
+  margin-right: 10px;
+}
+
+.submit-btn {
+  ::ng-deep .p-button {
+    width: 100%;
+    background: #8cd3f6;
+    box-shadow: -3px 2px 6px rgb(0 0 0 / 25%);
+    border-radius: 8px;
+    border: 1px solid #8cd3f6;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    text-align: center;
+    letter-spacing: 0.005em;
+  }
+}
+
+.login-area {
+  text-align: center;
+  a {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+    text-decoration: none;
+    span {
+      color: #522d80;
+    }
+  }
+}
+
+.submit-btns {
+  width: 100%;
+}

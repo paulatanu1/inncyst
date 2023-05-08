@@ -1,1 +1,56 @@
-<p>login works!</p>
+<div class="login-section"></div>
+
+<div class="login-wrapper">
+  <div class="left-section">
+    <div class="left-image-wrapper">
+      <img src="../../../assets/signup-img.svg" alt="" />
+    </div>
+  </div>
+  <div class="right-section">
+    <div class="form-wrapper">
+      <h5>Sign Up</h5>
+      <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+        <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field">
+          <span class="p-float-label">
+            <input type="email" pInputText formControlName="email" />
+            <label for="float-input">Email</label>
+          </span>
+        </div>
+        <div class="col-12 md:col-12 mt-3 mb-4 full-width">
+          <span class="p-float-label">
+            <p-password formControlName="password"></p-password>
+            <label for="float-input">Password</label>
+          </span>
+        </div>
+
+        <div class="col-12 md:col-12 mt-3 mb-4 dropdown-full-width mt-5">
+          <span class="p-float-label">
+            <p-dropdown
+              [options]="loginOptionType"
+              optionLabel="title"
+              optionValue="code"
+              formControlName="options"
+            ></p-dropdown>
+            <label class="dropdown-lable-field" for="float-input">
+              Select The correct option
+            </label>
+          </span>
+        </div>
+        <div class="submit-btn">
+          <p-button
+            class="submit-btns"
+            type="submit"
+            label="Sign in"
+          ></p-button>
+        </div>
+      </form>
+
+      <div class="login-area mb-3 mt-3">
+        <a href="#">
+          New User?
+          <span>Sign Up</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
