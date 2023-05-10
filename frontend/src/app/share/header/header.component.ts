@@ -50,8 +50,6 @@ export class HeaderComponent implements OnInit {
 
    }
 
- 
-
   ngOnInit(): void {
     this.registerForm =this.fb.group({
       name: ['',[Validators.required]],
@@ -97,6 +95,11 @@ export class HeaderComponent implements OnInit {
   quistionSubmit(event:boolean){
     this.isOtpPage = event;
     this.isSignup = false;
+  }
+
+  OtpModal(event:boolean){
+    // console.log(event)
+    this.isOtpPage = event;
   }
 }
 

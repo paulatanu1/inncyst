@@ -168,7 +168,11 @@
   *ngIf="isSignup"
   (quistionSubmit)="quistionSubmit($event)"
 ></app-sign-up-questions>
-
+{{ isOtpPage }}
 <!-- Otp page -->
-<app-registration-otp *ngIf="isOtpPage"></app-registration-otp>
+<app-registration-otp
+  (OtpModal)="OtpModal($event)"
+  *ngIf="isOtpPage"
+  [isOtpPage]="isOtpPage"
+></app-registration-otp>
 <!-- Otp page -->

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sign-up-questions',
@@ -8,8 +8,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SignUpQuestionsComponent implements OnInit {
   display:boolean = false;
   @Input() sidebarEnable:boolean = false
-  @Output() quistionSubmit = new EventEmitter()
-  constructor() { }
+  @Output() quistionSubmit = new EventEmitter();
+  isOtpPage:boolean = false;
+  constructor(private cdr:ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.display = this.sidebarEnable
@@ -20,7 +21,8 @@ export class SignUpQuestionsComponent implements OnInit {
   }
 
   onSubmitAnswer(){
+    // this.cdr.detectChanges();
     this.quistionSubmit.emit(true);
-    
+    this.isOtpPage = true
   }
 }

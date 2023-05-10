@@ -4,6 +4,7 @@
   [modal]="true"
   [draggable]="false"
   [style]="{ width: '60vw' }"
+  (onHide)="onHide()"
 >
   <div class="otp-wrapper">
     <div class="left-section">
@@ -86,3 +87,5 @@
     </div>
   </div>
 </p-dialog>
+
+<div *ngIf="isOtpPage">Hello World</div>
