@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 interface options {
   name: string,
@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit {
   options: options[];
   loginForm!: FormGroup;
   loginOptionType:IloginOptionType[]
+
+  //Output
+  @Output() openRegisterFlow = new EventEmitter()
+
   constructor(private fb: FormBuilder) {
     this.options = [
       {name: 'Select the option', code: '0'}
@@ -44,6 +48,10 @@ export class LoginComponent implements OnInit {
 
   onLoginSubmit(){
 
+  }
+
+  loginPanelOpen(){
+    this.openRegisterFlow.emit(true);
   }
 
 }

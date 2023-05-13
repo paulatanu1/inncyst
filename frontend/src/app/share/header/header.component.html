@@ -143,7 +143,7 @@
           </div>
         </form>
 
-        <div class="login-area mb-3 mt-3">
+        <div (click)="registrationLoginOption()" class="login-area mb-3 mt-3">
           <a href="#">
             Already registered?
             <span>Login</span>
@@ -161,7 +161,7 @@
   [draggable]="false"
   [style]="{ width: '60vw' }"
 >
-  <app-login></app-login>
+  <app-login (openRegisterFlow)="openRegisterFlow($event)"></app-login>
 </p-dialog>
 <app-sign-up-questions
   [sidebarEnable]="sidebarEnable"

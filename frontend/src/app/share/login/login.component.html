@@ -8,7 +8,7 @@
   </div>
   <div class="right-section">
     <div class="form-wrapper">
-      <h5>Sign Up</h5>
+      <h5>Sign In</h5>
       <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
         <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field">
           <span class="p-float-label">
@@ -45,7 +45,7 @@
         </div>
       </form>
 
-      <div class="login-area mb-3 mt-3">
+      <div (click)="loginPanelOpen()" class="login-area mb-3 mt-3">
         <a href="#">
           New User?
           <span>Sign Up</span>

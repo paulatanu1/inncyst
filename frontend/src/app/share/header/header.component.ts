@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuItem, MessageService } from 'primeng/api';
 
@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit {
   loginflow:boolean = false;
   isOtpPage:boolean = false;
   // registerForm:FormGroup | undefined;
+
+  //Outputs
   constructor(private messageService: MessageService,private fb: FormBuilder) {
     this.items = [
       {label: 'As a Student', command: () => {
@@ -101,7 +103,19 @@ export class HeaderComponent implements OnInit {
     // console.log(event)
     this.isOtpPage = event;
   }
+
+  registrationLoginOption(){
+  this.registration = false;
+  this.loginflow = true;
+  }
+
+  openRegisterFlow(event:boolean){
+    this.registration = event;
+    this.loginflow = false;
+  }
 }
+
+
 
 
 // function MustMatch(controlName: string, matchingControlName: string) {
