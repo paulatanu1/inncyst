@@ -13,7 +13,6 @@ import { ApplySectionComponent } from '../share/intern-apply/apply-section.compo
 import { WhatWeDoComponent } from '../share/what-we-do/what-we-do.component';
 import { GetJobComponent } from '../share/get-job/get-job.component';
 import { VideoSectionComponent } from '../share/video-section/video-section.component';
-import { GallerySectionComponent } from '../share/gallery-section/gallery-section.component';
 import { OurTeamComponent } from '../share/our-team/our-team.component';
 import { TestimonialsComponent } from '../share/testimonials/testimonials.component';
 import { VisitorsComponent } from '../share/visitors/visitors.component';
@@ -45,7 +44,6 @@ import { NgOtpInputModule } from 'ng-otp-input';
     WhatWeDoComponent,
     GetJobComponent,
     VideoSectionComponent,
-    GallerySectionComponent,
     OurTeamComponent,
     TestimonialsComponent,
     VisitorsComponent,
@@ -86,7 +84,6 @@ import { NgOtpInputModule } from 'ng-otp-input';
     WhatWeDoComponent,
     GetJobComponent,
     VideoSectionComponent,
-    GallerySectionComponent,
     OurTeamComponent,
     TestimonialsComponent,
     VisitorsComponent,
