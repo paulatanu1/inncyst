@@ -36,9 +36,11 @@ export class ApiService {
       url = environment.API_URL + '/' + environment.API_VERSION + url;
     }
 
+    console.log(headertoken)
     let httpHeaderValue = new HttpHeaders();
 
     if (headertoken == undefined) {
+      console.log(httpHeaderValue)
       httpHeaderValue = httpHeaderValue
     }
     else {
@@ -52,6 +54,7 @@ export class ApiService {
           timeout(environment.timeout),
           catchError((e, c) => { return throwError(e) }),
           map((response: any) => {
+            console.log(responseobj)
             var responseobj = JSON.parse(JSON.stringify(response.body));
             responseobj.status = response.status;
             return responseobj;

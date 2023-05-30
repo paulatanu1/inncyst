@@ -1,10 +1,17 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuItem, MessageService } from 'primeng/api';
+import {ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
+import { RegistrationService } from 'src/app/registration-service/registration.service';
 
 interface options {
   name: string,
   code: string
+}
+
+interface IregistrationOption{
+  option:string,
+  id:number
 }
 @Component({
   selector: 'app-header',
@@ -29,9 +36,10 @@ export class HeaderComponent implements OnInit {
   loginflow:boolean = false;
   isOtpPage:boolean = false;
   // registerForm:FormGroup | undefined;
-
+  registrationOption:IregistrationOption[]=[];
+  isSubmited:boolean = false
   //Outputs
-  constructor(private messageService: MessageService,private fb: FormBuilder) {
+  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService) {
     this.items = [
       {label: 'As a Student', command: () => {
           this.login('student');
@@ -47,31 +55,59 @@ export class HeaderComponent implements OnInit {
     ]
 
     this.options = [
-      {name: 'Select the option', code: '0'}
+      // {name: 'Select the option', code: '0'},
+      {name: 'Intern', code: '1'},
+      {name: 'Job', code: '2'},
+      {name: 'Student', code: '3'},
+      {name: 'Industry', code: '3'}
   ];
 
+  this.registrationOption = 
+  [{
+    option:'student',id:1
+  },
+  {
+    option:'intern',id:1
+  },
+  {
+    option:'job',id:1
+  }]
    }
 
   ngOnInit(): void {
+    console.log(this.registrationOption)
     this.registerForm =this.fb.group({
-      name: ['',[Validators.required]],
+      name: ['',[Validators.required,Validators.minLength(4)]],
       email: ['',[Validators.required,Validators.email]],
-      mobile:[null,[Validators.required]],
+      mobile:[null,[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       password:['',[Validators.required],Validators.minLength(6)],
       confirmPassword:['',[Validators.required]],
-      options:['',[Validators.required]],
+      options:['Select the option',[Validators.required]],
       agree:[false,[Validators.required,Validators.requiredTrue]],
     },{
-      // validators: MustMatch('password', 'confirmPassword')
+      validators:ConfirmPasswordValidator("password", "confirmPassword")
     });
-  // this.activeItem = this.registrationType[0];
   }
 
   onSubmit(){
     console.log(this.registerForm);
-    this.isSignup = true;
-    this.registration = false;
-    this.sidebarEnable = true
+    this.isSubmited = true
+    if(this.isSubmited && this.registerForm.valid){
+      this.isSignup = true;
+      this.registration = false;
+      this.sidebarEnable = true;
+    }
+    
+    this.reg.sendRegistrationRequest().subscribe((response)=>{
+      console.log(response , 'response')
+    })
+  
+
+    this.messageService.add({
+      key: "main",
+      severity: "info",
+      detail: "Ready to scan",
+    });
   }
 
   login(type:string){

@@ -33,6 +33,7 @@ import {CalendarModule} from 'primeng/calendar';
 import { LoginComponent } from '../share/login/login.component';
 import { RegistrationOtpComponent } from '../share/registration-otp/registration-otp.component';
 import { NgOtpInputModule } from 'ng-otp-input';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { NgOtpInputModule } from 'ng-otp-input';
      ReactiveFormsModule,
      SidebarModule,
      CalendarModule,
-     NgOtpInputModule
+     NgOtpInputModule,
+     ToastModule
     ],
   exports: [
     HeaderComponent, 
@@ -99,7 +101,8 @@ import { NgOtpInputModule } from 'ng-otp-input';
     DropdownModule,
     SidebarModule,
     CalendarModule,
-    NgOtpInputModule
+    NgOtpInputModule,
+    ToastModule
   ],
 })
 export class SharedModule {}
