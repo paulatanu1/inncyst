@@ -6,10 +6,9 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,HttpClientModule,ReactiveFormsModule,RouterModule.forRoot([])],
+  imports: [BrowserModule, AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,RouterModule.forRoot([])],
   exports: [SharedModule,FormsModule,ReactiveFormsModule],
   providers: [SharedModule],
   bootstrap: [AppComponent],
