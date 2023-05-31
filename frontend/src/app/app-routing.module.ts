@@ -13,6 +13,7 @@ const routes: Routes = [
       import('./shared/shared.module').then((m) => m.SharedModule),
   },
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: 'jobs', loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsModule) },
 ];
 
 @NgModule({
