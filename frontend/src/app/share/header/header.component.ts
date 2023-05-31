@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { MenuItem, MessageService } from 'primeng/api';
 import {ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
 import { RegistrationService } from 'src/app/registration-service/registration.service';
+import { ProgressBarService } from 'src/app/service/progress-bar.service';
 
 interface options {
   name: string,
@@ -39,7 +40,7 @@ export class HeaderComponent implements OnInit {
   registrationOption:IregistrationOption[]=[];
   isSubmited:boolean = false
   //Outputs
-  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService) {
+  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService) {
     this.items = [
       {label: 'As a Student', command: () => {
           this.login('student');
@@ -87,6 +88,10 @@ export class HeaderComponent implements OnInit {
     },{
       validators:ConfirmPasswordValidator("password", "confirmPassword")
     });
+  }
+
+  optionClick(){
+    this.progress.setProgressBar(false);
   }
 
   onSubmit(){

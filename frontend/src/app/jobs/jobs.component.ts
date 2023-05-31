@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProgressBarService } from '../service/progress-bar.service';
 
 @Component({
   selector: 'app-jobs',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private progress:ProgressBarService) { }
 
   ngOnInit(): void {
+
+    this.progress.setProgressBar(false);
   }
 
 }
