@@ -34,6 +34,8 @@ import { LoginComponent } from '../share/login/login.component';
 import { RegistrationOtpComponent } from '../share/registration-otp/registration-otp.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import {ToastModule} from 'primeng/toast';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import {ToastModule} from 'primeng/toast';
     MiniHeaderComponent,
     SignUpQuestionsComponent,
     LoginComponent,
-    RegistrationOtpComponent
+    RegistrationOtpComponent,
+    ProgressBarComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +76,8 @@ import {ToastModule} from 'primeng/toast';
      SidebarModule,
      CalendarModule,
      NgOtpInputModule,
-     ToastModule
+     ToastModule,
+     ProgressBarModule
     ],
   exports: [
     HeaderComponent, 
@@ -102,7 +106,8 @@ import {ToastModule} from 'primeng/toast';
     SidebarModule,
     CalendarModule,
     NgOtpInputModule,
-    ToastModule
+    ToastModule,
+    ProgressBarModule
   ],
 })
 export class SharedModule {}

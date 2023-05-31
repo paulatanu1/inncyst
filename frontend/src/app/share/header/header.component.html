@@ -1,3 +1,4 @@
+<app-progress-bar></app-progress-bar>
 <nav class="navbar navbar-expand-lg">
   <!-- Navbar content -->
   <div class="container-fluid">
@@ -33,7 +34,14 @@
           <a class="nav-link" href="#">Contact us</a>
         </li>
         <li class="nav-item">
-          <a [routerLink]="['/jobs']" href="#" class="nav-link">Jobs</a>
+          <a
+            (click)="optionClick()"
+            [routerLink]="['/jobs']"
+            href="#"
+            class="nav-link"
+          >
+            Jobs
+          </a>
         </li>
       </ul>
     </div>

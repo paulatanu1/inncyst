@@ -1,0 +1,17 @@
+::ng-deep .p-progressbar {
+  // height: 2px;
+}
+
+::ng-deep .p-progressbar .p-progressbar-value {
+  background: #019fc3;
+}
+
+.opacity {
+  opacity: 0;
+}
+
+::ng-deep p-progressbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
