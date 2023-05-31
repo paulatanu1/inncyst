@@ -1,0 +1,213 @@
+.banner_card_slider {
+    background: radial-gradient(96.42% 668.24% at 51.28% 49.91%, rgba(126, 232, 250, 0.52) 17.71%, rgba(238, 228, 192, 0.13) 100%);
+    text-align: center;
+    padding: 60px 0;
+    font-family: 'Raleway', sans-serif;
+    h2 {
+        color: #00A6F8;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 47px;
+    }
+    p {
+        color: #522D80;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 28px;
+    }
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        li {
+            display: flex;
+            flex-direction: row;
+            flex: 0 0 370px;
+            padding: 18px 18px;
+            margin:0 19px;
+            .card_text {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 40%;
+            }
+            
+            &.internship {
+                background: linear-gradient(114.48deg, #1728C4 15.59%, rgba(232, 36, 236, 0.48) 98.47%);
+                border-radius: 26px;
+                &>div:last-of-type {
+                        margin-top: 25px;
+                    }
+                label {
+                    display: inline-block;
+                    background: linear-gradient(44.84deg, #ED2E27 2.1%, #F7BF18 114.51%);
+                    box-shadow: 3px 3px 0px #C92400, inset 0px 0px 46px #FFE600;
+                    border-radius: 7px;
+                    font-weight: 400;
+                    font-size: 25px;
+                    line-height: 29px;
+                    color: #fff;
+                    -webkit-text-stroke: 1px #000000;
+                    text-shadow: 0px 2px 0px rgba(159, 0, 0, 0.72);
+                    font-family: 'Lilita One', cursive;
+                    padding: 7px 14px;
+                }
+                span {
+                    font-weight: 700;
+                    font-size: 19px;
+                    line-height: 22px;
+                    color: #FFFFFF;
+                    text-align: left;
+                    margin-top: 18px;
+                }
+                button {
+                    margin-top: auto;
+                    background: #FFFFFF;
+                    border-radius: 6px;
+                    padding: 8px 16px;
+                    color: #000000;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 16px;
+                    flex: 0 0 auto;
+                    width: 102px;
+                }
+            }
+            &.jobship {
+                background: linear-gradient(114.48deg, #C46A17 15.59%, rgba(236, 192, 36, 0.48) 98.47%);
+                border-radius: 26px;
+                &>div:last-of-type {
+                        margin-top: 25px;
+                    }
+                label {
+                    display: inline-block;
+                    background: linear-gradient(44.84deg, #27A6ED 2.1%, #37F718 114.51%);
+                    box-shadow: 3px 3px 0px #C92400, inset 0px 0px 46px #FFE600;
+                    border-radius: 7px;
+                    font-weight: 400;
+                    font-size: 25px;
+                    line-height: 29px;
+                    color: #fff;
+                    -webkit-text-stroke: 1px #000000;
+                    text-shadow: 0px 2px 0px rgba(159, 0, 0, 0.72);
+                    font-family: 'Lilita One', cursive;
+                    padding: 7px 14px;
+                    width: 82px;
+                }
+
+                span {
+                    font-weight: 700;
+                    font-size: 19px;
+                    line-height: 22px;
+                    color: #FFFFFF;
+                    text-align: left;
+                    margin-top: 18px;
+                }
+
+                button {
+                    margin-top: auto;
+                    background: #FFFFFF;
+                    border-radius: 6px;
+                    padding: 8px 16px;
+                    color: #000000;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 16px;
+                    flex: 0 0 auto;
+                    width: 102px;
+                }
+            }
+            &.projects {
+                background: linear-gradient(114.48deg, #1771C4 15.59%, rgba(36, 236, 200, 0.48) 98.47%);
+                border-radius: 26px;
+
+                label {
+                    display: inline-block;
+                    background: linear-gradient(44.84deg, #ED27B6 2.1%, #37F718 114.51%);
+                    box-shadow: 3px 3px 0px #C92400, inset 0px 0px 46px #FFE600;
+                    border-radius: 7px;
+                    font-weight: 400;
+                    font-size: 25px;
+                    line-height: 29px;
+                    color: #fff;
+                    -webkit-text-stroke: 1px #000000;
+                    text-shadow: 0px 2px 0px rgba(159, 0, 0, 0.72);
+                    font-family: 'Lilita One', cursive;
+                    padding: 7px 14px;
+                }
+
+                span {
+                    font-weight: 700;
+                    font-size: 19px;
+                    line-height: 22px;
+                    color: #FFFFFF;
+                    text-align: left;
+                    margin-top: 18px;
+                }
+
+                button {
+                    margin-top: auto;
+                    background: #FFFFFF;
+                    border-radius: 6px;
+                    padding: 8px 16px;
+                    color: #000000;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 16px;
+                    flex: 0 0 auto;
+                    width: 102px;
+                }
+            }
+        }
+    }
+}
+.bottom-inner-content {
+    padding: 63px 0;
+    font-family: 'Raleway', sans-serif;
+    section {
+        max-width: 1120px;
+        margin: 0 auto;
+        &.internship {
+            margin-top: 90px;
+        }
+        h3 {
+            color: #522D80;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 42px;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        span {
+            display: block;
+            color: #000000;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 23px;
+            letter-spacing: 0.5px;
+            margin-bottom: 40px;
+        }
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0  ;
+            li {
+                flex: 0 0 331px;
+                height: 219px;
+                list-style: none;
+                &:first-of-type {
+                    background: linear-gradient(114.16deg, #F8C821 1.67%, rgba(248, 59, 33, 0.47) 100%);
+                    border-radius: 19px;
+                }
+                &:nth-child(2) {
+                    background: linear-gradient(113.32deg, #21C4F8 1.22%, rgba(0, 59, 148, 0.58) 100%);
+                    border-radius: 19px;
+                }
+                &:last-of-type {
+                    background: #F77F65;
+                    border-radius: 19px;
+                }
+            }
+        }
+    }
+}
