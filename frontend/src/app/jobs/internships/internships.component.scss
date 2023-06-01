@@ -1,0 +1,74 @@
+.internship_sec {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding:0 70px;
+    font-family: 'Raleway';
+    background: #F7F7F7;
+    padding: 10px 0;
+    .left_aside_part {
+        flex: 0 0 398px;
+    }
+    .right_details_part {
+        flex: 0 0 762px;
+        margin-left: 16px;
+        background: #fff;
+        border-top: 3px solid #522D80;
+        .right_details_head {
+            border-bottom: 0.5px solid #969696;
+            padding: 30px 40px;
+            h2 {
+                color: #252525;
+                font-weight: 600;
+                font-size: 30px;
+                line-height: 42px;
+                span {
+                    color: #7C7C7C;
+                    font-weight: 600;
+                    font-size: 24px;
+                    display: block;
+                    line-height: 33px;
+                }
+            }
+        }
+        .overview {
+            padding: 26px 42px;
+            h2 {
+                font-size: 24px;
+                font-weight: 600;
+                color: #000000;
+                margin-bottom: 20px;
+            }
+            p {
+                color: #6C6C6C;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 15px;
+                margin-bottom: 20px;
+            }
+            ul {
+                list-style: none;
+                li {
+                    font-weight: 500;
+                    font-size: 13px;
+                    line-height: 27px;                
+                    color: #6C6C6C;
+                }
+            }
+            .tags {
+                span {
+                    display: inline-block;
+                    background: #EFEFEF;
+                        border-radius: 3px;
+                        padding: 10px 15px;
+                        font-weight: 500;
+                        font-size: 10px;
+                        line-height: 12px;
+                        text-align: center;                    
+                        color: #656565;
+                        margin-right: 11px;
+                }
+            }
+        }
+    }
+}
