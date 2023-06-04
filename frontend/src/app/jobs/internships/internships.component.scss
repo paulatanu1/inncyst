@@ -1,0 +1,217 @@
+.internship_sec {
+    padding:0 70px;
+    font-family: 'Raleway';
+    background: #F7F7F7;
+    padding: 10px 0;
+    .internship_sec_inner {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        max-width: 1297px;
+        margin: 0 auto;
+    }
+    .left_aside_part {
+        flex: 0 0 398px;
+        .company_lists {
+            // height: 1000px;
+            // overflow: scroll;
+            // // &::-webkit-scrollbar-track {
+            // //     background: #f1f1f1;
+            // //     width: 6px;
+            // // }
+            // // /* Handle */
+            // // &::-webkit-scrollbar-thumb {
+            // //     background: #888;
+            // // }
+            // // /* Handle on hover */
+            // // &::-webkit-scrollbar-thumb:hover {
+            // //     background: #555;
+            // // }
+            ul {
+                list-style: none;
+                padding: 0 10px 0 0;
+                li {
+                    background: #FFFFFF;
+                    border: 1px solid transparent;
+                    border-radius: 12px;
+                    padding: 22px;
+                    margin-bottom: 16px;
+                    &:hover, &.is_active {
+                        border: 1px solid #522D80;
+                    }
+                    .company_details_head {
+                        display: flex;
+                        flex-direction: row;
+                        &>div {
+                            display: block;                
+                            &>span {
+                                border: 0.5px solid #C0C0C0;
+                                display: block;
+                                padding: 10px 10px;
+                            }
+                        }               
+                        h2 {
+                            color: #252525;
+                            font-weight: 600;
+                            font-size: 13px;
+                            line-height: 18px;
+                            margin-left: 10px;               
+                            span {
+                                color: #8B8B8B;
+                                font-weight: 400;
+                                font-size: 10px;
+                                display: block;
+                                line-height: 14px;
+                            }
+                        }
+                    }
+                    .company_tags {
+                        margin-top: 13px;
+                        span {
+                            display: inline-block;
+                            background: #F1E6FF;;
+                            border-radius: 14px;
+                            padding: 5px 12px;
+                            vertical-align: middle;
+                            color: #522D80;
+                            font-weight: 700;
+                            font-size: 12px;
+                            margin-right: 18px;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    .type_applied {
+                        display: flex;
+                        flex-direction: row;
+                        margin-top: 20px;
+                        flex-wrap: wrap;
+                        span {
+                            display: flex;
+                            flex-direction: row;                            
+                            align-items: center;
+                            margin:0 20px 10px 0;
+                            strong {
+                                color: #522D80;
+                                font-weight: 600;
+                                font-size: 14px;
+                                margin-left: 8px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .right_details_part {
+        flex: 0 0 762px;
+        margin-left: 16px;
+        background: #fff;
+        border-top: 3px solid #522D80;
+        .right_details_head {
+            border-bottom: 0.5px solid #969696;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: row;
+            & > div {
+                display: block;
+                & > span {
+                    border: 0.5px solid #C0C0C0;
+                    display: block;
+                    padding: 15px 10px;
+                }
+                .company_tags {
+                    margin-top: 13px;
+                    span {
+                        display: inline-block;
+                        background: #F2F2F2;
+                        border-radius: 14px;
+                        padding: 5px 12px;
+                        vertical-align: middle;
+                        color: #522D80;
+                        font-weight: 700;
+                        font-size: 12px;
+                        margin-right: 18px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+            h2 {
+                color: #252525;
+                font-weight: 600;
+                font-size: 30px;
+                line-height: 42px;
+                margin-left: 32px;
+                span {
+                    color: #7C7C7C;
+                    font-weight: 600;
+                    font-size: 24px;
+                    display: block;
+                    line-height: 33px;
+                }
+            }
+        }
+        .overview {
+            padding: 26px 42px;
+            h2 {
+                font-size: 24px;
+                font-weight: 600;
+                color: #000000;
+                margin-bottom: 10px;
+            }
+            p {
+                color: #6C6C6C;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 15px;
+                margin-bottom: 20px;
+            }
+            ul {
+                list-style: none;
+                padding: 0;
+                margin-bottom: 25px;
+                span {
+                    font-weight: 500;
+                    font-size: 13px;
+                    color: #6C6C6C;
+                    line-height: 27px;
+                }
+                li {
+                    font-weight: 500;
+                    font-size: 13px;
+                    line-height: 27px;                
+                    color: #6C6C6C;
+                }
+            }
+            .tags {
+                margin-bottom: 25px;
+                span {
+                    display: inline-block;
+                    background: #EFEFEF;
+                        border-radius: 3px;
+                        padding: 10px 15px;
+                        font-weight: 500;
+                        font-size: 10px;
+                        line-height: 12px;
+                        text-align: center;                    
+                        color: #656565;
+                        margin-right: 11px;
+                }
+            }
+            .apply_btn {
+                text-align: center;
+                margin-top: 40px;
+
+                button {
+                    background: #522D80;
+                    border-radius: 5px;
+                    color: #FFFFFF;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                    padding: 10px 20px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
