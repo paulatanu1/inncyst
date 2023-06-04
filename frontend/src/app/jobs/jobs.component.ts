@@ -11,8 +11,7 @@ export class JobsComponent implements OnInit {
   constructor(private progress:ProgressBarService) { }
 
   ngOnInit(): void {
-
-    this.progress.setProgressBar(false);
+    
   }
 
 }

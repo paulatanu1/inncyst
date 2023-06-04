@@ -14,15 +14,7 @@ export class ProgressBarComponent implements OnInit,OnChanges {
   // subscription:Subscription;
   constructor(private progress:ProgressBarService) { }
 
-  ngOnInit(): void {
-    this.progress.getProgressBar().subscribe((response)=>{
-       this.response = response;
-      console.log(response)
-        this.response = true;
-        // this.isprogressVisible  = response;
-        console.log(this.response)
-    })
-  }
+  ngOnInit(): void {}
 
   ngOnChanges():void {
     console.log(this.response)

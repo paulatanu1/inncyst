@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import {ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
 import { RegistrationService } from 'src/app/registration-service/registration.service';
@@ -39,8 +40,9 @@ export class HeaderComponent implements OnInit {
   // registerForm:FormGroup | undefined;
   registrationOption:IregistrationOption[]=[];
   isSubmited:boolean = false
+  progressBar:boolean = false;
   //Outputs
-  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService) {
+  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute) {
     this.items = [
       {label: 'As a Student', command: () => {
           this.login('student');
@@ -76,7 +78,6 @@ export class HeaderComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.registrationOption)
     this.registerForm =this.fb.group({
       name: ['',[Validators.required,Validators.minLength(4)]],
       email: ['',[Validators.required,Validators.email]],
@@ -88,14 +89,36 @@ export class HeaderComponent implements OnInit {
     },{
       validators:ConfirmPasswordValidator("password", "confirmPassword")
     });
+
+    //
+    this.progress.isProgressBarShow.subscribe({
+      next:(res:boolean)=>{
+        this.progressBar = res;
+      }
+    })
   }
 
-  optionClick(){
-    this.progress.setProgressBar(false);
+  optionClick(url:string){
+    // this.progressBar = true;
+    this.progress.isProgressBarShow.next(true)
+    if(url === 'jobs'){
+      this.router.navigateByUrl('/jobs');
+      this.progress.isProgressBarShow.next(false)
+    }else if(url === 'home'){
+      this.router.navigateByUrl('/home');
+      this.progress.isProgressBarShow.next(false)
+    }else if(url === 'about-us'){
+      this.router.navigateByUrl('/about-us');
+      this.progress.isProgressBarShow.next(false)
+    }else if(url === 'contactus'){
+      this.router.navigateByUrl('/contactus');
+      this.progress.isProgressBarShow.next(false)
+    }
   }
+
+
 
   onSubmit(){
-    console.log(this.registerForm);
     this.isSubmited = true
     if(this.isSubmited && this.registerForm.valid){
       this.isSignup = true;
@@ -104,7 +127,7 @@ export class HeaderComponent implements OnInit {
     }
     
     this.reg.sendRegistrationRequest().subscribe((response)=>{
-      console.log(response , 'response')
+      // console.log(response , 'response')
     })
   
 
@@ -115,8 +138,25 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  setQueryParams(page:string){
+    const urlTree = this.router.createUrlTree([], {
+      queryParams: { users: page },
+      queryParamsHandling: "merge",
+      preserveFragment: true });
+      this.router.navigateByUrl(urlTree); 
+  }
+
+  resetQueryParams(){
+    this.router.navigate([], {
+      queryParams: {
+        'users': null,
+        'youCanRemoveMultiple': null,
+      },
+      queryParamsHandling: 'merge'
+    })
+  }
   login(type:string){
-    console.log(type)
+  
     if(type === 'student'){
       this.registration = true;
       this.isStudent = true;
@@ -128,10 +168,14 @@ export class HeaderComponent implements OnInit {
   }
 
   register(){
+    this.setQueryParams('register')
+  
+    
     this.registration = true;
   }
 
   getLoginForm(){
+    this.setQueryParams('login')
     this.loginflow = true
   }
 
@@ -141,7 +185,6 @@ export class HeaderComponent implements OnInit {
   }
 
   OtpModal(event:boolean){
-    // console.log(event)
     this.isOtpPage = event;
   }
 
@@ -153,6 +196,12 @@ export class HeaderComponent implements OnInit {
   openRegisterFlow(event:boolean){
     this.registration = event;
     this.loginflow = false;
+  }
+
+  onClosePopup(popupname:string){
+    if(popupname){
+      this.resetQueryParams()
+    }
   }
 }
 

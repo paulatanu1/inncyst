@@ -194,3 +194,13 @@
 .submit-btns {
   width: 100%;
 }
+
+.progress-bar {
+  position: fixed;
+  top: 1px;
+  width: 100%;
+  // padding-top: 66px;
+  ::ng-deep .p-progressbar {
+    height: 2px;
+  }
+}
