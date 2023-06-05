@@ -9,11 +9,10 @@ import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,RouterModule.forRoot([]),NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),HttpClientModule],
-  exports: [SharedModule,FormsModule,ReactiveFormsModule],
+  exports: [SharedModule,FormsModule,ReactiveFormsModule,],
   providers: [SharedModule],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
