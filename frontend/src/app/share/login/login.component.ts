@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs';
+import { of } from 'rxjs/internal/observable/of';
+import { LoginApiService } from './login-api.service';
 interface options {
   name: string,
   code: string
@@ -22,7 +25,7 @@ export class LoginComponent implements OnInit {
   //Output
   @Output() openRegisterFlow = new EventEmitter()
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private loginService:LoginApiService) {
     this.options = [
       {name: 'Select the option', code: '0'}
   ];
@@ -39,14 +42,39 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm =this.fb.group({
       email: ['',[Validators.required,Validators.email]],
-      password:['',[Validators.required],Validators.minLength(6)],
-      options:['Select the option',[Validators.required]],
+      password:[null,[Validators.required,Validators.minLength(6)]],
+      options:['Select the option',[Validators.required],this.validPassword.bind(this)],
+      
     },{
       // validators: MustMatch('password', 'confirmPassword')
+      
     });
   }
 
+  validPassword(control: AbstractControl) {
+    return of('' === control.value).pipe(
+      map(result => result ? { invalid: true } : null)
+    );
+  }
+
   onLoginSubmit(){
+  console.log(this.loginForm.controls)
+  if(this.loginForm.valid){
+  let userEmail:string = this.loginForm.get('email')?.value;
+  let password = this.loginForm.get('password')?.value
+  let userRole = this.loginForm.get('options')?.value
+
+  this.loginService.login(userEmail,password,userRole).subscribe({
+    next:(res)=>{
+      console.log(res)
+    },
+    error: (err)=>{
+
+    }
+  }
+  )
+}
+
 
   }
 
@@ -55,3 +83,7 @@ export class LoginComponent implements OnInit {
   }
 
 }
+function observableOf(arg0: boolean) {
+  throw new Error('Function not implemented.');
+}
+
