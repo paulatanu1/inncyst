@@ -7,7 +7,7 @@ import { RegistrationService } from 'src/app/registration-service/registration.s
 import { ProgressBarService } from 'src/app/service/progress-bar.service';
 
 interface options {
-  name: string,
+  optionName: string,
   code: string
 }
 
@@ -59,10 +59,10 @@ export class HeaderComponent implements OnInit {
 
     this.options = [
       // {name: 'Select the option', code: '0'},
-      {name: 'Intern', code: '1'},
-      {name: 'Job', code: '2'},
-      {name: 'Student', code: '3'},
-      {name: 'Industry', code: '3'}
+      {optionName: 'Intern', code: '1'},
+      {optionName: 'Job', code: '2'},
+      {optionName: 'Student', code: '3'},
+      {optionName: 'Industry', code: '3'}
   ];
 
   this.registrationOption = 
@@ -79,10 +79,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm =this.fb.group({
-      name: ['',[Validators.required,Validators.minLength(4)]],
+      userName: ['',[Validators.required,Validators.minLength(4)]],
       email: ['',[Validators.required,Validators.email]],
       mobile:[null,[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-      password:['',[Validators.required],Validators.minLength(6)],
+      password:['',[Validators.required,Validators.minLength(6)]],
       confirmPassword:['',[Validators.required]],
       options:['Select the option',[Validators.required]],
       agree:[false,[Validators.required,Validators.requiredTrue]],
@@ -119,16 +119,24 @@ export class HeaderComponent implements OnInit {
 
 
   onSubmit(){
+    console.log(this.registerForm.get('userName')?.value)
     this.isSubmited = true
     if(this.isSubmited && this.registerForm.valid){
       this.isSignup = true;
       this.registration = false;
       this.sidebarEnable = true;
+      let userName:string = this.registerForm.get('userName')?.value;
+      let userEmail:string = this.registerForm.get('email')?.value;
+      let phone:string = this.registerForm.get('mobile')?.value;
+      let password:string = this.registerForm.get('confirmPassword')?.value;
+      let userRole:string = this.registerForm.get('options')?.value;
+      console.log(userName)
+      this.reg.sendRegistrationRequest(userName,userEmail,phone,password,userRole).subscribe((response)=>{
+        console.log(response , 'response')
+      })
     }
-    
-    this.reg.sendRegistrationRequest().subscribe((response)=>{
-      // console.log(response , 'response')
-    })
+
+  
   
 
     this.messageService.add({

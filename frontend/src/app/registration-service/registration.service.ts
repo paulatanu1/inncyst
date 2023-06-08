@@ -8,17 +8,17 @@ export class RegistrationService {
 
   constructor(private api:ApiService) { }
 
-  sendRegistrationRequest(){
+  sendRegistrationRequest(userName:string,userEmail:string,phoneNumber:string,password:string,userRole:string){
 
-    const form_data: any = new Object();
 
-    
-      form_data.name = 'Atanu123',
-      form_data.email = 'atanupaul22@gamil.com',
-      form_data.phone =  '9999999999',
-      form_data.password = '123456789',
-      form_data.role = 'intern'
+    let url= '/auth/register';
+    const payload = new FormData()
+      payload.append('name',userName as string),
+      payload.append('email',userEmail as string),
+      payload.append('phone',phoneNumber as string),
+      payload.append('password',password as string)
+      payload.append('role',userRole.toLowerCase() as string)
 
-    return this.api.ApiCallWithLocalization(form_data, '/auth/register', 'post')
+    return this.api.ApiCallWithLocalization(payload, url, 'post')
   }
 }

@@ -103,24 +103,23 @@
                 type="text"
                 pInputText
                 class=""
-                formControlName="name"
-                ˀ
+                formControlName="userName"
               />
               <label for="float-input">Name</label>
             </span>
             <div
               *ngIf="
-                (isSubmited && registerForm.get('name')?.invalid) ||
-                (registerForm.get('name')?.invalid &&
-                  (registerForm.get('name')?.dirty ||
-                    registerForm.get('name')?.touched))
+                (isSubmited && registerForm.get('userName')?.invalid) ||
+                (registerForm.get('userName')?.invalid &&
+                  (registerForm.get('userName')?.dirty ||
+                    registerForm.get('userName')?.touched))
               "
               class=""
             >
-              <div *ngIf="registerForm.get('name')?.errors?.['required']">
+              <div *ngIf="registerForm.get('userName')?.errors?.['required']">
                 Name is required.
               </div>
-              <div *ngIf="registerForm.get('name')?.errors?.['minlength']">
+              <div *ngIf="registerForm.get('userName')?.errors?.['minlength']">
                 Minimum 4 Charactar Required.
               </div>
             </div>
@@ -218,7 +217,9 @@
             <span class="p-float-label">
               <p-dropdown
                 [options]="options"
-                optionLabel="name"
+                optionLabel="optionName"
+                formControlName="options"
+                optionValue="optionName"
                 formControlName="options"
               ></p-dropdown>
               <label class="dropdown-lable-field" for="float-input">
