@@ -20,6 +20,7 @@
     "@angular/router": "^14.2.0",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.2.3",
+    "localstorage-slim": "^2.4.0",
     "ng-otp-input": "^1.8.5",
     "ngx-owl-carousel-o": "^14.0.1",
     "ngx-spinner": "^14.0.0",
