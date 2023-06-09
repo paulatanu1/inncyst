@@ -20,11 +20,16 @@ export class LoginApiService {
   login(userEmail:string,password:string,userRole:string){
     this.url= '/auth/login';
     // const form_data: IformData = new Object();
-    const payload = new FormData()
-      payload.append('email',userEmail as string),
-      payload.append('password',password as string)
-      payload.append('role',userRole.toLowerCase() as string)
+    // const payload = new FormData()
+    //   payload.append('email',userEmail as string),
+    //   payload.append('password',password as string)
+    //   payload.append('role',userRole.toLowerCase() as string)
 
-    return this.api.ApiCallWithLocalization(payload, this.url, 'post')
+    const form_data:any = new Object();
+    form_data.email = userEmail;
+    form_data.password = password;
+    form_data.role = userRole.toLowerCase() as string;
+
+    return this.api.ApiCallWithLocalization(form_data, this.url, 'post')
   }
 }

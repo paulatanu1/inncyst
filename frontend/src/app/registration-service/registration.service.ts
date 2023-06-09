@@ -12,13 +12,20 @@ export class RegistrationService {
 
 
     let url= '/auth/register';
-    const payload = new FormData()
-      payload.append('name',userName as string),
-      payload.append('email',userEmail as string),
-      payload.append('phone',phoneNumber as string),
-      payload.append('password',password as string)
-      payload.append('role',userRole.toLowerCase() as string)
+    // const payload = new FormData()
+    //   payload.append('name',userName as string),
+    //   payload.append('email',userEmail as string),
+    //   payload.append('phone',phoneNumber as string),
+    //   payload.append('password',password as string)
+    //   payload.append('role',userRole.toLowerCase() as string)
 
-    return this.api.ApiCallWithLocalization(payload, url, 'post')
+    const form_data:any = new Object();
+    form_data.name = userName;
+    form_data.email = userEmail;
+    form_data.phone = phoneNumber;
+    form_data.password = password;
+    form_data.userRole = userRole
+
+    return this.api.ApiCallWithLocalization(form_data, url, 'post')
   }
 }

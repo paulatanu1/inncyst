@@ -119,7 +119,6 @@ export class HeaderComponent implements OnInit {
 
 
   onSubmit(){
-    console.log(this.registerForm.get('userName')?.value)
     this.isSubmited = true
     if(this.isSubmited && this.registerForm.valid){
       this.isSignup = true;
@@ -177,8 +176,6 @@ export class HeaderComponent implements OnInit {
 
   register(){
     this.setQueryParams('register')
-  
-    
     this.registration = true;
   }
 
@@ -212,31 +209,3 @@ export class HeaderComponent implements OnInit {
     }
   }
 }
-
-
-
-
-// function MustMatch(controlName: string, matchingControlName: string) {
-//   return (group: AbstractControl) => {
-//     const control = group.get(controlName);
-//     const matchingControl = group.get(matchingControlName);
-
-//     if (!control || !matchingControl) {
-//         return null;
-//     }
-
-//     // return if another validator has already found an error on the matchingControl
-//     if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-//         return null;
-//     }
-
-//     // set error on matchingControl if validation fails
-//     if (control.value !== matchingControl.value) {
-//         matchingControl.setErrors({ mustMatch: true });
-//     } else {
-//         matchingControl.setErrors(null);
-//     }
-//     return null;
-// }
-// }
-

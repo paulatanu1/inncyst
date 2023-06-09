@@ -7,11 +7,13 @@ export function ConfirmPasswordValidator(controlName: string, matchingControlNam
         matchingControl.errors &&
         !matchingControl.errors["confirmPasswordValidator"]
       ) {
+        console.log('123')
         return;
       }
       if (control.value !== matchingControl.value) {
         matchingControl.setErrors({ confirmPasswordValidator: true });
       } else {
+        console.log('456')
         matchingControl.setErrors(null);
       }
     };
