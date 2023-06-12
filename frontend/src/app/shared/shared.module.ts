@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { SharedComponent } from './shared.component';
@@ -109,5 +109,6 @@ import {ProgressBarModule} from 'primeng/progressbar';
     ToastModule,
     ProgressBarModule
   ],
+  providers:[DatePipe]
 })
 export class SharedModule {}
