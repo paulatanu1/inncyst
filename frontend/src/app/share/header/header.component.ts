@@ -5,7 +5,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 import {ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
 import { RegistrationService } from 'src/app/registration-service/registration.service';
 import { ProgressBarService } from 'src/app/service/progress-bar.service';
-
+import ls from 'localstorage-slim'
 interface options {
   optionName: string,
   code: string
@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
   registrationOption:IregistrationOption[]=[];
   isSubmited:boolean = false
   progressBar:boolean = false;
+  registerId:string = ''
   //Outputs
   constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute) {
     this.items = [
@@ -121,9 +122,7 @@ export class HeaderComponent implements OnInit {
   onSubmit(){
     this.isSubmited = true
     if(this.isSubmited && this.registerForm.valid){
-      this.isSignup = true;
       this.registration = false;
-      this.sidebarEnable = true;
       let userName:string = this.registerForm.get('userName')?.value;
       let userEmail:string = this.registerForm.get('email')?.value;
       let phone:string = this.registerForm.get('mobile')?.value;
@@ -131,7 +130,12 @@ export class HeaderComponent implements OnInit {
       let userRole:string = this.registerForm.get('options')?.value;
       console.log(userName)
       this.reg.sendRegistrationRequest(userName,userEmail,phone,password,userRole).subscribe((response)=>{
-        console.log(response , 'response')
+        console.log(response , 'response');
+        this.registerId = response.data._id
+        ls.set('registerId',this.registerId)
+        this.isSignup = true;
+        this.sidebarEnable = true;
+        this.registerForm.reset();
       })
     }
 

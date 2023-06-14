@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Ianswersset } from '../registrationInterface';
 import { RegistraionQuestionSetService } from './registraion-question-set.service';
-
+import ls from 'localstorage-slim'
 @Component({
   selector: 'app-sign-up-questions',
   templateUrl: './sign-up-questions.component.html',
@@ -16,6 +16,7 @@ export class SignUpQuestionsComponent implements OnInit {
   isOtpPage:boolean = false;
   questionSets!:FormGroup;
   answersSet:Ianswersset={
+    id:'',
     companyName: '',
     companyEstableYear: '',
     aboutCompany: '',
@@ -23,9 +24,9 @@ export class SignUpQuestionsComponent implements OnInit {
     placeOfWork: '',
     salary: ''
   }
+  redirectToOtp:boolean = false
   constructor(private cdr:ChangeDetectorRef,private fb:FormBuilder,private pipe:DatePipe,private questionSet:RegistraionQuestionSetService) { 
-
-  }
+}
 
   ngOnInit(): void {
     this.display = this.sidebarEnable;
@@ -51,7 +52,10 @@ export class SignUpQuestionsComponent implements OnInit {
     console.log(this.questionSets , 'questionSets')
     const establishmentYear = this.pipe.transform(this.questionSets?.get('companyEstableYear')?.value,'yyyy')
     console.log(establishmentYear)
+    let id:string | null = ls.get('registerId')
+    console.log(id , 'iddd')
     this.answersSet = {
+      id:id,
       companyName:this.questionSets?.get('companyName')?.value,
       companyEstableYear:this.questionSets?.get('companyEstableYear')?.value,
       aboutCompany:this.questionSets?.get('aboutCompany')?.value,
@@ -64,6 +68,8 @@ export class SignUpQuestionsComponent implements OnInit {
       next: (res)=>{
         // this.api
         console.log(res, 'response')
+        // this.quistionSubmit.emit(true);
+        this.redirectToOtp = true
 
       },
       error: (err)=>{

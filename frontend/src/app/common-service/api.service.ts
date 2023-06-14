@@ -45,7 +45,7 @@ export class ApiService {
       httpHeaderValue = httpHeaderValue.set('X-localization', localization);
     } else {
       httpHeaderValue = httpHeaderValue
-        .set('Authorization', 'Bearer ' + headertoken)
+        .set('Authorization', 'Bearer ' + ls.set('login_token',true))
         //.set('Content-Type', 'application/json')
         .set('X-localization', localization);
     }

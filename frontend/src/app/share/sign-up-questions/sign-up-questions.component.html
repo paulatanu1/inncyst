@@ -92,7 +92,6 @@
             class="submit-btns"
             type="submit"
             label="continue"
-            (click)="onSubmitAnswers()"
           ></p-button>
           <!-- <input type="submit" value="Submit"> -->
         </div>
@@ -100,3 +99,5 @@
     </div>
   </div>
 </p-sidebar>
+
+<app-registration-otp *ngIf="redirectToOtp === true"></app-registration-otp>

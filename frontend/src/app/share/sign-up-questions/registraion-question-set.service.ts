@@ -15,6 +15,7 @@ export class RegistraionQuestionSetService {
   submitIndustraryQuestionAnswers(answerSet:Ianswersset){
     let url:string = '/industry/industry-question'
     const form_data:any = new Object();
+    form_data.industryId = answerSet.id;
     form_data.companyName = answerSet.aboutCompany;
     form_data.companyEstdYear = answerSet.companyEstableYear;
     form_data.aboutCompany = answerSet.companyName;

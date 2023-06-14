@@ -1,5 +1,6 @@
 export interface Ianswersset{
-    companyName: string;
+      id:string | null;
+      companyName: string;
       companyEstableYear:string;
       aboutCompany:string;
       noEmployee:string;
