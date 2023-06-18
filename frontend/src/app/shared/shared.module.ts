@@ -36,6 +36,7 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import {ToastModule} from 'primeng/toast';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import {ProgressBarModule} from 'primeng/progressbar';
+import { RegistrationPageComponent } from '../share/registration-page/registration-page.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {ProgressBarModule} from 'primeng/progressbar';
     SignUpQuestionsComponent,
     LoginComponent,
     RegistrationOtpComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    RegistrationPageComponent
   ],
   imports: [
     CommonModule,

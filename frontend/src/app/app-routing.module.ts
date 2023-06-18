@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegistrationPageComponent } from './share/registration-page/registration-page.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,8 @@ const routes: Routes = [
     path: '', redirectTo: '/home', pathMatch: 'full'
   },
   { path: 'about-us', loadChildren: () => import('./about-us/about-us.module').then(m => m.AboutUsModule) },
+  { path: 'registeration', loadChildren: () => import('./registeration/registeration.module').then(m => m.RegisterationModule) },
+  { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
   {
     path: '**', redirectTo: '/jobs'
   }
