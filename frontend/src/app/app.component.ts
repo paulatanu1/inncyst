@@ -11,7 +11,7 @@ import { LastUrlService } from './common-service/last-url.service';
 export class AppComponent implements OnInit {
   title = 'frontend';
   isDashboard:boolean = true;
-  isRegisterpage:boolean = true;
+  isdisable:boolean = true;
   constructor(private _router: Router,private spinner: NgxSpinnerService,private lastUrl:LastUrlService){
     //Header show and Hide
     this._router.events.subscribe((val)=>{
@@ -19,8 +19,9 @@ export class AppComponent implements OnInit {
         console.log(val.url , 'url')
         if(val.url == '/dashboard'){
           this.isDashboard = false;
+          this.isdisable = false;
         }else if(val.url == '/registeration'){
-          this.isRegisterpage = false;
+          this.isdisable = false;
         }
       }
     })
