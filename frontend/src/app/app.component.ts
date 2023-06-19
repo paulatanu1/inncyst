@@ -11,13 +11,19 @@ import { LastUrlService } from './common-service/last-url.service';
 export class AppComponent implements OnInit {
   title = 'frontend';
   isDashboard:boolean = true;
-
+  isdisable:boolean = true;
   constructor(private _router: Router,private spinner: NgxSpinnerService,private lastUrl:LastUrlService){
     //Header show and Hide
-    _router.events.subscribe((val)=>{
+    this._router.events.subscribe((val)=>{
       if(val instanceof NavigationEnd){
+        console.log(val.url , 'url')
         if(val.url == '/dashboard'){
           this.isDashboard = false;
+          this.isdisable = false;
+        }else if(val.url == '/registeration'){
+          this.isdisable = false;
+        }else{
+          this.isdisable = true
         }
       }
     })
