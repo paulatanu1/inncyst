@@ -87,53 +87,100 @@ export class RegistrationPageComponent implements OnInit {
     })
   }
 
-  optionClick(url:string){
+  // optionClick(url:string){
+  //   // this.progressBar = true;
+  //   this.progress.isProgressBarShow.next(true)
+  //   if(url === 'jobs'){
+  //     this.router.navigateByUrl('/jobs');
+  //     this.progress.isProgressBarShow.next(false)
+  //   }else if(url === 'home'){
+  //     this.router.navigateByUrl('/home');
+  //     this.progress.isProgressBarShow.next(false)
+  //   }else if(url === 'about-us'){
+  //     this.router.navigateByUrl('/about-us');
+  //     this.progress.isProgressBarShow.next(false)
+  //   }else if(url === 'contactus'){
+  //     this.router.navigateByUrl('/contactus');
+  //     this.progress.isProgressBarShow.next(false)
+  //   }
+  // }
+
+  optionClick(url: string) {
     // this.progressBar = true;
-    this.progress.isProgressBarShow.next(true)
-    if(url === 'jobs'){
-      this.router.navigateByUrl('/jobs');
-      this.progress.isProgressBarShow.next(false)
-    }else if(url === 'home'){
-      this.router.navigateByUrl('/home');
-      this.progress.isProgressBarShow.next(false)
-    }else if(url === 'about-us'){
-      this.router.navigateByUrl('/about-us');
-      this.progress.isProgressBarShow.next(false)
-    }else if(url === 'contactus'){
-      this.router.navigateByUrl('/contactus');
-      this.progress.isProgressBarShow.next(false)
+    this.progress.isProgressBarShow.next(true);
+    switch(url) {
+      case 'jobs':
+        this.router.navigateByUrl('/jobs');
+        break;
+      case 'home':
+        this.router.navigateByUrl('/home');
+        break;
+      case 'about-us':
+        this.router.navigateByUrl('/about-us');
+        break;
+      case 'contactus':
+        this.router.navigateByUrl('/contactus');
+        break;
     }
+    this.progress.isProgressBarShow.next(false);
+  }
+  
+
+
+//   onSubmit(){
+//     this.isSubmited = true
+//     if(this.isSubmited && this.registerForm.valid){
+//       this.registration = false;
+//       let userName:string = this.registerForm.get('userName')?.value;
+//       let userEmail:string = this.registerForm.get('email')?.value;
+//       let phone:string = this.registerForm.get('mobile')?.value;
+//       let password:string = this.registerForm.get('confirmPassword')?.value;
+//       let userRole:string = this.registerForm.get('options')?.value;
+//       // console.log(userName)
+//       this.reg.sendRegistrationRequest(userName,userEmail,phone,password,userRole).subscribe((response)=>{
+//         console.log(response , 'response');
+//         let severity ='';
+//         let summary = '';
+//         let detail = '';
+//         this._toast.showToaster.next({severity:'success',summary:'success',detail:response.message})
+//         this.registerId = response.data._id
+//         this.question.isQuestionSetEnable.next(true);
+//         ls.set('registerId',this.registerId)
+//         this.isSignup = true;
+//         this.sidebarEnable = true;
+//         this.registerForm.reset();
+//       })
+//     }
+// }
+
+onSubmit() {
+  const registerForm = this.registerForm;
+  const userName = registerForm.get('userName')?.value;
+  const userEmail = registerForm.get('email')?.value;
+  const phone = registerForm.get('mobile')?.value;
+  const password = registerForm.get('confirmPassword')?.value;
+  const userRole = registerForm.get('options')?.value;
+
+  const isFormValid = this.registerForm.valid;
+
+  if (!isFormValid) {
+    return;
   }
 
+  this.isSubmited = true;
 
-
-  onSubmit(){
-    this.isSubmited = true
-    if(this.isSubmited && this.registerForm.valid){
-      this.registration = false;
-      let userName:string = this.registerForm.get('userName')?.value;
-      let userEmail:string = this.registerForm.get('email')?.value;
-      let phone:string = this.registerForm.get('mobile')?.value;
-      let password:string = this.registerForm.get('confirmPassword')?.value;
-      let userRole:string = this.registerForm.get('options')?.value;
-      // console.log(userName)
-      this.reg.sendRegistrationRequest(userName,userEmail,phone,password,userRole).subscribe((response)=>{
-        console.log(response , 'response');
-        let severity ='';
-        let summary = '';
-        let detail = '';
-        this._toast.showToaster.next({severity:'success',summary:'success',detail:response.message})
-        this.registerId = response.data._id
-        this.question.isQuestionSetEnable.next(true);
-        ls.set('registerId',this.registerId)
-        this.isSignup = true;
-        this.sidebarEnable = true;
-        this.registerForm.reset();
-      })
-    }
-
-
+  this.reg.sendRegistrationRequest(userName, userEmail, phone, password, userRole).subscribe((response) => {
+    console.log(response, 'response');
+    this._toast.showToaster.next({ severity: 'success', summary: 'success', detail: response.message });
+    this.registerId = response.data._id;
+    this.question.isQuestionSetEnable.next(true);
+    ls.set('registerId', this.registerId);
+    this.isSignup = true;
+    this.sidebarEnable = true;
+    registerForm.reset();
+  });
 }
+
   registrationLoginOption(){
   this.registration = false;
   this.loginflow = true;
