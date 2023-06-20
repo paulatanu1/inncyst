@@ -6,6 +6,8 @@ import {ConfirmPasswordValidator } from 'src/app/common-service/passwordValidato
 import { RegistrationService } from 'src/app/registration-service/registration.service';
 import { ProgressBarService } from 'src/app/service/progress-bar.service';
 import ls from 'localstorage-slim'
+import { LoginEnablerService } from 'src/app/service/login-enabler.service';
+import { QuestionSetEnablerService } from 'src/app/service/question-set-enabler.service';
 interface options {
   optionName: string,
   code: string
@@ -43,7 +45,7 @@ export class HeaderComponent implements OnInit {
   progressBar:boolean = false;
   registerId:string = ''
   //Outputs
-  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute) {
+  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private _login:LoginEnablerService,private quiestion :QuestionSetEnablerService) {
     this.items = [
       {label: 'As a Student', command: () => {
           this.login('student');
@@ -97,6 +99,19 @@ export class HeaderComponent implements OnInit {
         this.progressBar = res;
       }
     })
+
+    //login page enable from service
+    this._login.loginEnable.subscribe({
+      next:(res)=>{
+        this.loginflow = res;
+      }
+    })
+
+    this.quiestion.isQuestionSetEnable.subscribe({
+      next: (res)=>{
+        this.sidebarEnable = res;
+      }
+    })
   }
 
   optionClick(url:string){
@@ -135,7 +150,7 @@ export class HeaderComponent implements OnInit {
         ls.set('registerId',this.registerId)
         this.isSignup = true;
         this.sidebarEnable = true;
-        this.registerForm.reset();
+        this.registerForm.removeValidators;
       })
     }
 

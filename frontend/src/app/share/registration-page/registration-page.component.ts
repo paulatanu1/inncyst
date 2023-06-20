@@ -6,6 +6,8 @@ import { ConfirmPasswordValidator } from 'src/app/common-service/passwordValidat
 import { RegistrationService } from 'src/app/registration-service/registration.service';
 import { ProgressBarService } from 'src/app/service/progress-bar.service';
 import ls from 'localstorage-slim'
+import { LoginEnablerService } from 'src/app/service/login-enabler.service';
+import { QuestionSetEnablerService } from 'src/app/service/question-set-enabler.service';
 interface options {
   optionName: string,
   code: string
@@ -40,7 +42,7 @@ export class RegistrationPageComponent implements OnInit {
   isSubmited:boolean = false
   progressBar:boolean = false;
   registerId:string = ''
-  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute) {
+  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private login:LoginEnablerService,private question:QuestionSetEnablerService) {
     
 
     this.options = [
@@ -113,10 +115,11 @@ export class RegistrationPageComponent implements OnInit {
       let phone:string = this.registerForm.get('mobile')?.value;
       let password:string = this.registerForm.get('confirmPassword')?.value;
       let userRole:string = this.registerForm.get('options')?.value;
-      console.log(userName)
+      // console.log(userName)
       this.reg.sendRegistrationRequest(userName,userEmail,phone,password,userRole).subscribe((response)=>{
         console.log(response , 'response');
         this.registerId = response.data._id
+        this.question.isQuestionSetEnable.next(true);
         ls.set('registerId',this.registerId)
         this.isSignup = true;
         this.sidebarEnable = true;
@@ -124,7 +127,16 @@ export class RegistrationPageComponent implements OnInit {
       })
     }
 
-  
+
+}
+  registrationLoginOption(){
+  this.registration = false;
+  this.loginflow = true;
+  }
+
+  redirectToLogin(){
+    this.login.loginEnable.next(true);
+  }
   
 
   //   this.messageService.add({
@@ -173,9 +185,4 @@ export class RegistrationPageComponent implements OnInit {
   //   this.loginflow = false;
   // }
 
-}
-  registrationLoginOption(){
-  this.registration = false;
-  this.loginflow = true;
-  }
 }

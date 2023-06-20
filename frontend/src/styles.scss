@@ -11,6 +11,15 @@
   padding: 0;
 }
 
+html {
+  overflow-y: scroll;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-style: normal;
