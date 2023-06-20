@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ToastServiceService {
-  showToaster = new Subject<{severity:string;summary:string;detail:string}>();
+export class LoginEnablerService {
+  loginEnable = new Subject<boolean>()
   constructor() { }
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { SharedComponent } from './shared.component';
@@ -36,6 +36,7 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import {ToastModule} from 'primeng/toast';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import {ProgressBarModule} from 'primeng/progressbar';
+import { RegistrationPageComponent } from '../share/registration-page/registration-page.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {ProgressBarModule} from 'primeng/progressbar';
     SignUpQuestionsComponent,
     LoginComponent,
     RegistrationOtpComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    RegistrationPageComponent
   ],
   imports: [
     CommonModule,
@@ -109,5 +111,6 @@ import {ProgressBarModule} from 'primeng/progressbar';
     ToastModule,
     ProgressBarModule
   ],
+  providers:[DatePipe]
 })
 export class SharedModule {}

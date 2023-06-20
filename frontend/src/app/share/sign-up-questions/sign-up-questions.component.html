@@ -11,10 +11,16 @@
       <h3>Please answer the Following questions</h3>
     </div>
     <div class="form-wrapper">
-      <form>
+      <form [formGroup]="questionSets" (ngSubmit)="onSubmitAnswers()">
         <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field">
           <span class="p-float-label">
-            <input id="float-input" type="text" pInputText class="" />
+            <input
+              formControlName="companyName"
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+            />
             <label for="float-input">Company name</label>
           </span>
         </div>
@@ -22,6 +28,7 @@
           <span class="p-float-label">
             <!-- <input id="float-input" type="text" pInputText class="" /> -->
             <p-calendar
+              formControlName="companyEstableYear"
               view="year"
               dateFormat="yy"
               [showButtonBar]="true"
@@ -31,27 +38,51 @@
         </div>
         <div class="col-12 md:col-12 mt-3 mb-4 full-width-number">
           <span class="p-float-label">
-            <input id="float-input" type="text" pInputText class="" />
+            <input
+              formControlName="aboutCompany"
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+            />
             <label for="float-input">About company</label>
           </span>
         </div>
         <div class="col-12 md:col-12 mt-3 mb-4 full-width">
           <span class="p-float-label">
-            <input id="float-input" type="text" pInputText class="" />
+            <input
+              formControlName="noEmployee"
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+            />
             <label for="float-input">No. Of employees</label>
           </span>
         </div>
         <div class="col-12 md:col-12 mt-3 mb-4 full-width">
           <span class="p-float-label">
-            <input id="float-input" type="text" pInputText class="" />
+            <input
+              formControlName="placeOfWork"
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+            />
             <label for="float-input">Place of work</label>
           </span>
         </div>
 
         <div class="col-12 md:col-12 mt-3 mb-4 dropdown-full-width mt-5">
           <span class="p-float-label">
-            <input id="float-input" type="text" pInputText class="" />
-            <label class="dropdown-lable-field" for="float-input">
+            <input
+              formControlName="salary"
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+            />
+            <label class="dropdown-lable-field float-input" for="float-input">
               Salary package / Year
             </label>
           </span>
@@ -61,10 +92,12 @@
             class="submit-btns"
             type="submit"
             label="continue"
-            (click)="onSubmitAnswer()"
           ></p-button>
+          <!-- <input type="submit" value="Submit"> -->
         </div>
       </form>
     </div>
   </div>
 </p-sidebar>
+
+<app-registration-otp *ngIf="redirectToOtp === true"></app-registration-otp>

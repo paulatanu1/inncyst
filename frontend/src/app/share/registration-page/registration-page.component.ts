@@ -1,13 +1,14 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuItem, MessageService } from 'primeng/api';
-import {ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
+import { MessageService } from 'primeng/api';
+import { ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
 import { RegistrationService } from 'src/app/registration-service/registration.service';
 import { ProgressBarService } from 'src/app/service/progress-bar.service';
 import ls from 'localstorage-slim'
 import { LoginEnablerService } from 'src/app/service/login-enabler.service';
 import { QuestionSetEnablerService } from 'src/app/service/question-set-enabler.service';
+import { ToastServiceService } from 'src/app/service/toast-service.service';
 interface options {
   optionName: string,
   code: string
@@ -17,16 +18,14 @@ interface IregistrationOption{
   option:string,
   id:number
 }
+
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector: 'app-registration-page',
+  templateUrl: './registration-page.component.html',
+  styleUrls: ['./registration-page.component.scss'],
   providers:[MessageService]
 })
-
-export class HeaderComponent implements OnInit {
-  items: MenuItem[];
-  dropdownitems:MenuItem[];
+export class RegistrationPageComponent implements OnInit {
   registration:boolean =false;
   isStudent:boolean = false;
   isEmployer:boolean = false;
@@ -44,21 +43,8 @@ export class HeaderComponent implements OnInit {
   isSubmited:boolean = false
   progressBar:boolean = false;
   registerId:string = ''
-  //Outputs
-  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private _login:LoginEnablerService,private quiestion :QuestionSetEnablerService) {
-    this.items = [
-      {label: 'As a Student', command: () => {
-          this.login('student');
-      }},
-      {label: 'As a Employer', command: () => {
-        this.login('employer');
-    }}
-    ];
-    this.dropdownitems = [
-      {label:'Internship'},
-      {label:'Job'},
-      {label:'Project Enabler'}
-    ]
+  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private login:LoginEnablerService,private question:QuestionSetEnablerService,private _toast:ToastServiceService) {
+    
 
     this.options = [
       // {name: 'Select the option', code: '0'},
@@ -99,21 +85,6 @@ export class HeaderComponent implements OnInit {
         this.progressBar = res;
       }
     })
-
-    //login page enable from service
-    this._login.loginEnable.subscribe({
-      next:(res)=>{
-        this.loginflow = res;
-      }
-    })
-
-    this.quiestion.isQuestionSetEnable.subscribe({
-      next: (res)=>{
-        console.log(res , 'sidebarEnable')
-        this.sidebarEnable = res;
-
-      }
-    })
   }
 
   optionClick(url:string){
@@ -145,88 +116,78 @@ export class HeaderComponent implements OnInit {
       let phone:string = this.registerForm.get('mobile')?.value;
       let password:string = this.registerForm.get('confirmPassword')?.value;
       let userRole:string = this.registerForm.get('options')?.value;
-      console.log(userName)
+      // console.log(userName)
       this.reg.sendRegistrationRequest(userName,userEmail,phone,password,userRole).subscribe((response)=>{
         console.log(response , 'response');
+        let severity ='';
+        let summary = '';
+        let detail = '';
+        this._toast.showToaster.next({severity:'success',summary:'success',detail:response.message})
         this.registerId = response.data._id
+        this.question.isQuestionSetEnable.next(true);
         ls.set('registerId',this.registerId)
         this.isSignup = true;
         this.sidebarEnable = true;
-        this.registerForm.removeValidators;
+        this.registerForm.reset();
       })
     }
 
-  
-  
 
-    this.messageService.add({
-      key: "main",
-      severity: "info",
-      detail: "Ready to scan",
-    });
-  }
-
-  setQueryParams(page:string){
-    const urlTree = this.router.createUrlTree([], {
-      queryParams: { users: page },
-      queryParamsHandling: "merge",
-      preserveFragment: true });
-      this.router.navigateByUrl(urlTree); 
-  }
-
-  resetQueryParams(){
-    this.router.navigate([], {
-      queryParams: {
-        'users': null,
-        'youCanRemoveMultiple': null,
-      },
-      queryParamsHandling: 'merge'
-    })
-  }
-  login(type:string){
-  
-    if(type === 'student'){
-      this.registration = true;
-      this.isStudent = true;
-    }else{
-      this.registration = true;
-      this.isEmployer = true;
-    }
-
-  }
-
-  register(){
-    this.setQueryParams('register')
-    this.registration = true;
-  }
-
-  getLoginForm(){
-    this.setQueryParams('login')
-    this.loginflow = true
-  }
-
-  quistionSubmit(event:boolean){
-    this.isOtpPage = event;
-    this.isSignup = false;
-  }
-
-  OtpModal(event:boolean){
-    this.isOtpPage = event;
-  }
-
+}
   registrationLoginOption(){
   this.registration = false;
   this.loginflow = true;
   }
 
-  openRegisterFlow(event:boolean){
-    this.registration = event;
-    this.loginflow = false;
+  redirectToLogin(){
+    this.login.loginEnable.next(true);
   }
+  
 
-  onClosePopup(popupname:string){
-    if(popupname){
-      this.resetQueryParams()
-    }
-  }
+  //   this.messageService.add({
+  //     key: "main",
+  //     severity: "info",
+  //     detail: "Ready to scan",
+  //   });
+  // }
+
+  // setQueryParams(page:string){
+  //   const urlTree = this.router.createUrlTree([], {
+  //     queryParams: { users: page },
+  //     queryParamsHandling: "merge",
+  //     preserveFragment: true });
+  //     this.router.navigateByUrl(urlTree); 
+  // }
+
+  // resetQueryParams(){
+  //   this.router.navigate([], {
+  //     queryParams: {
+  //       'users': null,
+  //       'youCanRemoveMultiple': null,
+  //     },
+  //     queryParamsHandling: 'merge'
+  //   })
+  // }
+
+  // register(){
+  //   this.setQueryParams('register')
+  //   this.registration = true;
+  // }
+
+  // quistionSubmit(event:boolean){
+  //   this.isOtpPage = event;
+  //   this.isSignup = false;
+  // }
+
+  // OtpModal(event:boolean){
+  //   this.isOtpPage = event;
+  // }
+
+
+
+  // openRegisterFlow(event:boolean){
+  //   this.registration = event;
+  //   this.loginflow = false;
+  // }
+
 }

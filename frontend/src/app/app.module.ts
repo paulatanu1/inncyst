@@ -8,9 +8,9 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
-
+import { LoginPageComponent } from './share/login-page/login-page.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginPageComponent,],
   imports: [BrowserModule, AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,RouterModule.forRoot([]),NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),HttpClientModule],
   exports: [SharedModule,FormsModule,ReactiveFormsModule,],
   providers: [SharedModule],

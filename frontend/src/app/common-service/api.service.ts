@@ -45,7 +45,7 @@ export class ApiService {
       httpHeaderValue = httpHeaderValue.set('X-localization', localization);
     } else {
       httpHeaderValue = httpHeaderValue
-        .set('Authorization', 'Bearer ' + headertoken)
+        .set('Authorization', 'Bearer ' + ls.set('login_token',true))
         //.set('Content-Type', 'application/json')
         .set('X-localization', localization);
     }
@@ -132,7 +132,7 @@ export class ApiService {
     let StatusCode: number = result.status;
     if (result.status == 202) {
       StatusCode = 202;
-      ls.set('login_token', result.response.raws.data.token);
+      ls.set('login_token', result.response.token);
     }
     //return StatusCode;
   } //.End of HandleSuccessCode()
