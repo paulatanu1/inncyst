@@ -27,7 +27,7 @@
                   (registerForm.get('userName')?.dirty ||
                     registerForm.get('userName')?.touched))
               "
-              class=""
+              class="error_msg"
             >
               <div *ngIf="registerForm.get('userName')?.errors?.['required']">
                 Name is required.
@@ -49,7 +49,7 @@
                   (registerForm.get('email')?.dirty ||
                     registerForm.get('email')?.touched))
               "
-              class=""
+              class="error_msg"
             >
               <div *ngIf="registerForm.get('email')?.errors?.['required']">
                 Email is required.
@@ -76,10 +76,10 @@
                   (registerForm.get('mobile')?.dirty ||
                     registerForm.get('mobile')?.touched))
               "
-              class=""
+              class="error_msg"
             >
               <div *ngIf="registerForm.get('mobile')?.errors?.['required']">
-                mobile number is required.
+                Mobile number is required.
               </div>
               <div *ngIf="registerForm.get('mobile')?.errors?.['pattern']">
                 Minimum 10 Charactar Required.
@@ -96,7 +96,7 @@
             </span>
             <div
               *ngIf="submitted && registerForm.get('password')?.errors"
-              class="alert alert-danger"
+              class="alert alert-danger error_msg"
             >
               <div *ngIf="registerForm.get('password')?.errors?.['required']">
                 Password is required
@@ -110,7 +110,7 @@
             </span>
             <div
               *ngIf="submitted && registerForm.get('confirmPassword')?.errors"
-              class="alert alert-danger"
+              class="alert alert-danger error_msg"
             >
               <div
                 *ngIf="registerForm.get('confirmPassword')?.errors?.['required']"
