@@ -109,7 +109,9 @@ export class HeaderComponent implements OnInit {
 
     this.quiestion.isQuestionSetEnable.subscribe({
       next: (res)=>{
+        console.log(res , 'sidebarEnable')
         this.sidebarEnable = res;
+
       }
     })
   }

@@ -8,6 +8,7 @@ import { ProgressBarService } from 'src/app/service/progress-bar.service';
 import ls from 'localstorage-slim'
 import { LoginEnablerService } from 'src/app/service/login-enabler.service';
 import { QuestionSetEnablerService } from 'src/app/service/question-set-enabler.service';
+import { ToastServiceService } from 'src/app/service/toast-service.service';
 interface options {
   optionName: string,
   code: string
@@ -42,7 +43,7 @@ export class RegistrationPageComponent implements OnInit {
   isSubmited:boolean = false
   progressBar:boolean = false;
   registerId:string = ''
-  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private login:LoginEnablerService,private question:QuestionSetEnablerService) {
+  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private login:LoginEnablerService,private question:QuestionSetEnablerService,private _toast:ToastServiceService) {
     
 
     this.options = [
@@ -118,6 +119,10 @@ export class RegistrationPageComponent implements OnInit {
       // console.log(userName)
       this.reg.sendRegistrationRequest(userName,userEmail,phone,password,userRole).subscribe((response)=>{
         console.log(response , 'response');
+        let severity ='';
+        let summary = '';
+        let detail = '';
+        this._toast.showToaster.next({severity:'success',summary:'success',detail:response.message})
         this.registerId = response.data._id
         this.question.isQuestionSetEnable.next(true);
         ls.set('registerId',this.registerId)
