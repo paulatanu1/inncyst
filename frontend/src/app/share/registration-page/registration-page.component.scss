@@ -45,6 +45,7 @@
     }
 }
 .full-width {
+    margin-bottom: 45px !important;
     ::ng-deep .p-password {
         width: 100%;
 
@@ -56,7 +57,8 @@
 
 .full-width-number {
     width: 100%;
-
+    margin-bottom: 45px !important;
+    position:relative;
     .p-inputwrapper {
         width: 100%;
 
@@ -77,7 +79,18 @@
     letter-spacing: 0.005em;
     color: #522d80;
 }
-
+::ng-deep .p-float-label {
+    & .p-inputwrapper-filled~label, & .p-inputwrapper-focus~label {
+            font-size: 16px;
+            top: -20px;
+        }
+    input {
+        &:focus ~ label, &.p-filled ~ label {
+            font-size: 16px;
+            top: -20px;
+        }
+    }
+}
 .dropdown-full-width {
     ::ng-deep .p-dropdown {
         width: 100%;
@@ -85,6 +98,8 @@
 }
 
 .full-width-number-field {
+    margin-bottom: 45px !important;
+    position: relative;
     ::ng-deep input {
         width: 100%;
     }
@@ -112,6 +127,9 @@
         text-align: center;
         letter-spacing: 0.005em;
         display: block;
+        padding: 0;
+        height: 62px;
+        line-height: 62px;
     }
 }
 .login-area {
@@ -142,4 +160,9 @@
         font-weight: 400;
             font-size: 14px;
     }
+}
+.error_msg {
+    position: absolute;
+    right: 0;
+    color: #e24c4c;
 }
