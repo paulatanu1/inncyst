@@ -1,168 +1,171 @@
 .register {
-    ::ng-deep p-splitbutton {
-        .p-splitbutton {
-            .p-button {
-                background: #522d80;
-                border: 1px solid #522d80;
-            }
-        }
+  ::ng-deep p-splitbutton {
+    .p-splitbutton {
+      .p-button {
+        background: #522d80;
+        border: 1px solid #522d80;
+      }
     }
+  }
 }
 .sign-up-wrapper {
+  margin-top: 113px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  .left-section {
+    width: 50%;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-
-    .left-section {
-        width: 50%;
-        display: flex;
-        align-items: center;
-        border-right: 2px solid #ededed;
-        .left-image-wrapper {
-            img {
-                width: 100%
-            }
-        }
-    }
-
-    .right-section {
-        width: 50%;
-        padding-left: 50px;
-        .form-wrapper {
-            max-width: 525px;
-            padding: 0 20px;           
-                h5 {
-                    text-align: center;
-                    font-weight: 700;
-                    font-size: 24px;
-                    line-height: 120%;
-                    text-align: center;
-                    letter-spacing: 0.005em;
-                    color: #522d80;
-                    margin-bottom: 30px;
-                }
-        }
-    }
-}
-.full-width {
-    margin-bottom: 45px !important;
-    ::ng-deep .p-password {
+    align-items: center;
+    border-right: 2px solid #ededed;
+    .left-image-wrapper {
+      img {
         width: 100%;
-
-        input {
-            width: 100%;
-        }
+      }
     }
-}
+  }
 
-.full-width-number {
-    width: 100%;
-    margin-bottom: 45px !important;
-    position:relative;
-    .p-inputwrapper {
-        width: 100%;
-
-        ::ng-deep .p-inputnumber {
-            width: 100%;
-            width: 100%;
-
-            input {
-                width: 100%;
-            }
-        }
-    }
-}
-::ng-deep .p-float-label>label {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 120%;
-    letter-spacing: 0.005em;
-    color: #522d80;
-}
-::ng-deep .p-float-label {
-    & .p-inputwrapper-filled~label, & .p-inputwrapper-focus~label {
-            font-size: 16px;
-            top: -20px;
-        }
-    input {
-        &:focus ~ label, &.p-filled ~ label {
-            font-size: 16px;
-            top: -20px;
-        }
-    }
-}
-.dropdown-full-width {
-    ::ng-deep .p-dropdown {
-        width: 100%;
-    }
-}
-
-.full-width-number-field {
-    margin-bottom: 45px !important;
-    position: relative;
-    ::ng-deep input {
-        width: 100%;
-    }
-}
-
-.dropdown-lable-field {
-    left: 0;
-    top: -22px;
-}
-
-.checkbox-sec input {
-    margin-right: 10px;
-}
-
-.submit-btn {
-    ::ng-deep .p-button {
-        width: 100%;
-        background: #8cd3f6;
-        box-shadow: -3px 2px 6px rgb(0 0 0 / 25%);
-        border-radius: 8px;
-        border: 1px solid #8cd3f6;
+  .right-section {
+    width: 50%;
+    padding-left: 50px;
+    .form-wrapper {
+      max-width: 525px;
+      padding: 0 20px;
+      h5 {
+        text-align: center;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 24px;
         line-height: 120%;
         text-align: center;
         letter-spacing: 0.005em;
-        display: block;
-        padding: 0;
-        height: 62px;
-        line-height: 62px;
+        color: #522d80;
+        margin-bottom: 30px;
+      }
     }
+  }
+}
+.full-width {
+  margin-bottom: 45px !important;
+  ::ng-deep .p-password {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+}
+
+.full-width-number {
+  width: 100%;
+  margin-bottom: 45px !important;
+  position: relative;
+  .p-inputwrapper {
+    width: 100%;
+
+    ::ng-deep .p-inputnumber {
+      width: 100%;
+      width: 100%;
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+}
+::ng-deep .p-float-label > label {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 120%;
+  letter-spacing: 0.005em;
+  color: #522d80;
+}
+::ng-deep .p-float-label {
+  & .p-inputwrapper-filled ~ label,
+  & .p-inputwrapper-focus ~ label {
+    font-size: 16px;
+    top: -20px;
+  }
+  input {
+    &:focus ~ label,
+    &.p-filled ~ label {
+      font-size: 16px;
+      top: -20px;
+    }
+  }
+}
+.dropdown-full-width {
+  ::ng-deep .p-dropdown {
+    width: 100%;
+  }
+}
+
+.full-width-number-field {
+  margin-bottom: 45px !important;
+  position: relative;
+  ::ng-deep input {
+    width: 100%;
+  }
+}
+
+.dropdown-lable-field {
+  left: 0;
+  top: -22px;
+}
+
+.checkbox-sec input {
+  margin-right: 10px;
+}
+
+.submit-btn {
+  ::ng-deep .p-button {
+    width: 100%;
+    background: #8cd3f6;
+    box-shadow: -3px 2px 6px rgb(0 0 0 / 25%);
+    border-radius: 8px;
+    border: 1px solid #8cd3f6;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    text-align: center;
+    letter-spacing: 0.005em;
+    display: block;
+    padding: 0;
+    height: 62px;
+    line-height: 62px;
+  }
 }
 .login-area {
-    text-align: center;
+  text-align: center;
 
-    a {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 21px;
-        color: #000000;
-        text-decoration: none;
+  a {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+    text-decoration: none;
 
-        span {
-            color: #522d80;
-        }
+    span {
+      color: #522d80;
     }
+  }
 }
 .submit-btns {
-    width: 100%;
+  width: 100%;
 }
 .checkbox-sec {
-    input {
-        margin-right: 10px;
-    }
-    label {
-        color: #9A9AB0;
-        font-weight: 400;
-            font-size: 14px;
-    }
+  input {
+    margin-right: 10px;
+  }
+  label {
+    color: #9a9ab0;
+    font-weight: 400;
+    font-size: 14px;
+  }
 }
 .error_msg {
-    position: absolute;
-    right: 0;
-    color: #e24c4c;
+  position: absolute;
+  right: 0;
+  color: #e24c4c;
 }
