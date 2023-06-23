@@ -107,6 +107,20 @@
             }
             
         }
+        .work_right {
+            margin-left: auto;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: flex-end;
+            .image_col {
+                margin-left: 28px;
+                flex: 0 0 283px;
+                img {
+                    margin-top: 25px;
+                }
+            }
+        }
     }
     .our_vision {
         padding: 100px 0 80px;
