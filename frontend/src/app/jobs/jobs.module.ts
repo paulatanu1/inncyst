@@ -10,6 +10,8 @@ import {MenuItem} from 'primeng/api';
 import {StepsModule} from 'primeng/steps';
 import { RequiredSkillStepComponent } from './required-skill-step/required-skill-step.component';
 import { UploadResumeStepComponent } from './upload-resume-step/upload-resume-step.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -17,14 +19,13 @@ import { UploadResumeStepComponent } from './upload-resume-step/upload-resume-st
     BannerCardsComponent,
     InternshipsComponent,
     RequiredSkillStepComponent,
-    UploadResumeStepComponent,
-    
+    UploadResumeStepComponent
   ],
   imports: [
     CommonModule,
     JobsRoutingModule,
     DialogModule,
-    StepsModule  ],
-  exports:[DialogModule]
+    StepsModule, SharedModule],
+  exports:[DialogModule, SharedModule]
 })
 export class JobsModule { }

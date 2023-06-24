@@ -46,6 +46,15 @@
         margin: 20px 0 0;
         .inputGroup {
             margin-bottom: 20px;
+            &.mobile_num {
+                input {
+                    width: 86%;
+                    &.smallInput {
+                        width: 80px;
+                        margin-right: 27px;
+                    }
+                }
+            }
         }
         label {
             color: #000000;
@@ -61,7 +70,115 @@
             border-radius: 8px;
             height: 56px;
             line-height: 56px;
-            padding: 0 24px;
+            padding: 0 24px;            
         }
+        .upload_resume {
+            h3 {
+                color: #000000;
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 28px;
+            }
+            .uploadField {
+                display: flex;
+                flex-direction: row;
+                border: 1px solid #000000;
+                border-radius: 8px 8px 8px 8px;
+                height: 85px;
+                & > span {
+                    background: #E30000;
+                    border-right: 1px solid #000000;
+                    border-radius: 8px 0 0 8px;
+                    flex:0 0 80px;
+                    color: #FFFFFF;
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 85px;
+                    text-align: center;
+                }
+                .p-element {
+                    flex:0 0 90%;
+                }
+            }
+            ::ng-deep .p-fileupload-choose {
+                background: #FFFFFF;
+                border-radius: 0px 8px 8px 0px;                
+                width: 99%;
+                border: none;
+                height: 83px;
+                .p-button-icon {
+                    display: none;
+                }
+            }
+            .upload_btn {
+                background: #B8E7FF;
+                border: 1px solid #522D80;
+                border-radius: 17px;
+                padding: 5px 15px;
+                color: #522D80;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 24px;
+                margin-top: 15px;
+                display: inline-block;
+            }
+            .fileTypes {
+                color: #7D7D7D;
+                font-weight: 400;
+                font-size: 14px;
+                display: block;
+                margin-top: 10px;
+            }
+        }
+        .availability {
+            margin-top: 25px;
+            h3 {
+                color: #000000;
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 24px;
+                margin: 0 0 9px;
+            }
+            span {
+                color: #000000;
+                font-weight: 400;
+                font-size: 16px;
+            }
+        }
+        .p-field-radiobutton {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            label {
+                margin-bottom: 0;
+                margin-left: 10px;
+            }
+        }
+    }
+}
+.dialog-footer {
+    border-top: 0.5px solid #C4C4C4;
+    padding: 36px 70px 15px;
+    text-align: right; 
+    .back_link {
+        color: #19A6EC;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        text-decoration: none;
+        margin-right: 15px;
+    }
+    button {
+        background: #19A6EC;
+        border-radius: 5px;
+        padding: 7px 15px;
+        color: #FFFFFF;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        display: inline-block;
+        vertical-align: middle;
     }
 }

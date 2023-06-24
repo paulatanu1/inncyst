@@ -36,6 +36,8 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import {ToastModule} from 'primeng/toast';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {FileUploadModule} from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import {ProgressBarModule} from 'primeng/progressbar';
      CalendarModule,
      NgOtpInputModule,
      ToastModule,
-     ProgressBarModule
+     ProgressBarModule,
+     RadioButtonModule,
+     FileUploadModule
     ],
   exports: [
     HeaderComponent, 
@@ -107,7 +111,9 @@ import {ProgressBarModule} from 'primeng/progressbar';
     CalendarModule,
     NgOtpInputModule,
     ToastModule,
-    ProgressBarModule
+    ProgressBarModule,
+    RadioButtonModule,
+    FileUploadModule
   ],
 })
 export class SharedModule {}
