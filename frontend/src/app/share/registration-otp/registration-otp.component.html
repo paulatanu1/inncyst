@@ -33,6 +33,7 @@
                 <ng-otp-input
                   #ngOtpInput1
                   [config]="{ length: 4 }"
+                  (onInputChange)="onEmailOtpChange($event)"
                 ></ng-otp-input>
               </span>
             </div>
@@ -60,6 +61,7 @@
                 <ng-otp-input
                   #ngOtpInput2
                   [config]="{ length: 4 }"
+                  (onInputChange)="onPhoneOtpChange($event)"
                 ></ng-otp-input>
               </span>
             </div>

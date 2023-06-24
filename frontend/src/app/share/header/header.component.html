@@ -63,9 +63,10 @@
       </ul>
     </div>
     <div class="users-option">
-      <div class="register">
+      <div class="register" [routerLink]="['/registeration']">
         <!-- <p-splitButton label="Register" (onClick)="register()" [model]="items"></p-splitButton> -->
-        <p-button label="Register" (onClick)="register()"></p-button>
+        <!-- <p-button label="Register" (onClick)="register()"></p-button> -->
+        <p-button label="Register"></p-button>
       </div>
       <div class="login">
         <button
@@ -74,11 +75,17 @@
           type="button"
           label="Login"
         ></button>
+        <!-- <button
+          [routerLink]="['/login']"
+          pButton
+          type="button"
+          label="Login"
+        ></button> -->
       </div>
     </div>
   </div>
 </nav>
-<p-dialog
+<!-- <p-dialog
   [(visible)]="registration"
   [blockScroll]="false"
   [modal]="true"
@@ -259,7 +266,7 @@
       </div>
     </div>
   </div>
-</p-dialog>
+</p-dialog> -->
 
 <p-dialog
   [(visible)]="loginflow"
@@ -278,11 +285,11 @@
 ></app-sign-up-questions>
 <!-- {{ isOtpPage }} -->
 <!-- Otp page -->
-<app-registration-otp
+<!-- <app-registration-otp
   (OtpModal)="OtpModal($event)"
   *ngIf="isOtpPage"
   [isOtpPage]="isOtpPage"
-></app-registration-otp>
+></app-registration-otp> -->
 <!-- Otp page -->
 <div class="progress-bar" *ngIf="progressBar">
   <p-progressBar mode="indeterminate"></p-progressBar>

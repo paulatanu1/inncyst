@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { SharedComponent } from './shared.component';
@@ -38,6 +38,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {FileUploadModule} from 'primeng/fileupload';
+import { RegistrationPageComponent } from '../share/registration-page/registration-page.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {FileUploadModule} from 'primeng/fileupload';
     SignUpQuestionsComponent,
     LoginComponent,
     RegistrationOtpComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    RegistrationPageComponent
   ],
   imports: [
     CommonModule,
@@ -115,5 +117,6 @@ import {FileUploadModule} from 'primeng/fileupload';
     RadioButtonModule,
     FileUploadModule
   ],
+  providers:[DatePipe]
 })
 export class SharedModule {}
