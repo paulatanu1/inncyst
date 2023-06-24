@@ -82,12 +82,9 @@
         }
       }
       &.jobship {
-        background: linear-gradient(
-          114.48deg,
-          #c46a17 15.59%,
-          rgba(236, 192, 36, 0.48) 98.47%
-        );
+        background: linear-gradient(114.48deg, #173DC4 15.59%, rgba(39, 177, 254, 0.48) 98.47%);
         border-radius: 26px;
+        padding-right: 3px;
         & > div:last-of-type {
           margin-top: 25px;
         }
@@ -178,7 +175,7 @@
   }
 }
 .bottom-inner-content {
-  padding: 63px 0;
+  padding: 63px 0 30px;
   font-family: "Raleway", sans-serif;
   section {
     max-width: 1120px;
@@ -212,6 +209,13 @@
         flex: 0 0 331px;
         height: 219px;
         list-style: none;
+        padding: 24px 10px 24px 20px;
+        position: relative;
+        img {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+        }
         &:first-of-type {
           background: linear-gradient(
             114.16deg,
@@ -231,6 +235,32 @@
         &:last-of-type {
           background: #f77f65;
           border-radius: 19px;
+        }
+        h3 {
+          color: #FFFFFF;
+          font-weight: 700;
+          font-size: 36px;
+          line-height: 42px;
+        }
+      }
+    }
+    &.jobs {
+      ul {
+        li:nth-child(2) {
+          img {
+            right: 0;
+            bottom: 0;
+          }
+        }
+      }
+    }
+    &.internship {
+      ul {
+        li:nth-child(2) {
+          img {
+            right: 0;
+            bottom: -8px;
+          }
         }
       }
     }
