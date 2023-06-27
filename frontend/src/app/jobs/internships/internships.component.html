@@ -239,12 +239,18 @@
   [modal]="true"
   [draggable]="false"
 >
-<ng-template pTemplate="header">
-  <h2>
-    Applying for Graphic Design internship
-    <span>Hubspot</span>
-  </h2>
-</ng-template>
-<div><p-steps [model]="items"></p-steps></div>
-<router-outlet></router-outlet>
+  <ng-template pTemplate="header">
+    <h2>
+      Applying for Graphic Design internship
+      <span>Hubspot</span>
+    </h2>
+  </ng-template>
+  <div>
+    <p-steps
+      [model]="items"
+      [(activeIndex)]="activeIndex"
+      [readonly]="false"
+    ></p-steps>
+  </div>
+  <router-outlet></router-outlet>
 </p-dialog>

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-resume-step.component.scss']
 })
 export class UploadResumeStepComponent implements OnInit {
-
+  opt:string='1';
   constructor() { }
 
   ngOnInit(): void {

@@ -9,9 +9,11 @@ import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './share/login-page/login-page.component';
+import {RadioButtonModule} from 'primeng/radiobutton';
+
 @NgModule({
   declarations: [AppComponent, LoginPageComponent,],
-  imports: [BrowserModule, AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,RouterModule.forRoot([]),NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,RouterModule.forRoot([]),NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),HttpClientModule,RadioButtonModule],
   exports: [SharedModule,FormsModule,ReactiveFormsModule,],
   providers: [SharedModule],
   bootstrap: [AppComponent],
