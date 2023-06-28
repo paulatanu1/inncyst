@@ -3,7 +3,7 @@ export interface Ianswersset{
       companyName: string;
       companyEstableYear:string;
       aboutCompany:string;
-      noEmployee:string;
+      noEmployee:number;
       placeOfWork:string;
       salary:string;
 }

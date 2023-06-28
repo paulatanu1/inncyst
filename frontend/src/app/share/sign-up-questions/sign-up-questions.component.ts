@@ -20,7 +20,7 @@ export class SignUpQuestionsComponent implements OnInit {
     companyName: '',
     companyEstableYear: '',
     aboutCompany: '',
-    noEmployee: '',
+    noEmployee: 0,
     placeOfWork: '',
     salary: ''
   }
@@ -34,7 +34,7 @@ export class SignUpQuestionsComponent implements OnInit {
       companyName: ['',[Validators.required]],
       companyEstableYear:['',[Validators.required]],
       aboutCompany:['',[Validators.required]],
-      noEmployee:['',[Validators.required]],
+      noEmployee:[0,[Validators.required]],
       placeOfWork:['',[Validators.required]],
       salary:['',[Validators.required]]
     })

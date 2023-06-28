@@ -19,7 +19,7 @@ export class RegistraionQuestionSetService {
     form_data.companyName = answerSet.aboutCompany;
     form_data.companyEstdYear = answerSet.companyEstableYear;
     form_data.aboutCompany = answerSet.companyName;
-    form_data.empCount = answerSet.noEmployee;
+    form_data.empCount = Number(answerSet.noEmployee);
     form_data.workPlace = answerSet.placeOfWork;
     form_data.salaryPackege = answerSet.salary
     return this.api.ApiCallWithLocalization(form_data,url,'post')
