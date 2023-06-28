@@ -63,7 +63,11 @@
       </ul>
     </div>
     <div class="users-option">
-      <div class="register" [routerLink]="['/registeration']">
+      <div
+        class="register"
+        [routerLink]="['/registeration']"
+        (click)="register()"
+      >
         <!-- <p-splitButton label="Register" (onClick)="register()" [model]="items"></p-splitButton> -->
         <!-- <p-button label="Register" (onClick)="register()"></p-button> -->
         <p-button label="Register"></p-button>

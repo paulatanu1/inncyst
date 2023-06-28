@@ -196,8 +196,7 @@ export class HeaderComponent implements OnInit {
   }
 
   register(){
-    this.setQueryParams('register')
-    this.registration = true;
+    ls.remove('login_token')
   }
 
   getLoginForm(){
