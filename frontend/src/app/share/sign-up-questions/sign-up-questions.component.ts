@@ -25,11 +25,11 @@ export class SignUpQuestionsComponent implements OnInit {
     salary: ''
   }
   redirectToOtp:boolean = false
-  constructor(private cdr:ChangeDetectorRef,private fb:FormBuilder,private pipe:DatePipe,private questionSet:RegistraionQuestionSetService) { 
-}
+  constructor(private cdr:ChangeDetectorRef,private fb:FormBuilder,private pipe:DatePipe,private questionSet:RegistraionQuestionSetService) { }
 
   ngOnInit(): void {
     this.display = this.sidebarEnable;
+    console.log(this.display , this.sidebarEnable , 'sidebar')
     this.questionSets =this.fb.group({
       companyName: ['',[Validators.required]],
       companyEstableYear:['',[Validators.required]],
@@ -50,19 +50,21 @@ export class SignUpQuestionsComponent implements OnInit {
     // this.isOtpPage = true
 
     console.log(this.questionSets , 'questionSets')
-    const establishmentYear = this.pipe.transform(this.questionSets?.get('companyEstableYear')?.value,'yyyy')
+    const establishmentYear = this.pipe.transform(this.questionSets?.get('companyEstableYear')?.value,'yyyy')?.toString()
     console.log(establishmentYear)
     let id:string | null = ls.get('registerId')
     console.log(id , 'iddd')
+    if(establishmentYear){
     this.answersSet = {
       id:id,
       companyName:this.questionSets?.get('companyName')?.value,
-      companyEstableYear:this.questionSets?.get('companyEstableYear')?.value,
+      companyEstableYear:establishmentYear,
       aboutCompany:this.questionSets?.get('aboutCompany')?.value,
       noEmployee:this.questionSets?.get('noEmployee')?.value,
       placeOfWork:this.questionSets?.get('placeOfWork')?.value,
       salary:this.questionSets?.get('salary')?.value,
     }
+  }
 
     this.questionSet.submitIndustraryQuestionAnswers( this.answersSet).subscribe({
       next: (res)=>{

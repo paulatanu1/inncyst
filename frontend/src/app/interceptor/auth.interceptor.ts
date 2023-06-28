@@ -6,6 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import ls from 'localstorage-slim'
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -27,7 +28,11 @@ export class AuthInterceptor implements HttpInterceptor {
   else if (localStorage.getItem('industry') != null) {
     this.token = localStorage.getItem('industry');
   }
-  if(this.token!=null && (localStorage.getItem('downloadfile')==undefined || localStorage.getItem('downloadfile')==null || localStorage.getItem('downloadfile')!='1'))
+
+  else if(ls.get('type') !=null || ls.get('type') != undefined){
+    this.token = ls.get('login_token');
+  }
+  if(this.token!=null)
   {
       // if the token is  stored in localstorage add it to http header
       // const headers = new HttpHeaders().set("access-token", this.token);

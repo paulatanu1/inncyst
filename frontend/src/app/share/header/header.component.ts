@@ -111,7 +111,7 @@ export class HeaderComponent implements OnInit {
       next: (res)=>{
         console.log(res , 'sidebarEnable')
         this.sidebarEnable = res;
-
+        this.isSignup = res
       }
     })
   }

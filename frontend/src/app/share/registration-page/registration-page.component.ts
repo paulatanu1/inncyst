@@ -9,6 +9,8 @@ import ls from 'localstorage-slim'
 import { LoginEnablerService } from 'src/app/service/login-enabler.service';
 import { QuestionSetEnablerService } from 'src/app/service/question-set-enabler.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
 interface options {
   optionName: string,
   code: string
@@ -19,11 +21,16 @@ interface IregistrationOption{
   id:number
 }
 
+// {
+//   provide: HTTP_INTERCEPTORS,
+//   useClass: AuthInterceptor,
+//   multi: true,
+// }
 @Component({
   selector: 'app-registration-page',
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss'],
-  providers:[MessageService]
+  providers:[MessageService,]
 })
 export class RegistrationPageComponent implements OnInit {
   registration:boolean =false;
@@ -111,6 +118,7 @@ export class RegistrationPageComponent implements OnInit {
     this.isSubmited = true
     if(this.isSubmited && this.registerForm.valid){
       this.registration = false;
+      ls.set('type',1)
       let userName:string = this.registerForm.get('userName')?.value;
       let userEmail:string = this.registerForm.get('email')?.value;
       let phone:string = this.registerForm.get('mobile')?.value;

@@ -86,7 +86,10 @@
               </div>
             </div>
           </div>
-          <div class="col-12 md:col-12 mt-3 mb-4 full-width">
+          <div
+            class="col-12 md:col-12 mt-3 mb-4 full-width"
+            style="position: relative;"
+          >
             <span class="p-float-label">
               <p-password
                 formControlName="password"
@@ -95,12 +98,15 @@
               <label for="float-input">Password</label>
             </span>
             <div
-              *ngIf="submitted && registerForm.get('password')?.errors"
-              class="alert alert-danger error_msg"
+              class="error_msg"
+              *ngIf="
+                (isSubmited && registerForm.get('password')?.invalid) ||
+                (registerForm.get('password')?.invalid &&
+                  (registerForm.get('password')?.dirty ||
+                    registerForm.get('password')?.touched))
+              "
             >
-              <div *ngIf="registerForm.get('password')?.errors?.['required']">
-                Password is required
-              </div>
+              Passsword is Required
             </div>
           </div>
           <div class="col-12 md:col-12 mt-3 mb-4 full-width">
@@ -140,7 +146,7 @@
               </label>
             </span>
           </div>
-          <div class="col-12 md:col-12 mt-3 mb-3">
+          <div class="col-12 md:col-12 mt-3 mb-3" style="position: relative;">
             <span class="checkbox-sec">
               <input type="checkbox" formControlName="agree" />
               <label>I have read and agree to the Terms of Service</label>
@@ -149,12 +155,15 @@
               *ngIf="isSubmited && registerForm.get('mobile')?.invalid"
               class=""
             >
-              <div *ngIf="registerForm.get('agree')?.errors?.['required']">
-                check before submit.
+              <div
+                class="error_msg"
+                *ngIf="registerForm.get('agree')?.errors?.['required']"
+              >
+                Read and check before submit.
               </div>
             </div>
           </div>
-          <div class="submit-btn">
+          <div class="submit-btn mt-4">
             <p-button
               class="submit-btns"
               type="submit"
