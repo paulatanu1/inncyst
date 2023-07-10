@@ -49,7 +49,8 @@ export class RegistrationPageComponent implements OnInit {
   registrationOption:IregistrationOption[]=[];
   isSubmited:boolean = false
   progressBar:boolean = false;
-  registerId:string = ''
+  registerId:string = '';
+  redirectToOtp:boolean = false;
   constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private login:LoginEnablerService,private question:QuestionSetEnablerService,private _toast:ToastServiceService) {
     
 
@@ -127,16 +128,21 @@ export class RegistrationPageComponent implements OnInit {
       // console.log(userName)
       this.reg.sendRegistrationRequest(userName,userEmail,phone,password,userRole).subscribe((response)=>{
         console.log(response , 'response');
+        const {email,name,_id,phone} = response.data;
+        ls.set('userEmail',email);
+        ls.set('userName',name);
+        ls.set('registerId',_id);
+        ls.set('phone',phone);
         let severity ='';
         let summary = '';
         let detail = '';
         this._toast.showToaster.next({severity:'success',summary:'success',detail:response.message})
-        this.registerId = response.data._id
-        this.question.isQuestionSetEnable.next(true);
-        ls.set('registerId',this.registerId)
+        // this.registerId = _id
+        // this.question.isQuestionSetEnable.next(true);
         this.isSignup = true;
-        this.sidebarEnable = true;
-        this.registerForm.reset();
+        // this.sidebarEnable = true;
+        this.redirectToOtp = true;
+        // this.registerForm.reset();
       })
     }
 

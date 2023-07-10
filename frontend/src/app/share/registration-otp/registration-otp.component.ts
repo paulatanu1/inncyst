@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgOtpInputComponent } from 'ng-otp-input';
 import { OtpVerificationService } from './otp-verification.service';
+
+import ls from 'localstorage-slim'
 interface Iotpset{
   email:number | null;
   phone:number | null
@@ -34,6 +36,8 @@ export class RegistrationOtpComponent implements OnInit {
   };
   isOtp:boolean = true;
   visible:boolean = true;
+  userEmails:string | null= '';
+  userMobileNumber:string | null = ''
   constructor(private fb:FormBuilder,private otpVerifivation:OtpVerificationService) {
     this.verifyRegistration = this.fb.group({
       emailOtp:[null,[Validators.required]],
@@ -46,8 +50,8 @@ export class RegistrationOtpComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-
+    this.userEmails = ls.get('userEmail')
+    this.userMobileNumber = ls.get('phone')
     // setTimeout(() => {
     //   this.isOtp = this.isOtpPage;
     // }, 500);
