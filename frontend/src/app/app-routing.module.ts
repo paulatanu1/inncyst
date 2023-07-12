@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'about-us', loadChildren: () => import('./about-us/about-us.module').then(m => m.AboutUsModule) },
   { path: 'registeration', loadChildren: () => import('./registeration/registeration.module').then(m => m.RegisterationModule) },
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
+  { path: 'industry', loadChildren: () => import('./industry/industry.module').then(m => m.IndustryModule) },
   {
     path: '**', redirectTo: '/jobs'
   }

@@ -4,6 +4,7 @@ import { NgOtpInputComponent } from 'ng-otp-input';
 import { OtpVerificationService } from './otp-verification.service';
 
 import ls from 'localstorage-slim'
+import { HeaderService } from '../module-service/header.service';
 interface Iotpset{
   email:number | null;
   phone:number | null
@@ -38,7 +39,7 @@ export class RegistrationOtpComponent implements OnInit {
   visible:boolean = true;
   userEmails:string | null= '';
   userMobileNumber:string | null = ''
-  constructor(private fb:FormBuilder,private otpVerifivation:OtpVerificationService) {
+  constructor(private fb:FormBuilder,private otpVerifivation:OtpVerificationService,private _header:HeaderService) {
     this.verifyRegistration = this.fb.group({
       emailOtp:[null,[Validators.required]],
       phoneOtp:[null,[Validators.required]]
@@ -74,7 +75,7 @@ export class RegistrationOtpComponent implements OnInit {
   }
 
   onSubmitOtp(){
-    debugger;
+    // debugger;
     // if(this.verifyRegistration.valid){
       this.otpSet = {
         // email:this.verifyRegistration?.get('emailOtp')?.value,
@@ -86,7 +87,9 @@ export class RegistrationOtpComponent implements OnInit {
       this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
         next: (res)=>{
           console.log(res,'otp response')
-          this.OtpModal.emit(false)
+          this.OtpModal.emit(false);
+          this._header.userLoggedin.next(true)
+          ls.set('logged',true)
         },
         error: (err)=>{
           console.log(err,'otp response')

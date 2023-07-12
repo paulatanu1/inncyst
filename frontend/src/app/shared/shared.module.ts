@@ -37,7 +37,10 @@ import {ToastModule} from 'primeng/toast';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import {ProgressBarModule} from 'primeng/progressbar';
 import { RegistrationPageComponent } from '../share/registration-page/registration-page.component';
-
+import {AvatarModule} from 'primeng/avatar';
+import {AvatarGroupModule} from 'primeng/avatargroup';
+import {SlideMenuModule} from 'primeng/slidemenu';
+import {MenuItem} from 'primeng/api';
 @NgModule({
   declarations: [
     SharedComponent,
@@ -79,7 +82,10 @@ import { RegistrationPageComponent } from '../share/registration-page/registrati
      CalendarModule,
      NgOtpInputModule,
      ToastModule,
-     ProgressBarModule
+     ProgressBarModule,
+     AvatarModule,
+     AvatarGroupModule,
+     SlideMenuModule
     ],
   exports: [
     HeaderComponent, 
@@ -109,7 +115,10 @@ import { RegistrationPageComponent } from '../share/registration-page/registrati
     CalendarModule,
     NgOtpInputModule,
     ToastModule,
-    ProgressBarModule
+    ProgressBarModule,
+    AvatarModule,
+     AvatarGroupModule,
+     SlideMenuModule
   ],
   providers:[DatePipe]
 })

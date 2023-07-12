@@ -8,6 +8,7 @@ import { ProgressBarService } from 'src/app/service/progress-bar.service';
 import ls from 'localstorage-slim'
 import { LoginEnablerService } from 'src/app/service/login-enabler.service';
 import { QuestionSetEnablerService } from 'src/app/service/question-set-enabler.service';
+import { HeaderService } from '../module-service/header.service';
 interface options {
   optionName: string,
   code: string
@@ -44,8 +45,11 @@ export class HeaderComponent implements OnInit {
   isSubmited:boolean = false
   progressBar:boolean = false;
   registerId:string = ''
+  isUserLogged:boolean | null = false
+  Profileitems!: MenuItem[];
+
   //Outputs
-  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private _login:LoginEnablerService,private quiestion :QuestionSetEnablerService) {
+  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private _login:LoginEnablerService,private quiestion :QuestionSetEnablerService,private _header :HeaderService) {
     this.items = [
       {label: 'As a Student', command: () => {
           this.login('student');
@@ -81,6 +85,24 @@ export class HeaderComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.Profileitems = [
+      {
+        label:'Profile',
+        icon:'pi pi-fw pi-file',
+        
+     },
+     {
+      label:'Change Password',
+      icon:'pi pi-fw pi-file',
+      
+    },
+    {
+      label:'Logout',
+      icon:'pi pi-fw pi-file',
+      
+    }
+    ]
+    this.isUserLogged = ls.get('logged')
     this.registerForm =this.fb.group({
       userName: ['',[Validators.required,Validators.minLength(4)]],
       email: ['',[Validators.required,Validators.email]],
@@ -112,6 +134,11 @@ export class HeaderComponent implements OnInit {
         console.log(res , 'sidebarEnable')
         this.sidebarEnable = res;
         this.isSignup = res
+      }
+    });
+    this._header.userLoggedin.subscribe({
+      next: (response)=>{
+        this.isUserLogged = response
       }
     })
   }
