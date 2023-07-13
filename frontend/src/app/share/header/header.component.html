@@ -68,8 +68,6 @@
         [routerLink]="['/registeration']"
         (click)="register()"
       >
-        <!-- <p-splitButton label="Register" (onClick)="register()" [model]="items"></p-splitButton> -->
-        <!-- <p-button label="Register" (onClick)="register()"></p-button> -->
         <p-button label="Register"></p-button>
       </div>
       <div class="login">
@@ -79,15 +77,9 @@
           type="button"
           label="Login"
         ></button>
-        <!-- <button
-          [routerLink]="['/login']"
-          pButton
-          type="button"
-          label="Login"
-        ></button> -->
       </div>
     </div>
-    <div class="">
+    <div class="" *ngIf="!isUserLogged">
       <p-avatar
         image="https://www.tm-town.com/assets/default_male600x600-e660e1a712abfc5f638f435f6ef5432c69c6d9250b10cd43bbaa943e55980d5a.png"
         styleClass="mr-2"

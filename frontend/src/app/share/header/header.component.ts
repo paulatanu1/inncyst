@@ -99,6 +99,9 @@ export class HeaderComponent implements OnInit {
     {
       label:'Logout',
       icon:'pi pi-fw pi-file',
+      command: ()=>{
+        this.logOutUser()
+      }
       
     }
     ]
@@ -254,5 +257,10 @@ export class HeaderComponent implements OnInit {
     if(popupname){
       this.resetQueryParams()
     }
+  }
+  logOutUser(){
+    console.log('click')
+    ls.clear()
+    this.isUserLogged = true;
   }
 }

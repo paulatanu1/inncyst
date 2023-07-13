@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndustryComponent } from './industry.component';
+import { PostListComponent } from './post-list/post-list.component';
+import { PostAddComponent } from './post-add/post-add.component';
 
-const routes: Routes = [{ path: '', component: IndustryComponent }];
+const routes: Routes = [
+  { path: 'post-list', component: PostListComponent },
+  { path: 'add-post', component: PostAddComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
