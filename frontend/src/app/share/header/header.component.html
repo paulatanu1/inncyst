@@ -62,7 +62,7 @@
         </li>
       </ul>
     </div>
-    <div class="users-option" *ngIf="isUserLogged">
+    <div class="users-option" *ngIf="!isUserLogged">
       <div
         class="register"
         [routerLink]="['/registeration']"
@@ -79,7 +79,7 @@
         ></button>
       </div>
     </div>
-    <div class="" *ngIf="!isUserLogged">
+    <div class="" *ngIf="isUserLogged">
       <p-avatar
         image="https://www.tm-town.com/assets/default_male600x600-e660e1a712abfc5f638f435f6ef5432c69c6d9250b10cd43bbaa943e55980d5a.png"
         styleClass="mr-2"

@@ -6,8 +6,8 @@ import { OtpVerificationService } from './otp-verification.service';
 import ls from 'localstorage-slim'
 import { HeaderService } from '../module-service/header.service';
 interface Iotpset{
-  email:number | null;
-  phone:number | null
+  email:string ;
+  phone:string ;
 }
 @Component({
   selector: 'app-registration-otp',
@@ -21,8 +21,8 @@ export class RegistrationOtpComponent implements OnInit {
   @Input() isOtpPage: boolean = false;
   verifyRegistration!:FormGroup;
   otpSet:Iotpset={
-    email: null,
-    phone: null
+    email: '',
+    phone: ''
   }
   config = {
     allowNumbersOnly: false,
@@ -39,10 +39,13 @@ export class RegistrationOtpComponent implements OnInit {
   visible:boolean = true;
   userEmails:string | null= '';
   userMobileNumber:string | null = ''
+  isphoneOtp:string = '';
+  isemailOtp:string = '';
+
   constructor(private fb:FormBuilder,private otpVerifivation:OtpVerificationService,private _header:HeaderService) {
     this.verifyRegistration = this.fb.group({
-      emailOtp:[null,[Validators.required]],
-      phoneOtp:[null,[Validators.required]]
+      emailOtp:['',[Validators.required]],
+      phoneOtp:['',[Validators.required]]
     })
   }
 
@@ -68,20 +71,21 @@ export class RegistrationOtpComponent implements OnInit {
 
   onPhoneOtpChange(event:string){
     console.log(event , 'onPhoneOtpChange')
+    this.isphoneOtp= event
   }
 
   onEmailOtpChange(event:string){
     console.log(event , 'onemailOtpChange')
+    this.isemailOtp = event
   }
 
   onSubmitOtp(){
     // debugger;
+    console.log('click')
     // if(this.verifyRegistration.valid){
       this.otpSet = {
-        // email:this.verifyRegistration?.get('emailOtp')?.value,
-        // phone:this.verifyRegistration?.get('phoneOtp')?.value
-        email:null,
-        phone:null
+        email:this.isemailOtp,
+        phone:this.isphoneOtp
       }
       console.log(this.otpSet)
       this.otpVerifivation.otpSubmit(this.otpSet).subscribe({

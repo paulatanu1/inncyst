@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/common-service/api.service';
 interface Iotpset{
-  email:number | null;
-  phone:number | null
+  email:string;
+  phone:string
 }
 @Injectable({
   providedIn: 'root'

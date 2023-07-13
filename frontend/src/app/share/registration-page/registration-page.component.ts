@@ -11,6 +11,7 @@ import { QuestionSetEnablerService } from 'src/app/service/question-set-enabler.
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
+import { HeaderService } from '../module-service/header.service';
 interface options {
   optionName: string,
   code: string
@@ -51,7 +52,7 @@ export class RegistrationPageComponent implements OnInit {
   progressBar:boolean = false;
   registerId:string = '';
   redirectToOtp:boolean = false;
-  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private login:LoginEnablerService,private question:QuestionSetEnablerService,private _toast:ToastServiceService) {
+  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private login:LoginEnablerService,private question:QuestionSetEnablerService,private _toast:ToastServiceService,private header :HeaderService) {
     
 
     this.options = [
@@ -141,12 +142,18 @@ export class RegistrationPageComponent implements OnInit {
         // this.question.isQuestionSetEnable.next(true);
         this.isSignup = true;
         // this.sidebarEnable = true;
-        this.redirectToOtp = true;
+        this.openVerificationModal(true)
         // this.registerForm.reset();
       })
     }
 
+   
 
+
+}
+
+openVerificationModal(value:boolean){
+  this.redirectToOtp = value;
 }
   registrationLoginOption(){
   this.registration = false;
@@ -193,9 +200,12 @@ export class RegistrationPageComponent implements OnInit {
   //   this.isSignup = false;
   // }
 
-  // OtpModal(event:boolean){
-  //   this.isOtpPage = event;
-  // }
+  OtpModal(event:boolean){
+    console.log(event)
+    // this.isOtpPage = event;
+    this.redirectToOtp = event
+    this.header.userLoggedin.next(true)
+  }
 
 
 
