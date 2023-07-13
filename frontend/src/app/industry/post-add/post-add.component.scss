@@ -1,0 +1,71 @@
+.post_job_form_sec {
+    max-width: 735px;
+    margin: 40px auto;
+    h2 {
+        color: #522D80;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        text-align: center;
+        margin: 0 0 70px;
+    }
+    .post_job_form {
+        h3 {
+            color: #522D80;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+        .form_group {
+            border-radius: 11px;
+            border: 0.5px solid rgba(108, 108, 108,0.3);
+            background: #FFF;
+            padding: 25px;
+            margin-bottom: 28px;
+            .field-radiobutton {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 22px;
+                label {
+                    color: #000;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    margin-left: 9px;
+                }
+            }
+            .form_field_group {
+                margin-bottom: 22px;
+                & > label {
+                    color: #000;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    display: block;
+                    margin-bottom: 10px;
+                    span {
+                        color: #656565;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                    }
+                }
+                input {
+                    border-radius: 8px;
+                    border: 0.55px solid rgba(108,108,108,0.3);
+                    height: 56px;
+                    line-height: 56px;
+                    color: #9A9AB0;
+                    font-size: 16px;
+                    font-weight: 400;
+                    letter-spacing: 0.08px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

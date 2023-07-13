@@ -41,6 +41,7 @@ import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 import {SlideMenuModule} from 'primeng/slidemenu';
 import {MenuItem} from 'primeng/api';
+import {RadioButtonModule} from 'primeng/radiobutton';
 @NgModule({
   declarations: [
     SharedComponent,
@@ -85,7 +86,8 @@ import {MenuItem} from 'primeng/api';
      ProgressBarModule,
      AvatarModule,
      AvatarGroupModule,
-     SlideMenuModule
+     SlideMenuModule,
+     RadioButtonModule
     ],
   exports: [
     HeaderComponent, 
@@ -118,7 +120,8 @@ import {MenuItem} from 'primeng/api';
     ProgressBarModule,
     AvatarModule,
      AvatarGroupModule,
-     SlideMenuModule
+     SlideMenuModule,
+     RadioButtonModule
   ],
   providers:[DatePipe]
 })
