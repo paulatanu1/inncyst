@@ -15,7 +15,7 @@
     <div class="right-section">
       <div class="form-wrapper">
         <h5>OTP Verification</h5>
-        <form>
+        <form [formGroup]="verifyRegistration" (ngSubmit)="onSubmitOtp()">
           <div class="col-12 md:col-12 mt-3 mb-4 form-wrapper-section">
             <div class="text-area">
               <p class="heading-line">
@@ -34,6 +34,7 @@
                   #ngOtpInput1
                   [config]="{ length: 4 }"
                   (onInputChange)="onEmailOtpChange($event)"
+                  formControlName="emailOtp"
                 ></ng-otp-input>
               </span>
             </div>
@@ -62,6 +63,7 @@
                   #ngOtpInput2
                   [config]="{ length: 4 }"
                   (onInputChange)="onPhoneOtpChange($event)"
+                  formControlName="phoneOtp"
                 ></ng-otp-input>
               </span>
             </div>

@@ -183,4 +183,7 @@
   </div>
 </div>
 
-<app-registration-otp *ngIf="redirectToOtp === true"></app-registration-otp>
+<app-registration-otp
+  (OtpModal)="OtpModal($event)"
+  *ngIf="redirectToOtp === true"
+></app-registration-otp>
