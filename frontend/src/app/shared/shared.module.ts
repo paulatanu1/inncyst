@@ -42,6 +42,7 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
 import {SlideMenuModule} from 'primeng/slidemenu';
 import {MenuItem} from 'primeng/api';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {CheckboxModule} from 'primeng/checkbox';
 @NgModule({
   declarations: [
     SharedComponent,
@@ -87,7 +88,8 @@ import {RadioButtonModule} from 'primeng/radiobutton';
      AvatarModule,
      AvatarGroupModule,
      SlideMenuModule,
-     RadioButtonModule
+     RadioButtonModule,
+     CheckboxModule
     ],
   exports: [
     HeaderComponent, 
@@ -119,9 +121,10 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     ToastModule,
     ProgressBarModule,
     AvatarModule,
-     AvatarGroupModule,
-     SlideMenuModule,
-     RadioButtonModule
+    AvatarGroupModule,
+    SlideMenuModule,
+    RadioButtonModule,
+    CheckboxModule
   ],
   providers:[DatePipe]
 })

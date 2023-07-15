@@ -1,6 +1,7 @@
 .post_job_form_sec {
     max-width: 735px;
     margin: 40px auto;
+    font-family: "Raleway", sans-serif;
     h2 {
         color: #522D80;
         font-size: 36px;
@@ -53,6 +54,21 @@
                         font-style: normal;
                         font-weight: 400;
                     }
+                    strong {
+                        display: block;
+                        color: #000;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                    }
+                    em {
+                        font-style: normal;
+                        color: #8B8B8B;
+                        font-size: 14px;
+                        font-weight: 500;
+                        display: block;
+                    }
                 }
                 input {
                     border-radius: 8px;
@@ -64,6 +80,116 @@
                     font-weight: 400;
                     letter-spacing: 0.08px;
                     width: 100%;
+                }
+                .twoColForm {
+                    display: flex;
+                    input {
+                        flex: 0 0 450px;
+                    }
+                    ::ng-deep .p-inputwrapper {
+                        flex: 0 0 212px;
+                        margin: 0 0 0 22px;
+                    }
+                }
+                .add_more {
+                    color: #19A6EC;
+                    font-family: Raleway;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    margin-top: 12px;
+                    line-height: 22px;
+                    i {
+                        height: 18px;
+                        display: inline-block;
+                        img {
+                            vertical-align: top;
+                            margin: 2px 12px 0 0;
+                        }
+                    }
+                }
+                &.stipend {
+                    .twoColForm { 
+                       input {
+                            flex: 0 0 236px;
+                        }
+                    }
+                }
+                &.perks {
+                    .field-checkbox {
+                        width: 40%;
+                        display: inline-block;
+                        label {
+                            font-size: 13px;
+                        }
+                    }
+                }
+                p {
+                    color: #000;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+            }
+        }
+        .buttonSec {
+            margin: 15px 0 0;
+            text-align: right;
+            button {
+                display: inline-block;
+                vertical-align: top;
+                margin-left: 15px;
+                &.save_preview {
+                    border-radius: 5px;
+                    border: 1px solid #19A6EC;
+                    padding:7px 15px;
+                    color: #19A6EC;
+                    text-align: center;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 24px;
+                    background: transparent;
+                    &:hover {
+                        background:#19A6EC ;
+                        color: #fff;
+                    }
+                }
+                &.post_btn {
+                    border-radius: 5px;
+                    border: 1px solid #19A6EC;
+                    padding: 7px 15px;
+                    color: #fff;
+                    text-align: center;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 24px;
+                    background: #19A6EC;
+                    &:hover {
+                            background: #fff;
+                            color: #19A6EC;
+                        }
+                }
+            }
+        }
+        .assistance {
+            text-align: center;
+            margin-top: 50px;
+            p {
+                color: #000;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                span {
+                    color: #19A6EC;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
                 }
             }
         }
