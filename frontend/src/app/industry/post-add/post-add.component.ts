@@ -10,6 +10,7 @@ interface cities {
 })
 export class PostAddComponent implements OnInit {
   cities: cities[];
+  city!: string;
   constructor() { 
     this.cities = [
         {optionName: 'New York', code: 'NY'},

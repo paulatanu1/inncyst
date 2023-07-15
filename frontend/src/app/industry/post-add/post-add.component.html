@@ -1,134 +1,220 @@
 <div class="post_job_form_sec">
-    <h2>Post internship/job</h2>
-    <div class="post_job_form">
-        <h3>Opportunity type</h3>
-        <div class="form_group">           
-            <div class="opp_type">
-                <div class="field-radiobutton">
-                    <p-radioButton name="internship" value="Internship" inputId="internship"></p-radioButton>
-                    <label for="internship">Internship</label>
-                </div>
-                <div class="field-radiobutton">
-                    <p-radioButton name="job" value="Job" inputId="job"></p-radioButton>
-                    <label for="job">Job</label>
-                </div>
-            </div>
+  <h2>Post internship/job</h2>
+  <div class="post_job_form">
+    <h3>Opportunity type</h3>
+    <div class="form_group">
+      <div class="opp_type">
+        <div class="field-radiobutton">
+          <p-radioButton
+            name="internship"
+            value="Internship"
+            inputId="internship"
+            [(ngModel)]="city"
+          ></p-radioButton>
+          <label for="internship">Internship</label>
         </div>
-        <h3>Internship details</h3>
-        <div class="form_group">
-            <div class="form_field_group">
-                <label>Internship details</label>
-                <input type="text" placeholder="e.g Android app development" pInputText />
-            </div>
-            <div class="form_field_group">
-                <label>Skills required <span>(Optional)</span></label>
-                <input type="text" placeholder="e.g Java" pInputText />
-            </div>
-            <div class="form_field_group">
-                <label>Internship type</label>
-                <div class="field-radiobutton">
-                    <p-radioButton name="in-office" value="In-office" inputId="in-office"></p-radioButton>
-                    <label for="in-office">In-office</label>
-                </div>
-                <div class="field-radiobutton">
-                    <p-radioButton name="hybrid" value="Hybrid" inputId="hybrid"></p-radioButton>
-                    <label for="hybrid">Hybrid</label>
-                </div>
-                <div class="field-radiobutton">
-                    <p-radioButton name="remote" value="Remote" inputId="remote"></p-radioButton>
-                    <label for="remote">Remote</label>
-                </div>
-            </div>
-            <div class="form_field_group">
-                <label>Number of openings</label>
-                <input type="text" placeholder="e.g 6" pInputText />
-            </div>
-            <div class="form_field_group">
-                <label>Internship start date</label>
-                <div class="field-radiobutton">
-                    <p-radioButton name="immediate" value="Immediate" inputId="immediate"></p-radioButton>
-                    <label for="immediate">Immediately (within next 30 days)</label>
-                </div>
-                <div class="field-radiobutton">
-                    <p-radioButton name="later" value="Later" inputId="later"></p-radioButton>
-                    <label for="later">Later</label>
-                </div>
-            </div>
-            <div class="form_field_group">
-                <label>Internship duration <strong>Shorter the duration, more the applications</strong></label>
-                <div class="twoColForm">
-                    <input type="text" placeholder="Choose Duration" pInputText />
-                    <p-dropdown [options]="cities" optionLabel="optionName" formControlName="cities" optionValue="optionName" formControlName="cities"></p-dropdown>
-                </div>    
-            </div>
-            <div class="form_field_group">
-                <label>Intern's responsibilities <em>Selected intern's day-to-day responsibilities include:</em></label>
-                <input type="text" placeholder="e.g designing product concepts" pInputText />
-                <div class="add_more">
-                    <i><img src="../../../assets/plus-icon.png" width="18" height="18" /></i> Add more responsibilities
-                </div>
-            </div>
-            <div class="form_field_group">
-                <label>Stipend</label>
-                <div class="field-radiobutton">
-                    <p-radioButton name="fixed" value="Fixed" inputId="fixed"></p-radioButton>
-                    <label for="fixed">Fixed</label>
-                </div>
-                <div class="field-radiobutton">
-                    <p-radioButton name="later" value="Later" inputId="later"></p-radioButton>
-                    <label for="later">Unpaid</label>
-                </div>
-                <div class="field-radiobutton">
-                    <p-radioButton name="later" value="Later" inputId="later"></p-radioButton>
-                    <label for="later">Performance based</label>
-                </div>
-            </div>
-            <div class="form_field_group stipend">
-                <div class="twoColForm">
-                    <input type="text" placeholder="e.g 10000/-" pInputText />
-                    <p-dropdown [options]="cities" optionLabel="optionName" formControlName="cities" optionValue="optionName" formControlName="cities"></p-dropdown>
-                </div>
-            </div>
-            <div class="form_field_group perks">
-                <label>Perks <span>(Optional)</span></label>
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Certificate</label>
-                </div>
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Letter of recommendationk</label>
-                </div>
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">5 days a week</label>
-                </div>
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Informal dress code</label>
-                </div>
-            </div>
+        <div class="field-radiobutton">
+          <p-radioButton
+            name="job"
+            value="Job"
+            inputId="job"
+            [(ngModel)]="city"
+          ></p-radioButton>
+          <label for="job">Job</label>
         </div>
-        <h3>Cover letter & assessment question</h3>
-        <div class="form_group">
-            <div class="form_field_group">
-                <label>Cover letter <span>(Optional)</span></label>
-                <p>Why should you be hired for this role?</p>
-            </div>
-            <div class="form_field_group">
-                <label>Availability</label>
-                <p>Are you available for 1 month, starting immediately, for a full-time work from home internship? If not, what is the time period you are available for and the earliest date you can start this internship on?</p>
-                <div class="add_more">
-                    <i><img src="../../../assets/plus-icon.png" width="18" height="18" /></i> Add any Questions
-                </div>
-            </div>
-        </div>
-        <div class="buttonSec">
-            <button class="save_preview">Save Preview</button>
-            <button class="post_btn">Post Internship</button>
-        </div>
-        <div class="assistance">
-            <p>Need assistance? Please visit <span>Help Center</span></p>
-        </div>
+      </div>
     </div>
+    <h3>Internship details</h3>
+    <div class="form_group">
+      <div class="form_field_group">
+        <label>Internship details</label>
+        <input
+          type="text"
+          placeholder="e.g Android app development"
+          pInputText
+        />
+      </div>
+      <div class="form_field_group">
+        <label>
+          Skills required
+          <span>(Optional)</span>
+        </label>
+        <input type="text" placeholder="e.g Java" pInputText />
+      </div>
+      <div class="form_field_group">
+        <label>Internship type</label>
+        <div class="field-radiobutton">
+          <p-radioButton
+            name="in-office"
+            value="In-office"
+            inputId="in-office"
+            [(ngModel)]="city"
+          ></p-radioButton>
+          <label for="in-office">In-office</label>
+        </div>
+        <div class="field-radiobutton">
+          <p-radioButton
+            name="hybrid"
+            value="Hybrid"
+            inputId="hybrid"
+            [(ngModel)]="city"
+          ></p-radioButton>
+          <label for="hybrid">Hybrid</label>
+        </div>
+        <div class="field-radiobutton">
+          <p-radioButton
+            name="remote"
+            value="Remote"
+            inputId="remote"
+            [(ngModel)]="city"
+          ></p-radioButton>
+          <label for="remote">Remote</label>
+        </div>
+      </div>
+      <div class="form_field_group">
+        <label>Number of openings</label>
+        <input type="text" placeholder="e.g 6" pInputText />
+      </div>
+      <div class="form_field_group">
+        <label>Internship start date</label>
+        <div class="field-radiobutton">
+          <p-radioButton
+            name="immediate"
+            value="Immediate"
+            inputId="immediate"
+            [(ngModel)]="city"
+          ></p-radioButton>
+          <label for="immediate">Immediately (within next 30 days)</label>
+        </div>
+        <div class="field-radiobutton">
+          <p-radioButton
+            name="later"
+            value="Later"
+            inputId="later"
+            [(ngModel)]="city"
+          ></p-radioButton>
+          <label for="later">Later</label>
+        </div>
+      </div>
+      <div class="form_field_group">
+        <label>
+          Internship duration
+          <strong>Shorter the duration, more the applications</strong>
+        </label>
+        <div class="twoColForm">
+          <input type="text" placeholder="Choose Duration" pInputText />
+          <p-dropdown
+            [options]="cities"
+            optionLabel="optionName"
+            optionValue="optionName"
+          ></p-dropdown>
+        </div>
+      </div>
+      <div class="form_field_group">
+        <label>
+          Intern's responsibilities
+          <em>Selected intern's day-to-day responsibilities include:</em>
+        </label>
+        <input
+          type="text"
+          placeholder="e.g designing product concepts"
+          pInputText
+        />
+        <div class="add_more">
+          <i>
+            <img src="../../../assets/plus-icon.png" width="18" height="18" />
+          </i>
+          Add more responsibilities
+        </div>
+      </div>
+      <div class="form_field_group">
+        <label>Stipend</label>
+        <div class="field-radiobutton">
+          <p-radioButton
+            name="fixed"
+            value="Fixed"
+            inputId="fixed"
+            [(ngModel)]="city"
+          ></p-radioButton>
+          <label for="fixed">Fixed</label>
+        </div>
+        <div class="field-radiobutton">
+          <p-radioButton
+            name="later"
+            value="Later"
+            inputId="later"
+            [(ngModel)]="city"
+          ></p-radioButton>
+          <label for="later">Unpaid</label>
+        </div>
+        <div class="field-radiobutton">
+          <p-radioButton
+            name="later"
+            value="Later"
+            inputId="later"
+            [(ngModel)]="city"
+          ></p-radioButton>
+          <label for="later">Performance based</label>
+        </div>
+      </div>
+      <div class="form_field_group stipend">
+        <div class="twoColForm">
+          <input type="text" placeholder="e.g 10000/-" pInputText />
+          <p-dropdown
+            [options]="cities"
+            optionLabel="optionName"
+            optionValue="optionName"
+          ></p-dropdown>
+        </div>
+      </div>
+      <div class="form_field_group perks">
+        <label>
+          Perks
+          <span>(Optional)</span>
+        </label>
+        <div class="field-checkbox">
+          <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
+          <label for="ny">Certificate</label>
+        </div>
+        <div class="field-checkbox">
+          <p-checkbox name="group2" value="New York" inputId="ny"></p-checkbox>
+          <label for="ny">Letter of recommendationk</label>
+        </div>
+      </div>
+    </div>
+    <h3>Cover letter & assessment question</h3>
+    <div class="form_group">
+      <div class="form_field_group">
+        <label>
+          Cover letter
+          <span>(Optional)</span>
+        </label>
+        <p>Why should you be hired for this role?</p>
+      </div>
+      <div class="form_field_group">
+        <label>Availability</label>
+        <p>
+          Are you available for 1 month, starting immediately, for a full-time
+          work from home internship? If not, what is the time period you are
+          available for and the earliest date you can start this internship on?
+        </p>
+        <div class="add_more">
+          <i>
+            <img src="../../../assets/plus-icon.png" width="18" height="18" />
+          </i>
+          Add any Questions
+        </div>
+      </div>
+    </div>
+    <div class="buttonSec">
+      <button class="save_preview">Save Preview</button>
+      <button class="post_btn">Post Internship</button>
+    </div>
+    <div class="assistance">
+      <p>
+        Need assistance? Please visit
+        <span>Help Center</span>
+      </p>
+    </div>
+  </div>
 </div>

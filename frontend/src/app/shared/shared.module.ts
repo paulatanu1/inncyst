@@ -40,7 +40,6 @@ import { RegistrationPageComponent } from '../share/registration-page/registrati
 import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 import {SlideMenuModule} from 'primeng/slidemenu';
-import {MenuItem} from 'primeng/api';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {CheckboxModule} from 'primeng/checkbox';
 @NgModule({
