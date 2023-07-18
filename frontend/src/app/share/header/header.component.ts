@@ -263,5 +263,6 @@ export class HeaderComponent implements OnInit {
     console.log('click')
     ls.clear()
     this.isUserLogged = true;
+    this.router.navigateByUrl('/home');
   }
 }

@@ -5,6 +5,7 @@ import { OtpVerificationService } from './otp-verification.service';
 
 import ls from 'localstorage-slim'
 import { HeaderService } from '../module-service/header.service';
+import { ToastServiceService } from 'src/app/service/toast-service.service';
 interface Iotpset{
   email:string ;
   phone:string ;
@@ -42,7 +43,7 @@ export class RegistrationOtpComponent implements OnInit {
   isphoneOtp:string = '';
   isemailOtp:string = '';
 
-  constructor(private fb:FormBuilder,private otpVerifivation:OtpVerificationService,private _header:HeaderService) {
+  constructor(private fb:FormBuilder,private otpVerifivation:OtpVerificationService,private _header:HeaderService,private _toast:ToastServiceService) {
     this.verifyRegistration = this.fb.group({
       emailOtp:['',[Validators.required]],
       phoneOtp:['',[Validators.required]]
@@ -94,6 +95,8 @@ export class RegistrationOtpComponent implements OnInit {
           this.OtpModal.emit(false);
           this._header.userLoggedin.next(true)
           ls.set('logged',true)
+          this._toast.showToaster.next({severity:'success',summary:'success',detail:res.message});
+          //set route logic for user 
         },
         error: (err)=>{
           console.log(err,'otp response')
