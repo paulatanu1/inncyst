@@ -37,6 +37,12 @@
 
 .navbar {
   padding: 0 0 5px 0;
+  box-shadow: 4px 3px 9px 0px #ddd;
+  position: fixed;
+  z-index: 9;
+  background: #fff;
+  width: 100%;
+  top: 0;
 }
 .users-option {
   display: flex;

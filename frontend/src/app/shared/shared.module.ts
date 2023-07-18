@@ -36,11 +36,12 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import {ToastModule} from 'primeng/toast';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {FileUploadModule} from 'primeng/fileupload';
 import { RegistrationPageComponent } from '../share/registration-page/registration-page.component';
 import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 import {SlideMenuModule} from 'primeng/slidemenu';
-import {RadioButtonModule} from 'primeng/radiobutton';
 import {CheckboxModule} from 'primeng/checkbox';
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import {CheckboxModule} from 'primeng/checkbox';
      AvatarGroupModule,
      SlideMenuModule,
      RadioButtonModule,
-     CheckboxModule
+     CheckboxModule,
+     FileUploadModule
     ],
   exports: [
     HeaderComponent, 
@@ -123,7 +125,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     AvatarGroupModule,
     SlideMenuModule,
     RadioButtonModule,
-    CheckboxModule
+    CheckboxModule,
+    FileUploadModule
   ],
   providers:[DatePipe]
 })

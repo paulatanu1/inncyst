@@ -1,31 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { throwIfEmpty } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-internships',
   templateUrl: './internships.component.html',
-  styleUrls: ['./internships.component.scss']
+  styleUrls: ['./internships.component.scss'],
+  // providers: [MessageService]
 })
 export class InternshipsComponent implements OnInit {
   profileUpdate:boolean = false;
-  items: MenuItem[]=[]
-  constructor() { }
+  items: MenuItem[]=[];
+  activeIndex: number = 0;
+  constructor(private router: Router,private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.items = [
-      {label: 'Step 1'},
-      {label: 'Step 2'},
-      {label: 'Step 3'}
+      {label: 'Skill', routerLink:'skills',
+      command: (event: any) => {
+        this.activeIndex = 0;
+        // this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
+    }},
+      {label: 'Info', routerLink:'uploadresume',
+      command: (event: any) => {
+        this.activeIndex = 1;
+        // this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
+    }}
   ];
   }
 
   applyJob(){
     this.profileUpdate = true;
+    this.router.navigate(['jobs/internships/skills']);
   }
 
   closeProfileUpdateForm(){
     this.profileUpdate = false;
   }
+
+ 
 
 }

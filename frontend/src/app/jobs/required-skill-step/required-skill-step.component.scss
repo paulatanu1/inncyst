@@ -1,0 +1,79 @@
+.modal-content {
+    padding: 50px 70px;
+
+    ::ng-deep .p-steps {
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        color: #000000;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 28px;
+    }
+
+    strong {
+        color: #6C6C6C;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 26.98px;
+        margin-bottom: 5px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            color: #6C6C6C;
+            font-weight: 500;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+    }
+
+    .benefits {
+        margin-bottom: 20px;
+
+        h3 {
+            color: #000000;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 21px;
+            margin-bottom: 10px;
+        }
+    }
+
+    .tags {
+        margin-bottom: 25px;
+
+        span {
+            display: inline-block;
+            background: #EFEFEF;
+            border-radius: 3px;
+            padding: 10px 15px;
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 12px;
+            text-align: center;
+            color: #656565;
+            margin-right: 11px;
+        }
+    }
+}
+
+.dialog-footer {
+    border-top: 0.5px solid #C4C4C4;
+    padding: 36px 70px;
+    text-align: right;
+    button {
+        background: #19A6EC;
+        border-radius: 5px;
+        padding: 7px 15px;
+        color: #FFFFFF;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        display: inline-block;
+    }
+}

@@ -1,0 +1,72 @@
+<div class="modal-content">
+  <section class="contact_info">
+    <h2>Contact Info</h2>
+    <div class="contact_img_details">
+      <div class="contact_img">
+        <span></span>
+      </div>
+      <div class="contact_details">
+        <h3>Aniket Nath</h3>
+        <span>
+          Graphic designer | Web Designer | UI/UX Designer | Web developer
+        </span>
+        <strong>Kolkata, West Bengal, India</strong>
+      </div>
+    </div>
+    <div class="uploadresume_form">
+      <div class="inputGroup">
+        <label>Email</label>
+        <input type="text" pInputText />
+      </div>
+      <div class="inputGroup mobile_num">
+        <label>Mobile Number</label>
+        <input type="text" placeholder="+91" class="smallInput" pInputText />
+        <input type="text" pInputText />
+      </div>
+      <div class="upload_resume">
+        <h3>Resume</h3>
+        <div class="uploadField">
+          <span>PDF</span>
+          <p-fileUpload
+            mode="basic"
+            name="demo[]"
+            url="./upload.php"
+          ></p-fileUpload>
+        </div>
+        <button class="upload_btn">Upload Resume</button>
+        <span class="fileTypes">DOC, DOCX, PDF (5 MB)</span>
+      </div>
+      <div class="availability">
+        <h3>Your availability</h3>
+        <span>Confirm your availability</span>
+        <div class="inputGroup">
+          <div class="p-field-radiobutton">
+            <p-radioButton
+              name="option"
+              value="Chicago"
+              [(ngModel)]="opt"
+              inputId="yes"
+            ></p-radioButton>
+            <label for="city1">
+              Yes, I am available for 3 months starting immediately for a work
+              from home internship
+            </label>
+          </div>
+          <div class="p-field-radiobutton">
+            <p-radioButton
+              name="option"
+              value="Chicago2"
+              [(ngModel)]="opt"
+              inputId="no"
+            ></p-radioButton>
+            <label for="city1">No (Please specify your availability)</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="dialog-footer">
+  <a class="back_link">Back</a>
+  <button>Submit Application</button>
+</div>
