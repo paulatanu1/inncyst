@@ -88,17 +88,17 @@ export class HeaderComponent implements OnInit {
     this.Profileitems = [
       {
         label:'Profile',
-        icon:'pi pi-fw pi-file',
+        icon:'pi pi-user',
         
      },
      {
       label:'Change Password',
-      icon:'pi pi-fw pi-file',
+      icon:'pi pi-lock',
       
     },
     {
       label:'Logout',
-      icon:'pi pi-fw pi-file',
+      icon:'pi pi-power-off',
       command: ()=>{
         this.logOutUser()
       }

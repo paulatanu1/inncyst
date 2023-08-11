@@ -80,20 +80,19 @@
       </div>
     </div>
     <div class="" *ngIf="isUserLogged">
-      <p-avatar
-        image="https://www.tm-town.com/assets/default_male600x600-e660e1a712abfc5f638f435f6ef5432c69c6d9250b10cd43bbaa943e55980d5a.png"
-        styleClass="mr-2"
-        size="large"
-        shape="circle"
-      ></p-avatar>
+      
       <button
         #btn
         type="button"
         pButton
-        icon="pi pi-bars"
-        label="Show"
+        icon="pi pi-chevron-down"
+        label=""
         (click)="menu.toggle($event)"
-      ></button>
+      >
+      <p-avatar
+        image="https://www.tm-town.com/assets/default_male600x600-e660e1a712abfc5f638f435f6ef5432c69c6d9250b10cd43bbaa943e55980d5a.png"
+        styleClass="mr-2" size="large" shape="circle"></p-avatar>
+    </button>
       <p-slideMenu
         #menu
         [model]="Profileitems"
