@@ -1,0 +1,113 @@
+.my_profile_sec {
+    margin-top: 113px;
+    padding-top: 60px;
+    .my_profile_sec_inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        .profile_img {
+            margin-right: 50px;
+            figure {
+                background: #D9D9D9;
+                width: 236px;
+                height: 236px;
+                position: relative;
+                span {
+                    border-radius: 30px;
+                    background: #59D189;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                    display: inline-block;
+                    padding: 2px 13px;
+                    color: #FFF;
+                    font-size: 8px;
+                    font-style: normal;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    position: absolute;
+                    right: -15px;
+                    top: 20px;
+                }
+            }
+        }
+        .profile_details {
+            position: relative;
+            button.edit_btn {
+                color: #fff;
+                border-radius: 30px;
+                    border: 1px solid #36A3E4;
+                    background: linear-gradient(180deg, #3CAEF2 0%, #299BDF 100%);
+                    box-shadow: 0px 4px 4px 0px rgba(6, 41, 63, 0.15);
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 16px;
+                    text-transform: uppercase;
+                    padding: 4px 15px;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    &:hover {
+                        background: linear-gradient(180deg, #299BDF 0%, #3CAEF2 100%);
+                    }
+            }
+            h2 {
+                font-size: 28px;
+                font-weight: 600;
+                line-height: 30px;
+                color: #373F46;
+                margin-bottom: 20px;
+            }
+            p.subhead {
+                color: #373F46;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 400;
+            }
+            .mail_register {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-bottom: 15px;
+                a {
+                    color: #3CAEF2;
+                    font-size: 17px;
+                    font-style: normal;
+                    text-decoration: none;
+                    img {
+                        margin-right: 10px;
+                    }
+                }
+                strong{
+                    color: #275B86;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 600;
+                    span {
+                        color: #000;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 400;
+                    }
+                }
+            }
+            & > span {
+                color: #373F46;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 600;
+                margin-bottom: 10px;
+                display: inline-block;
+                img {
+                        margin-right: 5px;
+                    }
+            }
+            & > p {
+                color: #000;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 400;
+            }
+        }
+    }
+}
