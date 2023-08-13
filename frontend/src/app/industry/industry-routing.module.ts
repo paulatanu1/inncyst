@@ -6,7 +6,8 @@ import { PostAddComponent } from './post-add/post-add.component';
 
 const routes: Routes = [
   { path: 'post-list', component: PostListComponent },
-  { path: 'add-post', component: PostAddComponent }
+  { path: 'add-post', component: PostAddComponent },
+  { path: '', loadChildren: () => import('./industry-dashboard/industry-dashboard.module').then(m => m.IndustryDashboardModule) }
 ];
 
 @NgModule({
