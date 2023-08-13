@@ -11,8 +11,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './share/login-page/login-page.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ChangePasswordComponent } from './share/change-password/change-password.component';
+import { MyProfileComponent } from './share/my-profile/my-profile.component';
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, ChangePasswordComponent,],
+  declarations: [AppComponent, LoginPageComponent, ChangePasswordComponent, MyProfileComponent,],
   imports: [BrowserModule, AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,RouterModule.forRoot([]),NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),HttpClientModule],
   exports: [SharedModule,FormsModule,ReactiveFormsModule,],
   providers: [SharedModule,{
