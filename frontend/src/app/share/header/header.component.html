@@ -88,6 +88,7 @@
         icon="pi pi-chevron-down"
         label=""
         (click)="menu.toggle($event)"
+        class="profile-dropdown-btn"
       >
       <p-avatar
         image="https://www.tm-town.com/assets/default_male600x600-e660e1a712abfc5f638f435f6ef5432c69c6d9250b10cd43bbaa943e55980d5a.png"
@@ -97,8 +98,8 @@
         #menu
         [model]="Profileitems"
         [popup]="true"
-        [viewportHeight]="250"
-        [style]="{ 'min-width': '175px' }"
+        [viewportHeight]="220"
+        [style]="{ 'min-width': '200px' }"
       ></p-slideMenu>
     </div>
   </div>
