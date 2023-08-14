@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     this._router.events.subscribe((val)=>{
       if(val instanceof NavigationEnd){
         console.log(val.url , 'url')
-        if(val.url == '/dashboard'){
+        if(val.url == "/dashboard" || val.url == "/industry"){
           this.isDashboard = false;
           this.isdisable = false;
         }else if(val.url == '/registeration'){
