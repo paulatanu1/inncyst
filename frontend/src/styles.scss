@@ -119,3 +119,503 @@ button {
 .icon-right-arrow:before {
   content: "\e904";
 }
+
+.dashboard_wrap {
+  background: #f7f7f7;
+}
+
+.siderbar_left {
+  background: #fcfcfc;
+  border-right: 1px solid #dfdfdf;
+  box-sizing: border-box;
+  padding-top: 50px;
+}
+
+.siderbar_left ul li a {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  color: #000000;
+  transition: all 0.3s ease-in-out;
+  padding: 0px 0 0px 20px;
+  height: 40px;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-align: left;
+}
+
+.siderbar_left ul li a span.tree_hd {
+  padding-left: 35px;
+  color: #000000 !important;
+}
+
+// .siderbar_left ul li.active a,
+// .siderbar_left ul li a:hover {
+//   color: #fff !important;
+//   background: rgba(0, 0, 0, 0.5);
+// }
+
+// .siderbar_left ul li.active a i.icon-reports:before,
+// .siderbar_left ul li a:hover i.icon-reports:before {
+//   // color: #fff !important;
+// }
+
+.siderbar_left ul li.active a span,
+.siderbar_left ul li a:hover span {
+  // color: #fff !important;
+  font-weight: bold;
+}
+
+// .icon_font_quiz:before {
+//   color: #000000;
+// }
+
+.siderbar_left ul li.active a span.blue,
+.siderbar_left ul li a:hover span.blue {
+  background: #3caef2;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  left: 28px;
+}
+
+.siderbar_left ul li.active a span.blue,
+.siderbar_left ul li a:hover span.blue {
+  background: #3caef2;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  left: 28px;
+}
+
+a.logo {
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+a.logo span.logo-lg {
+  color: #000000;
+}
+
+.login_wrap {
+  background: #717987;
+}
+
+.copyright > p {
+  color: #919191;
+}
+
+//dashboard
+.dashboard-outer {
+  background: #f7f7f7;
+}
+
+.dashboard-top-upper {
+  background: #ffffff;
+}
+
+.dashboard-top-upper-left ul li a {
+  background: #fcfcfc;
+  border: 1px solid #dddddd;
+  color: #000000;
+}
+
+.dashboard-top-upper-left ul li a:hover {
+  background: #2d9fe4;
+  color: #ffffff;
+}
+
+.dashboard-top-upper-right {
+  background: #fcfcfc;
+  border: 1px solid #373f46;
+}
+
+.dashboard-top-upper-right p {
+  color: #373f46;
+}
+
+.week-day {
+  background: #2d9fe4;
+  color: #ffffff;
+}
+
+.active-teacher {
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
+}
+
+.today-class {
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
+}
+
+.cancelled-class {
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
+}
+
+.active-students-outer {
+  background: #fcfcfc;
+  border: 1px solid #dddddd;
+}
+
+.active-students-left h3 {
+  color: #373f46;
+}
+
+.busy-teacher,
+.course-stats-top,
+.upcoming-classes-bot ul li a {
+  background: #fcfcfc;
+  border: 1px solid #dddddd;
+}
+
+.active-students-left h3,
+.active-students-left h6,
+.course-level h3,
+.course-level p {
+  color: #373f46;
+}
+
+.course-stats-select span {
+  background: #fcfcfc;
+}
+
+.course-stats-select span select {
+  border: 1px solid #dddddd;
+  color: #373f46;
+}
+
+.upcoming-class-top p,
+.upcoming-class-top h5 {
+  color: #373f46;
+}
+
+.dashboard_hd_left h4 {
+  color: #202727;
+}
+
+// buttons //
+// .school-admin-small-btn a,
+// .school-admin-small-btn-form,
+// .school-admin-large-btn {
+//   background: linear-gradient(180deg, #3caef2 0%, #299bdf 100%);
+// }
+
+// user list //
+.single-user-mid p span,
+.single-user-toggle p,
+.user-action > span > .dropdown > a {
+  color: #373f46;
+}
+
+.users-outer {
+  background: #f7f7f7;
+}
+
+.single-user-outer {
+  border-radius: 4px 4px 0px 0px;
+  border: 1px solid #ededed;
+}
+
+// user details //
+.user-detail-inner-left h3,
+.user-status p,
+.user-added p,
+.user-profile-area-detail ul li h6,
+.staff-notes-list-top > ul > li,
+.staff-notes-list-bot h6 {
+  color: #373f46;
+}
+
+//student list
+.single-student-detail h3,
+.single-student-detail h6,
+.student-join-date h6 {
+  color: #373f46;
+}
+
+//student group//
+.search-voc-add-outer {
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
+}
+
+.search-voc-input,
+.search-voc-input::-webkit-input-placeholder,
+.search-voc-add-top label {
+  color: #373f46;
+}
+
+// collection list //
+.collection-level-list span {
+  background: #ffffff;
+  border: 1px solid #275b86;
+  color: #275b86;
+}
+
+.more-level-no {
+  border: 1px solid #275b86;
+}
+
+.more-level-no p {
+  color: #275b86;
+}
+
+.collection-doc-type ul li {
+  background: #ebebeb;
+}
+
+.collection-doc-type ul li span sub {
+  background: #275b86;
+}
+
+.collection-tab-cont-outer {
+  background: #f7f7f7;
+}
+
+.collection-tab-cont-outer-level-fixed {
+  background: #fcfcfc;
+}
+
+//collection folder
+.collection-folder-single-mid ul li {
+  background: #ebebeb;
+}
+
+.collection-folder-single-mid ul li p {
+  color: #000000;
+}
+
+.collection-folder-single-mid ul li span {
+  background: #275b86;
+}
+
+.collection-created p {
+  color: #373f46;
+}
+
+.collection-folder-single-count span {
+  background: #ebebeb;
+  color: #373f46;
+}
+
+// collection folder details
+.collection-folder-detail-add {
+  background: #fcfcfc;
+}
+
+.collection-folder-detail-add p {
+  color: #373f46;
+}
+
+.collection-folder-detail-add span:before,
+.collection-folder-detail-add span:after {
+  background: #373f46;
+}
+
+.collection-folder-tag ul li span {
+  color: #275b86;
+  background: #ffffff;
+  border: 1px solid #275b86;
+}
+
+.custom_bgcolor {
+  background: #f7f7f7 !important;
+}
+
+.collection-folder-detail-tab ::ng-deep .tab-container ul.nav-pills {
+  background: #fcfcfc;
+}
+
+// vocabulary folder
+.vocabulary-list-inner a {
+  color: #000000;
+}
+
+//school setup
+.setup-top h5 {
+  color: #373f46;
+}
+
+// school info
+.school-info-single h5 {
+  color: #373f46;
+}
+
+// school holiday
+.single-holiday h6,
+.from p span {
+  color: #373f46;
+}
+
+.add-holiday-btn button {
+  background: linear-gradient(180deg, #3caef2 0%, #299bdf 100%);
+}
+
+// school classroom
+.add-new-classroom {
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 15%);
+}
+
+.add-new-classroom p,
+.room-name label {
+  color: #373f46;
+}
+
+.add-new-classroom span:after,
+.add-new-classroom span:before {
+  background: #373f46;
+}
+
+// level setup
+.level-list ul li label {
+  color: #373f46;
+}
+
+.level_hd_row a {
+  background: #fcfcfc;
+}
+
+.level_hd h4 {
+  color: #373f46;
+}
+
+.level_add_btn:after,
+.level_add_btn:before {
+  background: #373f46;
+}
+
+//school profile
+.profile-right-top h3 {
+  color: #373f46;
+}
+
+// report
+.report {
+  background: #fcfcfc;
+}
+
+.report h6 {
+  color: #373f46;
+}
+
+// student dashboard
+.single-active-course-top {
+  background: #f5f5f5;
+}
+
+.course-score {
+  background: #ffffff;
+  border: none;
+}
+
+.badges {
+  border: none;
+}
+
+.ongoing-course-progress .progress {
+  background: #fcfcfc;
+}
+
+// student left panel
+.siderbar_left {
+  background: #f8f8f8;
+}
+
+.siderbar_left ul li.active a span.student,
+.siderbar_left ul li a:hover span.student {
+  color: #000000 !important;
+  font-weight: bold;
+}
+
+a.logo {
+  background: #efefef;
+}
+
+// student library
+.collection-block,
+.vocabulary-block,
+.storybook-block {
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgb(39 91 134 / 20%);
+  border-radius: 10px;
+  border: none;
+}
+
+.collection-block-left h3,
+.vocabulary-block-left h3,
+.storybook-block-left h3 {
+  color: #000000;
+}
+
+.collection-block-left h3 span,
+.vocabulary-block-left h3 span,
+.storybook-block-left h3 span {
+  background: #ececec;
+  color: #8b9095;
+}
+
+// student course list
+.next-class,
+.badges,
+.single-course .single-course-top {
+  background: #ffffff;
+}
+
+.course-progress .progress {
+  background: #fcfcfc;
+  border: 1px solid #b3b3b7;
+}
+
+// student course details
+.course-duration p {
+  color: #354747;
+}
+
+.progress-outer {
+  background: #fcfcfc;
+  border: 1px solid #275b86;
+}
+
+.badges-earned {
+  background: #ffffff;
+  border: 1px solid #ededed;
+  box-shadow: 0px 1px 3px #f2f2f2;
+}
+
+.single-lesson-block,
+.single-evaluation-block {
+  background: #ffffff;
+  border: 1px solid #ededed;
+  box-shadow: 0px 1px 3px #f2f2f2;
+}
+
+.single-lesson-block a,
+.single-evaluation-block a {
+  background: #ffffff;
+}
+
+.add-notes-area a {
+  background: linear-gradient(180deg, #3caef2 0%, #299bdf 100%);
+}
+
+//filter
+.voc_sort select,
+.voc_sort span label {
+  color: #202727;
+}
+
+.third-level-fixed {
+  background: #f7f7f7;
+}
