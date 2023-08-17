@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { LeftMenuHandelService } from '../left-menu-handel.service';
 
 @Component({
   selector: 'app-industry-dashboard',
@@ -7,43 +8,16 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 })
 export class IndustryDashboardComponent implements OnInit {
   // toggleSwitch: any;
-  currentTheme: string | null = '';
+ 
   // mainHeader: any;
-  constructor(private renderer: Renderer2) { }
+  constructor(private _menuHandel:LeftMenuHandelService) { }
 
   ngOnInit() {
-    this.currentTheme = localStorage.getItem('theme');
-    if (this.currentTheme === 'dark') {
-      this.enableDarkTheme();
-    }
+    this._menuHandel.leftMenuActive.next(0)
+    
   }
 
-  switchTheme(event: any) {
-    if (event.target.checked) {
-      this.enableDarkTheme();
-      localStorage.setItem('theme', 'dark');
-    } else {
-      this.enableLightTheme();
-      localStorage.setItem('theme', 'light');
-    }
-  }
+  
 
-  enableDarkTheme() {
-    this.renderer.addClass(document.body, 'dark-mode');
-    const mainHeader = document.querySelector('.main-header');
-    if (mainHeader) {
-      this.renderer.addClass(mainHeader, 'navbar-dark');
-      this.renderer.removeClass(mainHeader, 'navbar-light');
-    }
-  }
-
-  enableLightTheme() {
-    this.renderer.removeClass(document.body, 'dark-mode');
-    const mainHeader = document.querySelector('.main-header');
-    if (mainHeader) {
-      this.renderer.addClass(mainHeader, 'navbar-light');
-      this.renderer.removeClass(mainHeader, 'navbar-dark');
-    }
-  }
 
 }

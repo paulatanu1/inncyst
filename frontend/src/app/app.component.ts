@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { LastUrlService } from './common-service/last-url.service';
 import { ToastServiceService } from './service/toast-service.service';
+import { UrlConfig, urlConfig } from './url-config';
 
 @Component({
   selector: 'app-root',
@@ -14,21 +15,23 @@ import { ToastServiceService } from './service/toast-service.service';
 })
 export class AppComponent implements OnInit {
   title = 'frontend';
-  isDashboard:boolean = true;
-  isdisable:boolean = true;
+  isDashboard: boolean = true;
+  isDisable: boolean = true;
+  urlConfig = {
+    '/dashboard': { isDashboard: false, isdisable: false },
+    '/industry/': { isDashboard: false, isdisable: false },
+    '/industry': { isDashboard: false, isdisable: false },
+    '/registeration': { isDashboard: false, isdisable: false },
+  };
+  
   constructor(private _router: Router,private spinner: NgxSpinnerService,private lastUrl:LastUrlService,private _toast:ToastServiceService,private messageService:MessageService){
     //Header show and Hide
     this._router.events.subscribe((val)=>{
       if(val instanceof NavigationEnd){
-        console.log(val.url , 'url')
-        if(val.url == "/dashboard" || val.url == "/industry"){
-          this.isDashboard = false;
-          this.isdisable = false;
-        }else if(val.url == '/registeration'){
-          this.isdisable = false;
-        }else{
-          this.isdisable = true
-        }
+        const url = val.url;
+        const config: UrlConfig = urlConfig[url] || { isDashboard: true, isDisable: true };
+        this.isDashboard = config.isDashboard;
+        this.isDisable = config.isDisable;
       }
     })
   }

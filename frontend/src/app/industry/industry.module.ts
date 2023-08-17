@@ -6,14 +6,20 @@ import { PostAddComponent } from './post-add/post-add.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RadioButtonModule } from 'primeng/radiobutton';
-
+import { IndustryLeftPanelComponent } from './industry-left-panel/industry-left-panel.component';
+import { IndustryTopRightPanelComponent } from './industry-top-right-panel/industry-top-right-panel.component';
+import { IndustryTopPanelComponent } from './industry-top-panel/industry-top-panel.component';
+import { IndustryReportsComponent } from './industry-reports/industry-reports.component';
 
 @NgModule({
   declarations: [
     IndustryComponent,
     PostAddComponent,
-    PostListComponent
+    PostListComponent,
+    IndustryLeftPanelComponent,
+    IndustryTopPanelComponent,
+    IndustryTopRightPanelComponent,
+    IndustryReportsComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +27,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     SharedModule,
     FormsModule
   ],
-  exports:[]
+  exports:[
+   ]
 })
 export class IndustryModule { }

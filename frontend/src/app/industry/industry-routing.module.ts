@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndustryComponent } from './industry.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostAddComponent } from './post-add/post-add.component';
+import { IndustryDashboardComponent } from './industry-dashboard/industry-dashboard.component';
+import { JobsManagementComponent } from './jobs-management/jobs-management.component';
+import { IndustryReportsComponent } from './industry-reports/industry-reports.component';
 
-const routes: Routes = [
-  { path: 'post-list', component: PostListComponent },
-  { path: 'add-post', component: PostAddComponent },
-  { path: '', loadChildren: () => import('./industry-dashboard/industry-dashboard.module').then(m => m.IndustryDashboardModule) }
+const routes:Routes = [
+  {path:'',component:IndustryComponent,children:[
+    {path:'',component:IndustryDashboardComponent},
+    {path:'jobs',component:JobsManagementComponent},
+    {path:'reports',component:IndustryReportsComponent}
+  ]}
 ];
 
 @NgModule({

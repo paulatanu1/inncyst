@@ -12,10 +12,11 @@ import { LoginPageComponent } from './share/login-page/login-page.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ChangePasswordComponent } from './share/change-password/change-password.component';
 import { MyProfileComponent } from './share/my-profile/my-profile.component';
+import { IndustryModule } from './industry/industry.module';
 @NgModule({
   declarations: [AppComponent, LoginPageComponent, ChangePasswordComponent, MyProfileComponent,],
-  imports: [BrowserModule, AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,RouterModule.forRoot([]),NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),HttpClientModule],
-  exports: [SharedModule,FormsModule,ReactiveFormsModule,],
+  imports: [BrowserModule, AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,RouterModule.forRoot([]),NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),HttpClientModule ],
+  exports: [SharedModule,FormsModule,ReactiveFormsModule],
   providers: [SharedModule,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
