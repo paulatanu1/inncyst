@@ -7,6 +7,7 @@ import { IndustryLeftPanelComponent } from '../industry-left-panel/industry-left
 import { IndustryTopPanelComponent } from '../industry-top-panel/industry-top-panel.component';
 import { IndustryTopRightPanelComponent } from '../industry-top-right-panel/industry-top-right-panel.component';
 import { JobsManagementComponent } from '../jobs-management/jobs-management.component';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 
 @NgModule({
@@ -21,6 +22,6 @@ import { JobsManagementComponent } from '../jobs-management/jobs-management.comp
     CommonModule,
     IndustryDashboardRoutingModule
   ],
-  exports:[IndustryLeftPanelComponent]
+  exports:[IndustryLeftPanelComponent, InputSwitchModule]
 })
 export class IndustryDashboardModule { }
