@@ -10,6 +10,8 @@ import { IndustryLeftPanelComponent } from './industry-left-panel/industry-left-
 import { IndustryTopRightPanelComponent } from './industry-top-right-panel/industry-top-right-panel.component';
 import { IndustryTopPanelComponent } from './industry-top-panel/industry-top-panel.component';
 import { IndustryReportsComponent } from './industry-reports/industry-reports.component';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import {SplitButtonModule} from 'primeng/splitbutton';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,13 @@ import { IndustryReportsComponent } from './industry-reports/industry-reports.co
     CommonModule,
     IndustryRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    InputSwitchModule,
+    SplitButtonModule
   ],
   exports:[
+    InputSwitchModule,
+    SplitButtonModule
    ]
 })
 export class IndustryModule { }

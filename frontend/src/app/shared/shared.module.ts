@@ -43,6 +43,7 @@ import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 import {SlideMenuModule} from 'primeng/slidemenu';
 import {CheckboxModule} from 'primeng/checkbox';
+
 @NgModule({
   declarations: [
     SharedComponent,
