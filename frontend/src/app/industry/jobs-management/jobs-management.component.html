@@ -1,46 +1,47 @@
+<button type="button" (click)="addJobs()">Add Job</button>
 <ul class="industry_listing">
-    <li>
-        <div class="listing_head">
-            <figure><img src="" /></figure>
-            <h2>HR Executive - Recoupment</h2>
-            <i class="pi pi-ellipsis-v"></i>
-            <!-- <p-splitButton label="Normal" styleClass="bg-primary" [model]="this.items">
+  <li>
+    <div class="listing_head">
+      <figure><img src="" /></figure>
+      <h2>HR Executive - Recoupment</h2>
+      <i class="pi pi-ellipsis-v"></i>
+      <!-- <p-splitButton label="Normal" styleClass="bg-primary" [model]="this.items">
                 <ng-template pTemplate="content">
                     <img alt="logo" src="assets/showcase/images/primeng-icon.svg" style="width: 1rem" />
                     <span class="ml-2 flex align-items-center font-bold">PrimeNG</span>
                 </ng-template>
             </p-splitButton> -->
+    </div>
+    <div class="listing_details">
+      <ul>
+        <li>
+          <strong>Opportunity type:</strong>
+          <label>HR Executive</label>
+        </li>
+        <li>
+          <strong>Internship start date:</strong>
+          <label>23.12.2023</label>
+        </li>
+        <li>
+          <strong>Stipend:</strong>
+          <label>12000/-</label>
+        </li>
+        <li>
+          <strong>Internship duration:</strong>
+          <label>23.12.2024</label>
+        </li>
+        <li>
+          <strong>Number of openings:</strong>
+          <label>50</label>
+        </li>
+      </ul>
+      <div class="list_status">
+        <label>Status</label>
+        <!-- <p-inputSwitch></p-inputSwitch> -->
+        <div class="edit_btn">
+          <i class="file-edit"><img src="../../../assets/edit-icon.png" /></i>
         </div>
-        <div class="listing_details">
-            <ul>
-                <li>
-                    <strong>Opportunity type:</strong>
-                    <label>HR Executive</label>
-                </li>
-                <li>
-                    <strong>Internship start date:</strong>
-                    <label>23.12.2023</label>
-                </li>
-                <li>
-                    <strong>Stipend:</strong>
-                    <label>12000/-</label>
-                </li>
-                <li>
-                    <strong>Internship duration:</strong>
-                    <label>23.12.2024</label>
-                </li>
-                <li>
-                    <strong>Number of openings:</strong>
-                    <label>50</label>
-                </li>
-            </ul>
-            <div class="list_status">
-                <label>Status</label>
-                <!-- <p-inputSwitch></p-inputSwitch> -->
-                <div class="edit_btn">
-                    <i class="file-edit"><img src="../../../assets/edit-icon.png" /></i>
-                </div>
-            </div>
-        </div>
-    </li>
+      </div>
+    </div>
+  </li>
 </ul>
