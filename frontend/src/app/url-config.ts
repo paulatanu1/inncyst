@@ -9,4 +9,5 @@ export interface UrlConfig {
     '/industry/reports': { isDashboard: false, isDisable: false },
     '/industry': { isDashboard: false, isDisable: false },
     '/registration': { isDashboard: false, isDisable: false },
+    '/industry/jobs/add-job':{isDashboard: false, isDisable: false}
   };
