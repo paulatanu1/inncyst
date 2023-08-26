@@ -89,7 +89,10 @@ export class HeaderComponent implements OnInit {
       {
         label:'Profile',
         icon:'pi pi-user',
-        
+        command: ()=>{
+          this.router.navigate(['my-profile'])
+       
+        }
      },
      {
       label:'Change Password',
