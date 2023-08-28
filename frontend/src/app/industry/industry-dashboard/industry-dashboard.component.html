@@ -1,1 +1,72 @@
-<h1>Dashboard</h1>
+<section class="login_steps">
+    <div class="leftImage">
+        <figure>
+            <img src="../../../assets/signup-img.svg" width="503" height="468" />
+        </figure>
+    </div>
+    <div class="rightContForm">
+        <h3>Forgot your password?</h3>
+        <div class="subhead">
+           <p>Enter your email address and we'll send <br/>you an OTP to reset your password.</p>  
+           <a href="#">Cancel</a>
+        </div>
+        <div class="formFields">
+            <div class="form_group">
+                <label>Email*</label>
+                <input type="text" pInputText />
+            </div>
+            <button>Submit</button>
+            <span class="backtologin"><a><img src="../../../assets/right-arrow.svg" />Back to login</a></span>
+        </div>
+    </div>
+</section>
+
+
+<section class="login_steps">
+    <div class="leftImage">
+        <figure>
+            <img src="../../../assets/signup-img.svg" width="503" height="468" />
+        </figure>
+    </div>
+    <div class="rightContForm">
+        <h3>OTP Verification</h3>
+        <div class="subhead">
+            <p>Enter the 4 digit OTP code sent at your email <br/><strong>example@gmail.com</strong></p>
+            <a href="#">Cancel</a>
+        </div>
+        <div class="formFields">
+            <div class="form_group">
+                <span>Enter OTP*</span>
+                <!-- <ng-otp-input #ngOtpInput1 [config]="{ length: 4 }" (onInputChange)="onEmailOtpChange($event)"
+                    formControlName="emailOtp"></ng-otp-input> -->
+            </div>
+            <div class="resend_code">Didn't received the code? <strong>Resend Code</strong></div>
+            <button>Verify</button>
+            <span class="backtologin"><a><img src="../../../assets/right-arrow.svg" />Back to login</a></span>
+        </div>
+    </div>
+</section>
+
+
+<section class="login_steps">
+    <div class="leftImage">
+        <figure>
+            <img src="../../../assets/signup-img.svg" width="503" height="468" />
+        </figure>
+    </div>
+    <div class="rightContForm reset_password">
+        <h3>Reset Password</h3>
+        <div class="formFields">
+            <div class="form_group">
+                <label>New Password</label>
+                <!-- <p-password [(ngModel)]="value3" [toggleMask]="true"></p-password> -->
+            </div>
+            <div class="form_group">
+                <label>Confirm Password</label>
+                <!-- <p-password [(ngModel)]="value3" [toggleMask]="true"></p-password> -->
+            </div>
+            <button>reset password</button>
+            <span class="backtologin"><a><img src="../../../assets/right-arrow.svg" />Back to login</a></span>
+        </div>
+    </div>
+</section>
