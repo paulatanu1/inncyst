@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
   registerId:string = ''
   isUserLogged:boolean | null = false
   Profileitems!: MenuItem[];
-
+logoutSuccess:boolean=false;
   //Outputs
   constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private _login:LoginEnablerService,private quiestion :QuestionSetEnablerService,private _header :HeaderService) {
     this.items = [
@@ -266,6 +266,7 @@ export class HeaderComponent implements OnInit {
     console.log('click')
     ls.clear()
     this.isUserLogged = true;
+       this.logoutSuccess=true;
     this.router.navigateByUrl('/home');
   }
 }

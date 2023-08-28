@@ -62,7 +62,7 @@
         </li>
       </ul>
     </div>
-    <div class="users-option" *ngIf="!isUserLogged">
+    <div class="users-option" *ngIf="!isUserLogged || logoutSuccess">
       <div
         class="register"
         [routerLink]="['/registeration']"
@@ -286,9 +286,9 @@
     </div>
   </div>
 </p-dialog> -->
-
-<p-dialog
-  [(visible)]="loginflow"
+<!-- <div *ngIf="logoutSuccess"> -->
+  <p-dialog
+  [(visible)]="loginflow "
   [blockScroll]="false"
   [modal]="true"
   [draggable]="false"
@@ -299,9 +299,12 @@
 </p-dialog>
 <app-sign-up-questions
   [sidebarEnable]="sidebarEnable"
-  *ngIf="isSignup"
+  *ngIf="isSignup "
   (quistionSubmit)="quistionSubmit($event)"
 ></app-sign-up-questions>
+
+<!-- </div> -->
+
 <!-- {{ isOtpPage }} -->
 <!-- Otp page -->
 <!-- <app-registration-otp
