@@ -58,6 +58,12 @@ export class RegistrationPageComponent implements OnInit {
   progressBar: boolean = false;
   registerId: string = '';
   redirectToOtp: boolean = false;
+  otpPageOpen:boolean=false;
+  signupPageHide:boolean=true;
+  userName!:string;
+  phone!:string;
+  userEmail!:string
+  verifyRegistration!:FormGroup;
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
@@ -70,6 +76,10 @@ export class RegistrationPageComponent implements OnInit {
     private _toast: ToastServiceService,
     private header: HeaderService
   ) {
+    this.verifyRegistration = this.fb.group({
+      emailOtp:['',[Validators.required]],
+      phoneOtp:['',[Validators.required]]
+    })
     this.options = [
       // {name: 'Select the option', code: '0'},
       { optionName: 'Student', code: '1' },
@@ -146,16 +156,18 @@ export class RegistrationPageComponent implements OnInit {
     if (this.isSubmited && this.registerForm.valid) {
       this.registration = false;
       ls.set('type', 1);
-      let userName: string = this.registerForm.get('userName')?.value;
-      let userEmail: string = this.registerForm.get('email')?.value;
-      let phone: string = this.registerForm.get('mobile')?.value;
+      this.userName= this.registerForm.get('userName')?.value;
+      this.userEmail = this.registerForm.get('email')?.value;
+      this.phone = this.registerForm.get('mobile')?.value;
       let password: string = this.registerForm.get('confirmPassword')?.value;
       let userRole: string = this.registerForm.get('options')?.value;
 
       this.reg
-        .sendRegistrationRequest(userName, userEmail, phone, password, userRole)
+        .sendRegistrationRequest(this.userName, this.userEmail, this.phone, password, userRole)
         .subscribe((response) => {
           console.log(response, 'response');
+          this.otpPageOpen=true;
+          this.signupPageHide=false
           const { email, name, _id, phone } = response.data;
           ls.set('userEmail', email);
           ls.set('userName', name);
@@ -239,4 +251,12 @@ export class RegistrationPageComponent implements OnInit {
   //   this.registration = event;
   //   this.loginflow = false;
   // }
+
+  onEmailOtpChange(event:any){
+
+  }
+  onPhoneOtpChange(event:any){
+
+  }
+  onSubmitOtp(){}
 }
