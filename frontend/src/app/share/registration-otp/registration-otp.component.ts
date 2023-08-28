@@ -103,8 +103,8 @@ export class RegistrationOtpComponent implements OnInit {
             this.router.navigate(['jobs/internship']);
           }
           else if(this.userRole === 'Industry')
-          
-          {this.router.navigate(['industry']);
+          {
+            this.router.navigate(['industry']);
           }
         },
         error: (err)=>{

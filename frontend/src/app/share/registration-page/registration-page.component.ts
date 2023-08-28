@@ -106,7 +106,7 @@ export class RegistrationPageComponent implements OnInit {
         ],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required]],
-        options: ['Select the option', [Validators.required]],
+        options: ['', [Validators.required]],
         agree: [false, [Validators.required, Validators.requiredTrue]],
       },
       {
