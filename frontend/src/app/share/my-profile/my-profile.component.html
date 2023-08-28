@@ -1,22 +1,51 @@
-<section class="my_profile_sec">
-    <div class="my_profile_sec_inner">
-        <div class="profile_img">
-            <figure>
-                <img src="../../../assets/cameron-williamson.png" />
-                <span>Active</span>
-            </figure>
-        </div>
-        <div class="profile_details">
-            <button class="edit_btn">Edit</button>
-            <h2>Amanda Johanna Gayle</h2>
-            <p class="subhead">Lorem ipsum dolor sit, Eden Hill, 7984</p>
-            <div class="mail_register">
-                <a href="mailto:amanda.jg@gmail.com"><img src="../../../assets/mail-icon.png" />amanda.jg@gmail.com</a>
-                <strong>Site Register On <span>Oct 15, 2019</span></strong>
-            </div>
-                <span><img src="../../../assets/call-icon.png" /> +91 92454 45678</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula tincidunt urna sit amet placerat. Ut erat nisl, dignissim et ligula nec, sodales molestie tellus. Quisque ultricies lorem ligula, id fermentum tortor vehicula sed.Vestibulum sapien erat.</p>
-            
-        </div>
+<section class="my_profile_sec" *ngIf="ProfileDetails">
+  <div class="my_profile_sec_inner">
+    <div class="profile_img">
+      <figure>
+        <img src="../../../assets/cameron-williamson.png" />
+        <span>
+          {{ ProfileDetails.status ? 'Active' : 'Deactive' }}
+        </span>
+      </figure>
     </div>
+    <div class="profile_details">
+      <button class="edit_btn">Edit</button>
+      <h2>{{ ProfileDetails.name }}</h2>
+      <p class="subhead">Lorem ipsum dolor sit, Eden Hill, 7984</p>
+      <div class="mail_register">
+        <a href="mailto:amanda.jg@gmail.com">
+          <img src="../../../assets/mail-icon.png" />
+          {{ ProfileDetails.email }}
+        </a>
+        <strong>
+          Site Register On
+          <span>{{ ProfileDetails.createdAt | date: 'MMM d, y' }}</span>
+        </strong>
+      </div>
+      <span>
+        <img src="../../../assets/call-icon.png" />
+        +91 {{ ProfileDetails.phone }}
+      </span>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula
+        tincidunt urna sit amet placerat. Ut erat nisl, dignissim et ligula nec,
+        sodales molestie tellus. Quisque ultricies lorem ligula, id fermentum
+        tortor vehicula sed.Vestibulum sapien erat.
+      </p>
+    </div>
+  </div>
 </section>
+
+<!-- {
+    "_id": "64ea2b0e919da58a5a9eff3a",
+    "name": "mob bgv",
+    "email": "mnb@mailinator.com",
+    "phone": "8763652622",
+    "image": null,
+    "role": "student",
+    "verified": true,
+    "question_step": false,
+    "status": true,
+    "createdAt": "2023-08-26T16:40:46.227Z",
+    "__v": 0
+} -->
