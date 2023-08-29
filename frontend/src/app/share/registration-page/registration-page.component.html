@@ -183,10 +183,10 @@
   </div>
 </div>
 
-<app-registration-otp
+<!-- <app-registration-otp
   (OtpModal)="OtpModal($event)"
-  *ngIf="redirectToOtp === true"
-></app-registration-otp>
+ 
+></app-registration-otp> -->
 
 
 <!-- hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
@@ -215,7 +215,10 @@
               <sup>*</sup>
             </label>
             <span class="p-float-label">
+              <input
+              type="number">
               <ng-otp-input
+              *ngIf="redirectToOtp === true"
                 #ngOtpInput1
                 [config]="{ length: 4 }"
                 (onInputChange)="onEmailOtpChange($event)"
@@ -244,6 +247,7 @@
               <sup>*</sup>
             </label>
             <span class="p-float-label">
+            
               <ng-otp-input
                 #ngOtpInput2
                 [config]="{ length: 4 }"
@@ -274,4 +278,10 @@
       </div>
     </div>
   </div>
+</div>
+<div  *ngIf="redirectToOtp === true">
+  <p>redirect== true regitration otp pge
+
+    <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:5}"></ng-otp-input>
+  </p>
 </div>

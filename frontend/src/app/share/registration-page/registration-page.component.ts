@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -18,6 +18,9 @@ import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
 import { HeaderService } from '../module-service/header.service';
+import { OtpVerificationService } from '../registration-otp/otp-verification.service';
+import { NgOtpInputComponent, NgOtpInputModule } from 'ng-otp-input';
+
 interface options {
   optionName: string;
   code: string;
@@ -26,6 +29,11 @@ interface options {
 interface IregistrationOption {
   option: string;
   id: number;
+}
+
+interface Iotpset{
+  email:string ;
+  phone:string ;
 }
 
 // {
@@ -37,9 +45,12 @@ interface IregistrationOption {
   selector: 'app-registration-page',
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss'],
-  providers: [MessageService],
+  providers: [MessageService,NgOtpInputModule],
+  
 })
 export class RegistrationPageComponent implements OnInit {
+  @ViewChild('ngOtpInput1') ngOtpInput1: any;
+  @ViewChild('ngOtpInput2') ngOtpInput2: any;
   registration: boolean = false;
   isStudent: boolean = false;
   isEmployer: boolean = false;
@@ -64,6 +75,27 @@ export class RegistrationPageComponent implements OnInit {
   phone!:string;
   userEmail!:string
   verifyRegistration!:FormGroup;
+  isphoneOtp:string = '';
+  isemailOtp:string = '';
+  userRole!:string;
+  OtpModal!:boolean;
+  userMobileNumber!:string;
+  isOtp:boolean = true;
+  otpSet:Iotpset={
+    email: '',
+    phone: ''
+  }
+  config = {
+    allowNumbersOnly: false,
+    length: 4,
+    isPasswordInput: false,
+    disableAutoFocus: false,
+    placeholder: '',
+    inputStyles: {
+      'width': '50px',
+      'height': '50px'
+    }
+  };
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
@@ -74,7 +106,9 @@ export class RegistrationPageComponent implements OnInit {
     private login: LoginEnablerService,
     private question: QuestionSetEnablerService,
     private _toast: ToastServiceService,
-    private header: HeaderService
+    private header: HeaderService,
+    private otpVerifivation:OtpVerificationService,
+    // private _header:HeaderService
   ) {
     this.verifyRegistration = this.fb.group({
       emailOtp:['',[Validators.required]],
@@ -101,7 +135,7 @@ export class RegistrationPageComponent implements OnInit {
       },
     ];
   }
-
+ 
   ngOnInit(): void {
     this.registerForm = this.fb.group(
       {
@@ -130,6 +164,11 @@ export class RegistrationPageComponent implements OnInit {
         this.progressBar = res;
       },
     });
+
+    this.verifyRegistration = this.fb.group({
+      emailOtp:['',[Validators.required]],
+      phoneOtp:['',[Validators.required]]
+    })
   }
 
   optionClick(url: string) {
@@ -160,10 +199,11 @@ export class RegistrationPageComponent implements OnInit {
       this.userEmail = this.registerForm.get('email')?.value;
       this.phone = this.registerForm.get('mobile')?.value;
       let password: string = this.registerForm.get('confirmPassword')?.value;
-      let userRole: string = this.registerForm.get('options')?.value;
+      this.userRole = this.registerForm.get('options')?.value;
+      this.userMobileNumber=this.registerForm.get('mobile')?.value;
 
       this.reg
-        .sendRegistrationRequest(this.userName, this.userEmail, this.phone, password, userRole)
+        .sendRegistrationRequest(this.userName, this.userEmail, this.phone, password, this.userRole)
         .subscribe((response) => {
           console.log(response, 'response');
           this.otpPageOpen=true;
@@ -173,7 +213,7 @@ export class RegistrationPageComponent implements OnInit {
           ls.set('userName', name);
           ls.set('registerId', _id);
           ls.set('phone', phone);
-          ls.set('userRole', userRole);
+          ls.set('userRole', this.userRole);
           let severity = '';
           let summary = '';
           let detail = '';
@@ -240,12 +280,12 @@ export class RegistrationPageComponent implements OnInit {
   //   this.isSignup = false;
   // }
 
-  OtpModal(event: boolean) {
-    console.log(event);
-    // this.isOtpPage = event;
-    this.redirectToOtp = event;
-    this.header.userLoggedin.next(true);
-  }
+  // OtpModal(event: boolean) {
+  //   console.log(event);
+  //   // this.isOtpPage = event;
+  //   this.redirectToOtp = event;
+  //   this.header.userLoggedin.next(true);
+  // }
 
   // openRegisterFlow(event:boolean){
   //   this.registration = event;
@@ -253,10 +293,51 @@ export class RegistrationPageComponent implements OnInit {
   // }
 
   onEmailOtpChange(event:any){
-
+     console.log(event , 'onemailOtpChange')
+      this.isemailOtp = event
+  
   }
   onPhoneOtpChange(event:any){
-
+    console.log(event , 'onPhoneOtpChange')
+    this.isphoneOtp= event
   }
-  onSubmitOtp(){}
-}
+  onSubmitOtp(){
+     // debugger;
+     console.log('click')
+     // if(this.verifyRegistration.valid){
+       this.otpSet = {
+         email:this.isemailOtp,
+         phone:this.isphoneOtp
+       }
+       console.log(this.otpSet)
+       this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
+         next: (res)=>{
+           console.log(res,'otp response')
+           this.OtpModal=false;
+           this.redirectToOtp = false;
+           this.header.userLoggedin.next(true)
+           ls.set('logged',true)
+           this._toast.showToaster.next({severity:'success',summary:'success',detail:res.message});
+           //set route logic for user 
+           if(this.userRole === 'Student'){
+             this.router.navigate(['jobs/internship']);
+           }
+           else if(this.userRole === 'Industry')
+           {
+             this.router.navigate(['industry']);
+           }
+         },
+         error: (err)=>{
+           console.log(err,'otp response')
+         }
+       })
+      }
+   onHide(){
+    this.isOtp = false;
+    this.OtpModal=false;
+  }
+  onOtpChange(event:any){
+    confirm(event)
+  }
+  }
+
