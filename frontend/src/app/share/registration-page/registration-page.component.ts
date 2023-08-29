@@ -20,7 +20,6 @@ import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
 import { HeaderService } from '../module-service/header.service';
 import { OtpVerificationService } from '../registration-otp/otp-verification.service';
 import { NgOtpInputComponent, NgOtpInputModule } from 'ng-otp-input';
-
 interface options {
   optionName: string;
   code: string;
@@ -56,7 +55,7 @@ export class RegistrationPageComponent implements OnInit {
   isEmployer: boolean = false;
   index: number = 0;
   value1: string = '';
-  options: options[];
+  option: options[];
   isSignup: boolean = false;
   submitted: boolean = false;
   registerForm!: FormGroup;
@@ -74,7 +73,6 @@ export class RegistrationPageComponent implements OnInit {
   userName!:string;
   phone!:string;
   userEmail!:string
-  verifyRegistration!:FormGroup;
   isphoneOtp:string = '';
   isemailOtp:string = '';
   userRole!:string;
@@ -108,13 +106,11 @@ export class RegistrationPageComponent implements OnInit {
     private _toast: ToastServiceService,
     private header: HeaderService,
     private otpVerifivation:OtpVerificationService,
+  
     // private _header:HeaderService
   ) {
-    this.verifyRegistration = this.fb.group({
-      emailOtp:['',[Validators.required]],
-      phoneOtp:['',[Validators.required]]
-    })
-    this.options = [
+   
+    this.option = [
       // {name: 'Select the option', code: '0'},
       { optionName: 'Student', code: '1' },
       { optionName: 'Industry', code: '2' },
@@ -150,7 +146,7 @@ export class RegistrationPageComponent implements OnInit {
         ],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required]],
-        options: ['', [Validators.required]],
+        options: ['Student',[Validators.required]],
         agree: [false, [Validators.required, Validators.requiredTrue]],
       },
       {
@@ -165,10 +161,6 @@ export class RegistrationPageComponent implements OnInit {
       },
     });
 
-    this.verifyRegistration = this.fb.group({
-      emailOtp:['',[Validators.required]],
-      phoneOtp:['',[Validators.required]]
-    })
   }
 
   optionClick(url: string) {
@@ -190,7 +182,7 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.registerForm.get('options')?.value);
+   // console.log(this.registerForm.get('options')?.value);
     this.isSubmited = true;
     if (this.isSubmited && this.registerForm.valid) {
       this.registration = false;
@@ -208,6 +200,7 @@ export class RegistrationPageComponent implements OnInit {
           console.log(response, 'response');
           this.otpPageOpen=true;
           this.signupPageHide=false
+          
           const { email, name, _id, phone } = response.data;
           ls.set('userEmail', email);
           ls.set('userName', name);
@@ -223,12 +216,8 @@ export class RegistrationPageComponent implements OnInit {
             summary: 'success',
             detail: response.message,
           });
-          // this.registerId = _id
-          // this.question.isQuestionSetEnable.next(true);
           this.isSignup = true;
-          // this.sidebarEnable = true;
           this.openVerificationModal(true);
-          // this.registerForm.reset();
         });
     }
   }
@@ -293,34 +282,30 @@ export class RegistrationPageComponent implements OnInit {
   // }
 
   onEmailOtpChange(event:any){
-     console.log(event , 'onemailOtpChange')
+    //  console.log(event , 'onemailOtpChange')
       this.isemailOtp = event
   
   }
   onPhoneOtpChange(event:any){
-    console.log(event , 'onPhoneOtpChange')
+    // console.log(event , 'onPhoneOtpChange')
     this.isphoneOtp= event
   }
   onSubmitOtp(){
-     // debugger;
-     console.log('click')
-     // if(this.verifyRegistration.valid){
        this.otpSet = {
          email:this.isemailOtp,
          phone:this.isphoneOtp
        }
-       console.log(this.otpSet)
        this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
          next: (res)=>{
-           console.log(res,'otp response')
            this.OtpModal=false;
            this.redirectToOtp = false;
+           this.otpVerifivation.logoutSuccess.next(true)
            this.header.userLoggedin.next(true)
            ls.set('logged',true)
            this._toast.showToaster.next({severity:'success',summary:'success',detail:res.message});
            //set route logic for user 
            if(this.userRole === 'Student'){
-             this.router.navigate(['jobs/internship']);
+             this.router.navigate(['/jobs/internships']);
            }
            else if(this.userRole === 'Industry')
            {
@@ -328,7 +313,7 @@ export class RegistrationPageComponent implements OnInit {
            }
          },
          error: (err)=>{
-           console.log(err,'otp response')
+          console.log(err)
          }
        })
       }

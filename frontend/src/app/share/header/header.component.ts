@@ -9,6 +9,7 @@ import ls from 'localstorage-slim'
 import { LoginEnablerService } from 'src/app/service/login-enabler.service';
 import { QuestionSetEnablerService } from 'src/app/service/question-set-enabler.service';
 import { HeaderService } from '../module-service/header.service';
+import { OtpVerificationService } from '../registration-otp/otp-verification.service';
 interface options {
   optionName: string,
   code: string
@@ -49,7 +50,7 @@ export class HeaderComponent implements OnInit {
   Profileitems!: MenuItem[];
 logoutSuccess:boolean=false;
   //Outputs
-  constructor(private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private _login:LoginEnablerService,private quiestion :QuestionSetEnablerService,private _header :HeaderService) {
+  constructor(private otpService:OtpVerificationService,  private messageService: MessageService,private fb: FormBuilder,private reg:RegistrationService,private progress:ProgressBarService,private router:Router,private route: ActivatedRoute,private _login:LoginEnablerService,private quiestion :QuestionSetEnablerService,private _header :HeaderService) {
     this.items = [
       {label: 'As a Student', command: () => {
           this.login('student');
@@ -105,9 +106,10 @@ logoutSuccess:boolean=false;
       command: ()=>{
         this.logOutUser()
       }
-      
+     
     }
     ]
+  
     this.isUserLogged = ls.get('logged')
     this.registerForm =this.fb.group({
       userName: ['',[Validators.required,Validators.minLength(4)]],
@@ -146,6 +148,16 @@ logoutSuccess:boolean=false;
     this._header.userLoggedin.subscribe({
       next: (response)=>{
         this.isUserLogged = response
+      }
+    })
+    this.otpService.logoutSuccess.subscribe({
+      next:(res:any)=>{
+        this.logoutSuccess=res;
+      }
+    })
+    this.otpService.loginflow.subscribe({
+      next:(res:unknown)=>{
+        this.loginflow=<boolean>res;
       }
     })
   }
@@ -263,10 +275,9 @@ logoutSuccess:boolean=false;
     }
   }
   logOutUser(){
-    console.log('click')
     ls.clear()
-    this.isUserLogged = true;
-       this.logoutSuccess=true;
+    //this.isUserLogged = true;
+       this.logoutSuccess=false;
     this.router.navigateByUrl('/home');
   }
 }

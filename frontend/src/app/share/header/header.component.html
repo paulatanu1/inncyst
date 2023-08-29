@@ -62,7 +62,7 @@
         </li>
       </ul>
     </div>
-    <div class="users-option" *ngIf="!isUserLogged || logoutSuccess">
+    <div class="users-option" *ngIf="!logoutSuccess">
       <div
         class="register"
         [routerLink]="['/registeration']"
@@ -79,7 +79,7 @@
         ></button>
       </div>
     </div>
-    <div class="" *ngIf="isUserLogged && !logoutSuccess">
+    <div class="" *ngIf="logoutSuccess">
       
       <button
         #btn

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
 import { ApiService } from 'src/app/common-service/api.service';
 interface Iotpset{
   email:string;
@@ -19,4 +20,7 @@ export class OtpVerificationService {
 
     return this.api.ApiCallWithLocalization(payload,url,'post')
   }
+  public logoutSuccess = new Subject()
+  public loginflow=new Subject()
+
 }

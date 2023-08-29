@@ -88,7 +88,7 @@
           </div>
           <div
             class="col-12 md:col-12 mt-3 mb-4 full-width"
-            style="position: relative;"
+            style="position: relative"
           >
             <span class="p-float-label">
               <p-password
@@ -134,19 +134,19 @@
 
           <div class="col-12 md:col-12 mt-3 mb-4 dropdown-full-width mt-5">
             <span class="p-float-label">
+               <label class="dropdown-lable-field" for="float-input">
+                Select The correct option
+              </label>
               <p-dropdown
-                [options]="options"
+                [options]="option"
                 optionLabel="optionName"
                 formControlName="options"
                 optionValue="optionName"
-                formControlName="options"
               ></p-dropdown>
-              <label class="dropdown-lable-field" for="float-input">
-                Select The correct option
-              </label>
+             
             </span>
           </div>
-          <div class="col-12 md:col-12 mt-3 mb-3" style="position: relative;">
+          <div class="col-12 md:col-12 mt-3 mb-3" style="position: relative">
             <span class="checkbox-sec">
               <input type="checkbox" formControlName="agree" />
               <label>I have read and agree to the Terms of Service</label>
@@ -182,12 +182,13 @@
     </div>
   </div>
 </div>
+<!-- <ng-otp-input  [formCtrl]="YourFormControl"  [config]="{length:5}"></ng-otp-input> -->
+
 
 <!-- <app-registration-otp
   (OtpModal)="OtpModal($event)"
  
 ></app-registration-otp> -->
-
 
 <!-- hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
 
@@ -200,7 +201,6 @@
   <div class="right-section">
     <div class="form-wrapper">
       <h5>OTP Verification</h5>
-      <form [formGroup]="verifyRegistration" (ngSubmit)="onSubmitOtp()">
         <div class="col-12 md:col-12 mt-3 mb-4 form-wrapper-section">
           <div class="text-area">
             <p class="heading-line">
@@ -215,18 +215,14 @@
               <sup>*</sup>
             </label>
             <span class="p-float-label">
-              <input
-              type="number">
               <ng-otp-input
-              *ngIf="redirectToOtp === true"
+                *ngIf="redirectToOtp === true"
                 #ngOtpInput1
                 [config]="{ length: 4 }"
                 (onInputChange)="onEmailOtpChange($event)"
-                formControlName="emailOtp"
               ></ng-otp-input>
             </span>
           </div>
-
           <div class="resend-section">
             Didn’t received the code?
             <a href="#">Resend Code</a>
@@ -247,29 +243,22 @@
               <sup>*</sup>
             </label>
             <span class="p-float-label">
-            
               <ng-otp-input
                 #ngOtpInput2
                 [config]="{ length: 4 }"
                 (onInputChange)="onPhoneOtpChange($event)"
-                formControlName="phoneOtp"
               ></ng-otp-input>
             </span>
           </div>
-
           <div class="resend-section">
             Didn’t received the code?
             <a href="">Resend Code</a>
           </div>
         </div>
         <div class="submit-btn">
-          <p-button
-            class="submit-btns"
-            type="submit"
-            label="verify"
-          ></p-button>
+          <p-button class="submit-btns" type="submit" label="verify" (onClick)="onSubmitOtp()"></p-button>
         </div>
-      </form>
+      <!-- </form> -->
 
       <div class="login-area mb-3 mt-3">
         <a href="#">
@@ -279,9 +268,6 @@
     </div>
   </div>
 </div>
-<div  *ngIf="redirectToOtp === true">
-  <p>redirect== true regitration otp pge
-
-    <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:5}"></ng-otp-input>
-  </p>
+<div *ngIf="redirectToOtp === true">
+  <p>redirect== true regitration otp pge</p>
 </div>

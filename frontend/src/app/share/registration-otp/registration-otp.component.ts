@@ -7,48 +7,49 @@ import ls from 'localstorage-slim'
 import { HeaderService } from '../module-service/header.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { Router } from '@angular/router';
-interface Iotpset{
-  email:string ;
-  phone:string ;
-}
+// interface Iotpset{
+//   email:string ;
+//   phone:string ;
+// }
 @Component({
   selector: 'app-registration-otp',
   templateUrl: './registration-otp.component.html',
   styleUrls: ['./registration-otp.component.scss']
 })
 export class RegistrationOtpComponent implements OnInit {
-  @ViewChild('ngOtpInput1') ngOtpInput1: any;
-  @ViewChild('ngOtpInput2') ngOtpInput2: any;
-  @Output() OtpModal = new EventEmitter();
-  @Input() isOtpPage: boolean = false;
-  verifyRegistration!:FormGroup;
-  otpSet:Iotpset={
-    email: '',
-    phone: ''
-  }
-  config = {
-    allowNumbersOnly: false,
-    length: 4,
-    isPasswordInput: false,
-    disableAutoFocus: false,
-    placeholder: '',
-    inputStyles: {
-      'width': '50px',
-      'height': '50px'
-    }
-  };
-  isOtp:boolean = true;
-  visible:boolean = true;
-  userEmails:string | null= '';
-  userMobileNumber:string | null = ''
-  isphoneOtp:string = '';
-  isemailOtp:string = '';
-  userRole:any='';
-  constructor( private router: Router,private fb:FormBuilder,private otpVerifivation:OtpVerificationService,private _header:HeaderService,private _toast:ToastServiceService) {
-    this.verifyRegistration = this.fb.group({
-      emailOtp:['',[Validators.required]],
-      phoneOtp:['',[Validators.required]]
-    })
+  // @ViewChild('ngOtpInput1') ngOtpInput1: any;
+  // @ViewChild('ngOtpInput2') ngOtpInput2: any;
+
+  // @Input() isOtpPage: boolean = false;
+  // verifyRegistration!:FormGroup;
+  // otpSet:Iotpset={
+  //   email: '',
+  //   phone: ''
+  // }
+  // config = {
+  //   allowNumbersOnly: false,
+  //   length: 4,
+  //   isPasswordInput: false,
+  //   disableAutoFocus: false,
+  //   placeholder: '',
+  //   inputStyles: {
+  //     'width': '50px',
+  //     'height': '50px'
+  //   }
+  // };
+  // isOtp:boolean = true;
+  // visible:boolean = true;
+  // userEmails:string | null= '';
+  // userMobileNumber:string | null = ''
+  // isphoneOtp:string = '';
+  // isemailOtp:string = '';
+  // userRole:any='';
+  constructor( private router: Router,private fb:FormBuilder,
+    private otpVerifivation:OtpVerificationService,private _header:HeaderService,private _toast:ToastServiceService) {
+    // this.verifyRegistration = this.fb.group({
+    //   emailOtp:['',[Validators.required]],
+    //   phoneOtp:['',[Validators.required]]
+    // })
   }
 
   ngAfterViewInit(){
@@ -56,62 +57,62 @@ export class RegistrationOtpComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userEmails = ls.get('userEmail')
-    this.userMobileNumber = ls.get('phone')
-    this.userRole= (ls.get('userRole'))
-    // setTimeout(() => {
-    //   this.isOtp = this.isOtpPage;
-    // }, 500);
+    // this.userEmails = ls.get('userEmail')
+    // this.userMobileNumber = ls.get('phone')
+    // this.userRole= (ls.get('userRole'))
+    // // setTimeout(() => {
+    // //   this.isOtp = this.isOtpPage;
+    // // }, 500);
   }
   ngOnChanges(){
   }
   
 
-  onHide(){
-    this.isOtp = false;
-    this.OtpModal.emit(false)
-  }
+  // onHide(){
+  //   this.isOtp = false;
+  //   this.OtpModal.emit(false)
+  // }
 
-  onPhoneOtpChange(event:string){
-    console.log(event , 'onPhoneOtpChange')
-    this.isphoneOtp= event
-  }
+  // onPhoneOtpChange(event:string){
+  //   console.log(event , 'onPhoneOtpChange')
+  //   this.isphoneOtp= event
+  // }
 
-  onEmailOtpChange(event:string){
-    console.log(event , 'onemailOtpChange')
-    this.isemailOtp = event
-  }
+  // onEmailOtpChange(event:string){
+  //   console.log(event , 'onemailOtpChange')
+  //   this.isemailOtp = event
+  // }
 
-  onSubmitOtp(){
-    // debugger;
-    console.log('click')
-    // if(this.verifyRegistration.valid){
-      this.otpSet = {
-        email:this.isemailOtp,
-        phone:this.isphoneOtp
-      }
-      console.log(this.otpSet)
-      this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
-        next: (res)=>{
-          console.log(res,'otp response')
-          this.OtpModal.emit(false);
-          this._header.userLoggedin.next(true)
-          ls.set('logged',true)
-          this._toast.showToaster.next({severity:'success',summary:'success',detail:res.message});
-          //set route logic for user 
-          if(this.userRole === 'Student'){
-            this.router.navigate(['jobs/internship']);
-          }
-          else if(this.userRole === 'Industry')
-          {
-            this.router.navigate(['industry']);
-          }
-        },
-        error: (err)=>{
-          console.log(err,'otp response')
-        }
-      })
-    // }
-  }
+  // onSubmitOtp(){
+  //   // debugger;
+  //   console.log('click')
+  //   // if(this.verifyRegistration.valid){
+  //     this.otpSet = {
+  //       email:this.isemailOtp,
+  //       phone:this.isphoneOtp
+  //     }
+  //     console.log(this.otpSet)
+  //     this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
+  //       next: (res)=>{
+  //         console.log(res,'otp response')
+  //         this.OtpModal.emit(false);
+  //         this._header.userLoggedin.next(true)
+  //         ls.set('logged',true)
+  //         this._toast.showToaster.next({severity:'success',summary:'success',detail:res.message});
+  //         //set route logic for user 
+  //         if(this.userRole === 'Student'){
+  //           this.router.navigate(['jobs/internship']);
+  //         }
+  //         else if(this.userRole === 'Industry')
+  //         {
+  //           this.router.navigate(['industry']);
+  //         }
+  //       },
+  //       error: (err)=>{
+  //         console.log(err,'otp response')
+  //       }
+  //     })
+  //   // }
+  // }
 
 }
