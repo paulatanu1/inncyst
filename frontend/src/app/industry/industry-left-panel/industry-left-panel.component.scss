@@ -4,6 +4,17 @@
 
 .main-sidebar {
   background: #522d80;
+  nav {
+    a {
+      font-weight: 500;
+    }
+    li.nav-item.active {
+      a {
+        color: #371d57;
+        font-weight: 600;
+      }
+    }
+  }
 }
 .main-sidebar .brand-link.logo-switch {
   background: #522d80;
