@@ -32,3 +32,14 @@
         }
     }
 }
+@media only screen and (min-width:320px) and (max-width:767px) {
+    .video-wrapper {
+        .video-texts {
+            h5 {
+                font-size: 30px;
+                line-height: 36px;
+                width: 90%;
+            }
+        }
+    }
+}

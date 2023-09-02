@@ -67,3 +67,14 @@ h3 {
     }
   }
 }
+@media only screen and (min-width:320px) and (max-width:767px) {
+  .what-we-do-section {
+    .we-do-right-section {
+      padding: 30px 20px;
+      .heading-main {
+        font-size: 30px;
+        line-height: 36px;
+      }
+    }
+  }
+}
