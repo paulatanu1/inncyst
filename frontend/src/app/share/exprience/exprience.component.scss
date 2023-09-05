@@ -116,3 +116,41 @@
     }
   }
 }
+@media only screen and (min-width:320px) and (max-width:767px) {
+  .wrapper {
+    .text-wrapper {
+      .header-text {
+        font-size: 25px;
+        line-height: 30px;
+      }
+    }
+    .row {
+      .col-7 {
+        width: 100%;
+      }
+      .col-5 {
+        width: 100%;
+      }
+    }
+    .left-section {
+      .overlap-setion {
+        position: static;
+      }
+    }
+    .right-section {
+      ul {
+        padding-left: 0;
+        li {
+          .post-wrapper {
+            .desc {
+              margin-left: 20px;
+              h5 {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
