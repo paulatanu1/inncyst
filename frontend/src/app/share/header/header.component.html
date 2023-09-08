@@ -294,9 +294,12 @@
   [draggable]="false"
   [style]="{ width: '60vw' }"
   (onHide)="onClosePopup('login')"
+  (click)="cancel()"
 >
-  <app-login (openRegisterFlow)="openRegisterFlow($event)"></app-login>
+  <app-login (openRegisterFlow)="openRegisterFlow($event)"
+   ></app-login>
 </p-dialog>
+
 <app-sign-up-questions
   [sidebarEnable]="sidebarEnable"
   *ngIf="isSignup "
@@ -316,3 +319,4 @@
 <div class="progress-bar" *ngIf="progressBar">
   <p-progressBar mode="indeterminate"></p-progressBar>
 </div>
+
