@@ -3,10 +3,10 @@
     <h2>Contact Info</h2>
     <div class="contact_img_details">
       <div class="contact_img">
-        <span></span>
+        <span><img src="https://image.shutterstock.com/image-vector/dotted-spiral-vortex-royaltyfree-images-600w-2227567913.jpg"></span>
       </div>
       <div class="contact_details">
-        <h3>Aniket Nath</h3>
+        <h3>{{userLoginDetails.name}}</h3>
         <span>
           Graphic designer | Web Designer | UI/UX Designer | Web developer
         </span>
@@ -16,24 +16,19 @@
     <div class="uploadresume_form">
       <div class="inputGroup">
         <label>Email</label>
-        <input type="text" pInputText />
+        <input type="text" pInputText disabled [(ngModel)]="userLoginDetails.email"/>
       </div>
       <div class="inputGroup mobile_num">
         <label>Mobile Number</label>
-        <input type="text" placeholder="+91" class="smallInput" pInputText />
-        <input type="text" pInputText />
+        <input type="text" placeholder="+91" class="smallInput" pInputText disabled />
+        <input type="text" pInputText disabled [(ngModel)]="userLoginDetails.phone" />
       </div>
       <div class="upload_resume">
         <h3>Resume</h3>
         <div class="uploadField">
-          <span>PDF</span>
-          <p-fileUpload
-            mode="basic"
-            name="demo[]"
-            url="./upload.php"
-          ></p-fileUpload>
-        </div>
-        <button class="upload_btn">Upload Resume</button>
+            <input type="file" (change)="onFileSelected($event)"  size="5000000" accept=".pdf, .doc, .docx" />
+                  </div>
+        <button class="upload_btn" (click)="uploadFile()">Upload Resume</button>
         <span class="fileTypes">DOC, DOCX, PDF (5 MB)</span>
       </div>
       <div class="availability">
@@ -44,8 +39,9 @@
             <p-radioButton
               name="option"
               value="Chicago"
-              [(ngModel)]="opt"
+              [(ngModel)]="availability"
               inputId="yes"
+              (click)="addavailability()"
             ></p-radioButton>
             <label for="city1">
               Yes, I am available for 3 months starting immediately for a work
@@ -56,10 +52,12 @@
             <p-radioButton
               name="option"
               value="Chicago2"
-              [(ngModel)]="opt"
+              [(ngModel)]="availability_message"
               inputId="no"
+              (click)="addTextArea()"
             ></p-radioButton>
-            <label for="city1">No (Please specify your availability)</label>
+            <label for="city1" >No (Please specify your availability)</label>
+            <input type="text" *ngIf="inputFieldEnable" [(ngModel)]="availability_messageValue">
           </div>
         </div>
       </div>
@@ -68,5 +66,5 @@
 </div>
 <div class="dialog-footer">
   <a class="back_link">Back</a>
-  <button>Submit Application</button>
+  <button (click)="submitApplication()">Submit Application</button>
 </div>

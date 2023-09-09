@@ -71,7 +71,6 @@ export class HeaderComponent implements OnInit {
     private quiestion: QuestionSetEnablerService,
     private _header: HeaderService,
     private loginApiService:LoginApiService,
-    private loginDetails:LoginDetailsService
   ) {
     this.items = [
       {
@@ -118,8 +117,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginDetails.a.next(true)
-
     this.logoutSuccess=true;
     this.logoutSuccess=<boolean>ls.get('logoutSuccess');
 

@@ -13,8 +13,7 @@ import { UploadResumeStepComponent } from './upload-resume-step/upload-resume-st
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonModule} from 'primeng/radiobutton';
-// import { LoginDetailsService } from '../common-service/login-details.service';
-
+import { FileUploadModule } from 'primeng/fileupload';
 @NgModule({
   declarations: [
     JobsComponent,
@@ -31,7 +30,8 @@ import { RadioButtonModule} from 'primeng/radiobutton';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    RadioButtonModule
+    RadioButtonModule,
+    FileUploadModule
   ],
   exports:[DialogModule, SharedModule],
   // providers:[LoginDetailsService]

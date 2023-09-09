@@ -76,10 +76,6 @@ export class LoginComponent implements OnInit {
     this.loginService.resetPassword.subscribe(val=>{
       this.resetPassword=<boolean>val;
     })
-    this.loginDetails.a.subscribe((res=>{
-      
-      alert('kkkkkkkkkk')
-    }))
   
 this.loginService.closePopup.subscribe((val:any)=>{
   
@@ -129,14 +125,12 @@ ngOnChanges(): void {
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
           ls.set('logoutSuccess',true)
-          let loginDetails={
+          ls.set('loginDetails',{
             name:res.data.name,
             email:res.data.email,
             phone:res.data.phone,
             image:res.data.image
-          }
-          console.log(loginDetails,'loginDetails')
-          this.loginDetails.loginDetails.next(loginDetails)
+          })
           if (userRole === 'Student') {
             this.router.navigateByUrl('/jobs/internships');
             // this.router.navigate(['/jobs/internship']);

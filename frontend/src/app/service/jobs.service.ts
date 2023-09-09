@@ -12,4 +12,9 @@ export class JobsService {
     let url:string='/job/jobs'
     return this.api.ApiCallWithLocalization('', url, 'get');
   }
+
+  applyJob(details:any){
+    let url= '/student/apply-job';
+    return this.api.ApiCallWithLocalization(details,url,'post')
+  }
 }

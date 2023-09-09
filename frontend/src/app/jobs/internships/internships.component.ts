@@ -10,57 +10,46 @@ import { LoginDetailsService } from 'src/app/common-service/login-details.servic
   selector: 'app-internships',
   templateUrl: './internships.component.html',
   styleUrls: ['./internships.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class InternshipsComponent implements OnInit {
-  profileUpdate:boolean = false;
-  items: MenuItem[]=[];
+  profileUpdate: boolean = false;
+  items: MenuItem[] = [];
   activeIndex: number = 0;
-  constructor(private loginDetails:LoginDetailsService ,private router: Router,private messageService: MessageService,private jobService:JobsService) { }
+  constructor(
+    private loginDetails: LoginDetailsService,
+    private router: Router,
+    private messageService: MessageService,
+    private jobService: JobsService
+  ) {}
 
   ngOnInit(): void {
     this.items = [
-      {label: 'Skill', routerLink:'skills',
-      command: (event: any) => {
-        this.activeIndex = 0;
-        // this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
-    }},
-      {label: 'Info', routerLink:'uploadresume',
-      command: (event: any) => {
-        this.activeIndex = 1;
-        // this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
-    }}
-  ];
-
-// this.jobService.getAllJobDetails().subscribe((res=>{
-// console.log(res,'res')
-// }),(err=>{
-//   console.log(err,'err')
-// }))
-alert('hhhhi')
-// this.loginDetails.a.next((res=>{
-//   alert('dddd')
-// }))
-
-this.loginDetails.loginDetails.subscribe({
-  next:(res)=>{
-    console.log(res,'res')
-  }
-})
+      {
+        label: 'Skill',
+        routerLink: 'skills',
+        command: (event: any) => {
+          this.activeIndex = 0;
+          // this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
+        },
+      },
+      {
+        label: 'Info',
+        routerLink: 'uploadresume',
+        command: (event: any) => {
+          this.activeIndex = 1;
+          // this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
+        },
+      },
+    ];
 
   }
-  applyJob(){
-
-    // this.loginDetails.a.next('kkk')
-
+  applyJob() {
     this.profileUpdate = true;
     this.router.navigate(['jobs/internships/skills']);
   }
 
-  closeProfileUpdateForm(){
+  closeProfileUpdateForm() {
     this.profileUpdate = false;
   }
-
- 
-
 }
