@@ -11,10 +11,7 @@ ls.config.encrypt = environment.LS_CONFIG_ENCRYPT;
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-  ) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   ApiCallWithLocalization(
     data: any,
@@ -45,7 +42,7 @@ export class ApiService {
       httpHeaderValue = httpHeaderValue.set('X-localization', localization);
     } else {
       httpHeaderValue = httpHeaderValue
-        .set('Authorization', 'Bearer ' + ls.set('login_token',true))
+        .set('Authorization', 'Bearer ' + ls.set('login_token', true))
         //.set('Content-Type', 'application/json')
         .set('X-localization', localization);
     }
@@ -61,8 +58,6 @@ export class ApiService {
           map((response: any) => {
             var responseobj = JSON.parse(JSON.stringify(response.body));
             responseobj.status = response.status;
-            console.log(responseobj.status ,'status')
-            console.log(responseobj.token , 'token');
             if (responseobj.token != undefined) {
               ls.set('login_token', responseobj.token);
             }
@@ -70,6 +65,9 @@ export class ApiService {
           })
         );
     } else if (method == 'get') {
+    // console.log(this.http.get(url).subscribe((res=>{
+    //   console.log(res)
+    // })))
       return this.http
         .get(url, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
@@ -77,13 +75,23 @@ export class ApiService {
           catchError((e, c) => {
             return throwError(e);
           }),
-          map((response: any) => {
+     map((response: any) => {
+            console.log(response,'response')
             var responseobj = JSON.parse(JSON.stringify(response.body));
             responseobj.status = response.status;
             if (responseobj.token != undefined) {
               ls.set('login_token', responseobj.token);
             }
             return responseobj;
+          })
+        );
+    } else if (method == 'put') {
+      return this.http
+        .put(url,data)
+        .pipe(
+          timeout(environment.API_TIMEOUT),
+          catchError((e, c) => {
+            return throwError(e);
           })
         );
     } else {
