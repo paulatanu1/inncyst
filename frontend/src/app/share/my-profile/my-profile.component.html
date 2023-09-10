@@ -2,7 +2,11 @@
   <div class="my_profile_sec_inner">
     <div class="profile_img">
       <figure>
-        <img [src]="croppedImage" />
+        <img
+          [src]="
+            croppedImage ? croppedImage : '../../../assets/icon-1633249_640.png'
+          "
+        />
         <span>
           {{ ProfileDetails.status ? 'Active' : 'Deactive' }}
         </span>
@@ -61,7 +65,14 @@
     <div class="profile-section">
       <div class="left-section">
         <div class="profile-pic">
-          <img [src]="croppedImage" alt="" />
+          <img
+            [src]="
+              croppedImage
+                ? croppedImage
+                : '../../../assets/icon-1633249_640.png'
+            "
+            alt=""
+          />
           <!-- <p-fileUpload
             mode="basic"
             name="demo[]"
