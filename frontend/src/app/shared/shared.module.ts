@@ -45,6 +45,7 @@ import { SlideMenuModule } from 'primeng/slidemenu';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ChipsModule } from 'primeng/chips';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     FileUploadModule,
     ChipsModule,
     InputTextareaModule,
+    ImageCropperModule,
   ],
   exports: [
     HeaderComponent,
@@ -134,6 +136,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     FileUploadModule,
     ChipsModule,
     InputTextareaModule,
+    ImageCropperModule,
   ],
   providers: [DatePipe],
 })

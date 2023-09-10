@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { InternshipProfileService } from '../service/internship-profile.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { DomSanitizer } from '@angular/platform-browser';
 
 interface IprofileDetails {
   name: string;
@@ -23,6 +25,26 @@ interface IprofileDetails {
   styleUrls: ['./my-profile.component.scss'],
 })
 export class MyProfileComponent implements OnInit {
+  croppedImage: any;
+  loadImageFailed() {
+    throw new Error('Method not implemented.');
+  }
+  cropperReady() {
+    throw new Error('Method not implemented.');
+  }
+  imageLoaded() {
+    throw new Error('Method not implemented.');
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(
+      event.objectUrl as string
+    );
+    // event.blob can be used to upload the cropped image
+  }
+  imageChangedEvent: any;
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
   ProfileDetails!: IprofileDetails;
   profile: Subscription | undefined;
   editProfile: boolean = false;
@@ -30,7 +52,8 @@ export class MyProfileComponent implements OnInit {
 
   constructor(
     private internship: InternshipProfileService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
