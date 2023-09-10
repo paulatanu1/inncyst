@@ -26,8 +26,9 @@
       <div class="upload_resume">
         <h3>Resume</h3>
         <div class="uploadField">
-            <input type="file" (change)="onFileSelected($event)"  size="5000000" accept=".pdf, .doc, .docx" />
-                  </div>
+          <input type="file" (change)="onFileSelected($event)"  size="5000000" accept=".pdf, .doc, .docx" />
+          <label>PDF</label>
+        </div>
         <button class="upload_btn" (click)="uploadFile()">Upload Resume</button>
         <span class="fileTypes">DOC, DOCX, PDF (5 MB)</span>
       </div>
