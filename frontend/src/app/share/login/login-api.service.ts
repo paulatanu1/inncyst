@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import ls from 'localstorage-slim';
 import { Subject } from 'rxjs';
 import { ApiService } from 'src/app/common-service/api.service';
 
@@ -20,6 +21,10 @@ export class LoginApiService {
   public forgotPassword = new Subject();
   public forgotPasswordOtp = new Subject();
   public resetPassword = new Subject();
+  public closePopup = new Subject();
+
+
+
 
   login(userEmail: string, password: string, userRole: string) {
     this.url = '/auth/login';
@@ -30,6 +35,7 @@ export class LoginApiService {
     //   payload.append('role',userRole.toLowerCase() as string)
 
     const form_data: any = new Object();
+    ls.set('userEmail',userEmail)
     form_data.email = userEmail;
     form_data.password = password;
     form_data.role = userRole.toLowerCase() as string;
@@ -41,6 +47,14 @@ export class LoginApiService {
     const form_data:any = new Object();
     form_data.email=email;
     return this.api.ApiCallWithLocalization(form_data, this.url, 'post');
+  }
+ passwordReset(resetPasswordSet:any){
+this.url='/auth/change-forget-password'
+const form_data:any = new Object();
+form_data.email=resetPasswordSet.email;
+form_data.newPassword=resetPasswordSet.newPassword;
+form_data.password=resetPasswordSet.password;
+return this.api.ApiCallWithLocalization(form_data,this.url,'put')
   }
 
 }

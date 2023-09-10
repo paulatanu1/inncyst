@@ -11,6 +11,8 @@ import { LoginApiService } from './login-api.service';
 import { OtpVerificationService } from '../registration-otp/otp-verification.service';
 import { Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+import ls from 'localstorage-slim';
+import { LoginDetailsService } from 'src/app/common-service/login-details.service';
 interface options {
   name: string;
   code: string;
@@ -37,6 +39,9 @@ export class LoginComponent implements OnInit {
  emailOtp:any;
  otpPage:boolean=false;
  email!:string;
+ newPassword:any;
+ confirmPassword:any;
+ closePopup:boolean=false;
   //Output
   @Output() openRegisterFlow = new EventEmitter();
 
@@ -46,6 +51,7 @@ export class LoginComponent implements OnInit {
     private otpVerifivation: OtpVerificationService,
     private router: Router,
     private _toast:ToastServiceService,
+    private loginDetails:LoginDetailsService
     ) {
     this.options = [{ name: 'Select the option', code: '0' }];
 
@@ -57,8 +63,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    this.loginService.loginModal.subscribe(val=>{
+  
+   this.loginService.loginModal.subscribe(val=>{
       this.loginModal=<boolean>val;
     })
     this.loginService.forgotPassword.subscribe(val=>{
@@ -70,9 +76,14 @@ export class LoginComponent implements OnInit {
     this.loginService.resetPassword.subscribe(val=>{
       this.resetPassword=<boolean>val;
     })
-   
-
-
+  
+this.loginService.closePopup.subscribe((val:any)=>{
+  
+  this.closePopup=<boolean>val;
+if(this.closePopup == true){
+  this.loginForm.reset();
+}
+})
     this.loginForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -89,6 +100,12 @@ export class LoginComponent implements OnInit {
     );
   }
 
+ngOnChanges(): void {
+  //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+  //Add '${implements OnChanges}' to the class.
+
+  
+}
   validPassword(control: AbstractControl) {
     return of('' === control.value).pipe(
       map((result) => (result ? { invalid: true } : null))
@@ -98,7 +115,7 @@ export class LoginComponent implements OnInit {
   onLoginSubmit() {
     console.log(this.loginForm.controls);
     if (this.loginForm.valid) {
-      let userEmail: string = this.loginForm.get('email')?.value;
+      let userEmail = this.loginForm.get('email')?.value;
       let password = this.loginForm.get('password')?.value;
       let userRole = this.loginForm.get('options')?.value;
 
@@ -107,6 +124,13 @@ export class LoginComponent implements OnInit {
           console.log(res);
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
+          ls.set('logoutSuccess',true)
+          ls.set('loginDetails',{
+            name:res.data.name,
+            email:res.data.email,
+            phone:res.data.phone,
+            image:res.data.image
+          })
           if (userRole === 'Student') {
             this.router.navigateByUrl('/jobs/internships');
             // this.router.navigate(['/jobs/internship']);
@@ -179,6 +203,8 @@ export class LoginComponent implements OnInit {
       })
       this.forgotPasswordOtp = false;
       this.resetPassword = true;
+      this.newPassword='';
+      this.confirmPassword=''
        }),
        error:((res)=>{
          console.log(res,'err')
@@ -194,6 +220,28 @@ export class LoginComponent implements OnInit {
   resetPasswordCancel() {
     this.resetPassword = false;
     this.forgotPasswordOtp = true;
+  }
+  passwordReset(){
+let resetPasswordSet={
+email:this.email,
+newPassword:this.confirmPassword,
+password:this.newPassword
+}
+this.loginService.passwordReset(resetPasswordSet).subscribe((res:any)=>{
+  this._toast.showToaster.next({
+    severity: 'success',
+    summary: 'success',
+    detail: res.message,
+})
+this.backToLogIn()
+},
+((er:any)=>{
+  this._toast.showToaster.next({
+    severity: 'error',
+    summary: 'error',
+    detail: er.error.message,
+  });
+}))
   }
   backToLogIn(){
     this.loginModal=true;

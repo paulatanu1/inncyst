@@ -17,6 +17,7 @@ import { QuestionSetEnablerService } from 'src/app/service/question-set-enabler.
 import { HeaderService } from '../module-service/header.service';
 import { OtpVerificationService } from '../registration-otp/otp-verification.service';
 import { LoginApiService } from '../login/login-api.service';
+import { LoginDetailsService } from 'src/app/common-service/login-details.service';
 interface options {
   optionName: string;
   code: string;
@@ -69,7 +70,7 @@ export class HeaderComponent implements OnInit {
     private _login: LoginEnablerService,
     private quiestion: QuestionSetEnablerService,
     private _header: HeaderService,
-    private loginApiService:LoginApiService
+    private loginApiService:LoginApiService,
   ) {
     this.items = [
       {
@@ -116,6 +117,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.logoutSuccess=true;
+    this.logoutSuccess=<boolean>ls.get('logoutSuccess');
+
+
     this.Profileitems = [
       {
         label: 'Profile',
@@ -284,7 +289,7 @@ export class HeaderComponent implements OnInit {
     this.loginApiService.forgotPassword.next(false)
     this.loginApiService.forgotPasswordOtp.next(false)
     this.loginApiService.resetPassword.next(false)
-        this.loginModal = true;
+    this.loginModal = true;
     this.forgotPassword = false;
   }
 
@@ -308,14 +313,17 @@ export class HeaderComponent implements OnInit {
   }
 
   onClosePopup(popupname: string) {
+    this.loginApiService.closePopup.next(true)
     if (popupname) {
       this.resetQueryParams();
     }
+   
   }
   logOutUser() {
     ls.clear();
     //this.isUserLogged = true;
     this.logoutSuccess = false;
+    ls.remove('logoutSuccess');
     this.router.navigateByUrl('/home');
   }
   cancel() {

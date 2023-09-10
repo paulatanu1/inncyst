@@ -135,13 +135,13 @@
     <div class="formFields">
       <div class="form_group">
         <label>New Password</label>
-        <!-- <p-password [(ngModel)]="value3" [toggleMask]="true"></p-password> -->
+        <p-password [(ngModel)]="newPassword" [toggleMask]="true"></p-password>
       </div>
       <div class="form_group">
         <label>Confirm Password</label>
-        <!-- <p-password [(ngModel)]="value3" [toggleMask]="true"></p-password> -->
+        <p-password [(ngModel)]="confirmPassword" [toggleMask]="true"></p-password>
       </div>
-      <button>reset password</button>
+      <button (click)="passwordReset()">reset password</button>
       <span class="backtologin"
         ><a (click)="backToLogIn()"
           ><img src="../../../assets/right-arrow.svg" />Back to login</a

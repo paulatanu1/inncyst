@@ -14,12 +14,12 @@ import { ChangePasswordComponent } from './share/change-password/change-password
 import { MyProfileComponent } from './share/my-profile/my-profile.component';
 import { IndustryModule } from './industry/industry.module';
 import { NgOtpInputModule } from 'ng-otp-input';
-
+import { LoginDetailsService } from './common-service/login-details.service';
 @NgModule({
   declarations: [AppComponent, LoginPageComponent, ChangePasswordComponent, MyProfileComponent,],
   imports: [BrowserModule, NgOtpInputModule,AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,RouterModule.forRoot([]),NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),HttpClientModule ],
   exports: [SharedModule,FormsModule,ReactiveFormsModule,NgOtpInputModule],
-  providers: [SharedModule,{
+  providers: [SharedModule,LoginDetailsService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true,
