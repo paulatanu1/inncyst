@@ -2,7 +2,7 @@
   <div class="my_profile_sec_inner">
     <div class="profile_img">
       <figure>
-        <img src="../../../assets/cameron-williamson.png" />
+        <img [src]="croppedImage" />
         <span>
           {{ ProfileDetails.status ? 'Active' : 'Deactive' }}
         </span>
@@ -61,17 +61,23 @@
     <div class="profile-section">
       <div class="left-section">
         <div class="profile-pic">
-          <img
-            src="https://img.freepik.com/free-psd/google-icon-isolated-3d-render-illustration_47987-9777.jpg?w=2000"
-            alt=""
-          />
-          <p-fileUpload
+          <img [src]="croppedImage" alt="" />
+          <!-- <p-fileUpload
             mode="basic"
             name="demo[]"
             url="./upload.php"
-            accept="image/*"
+            accept="image/*8 5tdx"
             class="upload-btn"
-          ></p-fileUpload>
+            [customUpload]="false"
+            (uploadHandler)="fileChangeEvent($event)"
+          ></p-fileUpload> -->
+          <input
+            class="upload-btn"
+            type="file"
+            accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"
+            (change)="fileChangeEvent($event)"
+            (click)="cropper.toggle($event)"
+          />
         </div>
       </div>
       <div class="right-section">
@@ -134,17 +140,27 @@
   </form>
 </p-sidebar>
 
-<input type="file" (change)="fileChangeEvent($event)" />
+<!-- <input type="file" accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"  (change)="fileChangeEvent($event)" /> -->
 
-<image-cropper
-  [imageChangedEvent]="imageChangedEvent"
-  [maintainAspectRatio]="true"
-  [aspectRatio]="4 / 3"
-  format="png"
-  (imageCropped)="imageCropped($event)"
-  (imageLoaded)="imageLoaded()"
-  (cropperReady)="cropperReady()"
-  (loadImageFailed)="loadImageFailed()"
-></image-cropper>
+<!-- <img [src]="croppedImage" /> -->
 
-<img [src]="croppedImage" />
+<p-overlayPanel #cropper>
+  <ng-template pTemplate>
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="4 / 3"
+      format="png"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded()"
+      (cropperReady)="cropperReady()"
+      (loadImageFailed)="loadImageFailed()"
+      (imgCroppedDone)="ImgCroppedDone($event)"
+      (imgCroppedCancel)="CancelImgCroppedDone()"
+      [resizeToWidth]="236"
+      [resizeToHeight]="252"
+      [cropperMinWidth]="236"
+      [cropperMinHeight]="252"
+    ></image-cropper>
+  </ng-template>
+</p-overlayPanel>

@@ -46,6 +46,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ChipsModule } from 'primeng/chips';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ChipsModule,
     InputTextareaModule,
     ImageCropperModule,
+    OverlayPanelModule,
   ],
   exports: [
     HeaderComponent,
@@ -137,6 +139,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ChipsModule,
     InputTextareaModule,
     ImageCropperModule,
+    OverlayPanelModule,
   ],
   providers: [DatePipe],
 })

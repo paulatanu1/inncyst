@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { InternshipProfileService } from '../service/internship-profile.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -26,30 +26,12 @@ interface IprofileDetails {
 })
 export class MyProfileComponent implements OnInit {
   croppedImage: any;
-  loadImageFailed() {
-    throw new Error('Method not implemented.');
-  }
-  cropperReady() {
-    throw new Error('Method not implemented.');
-  }
-  imageLoaded() {
-    throw new Error('Method not implemented.');
-  }
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(
-      event.objectUrl as string
-    );
-    // event.blob can be used to upload the cropped image
-  }
-  imageChangedEvent: any;
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
+  @ViewChild('cropper') cropper!: ElementRef;
   ProfileDetails!: IprofileDetails;
   profile: Subscription | undefined;
   editProfile: boolean = false;
   profileForm: FormGroup = new FormGroup({});
-
+  imageChangedEvent: any;
   constructor(
     private internship: InternshipProfileService,
     private formBuilder: FormBuilder,
@@ -87,6 +69,36 @@ export class MyProfileComponent implements OnInit {
     } else {
       // Form is invalid, display error messages or perform other actions as needed
     }
+  }
+
+  ImgCroppedDone(event: Event) {
+    console.log(event, 'event done');
+  }
+
+  CancelImgCroppedDone() {}
+
+  loadImageFailed() {
+    // throw new Error('Method not implemented.');
+  }
+  cropperReady() {
+    // throw new Error('Method not implemented.');
+  }
+  imageLoaded() {
+    // throw new Error('Method not implemented.');
+    console.log('loaded');
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(
+      event.objectUrl as string
+    );
+    // event.blob can be used to upload the cropped image
+  }
+
+  fileChangeEvent(event: any): void {
+    console.log(event, 'event');
+    console.log(this.cropper.nativeElement, 'this.cropper.nativeElement');
+    // this.cropper.nativeElement.toggle();
+    this.imageChangedEvent = event;
   }
 
   ngOnDestroy() {
