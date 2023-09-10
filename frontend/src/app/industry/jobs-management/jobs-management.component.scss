@@ -135,6 +135,15 @@
         }
     }
 }
+.no-records {
+    height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: #522D80;
+    font-size: 20px;
+}
 
 @media only screen and (max-width:767px) {
     .industry_listing {
