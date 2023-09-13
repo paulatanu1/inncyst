@@ -16,6 +16,7 @@ export class InternshipsComponent implements OnInit {
   profileUpdate: boolean = false;
   items: MenuItem[] = [];
   activeIndex: number = 0;
+  url: string = '/job/jobs';
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
@@ -43,6 +44,14 @@ export class InternshipsComponent implements OnInit {
       },
     ];
 
+    //at the firt time load all job detailss
+    this.url =
+      this.url + '?type=&jobType=&location=&salary=&sort=dsc&limit=10&page=0';
+    this.jobService.getAllJobDetails('', this.url).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+    });
   }
   applyJob() {
     this.profileUpdate = true;
@@ -51,5 +60,9 @@ export class InternshipsComponent implements OnInit {
 
   closeProfileUpdateForm() {
     this.profileUpdate = false;
+  }
+
+  jobDetails(){
+    alert('done')
   }
 }

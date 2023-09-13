@@ -3,6 +3,7 @@
     font-family: 'Raleway';
     background: #F7F7F7;
     padding: 10px 0;
+    margin-top: 130px;
     .internship_sec_inner {
         display: flex;
         flex-direction: row;
@@ -246,6 +247,9 @@
                 line-height: 40px;
             }
         }
+    }
+    .p-dialog-content {
+        padding-right: 0;
     }
 }
 ::ng-deep .p-steps {
