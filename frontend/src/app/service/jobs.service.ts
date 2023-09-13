@@ -14,10 +14,13 @@ export class JobsService {
   }
 
   uploadResume(data:any){
+    console.log(data)
     let url='/student/upload-resume'
     const form_data = new FormData();
-    form_data.append('jobId',data.jobId)
+    let id='64fd77665810ffdaf7e9b5b2'
+    form_data.append('jobId',id)
     form_data.append('resume',data.resume)
+    console.log(form_data,'form_data')
     return this.api.ApiCallWithLocalization(form_data,url,'post')
   }
   applyJob(details:any){
