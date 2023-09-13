@@ -39,7 +39,6 @@ export class LoginApiService {
     form_data.email = userEmail;
     form_data.password = password;
     form_data.role = userRole.toLowerCase() as string;
-
     return this.api.ApiCallWithLocalization(form_data, this.url, 'post');
   }
   forgetpassword(email: string) {
