@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonModule} from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { JobApplyedComponent } from './job-applyed/job-applyed.component';
+import { TabViewModule } from 'primeng/tabview';
 @NgModule({
   declarations: [
     JobsComponent,
@@ -33,7 +34,8 @@ import { JobApplyedComponent } from './job-applyed/job-applyed.component';
     ReactiveFormsModule,
     FormsModule,
     RadioButtonModule,
-    FileUploadModule
+    FileUploadModule,
+    TabViewModule
   ],
   exports:[DialogModule, SharedModule],
   // providers:[LoginDetailsService]
