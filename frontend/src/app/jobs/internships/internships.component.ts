@@ -17,6 +17,10 @@ export class InternshipsComponent implements OnInit {
   items: MenuItem[] = [];
   activeIndex: number = 0;
   url: string = '/job/jobs';
+  AllJobDetails:any=[];
+  singleJobDetails:any=[];
+  jobId=''
+  selectedJob:number=0;
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
@@ -49,24 +53,60 @@ export class InternshipsComponent implements OnInit {
       this.url + '?type=&jobType=&location=&salary=&sort=dsc&limit=10&page=0';
     this.jobService.getAllJobDetails('', this.url).subscribe({
       next: (res) => {
-        console.log(res);
+        this.AllJobDetails=res.data.items;
+        console.log(this.AllJobDetails);
+        this.AllJobDetails.forEach((element:any) => {
+          element.companyName=element.companyName.toUpperCase();
+          element.intranshipName=element.intranshipName.toUpperCase();
+          // element.salary=(element.salary * 12) / 100000
+        });
+this.jobId=this.AllJobDetails[0]._id;
+console.log(this.jobId)
+
+        // single job details1st for 1st job and1st time
+        this.jobService.getJobDetails(this.AllJobDetails[0]._id).subscribe({
+          next: (res) => {
+            this.singleJobDetails=[];
+            this.singleJobDetails.push(res.data);
+            this.singleJobDetails.forEach((element:any) => {
+              element.companyName=element.companyName.toUpperCase();
+              element.intranshipName=element.intranshipName.toUpperCase();
+              element.salary=(element.salary * 12) / 100000
+            });
+            console.log(this.singleJobDetails, 'res');
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
       },
     });
+
+
   }
   applyJob() {
+    alert('kkk')
     this.profileUpdate = true;
     this.router.navigate(['jobs/internships/skills']);
   }
 
   closeProfileUpdateForm() {
     this.profileUpdate = false;
+    // this.router.navigate(['jobs/internships/skills']);
   }
 
-  jobDetails(id: any) {
-    alert('done');
+  jobDetails(id: string,i:number) {
+    this.selectedJob=i
     this.jobService.getJobDetails(id).subscribe({
       next: (res) => {
-        console.log(res, 'res');
+        this.singleJobDetails=[];
+        this.singleJobDetails.push(res.data);
+        this.singleJobDetails.forEach((element:any) => {
+          element.companyName=element.companyName.toUpperCase();
+          element.intranshipName=element.intranshipName.toUpperCase();
+          element.salary=(element.salary * 12) / 100000
+        });
+        console.log(this.singleJobDetails, 'res');
       },
       error: (err) => {
         console.log(err);

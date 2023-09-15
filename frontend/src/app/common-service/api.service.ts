@@ -54,6 +54,7 @@ export class ApiService {
     // }
 
     if (method == 'post') {
+      console.log(httpHeaderValue)
       return this.http
         .post(url, data, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
