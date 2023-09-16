@@ -3,7 +3,7 @@
     <p-tabPanel header="Applied">
         <ul>
             <li>
-                <i class="pi pi-ellipsis-v"></i>
+                <p-speedDial [model]="items" direction="down" showIcon="pi pi-ellipsis-v"></p-speedDial>
                 <h2>Front End Developer</h2>
                 <span>Employer reached out</span>
                 <div class="location_info">
@@ -16,9 +16,11 @@
                     <img src="../../../assets/canva.png" width="78" height="32" /> 
                     <strong>Satisfix Software systems</strong>
                 </div>
+                <!-- <p-speedDial [model]="statusItems" radius="80" direction="up" type="semi-circle"></p-speedDial>
+                <button class="update_status">Update Status</button> -->
             </li>
             <li>
-                <i class="pi pi-ellipsis-v"></i>
+                <p-speedDial [model]="items" direction="down" showIcon="pi pi-ellipsis-v"></p-speedDial>
                 <h2>Front End Developer</h2>
                 <span class="applied">Applied</span>
                 <div class="location_info">
@@ -33,7 +35,7 @@
                 </div>
             </li>
             <li>
-                <i class="pi pi-ellipsis-v"></i>
+                <p-speedDial [model]="items" direction="down" showIcon="pi pi-ellipsis-v"></p-speedDial>
                 <h2>Front End Developer</h2>
                 <span class="rejected">Not selected by employer</span>
                 <div class="location_info">
@@ -48,7 +50,7 @@
                 </div>
             </li>
             <li>
-                <i class="pi pi-ellipsis-v"></i>
+                <p-speedDial [model]="items" direction="down" showIcon="pi pi-ellipsis-v"></p-speedDial>
                 <h2>Front End Developer</h2>
                 <span class="rejected">Not selected by employer</span>
                 <div class="location_info">

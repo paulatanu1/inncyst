@@ -16,6 +16,7 @@ import { RadioButtonModule} from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { JobApplyedComponent } from './job-applyed/job-applyed.component';
 import { TabViewModule } from 'primeng/tabview';
+import {SpeedDialModule} from 'primeng/speeddial';
 @NgModule({
   declarations: [
     JobsComponent,
@@ -35,7 +36,8 @@ import { TabViewModule } from 'primeng/tabview';
     FormsModule,
     RadioButtonModule,
     FileUploadModule,
-    TabViewModule
+    TabViewModule,
+    SpeedDialModule
   ],
   exports:[DialogModule, SharedModule],
   // providers:[LoginDetailsService]

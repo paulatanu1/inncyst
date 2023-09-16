@@ -5,9 +5,9 @@
     align-items: stretch;
     max-width: 1297px;
     flex-wrap: wrap;
-    ::ng-deep .p-element {
-        width: 100%;
-    }
+        // ::ng-deep .p-element {
+        //     width: 100%;
+        // }
     ::ng-deep .p-tabview-nav {
         li {
             padding-right: 40px;
@@ -16,13 +16,13 @@
     ::ng-deep .p-tabview-panels {
         padding: 20px 0;
         .p-tabview-panel {
-            ul {
+            & > ul {
                 padding: 0;
                 margin: 0;
                 display: flex;
                 justify-content: space-between;
                 flex-wrap: wrap;
-            li {
+            & > li {
                 list-style-type: none;
                 border: 1px solid #E9E9E9;
                 border-radius: 15px;
@@ -36,8 +36,8 @@
                         top: 20px;
                     }
                     h2 {
-                        font-size: 20px;
-                        font-weight: 700;
+                        font-size: 18px;
+                        font-weight: 600;
                     }
                     & > span {
                         display: inline-block;
@@ -80,7 +80,7 @@
                         justify-content: space-between;
                         align-items: center;
                         img {
-                            max-width: 60%;
+                            max-width: 20%;
                             height: auto;
                             display: inline-block;
                                 vertical-align: middle;
@@ -95,6 +95,30 @@
                         }
                     }
                 }  
+                ::ng-deep .p-speeddial {
+                    position: absolute;
+                    right: 0;
+                    top: 20px;
+                    & > button {
+                        background: none;
+                        padding: 0;
+                        color: #495057;
+                        border: none;
+                        width: auto;
+                        height: auto;
+                    }
+                }
+                .update_status {
+                    display: block;
+                    width: 100%;
+                    background: #522D80;
+                    border: 1px solid #522D80;
+                    color: #fff;
+                    border-radius: 6px;
+                    padding: 10px 0;
+                    text-align: center;
+                    margin-top: 30px;
+                }
             }
             
         }
