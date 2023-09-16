@@ -40,6 +40,7 @@
           <p-splitButton
             label=" Product/Services"
             [model]="dropdownitems"
+            (click)="product()"
           ></p-splitButton>
         </li>
         <li class="nav-item">
@@ -79,6 +80,7 @@
         ></button>
       </div>
     </div>
+ 
     <div class="" *ngIf="logoutSuccess">
       
       <button

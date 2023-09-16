@@ -85,7 +85,6 @@ console.log(this.jobId)
 
   }
   applyJob() {
-    alert('kkk')
     this.profileUpdate = true;
     this.router.navigate(['jobs/internships/skills']);
   }

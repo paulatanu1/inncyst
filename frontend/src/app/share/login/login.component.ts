@@ -32,16 +32,16 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loginOptionType: IloginOptionType[];
   // login: boolean = true;
- forgotPassword: boolean = false;
+  forgotPassword: boolean = false;
   forgotPasswordOtp: boolean = false;
   resetPassword: boolean = false;
- loginModal:boolean=true;
- emailOtp:any;
- otpPage:boolean=false;
- email!:string;
- newPassword:any;
- confirmPassword:any;
- closePopup:boolean=false;
+  loginModal: boolean = true;
+  emailOtp: any;
+  otpPage: boolean = false;
+  email!: string;
+  newPassword: any;
+  confirmPassword: any;
+  closePopup: boolean = false;
   //Output
   @Output() openRegisterFlow = new EventEmitter();
 
@@ -50,9 +50,9 @@ export class LoginComponent implements OnInit {
     private loginService: LoginApiService,
     private otpVerifivation: OtpVerificationService,
     private router: Router,
-    private _toast:ToastServiceService,
-    private loginDetails:LoginDetailsService
-    ) {
+    private _toast: ToastServiceService,
+    private loginDetails: LoginDetailsService
+  ) {
     this.options = [{ name: 'Select the option', code: '0' }];
 
     this.loginOptionType = [
@@ -62,28 +62,25 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loginService.loginModal.subscribe((val) => {
+      this.loginModal = <boolean>val;
+    });
+    this.loginService.forgotPassword.subscribe((val) => {
+      this.forgotPassword = <boolean>val;
+    });
+    this.loginService.forgotPasswordOtp.subscribe((val) => {
+      this.forgotPasswordOtp = <boolean>val;
+    });
+    this.loginService.resetPassword.subscribe((val) => {
+      this.resetPassword = <boolean>val;
+    });
 
-  
-   this.loginService.loginModal.subscribe(val=>{
-      this.loginModal=<boolean>val;
-    })
-    this.loginService.forgotPassword.subscribe(val=>{
-      this.forgotPassword=<boolean>val;
-    })
-    this.loginService.forgotPasswordOtp.subscribe(val=>{
-      this.forgotPasswordOtp=<boolean>val;
-    })
-    this.loginService.resetPassword.subscribe(val=>{
-      this.resetPassword=<boolean>val;
-    })
-  
-this.loginService.closePopup.subscribe((val:any)=>{
-  
-  this.closePopup=<boolean>val;
-if(this.closePopup == true){
-  this.loginForm.reset();
-}
-})
+    this.loginService.closePopup.subscribe((val: any) => {
+      this.closePopup = <boolean>val;
+      if (this.closePopup == true) {
+        this.loginForm.reset();
+      }
+    });
     this.loginForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -100,12 +97,10 @@ if(this.closePopup == true){
     );
   }
 
-ngOnChanges(): void {
-  //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-  //Add '${implements OnChanges}' to the class.
-
-  
-}
+  ngOnChanges(): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+  }
   validPassword(control: AbstractControl) {
     return of('' === control.value).pipe(
       map((result) => (result ? { invalid: true } : null))
@@ -124,17 +119,19 @@ ngOnChanges(): void {
           console.log(res);
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
-          ls.set('logoutSuccess',true)
-          ls.set('loginDetails',{
-            name:res.data.name,
-            email:res.data.email,
-            phone:res.data.phone,
-            image:res.data.image
-          })
+          // ls.set('logoutSuccess',true)
+          // ls.set('loginDetails',{
+          //   name:res.data.name,
+          //   email:res.data.email,
+          //   phone:res.data.phone,
+          //   image:res.data.image
+          // })
           if (userRole === 'Student') {
             this.router.navigateByUrl('/jobs/internships');
+            ls.set('userType','student')
             // this.router.navigate(['/jobs/internship']);
-          } else if (userRole === 'Student') {
+          } else if (userRole === 'Industry') {
+            ls.set('userType','industry')
             this.router.navigate(['industry']);
           }
         },
@@ -161,100 +158,100 @@ ngOnChanges(): void {
     this.forgotPassword = false;
     this.loginModal = true;
   }
-  forgotPasswordSubmit(email:any) {
-
+  forgotPasswordSubmit(email: any) {
     this.loginService.forgetpassword(email).subscribe({
-      next:(res=>{ 
-        this.otpPage=true;
-        this.email=email;
+      next: (res) => {
+        this.otpPage = true;
+        this.email = email;
         this._toast.showToaster.next({
           severity: 'success',
           summary: 'success',
           detail: res.message,
-      })
-      this.forgotPasswordOtp = true;
-      this.forgotPassword = false;
-           }),
-      error:(res=>{
+        });
+        this.forgotPasswordOtp = true;
+        this.forgotPassword = false;
+      },
+      error: (res) => {
         this._toast.showToaster.next({
           severity: 'error',
           summary: 'error',
           detail: res.error.message,
         });
-      })
-    })
+      },
+    });
   }
   forgotPasswordOtpCancel() {
     this.forgotPasswordOtp = false;
     this.forgotPassword = true;
   }
   otpVrify() {
-   
-    let otpSet={
-      email:this.email,
-      otp: this.emailOtp
-     } 
-     this.otpVerifivation.forgotPasswordOtpSubmit(otpSet).subscribe({
-       next:((res)=>{
+    let otpSet = {
+      email: this.email,
+      otp: this.emailOtp,
+    };
+    this.otpVerifivation.forgotPasswordOtpSubmit(otpSet).subscribe({
+      next: (res) => {
         this._toast.showToaster.next({
           severity: 'success',
           summary: 'success',
           detail: res.message,
-      })
-      this.forgotPasswordOtp = false;
-      this.resetPassword = true;
-      this.newPassword='';
-      this.confirmPassword=''
-       }),
-       error:((res)=>{
-         console.log(res,'err')
-         this._toast.showToaster.next({
+        });
+        this.forgotPasswordOtp = false;
+        this.resetPassword = true;
+        this.newPassword = '';
+        this.confirmPassword = '';
+      },
+      error: (res) => {
+        console.log(res, 'err');
+        this._toast.showToaster.next({
           severity: 'error',
           summary: 'error',
           detail: res.error.message,
         });
-               })
-     })
-   
+      },
+    });
   }
   resetPasswordCancel() {
     this.resetPassword = false;
     this.forgotPasswordOtp = true;
   }
-  passwordReset(){
-let resetPasswordSet={
-email:this.email,
-newPassword:this.confirmPassword,
-password:this.newPassword
-}
-this.loginService.passwordReset(resetPasswordSet).subscribe((res:any)=>{
-  this._toast.showToaster.next({
-    severity: 'success',
-    summary: 'success',
-    detail: res.message,
-})
-this.backToLogIn()
-},
-((er:any)=>{
-  this._toast.showToaster.next({
-    severity: 'error',
-    summary: 'error',
-    detail: er.error.message,
-  });
-}))
+  passwordReset() {
+    let resetPasswordSet = {
+      email: this.email,
+      newPassword: this.confirmPassword,
+      password: this.newPassword,
+    };
+    this.loginService.passwordReset(resetPasswordSet).subscribe(
+      (res: any) => {
+        this._toast.showToaster.next({
+          severity: 'success',
+          summary: 'success',
+          detail: res.message,
+        });
+        this.backToLogIn();
+      },
+      (er: any) => {
+        this._toast.showToaster.next({
+          severity: 'error',
+          summary: 'error',
+          detail: er.error.message,
+        });
+      }
+    );
   }
-  backToLogIn(){
-    this.loginModal=true;
+  backToLogIn() {
+    this.loginModal = true;
     this.forgotPassword = false;
     this.forgotPasswordOtp = false;
     this.resetPassword = false;
   }
 
-  onEmailOtpChange(event:any){
-    if(event.length == 4){
-
-      this.emailOtp=event
-    }}}
+  onEmailOtpChange(event: any) {
+    if (event.length == 4) {
+      this.emailOtp = event;
+    }
+  }
+}
 function observableOf(arg0: boolean) {
   throw new Error('Function not implemented.');
 }

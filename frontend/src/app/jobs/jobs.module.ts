@@ -14,13 +14,15 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonModule} from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
+import { BasicInternshipComponent } from './basic-internship/basic-internship.component';
 @NgModule({
   declarations: [
     JobsComponent,
     BannerCardsComponent,
     InternshipsComponent,
     RequiredSkillStepComponent,
-    UploadResumeStepComponent
+    UploadResumeStepComponent,
+    BasicInternshipComponent
   ],
   imports: [
     CommonModule,

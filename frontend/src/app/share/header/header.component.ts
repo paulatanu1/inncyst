@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -33,7 +33,7 @@ interface IregistrationOption {
   styleUrls: ['./header.component.scss'],
   providers: [MessageService],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit ,OnChanges{
   items: MenuItem[];
   dropdownitems: MenuItem[];
   registration: boolean = false;
@@ -58,6 +58,8 @@ export class HeaderComponent implements OnInit {
   loginModal: boolean = true;
   logoutSuccess: boolean = false;
   forgotPassword: boolean = false;
+  logInToken!: any;
+  userType!: any;
   //Outputs
   constructor(
     private otpService: OtpVerificationService,
@@ -70,8 +72,19 @@ export class HeaderComponent implements OnInit {
     private _login: LoginEnablerService,
     private quiestion: QuestionSetEnablerService,
     private _header: HeaderService,
-    private loginApiService:LoginApiService,
+    private loginApiService: LoginApiService
   ) {
+    //check allready login user or not
+    this.logInToken = ls.get('login_token');
+    if (this.logInToken) {
+      this.logoutSuccess = true;
+    } else {
+      this.logoutSuccess = false;
+    }
+
+    this.userType = ls.get('userType');
+    console.log(this.userType)
+
     this.items = [
       {
         label: 'As a Student',
@@ -87,8 +100,8 @@ export class HeaderComponent implements OnInit {
       },
     ];
     this.dropdownitems = [
-      { label: 'Internship' },
-      { label: 'Job' },
+      { label: 'Internship/Job' },
+      { label: 'Industry' },
       { label: 'Project Enabler' },
     ];
 
@@ -115,12 +128,18 @@ export class HeaderComponent implements OnInit {
       },
     ];
   }
-
+ngOnChanges(): void {
+  this.userType = ls.get('userType');
+  console.log(this.userType)
+ console.log(this.logInToken)
+}
   ngOnInit(): void {
-    this.logoutSuccess=true;
-    this.logoutSuccess=<boolean>ls.get('logoutSuccess');
+    // debugger
+    // this.logoutSuccess=true;
+    // this.logoutSuccess=<boolean>ls.get('logoutSuccess');
 
-
+   
+    console.log(this.userType);
     this.Profileitems = [
       {
         label: 'Profile',
@@ -202,7 +221,54 @@ export class HeaderComponent implements OnInit {
       },
     });
   }
+  product() {
+         //check allready login user or not
+         this.logInToken = ls.get('login_token');
+         if (this.logInToken) {
+           this.logoutSuccess = true;
+         } else {
+           this.logoutSuccess = false;
+         }
+              console.log(this.userType)
+             console.log(this.logInToken)
 
+
+             this.dropdownitems = [
+      {
+        label: 'Internship/Job',
+        icon: 'pi pi-refresh',
+        command: () => {
+          this.userType = ls.get('userType');
+ 
+
+          if (this.logInToken && this.userType == 'student') {
+            console.log(this.logInToken, this.userType == 'student');
+            this.router.navigateByUrl('jobs/internships');
+          } else if(!this.logInToken && !this.userType) {
+            this.router.navigateByUrl('jobs/basicInternship');
+          }
+        },
+      },
+      {
+        label: 'Industry',
+        icon: 'pi pi-refresh',
+        command: () => {
+          if (this.logInToken && this.userType == 'industry') {
+            this.router.navigateByUrl('jobs/industry');
+          } else if (!this.logInToken && !this.userType) {
+            this.router.navigateByUrl('jobs/basicInternship');
+          }
+        },
+      },
+      {
+        label: 'Project Enabler',
+        icon: 'pi pi-refresh',
+        command: () => {
+          alert('comming soon ....');
+        },
+      },
+    ];
+  }
   optionClick(url: string) {
     // this.progressBar = true;
     this.progress.isProgressBarShow.next(true);
@@ -285,10 +351,10 @@ export class HeaderComponent implements OnInit {
   getLoginForm() {
     this.setQueryParams('login');
     this.loginflow = true;
-    this.loginApiService.loginModal.next(true)
-    this.loginApiService.forgotPassword.next(false)
-    this.loginApiService.forgotPasswordOtp.next(false)
-    this.loginApiService.resetPassword.next(false)
+    this.loginApiService.loginModal.next(true);
+    this.loginApiService.forgotPassword.next(false);
+    this.loginApiService.forgotPasswordOtp.next(false);
+    this.loginApiService.resetPassword.next(false);
     this.loginModal = true;
     this.forgotPassword = false;
   }
@@ -313,11 +379,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onClosePopup(popupname: string) {
-    this.loginApiService.closePopup.next(true)
+    this.loginApiService.closePopup.next(true);
     if (popupname) {
       this.resetQueryParams();
     }
-   
   }
   logOutUser() {
     ls.clear();

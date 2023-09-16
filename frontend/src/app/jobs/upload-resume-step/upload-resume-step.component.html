@@ -1,29 +1,32 @@
 <div class="modal-content">
-  <section class="contact_info">
+  <section class="contact_info"  *ngIf="userLoginDetails">
     <h2>Contact Info</h2>
     <div class="contact_img_details">
       <div class="contact_img">
         <span
           ><img
-            src="https://image.shutterstock.com/image-vector/dotted-spiral-vortex-royaltyfree-images-600w-2227567913.jpg"
+          src="{{
+            userLoginDetails.image ? 'userLoginDetails.image' : '../../../assets/no-image.svg'
+          }}"
         /></span>
       </div>
       <div class="contact_details">
-        <h3>{{ userLoginDetails.name }}</h3>
+        <h3>{{ userLoginDetails ?. name }}</h3>
         <span>
           Graphic designer | Web Designer | UI/UX Designer | Web developer
         </span>
-        <strong>Kolkata, West Bengal, India</strong>
+        <strong>{{userLoginDetails.location}}</strong>
       </div>
     </div>
-    <div class="uploadresume_form">
+    <div class="uploadresume_form" >
       <div class="inputGroup">
         <label>Email</label>
         <input
+       
           type="text"
           pInputText
           disabled
-          [(ngModel)]="userLoginDetails.email"
+          [value]="userLoginDetails.email"
         />
       </div>
       <div class="inputGroup mobile_num">
@@ -39,7 +42,7 @@
           type="text"
           pInputText
           disabled
-          [(ngModel)]="userLoginDetails.phone"
+          [value]="userLoginDetails.phone"
         />
       </div>
       <div class="upload_resume">
