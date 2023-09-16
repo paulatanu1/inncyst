@@ -70,7 +70,7 @@ export class HeaderComponent implements OnInit {
     private _login: LoginEnablerService,
     private quiestion: QuestionSetEnablerService,
     private _header: HeaderService,
-    private loginApiService:LoginApiService,
+    private loginApiService: LoginApiService
   ) {
     this.items = [
       {
@@ -117,9 +117,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logoutSuccess=true;
-    this.logoutSuccess=<boolean>ls.get('logoutSuccess');
-
+    this.logoutSuccess = true;
+    this.logoutSuccess = <boolean>ls.get('logoutSuccess');
 
     this.Profileitems = [
       {
@@ -129,6 +128,14 @@ export class HeaderComponent implements OnInit {
           this.router.navigate(['my-profile']);
         },
       },
+      {
+        label: 'Job Apply',
+        icon: 'pi pi-user',
+        command: () => {
+          this.router.navigate(['jobs/job-applyed']);
+        },
+      },
+
       {
         label: 'Change Password',
         icon: 'pi pi-lock',
@@ -285,10 +292,10 @@ export class HeaderComponent implements OnInit {
   getLoginForm() {
     this.setQueryParams('login');
     this.loginflow = true;
-    this.loginApiService.loginModal.next(true)
-    this.loginApiService.forgotPassword.next(false)
-    this.loginApiService.forgotPasswordOtp.next(false)
-    this.loginApiService.resetPassword.next(false)
+    this.loginApiService.loginModal.next(true);
+    this.loginApiService.forgotPassword.next(false);
+    this.loginApiService.forgotPasswordOtp.next(false);
+    this.loginApiService.resetPassword.next(false);
     this.loginModal = true;
     this.forgotPassword = false;
   }
@@ -313,11 +320,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onClosePopup(popupname: string) {
-    this.loginApiService.closePopup.next(true)
+    this.loginApiService.closePopup.next(true);
     if (popupname) {
       this.resetQueryParams();
     }
-   
   }
   logOutUser() {
     ls.clear();

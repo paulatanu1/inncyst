@@ -1,0 +1,102 @@
+.job_tabs {
+    margin: 125px auto 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    max-width: 1297px;
+    flex-wrap: wrap;
+    ::ng-deep .p-element {
+        width: 100%;
+    }
+    ::ng-deep .p-tabview-nav {
+        li {
+            padding-right: 40px;
+        }
+    }
+    ::ng-deep .p-tabview-panels {
+        padding: 20px 0;
+        .p-tabview-panel {
+            ul {
+                padding: 0;
+                margin: 0;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            li {
+                list-style-type: none;
+                border: 1px solid #E9E9E9;
+                border-radius: 15px;
+                padding: 15px;
+                flex: 0 0 24%;
+                margin-bottom: 20px;
+                position: relative;
+                    & > i {
+                        position: absolute;
+                        right: 10px;
+                        top: 20px;
+                    }
+                    h2 {
+                        font-size: 20px;
+                        font-weight: 700;
+                    }
+                    & > span {
+                        display: inline-block;
+                        border-radius: 14px;
+                        background: #d5f0d8;
+                        color: #49864F;
+                        font-size: 12px;
+                        font-weight: 700;
+                        padding: 4px 12px;
+                        margin-bottom: 20px;
+                        &.applied {
+                            background: #C0E2F3;
+                            color: #0F6F9E;
+                        }
+                        &.rejected {
+                            background:#EEB2B2;
+                            color: #C63A3A;
+                        }
+                    }
+                    .location_info {
+                        margin-bottom: 6px;
+                        i {
+                        display: inline-block;
+                        vertical-align: middle; 
+                        margin-right: 5px;
+                        }
+                        span {
+                            font-size: 12px;
+                            color: #6C6C6C;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                    .company_info {
+                        border-top: 1px solid #e9e9e9;
+                        margin-top: 15px;
+                        padding-top: 15px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        img {
+                            max-width: 60%;
+                            height: auto;
+                            display: inline-block;
+                                vertical-align: middle;
+                                margin-right: 10px;
+                        }
+                        strong {
+                            font-size: 14px;
+                                color: #522D80;
+                                    font-weight: 600;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                }  
+            }
+            
+        }
+    }
+}
