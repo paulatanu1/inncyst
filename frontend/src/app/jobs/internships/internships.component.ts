@@ -62,7 +62,15 @@ export class InternshipsComponent implements OnInit {
     this.profileUpdate = false;
   }
 
-  jobDetails(){
-    alert('done')
+  jobDetails(id: any) {
+    alert('done');
+    this.jobService.getJobDetails(id).subscribe({
+      next: (res) => {
+        console.log(res, 'res');
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }
