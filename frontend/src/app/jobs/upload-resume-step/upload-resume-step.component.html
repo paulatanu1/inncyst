@@ -3,10 +3,13 @@
     <h2>Contact Info</h2>
     <div class="contact_img_details">
       <div class="contact_img">
-        <span><img src="https://image.shutterstock.com/image-vector/dotted-spiral-vortex-royaltyfree-images-600w-2227567913.jpg"></span>
+        <span
+          ><img
+            src="https://image.shutterstock.com/image-vector/dotted-spiral-vortex-royaltyfree-images-600w-2227567913.jpg"
+        /></span>
       </div>
       <div class="contact_details">
-        <h3>{{userLoginDetails.name}}</h3>
+        <h3>{{ userLoginDetails.name }}</h3>
         <span>
           Graphic designer | Web Designer | UI/UX Designer | Web developer
         </span>
@@ -16,18 +19,39 @@
     <div class="uploadresume_form">
       <div class="inputGroup">
         <label>Email</label>
-        <input type="text" pInputText disabled [(ngModel)]="userLoginDetails.email"/>
+        <input
+          type="text"
+          pInputText
+          disabled
+          [(ngModel)]="userLoginDetails.email"
+        />
       </div>
       <div class="inputGroup mobile_num">
         <label>Mobile Number</label>
-        <input type="text" placeholder="+91" class="smallInput" pInputText disabled />
-        <input type="text" pInputText disabled [(ngModel)]="userLoginDetails.phone" />
+        <input
+          type="text"
+          placeholder="+91"
+          class="smallInput"
+          pInputText
+          disabled
+        />
+        <input
+          type="text"
+          pInputText
+          disabled
+          [(ngModel)]="userLoginDetails.phone"
+        />
       </div>
       <div class="upload_resume">
         <h3>Resume</h3>
         <div class="uploadField">
-            <input type="file" (change)="onFileSelected($event)"  size="5000000" accept=".pdf, .doc, .docx" />
-                  </div>
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            size="5000000"
+            accept=".pdf, .doc, .docx"
+          />
+        </div>
         <button class="upload_btn" (click)="uploadFile()">Upload Resume</button>
         <span class="fileTypes">DOC, DOCX, PDF (5 MB)</span>
       </div>
@@ -36,28 +60,47 @@
         <span>Confirm your availability</span>
         <div class="inputGroup">
           <div class="p-field-radiobutton">
-            <p-radioButton
-              name="option"
+            <input
+              type="radio"
+              name="availability"
+              id="city1"
+              (click)="addavailability()"
+            />
+            <!-- <p-radioButton
+              name="availability"
               value="Chicago"
               [(ngModel)]="availability"
               inputId="yes"
               (click)="addavailability()"
-            ></p-radioButton>
+            ></p-radioButton> -->
             <label for="city1">
               Yes, I am available for 3 months starting immediately for a work
               from home internship
             </label>
           </div>
           <div class="p-field-radiobutton">
-            <p-radioButton
-              name="option"
+            <input
+              type="radio"
+              id="city2"
+              (click)="addTextArea()"
+              name="availability"
+            />
+            <!-- <p-radioButton
+              name="availability_message"
               value="Chicago2"
               [(ngModel)]="availability_message"
               inputId="no"
               (click)="addTextArea()"
-            ></p-radioButton>
-            <label for="city1" >No (Please specify your availability)</label>
-            <input type="text" *ngIf="inputFieldEnable" [(ngModel)]="availability_messageValue">
+            ></p-radioButton> -->
+            <label for="city2">No (Please specify your availability)</label>
+            <br />
+            <textarea
+              type="text"
+              rows="5"
+              cols="50"
+              *ngIf="inputFieldEnable"
+              [(ngModel)]="availability_messageValue"
+            ></textarea>
           </div>
         </div>
       </div>

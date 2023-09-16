@@ -39,13 +39,19 @@ export class ApiService {
 
     let httpHeaderValue = new HttpHeaders();
     if (headertoken == undefined) {
-      httpHeaderValue = httpHeaderValue.set('X-localization', localization);
-    } else {
       httpHeaderValue = httpHeaderValue
-        .set('Authorization', 'Bearer ' + ls.set('login_token', true))
-        //.set('Content-Type', 'application/json')
-        .set('X-localization', localization);
+      .set('Authorization', 'Bearer ' +  ls.get('login_token'))
+      .set('Content-Type', 'application/json')
+      .set('X-localization', localization);
+      httpHeaderValue = httpHeaderValue.set('X-localization', localization);
     }
+    //  else {
+
+    //   httpHeaderValue = httpHeaderValue
+    //     .set('Authorization', 'Bearer ' + ls.set('login_token', ls.get('login_token')))
+    //     //.set('Content-Type', 'application/json')
+    //     .set('X-localization', localization);
+    // }
 
     if (method == 'post') {
       return this.http
@@ -65,9 +71,7 @@ export class ApiService {
           })
         );
     } else if (method == 'get') {
-    // console.log(this.http.get(url).subscribe((res=>{
-    //   console.log(res)
-    // })))
+    console.log(httpHeaderValue,'http')
       return this.http
         .get(url, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
