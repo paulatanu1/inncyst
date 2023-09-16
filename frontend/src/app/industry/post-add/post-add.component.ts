@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LeftMenuHandelService } from '../left-menu-handel.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JobPostApiService } from '../jobs-management/jobs-management-service/job-post-api.service';
 interface cities {
   optionName: string;
   code: string;
 }
 interface Payload {
-  type: string;
+  opportunityTypes: string;
   details: string;
   skills: string[];
   intranshipType: string;
@@ -15,7 +16,7 @@ interface Payload {
   jobOpening: number;
   responsibilities: string[];
   stipend: string;
-  salary: number;
+  salary: string;
   salaryType: string;
   perks: string;
 }
@@ -53,7 +54,8 @@ export class PostAddComponent implements OnInit {
 
   constructor(
     private _menuHandel: LeftMenuHandelService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private jobPost: JobPostApiService
   ) {
     this.cities = [
       { optionName: 'Months', code: 'M' },
@@ -61,18 +63,19 @@ export class PostAddComponent implements OnInit {
     ];
 
     this.postJob = this.fb.group({
-      type: ['', Validators.required],
+      opportunityTypes: ['', Validators.required],
       details: ['', Validators.required],
       skills: [[]],
       intranshipType: [''],
       startDate: [''],
       duration: [''],
+      durationIn: [this.cities[0].optionName],
       jobOpening: [0],
       responsibilities: [[]],
       stipend: [''],
-      salary: [0],
-      salaryType: [''],
-      perks: [''],
+      salary: [''],
+      salaryType: [this.cities[0].optionName],
+      perks: [[]],
     });
   }
 
@@ -81,14 +84,24 @@ export class PostAddComponent implements OnInit {
   }
 
   submitForm() {
+    console.log(this.postJob.valid);
     if (this.postJob.valid) {
       const formData: Payload = this.postJob.value;
+
+      this.jobPost.submitJob(formData).subscribe({
+        next: (resp) => {
+          console.log(resp);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
 
       // Now you can use formData to send the data to your API
       console.log(formData);
 
       // Clear the form or perform any necessary actions
-      this.postJob.reset();
+      // this.postJob.reset();
     }
   }
 

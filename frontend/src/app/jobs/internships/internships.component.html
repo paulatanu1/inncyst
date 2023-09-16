@@ -3,240 +3,122 @@
     <section class="left_aside_part">
       <div class="company_lists">
         <ul>
-          <li class="is_active" (click)="jobDetails('64fd77665810ffdaf7e9b5b2')">
+          <li
+            *ngFor="let a of AllJobDetails; let i = index"
+            (click)="jobDetails(a._id, i)"
+            [ngClass]="{ is_active: selectedJob == i }"
+          >
             <div class="company_details_head">
               <div>
                 <span>
                   <img
-                    src="../../../assets/hubspot.png"
-                    width="78"
-                    height="32"
+                    src="{{
+                      a.image ? 'a.image' : '../../../assets/no-image.svg'
+                    }}"
+                    width="170"
+                    height="75"
                     loading="lazy"
                   />
                 </span>
               </div>
               <h2>
-                UI/UX internship
-                <span>Hubspot</span>
+                {{ a.companyName }}
+                <span>{{ a.intranshipType }}</span>
               </h2>
             </div>
-            <div class="company_tags">
-              <span>3d Design</span>
-              <span>Blender</span>
+            <div class="company_tags" *ngFor="let b of a.skills">
+              <span>{{ b }}</span>
             </div>
             <div class="type_applied">
               <span>
                 <img src="../../../assets/work.svg" width="20" height="20" />
-                <strong>Full Time</strong>
+                <strong>{{ a.jobType }}</strong>
               </span>
               <span>
                 <img src="../../../assets/profile.svg" width="20" height="20" />
-                <strong>74 applied</strong>
+                <strong>{{ a.hasApplied }}</strong>
               </span>
             </div>
           </li>
 
-
-
-
-          <li>
-            <div class="company_details_head">
-              <div>
-                <span>
-                  <img src="../../../assets/hopin.png" width="78" height="32" />
-                </span>
-              </div>
-              <h2>
-                UI/UX internship
-                <span>Hubspot</span>
-              </h2>
-            </div>
-            <div class="company_tags">
-              <span>3d Design</span>
-              <span>Blender</span>
-            </div>
-            <div class="type_applied">
-              <span>
-                <img src="../../../assets/work.svg" width="20" height="20" />
-                <strong>Full Time</strong>
-              </span>
-              <span>
-                <img src="../../../assets/profile.svg" width="20" height="20" />
-                <strong>74 applied</strong>
-              </span>
-            </div>
-          </li>
-          <li>
-            <div class="company_details_head">
-              <div>
-                <span>
-                  <img src="../../../assets/slack.png" width="78" height="32" />
-                </span>
-              </div>
-              <h2>
-                UI/UX internship
-                <span>Hubspot</span>
-              </h2>
-            </div>
-            <div class="company_tags">
-              <span>3d Design</span>
-              <span>Blender</span>
-            </div>
-            <div class="type_applied">
-              <span>
-                <img src="../../../assets/work.svg" width="20" height="20" />
-                <strong>Full Time</strong>
-              </span>
-              <span>
-                <img src="../../../assets/profile.svg" width="20" height="20" />
-                <strong>74 applied</strong>
-              </span>
-            </div>
-          </li>
-          <li>
-            <div class="company_details_head">
-              <div>
-                <span>
-                  <img src="../../../assets/canva.png" width="78" height="32" />
-                </span>
-              </div>
-              <h2>
-                UI/UX internship
-                <span>Hubspot</span>
-              </h2>
-            </div>
-            <div class="company_tags">
-              <span>3d Design</span>
-              <span>Blender</span>
-            </div>
-            <div class="type_applied">
-              <span>
-                <img src="../../../assets/work.svg" width="20" height="20" />
-                <strong>Full Time</strong>
-              </span>
-              <span>
-                <img src="../../../assets/profile.svg" width="20" height="20" />
-                <strong>74 applied</strong>
-              </span>
-            </div>
-          </li>
-          <li>
-            <div class="company_details_head">
-              <div>
-                <span>
-                  <img
-                    src="../../../assets/hotjar.png"
-                    width="78"
-                    height="32"
-                  />
-                </span>
-              </div>
-              <h2>
-                UI/UX internship
-                <span>Hubspot</span>
-              </h2>
-            </div>
-            <div class="company_tags">
-              <span>3d Design</span>
-              <span>Blender</span>
-            </div>
-            <div class="type_applied">
-              <span>
-                <img src="../../../assets/work.svg" width="20" height="20" />
-                <strong>Full Time</strong>
-              </span>
-              <span>
-                <img src="../../../assets/profile.svg" width="20" height="20" />
-                <strong>74 applied</strong>
-              </span>
-            </div>
-          </li>
+          <!-- -::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->
         </ul>
       </div>
     </section>
 
-
-
-
-
-<!--::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->
-
-
     <section class="right_details_part">
-      <div class="right_details_head">
-        <div>
-          <span>
-            <img
-              src="../../../assets/company-logo-big.png"
-              width="170"
-              height="75"
-            />
-          </span>
-          <div class="company_tags">
-            <span>#Design</span>
-            <span>#UI/UX</span>
+      <div *ngFor="let a of singleJobDetails">
+        {{ a.companyName }}
+        <div class="right_details_head">
+          <div>
+            <span>
+              <img
+                src="{{ a.image ? 'a.image' : '../../../assets/no-image.svg' }}"
+                width="170"
+                height="75"
+              />
+            </span>
+            <div class="company_tags" *ngFor="let b of a.skills">
+              <span>{{ b }}</span>
+            </div>
           </div>
+          <h2>
+            {{ a.intranshipName }}
+            <!-- <span>{{a.companyName}}</span> -->
+          </h2>
         </div>
-        <h2>
-          UI/UX internship
-          <span>Hubspot</span>
-        </h2>
-      </div>
-      <div class="overview">
-        <h2>Internship Overview</h2>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </p>
-        <h2>Key responsibilities:</h2>
-        <ul>
-          <li>
-            1. Designing, manufacturing, and installing components that fulfill
-            requirements
-          </li>
-          <li>2. Creating plans and designs using CAD technology</li>
-          <li>
-            3. Learning quickly and working independently with minimal
-            supervision
-          </li>
-        </ul>
-        <h2>Skill(s) required</h2>
-        <div class="tags">
-          <span>Ui Designer</span>
-          <span>Figma</span>
-          <span>Landing Page</span>
-        </div>
-        <h2>Salary</h2>
-        <p>Annual CTC:2.8 - 3.7 LPA</p>
-        <ul>
-          <span>Annual CTC breakup:</span>
-          <li>1. Fixed component: 80%</li>
-          <li>2. Variable component: 10%</li>
-          <li>3. Other incentives: 10%</li>
-        </ul>
-        <h2>Perks</h2>
-        <div class="tags">
-          <span>Certificate</span>
-          <span>Letter of recommendation</span>
-          <span>Flexible work hours</span>
-        </div>
-        <h2>Additional Information</h2>
-        <p>
-          Stipend structure: This is a performance-based internship. In addition
-          to the minimum-assured stipend, you will also be paid a
-          performance-linked incentive (10% of total funds raised).
-        </p>
-        <h2>Number of openings</h2>
-        <p>200</p>
-        <div class="apply_btn">
-          <button type="button" (click)="applyJob()">Apply Now</button>
+        <div class="overview">
+          <h2>Internship Overview</h2>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+          </p>
+          <h2>Key responsibilities:</h2>
+          <ul>
+            <li>
+              1. Designing, manufacturing, and installing components that
+              fulfill requirements
+            </li>
+            <li>2. Creating plans and designs using CAD technology</li>
+            <li>
+              3. Learning quickly and working independently with minimal
+              supervision
+            </li>
+          </ul>
+          <h2>Skill(s) required</h2>
+          <div class="tags" *ngFor="let b of a.skills">
+            <span>{{ b }}</span>
+          </div>
+          <h2>Salary</h2>
+          <p>Annual CTC:{{ a.salary }} LPA</p>
+          <ul>
+            <span>Annual CTC breakup:</span>
+            <li>1. Fixed component: 80%</li>
+            <li>2. Variable component: 10%</li>
+            <li>3. Other incentives: 10%</li>
+          </ul>
+          <h2>Perks</h2>
+          <div class="tags">
+            <span>Certificate</span>
+            <span>Letter of recommendation</span>
+            <span>Flexible work hours</span>
+          </div>
+          <h2>Additional Information</h2>
+          <p>
+            {{ a.information }}
+          </p>
+          <h2>Number of openings</h2>
+          <p>{{ a.opens }}</p>
+          <div class="apply_btn">
+            <button type="button" (click)="applyJob()">Apply Now</button>
+          </div>
         </div>
       </div>
     </section>
@@ -247,14 +129,14 @@
   (onHide)="closeProfileUpdateForm()"
   [(visible)]="profileUpdate"
   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
-  [style]="{ width: '55vw' }"
   [modal]="true"
   [draggable]="false"
 >
   <ng-template pTemplate="header">
     <h2>
-      Applying for Graphic Design internship
-      <span>Hubspot</span>
+      Applying for {{ singleJobDetails[0].intranshipName }}
+      internship
+      <span>{{ singleJobDetails[0].companyName }}</span>
     </h2>
   </ng-template>
   <div>

@@ -1,7 +1,11 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import ls from 'localstorage-slim';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
+// import { LoginDetailsService } from 'src/app/common-service/login-details.service';
 import { JobsService } from 'src/app/service/jobs.service';
+// import { JobsService } from 'src/app/service/jobs.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { LoginApiService } from 'src/app/share/login/login-api.service';
 
@@ -20,12 +24,13 @@ export class UploadResumeStepComponent implements OnInit {
   fileName!: string;
   base64!: string;
   jobId: any;
-  value!:string
   resumeUploadSucess!: boolean;
+  // fileName!:string;
   constructor(
     private loginDetails: LoginDetailsService,
     private _toast: ToastServiceService,
-    private jobService: JobsService
+    private jobService: JobsService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +43,7 @@ export class UploadResumeStepComponent implements OnInit {
   }
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+    this.fileName=this.selectedFile.name
     console.log(this.selectedFile);
   }
   uploadFile() {
@@ -56,12 +62,15 @@ export class UploadResumeStepComponent implements OnInit {
       // };
       // reader.readAsDataURL(this.selectedFile);
       console.log(this.selectedFile);
-      let data = {
-        jobId: this.jobId,
-        resume: this.selectedFile,
-      };
-      this.jobService.uploadResume(data).subscribe({
-        next: (res) => {
+      const form_data = new FormData();
+      form_data.append('jobId','64fd77665810ffdaf7e9b5b2')
+       form_data.append('resume',this.selectedFile.type)
+      // {
+      //   jobId: this.jobId,
+      //   resume: this.selectedFile,
+      // };
+      this.jobService.uploadResume(form_data).subscribe({
+        next: ((res:any) => {
           console.log(res);
           this._toast.showToaster.next({
             severity: 'success',
@@ -69,7 +78,14 @@ export class UploadResumeStepComponent implements OnInit {
             detail: res.success,
           });
           this.resumeUploadSucess = true;
-        },
+        }),
+        error:((err:any)=>{
+          this._toast.showToaster.next({
+            severity: 'error',
+            summary: 'error',
+            detail: err.success,
+          });
+        })
       });
       return this.selectedFile;
     }
@@ -80,23 +96,41 @@ export class UploadResumeStepComponent implements OnInit {
       phone: this.userLoginDetails.phone,
       availability: this.availability,
       availability_message: this.availability_messageValue,
-      jobId: this.jobId,
+      jobId: '64fd77665810ffdaf7e9b5b2',
     };
     console.log(details);
-    if (this.resumeUploadSucess) {
+    // if (this.resumeUploadSucess) {
       this.jobService.applyJob(details).subscribe({
-        next: (res) => {
+        next: (res:any) => {
           console.log(res);
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: res.success,
+          });
         },
-        error: (res) => {
+        error: (res:any) => {
           console.log(res);
+        
+            this._toast.showToaster.next({
+              severity: 'error',
+              summary: 'error',
+              detail:'Please upload a resume',
+            });
+        
         },
-      });
-    }
+      },
+
+      
+      );
+    // }
   }
   addavailability() {
     this.availability = '0';
     this.availability_messageValue = '';
     this.inputFieldEnable = false;
+  }
+  back(){
+    this.router.navigate(['jobs/internships/skills']);
   }
 }

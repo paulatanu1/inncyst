@@ -51,7 +51,9 @@
             size="5000000"
             accept=".pdf, .doc, .docx"
           />
+         
         </div>
+        <h4> {{fileName}}</h4>
         <button class="upload_btn" (click)="uploadFile()">Upload Resume</button>
         <span class="fileTypes">DOC, DOCX, PDF (5 MB)</span>
       </div>
@@ -108,6 +110,6 @@
   </section>
 </div>
 <div class="dialog-footer">
-  <a class="back_link">Back</a>
+  <a class="back_link" (click)="back()">Back</a>
   <button (click)="submitApplication()">Submit Application</button>
 </div>
