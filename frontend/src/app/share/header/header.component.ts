@@ -18,6 +18,7 @@ import { HeaderService } from '../module-service/header.service';
 import { OtpVerificationService } from '../registration-otp/otp-verification.service';
 import { LoginApiService } from '../login/login-api.service';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
+import { InternshipProfileService } from '../service/internship-profile.service';
 interface options {
   optionName: string;
   code: string;
@@ -60,6 +61,7 @@ export class HeaderComponent implements OnInit ,OnChanges{
   forgotPassword: boolean = false;
   logInToken!: any;
   userType!: any;
+  customHeader:boolean=true;
   //Outputs
   constructor(
     private otpService: OtpVerificationService,
@@ -72,7 +74,8 @@ export class HeaderComponent implements OnInit ,OnChanges{
     private _login: LoginEnablerService,
     private quiestion: QuestionSetEnablerService,
     private _header: HeaderService,
-    private loginApiService: LoginApiService
+    private loginApiService: LoginApiService,
+    private InternshipService:InternshipProfileService
   ) {
     //check allready login user or not
     this.logInToken = ls.get('login_token');
@@ -128,16 +131,22 @@ export class HeaderComponent implements OnInit ,OnChanges{
       },
     ];
   }
-ngOnChanges(): void {
+ngOnChanges() {
+  alert('dd')
   this.userType = ls.get('userType');
   console.log(this.userType)
  console.log(this.logInToken)
+
 }
   ngOnInit(): void {
     // debugger
     // this.logoutSuccess=true;
     // this.logoutSuccess=<boolean>ls.get('logoutSuccess');
-
+this.InternshipService.customHeader.subscribe({
+  next:(res=>{
+    this.customHeader=<boolean>res
+  })
+})
    
     console.log(this.userType);
     this.Profileitems = [
@@ -151,6 +160,9 @@ ngOnChanges(): void {
       {
         label: 'Change Password',
         icon: 'pi pi-lock',
+        command:()=>{
+          this.router.navigate(['change-password'])
+        }
       },
       {
         label: 'Logout',
@@ -239,8 +251,7 @@ ngOnChanges(): void {
         icon: 'pi pi-refresh',
         command: () => {
           this.userType = ls.get('userType');
- 
-
+  
           if (this.logInToken && this.userType == 'student') {
             console.log(this.logInToken, this.userType == 'student');
             this.router.navigateByUrl('jobs/internships');
@@ -284,6 +295,12 @@ ngOnChanges(): void {
     } else if (url === 'contactus') {
       this.router.navigateByUrl('/contactus');
       this.progress.isProgressBarShow.next(false);
+    }
+    else if(url === 'Jobs'){
+      alert('jobs comming soon........')
+    }
+    else if(url === 'My Jobs'){
+      alert('My Jobs comming soon.........')
     }
   }
 

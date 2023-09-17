@@ -89,18 +89,27 @@ export class UploadResumeStepComponent implements OnInit {
       // reader.readAsDataURL(this.selectedFile);
       console.log(this.selectedFile);
       let url='/student/upload-resume'
-      const form_data:any = new FormData();
-      form_data.append('jobId','64fd77665810ffdaf7e9b5b2')
-       form_data.append('resume', this.selectedFile)
+      const form_data:any = new Object();
+      form_data.jobId='64fd77665810ffdaf7e9b5b2';
+       form_data.resume= this.selectedFile
+       console.log(form_data,'95')
+
+
+      // const form_data:any = new FormData();
+      // form_data.append('jobId','64fd77665810ffdaf7e9b5b2');
+      // form_data.append('resume',this.selectedFile,this.selectedFile.name);
+
+       console.log(form_data,'95')
+
       // {
       //   jobId: this.jobId,
       //   resume: this.selectedFile,
       // };
-      return this.api.ApiCallWithLocalization(form_data,url,'post').subscribe({
-        next:((res:any)=>{
-          console.log(res)
-        })
-      })
+      // return this.api.ApiCallWithLocalization(form_data,url,'post').subscribe({
+      //   next:((res:any)=>{
+      //     console.log(res)
+      //   })
+      // })
       this.jobService.uploadResume(form_data).subscribe({
         next: ((res:any) => {
           console.log(res);

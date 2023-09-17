@@ -127,7 +127,7 @@ export class LoginComponent implements OnInit {
           //   image:res.data.image
           // })
           if (userRole === 'Student') {
-            this.router.navigateByUrl('/jobs/internships');
+            this.router.navigateByUrl('jobs/internships');
             ls.set('userType','student')
             // this.router.navigate(['/jobs/internship']);
           } else if (userRole === 'Industry') {

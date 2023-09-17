@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { JobsService } from 'src/app/service/jobs.service';
 import { HttpClient } from '@angular/common/http';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
+import { InternshipProfileService } from 'src/app/share/service/internship-profile.service';
 
 @Component({
   selector: 'app-internships',
@@ -21,14 +22,18 @@ export class InternshipsComponent implements OnInit {
   singleJobDetails:any=[];
   jobId=''
   selectedJob:number=0;
+
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
     private messageService: MessageService,
-    private jobService: JobsService
+    private jobService: JobsService,
+    private internshipService:InternshipProfileService
   ) {}
 
   ngOnInit(): void {
+
+this.internshipService.customHeader.next(false)
     this.items = [
       {
         label: 'Skill',
@@ -111,5 +116,12 @@ console.log(this.jobId)
         console.log(err);
       },
     });
+  }
+  ngOnDestroy(): void {
+    this.internshipService.customHeader.next(true)
+
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    
   }
 }
