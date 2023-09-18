@@ -60,37 +60,45 @@ export class JobApplyedComponent implements OnInit {
                     tooltipLabel: "Interviewing",
                     tooltipPosition: "left",
                 },
-                icon: 'pi pi-briefcase',
+                icon: 'pi pi-calendar-plus',
                 command: () => {
                     this.messageService.add({ severity: 'info', summary: 'Add', detail: 'Data Added' });
                 }
             },
             {
                 tooltipOptions: {
-                    tooltipLabel: "Archive",
+                    tooltipLabel: "Offer Received",
                     tooltipPosition: "left",
                 },
-                icon: 'pi pi-arrow-circle-down',
+                icon: 'pi pi-thumbs-up-fill',
                 command: () => {
                     this.messageService.add({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
                 }
             },
             {
                 tooltipOptions: {
-                    tooltipLabel: "Withdraw Application",
+                    tooltipLabel: "Hired",
                     tooltipPosition: "left",
                 },
-                icon: 'pi pi-minus-circle',
+                icon: 'pi pi-user',
                 command: () => {
                     this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
                 }
             },
             {
                 tooltipOptions: {
-                    tooltipLabel: "Report Job",
+                    tooltipLabel: "Not Selected",
                     tooltipPosition: "left",
                 },
-                icon: 'pi pi-flag-fill',
+                icon: 'pi pi-thumbs-down-fill',
+                // routerLink: ['/fileupload']
+            },
+            {
+                tooltipOptions: {
+                    tooltipLabel: "Not interested",
+                    tooltipPosition: "left",
+                },
+                icon: 'pi pi-thumbs-down-fill',
                 // routerLink: ['/fileupload']
             }
         ]

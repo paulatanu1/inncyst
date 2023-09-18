@@ -107,17 +107,42 @@
                         width: auto;
                         height: auto;
                     }
+                    & a {
+                        text-decoration: none;
+                    }
                 }
                 .update_status {
-                    display: block;
-                    width: 100%;
-                    background: #522D80;
-                    border: 1px solid #522D80;
-                    color: #fff;
-                    border-radius: 6px;
-                    padding: 10px 0;
-                    text-align: center;
+                    position: relative;
                     margin-top: 30px;
+                    ::ng-deep .p-speeddial {
+                        position: absolute;
+                        top: 0;
+                        margin:auto;
+                        width: 100%;
+                        display: block;
+                        height: 100%;
+                        & .p-button {
+                            width: 100%;
+                            text-align: center;
+                            height: 100%;
+                            &.p-button.p-button-icon-only .p-button-icon {
+                                    visibility: hidden;
+                                    opacity: 0;
+                                }
+                        }
+                    }
+                    & > button {
+                        display: block;
+                        width: 100%;
+                        background: #522D80;
+                        border: 1px solid #522D80;
+                        color: #fff;
+                        border-radius: 6px;
+                        padding: 10px 0;
+                        text-align: center;
+                        
+                    }
+                    
                 }
             }
             
