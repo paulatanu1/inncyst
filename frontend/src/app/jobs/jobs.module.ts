@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonModule} from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { BasicInternshipComponent } from './basic-internship/basic-internship.component';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
 @NgModule({
   declarations: [
     JobsComponent,
@@ -33,7 +34,8 @@ import { BasicInternshipComponent } from './basic-internship/basic-internship.co
     ReactiveFormsModule,
     FormsModule,
     RadioButtonModule,
-    FileUploadModule
+    FileUploadModule,
+    BreadcrumbModule
   ],
   exports:[DialogModule, SharedModule],
   // providers:[LoginDetailsService]
