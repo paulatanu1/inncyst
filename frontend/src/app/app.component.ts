@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
@@ -8,6 +8,7 @@ import { UrlConfig, urlConfig } from './url-config';
 import { LoginApiService } from './share/login/login-api.service';
 import ls from 'localstorage-slim';
 import { OtpVerificationService } from './share/registration-otp/otp-verification.service';
+import { ChangeDetectionStrategy } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +34,9 @@ export class AppComponent implements OnInit {
     private lastUrl: LastUrlService,
     private _toast: ToastServiceService,
     private messageService: MessageService,
-  private otpVerifivation:OtpVerificationService
+  private otpVerifivation:OtpVerificationService,
+  private cdk:ChangeDetectorRef
+
   ) {
     //Header show and Hide
     this._router.events.subscribe((val) => {
@@ -48,7 +51,11 @@ export class AppComponent implements OnInit {
       }
     });
   }
-
+ngAfterViewChecked(): void {
+  //Called after every check of the component's view. Applies to components only.
+  //Add 'implements AfterViewChecked' to the class.
+  this.cdk.detectChanges()
+}
   ngOnInit(): void {
     this.spinner.show();
     console.log(this.lastUrl.getPreviousUrl());

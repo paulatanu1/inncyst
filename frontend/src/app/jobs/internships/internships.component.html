@@ -2,6 +2,16 @@
   <section class="internship_sec_inner">
     <section class="left_aside_part">
       <div class="company_lists">
+       
+        <div
+      class="search-results-container"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="250"
+      (scrolled)="onScroll()"
+      [scrollWindow]="false"
+  
+    >
         <ul>
           <li
             *ngFor="let a of AllJobDetails; let i = index"
@@ -43,6 +53,8 @@
 
           <!-- -::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->
         </ul>
+      </div>
+ 
       </div>
     </section>
 
@@ -148,3 +160,4 @@
   </div>
   <router-outlet></router-outlet>
 </p-dialog>
+

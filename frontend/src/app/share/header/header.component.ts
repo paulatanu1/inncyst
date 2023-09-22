@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -75,7 +75,8 @@ export class HeaderComponent implements OnInit ,OnChanges{
     private quiestion: QuestionSetEnablerService,
     private _header: HeaderService,
     private loginApiService: LoginApiService,
-    private InternshipService:InternshipProfileService
+    private InternshipService:InternshipProfileService,
+    private cdk:ChangeDetectorRef
   ) {
     //check allready login user or not
     this.logInToken = ls.get('login_token');
@@ -130,6 +131,11 @@ export class HeaderComponent implements OnInit ,OnChanges{
         id: 1,
       },
     ];
+  }
+  ngAfterContentInit(): void {
+    //Called after ngOnInit when the component's or directive's content has been initialized.
+    //Add 'implements AfterContentInit' to the class.
+    this.cdk.detectChanges()
   }
 ngOnChanges() {
   alert('dd')

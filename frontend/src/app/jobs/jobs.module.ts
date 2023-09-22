@@ -16,6 +16,8 @@ import { RadioButtonModule} from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { BasicInternshipComponent } from './basic-internship/basic-internship.component';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+
 @NgModule({
   declarations: [
     JobsComponent,
@@ -23,7 +25,7 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
     InternshipsComponent,
     RequiredSkillStepComponent,
     UploadResumeStepComponent,
-    BasicInternshipComponent
+    BasicInternshipComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,7 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
     FormsModule,
     RadioButtonModule,
     FileUploadModule,
-    BreadcrumbModule
+    BreadcrumbModule,InfiniteScrollModule
   ],
   exports:[DialogModule, SharedModule],
   // providers:[LoginDetailsService]
