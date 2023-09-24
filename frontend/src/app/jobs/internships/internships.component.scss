@@ -265,3 +265,110 @@
         }
     }
 }
+
+.internship_details_part {
+    background: #F7F7F7;
+    margin-top: 120px;
+    padding-bottom: 107px;
+    .internship_details_part_inner {
+        max-width: 836px;
+        margin: 0 auto ;
+        & > h2 {
+            color: #522D80;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 600;
+            padding:37px 0 61px;
+            text-align: center;
+        }
+        .overview_details {
+            border-radius: 8px;
+            background: #FFF;
+            padding: 45px;
+            h2 {
+                font-size: 24px;
+                font-weight: 600;
+                color: #000000;
+                margin-bottom: 10px;
+            }
+            p {
+                color: #6C6C6C;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 15px;
+                margin-bottom: 20px;
+            }
+            ul {
+                list-style: none;
+                padding: 0;
+                margin-bottom: 25px;
+        
+                span {
+                    font-weight: 500;
+                    font-size: 13px;
+                    color: #6C6C6C;
+                    line-height: 27px;
+                }
+        
+                li {
+                    font-weight: 500;
+                    font-size: 13px;
+                    line-height: 27px;
+                    color: #6C6C6C;
+                }
+            }
+            .tags {
+                margin-bottom: 25px;
+        
+                span {
+                    display: inline-block;
+                    background: #EFEFEF;
+                    border-radius: 3px;
+                    padding: 10px 15px;
+                    font-weight: 500;
+                    font-size: 10px;
+                    line-height: 12px;
+                    text-align: center;
+                    color: #656565;
+                    margin-right: 11px;
+                }
+            }
+            .apply_btn {
+                text-align: center;
+                margin-top: 40px;
+                button.edit_btn {
+                    background: #fff;
+                    border: 1px solid #19A6EC;
+                    border-radius: 5px;
+                    color: #19A6EC;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                    padding: 10px 20px;
+                    display: inline-block;
+                    margin: 0 10px;
+                    &:hover {
+                        background: #19A6EC;
+                        color: #fff;
+                    }
+                }
+                button.post_btn {
+                    background: #19A6EC;
+                    border: 1px solid #19A6EC;
+                    border-radius: 5px;
+                    color: #fff;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                    padding: 10px 20px;
+                    display: inline-block;
+                    margin: 0 10px;
+                    &:hover {
+                        color: #19A6EC;
+                        background: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
