@@ -17,7 +17,7 @@ export class InternshipsComponent implements OnInit {
   items: MenuItem[] = [];
   activeIndex: number = 0;
 
-  AllJobDetails:any=[];
+  AllJobDetails: any = [];
   singleJobDetails: any = [];
   jobId = '';
   selectedJob: number = 0;
@@ -32,6 +32,12 @@ export class InternshipsComponent implements OnInit {
   jobType: string = '';
   type: string = '';
   totalJob!: number;
+  Sort: any;
+  sorting!: string;
+  jobTypeSort:any=[]
+  selectedJobType!:string;
+  selectedType!:string;
+  typeSort:any=[]
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
@@ -41,7 +47,6 @@ export class InternshipsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   
     this.internshipService.customHeader.next(false);
     this.items = [
       {
@@ -62,25 +67,76 @@ export class InternshipsComponent implements OnInit {
       },
     ];
     this.AllJbDetaails();
+
+    //sorting filter start here
+    this.Sort = [
+      {
+        name: 'please select Option',
+        disabled: true,
+      },
+      { name: 'ace' },
+      { name: 'dec' },
+    ];
+ 
+
+    this.jobTypeSort=[
+      {
+        name:'please select Job Type',disabled:true
+      },
+      {
+        name:'internships'
+      },
+      {
+        name:'job'
+      }
+    ]
+    this.typeSort=[
+      {
+        name:'please select  Type',disabled:true
+      },
+      {
+        name:'internships'
+      },
+      {
+        name:'job'
+      }
+    ]
+
+  }
+
+
+
+  selectedJobTypeDropdown(event:any){
+    this.jobType=event.value.name;
+    this.AllJobDetails=[]
+    this.AllJbDetaails();
+  }
+  sortDropdown(e: any) {
+    this.sort = e.value.name;
+    this.AllJobDetails = [];
+    this.AllJbDetaails();
+  }
+  selectedTypeDropdown(e:any){
+    this.type=e.value.name;
+    this.AllJobDetails = [];
+    this.AllJbDetaails();
+  }
+  sortLocation() {
+    this.AllJobDetails = [];
+    this.AllJbDetaails();
   }
   AllJbDetaails() {
     const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salary=${this.salary}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
-
-    console.log(url);
     this.jobService.getAllJobDetails('', url).subscribe({
       next: (res) => {
-        console.log(res.data.items,'res')
-        this.AllJobDetails=[...this.AllJobDetails,...res.data.items]
+        this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];
         this.totalJob = res.data.total;
-        console.log(this.AllJobDetails);
         this.AllJobDetails.forEach((element: any) => {
           element.companyName = element.companyName.toUpperCase();
           element.intranshipName = element.intranshipName.toUpperCase();
           // element.salary=(element.salary * 12) / 100000
         });
         this.jobId = this.AllJobDetails[0]._id;
-        console.log(this.jobId);
-
         // single job details1st for 1st job and1st time
         this.jobService.getJobDetails(this.AllJobDetails[0]._id).subscribe({
           next: (res) => {
@@ -91,7 +147,6 @@ export class InternshipsComponent implements OnInit {
               element.intranshipName = element.intranshipName.toUpperCase();
               element.salary = (element.salary * 12) / 100000;
             });
-            console.log(this.singleJobDetails, 'res');
           },
           error: (err) => {
             console.log(err);
@@ -132,11 +187,13 @@ export class InternshipsComponent implements OnInit {
     this.internshipService.customHeader.next(true);
   }
   onScroll() {
-    if (this.totalJob > this.AllJobDetails.length) 
-    {
+    console.log(this.sort, 'sort');
+    console.log(this.sorting);
+
+    if (this.totalJob > this.AllJobDetails.length) {
       this.page++;
-    console.log(this.page);
-    this.AllJbDetaails();
+      console.log(this.page);
+      this.AllJbDetaails();
+    }
   }
-}
 }

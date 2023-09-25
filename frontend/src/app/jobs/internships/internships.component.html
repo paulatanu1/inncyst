@@ -2,62 +2,89 @@
   <section class="internship_sec_inner">
     <section class="left_aside_part">
       <div class="company_lists">
-       
         <div
-      class="search-results-container"
-      infiniteScroll
-      [infiniteScrollDistance]="2"
-      [infiniteScrollThrottle]="250"
-      (scrolled)="onScroll()"
-      [scrollWindow]="false"
-  
-    >
-        <ul>
-          <li
-            *ngFor="let a of AllJobDetails; let i = index"
-            (click)="jobDetails(a._id, i)"
-            [ngClass]="{ is_active: selectedJob == i }"
-          >
-            <div class="company_details_head">
-              <div>
+          class="search-results-container"
+          infiniteScroll
+          [infiniteScrollDistance]="2"
+          [infiniteScrollThrottle]="250"
+          (scrolled)="onScroll()"
+          [scrollWindow]="false"
+        >
+          <ul>
+            <li
+              *ngFor="let a of AllJobDetails; let i = index"
+              (click)="jobDetails(a._id, i)"
+              [ngClass]="{ is_active: selectedJob == i }"
+            >
+              <div class="company_details_head">
+                <div>
+                  <span>
+                    <img
+                      src="{{
+                        a.image ? 'a.image' : '../../../assets/no-image.svg'
+                      }}"
+                      width="170"
+                      height="75"
+                      loading="lazy"
+                    />
+                  </span>
+                </div>
+                <h2>
+                  {{ a.companyName }}
+                  <span>{{ a.intranshipType }}</span>
+                </h2>
+              </div>
+              <div class="company_tags" *ngFor="let b of a.skills">
+                <span>{{ b }}</span>
+              </div>
+              <div class="type_applied">
+                <span>
+                  <img src="../../../assets/work.svg" width="20" height="20" />
+                  <strong>{{ a.jobType }}</strong>
+                </span>
                 <span>
                   <img
-                    src="{{
-                      a.image ? 'a.image' : '../../../assets/no-image.svg'
-                    }}"
-                    width="170"
-                    height="75"
-                    loading="lazy"
+                    src="../../../assets/profile.svg"
+                    width="20"
+                    height="20"
                   />
+                  <strong>{{ a.hasApplied }}</strong>
                 </span>
               </div>
-              <h2>
-                {{ a.companyName }}
-                <span>{{ a.intranshipType }}</span>
-              </h2>
-            </div>
-            <div class="company_tags" *ngFor="let b of a.skills">
-              <span>{{ b }}</span>
-            </div>
-            <div class="type_applied">
-              <span>
-                <img src="../../../assets/work.svg" width="20" height="20" />
-                <strong>{{ a.jobType }}</strong>
-              </span>
-              <span>
-                <img src="../../../assets/profile.svg" width="20" height="20" />
-                <strong>{{ a.hasApplied }}</strong>
-              </span>
-            </div>
-          </li>
+            </li>
 
-          <!-- -::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->
-        </ul>
-      </div>
- 
+            <!-- -::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->
+          </ul>
+        </div>
       </div>
     </section>
+    <div class="sorting">
+      <h1>sorting.............</h1>
+      <p-dropdown
+        [options]="Sort"
+        [(ngModel)]="sorting"
+        optionLabel="name"
+        (onChange)="sortDropdown($event)"
+      ></p-dropdown>
 
+      <p-dropdown
+      [options]="jobTypeSort"
+      [(ngModel)]="selectedJobType"
+      optionLabel="name"
+      (onChange)="selectedJobTypeDropdown($event)"
+    ></p-dropdown>
+
+    <p-dropdown
+    [options]="typeSort"
+    [(ngModel)]="selectedType"
+    optionLabel="name"
+    (onChange)="selectedTypeDropdown($event)"
+  ></p-dropdown>
+
+
+      <input type="text" [(ngModel)]="location" placeholder="Please Enter Location"/>
+      <button (click)="sortLocation()">search</button>
+    </div>
     <section class="right_details_part">
       <div *ngFor="let a of singleJobDetails">
         {{ a.companyName }}
@@ -160,4 +187,3 @@
   </div>
   <router-outlet></router-outlet>
 </p-dialog>
-

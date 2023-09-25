@@ -19,7 +19,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { BasicInternshipComponent } from './basic-internship/basic-internship.component';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
-
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     JobsComponent,
@@ -41,7 +41,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
     RadioButtonModule,
     FileUploadModule,
     TabViewModule,
-    BreadcrumbModule,InfiniteScrollModule
+    BreadcrumbModule,InfiniteScrollModule,DropdownModule
   ],
   exports:[DialogModule, SharedModule],
   // providers:[LoginDetailsService]
