@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -18,6 +18,7 @@ import { HeaderService } from '../module-service/header.service';
 import { OtpVerificationService } from '../registration-otp/otp-verification.service';
 import { LoginApiService } from '../login/login-api.service';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
+import { InternshipProfileService } from '../service/internship-profile.service';
 interface options {
   optionName: string;
   code: string;
@@ -33,7 +34,7 @@ interface IregistrationOption {
   styleUrls: ['./header.component.scss'],
   providers: [MessageService],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit ,OnChanges{
   items: MenuItem[];
   dropdownitems: MenuItem[];
   registration: boolean = false;
@@ -58,6 +59,9 @@ export class HeaderComponent implements OnInit {
   loginModal: boolean = true;
   logoutSuccess: boolean = false;
   forgotPassword: boolean = false;
+  logInToken!: any;
+  userType!: any;
+  customHeader:boolean=true;
   //Outputs
   constructor(
     private otpService: OtpVerificationService,
@@ -70,8 +74,21 @@ export class HeaderComponent implements OnInit {
     private _login: LoginEnablerService,
     private quiestion: QuestionSetEnablerService,
     private _header: HeaderService,
-    private loginApiService: LoginApiService
+    private loginApiService: LoginApiService,
+    private InternshipService:InternshipProfileService,
+    private cdk:ChangeDetectorRef
   ) {
+    //check allready login user or not
+    this.logInToken = ls.get('login_token');
+    if (this.logInToken) {
+      this.logoutSuccess = true;
+    } else {
+      this.logoutSuccess = false;
+    }
+
+    this.userType = ls.get('userType');
+    console.log(this.userType)
+
     this.items = [
       {
         label: 'As a Student',
@@ -87,8 +104,8 @@ export class HeaderComponent implements OnInit {
       },
     ];
     this.dropdownitems = [
-      { label: 'Internship' },
-      { label: 'Job' },
+      { label: 'Internship/Job' },
+      { label: 'Industry' },
       { label: 'Project Enabler' },
     ];
 
@@ -115,11 +132,29 @@ export class HeaderComponent implements OnInit {
       },
     ];
   }
+  ngAfterContentInit(): void {
+    //Called after ngOnInit when the component's or directive's content has been initialized.
+    //Add 'implements AfterContentInit' to the class.
+    this.cdk.detectChanges()
+  }
+ngOnChanges() {
+  alert('dd')
+  this.userType = ls.get('userType');
+  console.log(this.userType)
+ console.log(this.logInToken)
 
+}
   ngOnInit(): void {
-    this.logoutSuccess = true;
-    this.logoutSuccess = <boolean>ls.get('logoutSuccess');
-
+    // debugger
+    // this.logoutSuccess=true;
+    // this.logoutSuccess=<boolean>ls.get('logoutSuccess');
+this.InternshipService.customHeader.subscribe({
+  next:(res=>{
+    this.customHeader=<boolean>res
+  })
+})
+   
+    console.log(this.userType);
     this.Profileitems = [
       {
         label: 'Profile',
@@ -139,6 +174,9 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Change Password',
         icon: 'pi pi-lock',
+        command:()=>{
+          this.router.navigate(['change-password'])
+        }
       },
       {
         label: 'Logout',
@@ -209,7 +247,53 @@ export class HeaderComponent implements OnInit {
       },
     });
   }
+  product() {
+         //check allready login user or not
+         this.logInToken = ls.get('login_token');
+         if (this.logInToken) {
+           this.logoutSuccess = true;
+         } else {
+           this.logoutSuccess = false;
+         }
+              console.log(this.userType)
+             console.log(this.logInToken)
 
+
+             this.dropdownitems = [
+      {
+        label: 'Internship/Job',
+        icon: 'pi pi-refresh',
+        command: () => {
+          this.userType = ls.get('userType');
+  
+          if (this.logInToken && this.userType == 'student') {
+            console.log(this.logInToken, this.userType == 'student');
+            this.router.navigateByUrl('jobs/internships');
+          } else if(!this.logInToken && !this.userType) {
+            this.router.navigateByUrl('jobs/basicInternship');
+          }
+        },
+      },
+      {
+        label: 'Industry',
+        icon: 'pi pi-refresh',
+        command: () => {
+          if (this.logInToken && this.userType == 'industry') {
+            this.router.navigateByUrl('jobs/industry');
+          } else if (!this.logInToken && !this.userType) {
+            this.router.navigateByUrl('jobs/basicInternship');
+          }
+        },
+      },
+      {
+        label: 'Project Enabler',
+        icon: 'pi pi-refresh',
+        command: () => {
+          alert('comming soon ....');
+        },
+      },
+    ];
+  }
   optionClick(url: string) {
     // this.progressBar = true;
     this.progress.isProgressBarShow.next(true);
@@ -225,6 +309,12 @@ export class HeaderComponent implements OnInit {
     } else if (url === 'contactus') {
       this.router.navigateByUrl('/contactus');
       this.progress.isProgressBarShow.next(false);
+    }
+    else if(url === 'Jobs'){
+      alert('jobs comming soon........')
+    }
+    else if(url === 'My Jobs'){
+      alert('My Jobs comming soon.........')
     }
   }
 

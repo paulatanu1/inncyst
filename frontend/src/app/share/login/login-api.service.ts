@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
 import ls from 'localstorage-slim';
 import { Subject } from 'rxjs';
@@ -56,4 +57,16 @@ form_data.password=resetPasswordSet.password;
 return this.api.ApiCallWithLocalization(form_data,this.url,'put')
   }
 
+  changePassword(data:any){
+    let url='/auth/change-password'
+    // const form_data:any = new FormData();
+    // form_data.append('old_password',data.oldPassword)
+    // form_data.append('new_password',data.confirmPassword)
+    const form_data:any=new Object()
+form_data.old_password=data.oldPassword;
+form_data.new_password=data.confirmPassword
+    console.log(form_data,'form_data')
+    return this.api.ApiCallWithLocalization(form_data,url,'post')
+
+  }
 }

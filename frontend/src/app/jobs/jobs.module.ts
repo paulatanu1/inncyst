@@ -16,6 +16,10 @@ import { RadioButtonModule} from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { JobApplyedComponent } from './job-applyed/job-applyed.component';
 import { TabViewModule } from 'primeng/tabview';
+import { BasicInternshipComponent } from './basic-internship/basic-internship.component';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+
 @NgModule({
   declarations: [
     JobsComponent,
@@ -23,7 +27,8 @@ import { TabViewModule } from 'primeng/tabview';
     InternshipsComponent,
     RequiredSkillStepComponent,
     UploadResumeStepComponent,
-    JobApplyedComponent
+    JobApplyedComponent,
+    BasicInternshipComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +40,8 @@ import { TabViewModule } from 'primeng/tabview';
     FormsModule,
     RadioButtonModule,
     FileUploadModule,
-    TabViewModule
+    TabViewModule,
+    BreadcrumbModule,InfiniteScrollModule
   ],
   exports:[DialogModule, SharedModule],
   // providers:[LoginDetailsService]

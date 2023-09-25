@@ -270,6 +270,11 @@
     }
 }
 
-.rupam{
-    background-color: blue;
+    .search-results-container{
+    margin: 40px;
+    height: 600px;
+    width: 500px;
+    overflow: auto;
+    position: relative;
 }
+//   }

@@ -1,3 +1,7 @@
+
+::ng-deep .p-breadcrumb {
+  margin-top: 113px;
+}
 .banner_card_slider {
   background: radial-gradient(
     96.42% 668.24% at 51.28% 49.91%,
@@ -7,7 +11,7 @@
   text-align: center;
   padding: 60px 0;
   font-family: "Raleway", sans-serif;
-  margin-top: 113px;
+  
   h2 {
     color: #00a6f8;
     font-weight: 600;

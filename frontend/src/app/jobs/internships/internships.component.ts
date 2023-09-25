@@ -3,9 +3,9 @@ import { MenuItem, MessageService } from 'primeng/api';
 import { throwIfEmpty } from 'rxjs';
 import { Router } from '@angular/router';
 import { JobsService } from 'src/app/service/jobs.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
-
+import { InternshipProfileService } from 'src/app/share/service/internship-profile.service';
 @Component({
   selector: 'app-internships',
   templateUrl: './internships.component.html',
@@ -16,19 +16,33 @@ export class InternshipsComponent implements OnInit {
   profileUpdate: boolean = false;
   items: MenuItem[] = [];
   activeIndex: number = 0;
-  url: string = '/job/jobs';
+
   AllJobDetails:any=[];
-  singleJobDetails:any=[];
-  jobId=''
-  selectedJob:number=0;
+  singleJobDetails: any = [];
+  jobId = '';
+  selectedJob: number = 0;
+  throttle = 300;
+  scrollDistance = 1;
+  scrollUpDistance = 2;
+  page = 0;
+  limit = 5;
+  sort = 'dsc';
+  salary!: number;
+  location: string = '';
+  jobType: string = '';
+  type: string = '';
+  totalJob!: number;
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
     private messageService: MessageService,
-    private jobService: JobsService
+    private jobService: JobsService,
+    private internshipService: InternshipProfileService
   ) {}
 
   ngOnInit(): void {
+   
+    this.internshipService.customHeader.next(false);
     this.items = [
       {
         label: 'Skill',
@@ -47,31 +61,35 @@ export class InternshipsComponent implements OnInit {
         },
       },
     ];
+    this.AllJbDetaails();
+  }
+  AllJbDetaails() {
+    const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salary=${this.salary}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
 
-    //at the firt time load all job detailss
-    this.url =
-      this.url + '?type=&jobType=&location=&salary=&sort=dsc&limit=10&page=0';
-    this.jobService.getAllJobDetails('', this.url).subscribe({
+    console.log(url);
+    this.jobService.getAllJobDetails('', url).subscribe({
       next: (res) => {
-        this.AllJobDetails=res.data.items;
+        console.log(res.data.items,'res')
+        this.AllJobDetails=[...this.AllJobDetails,...res.data.items]
+        this.totalJob = res.data.total;
         console.log(this.AllJobDetails);
-        this.AllJobDetails.forEach((element:any) => {
-          element.companyName=element.companyName.toUpperCase();
-          element.intranshipName=element.intranshipName.toUpperCase();
+        this.AllJobDetails.forEach((element: any) => {
+          element.companyName = element.companyName.toUpperCase();
+          element.intranshipName = element.intranshipName.toUpperCase();
           // element.salary=(element.salary * 12) / 100000
         });
-this.jobId=this.AllJobDetails[0]._id;
-console.log(this.jobId)
+        this.jobId = this.AllJobDetails[0]._id;
+        console.log(this.jobId);
 
         // single job details1st for 1st job and1st time
         this.jobService.getJobDetails(this.AllJobDetails[0]._id).subscribe({
           next: (res) => {
-            this.singleJobDetails=[];
+            this.singleJobDetails = [];
             this.singleJobDetails.push(res.data);
-            this.singleJobDetails.forEach((element:any) => {
-              element.companyName=element.companyName.toUpperCase();
-              element.intranshipName=element.intranshipName.toUpperCase();
-              element.salary=(element.salary * 12) / 100000
+            this.singleJobDetails.forEach((element: any) => {
+              element.companyName = element.companyName.toUpperCase();
+              element.intranshipName = element.intranshipName.toUpperCase();
+              element.salary = (element.salary * 12) / 100000;
             });
             console.log(this.singleJobDetails, 'res');
           },
@@ -81,11 +99,8 @@ console.log(this.jobId)
         });
       },
     });
-
-
   }
   applyJob() {
-    alert('kkk')
     this.profileUpdate = true;
     this.router.navigate(['jobs/internships/skills']);
   }
@@ -95,16 +110,16 @@ console.log(this.jobId)
     // this.router.navigate(['jobs/internships/skills']);
   }
 
-  jobDetails(id: string,i:number) {
-    this.selectedJob=i
+  jobDetails(id: string, i: number) {
+    this.selectedJob = i;
     this.jobService.getJobDetails(id).subscribe({
       next: (res) => {
-        this.singleJobDetails=[];
+        this.singleJobDetails = [];
         this.singleJobDetails.push(res.data);
-        this.singleJobDetails.forEach((element:any) => {
-          element.companyName=element.companyName.toUpperCase();
-          element.intranshipName=element.intranshipName.toUpperCase();
-          element.salary=(element.salary * 12) / 100000
+        this.singleJobDetails.forEach((element: any) => {
+          element.companyName = element.companyName.toUpperCase();
+          element.intranshipName = element.intranshipName.toUpperCase();
+          element.salary = (element.salary * 12) / 100000;
         });
         console.log(this.singleJobDetails, 'res');
       },
@@ -113,4 +128,15 @@ console.log(this.jobId)
       },
     });
   }
+  ngOnDestroy(): void {
+    this.internshipService.customHeader.next(true);
+  }
+  onScroll() {
+    if (this.totalJob > this.AllJobDetails.length) 
+    {
+      this.page++;
+    console.log(this.page);
+    this.AllJbDetaails();
+  }
+}
 }

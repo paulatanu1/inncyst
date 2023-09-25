@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrationPageComponent } from './share/registration-page/registration-page.component';
 import { MyProfileComponent } from './share/my-profile/my-profile.component';
+import { ChangePasswordComponent } from './share/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
   { path: 'industry', loadChildren: () => import('./industry/industry.module').then(m => m.IndustryModule) },
   {path:'my-profile', component:MyProfileComponent},
+  {path:'change-password',component:ChangePasswordComponent},
   {
     path: '**', redirectTo: '/jobs'
   }
