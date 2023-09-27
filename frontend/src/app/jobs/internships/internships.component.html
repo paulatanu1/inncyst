@@ -1,4 +1,17 @@
 <section class="internship_sec">
+  <div class="top_filter_sec">
+    <div class="sorting">
+      <p-dropdown [options]="jobTypeSort" [(ngModel)]="selectedJobType" optionLabel="name" (onChange)="selectedJobTypeDropdown($event)" class="job_type"></p-dropdown>
+      
+      <p-dropdown [options]="Sort" [(ngModel)]="sorting" optionLabel="name" (onChange)="sortDropdown($event)" class="sort_by"></p-dropdown>
+    
+      <p-dropdown [options]="typeSort" [(ngModel)]="selectedType" optionLabel="name" (onChange)="selectedTypeDropdown($event)" class="filters"></p-dropdown>
+    
+      <!-- <input type="text" [(ngModel)]="location" placeholder="Please Enter Location" />
+      <button (click)="sortLocation()">search</button> -->
+      <!-- <p-slider [(ngModel)]="rangeValues" [range]="true"></p-slider> -->
+    </div>
+  </div>
   <section class="internship_sec_inner">
     <section class="left_aside_part">
       <div class="company_lists">
@@ -58,33 +71,7 @@
         </div>
       </div>
     </section>
-    <div class="sorting">
-      <h1>sorting.............</h1>
-      <p-dropdown
-        [options]="Sort"
-        [(ngModel)]="sorting"
-        optionLabel="name"
-        (onChange)="sortDropdown($event)"
-      ></p-dropdown>
-
-      <p-dropdown
-      [options]="jobTypeSort"
-      [(ngModel)]="selectedJobType"
-      optionLabel="name"
-      (onChange)="selectedJobTypeDropdown($event)"
-    ></p-dropdown>
-
-    <p-dropdown
-    [options]="typeSort"
-    [(ngModel)]="selectedType"
-    optionLabel="name"
-    (onChange)="selectedTypeDropdown($event)"
-  ></p-dropdown>
-
-
-      <input type="text" [(ngModel)]="location" placeholder="Please Enter Location"/>
-      <button (click)="sortLocation()">search</button>
-    </div>
+    
     <section class="right_details_part">
       <div *ngFor="let a of singleJobDetails">
         {{ a.companyName }}

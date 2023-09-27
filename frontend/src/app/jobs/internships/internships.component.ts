@@ -71,7 +71,7 @@ export class InternshipsComponent implements OnInit {
     //sorting filter start here
     this.Sort = [
       {
-        name: 'please select Option',
+        name: 'Sort by',
         disabled: true,
       },
       { name: 'ace' },
@@ -81,7 +81,7 @@ export class InternshipsComponent implements OnInit {
 
     this.jobTypeSort=[
       {
-        name:'please select Job Type',disabled:true
+        name:'Job Type',disabled:true
       },
       {
         name:'internships'
@@ -92,7 +92,7 @@ export class InternshipsComponent implements OnInit {
     ]
     this.typeSort=[
       {
-        name:'please select  Type',disabled:true
+        name:'Type',disabled:true
       },
       {
         name:'internships'

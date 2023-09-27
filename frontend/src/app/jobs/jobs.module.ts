@@ -20,6 +20,7 @@ import { BasicInternshipComponent } from './basic-internship/basic-internship.co
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { DropdownModule } from 'primeng/dropdown';
+import { SliderModule } from 'primeng/slider';
 @NgModule({
   declarations: [
     JobsComponent,
@@ -41,7 +42,7 @@ import { DropdownModule } from 'primeng/dropdown';
     RadioButtonModule,
     FileUploadModule,
     TabViewModule,
-    BreadcrumbModule,InfiniteScrollModule,DropdownModule
+    BreadcrumbModule,InfiniteScrollModule,DropdownModule, SliderModule
   ],
   exports:[DialogModule, SharedModule],
   // providers:[LoginDetailsService]

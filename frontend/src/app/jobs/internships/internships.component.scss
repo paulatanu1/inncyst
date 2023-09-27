@@ -2,17 +2,86 @@
     padding:0 70px;
     font-family: 'Raleway';
     background: #F7F7F7;
-    padding: 10px 0;
-    margin-top: 130px;
+    padding: 0;
+    margin-top: 112px;
+    .top_filter_sec {
+        
+        max-width: 1297px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 12px 0;
+        box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.10);
+        margin-bottom: 10px;
+        .sorting {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        & ::ng-deep .job_type {
+            border-right: 1px solid #d4d4d4;
+            height: 50px;
+            .p-dropdown {
+                border-radius: 5px;
+                background: #6E41E2;
+                margin-right: 20px;
+                // border-right: 1px solid #d4d4d4;
+                .p-dropdown-label {
+                    color: #fff;
+                }
+                .p-dropdown-trigger-icon {
+                    color: white;
+                }
+            }
+        }
+        & ::ng-deep .sort_by {
+            border-left: 1px solid #d4d4d4;
+            height: 50px;
+            .p-dropdown {
+                border-radius: 5px;
+                background: #F3E9FF;
+                margin-right: 20px;
+                // border-left: 1px solid #d4d4d4;
+                margin-left: 20px;
+                .p-dropdown-label {
+                    color: #522D80;
+                }
+                .p-dropdown-trigger-icon {
+                    color: #522D80;
+                }
+            }
+        }
+        & ::ng-deep .filters {
+            // border: 1px solid #d4d4d4;
+            height: 50px;
+
+            .p-dropdown {
+                border-radius: 5px;
+                background: #fff;
+                margin-right: 20px;
+                // border-left: 1px solid #d4d4d4;
+                border: 1px solid #522D80;
+                .p-dropdown-label {
+                    color: #522D80;
+                }
+
+                .p-dropdown-trigger-icon {
+                    color: #522D80;
+                }
+            }
+        }
+    }
     .internship_sec_inner {
         display: flex;
         flex-direction: row;
         align-items: stretch;
+        width: 100%;
         max-width: 1297px;
         margin: 0 auto;
     }
     .left_aside_part {
-        flex: 0 0 398px;
+        flex: 0 0 30%;
+        max-width: 398px;
         .company_lists {
             // height: 1000px;
             // overflow: scroll;
@@ -104,10 +173,11 @@
         }
     }
     .right_details_part {
-        flex: 0 0 762px;
+        flex: 0 0 70%;
         margin-left: 16px;
         background: #fff;
         border-top: 3px solid #522D80;
+        max-width: 884px;
         .right_details_head {
             border-bottom: 0.5px solid #969696;
             padding: 30px 40px;
