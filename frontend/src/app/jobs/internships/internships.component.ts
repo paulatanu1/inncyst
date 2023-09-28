@@ -25,19 +25,22 @@ export class InternshipsComponent implements OnInit {
   scrollDistance = 1;
   scrollUpDistance = 2;
   page = 0;
-  limit = 5;
+  limit = 10;
   sort = 'dsc';
-  salary!: number;
+  salaryFrom: any = '';
+  salaryTo: any = '';
   location: string = '';
   jobType: string = '';
   type: string = '';
   totalJob!: number;
   Sort: any;
   sorting!: string;
-  jobTypeSort:any=[]
-  selectedJobType!:string;
-  selectedType!:string;
-  typeSort:any=[]
+  jobTypeSort: any = [];
+  selectedJobType!: string;
+  selectedType!: string;
+  typeSort: any = [];
+  selectedRange: [number, number] = [5000, 30000];
+ 
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
@@ -77,38 +80,50 @@ export class InternshipsComponent implements OnInit {
       { name: 'ace' },
       { name: 'dec' },
     ];
- 
 
-    this.jobTypeSort=[
+    this.jobTypeSort = [
       {
-        name:'Job Type',disabled:true
+        name: 'Job Type',
+        disabled: true,
       },
       {
-        name:'internships'
+        name: 'part-time',
       },
       {
-        name:'job'
-      }
-    ]
-    this.typeSort=[
-      {
-        name:'Type',disabled:true
+        name: 'full-time',
       },
       {
-        name:'internships'
+        name: 'work-from-home',
+      },
+    ];
+    this.typeSort = [
+      {
+        name: 'Type',
+        disabled: true,
       },
       {
-        name:'job'
-      }
-    ]
-
+        name: 'designer',
+      },
+      {
+        name: 'developer',
+      },
+      {
+        name: 'marketing',
+      },
+    ];
+  }
+  onRangeChange(e: any) {
+    this.salaryFrom = (e.values[0]).toString();
+    this.salaryTo = e.values[1];
+    console.log(this.salaryFrom, this.salaryTo);
+    this.AllJobDetails = [];
+    this.AllJbDetaails();
   }
 
 
-
-  selectedJobTypeDropdown(event:any){
-    this.jobType=event.value.name;
-    this.AllJobDetails=[]
+  selectedJobTypeDropdown(event: any) {
+    this.jobType = event.value.name;
+    this.AllJobDetails = [];
     this.AllJbDetaails();
   }
   sortDropdown(e: any) {
@@ -116,8 +131,8 @@ export class InternshipsComponent implements OnInit {
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
-  selectedTypeDropdown(e:any){
-    this.type=e.value.name;
+  selectedTypeDropdown(e: any) {
+    this.type = e.value.name;
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
@@ -125,8 +140,20 @@ export class InternshipsComponent implements OnInit {
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
+  resetUrl() {
+    this.type = '';
+    this.jobType = '';
+    this.location = '';
+    this.salaryFrom = '';
+    this.salaryTo = '';
+    this.sort = 'dce';
+    this.limit = 5;
+    this.page = 0;
+    this.AllJobDetails = [];
+    this.AllJbDetaails();
+  }
   AllJbDetaails() {
-    const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salary=${this.salary}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+    const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
     this.jobService.getAllJobDetails('', url).subscribe({
       next: (res) => {
         this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];
@@ -134,11 +161,11 @@ export class InternshipsComponent implements OnInit {
         this.AllJobDetails.forEach((element: any) => {
           element.companyName = element.companyName.toUpperCase();
           element.intranshipName = element.intranshipName.toUpperCase();
-          // element.salary=(element.salary * 12) / 100000
+          element.salary = (element.salary * 12) / 100000;
         });
         this.jobId = this.AllJobDetails[0]._id;
         // single job details1st for 1st job and1st time
-        this.jobService.getJobDetails(this.AllJobDetails[0]._id).subscribe({
+        this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
           next: (res) => {
             this.singleJobDetails = [];
             this.singleJobDetails.push(res.data);

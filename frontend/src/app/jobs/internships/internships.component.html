@@ -1,16 +1,49 @@
 <section class="internship_sec">
   <div class="top_filter_sec">
     <div class="sorting">
-      <p-dropdown [options]="jobTypeSort" [(ngModel)]="selectedJobType" optionLabel="name" (onChange)="selectedJobTypeDropdown($event)" class="job_type"></p-dropdown>
+
       
-      <p-dropdown [options]="Sort" [(ngModel)]="sorting" optionLabel="name" (onChange)="sortDropdown($event)" class="sort_by"></p-dropdown>
-    
-      <p-dropdown [options]="typeSort" [(ngModel)]="selectedType" optionLabel="name" (onChange)="selectedTypeDropdown($event)" class="filters"></p-dropdown>
-    
-      <!-- <input type="text" [(ngModel)]="location" placeholder="Please Enter Location" />
-      <button (click)="sortLocation()">search</button> -->
-      <!-- <p-slider [(ngModel)]="rangeValues" [range]="true"></p-slider> -->
+      <p-dropdown
+        [options]="jobTypeSort"
+        [(ngModel)]="selectedJobType"
+        optionLabel="name"
+        (onChange)="selectedJobTypeDropdown($event)"
+        class="job_type"
+      ></p-dropdown>
+
+      <p-dropdown
+        [options]="Sort"
+        [(ngModel)]="sorting"
+        optionLabel="name"
+        (onChange)="sortDropdown($event)"
+        class="sort_by"
+      ></p-dropdown>
+
+      <p-dropdown
+        [options]="typeSort"
+        [(ngModel)]="selectedType"
+        optionLabel="name"
+        (onChange)="selectedTypeDropdown($event)"
+        class="filters"
+      ></p-dropdown>
+
+      <input
+        type="text"
+        [(ngModel)]="location"
+        placeholder="Please Enter Location"
+      />
+   
+      <button (click)="sortLocation()">search</button>
+&nbsp;&nbsp;
+      <button (click)="resetUrl()">Reset</button>
+
+     
     </div>
+    <div>
+      <p>please Select Salary Range</p>
+      <input type="text" pInputText [(ngModel)]="selectedRange" class="w-full"/>
+      <p-slider [(ngModel)]="selectedRange" [min]="5000" [max]="30000" [range]="true" (onSlideEnd)="onRangeChange($event)"></p-slider>
+  </div>
   </div>
   <section class="internship_sec_inner">
     <section class="left_aside_part">
@@ -71,8 +104,38 @@
         </div>
       </div>
     </section>
-    
-    <section class="right_details_part">
+    <!-- <div class="sorting">
+      <h1>sorting.............</h1>
+      <p-dropdown
+        [options]="Sort"
+        [(ngModel)]="sorting"
+        optionLabel="name"
+        (onChange)="sortDropdown($event)"
+      ></p-dropdown>
+
+      <p-dropdown
+        [options]="jobTypeSort"
+        [(ngModel)]="selectedJobType"
+        optionLabel="name"
+        (onChange)="selectedJobTypeDropdown($event)"
+      ></p-dropdown>
+
+      <p-dropdown
+        [options]="typeSort"
+        [(ngModel)]="selectedType"
+        optionLabel="name"
+        (onChange)="selectedTypeDropdown($event)"
+      ></p-dropdown>
+
+      <input
+        type="text"
+        [(ngModel)]="location"
+        placeholder="Please Enter Location"
+      />
+
+      <button (click)="sortLocation()">search</button>
+    </div> -->
+    <section class="right_details_part" *ngIf="AllJobDetails.length > 0">
       <div *ngFor="let a of singleJobDetails">
         {{ a.companyName }}
         <div class="right_details_head">
@@ -151,6 +214,22 @@
   </section>
 </section>
 
+<section *ngIf="AllJobDetails.length == 0">
+ <h3> No Data Available..........</h3> <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+ <h3> No Data Available..........</h3>
+
+</section>
 <p-dialog
   (onHide)="closeProfileUpdateForm()"
   [(visible)]="profileUpdate"
