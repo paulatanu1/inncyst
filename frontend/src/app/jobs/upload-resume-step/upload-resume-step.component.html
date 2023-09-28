@@ -114,5 +114,6 @@
 </div>
 <div class="dialog-footer">
   <a class="back_link" (click)="back()">Back</a>
-  <button (click)="submitApplication()">Submit Application</button>
+  {{resumeUploadSucess}}
+  <button (click)="submitApplication()" [disabled]="!resumeUploadSucess">Submit Application</button>
 </div>

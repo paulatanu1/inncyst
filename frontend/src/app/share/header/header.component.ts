@@ -138,7 +138,7 @@ export class HeaderComponent implements OnInit ,OnChanges{
     this.cdk.detectChanges()
   }
 ngOnChanges() {
-  alert('dd')
+ 
   this.userType = ls.get('userType');
   console.log(this.userType)
  console.log(this.logInToken)

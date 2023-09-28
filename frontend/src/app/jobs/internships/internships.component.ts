@@ -50,6 +50,15 @@ export class InternshipsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.jobService.afterSuccessApplyJobCloseModal.subscribe({
+      
+      next:(res)=>{
+        setTimeout(()=>{
+          this.closeProfileUpdateForm();
+        },1500)
+      
+      }
+    })
     this.internshipService.customHeader.next(false);
     this.items = [
       {
@@ -114,7 +123,7 @@ export class InternshipsComponent implements OnInit {
   }
   onRangeChange(e: any) {
     this.salaryFrom = (e.values[0]).toString();
-    this.salaryTo = e.values[1];
+    this.salaryTo = (e.values[1]).toString();
     console.log(this.salaryFrom, this.salaryTo);
     this.AllJobDetails = [];
     this.AllJbDetaails();
@@ -138,6 +147,8 @@ export class InternshipsComponent implements OnInit {
   }
   sortLocation() {
     this.AllJobDetails = [];
+    this.location=this.location.charAt(0).toUpperCase() + this.location.slice(1);
+
     this.AllJbDetaails();
   }
   resetUrl() {

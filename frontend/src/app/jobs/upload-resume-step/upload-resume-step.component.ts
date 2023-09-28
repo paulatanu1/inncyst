@@ -26,7 +26,7 @@ export class UploadResumeStepComponent implements OnInit {
   fileName!: string;
   base64!: string;
   jobId: any;
-  resumeUploadSucess!: boolean;
+  resumeUploadSucess: boolean=false;
   // fileName!:string;
   constructor(
     private loginDetails: LoginDetailsService,
@@ -38,9 +38,6 @@ export class UploadResumeStepComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.userLoginDetails = ls.get('loginDetails');
-    // console.log(this.userLoginDetails);
-
     this.internship.sendInternshipProfileRequest().subscribe({
       next:(res=>{
         this.userLoginDetails=res.data;
@@ -53,27 +50,28 @@ export class UploadResumeStepComponent implements OnInit {
     this.inputFieldEnable = !this.inputFieldEnable;
   }
   onFileSelected(event: any) {
-    console.log(event)
     this.selectedFile = event.target.files[0];
-     this.fileName=this.selectedFile.name
-    console.log(this.selectedFile);
+     this.fileName=this.selectedFile.name;
+     this.convertToBase64();
+    // console.log(this.selectedFile);
   }
 
-  // save(data: Data, filesForUpload: File[]): Observable<Data> {
-  //   const formData = new FormData();
-
-  //   // add the files
-  //   if (filesForUpload && filesForUpload.length) {
-  //     filesForUpload.forEach(file => formData.append('files', file));
-  //   }
-
-  //   // add the data object
-  //   formData.append('data', new Blob([JSON.stringify(data)], {type: 'application/json'}));
-
-  //   return this.http.post<Data>(this.apiUrl, formData);
-  // }
-  uploadFile() {
+  convertToBase64() {
     if (!this.selectedFile) {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = (e:any) => {
+      this.base64 = e.target.result as string;
+      console.log(this.base64);
+    };
+
+    reader.readAsDataURL(this.selectedFile);
+  }
+  uploadFile() {
+    if (!this.base64) {
       this._toast.showToaster.next({
         severity: 'error',
         summary: 'error',
@@ -81,44 +79,20 @@ export class UploadResumeStepComponent implements OnInit {
       });
       return;
     } else {
-      // const reader = new FileReader();
-      // reader.onload = (e) => {
-      //   this.base64 = reader.result as string;
-      //   console.log('Base64 PDF:', this.base64);
-      // };
-      // reader.readAsDataURL(this.selectedFile);
-      console.log(this.selectedFile);
-      let url='/student/upload-resume'
+    
       const form_data:any = new Object();
       form_data.jobId='64fd77665810ffdaf7e9b5b2';
-       form_data.resume= this.selectedFile
-       console.log(form_data,'95')
-
-
-      // const form_data:any = new FormData();
-      // form_data.append('jobId','64fd77665810ffdaf7e9b5b2');
-      // form_data.append('resume',this.selectedFile,this.selectedFile.name);
-
-       console.log(form_data,'95')
-
-      // {
-      //   jobId: this.jobId,
-      //   resume: this.selectedFile,
-      // };
-      // return this.api.ApiCallWithLocalization(form_data,url,'post').subscribe({
-      //   next:((res:any)=>{
-      //     console.log(res)
-      //   })
-      // })
+      form_data.resume=this.base64;
       this.jobService.uploadResume(form_data).subscribe({
         next: ((res:any) => {
           console.log(res);
+          this.resumeUploadSucess = true;
           this._toast.showToaster.next({
             severity: 'success',
             summary: 'success',
-            detail: res.success,
+            detail: res.message,
           });
-          this.resumeUploadSucess = true;
+         
         }),
         error:((err:any)=>{
           this._toast.showToaster.next({
@@ -129,42 +103,44 @@ export class UploadResumeStepComponent implements OnInit {
         })
       });
       return this.selectedFile;
-    }
-  }
+    }}
+
   submitApplication() {
-    // let details = {
-    //   email: this.userLoginDetails.email,
-    //   phone: this.userLoginDetails.phone,
-    //   availability: this.availability,
-    //   availability_message: this.availability_messageValue,
-    //   jobId: '64fd77665810ffdaf7e9b5b2',
-    // };
-    // console.log(details);
-    // if (this.resumeUploadSucess) {
-      // this.jobService.applyJob(details).subscribe({
-      //   next: (res:any) => {
-      //     console.log(res);
-      //     this._toast.showToaster.next({
-      //       severity: 'success',
-      //       summary: 'success',
-      //       detail: res.success,
-      //     });
-      //   },
-      //   error: (res:any) => {
-      //     console.log(res);
+
+    let details = {
+      email: this.userLoginDetails.email,
+      phone: this.userLoginDetails.phone,
+      availability: this.availability,
+      availability_message: this.availability_messageValue,
+      jobId: '64fd77665810ffdaf7e9b5b2',
+    };
+    console.log(details);
+    if (this.resumeUploadSucess) {
+      this.jobService.applyJob(details).subscribe({
+        next: (res:any) => {
+          console.log(res);
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: res.success,
+          });
+          this.jobService.afterSuccessApplyJobCloseModal.next(true);
+        },
+        error: (res:any) => {
+          console.log(res);
         
-      //       this._toast.showToaster.next({
-      //         severity: 'error',
-      //         summary: 'error',
-      //         detail:'Please upload a resume',
-      //       });
+            this._toast.showToaster.next({
+              severity: 'error',
+              summary: 'error',
+              detail:res.error.message?res.error.message:'Please upload a resume',
+            });
         
-      //   },
-      // },
+        },
+      },
 
       
-      // );
-    // }
+      );
+    }
   }
   addavailability() {
     this.availability = '0';
