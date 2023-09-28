@@ -1,8 +1,6 @@
 <section class="internship_sec">
   <div class="top_filter_sec">
     <div class="sorting">
-
-      
       <p-dropdown
         [options]="jobTypeSort"
         [(ngModel)]="selectedJobType"
@@ -33,17 +31,16 @@
         placeholder="Please Enter Location"
       />
    
-      <button (click)="sortLocation()">search</button>
-&nbsp;&nbsp;
-      <button (click)="resetUrl()">Reset</button>
-
+      <button (click)="sortLocation()"><i class="pi pi-search"></i></button>
+      <button (click)="resetUrl()"><i class="pi pi-undo"></i></button>
+      <div class="slide_range">
+        <span>please Select Salary Range</span>
+        <input type="text" pInputText [(ngModel)]="selectedRange" class="w-full"/>
+        <p-slider [(ngModel)]="selectedRange" [min]="5000" [max]="30000" [range]="true" (onSlideEnd)="onRangeChange($event)"></p-slider>
+      </div>
      
     </div>
-    <div>
-      <p>please Select Salary Range</p>
-      <input type="text" pInputText [(ngModel)]="selectedRange" class="w-full"/>
-      <p-slider [(ngModel)]="selectedRange" [min]="5000" [max]="30000" [range]="true" (onSlideEnd)="onRangeChange($event)"></p-slider>
-  </div>
+    
   </div>
   <section class="internship_sec_inner">
     <section class="left_aside_part">

@@ -17,6 +17,36 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
+            & > input[type=text] {
+                border-radius: 12px;
+                border: 0.5px solid #C8C8C8;
+                background: #FAFAFA;
+                padding:14px 16px;
+                margin-right: 10px;
+            }
+            & > button {
+                height: 48px;
+                width: 48px;
+                color:#522D80;
+                border-radius: 6px;
+                margin-right: 10px;
+                i {
+                    font-size: 20px;
+                }
+            }
+            .slide_range {
+                span {
+                    display: block;
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #522D80;
+                    text-transform: capitalize;
+                }
+                & ::ng-deep .p-inputtext {
+                    padding: 5px 12px;
+                    border:none;
+                }
+            }
         }
         & ::ng-deep .job_type {
             border-right: 1px solid #d4d4d4;
