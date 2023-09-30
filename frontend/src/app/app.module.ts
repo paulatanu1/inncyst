@@ -16,12 +16,14 @@ import { IndustryModule } from './industry/industry.module';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { LoginDetailsService } from './common-service/login-details.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { PageNotFoundComponent } from './share/page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     ChangePasswordComponent,
     MyProfileComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

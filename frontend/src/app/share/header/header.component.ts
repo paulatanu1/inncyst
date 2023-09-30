@@ -311,10 +311,11 @@ this.InternshipService.customHeader.subscribe({
       this.progress.isProgressBarShow.next(false);
     }
     else if(url === 'Jobs'){
-      alert('jobs comming soon........')
+      this.router.navigateByUrl('/jobs/internships')
+    
     }
     else if(url === 'My Jobs'){
-      alert('My Jobs comming soon.........')
+      this.router.navigateByUrl('/jobs/jobs/my-applyed-job')
     }
   }
 

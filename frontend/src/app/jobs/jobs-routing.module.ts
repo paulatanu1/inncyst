@@ -6,13 +6,20 @@ import { RequiredSkillStepComponent } from './required-skill-step/required-skill
 import { UploadResumeStepComponent } from './upload-resume-step/upload-resume-step.component';
 import { BasicInternshipComponent } from './basic-internship/basic-internship.component';
 import { JobApplyedComponent } from './job-applyed/job-applyed.component';
-const routes: Routes = [{ path: '', component: JobsComponent },
-{path:'basicInternship',component:BasicInternshipComponent},
-{ path: 'internships', component: InternshipsComponent,children:[
-  // {path:'',redirectTo:'skills',pathMatch:'full'},
-  {path:'skills',component:RequiredSkillStepComponent},
-  {path:'uploadresume', component:UploadResumeStepComponent}
-] }, { path: 'job-applyed', component: JobApplyedComponent },];
+const routes: Routes = [
+  { path: '', component: JobsComponent },
+  { path: 'basicInternship', component: BasicInternshipComponent },
+  {
+    path: 'internships',
+    component: InternshipsComponent,
+    children: [
+      // {path:'',redirectTo:'skills',pathMatch:'full'},
+      { path: 'skills', component: RequiredSkillStepComponent },
+      { path: 'uploadresume', component: UploadResumeStepComponent },
+    ],
+  },
+  { path: 'jobs/my-applyed-job', component: JobApplyedComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

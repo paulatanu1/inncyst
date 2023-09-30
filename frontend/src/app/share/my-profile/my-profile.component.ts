@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 interface IprofileDetails {
   name: string;
@@ -35,10 +36,12 @@ export class MyProfileComponent implements OnInit {
   constructor(
     private internship: InternshipProfileService,
     private formBuilder: FormBuilder,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
+  
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
       shortDescription: ['', Validators.required],
@@ -100,7 +103,9 @@ export class MyProfileComponent implements OnInit {
     // this.cropper.nativeElement.toggle();
     this.imageChangedEvent = event;
   }
-
+  back(){
+    this.router.navigateByUrl('/jobs/internships')
+  }
   ngOnDestroy() {
     this.profile?.unsubscribe();
   }

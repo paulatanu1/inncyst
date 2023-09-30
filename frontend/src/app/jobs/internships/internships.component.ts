@@ -160,6 +160,7 @@ export class InternshipsComponent implements OnInit {
     this.sort = 'dce';
     this.limit = 5;
     this.page = 0;
+    this. selectedRange=[5000,30000]
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }

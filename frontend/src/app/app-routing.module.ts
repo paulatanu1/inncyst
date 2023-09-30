@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegistrationPageComponent } from './share/registration-page/registration-page.component';
 import { MyProfileComponent } from './share/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './share/change-password/change-password.component';
+import { PageNotFoundComponent } from './share/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
   {path:'my-profile', component:MyProfileComponent},
   {path:'change-password',component:ChangePasswordComponent},
   {
-    path: '**', redirectTo: '/jobs'
+    path: '**',component:PageNotFoundComponent
   }
 ];
 

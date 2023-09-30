@@ -36,4 +36,9 @@ export class JobsService {
   let url ='/job/jobs/'+id
   return this.api.ApiCallWithLocalization('',url,'get')
  } 
+
+ applyedJobDetails(){
+let url = '/student/job-list'
+return this.api.ApiCallWithLocalization('',url,'get')
+ }
 }
