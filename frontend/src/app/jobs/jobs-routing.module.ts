@@ -6,6 +6,7 @@ import { RequiredSkillStepComponent } from './required-skill-step/required-skill
 import { UploadResumeStepComponent } from './upload-resume-step/upload-resume-step.component';
 import { BasicInternshipComponent } from './basic-internship/basic-internship.component';
 import { JobApplyedComponent } from './job-applyed/job-applyed.component';
+import { AppliedJobDetailsComponent } from './applied-job-details/applied-job-details.component';
 const routes: Routes = [
   { path: '', component: JobsComponent },
   { path: 'basicInternship', component: BasicInternshipComponent },
@@ -18,7 +19,12 @@ const routes: Routes = [
       { path: 'uploadresume', component: UploadResumeStepComponent },
     ],
   },
-  { path: 'jobs/my-applyed-job', component: JobApplyedComponent },
+  { path: 'jobs/my-applyed-job', component: JobApplyedComponent,
+children:[
+
+  // {path:'',component:JobApplyedComponent},
+  {path:'AppliedJobDetailsComponent',component:AppliedJobDetailsComponent}
+] },
 ];
 
 @NgModule({

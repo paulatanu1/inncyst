@@ -21,6 +21,7 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
+import { AppliedJobDetailsComponent } from './applied-job-details/applied-job-details.component';
 @NgModule({
   declarations: [
     JobsComponent,
@@ -30,6 +31,7 @@ import { SliderModule } from 'primeng/slider';
     UploadResumeStepComponent,
     JobApplyedComponent,
     BasicInternshipComponent,
+    AppliedJobDetailsComponent,
   ],
   imports: [
     CommonModule,

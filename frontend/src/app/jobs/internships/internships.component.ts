@@ -40,7 +40,7 @@ export class InternshipsComponent implements OnInit {
   selectedType!: string;
   typeSort: any = [];
   selectedRange: [number, number] = [5000, 30000];
- 
+  
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
@@ -195,10 +195,10 @@ export class InternshipsComponent implements OnInit {
     });
   }
   applyJob() {
-    this.profileUpdate = true;
-    this.router.navigate(['jobs/internships/skills']);
-  }
-
+          this.profileUpdate = true;
+      this.router.navigate(['jobs/internships/skills']);
+    }
+    
   closeProfileUpdateForm() {
     this.profileUpdate = false;
     // this.router.navigate(['jobs/internships/skills']);
@@ -235,4 +235,6 @@ export class InternshipsComponent implements OnInit {
       this.AllJbDetaails();
     }
   }
+
+
 }

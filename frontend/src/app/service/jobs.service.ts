@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../common-service/api.service';
 import ls from 'localstorage-slim';
-import { Subject } from 'rxjs';
+import { Subject, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +40,15 @@ export class JobsService {
  applyedJobDetails(){
 let url = '/student/job-list'
 return this.api.ApiCallWithLocalization('',url,'get')
+ }
+
+ public sendMyJobDetails = new Subject()
+jobDetails:any;
+ sendAppliedJobDetails(a:any){
+  this.jobDetails=a
+// return this.jobDetails
+ }
+ getAppliedJobDetails(){
+  return of(this.jobDetails)
  }
 }

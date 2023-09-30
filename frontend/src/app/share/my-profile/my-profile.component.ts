@@ -48,15 +48,21 @@ export class MyProfileComponent implements OnInit {
       skills: [[]], // Initialize as an empty array
       location: [''],
       phone: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['lllllllllllll', Validators.required],
     });
 
     this.profile = this.internship
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
-        console.log(this.ProfileDetails);
+        console.log(this.ProfileDetails,'ProfileDetails');
       });
+      if(this.ProfileDetails){
+
+        this.profileForm.patchValue({
+          shortDescription:this.ProfileDetails.email
+        });
+      }
   }
 
   openEdit() {

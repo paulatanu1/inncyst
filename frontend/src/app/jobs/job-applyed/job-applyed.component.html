@@ -1,23 +1,34 @@
 <div class="job_tabs">
-<p-tabView>
+  <p-tabView>
     <p-tabPanel header="Applied">
-        <ul>
-            <li>
-                <i class="pi pi-ellipsis-v"></i>
-                <h2>Front End Developer</h2>
-                <span>Employer reached out</span>
-                <div class="location_info">
-                    <i class="pi pi-map-marker"></i><span>Kolkata, West Bengal</span>
-                </div>
-                <div class="location_info">
-                    <i class="pi pi-calendar"></i> <span>Applied on Jul 27</span>
-                </div>
-                <div class="company_info">
-                    <img src="../../../assets/canva.png" width="78" height="32" /> 
-                    <strong>Satisfix Software systems</strong>
-                </div>
-            </li>
-            <li>
+      <ul *ngFor="let a of AppliedJobDetails">
+        <li>
+          <div>
+            <p-overlayPanel #op>
+              <ng-template pTemplate="content">
+                <button (click)="details(a)">Details</button>
+              </ng-template>
+            </p-overlayPanel>
+            <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
+          </div>
+
+          <h2>{{ a.intranshipDetails.intranshipName }}</h2>
+          <span>{{ a.applicationStatus }}</span>
+          <div class="location_info">
+            <i class="pi pi-map-marker"></i
+            ><span>{{ a.intranshipDetails.location }}</span>
+          </div>
+          <div class="location_info">
+            <i class="pi pi-calendar"></i>
+            <span>{{ a.intranshipDetails.createdAt | date }}</span>
+          </div>
+          <div class="company_info">
+            <!-- <img src="../../../assets/canva.png" width="78" height="32" />  -->
+            <strong>{{ a.intranshipDetails.companyName }}</strong>
+            <!-- <button (click)="details(a)"> send........</button> -->
+          </div>
+        </li>
+        <!-- <li>
                 <i class="pi pi-ellipsis-v"></i>
                 <h2>Front End Developer</h2>
                 <span class="applied">Applied</span>
@@ -61,11 +72,12 @@
                     <img src="../../../assets/canva.png" width="78" height="32" />
                     <strong>Satisfix Software systems</strong>
                 </div>
-            </li>
-        </ul>
+            </li> -->
+      </ul>
     </p-tabPanel>
-    <p-tabPanel header="Interviews">
-        
-    </p-tabPanel>
-</p-tabView>
+    <p-tabPanel header="Interviews"> </p-tabPanel>
+  </p-tabView>
+</div>
+<div>
+    <router-outlet></router-outlet>
 </div>
