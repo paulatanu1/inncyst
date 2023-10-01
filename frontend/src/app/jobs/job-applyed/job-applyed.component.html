@@ -6,7 +6,7 @@
           <div>
             <p-overlayPanel #op>
               <ng-template pTemplate="content">
-                <button (click)="details(a)">Details</button>
+                <button (click)="details(a._id)">Details</button>
               </ng-template>
             </p-overlayPanel>
             <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>

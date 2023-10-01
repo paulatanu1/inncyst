@@ -44,11 +44,16 @@ return this.api.ApiCallWithLocalization('',url,'get')
 
  public sendMyJobDetails = new Subject()
 jobDetails:any;
- sendAppliedJobDetails(a:any){
+ sendAppliedJobId(a:any){
   this.jobDetails=a
 // return this.jobDetails
  }
- getAppliedJobDetails(){
+ getAppliedJobId(){
   return of(this.jobDetails)
  }
+getAppliedJobDetails(id:string){
+  let url='/student/job/'+id
+  return this.api.ApiCallWithLocalization('',url,'get')
+}
+
 }

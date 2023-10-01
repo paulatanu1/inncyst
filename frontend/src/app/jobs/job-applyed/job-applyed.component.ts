@@ -70,8 +70,8 @@ AppliedJobDetails:any=[]
   }
   details(a:any){
     // this.jobService.sendMyJobDetails.next(a)
-    this.jobService.sendAppliedJobDetails(a)
-    this.router.navigateByUrl('/jobs/jobs/my-applyed-job/AppliedJobDetailsComponent')
+    this.jobService.sendAppliedJobId(a)
+    this.router.navigate(['/jobs/jobs/my-applyed-job/AppliedJobDetailsComponent',a])
 
   }
 }

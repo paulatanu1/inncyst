@@ -7,6 +7,7 @@ import { UploadResumeStepComponent } from './upload-resume-step/upload-resume-st
 import { BasicInternshipComponent } from './basic-internship/basic-internship.component';
 import { JobApplyedComponent } from './job-applyed/job-applyed.component';
 import { AppliedJobDetailsComponent } from './applied-job-details/applied-job-details.component';
+import { RefreshGuard } from '../Guard/refresh.guard';
 const routes: Routes = [
   { path: '', component: JobsComponent },
   { path: 'basicInternship', component: BasicInternshipComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
 children:[
 
   // {path:'',component:JobApplyedComponent},
-  {path:'AppliedJobDetailsComponent',component:AppliedJobDetailsComponent}
+  {path:'AppliedJobDetailsComponent/:id',component:AppliedJobDetailsComponent
+}
 ] },
 ];
 
