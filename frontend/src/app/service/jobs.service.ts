@@ -51,7 +51,7 @@ jobDetails:any;
  getAppliedJobId(){
   return of(this.jobDetails)
  }
-getAppliedJobDetails(id:string){
+getAppliedJobDetails(id:any){
   let url='/student/job/'+id
   return this.api.ApiCallWithLocalization('',url,'get')
 }

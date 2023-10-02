@@ -1,9 +1,11 @@
 <div>
   <h1>student details:--</h1>
+ <div *ngIf="appliedJobId && appliedJobDetails">
   <p>your name:- {{ appliedJobDetails.studentName }}</p>
   <p>phone no:- {{ appliedJobDetails.phone }}</p>
   <p>resume link:- {{ appliedJobDetails.resume }}</p>
   <p>your email:- {{ appliedJobDetails.email }}</p>
+  <div *ngIf="appliedJobDetails.intranshipDetails">
   <p *ngIf="appliedJobDetails.availability_message">
     availability_message :- {{ appliedJobDetails.availability_message }}
   </p>
@@ -35,4 +37,6 @@
   <p>
     extra information:- {{ appliedJobDetails.intranshipDetails.information }}
   </p>
+</div>
+</div>
 </div>
