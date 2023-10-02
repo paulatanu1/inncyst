@@ -11,48 +11,25 @@ export class AppliedJobDetailsComponent implements OnInit {
   appliedJobDetails: any;
   appliedJobId: any;
   constructor(private jobService: JobsService, private router: Router,private activatedRoute:ActivatedRoute) {}
-  ngOnChanges(changes: SimpleChange) {
-    console.log(changes, 'changes');
-    // this.jobService.sendMyJobDetails.subscribe({
-    //   next:(res)=>{
-    //     console.log(res,'hhhhhhhhhhhhhhhh')
-    //     this.appliedJobDetails=res;
-    //     console.log(this.appliedJobDetails,'get job details')
-    //   }
-    // })
-  }
+
   ngOnInit(): void {
-    this.appliedJobId=this .activatedRoute.snapshot.paramMap.get('id');  
-// this.activatedRoute.params.subscribe({
-//   next:(res)=>{
-//     this.appliedJobId=res['id']
-//     console.log(this.appliedJobId,'res')
-  // }
-// })
-
-    this.jobService.getAppliedJobId().subscribe({
-      next: (res) => {
-        this.appliedJobId = res;
-        this.jobService.getAppliedJobDetails(res).subscribe({
-          next: (res) => {
-            console.log(res, 'get job details');
-            this.appliedJobDetails = res.data;
-            console.log(this.appliedJobDetails, 'appliedJobDetails');
-          },
-        });
-      },
-    });
-    // if (this.appliedJobId) {
-
-    // }
+this.activatedRoute.params.subscribe({
+  next:(res)=>{
+    this.appliedJobId=res['id']
+    if(this.appliedJobId){
+      this.jobService.getAppliedJobDetails(this.appliedJobId).subscribe({
+        next: (res) => {
+          this.appliedJobDetails = res.data;
+        },
+      });
+    }
   }
+})
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    //     if (performance && performance.navigation.type === 1) {
-    //   // Page is being refreshed, navigate to the parent route
-    //   this.router.navigate(['/jobs/jobs/my-applyed-job']);
-    // }
   }
+ngOnDestroy(): void {
+  this.appliedJobId=null;
+  this.appliedJobDetails=null;
+  // this.
+}
 }
