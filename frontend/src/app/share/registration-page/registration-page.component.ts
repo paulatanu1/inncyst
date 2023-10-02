@@ -112,8 +112,8 @@ export class RegistrationPageComponent implements OnInit {
    
     this.option = [
       // {name: 'Select the option', code: '0'},
-      { optionName: 'Student', code: '1' },
-      { optionName: 'Industry', code: '2' },
+      { optionName: 'student', code: '1' },
+      { optionName: 'industry', code: '2' },
     ];
 
     this.registrationOption = [
@@ -146,7 +146,7 @@ export class RegistrationPageComponent implements OnInit {
         ],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required]],
-        options: ['Student',[Validators.required]],
+        options: ['student',[Validators.required]],
         agree: [false, [Validators.required, Validators.requiredTrue]],
       },
       {
@@ -206,7 +206,7 @@ export class RegistrationPageComponent implements OnInit {
           ls.set('userName', name);
           ls.set('registerId', _id);
           ls.set('phone', phone);
-          ls.set('userRole', this.userRole);
+          ls.set('role', this.userRole);
           let severity = '';
           let summary = '';
           let detail = '';
