@@ -2,7 +2,7 @@
   <div class="my_profile_sec_inner">
     <div class="profile_img">
       <figure>
-        <img [src]="croppedImage" />
+        <img [src]="imagePath" />
         <span>
           {{ ProfileDetails.status ? 'Active' : 'Deactive' }}
         </span>
@@ -61,7 +61,7 @@
     <div class="profile-section">
       <div class="left-section">
         <div class="profile-pic">
-          <img [src]="croppedImage" alt="" />
+          <img [src]="imagePath" alt="" />
           <!-- <p-fileUpload
             mode="basic"
             name="demo[]"
@@ -76,7 +76,6 @@
             type="file"
             accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"
             (change)="fileChangeEvent($event)"
-            (click)="cropper.toggle($event)"
           />
         </div>
       </div>
@@ -145,23 +144,30 @@
 <!-- <img [src]="croppedImage" /> -->
 
 <button (click)="back()">Back To Job</button>
-<p-overlayPanel #cropper>
-  <ng-template pTemplate>
-    <image-cropper
-      [imageChangedEvent]="imageChangedEvent"
-      [maintainAspectRatio]="true"
-      [aspectRatio]="4 / 3"
-      format="png"
-      (imageCropped)="imageCropped($event)"
-      (imageLoaded)="imageLoaded()"
-      (cropperReady)="cropperReady()"
-      (loadImageFailed)="loadImageFailed()"
-      (imgCroppedDone)="ImgCroppedDone($event)"
-      (imgCroppedCancel)="CancelImgCroppedDone()"
-      [resizeToWidth]="236"
-      [resizeToHeight]="252"
-      [cropperMinWidth]="236"
-      [cropperMinHeight]="252"
-    ></image-cropper>
-  </ng-template>
-</p-overlayPanel>
+
+<p-dialog
+  header="Title"
+  [(visible)]="cropperModal"
+  [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+  [style]="{ width: '50vw' }"
+>
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    (imgCroppedDone)="ImgCroppedDone($event)"
+    (imgCroppedCancel)="CancelImgCroppedDone()"
+    [resizeToWidth]="236"
+    [resizeToHeight]="236"
+    [cropperMinWidth]="236"
+    [cropperMinHeight]="236"
+    [autoCrop]="true"
+  ></image-cropper>
+
+  <button type="submit" (click)="croppedComplete()">Cropped</button>
+</p-dialog>

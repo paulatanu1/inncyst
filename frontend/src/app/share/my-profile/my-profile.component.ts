@@ -33,36 +33,36 @@ export class MyProfileComponent implements OnInit {
   editProfile: boolean = false;
   profileForm: FormGroup = new FormGroup({});
   imageChangedEvent: any;
+  cropperModal: boolean = false;
+  imagePath: string = '';
   constructor(
     private internship: InternshipProfileService,
     private formBuilder: FormBuilder,
     private sanitizer: DomSanitizer,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-  
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
       shortDescription: ['', Validators.required],
       skills: [[]], // Initialize as an empty array
       location: [''],
       phone: ['', Validators.required],
-      email: ['lllllllllllll', Validators.required],
+      email: ['', Validators.required],
+      image: [''],
     });
 
     this.profile = this.internship
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
-        console.log(this.ProfileDetails,'ProfileDetails');
+        // console.log(this.ProfileDetails, 'ProfileDetails');
+        if (this.ProfileDetails) {
+          this.profileForm.patchValue(this.ProfileDetails);
+          // console.log(this.profileForm, 'ii');
+        }
       });
-      if(this.ProfileDetails){
-
-        this.profileForm.patchValue({
-          shortDescription:this.ProfileDetails.email
-        });
-      }
   }
 
   openEdit() {
@@ -100,17 +100,25 @@ export class MyProfileComponent implements OnInit {
     this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(
       event.objectUrl as string
     );
+    console.log(this.croppedImage, 'ci');
     // event.blob can be used to upload the cropped image
   }
 
   fileChangeEvent(event: any): void {
-    console.log(event, 'event');
-    console.log(this.cropper.nativeElement, 'this.cropper.nativeElement');
+    // console.log(event, 'event');
+    // console.log(this.cropper.nativeElement, 'this.cropper.nativeElement');
     // this.cropper.nativeElement.toggle();
     this.imageChangedEvent = event;
+    this.cropperModal = true;
   }
-  back(){
-    this.router.navigateByUrl('/jobs/internships')
+  back() {
+    this.router.navigateByUrl('/jobs/internships');
+  }
+
+  croppedComplete() {
+    this.cropperModal = false;
+    this.imagePath = this.croppedImage;
+    console.log(this.imagePath, 'path');
   }
   ngOnDestroy() {
     this.profile?.unsubscribe();
