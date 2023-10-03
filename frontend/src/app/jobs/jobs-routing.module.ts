@@ -7,7 +7,7 @@ import { UploadResumeStepComponent } from './upload-resume-step/upload-resume-st
 import { BasicInternshipComponent } from './basic-internship/basic-internship.component';
 import { JobApplyedComponent } from './job-applyed/job-applyed.component';
 import { AppliedJobDetailsComponent } from './applied-job-details/applied-job-details.component';
-import { RefreshGuard } from '../Guard/refresh.guard';
+import { BasicJobComponent } from './basic-job/basic-job.component';
 const routes: Routes = [
   { path: '', component: JobsComponent },
   { path: 'basicInternship', component: BasicInternshipComponent },
@@ -20,13 +20,17 @@ const routes: Routes = [
       { path: 'uploadresume', component: UploadResumeStepComponent },
     ],
   },
-  { path: 'jobs/my-applyed-job', component: JobApplyedComponent,
-children:[
-
-  // {path:'',component:JobApplyedComponent},
-  {path:'AppliedJobDetailsComponent/:id',component:AppliedJobDetailsComponent
-}
-] },
+  {
+    path: 'jobs/my-applyed-job',
+    component: BasicJobComponent,
+    children: [
+      { path: '', component: JobApplyedComponent },
+      {
+        path: 'AppliedJobDetailsComponent/:id',
+        component: AppliedJobDetailsComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({

@@ -218,6 +218,12 @@ export class RegistrationPageComponent implements OnInit {
           });
           this.isSignup = true;
           this.openVerificationModal(true);
+        },(err)=> {
+          this._toast.showToaster.next({
+            severity: 'error',
+            summary: 'error',
+            detail: err.error.message,
+          });
         });
     }
   }

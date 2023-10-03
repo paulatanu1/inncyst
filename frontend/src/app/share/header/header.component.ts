@@ -167,7 +167,7 @@ this.InternshipService.customHeader.subscribe({
         label: 'Job Apply',
         icon: 'pi pi-user',
         command: () => {
-          this.router.navigate(['jobs/job-applyed']);
+          this.router.navigate(['/jobs/jobs/my-applyed-job']);
         },
       },
 

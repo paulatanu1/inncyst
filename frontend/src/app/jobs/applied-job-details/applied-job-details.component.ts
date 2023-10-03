@@ -25,7 +25,10 @@ this.activatedRoute.params.subscribe({
     }
   }
 })
+  }
 
+  backToJobDetails(){
+    this.router.navigateByUrl('/jobs/jobs/my-applyed-job')
   }
 ngOnDestroy(): void {
   this.appliedJobId=null;
