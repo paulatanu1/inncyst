@@ -148,24 +148,31 @@
 
 <!-- <img [src]="croppedImage" /> -->
 
+<button (click)="back()">Back To Job</button>
 
-<p-overlayPanel #cropper>
-  <ng-template pTemplate>
-    <image-cropper
-      [imageChangedEvent]="imageChangedEvent"
-      [maintainAspectRatio]="true"
-      [aspectRatio]="4 / 3"
-      format="png"
-      (imageCropped)="imageCropped($event)"
-      (imageLoaded)="imageLoaded()"
-      (cropperReady)="cropperReady()"
-      (loadImageFailed)="loadImageFailed()"
-      (imgCroppedDone)="ImgCroppedDone($event)"
-      (imgCroppedCancel)="CancelImgCroppedDone()"
-      [resizeToWidth]="236"
-      [resizeToHeight]="252"
-      [cropperMinWidth]="236"
-      [cropperMinHeight]="252"
-    ></image-cropper>
-  </ng-template>
-</p-overlayPanel>
+<p-dialog
+  header="Title"
+  [(visible)]="cropperModal"
+  [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+  [style]="{ width: '50vw' }"
+>
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    (imgCroppedDone)="ImgCroppedDone($event)"
+    (imgCroppedCancel)="CancelImgCroppedDone()"
+    [resizeToWidth]="236"
+    [resizeToHeight]="236"
+    [cropperMinWidth]="236"
+    [cropperMinHeight]="236"
+    [autoCrop]="true"
+  ></image-cropper>
+
+  <button type="submit" (click)="croppedComplete()">Cropped</button>
+</p-dialog>

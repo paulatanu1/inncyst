@@ -79,6 +79,7 @@ export class MyProfileComponent implements OnInit {
       this.internship.EditProfile(this.profileForm.value).subscribe({
         next:(res)=>{
           console.log(res)
+          // this.editProfile = false;
         },
         error:(err)=>{
           console.log(err.error)
