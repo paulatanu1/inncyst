@@ -91,8 +91,9 @@ export class ApiService {
           })
         );
     } else if (method == 'put') {
+      console.log(httpHeaderValue)
       return this.http
-        .put(url,data)
+        .put(url,data, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
           timeout(environment.API_TIMEOUT),
           catchError((e, c) => {
@@ -100,6 +101,7 @@ export class ApiService {
           })
         );
     } else {
+      console.log(httpHeaderValue)
       return this.http
         .post(url, data, { headers: httpHeaderValue, observe: 'response' })
         .pipe(

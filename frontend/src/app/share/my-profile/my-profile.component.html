@@ -14,7 +14,7 @@
       <button (click)="openEdit()" class="edit_btn">Edit</button>
       <h2>{{ ProfileDetails.name }}</h2>
       <p class="subhead">
-        {{ ProfileDetails.location??'Update Your Location' }}
+        {{ ProfileDetails.location?ProfileDetails.location:'Update Your Location' }}
       </p>
       <div class="mail_register">
         <a href="mailto:amanda.jg@gmail.com">

@@ -10,29 +10,33 @@ import { JobsService } from 'src/app/service/jobs.service';
 export class AppliedJobDetailsComponent implements OnInit {
   appliedJobDetails: any;
   appliedJobId: any;
-  constructor(private jobService: JobsService, private router: Router,private activatedRoute:ActivatedRoute) {}
+  constructor(
+    private jobService: JobsService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-this.activatedRoute.params.subscribe({
-  next:(res)=>{
-    this.appliedJobId=res['id']
-    if(this.appliedJobId){
-      this.jobService.getAppliedJobDetails(this.appliedJobId).subscribe({
-        next: (res) => {
-          this.appliedJobDetails = res.data;
-        },
-      });
-    }
-  }
-})
+    this.activatedRoute.params.subscribe({
+      next: (res: any) => {
+        this.appliedJobId = res['id'];
+        if (this.appliedJobId) {
+          this.jobService.getAppliedJobDetails(this.appliedJobId).subscribe({
+            next: (res) => {
+              this.appliedJobDetails = res.data;
+            },
+          });
+        }
+      },
+    });
   }
 
-  backToJobDetails(){
-    this.router.navigateByUrl('/jobs/jobs/my-applyed-job')
+  backToJobDetails() {
+    this.router.navigateByUrl('/jobs/jobs/my-applyed-job');
   }
-ngOnDestroy(): void {
-  this.appliedJobId=null;
-  this.appliedJobDetails=null;
-  // this.
-}
+  ngOnDestroy(): void {
+    this.appliedJobId = null;
+    this.appliedJobDetails = null;
+    // this.
+  }
 }

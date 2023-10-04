@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ToastServiceService } from 'src/app/service/toast-service.service';
 
 interface IprofileDetails {
   name: string;
@@ -40,7 +41,8 @@ export class MyProfileComponent implements OnInit {
     private internship: InternshipProfileService,
     private formBuilder: FormBuilder,
     private sanitizer: DomSanitizer,
-    private router: Router
+    private router: Router,
+    private _toast: ToastServiceService,
   ) {}
 
   ngOnInit(): void {
@@ -78,11 +80,21 @@ export class MyProfileComponent implements OnInit {
 
       this.internship.EditProfile(this.profileForm.value).subscribe({
         next:(res)=>{
+                this._toast.showToaster.next({
+          severity: 'success',
+          summary: 'success',
+          detail: res.success,
+        });
+        this.editProfile = false;
           console.log(res)
           // this.editProfile = false;
         },
         error:(err)=>{
-          console.log(err.error)
+          this._toast.showToaster.next({
+            severity: 'error',
+            summary: 'error',
+            detail:err.error.message,
+          });
         }
       })
       // You can send the form data to your backend or perform other actions here
