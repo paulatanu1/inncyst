@@ -206,7 +206,7 @@ export class RegistrationPageComponent implements OnInit {
           ls.set('userName', name);
           ls.set('registerId', _id);
           ls.set('phone', phone);
-          ls.set('userRole', this.userRole);
+          ls.set('role', this.userRole);
           let severity = '';
           let summary = '';
           let detail = '';
