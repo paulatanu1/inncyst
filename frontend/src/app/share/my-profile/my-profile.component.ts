@@ -10,14 +10,14 @@ interface IprofileDetails {
   name: string;
   email: string;
   phone: string;
-  image: null;
+  image: string;
   role: string;
   verified: boolean;
   question_step: boolean;
   status: boolean;
   createdAt: string;
-  location: null | string;
-  description: null | string;
+  location:  string;
+  description:  string;
   skills: string[];
 }
 @Component({
@@ -35,6 +35,7 @@ export class MyProfileComponent implements OnInit {
   imageChangedEvent: any;
   cropperModal: boolean = false;
   imagePath: string = '';
+  cImage:any;
   constructor(
     private internship: InternshipProfileService,
     private formBuilder: FormBuilder,
@@ -45,9 +46,9 @@ export class MyProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
-      shortDescription: ['', Validators.required],
+      shortDescription: [''],
       skills: [[]], // Initialize as an empty array
-      location: [''],
+      location: [' '],
       phone: ['', Validators.required],
       email: ['', Validators.required],
       image: [''],
@@ -57,6 +58,7 @@ export class MyProfileComponent implements OnInit {
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
+        // console.log(this.ProfileDetails)
         // console.log(this.ProfileDetails, 'ProfileDetails');
         if (this.ProfileDetails) {
           this.profileForm.patchValue(this.ProfileDetails);
@@ -72,8 +74,16 @@ export class MyProfileComponent implements OnInit {
   onSubmit() {
     if (this.profileForm.valid) {
       // Form is valid, you can access form values using this.profileForm.value
-      console.log(this.profileForm.value);
+      console.log(this.profileForm.value)
 
+      this.internship.EditProfile(this.profileForm.value).subscribe({
+        next:(res)=>{
+          console.log(res)
+        },
+        error:(err)=>{
+          console.log(err.error)
+        }
+      })
       // You can send the form data to your backend or perform other actions here
     } else {
       // Form is invalid, display error messages or perform other actions as needed
@@ -81,7 +91,7 @@ export class MyProfileComponent implements OnInit {
   }
 
   ImgCroppedDone(event: Event) {
-    console.log(event, 'event done');
+    // console.log(event, 'event done');
   }
 
   CancelImgCroppedDone() {}
@@ -94,13 +104,16 @@ export class MyProfileComponent implements OnInit {
   }
   imageLoaded() {
     // throw new Error('Method not implemented.');
-    console.log('loaded');
+    // console.log('loaded');
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(
       event.objectUrl as string
     );
-    console.log(this.croppedImage, 'ci');
+   this.cImage= event.objectUrl;
+    console.log(this.cImage)
+    // console.log(event.objectUrl)
+    // console.log(this.croppedImage, 'ci');
     // event.blob can be used to upload the cropped image
   }
 
@@ -110,6 +123,7 @@ export class MyProfileComponent implements OnInit {
     // this.cropper.nativeElement.toggle();
     this.imageChangedEvent = event;
     this.cropperModal = true;
+    // console.log(this.imageChangedEvent,'img')
   }
   back() {
     this.router.navigateByUrl('/jobs/internships');
@@ -118,7 +132,10 @@ export class MyProfileComponent implements OnInit {
   croppedComplete() {
     this.cropperModal = false;
     this.imagePath = this.croppedImage;
-    console.log(this.imagePath, 'path');
+    // console.log(this.imagePath , 'path');
+    this.ProfileDetails.image= this.cImage
+    this.profileForm.patchValue(this.ProfileDetails)
+    // console.log(this.profileForm)
   }
   ngOnDestroy() {
     this.profile?.unsubscribe();
