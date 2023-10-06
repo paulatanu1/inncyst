@@ -1,6 +1,6 @@
 export interface IpostJob {
-  opportunityTypes: string;
-  salary: string;
+  type: string;
+  salary: number;
   salaryType: string;
   perks: string;
   skills: string[];
@@ -15,7 +15,7 @@ export interface IpostJob {
 
 export interface Ipayload {
   type: string;
-  salary: string;
+  salary: number;
   salaryType: string;
   perks: string;
   skills: string[];

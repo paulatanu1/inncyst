@@ -12,7 +12,7 @@ export class JobPostApiService {
     let url = '/industry/add-post';
     const payloadData: Ipayload = {
       type: '',
-      salary: '',
+      salary: 0,
       salaryType: '',
       perks: '',
       skills: [],
@@ -26,7 +26,7 @@ export class JobPostApiService {
     };
     console.log(payloadObj, 'payloadObj');
 
-    payloadData.type = payloadObj.opportunityTypes;
+    payloadData.type = payloadObj.type;
     payloadData.details = payloadObj.details;
     payloadData.skills = payloadObj.skills;
     payloadData.intranshipType = payloadObj.intranshipType;
@@ -35,12 +35,35 @@ export class JobPostApiService {
     payloadData.jobOpening = payloadObj.jobOpening;
     payloadData.responsibilities = payloadObj.responsibilities;
     payloadData.stipend = payloadObj.stipend;
-    payloadData.salary = payloadObj.salary;
+    payloadData.salary = +payloadObj.salary;
     payloadData.salaryType = payloadObj.salaryType;
     payloadData.perks = payloadObj.perks;
 
     console.log(payloadData);
 
-    return this.apiCall.ApiCallWithLocalization(payloadData, url, 'post');
+    return this.apiCall.ApiCallWithLocalization(payloadData, url, 'put');
+  }
+
+  saveJob(payloadObj:any){
+    let url = '/industry/add-post';
+    console.log(payloadObj);
+ const formData ={
+   type :payloadObj.type,
+   details:payloadObj.details,
+   skills:payloadObj.skills,
+   startDate:payloadObj.startDate,
+   duration:payloadObj.duration,
+   jobOpening:payloadObj.jobOpening,
+   responsibilities:payloadObj.responsibilities,
+   stipend:payloadObj.stipend,
+   salary:+payloadObj.salary,
+   salaryType:payloadObj.salaryType,
+   perks:payloadObj.perks,
+   intranshipType:payloadObj.intranshipType
+ }
+    console.log(payloadObj, 'payloadObj');
+
+
+    return this.apiCall.ApiCallWithLocalization(formData,url,'post')
   }
 }

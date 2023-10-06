@@ -7,7 +7,7 @@ interface cities {
   code: string;
 }
 interface Payload {
-  opportunityTypes: string;
+  type: string;
   details: string;
   skills: string[];
   intranshipType: string;
@@ -16,9 +16,23 @@ interface Payload {
   jobOpening: number;
   responsibilities: string[];
   stipend: string;
-  salary: string;
+  salary: number;
   salaryType: string;
   perks: string;
+}
+interface SavePayload {
+  type?: string;
+  details?: string;
+  skills?: string[];
+  intranshipType?: string;
+  startDate?: string;
+  duration?: string;
+  jobOpening?: number;
+  responsibilities?: string[];
+  stipend?: string;
+  salary?: string;
+  salaryType?: string;
+  perks?: string;
 }
 @Component({
   selector: 'app-post-add',
@@ -58,12 +72,12 @@ export class PostAddComponent implements OnInit {
     private jobPost: JobPostApiService
   ) {
     this.cities = [
-      { optionName: 'Months', code: 'M' },
-      { optionName: 'Year', code: 'Y' },
+      { optionName: 'monthly', code: 'M' },
+      { optionName: 'yearly', code: 'Y' },
     ];
 
     this.postJob = this.fb.group({
-      opportunityTypes: ['', Validators.required],
+      type: ['', Validators.required],
       details: ['', Validators.required],
       skills: [[]],
       intranshipType: [''],
@@ -73,7 +87,7 @@ export class PostAddComponent implements OnInit {
       jobOpening: [0],
       responsibilities: [[]],
       stipend: [''],
-      salary: [''],
+      salary: [],
       salaryType: [this.cities[0].optionName],
       perks: [[]],
     });
@@ -82,7 +96,19 @@ export class PostAddComponent implements OnInit {
   ngOnInit(): void {
     this._menuHandel.leftMenuActive.next(1);
   }
+saveForm(){
+  console.log(this.postJob.value,'formValue')
+  const formData:SavePayload=this.postJob.value
+  this.jobPost.saveJob(formData).subscribe({
+    next:(res)=>{
+      console.log(res,'savejob')
+    },
+    error:(err)=>{
+      console.log(err,'savejob')
+    }
+  })
 
+}
   submitForm() {
     console.log(this.postJob.valid);
     if (this.postJob.valid) {

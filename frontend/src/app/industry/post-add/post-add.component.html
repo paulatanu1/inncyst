@@ -7,17 +7,17 @@
         <div class="opp_type">
           <div class="field-radiobutton">
             <p-radioButton
-              value="Internship"
-              inputId="internship"
-              formControlName="opportunityTypes"
+              value="intranship"
+              inputId="intranship"
+              formControlName="type"
             ></p-radioButton>
             <label for="internship">Internship</label>
           </div>
           <div class="field-radiobutton">
             <p-radioButton
-              value="Job"
+              value="job"
               inputId="job"
-              formControlName="opportunityTypes"
+              formControlName="type"
             ></p-radioButton>
             <label for="job">Job</label>
           </div>
@@ -54,7 +54,7 @@
           <label>Internship type</label>
           <div class="field-radiobutton">
             <p-radioButton
-              value="In-office"
+              value="office"
               inputId="in-office"
               formControlName="intranshipType"
             ></p-radioButton>
@@ -147,7 +147,7 @@
           <label>Stipend</label>
           <div class="field-radiobutton">
             <p-radioButton
-              value="Fixed"
+              value="fixed"
               inputId="fixed"
               formControlName="stipend"
             ></p-radioButton>
@@ -155,7 +155,7 @@
           </div>
           <div class="field-radiobutton">
             <p-radioButton
-              value="Unpaid"
+              value="unpaid"
               inputId="Unpaid"
               formControlName="stipend"
             ></p-radioButton>
@@ -163,7 +163,7 @@
           </div>
           <div class="field-radiobutton">
             <p-radioButton
-              value="Performance based"
+              value="paid"
               inputId="Performance based"
               formControlName="stipend"
             ></p-radioButton>
@@ -243,7 +243,7 @@
         </div>
       </div>
       <div class="buttonSec">
-        <button type="button" class="save_preview">Save Preview</button>
+        <button type="button" class="save_preview" (click)="saveForm()">Save Preview</button>
         <button type="submit" class="post_btn">Post Internship</button>
       </div>
       <div class="assistance">
