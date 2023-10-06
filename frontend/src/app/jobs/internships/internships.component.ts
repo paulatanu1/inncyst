@@ -6,6 +6,8 @@ import { JobsService } from 'src/app/service/jobs.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
 import { InternshipProfileService } from 'src/app/share/service/internship-profile.service';
+import ls from 'localstorage-slim';
+import { OtpVerificationService } from 'src/app/share/registration-otp/otp-verification.service';
 @Component({
   selector: 'app-internships',
   templateUrl: './internships.component.html',
@@ -46,7 +48,8 @@ export class InternshipsComponent implements OnInit {
     private router: Router,
     private messageService: MessageService,
     private jobService: JobsService,
-    private internshipService: InternshipProfileService
+    private internshipService: InternshipProfileService,
+    private otpService:OtpVerificationService
   ) {}
 
   ngOnInit(): void {
@@ -188,10 +191,20 @@ export class InternshipsComponent implements OnInit {
             });
           },
           error: (err) => {
-            console.log(err);
+            console.log(err.error.message);
           },
         });
       },
+      error:(err)=>{
+        console.log(err.error.message)
+        if(err.error.message == 'jwt expired'){
+          ls.clear()
+          ls.remove('logoutSuccess');
+          this.otpService.logoutSuccess.next(false)
+          this.router.navigate(['/login']);
+          alert('dd')
+        }
+      }
     });
   }
   applyJob() {

@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -34,7 +41,7 @@ interface IregistrationOption {
   styleUrls: ['./header.component.scss'],
   providers: [MessageService],
 })
-export class HeaderComponent implements OnInit ,OnChanges{
+export class HeaderComponent implements OnInit, OnChanges {
   items: MenuItem[];
   dropdownitems: MenuItem[];
   registration: boolean = false;
@@ -61,7 +68,7 @@ export class HeaderComponent implements OnInit ,OnChanges{
   forgotPassword: boolean = false;
   logInToken!: any;
   userType!: any;
-  customHeader:boolean=true;
+  customHeader: boolean = true;
   //Outputs
   constructor(
     private otpService: OtpVerificationService,
@@ -75,8 +82,8 @@ export class HeaderComponent implements OnInit ,OnChanges{
     private quiestion: QuestionSetEnablerService,
     private _header: HeaderService,
     private loginApiService: LoginApiService,
-    private InternshipService:InternshipProfileService,
-    private cdk:ChangeDetectorRef
+    private InternshipService: InternshipProfileService,
+    private cdk: ChangeDetectorRef
   ) {
     //check allready login user or not
     this.logInToken = ls.get('login_token');
@@ -87,7 +94,7 @@ export class HeaderComponent implements OnInit ,OnChanges{
     }
 
     this.userType = ls.get('userType');
-    console.log(this.userType)
+    console.log(this.userType);
 
     this.items = [
       {
@@ -135,25 +142,23 @@ export class HeaderComponent implements OnInit ,OnChanges{
   ngAfterContentInit(): void {
     //Called after ngOnInit when the component's or directive's content has been initialized.
     //Add 'implements AfterContentInit' to the class.
-    this.cdk.detectChanges()
+    this.cdk.detectChanges();
   }
-ngOnChanges() {
- 
-  this.userType = ls.get('userType');
-  console.log(this.userType)
- console.log(this.logInToken)
-
-}
+  ngOnChanges() {
+    this.userType = ls.get('userType');
+    console.log(this.userType);
+    console.log(this.logInToken);
+  }
   ngOnInit(): void {
     // debugger
     // this.logoutSuccess=true;
     // this.logoutSuccess=<boolean>ls.get('logoutSuccess');
-this.InternshipService.customHeader.subscribe({
-  next:(res=>{
-    this.customHeader=<boolean>res
-  })
-})
-   
+    this.InternshipService.customHeader.subscribe({
+      next: (res) => {
+        this.customHeader = <boolean>res;
+      },
+    });
+
     console.log(this.userType);
     this.Profileitems = [
       {
@@ -174,9 +179,9 @@ this.InternshipService.customHeader.subscribe({
       {
         label: 'Change Password',
         icon: 'pi pi-lock',
-        command:()=>{
-          this.router.navigate(['change-password'])
-        }
+        command: () => {
+          this.router.navigate(['change-password']);
+        },
       },
       {
         label: 'Logout',
@@ -248,28 +253,27 @@ this.InternshipService.customHeader.subscribe({
     });
   }
   product() {
-         //check allready login user or not
-         this.logInToken = ls.get('login_token');
-         if (this.logInToken) {
-           this.logoutSuccess = true;
-         } else {
-           this.logoutSuccess = false;
-         }
-              console.log(this.userType)
-             console.log(this.logInToken)
+    //check allready login user or not
+    this.logInToken = ls.get('login_token');
+    if (this.logInToken) {
+      this.logoutSuccess = true;
+    } else {
+      this.logoutSuccess = false;
+    }
+    console.log(this.userType);
+    console.log(this.logInToken);
 
-
-             this.dropdownitems = [
+    this.dropdownitems = [
       {
         label: 'Internship/Job',
         icon: 'pi pi-refresh',
         command: () => {
           this.userType = ls.get('userType');
-  
+
           if (this.logInToken && this.userType == 'student') {
             console.log(this.logInToken, this.userType == 'student');
             this.router.navigateByUrl('jobs/internships');
-          } else if(!this.logInToken && !this.userType) {
+          } else if (!this.logInToken && !this.userType) {
             this.router.navigateByUrl('jobs/basicInternship');
           }
         },
@@ -309,13 +313,10 @@ this.InternshipService.customHeader.subscribe({
     } else if (url === 'contactus') {
       this.router.navigateByUrl('/contactus');
       this.progress.isProgressBarShow.next(false);
-    }
-    else if(url === 'Jobs'){
-      this.router.navigateByUrl('/jobs/internships')
-    
-    }
-    else if(url === 'My Jobs'){
-      this.router.navigateByUrl('/jobs/jobs/my-applyed-job')
+    } else if (url === 'Jobs') {
+      this.router.navigateByUrl('/jobs/internships');
+    } else if (url === 'My Jobs') {
+      this.router.navigateByUrl('/jobs/jobs/my-applyed-job');
     }
   }
 

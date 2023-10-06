@@ -98,6 +98,11 @@
 
             <!-- -::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->
           </ul>
+          <section *ngIf="AllJobDetails.length == 0">
+            <h3> No Data Available..........</h3> <h3> No Data Available..........</h3>
+         
+           
+           </section>
         </div>
       </div>
     </section>
@@ -132,7 +137,12 @@
 
       <button (click)="sortLocation()">search</button>
     </div> -->
-    <section class="right_details_part" *ngIf="AllJobDetails.length > 0">
+    <section class="right_details_part" >
+      <ng-container *ngIf="AllJobDetails.length == 0">
+<p>No Record Found</p>
+      </ng-container>
+<ng-container *ngIf="AllJobDetails.length > 0"> 
+
       <div *ngFor="let a of singleJobDetails">
         {{ a.companyName }}
         <div class="right_details_head">
@@ -207,26 +217,12 @@
           </div>
         </div>
       </div>
+    </ng-container>
     </section>
   </section>
 </section>
 
-<section *ngIf="AllJobDetails.length == 0">
- <h3> No Data Available..........</h3> <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
- <h3> No Data Available..........</h3>
 
-</section>
 <p-dialog
   (onHide)="closeProfileUpdateForm()"
   [(visible)]="profileUpdate"
