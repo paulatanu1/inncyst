@@ -60,6 +60,13 @@ export class LoginComponent implements OnInit {
       { title: 'Industry', code: 1 },
     ];
   }
+  dropDown(e:any){
+console.log(e.value,'ee')
+this.loginForm.patchValue({
+  'options':e.value
+})
+console.log(this.loginForm.value,'ee')
+  }
 
   ngOnInit(): void {
     this.loginService.loginModal.subscribe((val) => {
@@ -81,6 +88,8 @@ export class LoginComponent implements OnInit {
         this.loginForm.reset();
       }
     });
+
+    
     this.loginForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -95,6 +104,7 @@ export class LoginComponent implements OnInit {
         // validators: MustMatch('password', 'confirmPassword')
       }
     );
+
   }
 
   ngOnChanges(): void {
@@ -108,12 +118,13 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSubmit() {
+    
     console.log(this.loginForm.controls);
     if (this.loginForm.valid) {
       let userEmail = this.loginForm.get('email')?.value;
       let password = this.loginForm.get('password')?.value;
       let userRole = this.loginForm.get('options')?.value;
-
+console.log(userRole,'ur')
       this.loginService.login(userEmail, password, userRole).subscribe({
         next: (res) => {
           console.log(res);
@@ -126,11 +137,11 @@ export class LoginComponent implements OnInit {
           //   phone:res.data.phone,
           //   image:res.data.image
           // })
-          if (userRole === 'Student') {
+          if (userRole == 'Student') {
             this.router.navigateByUrl('jobs/internships');
             ls.set('userType','student')
             // this.router.navigate(['/jobs/internship']);
-          } else if (userRole === 'Industry') {
+          } else if (userRole == 'Industry') {
             ls.set('userType','industry')
             this.router.navigate(['industry']);
           }
