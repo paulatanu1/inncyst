@@ -1,34 +1,34 @@
 <button class="add_job_btn" type="button" (click)="addJobs()">Add Job</button>
 <ul class="industry_listing">
-  <li>
+  <li *ngFor="let items of postList">
+    <!-- <li> -->
     <div class="listing_head">
       <div class="ribbon_draft">Draft</div>
       <figure><img src="" /></figure>
-      <h2>HR Executive - Recoupment</h2>
+      <h2>{{ items.details }}</h2>
       <i class="pi pi-ellipsis-v"></i>
-      
     </div>
     <div class="listing_details">
       <ul>
         <li>
           <strong>Opportunity type:</strong>
-          <label>HR Executive</label>
+          <label>{{ items.details }}</label>
         </li>
         <li>
           <strong>Internship start date:</strong>
-          <label>23.12.2023</label>
+          <label>{{ items.startDate }}</label>
         </li>
         <li>
           <strong>Stipend:</strong>
-          <label>12000/-</label>
+          <label>{{ items.salary }} /-</label>
         </li>
         <li>
           <strong>Internship duration:</strong>
-          <label>23.12.2024</label>
+          <label>{{ items.duration }}</label>
         </li>
         <li>
           <strong>Number of openings:</strong>
-          <label>50</label>
+          <label>{{ items.jobOpening }}</label>
         </li>
       </ul>
       <div class="list_status">
@@ -39,7 +39,8 @@
       </div>
     </div>
   </li>
-  <li>
+  <div *ngIf="postList.length == 0">No Record Found</div>
+  <!-- <li>
     <div class="listing_head">
       <div class="ribbon_draft">Draft</div>
       <figure><img src="" /></figure>
@@ -153,7 +154,6 @@
         </div>
       </div>
     </div>
-  </li> 
- 
+  </li>  -->
 </ul>
 <!-- <div class="no-records">No records found</div> -->
