@@ -77,8 +77,8 @@ export class PostAddComponent implements OnInit {
     ];
 
     this.postJob = this.fb.group({
-      type: ['', Validators.required],
-      details: ['', Validators.required],
+      type: [''],
+      details: [''],
       skills: [[]],
       intranshipType: [''],
       startDate: [''],
