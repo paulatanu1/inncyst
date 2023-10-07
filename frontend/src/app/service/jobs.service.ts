@@ -56,4 +56,8 @@ getAppliedJobDetails(id:any){
   return this.api.ApiCallWithLocalization('',url,'get')
 }
 
+basicIntershipList(url:any){
+  // let url='/job/all-jobs'
+  return this.api.ApiCallWithLocalization('',url,'get')
+}
 }
