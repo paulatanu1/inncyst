@@ -11,6 +11,7 @@ export interface IpostJob {
   jobOpening: number;
   responsibilities: string[];
   stipend: string;
+  id?:string
 }
 
 export interface Ipayload {
@@ -26,4 +27,5 @@ export interface Ipayload {
   jobOpening: number;
   responsibilities: string[];
   stipend: string;
+  id?:string
 }
