@@ -4,6 +4,8 @@ import { RegistrationPageComponent } from './share/registration-page/registratio
 import { MyProfileComponent } from './share/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './share/change-password/change-password.component';
 import { PageNotFoundComponent } from './share/page-not-found/page-not-found.component';
+import { UserVerificationGuard } from './Guard/user-verification.guard';
+import { AuthenticateGuard } from './Guard/authenticate.guard';
 
 const routes: Routes = [
   {
@@ -16,21 +18,64 @@ const routes: Routes = [
     loadChildren: () =>
       import('./shared/shared.module').then((m) => m.SharedModule),
   },
-  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
-  { path: 'jobs', loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsModule) },
-  { path: 'contactus', loadChildren: () => import('./contact-us/contact-us.module').then(m => m.ContactUsModule) },
   {
-    path: '', redirectTo: '/home', pathMatch: 'full'
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    canActivate: [AuthenticateGuard],
   },
-  { path: 'about-us', loadChildren: () => import('./about-us/about-us.module').then(m => m.AboutUsModule) },
-  { path: 'registeration', loadChildren: () => import('./registeration/registeration.module').then(m => m.RegisterationModule) },
-  { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
-  { path: 'industry', loadChildren: () => import('./industry/industry.module').then(m => m.IndustryModule) },
-  {path:'my-profile', component:MyProfileComponent},
-  {path:'change-password',component:ChangePasswordComponent},
   {
-    path: '**',component:PageNotFoundComponent
-  }
+    path: 'jobs',
+    loadChildren: () => import('./jobs/jobs.module').then((m) => m.JobsModule),
+  },
+  {
+    path: 'contactus',
+    loadChildren: () =>
+      import('./contact-us/contact-us.module').then((m) => m.ContactUsModule),
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'about-us',
+    loadChildren: () =>
+      import('./about-us/about-us.module').then((m) => m.AboutUsModule),
+  },
+  {
+    path: 'registeration',
+    loadChildren: () =>
+      import('./registeration/registeration.module').then(
+        (m) => m.RegisterationModule
+      ),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
+    
+  },
+  {
+    path: 'industry',
+    loadChildren: () =>
+      import('./industry/industry.module').then((m) => m.IndustryModule),
+    canActivate: [AuthenticateGuard],
+  },
+  {
+    path: 'my-profile',
+    component: MyProfileComponent,
+    canActivate: [AuthenticateGuard],
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    canActivate: [AuthenticateGuard],
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
