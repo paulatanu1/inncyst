@@ -156,26 +156,110 @@
       </div>
     </div>
     <div class="form-section">
-      <form>
+      <form [formGroup]="contactUsForm" (ngSubmit)="onSubmitContactForm()">
         <div class="input-area-sm">
           <label>First Name</label>
-          <input placeholder="Enter Your First Name" type="text" />
+          <input
+            placeholder="Enter Your First Name"
+            type="text"
+            formControlName="firstName"
+          />
+          <div
+            *ngIf="
+              contactUsForm?.get('firstName')?.hasError('required') &&
+              contactUsForm?.get('firstName')?.touched
+            "
+            class="error-message"
+          >
+            First Name is required.
+          </div>
         </div>
         <div class="input-area-sm">
           <label>Last Name</label>
-          <input placeholder="Enter Your Last Name" type="text" />
+          <input
+            placeholder="Enter Your Last Name"
+            type="text"
+            formControlName="lastName"
+          />
+          <div
+            *ngIf="
+              contactUsForm?.get('lastName')?.hasError('required') &&
+              contactUsForm?.get('lastName')?.touched
+            "
+            class="error-message"
+          >
+            First Name is required.
+          </div>
         </div>
         <div class="input-area-sm">
           <label>Email</label>
-          <input placeholder="Enter Your Email" type="text" />
+          <input
+            placeholder="Enter Your Email"
+            type="text"
+            formControlName="email"
+          />
+          <div
+            *ngIf="
+              contactUsForm?.get('email')?.hasError('required') &&
+              contactUsForm?.get('email')?.touched
+            "
+            class="error-message"
+          >
+            First Name is required.
+          </div>
         </div>
         <div class="input-area-sm">
           <label>Phone Number</label>
-          <input placeholder="Enter Your Mobile No." type="text" />
+          <input
+            placeholder="Enter Your Mobile No."
+            type="text"
+            formControlName="phone"
+          />
+          <div
+            *ngIf="
+              contactUsForm.get('phone')?.hasError('pattern') &&
+              contactUsForm.get('phone')?.touched
+            "
+            class="error-message"
+          >
+            Please enter a valid numeric phone number.
+          </div>
+          <div
+            *ngIf="
+              contactUsForm.get('phone')?.hasError('required') &&
+              !contactUsForm.get('phone')?.hasError('pattern') &&
+              contactUsForm.get('phone')?.touched
+            "
+            class="error-message"
+          >
+            Phone Number is required.
+          </div>
+          <div
+            *ngIf="
+              contactUsForm.get('phone')?.hasError('phoneLength') &&
+              !contactUsForm.get('phone')?.hasError('pattern') &&
+              contactUsForm.get('phone')?.touched
+            "
+            class="error-message"
+          >
+            Phone Number must not exceed 10 digits.
+          </div>
         </div>
         <div class="input-area-lg">
           <label>Message</label>
-          <textarea placeholder="Enter Your Message"></textarea>
+          <textarea
+            formControlName="message"
+            placeholder="Enter Your Message"
+          ></textarea>
+          <div
+            *ngIf="
+              contactUsForm.get('message')?.hasError('required') &&
+              contactUsForm.get('message')?.touched
+            "
+            class="error-message"
+          >
+            Message is required.
+          </div>
         </div>
         <div class="submit-area">
           <input type="submit" placeholder="Submit" />
