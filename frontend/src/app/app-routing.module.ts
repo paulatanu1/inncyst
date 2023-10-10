@@ -6,6 +6,7 @@ import { ChangePasswordComponent } from './share/change-password/change-password
 import { PageNotFoundComponent } from './share/page-not-found/page-not-found.component';
 import { UserVerificationGuard } from './Guard/user-verification.guard';
 import { AuthenticateGuard } from './Guard/authenticate.guard';
+import { ProtfolioComponent } from './share/protfolio/protfolio.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,9 @@ const routes: Routes = [
     path: 'my-profile',
     component: MyProfileComponent,
     canActivate: [AuthenticateGuard],
+  },
+  {
+    path:'my-profile/protfolio',component:ProtfolioComponent,canActivate: [AuthenticateGuard],
   },
   {
     path: 'change-password',

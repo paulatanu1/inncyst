@@ -17,6 +17,7 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { LoginDetailsService } from './common-service/login-details.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { PageNotFoundComponent } from './share/page-not-found/page-not-found.component';
+import { ProtfolioComponent } from './share/protfolio/protfolio.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { PageNotFoundComponent } from './share/page-not-found/page-not-found.com
     ChangePasswordComponent,
     MyProfileComponent,
     PageNotFoundComponent,
+    ProtfolioComponent,
   ],
   imports: [
     BrowserModule,
