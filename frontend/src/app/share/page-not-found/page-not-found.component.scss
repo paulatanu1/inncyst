@@ -1,0 +1,40 @@
+.page-not-found {
+    margin-top: 125px;
+    text-align: center;
+    h1 {
+        background: #2dcefb;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #2dcefb, #7d639f);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #2dcefb, #7d639f);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 180px;
+        font-weight: bold;
+    }
+    h2 {
+        color: #6d44a3;
+        font-weight: 700;
+        font-size: 60px;
+    }
+    p {
+        color:#808B9F;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 500;
+        margin-top: 16px;
+        line-height: 35px;
+    }
+    button {
+        border-radius: 20px;
+        background: #F0F0F3;
+        box-shadow: 1.5px 1.5px 3px 0px rgba(174, 174, 192, 0.40), -1px -1px 3px 0px #FFF;
+        padding: 15px 40px;
+        margin-top: 20px;
+        color: #6d44a3;
+        font-weight: 600;
+        font-size: 20px;
+    }
+}
