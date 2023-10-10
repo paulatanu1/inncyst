@@ -20,7 +20,7 @@ export class AuthenticateGuard implements CanActivate {
     state: RouterStateSnapshot):boolean {
     
       //Allow access if userType = student
-    if(this.userType != 'student'){
+    if(this.login_token){
       return true;
     }
      else{
