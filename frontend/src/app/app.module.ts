@@ -18,6 +18,7 @@ import { LoginDetailsService } from './common-service/login-details.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { PageNotFoundComponent } from './share/page-not-found/page-not-found.component';
 import { ProtfolioComponent } from './share/protfolio/protfolio.component';
+import { ProtfolioDetailsComponent } from './share/protfolio-details/protfolio-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { ProtfolioComponent } from './share/protfolio/protfolio.component';
     MyProfileComponent,
     PageNotFoundComponent,
     ProtfolioComponent,
+    ProtfolioDetailsComponent,
   ],
   imports: [
     BrowserModule,

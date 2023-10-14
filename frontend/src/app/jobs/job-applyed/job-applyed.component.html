@@ -12,19 +12,19 @@
             <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
           </div>
 
-          <h2>{{ a.intranshipDetails.intranshipName }}</h2>
-          <span>{{ a.applicationStatus }}</span>
+          <h2>{{ a?.intranshipDetails.intranshipName }}</h2>
+          <span>{{ a?.applicationStatus }}</span>
           <div class="location_info">
             <i class="pi pi-map-marker"></i
-            ><span>{{ a.intranshipDetails.location }}</span>
+            ><span>{{ a?.intranshipDetails.location }}</span>
           </div>
           <div class="location_info">
             <i class="pi pi-calendar"></i>
-            <span>{{ a.intranshipDetails.createdAt | date }}</span>
+            <span>{{ a?.intranshipDetails.createdAt | date }}</span>
           </div>
           <div class="company_info">
             <!-- <img src="../../../assets/canva.png" width="78" height="32" />  -->
-            <strong>{{ a.intranshipDetails.companyName }}</strong>
+            <strong>{{ a?.intranshipDetails.companyName }}</strong>
             <!-- <button (click)="details(a)"> send........</button> -->
           </div>
         </li>
