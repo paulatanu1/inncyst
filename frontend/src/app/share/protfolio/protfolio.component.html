@@ -19,7 +19,10 @@
     <app-protfolio-details
     [obj]="a"
     (individualObj)="getObj($event)"
+    (id)="deletedObjId($event)"
     ></app-protfolio-details>
-    <button (click)="addField()">Add +</button>
+    <br>
   </div>
+  <br>
+  <button (click)="addField()">Add +</button>
 </ng-container>

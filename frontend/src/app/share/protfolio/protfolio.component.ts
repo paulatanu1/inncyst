@@ -28,8 +28,11 @@ export class ProtfolioComponent implements OnInit {
   // constructor() {}
   addProtfolio() {
     this.protfolioVissable = !this.protfolioVissable;
+    // this.addField();
   }
   ngOnInit(): void {
+
+    console.log(this.field,'this')
     const currentTime = new Date().getTime();
 
     this.field.push({
@@ -45,7 +48,7 @@ export class ProtfolioComponent implements OnInit {
         },
       ],
     })
-
+    console.log(this.field);
   }
   
   addField() {
@@ -65,8 +68,17 @@ export class ProtfolioComponent implements OnInit {
     })
   }
   getObj(e:any){
-console.log(e)
-this.field.push(e)
 console.log(this.field,'f')
+  }
+
+  deletedObjId(e:any){
+      const formIndex = this.field.findIndex(data => data.id === e) 
+      
+      if(formIndex !== -1){
+        this.field.splice(formIndex , 1)
+        
+        console.log(this.field)
+      }
+    
   }
 }
