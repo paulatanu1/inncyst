@@ -35,6 +35,19 @@
         .profile_details {
             position: relative;
             flex: 0 0 75%;
+            .portfolio_btn {
+                color: #fff;
+                border-radius: 30px;
+                border: 1px solid #36A3E4;
+                background: linear-gradient(180deg, #3CAEF2 0%, #299BDF 100%);
+                box-shadow: 0px 4px 4px 0px rgba(6, 41, 63, 0.15);
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 16px;
+                text-transform: uppercase;
+                padding: 4px 15px;
+            }
             button.edit_btn {
                 color: #fff;
                 border-radius: 30px;
