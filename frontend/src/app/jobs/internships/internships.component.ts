@@ -221,12 +221,17 @@ export class InternshipsComponent implements OnInit {
     this.selectedJob = i;
     this.jobService.getJobDetails(id).subscribe({
       next: (res) => {
+        let id=(res.data._id);
+        console.log(id,'id')
+        this.jobService.getSelectedJobId(res.data._id)
         this.singleJobDetails = [];
         this.singleJobDetails.push(res.data);
         this.singleJobDetails.forEach((element: any) => {
           element.companyName = element.companyName.toUpperCase();
           element.intranshipName = element.intranshipName.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
+
+
         });
         console.log(this.singleJobDetails, 'res');
       },

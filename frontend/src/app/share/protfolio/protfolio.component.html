@@ -1,0 +1,28 @@
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<p>protfolio works!</p>
+<button (click)="addProtfolio()">Add Protfolio</button>
+
+<ng-container *ngIf="protfolioVissable">
+  <div *ngFor="let a of field">
+    <app-protfolio-details
+    [obj]="a"
+    (individualObj)="getObj($event)"
+    (id)="deletedObjId($event)"
+    ></app-protfolio-details>
+    <br>
+  </div>
+  <br>
+  <button (click)="addField()">Add +</button>
+</ng-container>

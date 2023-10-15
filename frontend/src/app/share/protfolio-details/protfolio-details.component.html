@@ -1,0 +1,89 @@
+<p>protfolio-details works!</p>
+<button (click)="removeObj()">Remove</button>
+<ol type="1">
+  <li>
+    <label>Title:--</label>
+    <input type="text"  #text/>
+  </li>
+  <li>
+    <label>Description:--</label>
+    <input type="text" #desc/>
+  </li>
+  <li>
+    <div>
+      <p-dropdown
+        [options]="uploadItem"
+        [(ngModel)]="selectedItem"
+        placeholder="Select a option"
+        optionLabel="name"
+        (onChange)="selectItem($event, obj.id)"
+      ></p-dropdown>
+    </div>
+  </li>
+  <li>
+
+
+  </li>
+</ol>
+<div *ngIf="selectedItem == 'Pdf'">
+  <label>please upload pdf...</label>
+  <br>
+  <input
+    type="file"
+    name="pdfFile"
+    #fileInput
+    (change)="pdfSelected($event)"
+    accept=".pdf"
+  />
+   <br />
+  <button (click)="deletePdf()">X</button>
+  <br />
+</div>
+<div *ngIf="selectedItem == 'Image'">
+  <div>
+    <div *ngFor="let image of imgArray; let i = index">
+      <input type="file" accept="image/*" (change)="onImageSelected($event, i)">
+      <button (click)="removeImage(i)">Remove</button>
+    </div>
+    <button (click)="addImage()">Add Image</button>
+      </div>
+  <hr>
+ 
+</div>
+<div *ngIf="selectedItem == 'video'">
+  <input
+    type="file"
+    name="pdfFile"
+    #fileInput
+    (change)="videoSelected($event)"
+    accept="video/*"
+  />
+</div>
+ <div *ngIf="selectedItem == 'url'">
+ 
+
+  <div>
+    <p>upload url</p>
+    <div *ngFor="let url of urlArray; let i = index">
+      <input type="url" [(ngModel)]="url.value">
+      <button (click)="removeUrl(i)">Remove</button>
+    </div>
+    <button (click)="addUrl()">Add  URL</button> <br>
+     <button (click)="submitUrl()">final submit</button> 
+  </div>
+</div>
+
+
+<!-- <div>
+  <input type="url" (input)="onUrlChange($event)" placeholder="Image URL">
+</div> -->
+
+<hr>
+<!-- <p-chips
+separator=","
+placeholder="Hint: graphics, html, css"
+(change)="onUrlSelected($event)"
+[(ngModel)]="urlArray"
+></p-chips> -->
+
+<button (click)="UploadProtfolio(text.value,desc.value)">Upload Protfolio</button>

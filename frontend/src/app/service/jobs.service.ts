@@ -60,4 +60,13 @@ basicIntershipList(url:any){
   // let url='/job/all-jobs'
   return this.api.ApiCallWithLocalization('',url,'get')
 }
+selectedJobId:any
+getSelectedJobId(e:any){
+this.selectedJobId=e
+}
+
+sendSelectedJobId(){
+  return of(this.selectedJobId)
+}
+// public sendSelectedJobId = new Subject();
 }

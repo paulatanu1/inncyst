@@ -150,6 +150,11 @@ export class MyProfileComponent implements OnInit {
     this.profileForm.patchValue(this.ProfileDetails)
     // console.log(this.profileForm)
   }
+
+  Protfolio(){
+    alert('work')
+    this.router.navigateByUrl('my-profile/protfolio')
+  }
   ngOnDestroy() {
     this.profile?.unsubscribe();
   }
