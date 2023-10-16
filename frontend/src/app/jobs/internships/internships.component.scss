@@ -1,7 +1,7 @@
 .internship_sec {
     padding:0 70px;
     font-family: 'Raleway';
-    background: #F7F7F7;
+    background: #f3f3f3;
     padding: 0;
     margin-top: 112px;
     .top_filter_sec {
@@ -134,7 +134,7 @@
                     background: #FFFFFF;
                     border: 1px solid transparent;
                     border-radius: 12px;
-                    padding: 22px;
+                    padding: 22px 22px 10px;
                     margin-bottom: 16px;
                     &:hover, &.is_active {
                         border: 1px solid #522D80;
@@ -147,7 +147,14 @@
                             &>span {
                                 border: 0.5px solid #C0C0C0;
                                 display: block;
-                                padding: 10px 10px;
+                                padding: 5px;
+                                width: 90px;
+                                height: 48px;
+                                text-align: center;
+                                img {
+                                    height: 38px;
+                                    width: auto;
+                                }
                             }
                         }               
                         h2 {
@@ -183,7 +190,7 @@
                     .type_applied {
                         display: flex;
                         flex-direction: row;
-                        margin-top: 20px;
+                        margin-top: 10px;
                         flex-wrap: wrap;
                         span {
                             display: flex;
@@ -218,7 +225,14 @@
                 & > span {
                     border: 0.5px solid #C0C0C0;
                     display: block;
-                    padding: 15px 10px;
+                    padding: 5px 5px;
+                    width: 188px;
+                    height: 87px;
+                    text-align: center;
+                        img {
+                            height: 75px;
+                            width: auto;
+                        }
                 }
                 .company_tags {
                     margin-top: 13px;
@@ -370,10 +384,30 @@
     }
 }
 
-    .search-results-container{
-    margin: 40px;
-    height: 600px;
-    width: 500px;
-    overflow: auto;
-    position: relative;
-}
+   .search-results-container {
+       margin: 40px 0;
+       height: 1094px;
+       max-height: 1094px;
+       width: 100%;
+       position: relative;
+       overflow-y: scroll;
+        &::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: #F5F5F5;
+        }
+    
+        &::-webkit-scrollbar {
+            width: 2px;
+            background-color: rgba(196, 196, 196, 0.3);
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background-color: #828282;
+        }
+       .noData {
+           display: grid;
+           align-items: center;
+           height: 100%;
+           justify-content: center;
+       }
+   }

@@ -10,13 +10,7 @@
         </figure>
       </div>
       <div class="profile_details">
-        <button
-          (click)="Protfolio()"
-          style="background-color: blue; color: antiquewhite"
-        >
-          Go To Portfolio
-        </button>
-
+        
         <button (click)="back()" class="back_btn">Back To Job</button>
         <button (click)="openEdit()" class="edit_btn">Edit</button>
 
@@ -48,6 +42,9 @@
           nec, sodales molestie tellus. Quisque ultricies lorem ligula, id
           fermentum tortor vehicula sed.Vestibulum sapien erat.
         </p>
+        <button (click)="Protfolio()" class="portfolio_btn">
+          Go To Portfolio
+        </button>
       </div>
     </div>
   </div>
@@ -72,7 +69,7 @@
   position="right"
   [style]="{ width: '50em' }"
 >
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="edit-profile-form">
     <div class="profile-section">
       <div class="left-section">
         <div class="profile-pic">
@@ -86,12 +83,17 @@
             [customUpload]="false"
             (uploadHandler)="fileChangeEvent($event)"
           ></p-fileUpload> -->
-          <input
+          <div class="file-upload-wrapper">
+            <input
             class="upload-btn"
             type="file"
             accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"
             (change)="fileChangeEvent($event)"
           />
+          <label></label>
+          <button type="button" class="button-upload">Select File</button>
+          </div>
+          
         </div>
       </div>
       <div class="right-section">
@@ -150,15 +152,13 @@
         ></textarea>
       </div>
     </div>
-    <input type="submit" value="Save" />
+    <input type="submit" value="Save" class="save_btn" />
   </form>
 </p-sidebar>
 
 <!-- <input type="file" accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"  (change)="fileChangeEvent($event)" /> -->
 
 <!-- <img [src]="croppedImage" /> -->
-
-<button (click)="back()">Back To Job</button>
 
 <p-dialog
   header="Title"
