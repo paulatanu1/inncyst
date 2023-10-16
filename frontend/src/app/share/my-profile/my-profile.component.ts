@@ -152,7 +152,6 @@ export class MyProfileComponent implements OnInit {
   }
 
   Protfolio(){
-    alert('work')
     this.router.navigateByUrl('my-profile/protfolio')
   }
   ngOnDestroy() {
