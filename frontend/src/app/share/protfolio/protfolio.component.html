@@ -1,19 +1,5 @@
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
-<p>protfolio works!</p>
-<button (click)="addProtfolio()">Add Protfolio</button>
-
+<section class="portfolio_sec">
+<div (click)="addProtfolio()" class="add_portfolio_btn"><i class="pi pi-plus"></i><span>Add Portfolio</span></div>
 <ng-container *ngIf="protfolioVissable">
   <div *ngFor="let a of field">
     <app-protfolio-details
@@ -26,3 +12,4 @@
   <br>
   <button (click)="addField()">Add +</button>
 </ng-container>
+</section>

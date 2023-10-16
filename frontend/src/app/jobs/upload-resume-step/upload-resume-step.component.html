@@ -98,14 +98,9 @@
               (click)="addTextArea()"
             ></p-radioButton> -->
             <label for="city2">No (Please specify your availability)</label>
-            <br />
-            <textarea
-              type="text"
-              rows="5"
-              cols="50"
-              *ngIf="inputFieldEnable"
-              [(ngModel)]="availability_messageValue"
-            ></textarea>
+          </div>
+          <div>
+            <textarea type="text" rows="5" cols="50" *ngIf="inputFieldEnable" [(ngModel)]="availability_messageValue"></textarea>
           </div>
         </div>
       </div>
@@ -114,6 +109,6 @@
 </div>
 <div class="dialog-footer">
   <a class="back_link" (click)="back()">Back</a>
-  {{resumeUploadSucess}}
+  <!-- {{resumeUploadSucess}} -->
   <button (click)="submitApplication()" [disabled]="!resumeUploadSucess">Submit Application</button>
 </div>
