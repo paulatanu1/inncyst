@@ -1,13 +1,12 @@
-<p>protfolio-details works!</p>
 <button (click)="removeObj()">Remove</button>
 <ol type="1">
   <li>
     <label>Title:--</label>
-    <input type="text"  #text/>
+    <input type="text" #text />
   </li>
   <li>
     <label>Description:--</label>
-    <input type="text" #desc/>
+    <input type="text" #desc />
   </li>
   <li>
     <div>
@@ -20,66 +19,69 @@
       ></p-dropdown>
     </div>
   </li>
-  <li>
-
-
-  </li>
+ 
 </ol>
 <div *ngIf="selectedItem == 'Pdf'">
   <label>please upload pdf...</label>
-  <br>
+  <br />
   <input
     type="file"
     name="pdfFile"
     #fileInput
+    id="pdfInput"
     (change)="pdfSelected($event)"
     accept=".pdf"
   />
-   <br />
+  <br />
   <button (click)="deletePdf()">X</button>
   <br />
 </div>
 <div *ngIf="selectedItem == 'Image'">
   <div>
     <div *ngFor="let image of imgArray; let i = index">
-      <input type="file" accept="image/*" (change)="onImageSelected($event, i)">
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onImageSelected($event, i)"
+        id="imageInput"
+           />
       <button (click)="removeImage(i)">Remove</button>
     </div>
     <button (click)="addImage()">Add Image</button>
-      </div>
-  <hr>
- 
+  </div>
+  <hr />
 </div>
 <div *ngIf="selectedItem == 'video'">
   <input
     type="file"
     id="fileInput"
-    #fileInput
-    (change)="videoSelected($event)"
+        (change)="videoSelected($event)"
     accept="video/*"
   />
-  <br>
-  <button (click)="removeVideo()" *ngIf="videoInput"  style="background-color: brown;">remove video</button> 
+  <br />
+  <button
+    (click)="removeVideo()"
+    *ngIf="videoInput"
+    style="background-color: brown"
+  >
+    remove video
+  </button>
 </div>
- <div *ngIf="selectedItem == 'url'">
- 
-
+<div *ngIf="selectedItem == 'url'">
   <div>
     <p>upload url</p>
     <div *ngFor="let url of urlArray; let i = index">
-      <input type="url" [(ngModel)]="url.value">
+      <input type="url" [(ngModel)]="url.value" />
       <button (click)="removeUrl(i)">Remove</button>
     </div>
-    <button (click)="addUrl()">Add  URL</button> <br>
-     <button (click)="submitUrl()">final submit</button> 
+    <button (click)="addUrl()">Add URL</button> <br />
+    <button (click)="submitUrl()">final submit</button>
   </div>
 </div>
-
 
 <!-- <div>
   <input type="url" (input)="onUrlChange($event)" placeholder="Image URL">
 </div> -->
-
 
 <!-- <p-chips
 separator=","
@@ -88,4 +90,8 @@ placeholder="Hint: graphics, html, css"
 [(ngModel)]="urlArray"
 ></p-chips> -->
 
-<button (click)="UploadProtfolio(text.value,desc.value)">Upload Protfolio</button>
+<button (click)="UploadProtfolio(text.value, desc.value)">
+  Upload Protfolio
+</button>
+
+<!-- <button (click)="getPortfolio()">get</button> -->

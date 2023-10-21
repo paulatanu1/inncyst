@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 interface Ifield {
   title: string;
-  desc: string;
-  id:any,
-  uploadedItm: [
-    {
-      pdf: [];
-      img: [];
-      video: [];
-      url: string;
-    }
-  ];
+  description: string;
+  id: any;
+  pdf: {};
+  image: [];
+  video: [];
+  url: [];
 }
 @Component({
   selector: 'app-protfolio',
@@ -18,67 +14,57 @@ interface Ifield {
   styleUrls: ['./protfolio.component.scss'],
 })
 export class ProtfolioComponent implements OnInit {
-
   protfolioVissable: boolean = false;
 
-
-  // fieldObj: Ifield 
+  // fieldObj: Ifield
   field: Ifield[] = [];
-  id=0
+  id = 0;
   // constructor() {}
   addProtfolio() {
     this.protfolioVissable = !this.protfolioVissable;
     // this.addField();
   }
   ngOnInit(): void {
-
-    console.log(this.field,'this')
+    console.log(this.field, 'this');
     const currentTime = new Date().getTime();
 
     this.field.push({
       title: '',
-      desc: '',
-      id:currentTime,
-      uploadedItm: [
-        {
-          pdf: [],
-          img: [],
-          video: [],
-          url: '',
-        },
-      ],
-    })
+      description: '',
+      id: currentTime,
+
+      pdf: {},
+      image: [],
+      video: [],
+      url: [],
+    });
     console.log(this.field);
   }
-  
+
   addField() {
     const currentTime = new Date().getTime();
     this.field.push({
       title: '',
-      desc: '',
-      id:currentTime,
-      uploadedItm: [
-        {
-          pdf: [],
-          img: [],
-          video: [],
-          url: '',
-        },
-      ],
-    })
+      description: '',
+      id: currentTime,
+
+      pdf: {},
+      image: [],
+      video: [],
+      url: [],
+    });
   }
-  getObj(e:any){
-console.log(this.field,'f')
+  getObj(e: any) {
+    console.log(this.field, 'f');
   }
 
-  deletedObjId(e:any){
-      const formIndex = this.field.findIndex(data => data.id === e) 
-      
-      if(formIndex !== -1){
-        this.field.splice(formIndex , 1)
-        
-        console.log(this.field)
-      }
-    
+  deletedObjId(e: any) {
+    const formIndex = this.field.findIndex((data) => data.id === e);
+
+    if (formIndex !== -1) {
+      this.field.splice(formIndex, 1);
+
+      console.log(this.field);
+    }
   }
 }

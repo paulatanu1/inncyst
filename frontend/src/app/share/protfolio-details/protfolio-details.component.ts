@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+import { PortfolioService } from '../service/portfolio.service';
 interface Ifield {
   title: string;
-  desc: string;
+  description: string;
   id: any;
   uploadedItm: [
     {
@@ -35,6 +36,8 @@ export class ProtfolioDetailsComponent implements OnInit {
   imgArray: any = [];
   VideofileInput!:any
   videoInput!: File | null;
+  ImagefileInput!:any
+  PdffileInput!:any
   urlArray: any[] = [
     {
       value: undefined,
@@ -44,17 +47,15 @@ export class ProtfolioDetailsComponent implements OnInit {
   selectObj = {
     title: '',
     id: '',
-    desc: '',
-    uploadedItm: [
-      {
+    description: '',
+   
         pdf: {},
-        img: [],
+        image: [],
         video: [],
         url: [],
-      },
-    ],
+   
   };
-  constructor(private _toast:ToastServiceService) {}
+  constructor(private _toast:ToastServiceService,private portfolio:PortfolioService) {}
 
   ngOnInit(): void {
     console.log(this.obj);
@@ -77,8 +78,8 @@ export class ProtfolioDetailsComponent implements OnInit {
     if (e.target.files[0].size <= this.ImgMaxSize) {
       const file = e.target.files[0];
       this.imgArray[index] = file;
-      this.obj.uploadedItm[0].img = this.imgArray;
-      console.log(this.obj.uploadedItm);
+      this.obj.image = this.imgArray;
+      console.log(this.obj);
     } else {
       this._toast.showToaster.next({
         severity: 'Error',
@@ -88,9 +89,13 @@ export class ProtfolioDetailsComponent implements OnInit {
          }
   }
   removeImage(i: number) {
+    this.ImagefileInput = document.getElementById('imageInput') as HTMLInputElement;
+    if (this.ImagefileInput) {
+      this.ImagefileInput.value = '';
+    }
     this.imgArray.splice(i, 1);
-    this.obj.uploadedItm[0].img = this.imgArray;
-    console.log(this.obj.uploadedItm);
+    this.obj.image = this.imgArray;
+    console.log(this.obj);
   }
   addImage() {
     this.imgArray.push(null);
@@ -102,7 +107,7 @@ export class ProtfolioDetailsComponent implements OnInit {
   pdfSelected(e: any) {
     if (e.target.files[0].size <= this.pdfMaxSize) {
       this.pdfObj = e.target.files[0];
-      this.obj.uploadedItm[0].pdf = this.pdfObj;
+      this.obj.pdf = this.pdfObj;
       console.log(this.obj);
     } else {
       this._toast.showToaster.next({
@@ -114,9 +119,13 @@ export class ProtfolioDetailsComponent implements OnInit {
   }
 
   deletePdf() {
+    this.PdffileInput = document.getElementById('pdfInput') as HTMLInputElement;
+    if (this.PdffileInput) {
+      this.PdffileInput.value = '';
+    }
     this.pdfObj = '';
-    this.obj.uploadedItm[0].pdf = this.pdfObj;
-    this.obj.uploadedItm[0];
+    this.obj.pdf = this.pdfObj;
+    // this.obj.uploadedItm[0];
     console.log(this.obj);
   }
 
@@ -130,16 +139,14 @@ export class ProtfolioDetailsComponent implements OnInit {
   submitUrl() {
     this.urlValueArray = this.urlArray.map((input) => input.value);
     console.log('Form values:', this.urlValueArray);
-    this.obj.uploadedItm[0].url = this.urlValueArray;
-    console.log(this.obj.uploadedItm[0].url);
+    this.obj.url = this.urlValueArray;
   }
 
   removeUrl(i: number) {
     this.urlValueArray.splice(i, 1);
     this.urlArray.splice(i, 1);
-    this.obj.uploadedItm.url = this.urlValueArray;
-    console.log(this.urlValueArray);
-    console.log(this.obj.uploadedItm[0].url);
+    this.obj.url = this.urlValueArray;
+  ;
   }
 
   //END URL PORTION........................
@@ -151,6 +158,7 @@ export class ProtfolioDetailsComponent implements OnInit {
     if (e.target.files[0].size <= this.videoMaxSize) {
       let input: any = e.target as HTMLInputElement;
       this.videoInput = input?.files[0];
+      
     } else {
       this._toast.showToaster.next({
         severity: 'Error',
@@ -171,13 +179,34 @@ export class ProtfolioDetailsComponent implements OnInit {
   //UPLOAD PROTFOLIO TO THE SERVER....................................
   UploadProtfolio(text: any, desc: any) {
     this.obj.title = text;
-    this.obj.desc = desc;
+    this.obj.description = desc;
     console.log(this.obj);
     this.individualObj.emit();
+    this.portfolio.addPortfolio(this.obj).subscribe({
+      next:(item=>{
+console.log(item)
+      }),
+      error:(err=>{
+        console.log(err)
+        this._toast.showToaster.next({
+          severity: 'Error',
+          summary: 'Error',
+          detail: err.error.message
+        });
+      })
+    }
+  )
   }
 
   //REMOVE SINGLE PROTFOLIO.............................................
   removeObj() {
     this.id.emit(this.obj.id);
   }
+  // getPortfolio(){
+  //   this.portfolio.getPortfolio().subscribe({
+  //     next:(item)=>{
+  //       console.log(item,'rrrrrrr')
+  //     }
+  //   })
+  // }
 }
