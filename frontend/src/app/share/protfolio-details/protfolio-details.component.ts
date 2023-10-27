@@ -5,11 +5,11 @@ interface Ifield {
   title: string;
   description: string;
   id: any;
-  uploadedItm: [
+ uploadedItm: [
     {
       pdf: {};
-      img: [];
-      video: [];
+      img: {};
+  
       url: string;
     }
   ];
@@ -21,6 +21,7 @@ interface Ifield {
 })
 export class ProtfolioDetailsComponent implements OnInit {
   @Input() obj: any;
+  desc!: string;
   @Output() individualObj = new EventEmitter();
   @Output() id = new EventEmitter();
   uploadItem: any;
@@ -32,17 +33,13 @@ export class ProtfolioDetailsComponent implements OnInit {
   pdfMaxSize: number = 26214400;
   ImgMaxSize: number = 12582912;
   videoMaxSize: number = 26214400;
-  pdfObj: any;
-  imgArray: any = [];
+  pdfObj={};
+  imgObj={};
   VideofileInput!:any
   videoInput!: File | null;
   ImagefileInput!:any
   PdffileInput!:any
-  urlArray: any[] = [
-    {
-      value: undefined,
-    },
-  ];
+  urlArray={}
   urlValueArray: Array<string> = [];
   selectObj = {
     title: '',
@@ -50,11 +47,12 @@ export class ProtfolioDetailsComponent implements OnInit {
     description: '',
    
         pdf: {},
-        image: [],
+        image: {},
         video: [],
-        url: [],
+        url: '',
    
   };
+  urlValue:string=''
   constructor(private _toast:ToastServiceService,private portfolio:PortfolioService) {}
 
   ngOnInit(): void {
@@ -63,7 +61,6 @@ export class ProtfolioDetailsComponent implements OnInit {
     this.uploadItem = [
       { name: 'Pdf' },
       { name: 'Image' },
-      { name: 'video' },
       { name: 'url' },
     ];
   }
@@ -74,11 +71,11 @@ export class ProtfolioDetailsComponent implements OnInit {
   }
 
   //IMAGE UPLOAD START...................................................
-  onImageSelected(e: any, index: number) {
+  onImageSelected(e: any) {
     if (e.target.files[0].size <= this.ImgMaxSize) {
-      const file = e.target.files[0];
-      this.imgArray[index] = file;
-      this.obj.image = this.imgArray;
+      this.imgObj = e.target.files[0];
+      // this.imgArray[index] = file;
+      this.obj.image = this.imgObj;
       console.log(this.obj);
     } else {
       this._toast.showToaster.next({
@@ -88,18 +85,20 @@ export class ProtfolioDetailsComponent implements OnInit {
       });
          }
   }
-  removeImage(i: number) {
+  removeImage() {
     this.ImagefileInput = document.getElementById('imageInput') as HTMLInputElement;
     if (this.ImagefileInput) {
       this.ImagefileInput.value = '';
     }
-    this.imgArray.splice(i, 1);
-    this.obj.image = this.imgArray;
+    this.imgObj={}
+    this.obj.image={}
+    // this.imgArray.splice(i, 1);
+    // this.obj.image = this.imgArray;
     console.log(this.obj);
   }
-  addImage() {
-    this.imgArray.push(null);
-  }
+  // addImage() {
+  //   this.imgArray.push(null);
+  // }
   //END IMAGE PORTION........................................................
 
   //PDF PORTION START.......................................
@@ -132,22 +131,27 @@ export class ProtfolioDetailsComponent implements OnInit {
   //END PDF PORTION.........................................
 
   //URL PORTION START......................
-
-  addUrl() {
-    this.urlArray.push({ value: '' });
-  }
-  submitUrl() {
-    this.urlValueArray = this.urlArray.map((input) => input.value);
-    console.log('Form values:', this.urlValueArray);
-    this.obj.url = this.urlValueArray;
+  urlChange(e:any){
+    console.log(e.target.value,'e')
+    this.obj.url=e.target.value;
+    console.log(this.obj)
   }
 
-  removeUrl(i: number) {
-    this.urlValueArray.splice(i, 1);
-    this.urlArray.splice(i, 1);
-    this.obj.url = this.urlValueArray;
-  ;
-  }
+  // addUrl() {
+  //   this.urlArray.push({ value: '' });
+  // }
+  // submitUrl() {
+  //   this.urlValueArray = this.urlArray.map((input) => input.value);
+  //   console.log('Form values:', this.urlValueArray);
+  //   this.obj.url = this.urlValueArray;
+  // }
+
+  // removeUrl(i: number) {
+  //   this.urlValueArray.splice(i, 1);
+  //   this.urlArray.splice(i, 1);
+  //   this.obj.url = this.urlValueArray;
+  // ;
+  // }
 
   //END URL PORTION........................
 
@@ -177,14 +181,14 @@ export class ProtfolioDetailsComponent implements OnInit {
   // VIDEO PORTION END..............................
 
   //UPLOAD PROTFOLIO TO THE SERVER....................................
-  UploadProtfolio(text: any, desc: any) {
+  UploadProtfolio(text: any) {
     this.obj.title = text;
-    this.obj.description = desc;
-    console.log(this.obj);
+    this.obj.description = this.desc;
+    console.log(this.obj,'this.obj');
     this.individualObj.emit();
     this.portfolio.addPortfolio(this.obj).subscribe({
       next:(item=>{
-console.log(item)
+      console.log(item)
       }),
       error:(err=>{
         console.log(err)
@@ -202,11 +206,5 @@ console.log(item)
   removeObj() {
     this.id.emit(this.obj.id);
   }
-  // getPortfolio(){
-  //   this.portfolio.getPortfolio().subscribe({
-  //     next:(item)=>{
-  //       console.log(item,'rrrrrrr')
-  //     }
-  //   })
-  // }
+
 }

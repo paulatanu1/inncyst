@@ -19,6 +19,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { PageNotFoundComponent } from './share/page-not-found/page-not-found.component';
 import { ProtfolioComponent } from './share/protfolio/protfolio.component';
 import { ProtfolioDetailsComponent } from './share/protfolio-details/protfolio-details.component';
+import {EditorModule} from 'primeng/editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,7 @@ import { ProtfolioDetailsComponent } from './share/protfolio-details/protfolio-d
     RouterModule.forRoot([]),
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     HttpClientModule,
-    InfiniteScrollModule,
+    InfiniteScrollModule,EditorModule
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [

@@ -1,15 +1,29 @@
 <section class="portfolio_sec">
-<div (click)="addProtfolio()" class="add_portfolio_btn"><i class="pi pi-plus"></i><span>Add Portfolio</span></div>
-<ng-container *ngIf="protfolioVissable">
-  <div *ngFor="let a of field">
-    <app-protfolio-details
-    [obj]="a"
-    (individualObj)="getObj($event)"
-    (id)="deletedObjId($event)"
-    ></app-protfolio-details>
-    <br>
+  <div
+    (click)="addProtfolio()"
+    icon="pi pi-info-circle"
+    label="Show"
+    class="add_portfolio_btn"
+  >
+    <i class="pi pi-plus"></i><span>Add Portfolio</span>
   </div>
-  <br>
-  <button (click)="addField()">Add +</button>
-</ng-container>
 </section>
+<p-dialog  class="dialog"  [(visible)]="display"  (onHide)="handleDialogHide()">
+
+ 
+  <section class="portfolio_sec">
+    <ng-container>
+      <div *ngFor="let a of field">
+        <app-protfolio-details
+          [obj]="a"
+          (individualObj)="getObj($event)"
+          (id)="deletedObjId($event)"
+        ></app-protfolio-details>
+        <br />
+      </div>
+      <br />
+    </ng-container>
+  </section>
+</p-dialog>
+
+<!-- <button (click)="getProtfolio()">get obj</button> -->

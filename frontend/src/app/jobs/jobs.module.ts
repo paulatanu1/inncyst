@@ -23,6 +23,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
 import { AppliedJobDetailsComponent } from './applied-job-details/applied-job-details.component';
 import { BasicJobComponent } from './basic-job/basic-job.component';
+import {EditorModule} from 'primeng/editor';
+
 @NgModule({
   declarations: [
     JobsComponent,
@@ -46,7 +48,8 @@ import { BasicJobComponent } from './basic-job/basic-job.component';
     RadioButtonModule,
     FileUploadModule,
     TabViewModule,
-    BreadcrumbModule,InfiniteScrollModule,DropdownModule, SliderModule
+    BreadcrumbModule,InfiniteScrollModule,DropdownModule, SliderModule,
+    DialogModule,EditorModule
   ],
   exports:[DialogModule, SharedModule],
   // providers:[LoginDetailsService]
