@@ -9,7 +9,6 @@ export class PortfolioService {
   constructor(private api:ApiService) { }
 
   addPortfolio(data:any){
-    console.log(data,'data')
     const formData = new FormData();
     formData.append('title',data.title)
     formData.append('description',data.description)
@@ -17,6 +16,7 @@ export class PortfolioService {
     formData.append('url',data.url)
     formData.append('image',data.image)
     formData.append('pdf',data.pdf)
+    console.log(formData,'data')
     let url="/auth/user/portfolio";
     return this.api.ApiCallWithLocalization(formData,url,'post')
   }
