@@ -20,6 +20,7 @@ import { PageNotFoundComponent } from './share/page-not-found/page-not-found.com
 import { ProtfolioComponent } from './share/protfolio/protfolio.component';
 import { ProtfolioDetailsComponent } from './share/protfolio-details/protfolio-details.component';
 import {EditorModule} from 'primeng/editor';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,7 @@ import {EditorModule} from 'primeng/editor';
     RouterModule.forRoot([]),
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     HttpClientModule,
-    InfiniteScrollModule,EditorModule
+    InfiniteScrollModule,EditorModule,PdfViewerModule
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [

@@ -8,9 +8,7 @@
     <i class="pi pi-plus"></i><span>Add Portfolio</span>
   </div>
 </section>
-<p-dialog  class="dialog"  [(visible)]="display"  (onHide)="handleDialogHide()">
-
- 
+<p-dialog class="dialog" [(visible)]="display" (onHide)="handleDialogHide()">
   <section class="portfolio_sec">
     <ng-container>
       <div *ngFor="let a of field">
@@ -27,3 +25,41 @@
 </p-dialog>
 
 <!-- <button (click)="getProtfolio()">get obj</button> -->
+
+<hr />
+<!-- details start here............-->
+<div>
+  <div *ngIf="portfolioDetails.length == 0">
+    <p>no data found</p>
+  </div>
+  <ng-container *ngIf="portfolioDetails.length != 0">
+    <div *ngFor="let item of portfolioDetails">
+      <button (click)="editPortfolio()">edit</button><br>
+      <button (click)="deletePortfolio()">delete</button>
+      <p>title:-- {{ item.title }}</p>
+      <p [innerHtml]="item.description"></p>
+      <ng-container *ngIf="item.image">
+        <p>Image:--<img [src]="item.image" alt="" /></p>
+      </ng-container>
+      <ng-container *ngIf="item.url">
+        <p>
+          Url:--
+          <a target="blank" [href]="item.description">{{ item.description }}</a>
+        </p>
+      </ng-container>
+      <ng-container *ngIf="item.pdf">
+        <p>Pdf:--</p>
+        <pdf-viewer [src]="item.pdf"
+                [render-text]="true"
+                [original-size]="false"
+                style="width: 400px; height: 500px"
+    ></pdf-viewer>
+
+      </ng-container>
+      <hr />
+    </div>
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/1DAgBjXj96k" frameborder="0" allowfullscreen></iframe> -->
+  </ng-container>
+</div>
+
+

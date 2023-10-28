@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { PortfolioService } from '../service/portfolio.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 interface Ifield {
   title: string;
   description: string;
@@ -11,6 +12,7 @@ interface Ifield {
       img: {};
   
       url: string;
+      youtubeUrl:string;
     }
   ];
 }
@@ -40,6 +42,7 @@ export class ProtfolioDetailsComponent implements OnInit {
   ImagefileInput!:any
   PdffileInput!:any
   urlArray={}
+  myForm!:FormGroup;
   urlValueArray: Array<string> = [];
   selectObj = {
     title: '',
@@ -50,18 +53,29 @@ export class ProtfolioDetailsComponent implements OnInit {
         image: {},
         video: [],
         url: '',
+        youtubeUrl:''
    
   };
   urlValue:string=''
-  constructor(private _toast:ToastServiceService,private portfolio:PortfolioService) {}
+  youtubeVideoValue:string=''
+  constructor(private _toast:ToastServiceService,private portfolio:PortfolioService,private fb:FormBuilder) {}
 
   ngOnInit(): void {
+
+    this.myForm=this.fb.group({
+      title:[''],
+      description:[''],
+      // url:[''],
+      // image:[{}],
+      // pdf:[{}]
+    })
     console.log(this.obj);
 
     this.uploadItem = [
       { name: 'Pdf' },
       { name: 'Image' },
       { name: 'url' },
+      {name:'youtubeVideo'}
     ];
   }
   selectItem(e: any, id: number) {
@@ -101,6 +115,7 @@ export class ProtfolioDetailsComponent implements OnInit {
   // }
   //END IMAGE PORTION........................................................
 
+  
   //PDF PORTION START.......................................
 
   pdfSelected(e: any) {
@@ -187,14 +202,17 @@ export class ProtfolioDetailsComponent implements OnInit {
     console.log(this.obj,'this.obj');
     this.individualObj.emit();
 
-    let formData: any = new FormData();
-    Object.keys(this.obj).forEach(key=>{
-      // console.log(this.obj[key],'ky')
-      formData.append(key,this.obj[key])
-      // for (var pair of formData.entries()) {
-      //   console.log(pair[0] + ': ' + pair[1]);
-      // }
-    })
+    // const formData: any = new FormData();
+    // Object.keys(this.obj).forEach(key=>{
+    //   // console.log(this.obj[key],'ky')
+    //   formData.append(key,this.obj[key])
+    //   // for (var pair of formData.entries()) {
+    //   //   console.log(pair[0] + ': ' + pair[1]);
+    //   // }
+    // })
+const formData = new FormData()
+formData.append('title','abc')
+formData.append('description','def')
     this.portfolio.addPortfolio(formData).subscribe({
       next:(item=>{
       console.log(item)
@@ -215,5 +233,23 @@ export class ProtfolioDetailsComponent implements OnInit {
   removeObj() {
     this.id.emit(this.obj.id);
   }
+  onSubmit(){
+    console.log(this.myForm.value)
+    const formData = new FormData();
+    Object.keys(this.myForm.controls).forEach(key=> formData.append(key,this.myForm.get(key)?.value))
+    // formData.append('title',this.myForm.value.title)
+    // formData.append('description',this.myForm.value.description)
+this.portfolio.addPortfolio(formData).subscribe({
+  next:(res=>{
+    console.log(res,'121')
+  })
+})
+  }
 
+  //youtube url
+  youtubeUrlChange(e:any){
+    console.log(e.target.value,'e')
+    this.obj.youtubeUrl=e.target.value;
+    console.log(this.obj)
+  }
 }

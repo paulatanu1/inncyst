@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { PortfolioService } from '../service/portfolio.service';
+// import * as MediaElementPlayer from 'mediaelement';
 interface Ifield {
   title: string;
   description: string;
@@ -8,22 +9,30 @@ interface Ifield {
   pdf: {};
   image: {};
   url: string;
+  youtubeUrl:string;
 }
 @Component({
   selector: 'app-protfolio',
   templateUrl: './protfolio.component.html',
   styleUrls: ['./protfolio.component.scss'],
 })
-export class ProtfolioComponent implements OnInit {
+export class ProtfolioComponent implements OnInit ,AfterViewInit {
   constructor(
     private _toast: ToastServiceService,
-    private portfolio: PortfolioService
+    private portfolio: PortfolioService,private elementRef: ElementRef
   ) {}
+
+  ngAfterViewInit() {
+    // const videoElement = this.elementRef.nativeElement.querySelector('#my-video');
+    // const player = new MediaElement(videoElement);
+  }
   protfolioVissable: boolean = false;
   display: boolean = false;
   resizable = true;
   currentTime = new Date().getTime();
-
+  portfolioDetails:any=[]
+  commonYoutubeUrl="https://www.youtube.com/embed/";
+  pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   closeDialog() {
     this.display = false;
     this.field = [
@@ -35,6 +44,7 @@ export class ProtfolioComponent implements OnInit {
         pdf: {},
         image: {},
         url: '',
+        youtubeUrl:''
       },
     ];
   }
@@ -59,8 +69,21 @@ export class ProtfolioComponent implements OnInit {
       pdf: {},
       image: {},
       url: '',
+      youtubeUrl:''
     });
     console.log(this.field);
+
+    // 1st time call all portfolio details.......
+    this.portfolio.getPortfolio().subscribe({
+      next: (res) => {
+        this.portfolioDetails=res.data
+        console.log(this.portfolioDetails, 'res2');
+        // this.portfolioDetails.forEach((item:any)=>{
+        //  const newUrl:any= item.url.split('=')[1] || null;
+        //  item.url=this.commonYoutubeUrl+newUrl
+        // })
+      },
+    });
   }
 
   addField() {
@@ -73,6 +96,7 @@ export class ProtfolioComponent implements OnInit {
       pdf: {},
       image: {},
       url: '',
+      youtubeUrl:''
     });
   }
   getObj(e: any) {
@@ -105,7 +129,15 @@ export class ProtfolioComponent implements OnInit {
         pdf: {},
         image: {},
         url: '',
+        youtubeUrl:''
       },
     ];
+  }
+
+  editPortfolio(){
+
+  }
+  deletePortfolio(){
+
   }
 }
