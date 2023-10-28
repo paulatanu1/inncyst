@@ -8,17 +8,20 @@ export class PortfolioService {
 
   constructor(private api:ApiService) { }
 
+
   addPortfolio(data:any){
-    const formData = new FormData();
-    formData.append('title',data.title)
-    formData.append('description',data.description)
-    formData.append('id',data.id)
-    formData.append('url',data.url)
-    formData.append('image',data.image)
-    formData.append('pdf',data.pdf)
-    console.log(formData,'data')
+    // const formData = new FormData();
+    // formData.append('title',data.title)
+    // formData.append('description',data.description)
+    // formData.append('id',data.id)
+    // formData.append('url',data.url)
+    // formData.append('image',data.image)
+    // formData.append('pdf',data.pdf)
+    // console.log(formData,'data')
+
+
     let url="/auth/user/portfolio";
-    return this.api.ApiCallWithLocalization(formData,url,'post')
+    return this.api.ApiCallWithLocalization(data,url,'post')
   }
   getPortfolio(){
     let url="/auth/user/portfolio";

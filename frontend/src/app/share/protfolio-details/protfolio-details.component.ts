@@ -186,7 +186,16 @@ export class ProtfolioDetailsComponent implements OnInit {
     this.obj.description = this.desc;
     console.log(this.obj,'this.obj');
     this.individualObj.emit();
-    this.portfolio.addPortfolio(this.obj).subscribe({
+
+    let formData: any = new FormData();
+    Object.keys(this.obj).forEach(key=>{
+      // console.log(this.obj[key],'ky')
+      formData.append(key,this.obj[key])
+      // for (var pair of formData.entries()) {
+      //   console.log(pair[0] + ': ' + pair[1]);
+      // }
+    })
+    this.portfolio.addPortfolio(formData).subscribe({
       next:(item=>{
       console.log(item)
       }),
