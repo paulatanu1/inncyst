@@ -40,22 +40,21 @@ export class ApiService {
     let httpHeaderValue = new HttpHeaders();
     if (headertoken == undefined) {
       httpHeaderValue = httpHeaderValue
-        // .set('Authorization', 'Bearer ' + ls.get('login_token'))
+        .set('Authorization', 'Bearer ' + ls.get('login_token'))
         // .set(
         //   'Content-Type',
         //   'multipart/form-data; boundary=----WebKitFormBoundaryFwIrrqToxWfE8BEt'
         // )
         .set('X-localization', localization);
       httpHeaderValue = httpHeaderValue.set('X-localization', localization);
-    } else {
-      httpHeaderValue = httpHeaderValue
-        .set(
-          'Authorization',
-          'Bearer ' + ls.set('login_token', ls.get('login_token'))
-        )
-        //.set('Content-Type', 'application/json')
-        .set('X-localization', localization);
     }
+    //  else {
+
+    //   httpHeaderValue = httpHeaderValue
+    //     .set('Authorization', 'Bearer ' + ls.set('login_token', ls.get('login_token')))
+    //     //.set('Content-Type', 'application/json')
+    //     .set('X-localization', localization);
+    // }
 
     if (method == 'post') {
       console.log(httpHeaderValue);
