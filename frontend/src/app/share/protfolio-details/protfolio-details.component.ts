@@ -6,11 +6,11 @@ interface Ifield {
   title: string;
   description: string;
   id: any;
- uploadedItm: [
+  uploadedItm: [
     {
       pdf: {};
       img: {};
-  
+
       url: string;
       youtubeUrl:string;
     }
@@ -35,9 +35,9 @@ export class ProtfolioDetailsComponent implements OnInit {
   pdfMaxSize: number = 26214400;
   ImgMaxSize: number = 12582912;
   videoMaxSize: number = 26214400;
-  pdfObj={};
-  imgObj={};
-  VideofileInput!:any
+  pdfObj = {};
+  imgObj = {};
+  VideofileInput!: any;
   videoInput!: File | null;
   ImagefileInput!:any
   PdffileInput!:any
@@ -95,17 +95,20 @@ export class ProtfolioDetailsComponent implements OnInit {
       this._toast.showToaster.next({
         severity: 'Error',
         summary: 'Error',
-        detail: "Upload failed: File size too big..you can upload files within 12 MB"
+        detail:
+          'Upload failed: File size too big..you can upload files within 12 MB',
       });
-         }
+    }
   }
   removeImage() {
-    this.ImagefileInput = document.getElementById('imageInput') as HTMLInputElement;
+    this.ImagefileInput = document.getElementById(
+      'imageInput'
+    ) as HTMLInputElement;
     if (this.ImagefileInput) {
       this.ImagefileInput.value = '';
     }
-    this.imgObj={}
-    this.obj.image={}
+    this.imgObj = {};
+    this.obj.image = {};
     // this.imgArray.splice(i, 1);
     // this.obj.image = this.imgArray;
     console.log(this.obj);
@@ -127,7 +130,8 @@ export class ProtfolioDetailsComponent implements OnInit {
       this._toast.showToaster.next({
         severity: 'Error',
         summary: 'Error',
-        detail: "Upload failed: File size too big..you can upload files within 25 MB"
+        detail:
+          'Upload failed: File size too big..you can upload files within 25 MB',
       });
     }
   }
@@ -146,10 +150,10 @@ export class ProtfolioDetailsComponent implements OnInit {
   //END PDF PORTION.........................................
 
   //URL PORTION START......................
-  urlChange(e:any){
-    console.log(e.target.value,'e')
-    this.obj.url=e.target.value;
-    console.log(this.obj)
+  urlChange(e: any) {
+    console.log(e.target.value, 'e');
+    this.obj.url = e.target.value;
+    console.log(this.obj);
   }
 
   // addUrl() {
@@ -173,22 +177,24 @@ export class ProtfolioDetailsComponent implements OnInit {
   //VIDEO PORTION START..............................
 
   videoSelected(e: any) {
-    console.log(e,'e')
+    console.log(e, 'e');
     if (e.target.files[0].size <= this.videoMaxSize) {
       let input: any = e.target as HTMLInputElement;
       this.videoInput = input?.files[0];
-      
     } else {
       this._toast.showToaster.next({
         severity: 'Error',
         summary: 'Error',
-        detail: "Upload failed: File size too big..you can upload files within 12MB"
+        detail:
+          'Upload failed: File size too big..you can upload files within 12MB',
       });
     }
   }
   removeVideo() {
     this.videoInput = null;
-    this.VideofileInput = document.getElementById('fileInput') as HTMLInputElement;
+    this.VideofileInput = document.getElementById(
+      'fileInput'
+    ) as HTMLInputElement;
     if (this.VideofileInput) {
       this.VideofileInput.value = '';
     }
@@ -199,7 +205,7 @@ export class ProtfolioDetailsComponent implements OnInit {
   UploadProtfolio(text: any) {
     this.obj.title = text;
     this.obj.description = this.desc;
-    console.log(this.obj,'this.obj');
+    console.log(this.obj, 'this.obj');
     this.individualObj.emit();
 
     // const formData: any = new FormData();
@@ -214,19 +220,18 @@ const formData = new FormData()
 formData.append('title','abc')
 formData.append('description','def')
     this.portfolio.addPortfolio(formData).subscribe({
-      next:(item=>{
-      console.log(item)
-      }),
-      error:(err=>{
-        console.log(err)
+      next: (item) => {
+        console.log(item);
+      },
+      error: (err) => {
+        console.log(err);
         this._toast.showToaster.next({
           severity: 'Error',
           summary: 'Error',
-          detail: err.error.message
+          detail: err.error.message,
         });
-      })
-    }
-  )
+      },
+    });
   }
 
   //REMOVE SINGLE PROTFOLIO.............................................
