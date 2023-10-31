@@ -1,46 +1,53 @@
 <section class="my_profile_sec" *ngIf="ProfileDetails">
   <div class="profile_whole_sec">
-  <div class="my_profile_sec_inner">
-    <div class="profile_img">
-      <figure>
-        <img [src]="imagePath" />
-        <span>
-          {{ ProfileDetails.status ? 'Active' : 'Deactive' }}
-        </span>
-      </figure>
-    </div>
-    <div class="profile_details">
-      <button (click)="back()" class="back_btn">Back To Job</button>
-      <button (click)="openEdit()" class="edit_btn">Edit</button>
-      <h2>{{ ProfileDetails.name }}</h2>
-      <p class="subhead">
-        {{ ProfileDetails.location?ProfileDetails.location:'Update Your Location' }}
-      </p>
-      <div class="mail_register">
-        <a href="mailto:amanda.jg@gmail.com">
-          <img src="../../../assets/mail-icon.png" />
-          {{ ProfileDetails.email }}
-        </a>
-        <strong>
-          Site Register On
-          <span>{{ ProfileDetails.createdAt | date: 'MMM d, y' }}</span>
-        </strong>
+    <div class="my_profile_sec_inner">
+      <div class="profile_img">
+        <figure>
+          <img [src]="imagePath" />
+          <span>
+            {{ ProfileDetails.status ? "Active" : "Deactive" }}
+          </span>
+        </figure>
       </div>
-      <span>
-        <img src="../../../assets/call-icon.png" />
-        +91 {{ ProfileDetails.phone }}
-      </span>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula
-        tincidunt urna sit amet placerat. Ut erat nisl, dignissim et ligula nec,
-        sodales molestie tellus. Quisque ultricies lorem ligula, id fermentum
-        tortor vehicula sed.Vestibulum sapien erat.
-      </p>
+      <div class="profile_details">
+        
+        <button (click)="back()" class="back_btn">Back To Job</button>
+        <button (click)="openEdit()" class="edit_btn">Edit</button>
+
+        <h2>{{ ProfileDetails.name }}</h2>
+        <p class="subhead">
+          {{
+            ProfileDetails.location
+              ? ProfileDetails.location
+              : "Update Your Location"
+          }}
+        </p>
+        <div class="mail_register">
+          <a href="mailto:amanda.jg@gmail.com">
+            <img src="../../../assets/mail-icon.png" />
+            {{ ProfileDetails.email }}
+          </a>
+          <strong>
+            Site Register On
+            <span>{{ ProfileDetails.createdAt | date : "MMM d, y" }}</span>
+          </strong>
+        </div>
+        <span>
+          <img src="../../../assets/call-icon.png" />
+          +91 {{ ProfileDetails.phone }}
+        </span>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula
+          tincidunt urna sit amet placerat. Ut erat nisl, dignissim et ligula
+          nec, sodales molestie tellus. Quisque ultricies lorem ligula, id
+          fermentum tortor vehicula sed.Vestibulum sapien erat.
+        </p>
+        <button (click)="Protfolio()" class="portfolio_btn">
+          Go To Portfolio
+        </button>
+      </div>
     </div>
-    </div>
-    
   </div>
-  
 </section>
 
 <!-- {
@@ -62,7 +69,7 @@
   position="right"
   [style]="{ width: '50em' }"
 >
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="edit-profile-form">
     <div class="profile-section">
       <div class="left-section">
         <div class="profile-pic">
@@ -76,12 +83,17 @@
             [customUpload]="false"
             (uploadHandler)="fileChangeEvent($event)"
           ></p-fileUpload> -->
-          <input
+          <div class="file-upload-wrapper">
+            <input
             class="upload-btn"
             type="file"
             accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"
             (change)="fileChangeEvent($event)"
           />
+          <label></label>
+          <button type="button" class="button-upload">Select File</button>
+          </div>
+          
         </div>
       </div>
       <div class="right-section">
@@ -140,15 +152,13 @@
         ></textarea>
       </div>
     </div>
-    <input type="submit" value="Save" />
+    <input type="submit" value="Save" class="save_btn" />
   </form>
 </p-sidebar>
 
 <!-- <input type="file" accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"  (change)="fileChangeEvent($event)" /> -->
 
 <!-- <img [src]="croppedImage" /> -->
-
-<button (click)="back()">Back To Job</button>
 
 <p-dialog
   header="Title"

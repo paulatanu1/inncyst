@@ -40,9 +40,12 @@ export class ApiService {
     let httpHeaderValue = new HttpHeaders();
     if (headertoken == undefined) {
       httpHeaderValue = httpHeaderValue
-      .set('Authorization', 'Bearer ' +  ls.get('login_token'))
-      .set('Content-Type', 'application/json')
-      .set('X-localization', localization);
+        .set('Authorization', 'Bearer ' + ls.get('login_token'))
+        // .set(
+        //   'Content-Type',
+        //   'multipart/form-data; boundary=----WebKitFormBoundaryFwIrrqToxWfE8BEt'
+        // )
+        .set('X-localization', localization);
       httpHeaderValue = httpHeaderValue.set('X-localization', localization);
     }
     //  else {
@@ -54,7 +57,7 @@ export class ApiService {
     // }
 
     if (method == 'post') {
-      console.log(httpHeaderValue)
+      console.log(httpHeaderValue);
       return this.http
         .post(url, data, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
@@ -72,7 +75,7 @@ export class ApiService {
           })
         );
     } else if (method == 'get') {
-    console.log(httpHeaderValue,'http')
+      console.log(httpHeaderValue, 'http');
       return this.http
         .get(url, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
@@ -80,8 +83,8 @@ export class ApiService {
           catchError((e, c) => {
             return throwError(e);
           }),
-     map((response: any) => {
-            console.log(response,'response')
+          map((response: any) => {
+            console.log(response, 'response');
             var responseobj = JSON.parse(JSON.stringify(response.body));
             responseobj.status = response.status;
             if (responseobj.token != undefined) {
@@ -91,9 +94,9 @@ export class ApiService {
           })
         );
     } else if (method == 'put') {
-      console.log(httpHeaderValue)
+      console.log(httpHeaderValue);
       return this.http
-        .put(url,data, { headers: httpHeaderValue, observe: 'response' })
+        .put(url, data, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
           timeout(environment.API_TIMEOUT),
           catchError((e, c) => {
@@ -101,7 +104,7 @@ export class ApiService {
           })
         );
     } else {
-      console.log(httpHeaderValue)
+      console.log(httpHeaderValue);
       return this.http
         .post(url, data, { headers: httpHeaderValue, observe: 'response' })
         .pipe(

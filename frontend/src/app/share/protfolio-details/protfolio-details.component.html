@@ -1,0 +1,70 @@
+<ol type="1">
+  <li>
+    <label>Title:--</label>
+    <input type="text" #text />
+  </li>
+  <li>
+    <label>Description:--</label>
+    <p-editor [(ngModel)]="desc"  [style]="{'height':'320px'}">
+      <ng-template pTemplate="header">
+          <span class="ql-formats">
+              <button type="button" class="ql-bold" aria-label="Bold"></button>
+              <button type="button" class="ql-italic" aria-label="Italic"></button>
+              <button type="button" class="ql-underline" aria-label="Underline"></button>
+          </span>
+      </ng-template>
+  </p-editor>
+    
+  </li>
+  <li>
+    <div class="px3">
+      <p-dropdown
+
+        [options]="uploadItem"
+        [(ngModel)]="selectedItem"
+        placeholder="Select a option"
+        optionLabel="name"
+        (onChange)="selectItem($event, obj.id)"
+      ></p-dropdown>
+    </div>
+  </li>
+ 
+</ol>
+<div *ngIf="selectedItem == 'Pdf'">
+  <label>please upload pdf...</label>
+  <br />
+  <input
+    type="file"
+    name="pdfFile"
+    #fileInput
+    id="pdfInput"
+    (change)="pdfSelected($event)"
+    accept=".pdf"
+  />
+  <br />
+  <button (click)="deletePdf()">X</button>
+  <br />
+</div>
+<div *ngIf="selectedItem == 'Image'">
+  <label>please upload Image...</label>
+  <div>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onImageSelected($event)"
+        id="imageInput"
+           />
+      <button (click)="removeImage()">X</button>
+  </div>
+</div>
+
+<div *ngIf="selectedItem == 'url'">
+  <div>
+    <p>upload url</p>
+      <input type="url" [(ngModel)]="urlValue" (change)="urlChange($event)"/>
+  </div>
+</div>
+<button (click)="UploadProtfolio(text.value)">
+  Upload Protfolio
+</button>
+

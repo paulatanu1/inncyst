@@ -17,6 +17,9 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { LoginDetailsService } from './common-service/login-details.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { PageNotFoundComponent } from './share/page-not-found/page-not-found.component';
+import { ProtfolioComponent } from './share/protfolio/protfolio.component';
+import { ProtfolioDetailsComponent } from './share/protfolio-details/protfolio-details.component';
+import {EditorModule} from 'primeng/editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +27,8 @@ import { PageNotFoundComponent } from './share/page-not-found/page-not-found.com
     ChangePasswordComponent,
     MyProfileComponent,
     PageNotFoundComponent,
+    ProtfolioComponent,
+    ProtfolioDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,7 @@ import { PageNotFoundComponent } from './share/page-not-found/page-not-found.com
     RouterModule.forRoot([]),
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     HttpClientModule,
-    InfiniteScrollModule,
+    InfiniteScrollModule,EditorModule
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [

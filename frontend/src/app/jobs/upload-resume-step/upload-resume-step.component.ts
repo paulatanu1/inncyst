@@ -26,6 +26,7 @@ export class UploadResumeStepComponent implements OnInit {
   fileName!: string;
   base64!: string;
   jobId: any;
+  appliedJobId!:string;
   resumeUploadSucess: boolean=false;
   // fileName!:string;
   constructor(
@@ -38,12 +39,17 @@ export class UploadResumeStepComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
+this.jobService.sendSelectedJobId().subscribe({
+  next:(res=>{
+    this.appliedJobId=<string>res;
+    alert(res)
+  })
+})
     this.internship.sendInternshipProfileRequest().subscribe({
       next:(res=>{
         this.userLoginDetails=res.data;
         this.jobId=res.data._id
-        console.log(this.userLoginDetails)
+        console.log(this.userLoginDetails,'logindetails')
       })
     })
   }
@@ -83,7 +89,8 @@ export class UploadResumeStepComponent implements OnInit {
     } else {
     
       const form_data:any = new Object();
-      form_data.jobId=this.jobId;
+      alert(this.appliedJobId)
+      form_data.jobId=this.appliedJobId;
       form_data.resume=this.base64;
       console.log(form_data,'jobId')
       this.jobService.uploadResume(form_data).subscribe({
@@ -115,7 +122,7 @@ export class UploadResumeStepComponent implements OnInit {
       phone: this.userLoginDetails.phone,
       availability: this.availability,
       availability_message: this.availability_messageValue,
-      jobId: this.jobId,
+      jobId: this.appliedJobId,
     };
     console.log(details);
     if (this.resumeUploadSucess) {

@@ -41,8 +41,9 @@ AppliedJobDetails:any=[]
       next: (res) => {
         this.AppliedJobDetails=[];
         this.AppliedJobDetails=res.data;
+        console.log(this.AppliedJobDetails,'aaaa')
         // console.log(this.AppliedJobDetails, 'applyedJobDetails');
-        this.AppliedJobDetails.forEach((element:any) => {
+        this.AppliedJobDetails?.forEach((element:any) => {
           element.intranshipDetails.intranshipName = this.capitalizeWords(element.intranshipDetails.intranshipName)
           console.log(this.AppliedJobDetails)
           element.intranshipDetails.companyName=this.capitalizeWords(element.intranshipDetails.companyName)

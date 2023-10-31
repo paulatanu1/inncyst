@@ -66,8 +66,8 @@
                       src="{{
                         a.image ? 'a.image' : '../../../assets/no-image.svg'
                       }}"
-                      width="170"
-                      height="75"
+                      width="90"
+                      height="48"
                       loading="lazy"
                     />
                   </span>
@@ -77,8 +77,8 @@
                   <span>{{ a.intranshipType }}</span>
                 </h2>
               </div>
-              <div class="company_tags" *ngFor="let b of a.skills">
-                <span>{{ b }}</span>
+              <div class="company_tags">
+                <span *ngFor="let b of a.skills">{{ b }}</span>
               </div>
               <div class="type_applied">
                 <span>
@@ -139,12 +139,10 @@
     </div> -->
     <section class="right_details_part" >
       <ng-container *ngIf="AllJobDetails.length == 0">
-<p>No Record Found</p>
+        <p>No Record Found</p>
       </ng-container>
-<ng-container *ngIf="AllJobDetails.length > 0"> 
-
+      <ng-container *ngIf="AllJobDetails.length > 0"> 
       <div *ngFor="let a of singleJobDetails">
-        {{ a.companyName }}
         <div class="right_details_head">
           <div>
             <span>
@@ -154,13 +152,13 @@
                 height="75"
               />
             </span>
-            <div class="company_tags" *ngFor="let b of a.skills">
-              <span>{{ b }}</span>
+            <div class="company_tags">
+              <span *ngFor="let b of a.skills">{{ b }}</span>
             </div>
           </div>
           <h2>
             {{ a.intranshipName }}
-            <!-- <span>{{a.companyName}}</span> -->
+            <span>{{a.companyName}}</span>
           </h2>
         </div>
         <div class="overview">

@@ -1,0 +1,32 @@
+.portfolio_sec {
+    margin: 113px auto 0;
+    padding-top: 60px;
+    max-width: 1120px;
+    .add_portfolio_btn {
+        border: dashed 2px #999;
+        padding: 20px;
+        font-size: 16px;
+        color: #999;
+        background: #fff;
+        position: relative;
+        height: 280px;
+        width: 40%;
+        display: grid;
+        place-content: center;
+        cursor: pointer;
+        i {
+            display: block;
+            margin: 0 auto 10px;
+            width: 24px;
+            height: 24px;
+            font-weight: 600;
+            font-size: 24px;
+        }
+        span {
+            font-weight: 500;
+        }
+    }
+}
+.dialog{
+    height: 300px !important;
+}

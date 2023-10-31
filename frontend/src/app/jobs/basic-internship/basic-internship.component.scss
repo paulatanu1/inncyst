@@ -314,6 +314,12 @@
                 }
             }
         }
+        .noData {
+            display: grid;
+            align-items: center;
+            height: 100%;
+            justify-content: center;
+        }
     }
 }
 ::ng-deep .p-dialog {
@@ -370,10 +376,16 @@
     }
 }
 
-    .search-results-container{
-    margin: 40px;
-    height: 600px;
-    width: 500px;
-    overflow: auto;
+.search-results-container {
+    margin: 40px 0;
+    height: 1094px;
+    max-height: 1094px;
+    width: 100%;
     position: relative;
+    .noData {
+        display: grid;
+        align-items: center;
+        height: 100%;
+        justify-content: center;
+    }
 }
