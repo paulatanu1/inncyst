@@ -17,7 +17,64 @@
         </ng-template>
     </p-editor>
   </li>
+  <li>
+    <div class="px3">
+      <p-dropdown
+        [options]="uploadItem"
+        
+        placeholder="Select a option"
+        optionLabel="name"
+        (onChange)="selectItem($event, obj.id)"
+      ></p-dropdown>
+    </div>
+  </li>
   </ol>
+  <div *ngIf="selectedItem == 'Pdf'">
+    <label>please upload pdf...</label>
+    <br />
+    <input
+      type="file"
+      name="pdfFile"
+      #fileInput
+      id="pdfInput"
+      formControlName="pdf"
+      (change)="pdfSelected($event)"
+      accept=".pdf"
+    />
+    <br />
+    <button (click)="deletePdf()">X</button>
+    <br />
+  </div>
+  <div *ngIf="selectedItem == 'Image'">
+    <label>please upload Image...</label>
+    <div>
+        <input
+          type="file"
+          formControlName="image"
+
+          accept="image/*"
+          (change)="onImageSelected($event)"
+          id="imageInput"
+             />
+        <button (click)="removeImage()">X</button>
+    </div>
+  </div>
+  
+  <div *ngIf="selectedItem == 'url'">
+    <div>
+      <p>upload url</p>
+        <input type="url"       formControlName="url"
+        (change)="urlChange($event)"/>
+    </div>
+  </div>
+
+  <div *ngIf="selectedItem == 'youtubeVideo'">
+       <div>
+      <p>upload Youtubeurl</p>
+        <input type="url"  formControlName="youtubeUrl"
+         (change)="youtubeUrlChange($event)"/>
+    </div>
+  </div>
   <button type="submit">submit</button>
   </form>
     <!-- </li>
@@ -32,52 +89,13 @@
           (onChange)="selectItem($event, obj.id)"
         ></p-dropdown>
       </div>
-    </li>
+    </li> 
    
-  </ol>
-  <div *ngIf="selectedItem == 'Pdf'">
-    <label>please upload pdf...</label>
-    <br />
-    <input
-      type="file"
-      name="pdfFile"
-      #fileInput
-      id="pdfInput"
-      (change)="pdfSelected($event)"
-      accept=".pdf"
-    />
-    <br />
-    <button (click)="deletePdf()">X</button>
-    <br />
-  </div>
-  <div *ngIf="selectedItem == 'Image'">
-    <label>please upload Image...</label>
-    <div>
-        <input
-          type="file"
-          accept="image/*"
-          (change)="onImageSelected($event)"
-          id="imageInput"
-             />
-        <button (click)="removeImage()">X</button>
-    </div>
-  </div>
-  
-  <div *ngIf="selectedItem == 'url'">
-    <div>
-      <p>upload url</p>
-        <input type="url" [(ngModel)]="urlValue" (change)="urlChange($event)"/>
-    </div>
-  </div>
+  </ol> -->
 
-  <div *ngIf="selectedItem == 'youtubeVideo'">
-       <div>
-      <p>upload Youtubeurl</p>
-        <input type="url" [(ngModel)]="youtubeVideoValue" (change)="youtubeUrlChange($event)"/>
-    </div>
-  </div>
 
-<button (click)="UploadProtfolio(text.value)">
+<!-- <button (click)="UploadProtfolio(text.value)">
   Upload Protfolio
-</button> -->
+</button>  -->
+<!-- <iframe src="https://www.youtube.com/embed/6q9NtaWYbBk"></iframe> -->
 

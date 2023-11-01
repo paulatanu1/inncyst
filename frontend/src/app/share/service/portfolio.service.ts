@@ -24,4 +24,8 @@ export class PortfolioService {
     let url = '/auth/user/portfolio';
     return this.api.ApiCallWithLocalization('', url, 'get');
   }
+  deletePortFolio(id: any) {
+    let url = '/auth/user/portfolio/' + id;
+    return this.api.ApiCallWithLocalization('', url, 'delete');
+  }
 }

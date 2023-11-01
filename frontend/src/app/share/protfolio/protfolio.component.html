@@ -35,19 +35,19 @@
   <ng-container *ngIf="portfolioDetails.length != 0">
     <div *ngFor="let item of portfolioDetails">
       <button (click)="editPortfolio()">edit</button><br>
-      <button (click)="deletePortfolio()">delete</button>
+      <button (click)="deletePortfolio(item._id)">delete</button>
       <p>title:-- {{ item.title }}</p>
       <p [innerHtml]="item.description"></p>
-      <ng-container *ngIf="item.image">
+      <ng-container *ngIf="item.image != 'http://localhost:5500null'">
         <p>Image:--<img [src]="item.image" alt="" /></p>
       </ng-container>
       <ng-container *ngIf="item.url">
-        <p>
+       
           Url:--
-          <a target="blank" [href]="item.description">{{ item.description }}</a>
-        </p>
+          <a target="blank" [href]="item.description">{{ item.url }}</a>
+       
       </ng-container>
-      <ng-container *ngIf="item.pdf">
+      <ng-container *ngIf="item.pdf != 'http://localhost:5500null'">
         <p>Pdf:--</p>
         <pdf-viewer [src]="item.pdf"
                 [render-text]="true"
@@ -56,10 +56,18 @@
     ></pdf-viewer>
 
       </ng-container>
+
+      <ng-container *ngIf="item.youtubeUrl">
+        <P>YOUTUBE</P>
+        {{item.youtubeUrl}}
+        <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/'+item.youtubeUrl" frameborder="0" allowfullscreen></iframe>
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/6q9NtaWYbBk" frameborder="0" allowfullscreen></iframe> -->
+      </ng-container>
+      
       <hr />
     </div>
-    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/1DAgBjXj96k" frameborder="0" allowfullscreen></iframe> -->
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/6q9NtaWYbBk" frameborder="0" allowfullscreen></iframe>
   </ng-container>
 </div>
 
-
+<!-- <img src="6501f5800a2bcadb7478a6d0-Screenshot (3).png"> -->

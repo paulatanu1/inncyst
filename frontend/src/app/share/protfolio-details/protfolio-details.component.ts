@@ -65,10 +65,12 @@ export class ProtfolioDetailsComponent implements OnInit {
     this.myForm=this.fb.group({
       title:[''],
       description:[''],
-      // url:[''],
-      // image:[{}],
-      // pdf:[{}]
-    })
+      image: [{}],
+      pdf: [{}],
+      url:[''],
+      youtubeUrl:[''],
+      selectedItem:[]
+       })
     console.log(this.obj);
 
     this.uploadItem = [
@@ -79,9 +81,10 @@ export class ProtfolioDetailsComponent implements OnInit {
     ];
   }
   selectItem(e: any, id: number) {
-    this.selectedItem = e.value.name;
-    console.log(e.value.name);
-    console.log(this.selectedItem);
+    // this.myForm.get('selectedItem')?.patchValue(e.value.name);
+    // console.log(e.value.name);
+    this.selectedItem=e.value.name
+    // console.log(this.myForm.value.selectedItem);
   }
 
   //IMAGE UPLOAD START...................................................
@@ -89,8 +92,9 @@ export class ProtfolioDetailsComponent implements OnInit {
     if (e.target.files[0].size <= this.ImgMaxSize) {
       this.imgObj = e.target.files[0];
       // this.imgArray[index] = file;
-      this.obj.image = this.imgObj;
-      console.log(this.obj);
+      // this.obj.image = this.imgObj;
+      this.myForm.get('image')?.setValue(this.imgObj)
+      console.log(this.myForm.value);
     } else {
       this._toast.showToaster.next({
         severity: 'Error',
@@ -124,8 +128,9 @@ export class ProtfolioDetailsComponent implements OnInit {
   pdfSelected(e: any) {
     if (e.target.files[0].size <= this.pdfMaxSize) {
       this.pdfObj = e.target.files[0];
-      this.obj.pdf = this.pdfObj;
-      console.log(this.obj);
+      this.myForm.get('pdf')?.setValue(this.pdfObj)
+      // this.obj.pdf = this.pdfObj;
+      // console.log(this.obj);
     } else {
       this._toast.showToaster.next({
         severity: 'Error',
@@ -142,9 +147,10 @@ export class ProtfolioDetailsComponent implements OnInit {
       this.PdffileInput.value = '';
     }
     this.pdfObj = '';
-    this.obj.pdf = this.pdfObj;
+    // this.obj.pdf = this.pdfObj;
+    this.myForm.get('pdf')?.setValue(null)
     // this.obj.uploadedItm[0];
-    console.log(this.obj);
+    console.log(this.myForm.value);
   }
 
   //END PDF PORTION.........................................
@@ -152,7 +158,8 @@ export class ProtfolioDetailsComponent implements OnInit {
   //URL PORTION START......................
   urlChange(e: any) {
     console.log(e.target.value, 'e');
-    this.obj.url = e.target.value;
+    // this.obj.url = e.target.value;
+    this.myForm.get('url')?.setValue(e.target.value)
     console.log(this.obj);
   }
 
@@ -241,9 +248,13 @@ formData.append('description','def')
   onSubmit(){
     console.log(this.myForm.value)
     const formData = new FormData();
-    Object.keys(this.myForm.controls).forEach(key=> formData.append(key,this.myForm.get(key)?.value))
-    // formData.append('title',this.myForm.value.title)
-    // formData.append('description',this.myForm.value.description)
+    // Object.keys(this.myForm.controls).forEach(key=> formData.append(key,this.myForm.get(key)?.value))
+    formData.append('title',this.myForm.value.title)
+    formData.append('description',this.myForm.value.description)
+    formData.append('pdf',this.myForm.value.pdf)
+    formData.append('image',this.myForm.value.image)
+    formData.append('url',this.myForm.value.url)
+    formData.append('youtubeUrl',this.myForm.value.youtubeUrl)
 this.portfolio.addPortfolio(formData).subscribe({
   next:(res=>{
     console.log(res,'121')
@@ -251,10 +262,17 @@ this.portfolio.addPortfolio(formData).subscribe({
 })
   }
 
-  //youtube url
+  //youtube url start
   youtubeUrlChange(e:any){
-    console.log(e.target.value,'e')
-    this.obj.youtubeUrl=e.target.value;
-    console.log(this.obj)
+
+    let staticUrl = 'https://www.youtube.com/embed/';
+    let modifyUrl=e.target.value.split('=')[1]
+    let newurl = staticUrl + modifyUrl;
+    // console.log(e.target.value);
+    // this.myForm.get('youtubeUrl').setValue(newurl);
+    // console.log(e.target.value,'e')
+    // this.obj.youtubeUrl=e.target.value;
+    this.myForm.get('youtubeUrl')?.setValue(e.target.value)
+    console.log(e.target.value)
   }
 }
