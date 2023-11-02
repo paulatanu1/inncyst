@@ -208,43 +208,45 @@ export class ProtfolioDetailsComponent implements OnInit {
   }
   // VIDEO PORTION END..............................
 
-  //UPLOAD PROTFOLIO TO THE SERVER....................................
-  UploadProtfolio(text: any) {
-    this.obj.title = text;
-    this.obj.description = this.desc;
-    console.log(this.obj, 'this.obj');
-    this.individualObj.emit();
 
-    // const formData: any = new FormData();
-    // Object.keys(this.obj).forEach(key=>{
-    //   // console.log(this.obj[key],'ky')
-    //   formData.append(key,this.obj[key])
-    //   // for (var pair of formData.entries()) {
-    //   //   console.log(pair[0] + ': ' + pair[1]);
-    //   // }
-    // })
-const formData = new FormData()
-formData.append('title','abc')
-formData.append('description','def')
-    this.portfolio.addPortfolio(formData).subscribe({
-      next: (item) => {
-        console.log(item);
-      },
-      error: (err) => {
-        console.log(err);
-        this._toast.showToaster.next({
-          severity: 'Error',
-          summary: 'Error',
-          detail: err.error.message,
-        });
-      },
-    });
-  }
+//   UploadProtfolio(text: any) {
+//     this.obj.title = text;
+//     this.obj.description = this.desc;
+//     console.log(this.obj, 'this.obj');
+//     this.individualObj.emit();
+
+//     // const formData: any = new FormData();
+//     // Object.keys(this.obj).forEach(key=>{
+//     //   // console.log(this.obj[key],'ky')
+//     //   formData.append(key,this.obj[key])
+//     //   // for (var pair of formData.entries()) {
+//     //   //   console.log(pair[0] + ': ' + pair[1]);
+//     //   // }
+//     // })
+// const formData = new FormData()
+// formData.append('title','abc')
+// formData.append('description','def')
+//     this.portfolio.addPortfolio(formData).subscribe({
+//       next: (item) => {
+//         console.log(item);
+//         // console.log(this.portfolio.hideAddPortfolioModal.next(false),'k')
+//       },
+//       error: (err) => {
+//         console.log(err);
+//         this._toast.showToaster.next({
+//           severity: 'Error',
+//           summary: 'Error',
+//           detail: err.error.message,
+//         });
+//       },
+//     });
+//   }
 
   //REMOVE SINGLE PROTFOLIO.............................................
   removeObj() {
     this.id.emit(this.obj.id);
   }
+    //UPLOAD PROTFOLIO TO THE SERVER....................................
   onSubmit(){
     console.log(this.myForm.value)
     const formData = new FormData();
@@ -258,6 +260,8 @@ formData.append('description','def')
 this.portfolio.addPortfolio(formData).subscribe({
   next:(res=>{
     console.log(res,'121')
+    this.portfolio.hideAddPortfolioModal.next(false)
+
   })
 })
   }

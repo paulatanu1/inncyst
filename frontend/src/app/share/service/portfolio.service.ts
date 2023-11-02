@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ApiService } from 'src/app/common-service/api.service';
 
 @Injectable({
@@ -36,4 +37,5 @@ export class PortfolioService {
     let url = '/auth/user/portfolio/' + id;
     return this.api.ApiCallWithLocalization(data,url,'put')
   }
+  public hideAddPortfolioModal=new Subject()
 }
