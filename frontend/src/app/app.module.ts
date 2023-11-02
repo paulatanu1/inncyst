@@ -21,6 +21,7 @@ import { ProtfolioComponent } from './share/protfolio/protfolio.component';
 import { ProtfolioDetailsComponent } from './share/protfolio-details/protfolio-details.component';
 import {EditorModule} from 'primeng/editor';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { SanitizerUrlPipe } from './pipe/sanitizer-url.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     PageNotFoundComponent,
     ProtfolioComponent,
     ProtfolioDetailsComponent,
+    SanitizerUrlPipe,
   ],
   imports: [
     BrowserModule,

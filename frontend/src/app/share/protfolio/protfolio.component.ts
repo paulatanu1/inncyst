@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { PortfolioService } from '../service/portfolio.service';
 import { environment } from 'src/environments/environment';
+import { FormBuilder, FormGroup } from '@angular/forms';
 // import * as MediaElementPlayer from 'mediaelement';
 interface Ifield {
   title: string;
@@ -18,9 +19,10 @@ interface Ifield {
   styleUrls: ['./protfolio.component.scss'],
 })
 export class ProtfolioComponent implements OnInit ,AfterViewInit {
+
   constructor(
     private _toast: ToastServiceService,
-    private portfolio: PortfolioService,private elementRef: ElementRef
+    private portfolio: PortfolioService,private fb:FormBuilder
   ) {}
 
   ngAfterViewInit() {
@@ -32,6 +34,16 @@ export class ProtfolioComponent implements OnInit ,AfterViewInit {
   display: boolean = false;
   resizable = true;
   currentTime = new Date().getTime();
+  editDialog:boolean=false;
+  editDialogForm!:FormGroup;
+editImage='';
+editPdf='';
+pdfMaxSize: number = 26214400;
+ImgMaxSize: number = 12582912;
+pdfObj = {};
+imgObj = {};
+editPortfolioId!:number;
+
   portfolioDetails:any=[
     {
       title:undefined,
@@ -64,7 +76,6 @@ export class ProtfolioComponent implements OnInit ,AfterViewInit {
   // fieldObj: Ifield
   field: Ifield[] = [];
   id = 0;
-  // constructor() {}
   addProtfolio() {
     // this.protfolioVissable = !this.protfolioVissable;
     this.display = true;
@@ -88,6 +99,16 @@ export class ProtfolioComponent implements OnInit ,AfterViewInit {
 
     // 1st time call all portfolio details.......
  this.getPortfolio();
+
+ //editDialogForm
+ this.editDialogForm=this.fb.group({
+      title:[''],
+      description:[''],
+      image: [{}],
+      pdf: [{}],
+      url:[''],
+      youtubeUrl:[''],
+ })
   }
   getPortfolio(){
     this.portfolio.getPortfolio().subscribe({
@@ -100,7 +121,7 @@ export class ProtfolioComponent implements OnInit ,AfterViewInit {
         //  item.url=this.commonYoutubeUrl+newUrl
          item.image=environment.API_URL+item.image;
          item.pdf=environment.API_URL+item.pdf;
-         item.youtubeUrl=item.youtubeUrl?.split('=')[1];
+        //  item.youtubeUrl=item.youtubeUrl?.split('=')[1];
         //  console.log(this.portfolioDetails,'jjjjj')
         // let newYoutubeUrl:any=item.youtubeUrl
 
@@ -160,8 +181,85 @@ export class ProtfolioComponent implements OnInit ,AfterViewInit {
     ];
   }
 
-  editPortfolio(){
+  editPortfolio(id:any){
+this.editDialog=true;
+this.editPortfolioId=id;
+// this.editDialogForm.setValue(this.)
+this.portfolio.getSinglePortfolio(id).subscribe({
+  next:(res=>{
+console.log(res,'aaaa')
+this.editDialogForm.get('title')?.patchValue(res.data.title)
+this.editDialogForm.get('description')?.setValue(res.data.description)
+this.editDialogForm.get('url')?.setValue(res.data.url)
+this.editDialogForm.get('youtubeUrl')?.setValue(res.data.youtubeUrl)
+this.editDialogForm.get('image')?.setValue(res.data.image)
+this.editDialogForm.get('pdf')?.setValue(res.data.pdf)
+this.editImage=res.data.image?.split('-')[2]
+this.editPdf=res.data.pdf?.split('-')[2]
 
+console.log(this.editDialogForm.value)
+  })
+  
+})
+  }
+  onHideEditDialog(){
+    this.editDialog=false;
+
+  }
+  removeImg(){
+    this.editImage='';
+    this.editDialogForm.get('image')?.setValue(null)
+  }
+  onImageSelected(e: any) {
+    if (e.target.files[0].size <= this.ImgMaxSize) {
+      this.imgObj = e.target.files[0];
+      console.log(this.imgObj)
+      this.editDialogForm.get('image')?.setValue(this.imgObj)
+      console.log(this.editDialogForm.value);
+    } else {
+      this._toast.showToaster.next({
+        severity: 'Error',
+        summary: 'Error',
+        detail:
+          'Upload failed: File size too big..you can upload files within 12 MB',
+      });
+    }
+  }
+
+  removePdf(){
+this.editPdf='';
+this.editDialogForm.get('pdf')?.setValue(null)
+  }
+  pdfSelected(e: any) {
+    if (e.target.files[0].size <= this.pdfMaxSize) {
+      this.pdfObj = e.target.files[0];
+      this.editDialogForm.get('pdf')?.setValue(this.pdfObj)
+    } else {
+      this._toast.showToaster.next({
+        severity: 'Error',
+        summary: 'Error',
+        detail:
+          'Upload failed: File size too big..you can upload files within 25 MB',
+      });
+    }
+  }
+
+  urlChange(e: any) {
+    this.editDialogForm.get('url')?.setValue(e.target.value)
+  }
+
+  onSubmit(){
+    console.log(this.editDialogForm.value)
+    const formData = new FormData()
+    Object.keys(this.editDialogForm.controls).forEach(key=> formData.append(key,this.editDialogForm.get(key)?.value))
+    // Object.keys(this.editDialogForm.controls).forEach(key=>formData.append(key,this.editDialogForm.get(key)?.value))
+  console.log(formData)
+    this.portfolio.editPortfolio(this.editPortfolioId,formData).subscribe({
+    next:(res=>{
+      console.log(res)
+    })
+  })
+  
   }
   deletePortfolio(id:any){
     this.portfolio.deletePortFolio(id).subscribe({
@@ -172,4 +270,5 @@ export class ProtfolioComponent implements OnInit ,AfterViewInit {
     })
 
   }
+  
 }

@@ -261,18 +261,30 @@ this.portfolio.addPortfolio(formData).subscribe({
   })
 })
   }
+youtubeUrlConvert(url:any){
+  let regExp=/^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
 
+  var match = url.match(regExp);
+
+  return match && match[1].length == 11 ? match[1] : false;
+}
   //youtube url start
   youtubeUrlChange(e:any){
+    let originalFileUrl=e.target.value
+    let url=this.youtubeUrlConvert(originalFileUrl)
+    
+    if(url != false){
+      this.myForm.get('youtubeUrl')?.setValue(`https://www.youtube-nocookie.com/embed/${url}`)
 
-    let staticUrl = 'https://www.youtube.com/embed/';
-    let modifyUrl=e.target.value.split('=')[1]
-    let newurl = staticUrl + modifyUrl;
+   }
+    // let staticUrl = 'https://www.youtube-nocookie.com/embed/';
+    // let modifyUrl=e.target.value.split('=')[1]
+    // let newurl = staticUrl + modifyUrl;
+    // console.log(newurl,'newurl')
     // console.log(e.target.value);
     // this.myForm.get('youtubeUrl').setValue(newurl);
     // console.log(e.target.value,'e')
     // this.obj.youtubeUrl=e.target.value;
-    this.myForm.get('youtubeUrl')?.setValue(e.target.value)
-    console.log(e.target.value)
+    // console.log(e.target.value)
   }
 }

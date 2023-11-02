@@ -34,7 +34,7 @@
   </div>
   <ng-container *ngIf="portfolioDetails.length != 0">
     <div *ngFor="let item of portfolioDetails">
-      <button (click)="editPortfolio()">edit</button><br>
+      <button (click)="editPortfolio(item._id)">edit</button><br />
       <button (click)="deletePortfolio(item._id)">delete</button>
       <p>title:-- {{ item.title }}</p>
       <p [innerHtml]="item.description"></p>
@@ -42,32 +42,117 @@
         <p>Image:--<img [src]="item.image" alt="" /></p>
       </ng-container>
       <ng-container *ngIf="item.url">
-       
-          Url:--
-          <a target="blank" [href]="item.description">{{ item.url }}</a>
-       
+        Url:--
+        <a target="blank" [href]="item.description">{{ item.url }}</a>
       </ng-container>
       <ng-container *ngIf="item.pdf != 'http://localhost:5500null'">
         <p>Pdf:--</p>
-        <pdf-viewer [src]="item.pdf"
-                [render-text]="true"
-                [original-size]="false"
-                style="width: 400px; height: 500px"
-    ></pdf-viewer>
-
+        <pdf-viewer
+          [src]="item.pdf"
+          [render-text]="true"
+          [original-size]="false"
+          style="width: 400px; height: 500px"
+        ></pdf-viewer>
       </ng-container>
 
-      <ng-container *ngIf="item.youtubeUrl">
+      <!-- <ng-container *ngIf="item.youtubeUrl"> -->
         <P>YOUTUBE</P>
-        {{item.youtubeUrl}}
-        <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/'+item.youtubeUrl" frameborder="0" allowfullscreen></iframe>
+        {{ item.youtubeUrl }}
+        <iframe
+          width="560"
+          height="315"
+          [src]="item.youtubeUrl | sanitizerUrl"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
         <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/6q9NtaWYbBk" frameborder="0" allowfullscreen></iframe> -->
-      </ng-container>
-      
+      <!-- </ng-container> -->
+
+      https://www.youtube-nocookie.com/embed/
+
       <hr />
     </div>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/6q9NtaWYbBk" frameborder="0" allowfullscreen></iframe>
+    <!-- <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/6q9NtaWYbBk"
+      frameborder="0"
+      allowfullscreen
+    ></iframe> -->
   </ng-container>
 </div>
+<!-- EDIT DIALOG-->
+<div>
+  <p-dialog
+    header="Title"
+    [(visible)]="editDialog"
+    (onHide)="onHideEditDialog()"
+  >
+    Content
 
-<!-- <img src="6501f5800a2bcadb7478a6d0-Screenshot (3).png"> -->
+    <form [formGroup]="editDialogForm" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="title" placeholder="title"/>
+
+      <p-editor [style]="{ height: '320px' }" formControlName="description" placeholder="description">
+        <ng-template pTemplate="header">
+          <span class="ql-formats">
+            <button type="button" class="ql-bold" aria-label="Bold"></button>
+            <button
+              type="button"
+              class="ql-italic"
+              aria-label="Italic"
+            ></button>
+            <button
+              type="button"
+              class="ql-underline"
+              aria-label="Underline"
+            ></button>
+          </span>
+        </ng-template>
+      </p-editor>
+
+      <div>
+        <label>upload url :--</label>
+          <input type="url"       formControlName="url" placeholder="URL"
+          (change)="urlChange($event)"/>
+      </div>
+      <div>
+        <ng-container *ngIf="editImage">
+          {{ editImage }}
+          <button (click)="removeImg()">X</button>
+        </ng-container>
+
+        <ng-container *ngIf="!editImage">
+          <label>please upload Image...</label>
+          <br>
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onImageSelected($event)"
+            id="imageInput"
+          />
+        </ng-container>
+      </div>
+      <div>
+        <ng-container *ngIf="editPdf">
+          {{ editPdf }}
+          <button (click)="removePdf()">X</button>
+        </ng-container>
+        <ng-container *ngIf="!editPdf">
+          <label>please upload pdf...</label>
+          <br />
+          <input
+            type="file"
+            name="pdfFile"
+            #fileInput
+            id="pdfInput"
+            (change)="pdfSelected($event)"
+            accept=".pdf"
+          />
+          <br />
+        </ng-container>
+      </div>
+      <button type="submit">submit</button>
+    </form>
+  </p-dialog>
+</div>

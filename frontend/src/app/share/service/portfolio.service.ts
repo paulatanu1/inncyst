@@ -28,4 +28,12 @@ export class PortfolioService {
     let url = '/auth/user/portfolio/' + id;
     return this.api.ApiCallWithLocalization('', url, 'delete');
   }
+  getSinglePortfolio(id:any){
+    let url = '/auth/user/portfolio/' + id;
+  return this.api.ApiCallWithLocalization('',url,'get')
+  }
+  editPortfolio(id:any,data:any){
+    let url = '/auth/user/portfolio/' + id;
+    return this.api.ApiCallWithLocalization(data,url,'put')
+  }
 }
