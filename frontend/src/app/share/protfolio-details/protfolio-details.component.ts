@@ -261,6 +261,11 @@ this.portfolio.addPortfolio(formData).subscribe({
   next:(res=>{
     console.log(res,'121')
     this.portfolio.hideAddPortfolioModal.next(false)
+    this._toast.showToaster.next({
+      severity: 'success',
+      summary: 'success',
+      detail: res.message,
+    });
 
   })
 })

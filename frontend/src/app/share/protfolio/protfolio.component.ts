@@ -82,16 +82,14 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     // this.addField();
   }
   ngOnInit(): void {
-
-
     //when add submit then modal will be automatically close
     this.portfolio.hideAddPortfolioModal.subscribe({
-      next:(res=>{
-        this.display=res as unknown as boolean
-        console.log(res)
-        this.getPortfolio()
-      })
-    })
+      next: (res) => {
+        this.display = res as unknown as boolean;
+        console.log(res);
+        this.getPortfolio();
+      },
+    });
     console.log(this.field, 'this');
     const currentTime = new Date().getTime();
 
@@ -165,7 +163,6 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
 
     if (formIndex !== -1) {
       this.field.splice(formIndex, 1);
-
     }
   }
   // getProtfolio() {
@@ -188,7 +185,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         youtubeUrl: '',
       },
     ];
-    this.getPortfolio()
+    this.getPortfolio();
   }
 
   editPortfolio(id: any) {
@@ -205,7 +202,6 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         this.editDialogForm.get('pdf')?.setValue(res.data.pdf);
         this.editImage = res.data.image?.split('-')[2];
         this.editPdf = res.data.pdf?.split('-')[2];
-
       },
     });
   }
@@ -263,7 +259,14 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     this.portfolio.editPortfolio(this.editPortfolioId, formData).subscribe({
       next: (res) => {
         console.log(res);
+        this._toast.showToaster.next({
+          severity: 'success',
+          summary: 'Portfolio update successfully.',
+          detail: res.message,
+        });
+        this.editDialog = false;
       },
+      
     });
   }
   deletePortfolio(id: any) {
@@ -271,6 +274,11 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       next: (res) => {
         console.log(res);
         this.getPortfolio();
+        this._toast.showToaster.next({
+          severity: 'success',
+          summary: 'success',
+          detail: res.message,
+        });
       },
     });
   }
