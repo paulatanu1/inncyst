@@ -55,9 +55,8 @@
         ></pdf-viewer>
       </ng-container>
 
-      <!-- <ng-container *ngIf="item.youtubeUrl"> -->
+      <ng-container *ngIf="item.youtubeUrl">
         <P>YOUTUBE</P>
-        {{ item.youtubeUrl }}
         <iframe
           width="560"
           height="315"
@@ -65,10 +64,9 @@
           frameborder="0"
           allowfullscreen
         ></iframe>
-        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/6q9NtaWYbBk" frameborder="0" allowfullscreen></iframe> -->
-      <!-- </ng-container> -->
+      </ng-container>
 
-      https://www.youtube-nocookie.com/embed/
+  
 
       <hr />
     </div>
@@ -111,12 +109,12 @@
         </ng-template>
       </p-editor>
 
-      <div>
+      <div *ngIf="editPortfolioDetails.url != null">
         <label>upload url :--</label>
           <input type="url"       formControlName="url" placeholder="URL"
           (change)="urlChange($event)"/>
       </div>
-      <div>
+      <div *ngIf="editPortfolioDetails.image != null">
         <ng-container *ngIf="editImage">
           {{ editImage }}
           <button (click)="removeImg()">X</button>
@@ -133,7 +131,7 @@
           />
         </ng-container>
       </div>
-      <div>
+      <div *ngIf="editPortfolioDetails.pdf != null">
         <ng-container *ngIf="editPdf">
           {{ editPdf }}
           <button (click)="removePdf()">X</button>
@@ -151,6 +149,16 @@
           />
           <br />
         </ng-container>
+      </div>
+      <div *ngIf="editPortfolioDetails.youtubeUrl != null">
+        <ng-container ></ng-container>
+        <ng-container>
+          <p>upload Youtubeurl</p>
+          <input type="url"  formControlName="youtubeUrl"
+           (change)="youtubeUrlChange($event)"/>
+        </ng-container>
+
+        
       </div>
       <button type="submit">submit</button>
     </form>

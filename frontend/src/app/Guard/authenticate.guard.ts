@@ -11,7 +11,7 @@ export class AuthenticateGuard implements CanActivate {
   login_token!:string
   constructor(private _toast:ToastServiceService,private router:Router)
 {
-  this.userType=<string>ls.get('userType')
+  this.userType=<string>ls.get('role')
   this.login_token=<string>ls.get('login_token')
 }
 
@@ -30,7 +30,7 @@ export class AuthenticateGuard implements CanActivate {
         summary: 'Error',
         detail: 'Access Denied: You do not have permission to view this page. ',
       });
-    alert('Access Denied: You do not have permission to view this page.')
+    alert('Access Denied: You do not have permission to view this page AG.')
       this.router.navigateByUrl('/home')
       return false
     }

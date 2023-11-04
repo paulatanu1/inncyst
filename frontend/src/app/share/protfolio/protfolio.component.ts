@@ -43,7 +43,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   pdfObj = {};
   imgObj = {};
   editPortfolioId!: number;
-
+  editPortfolioDetails:any;
   portfolioDetails: any = [
     {
       title: undefined,
@@ -194,14 +194,16 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     // this.editDialogForm.setValue(this.)
     this.portfolio.getSinglePortfolio(id).subscribe({
       next: (res) => {
+        this.editPortfolioDetails=res;
+        console.log(res,'resss')
         this.editDialogForm.get('title')?.patchValue(res.data.title);
         this.editDialogForm.get('description')?.setValue(res.data.description);
         this.editDialogForm.get('url')?.setValue(res.data.url);
         this.editDialogForm.get('youtubeUrl')?.setValue(res.data.youtubeUrl);
         this.editDialogForm.get('image')?.setValue(res.data.image);
         this.editDialogForm.get('pdf')?.setValue(res.data.pdf);
-        this.editImage = res.data.image?.split('-')[2];
-        this.editPdf = res.data.pdf?.split('-')[2];
+        this.editImage = res.data?.image?.split('-')[2];
+        this.editPdf = res.data?.pdf?.split('-')[2];
       },
     });
   }
@@ -247,7 +249,21 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   urlChange(e: any) {
     this.editDialogForm.get('url')?.setValue(e.target.value);
   }
-
+  youtubeUrlConvert(url:any){
+    let regExp=/^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
+  
+    var match = url.match(regExp);
+  
+    return match && match[1].length == 11 ? match[1] : false;
+  }
+  youtubeUrlChange(e:any){
+    let originalFileUrl=e.target.value
+    let url=this.youtubeUrlConvert(originalFileUrl)
+    
+    if(url != false){
+      this.editDialogForm.get('youtubeUrl')?.setValue(`https://www.youtube-nocookie.com/embed/${url}`)
+    }
+   }
   onSubmit() {
     console.log(this.editDialogForm.value);
     const formData = new FormData();

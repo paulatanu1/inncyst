@@ -11,7 +11,7 @@ export class UserVerificationGuard implements CanActivate {
   login_token!:string
   constructor(private _toast:ToastServiceService,private router:Router)
 {
-  this.userType=<string>ls.get('userType')
+  this.userType=<string>ls.get('role')
   this.login_token=<string>ls.get('login_token')
 }
 
