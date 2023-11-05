@@ -24,6 +24,8 @@ export class AuthenticateGuard implements CanActivate {
       return true;
     }
      else{
+      console.log(this.userType)
+      console.log(this.login_token)
       //prevent allow access if userType is !=student
       this._toast.showToaster.next({
         severity: 'Error',

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ApiService } from 'src/app/common-service/api.service';
 
 interface payload {
@@ -52,4 +53,6 @@ export class JobListApiService {
 
     return this.api.ApiCallWithLocalization(form_data, url, 'post');
   }
+
+
 }

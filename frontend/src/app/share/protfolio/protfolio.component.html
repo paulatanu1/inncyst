@@ -70,13 +70,6 @@
 
       <hr />
     </div>
-    <!-- <iframe
-      width="560"
-      height="315"
-      src="https://www.youtube.com/embed/6q9NtaWYbBk"
-      frameborder="0"
-      allowfullscreen
-    ></iframe> -->
   </ng-container>
 </div>
 <!-- EDIT DIALOG-->
@@ -109,12 +102,12 @@
         </ng-template>
       </p-editor>
 
-      <div *ngIf="editPortfolioDetails.url != null">
+      <div *ngIf="editPortfolioDetails?.url != null">
         <label>upload url :--</label>
           <input type="url"       formControlName="url" placeholder="URL"
           (change)="urlChange($event)"/>
       </div>
-      <div *ngIf="editPortfolioDetails.image != null">
+      <div *ngIf="editPortfolioDetails?.image != null">
         <ng-container *ngIf="editImage">
           {{ editImage }}
           <button (click)="removeImg()">X</button>
@@ -131,7 +124,7 @@
           />
         </ng-container>
       </div>
-      <div *ngIf="editPortfolioDetails.pdf != null">
+      <div *ngIf="editPortfolioDetails?.pdf != null">
         <ng-container *ngIf="editPdf">
           {{ editPdf }}
           <button (click)="removePdf()">X</button>
@@ -150,9 +143,19 @@
           <br />
         </ng-container>
       </div>
-      <div *ngIf="editPortfolioDetails.youtubeUrl != null">
-        <ng-container ></ng-container>
-        <ng-container>
+      <div *ngIf="editPortfolioDetails?.youtubeUrl != null">
+        <ng-container *ngIf="youtube">
+          <P>YOUTUBE</P>
+          <iframe
+            width="560"
+            height="315"
+            [src]="editPortfolioDetails.youtubeUrl | sanitizerUrl"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+          <button (click)="removeYoutube()">X</button>
+        </ng-container>
+        <ng-container *ngIf="!youtube">
           <p>upload Youtubeurl</p>
           <input type="url"  formControlName="youtubeUrl"
            (change)="youtubeUrlChange($event)"/>

@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
 import { RegistrationService } from 'src/app/registration-service/registration.service';
@@ -163,7 +163,13 @@ export class RegistrationPageComponent implements OnInit {
         this.progressBar = res;
       },
     });
-
+   //for scroll issue
+   this.router.events.subscribe((event) => {
+    if (event instanceof NavigationEnd) {
+      // Scroll to the top of the page
+      window.scrollTo(0, 0);
+  }
+ });
   }
 
   optionClick(url: string) {
@@ -200,8 +206,10 @@ export class RegistrationPageComponent implements OnInit {
       this.reg
         .sendRegistrationRequest(this.userName, this.userEmail, this.phone, password, this.userRole)
         .subscribe((response) => {
+       
           console.log(response, 'response');
           this.otpPageOpen=true;
+        
           this.signupPageHide=false
           this.registrationId=response.data._id;
           console.log(this.registrationId)
@@ -223,6 +231,10 @@ export class RegistrationPageComponent implements OnInit {
           this.isSignup = true;
           this.openVerificationModal(true);
         },(err)=> {
+          if(err.error.message == 'User Already exist'){
+            this.otpPageOpen=true
+            this.signupPageHide=false
+          }
           this._toast.showToaster.next({
             severity: 'error',
             summary: 'error',
@@ -308,6 +320,8 @@ export class RegistrationPageComponent implements OnInit {
        }
        this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
          next: (res)=>{
+
+      
            this.OtpModal=false;
            this.redirectToOtp = false;
           //  this.otpPageOpen=false

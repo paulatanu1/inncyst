@@ -6,7 +6,7 @@
       <div class="ribbon_draft">Draft</div>
       <figure><img src="" /></figure>
       <h2>{{ items.details }}</h2>
-      <i class="pi pi-ellipsis-v"></i>
+      <i class="pi pi-ellipsis-v" (click)="edit(items._id,items)"></i>
     </div>
     <div class="listing_details">
       <ul>

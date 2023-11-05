@@ -44,6 +44,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   imgObj = {};
   editPortfolioId!: number;
   editPortfolioDetails:any;
+  youtube=''
   portfolioDetails: any = [
     {
       title: undefined,
@@ -194,7 +195,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     // this.editDialogForm.setValue(this.)
     this.portfolio.getSinglePortfolio(id).subscribe({
       next: (res) => {
-        this.editPortfolioDetails=res;
+        this.editPortfolioDetails=res.data;
         console.log(res,'resss')
         this.editDialogForm.get('title')?.patchValue(res.data.title);
         this.editDialogForm.get('description')?.setValue(res.data.description);
@@ -204,6 +205,8 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         this.editDialogForm.get('pdf')?.setValue(res.data.pdf);
         this.editImage = res.data?.image?.split('-')[2];
         this.editPdf = res.data?.pdf?.split('-')[2];
+        this.youtube=res.data?.youtubeUrl
+        console.log(this.youtube,'youtube')
       },
     });
   }
@@ -280,6 +283,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
           summary: 'Portfolio update successfully.',
           detail: res.message,
         });
+        this.getPortfolio();
         this.editDialog = false;
       },
       
@@ -297,5 +301,9 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         });
       },
     });
+  }
+  removeYoutube(){
+    this.youtube='';
+    this.editDialogForm.get('youtubeUrl')?.setValue(null)
   }
 }

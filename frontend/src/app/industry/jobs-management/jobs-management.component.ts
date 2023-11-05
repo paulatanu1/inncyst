@@ -3,6 +3,7 @@ import { LeftMenuHandelService } from '../left-menu-handel.service';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/common-service/api.service';
 import { JobPostListService } from './jobs-management-service/job-post-list.service';
+import { JobListApiService } from './posts/job-list-api.service';
 
 @Component({
   selector: 'app-jobs-management',
@@ -14,7 +15,8 @@ export class JobsManagementComponent implements OnInit {
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private router: Router,
-    private post: JobPostListService
+    private post: JobPostListService,
+    private _JobListApiService:JobListApiService
   ) {}
 
   ngOnInit(): void {
@@ -33,5 +35,11 @@ export class JobsManagementComponent implements OnInit {
 
   addJobs() {
     this.router.navigate(['/industry/jobs/add-job']);
+  }
+  edit(id:number,data:any){
+  // alert(id)
+  console.log(data)
+this.router.navigate(['/industry/jobs/add-job'],{queryParams:{id:id,data:data}})
+
   }
 }

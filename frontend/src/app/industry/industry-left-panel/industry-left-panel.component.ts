@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LeftMenuHandelService } from '../left-menu-handel.service';
-
+import ls from 'localstorage-slim';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-industry-left-panel',
   templateUrl: './industry-left-panel.component.html',
@@ -8,7 +9,7 @@ import { LeftMenuHandelService } from '../left-menu-handel.service';
 })
 export class IndustryLeftPanelComponent implements OnInit {
   activeleftmenu:number = 0
-  constructor(private _menuHandel:LeftMenuHandelService) { }
+  constructor(private _menuHandel:LeftMenuHandelService,private router:Router) { }
 
   ngOnInit( ): void {
 
@@ -25,5 +26,8 @@ export class IndustryLeftPanelComponent implements OnInit {
     //   this.activeleftmenu = "dashboard";
     // }
   }
-
+  logout(){
+ls.clear()
+this.router.navigateByUrl('/home')
+  }
 }

@@ -3,6 +3,10 @@ import { LeftMenuHandelService } from '../left-menu-handel.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JobPostApiService } from '../jobs-management/jobs-management-service/job-post-api.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+import { JobListApiService } from '../jobs-management/posts/job-list-api.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { JsonPipe } from '@angular/common';
+
 interface cities {
   optionName: string;
   code: string;
@@ -47,6 +51,8 @@ export class PostAddComponent implements OnInit {
   city!: string;
   postJob: FormGroup;
   saveDraftId!:string;
+  editedJobId!:number;
+  obj:any
   opportunityOptions = [
     {
       name: 'opportunity',
@@ -74,7 +80,10 @@ export class PostAddComponent implements OnInit {
     private _menuHandel: LeftMenuHandelService,
     private fb: FormBuilder,
     private jobPost: JobPostApiService,
-    private _toast:ToastServiceService
+    private _toast:ToastServiceService,
+    private _JobListApiService:JobListApiService,
+    private router:Router,
+    private activatedRoute:ActivatedRoute
   ) {
     this.cities = [
       { optionName: 'monthly', code: 'M' },
@@ -101,6 +110,17 @@ export class PostAddComponent implements OnInit {
 
   ngOnInit(): void {
     this._menuHandel.leftMenuActive.next(1);
+
+    //when edit posted job or any saved job then get id
+this.activatedRoute.queryParams.subscribe({
+  next:((res:any)=>{
+    this.editedJobId=res['id']
+    this.obj=res['data']
+ console.log(this.obj)
+    console.log(this.editedJobId)
+  })
+})
+
   }
   saveForm() {
     console.log(this.postJob.value, 'formValue');

@@ -6,8 +6,10 @@ import { JobsService } from 'src/app/service/jobs.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
 import { InternshipProfileService } from 'src/app/share/service/internship-profile.service';
-import ls from 'localstorage-slim';
+
+// import { OtpVerificationService } from 'src/app/share/registration-otp/otp-verification.service';
 import { OtpVerificationService } from 'src/app/share/registration-otp/otp-verification.service';
+import ls from 'localstorage-slim';
 @Component({
   selector: 'app-internships',
   templateUrl: './internships.component.html',
