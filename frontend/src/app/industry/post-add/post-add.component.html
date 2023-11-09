@@ -266,8 +266,10 @@
         </div>
       </div>
       <div class="buttonSec">
-        <button type="button" class="save_preview" (click)="saveForm()">Save Preview</button>
-        <button type="submit" class="post_btn">Post Internship</button>
+        <button type="button" class="save_preview" *ngIf="!editedJobId" (click)="saveForm()">Save Preview</button>
+       
+        <button type="button" class="save_preview" *ngIf=" editedJobId" (click)="submitForm()">submit</button>
+
       </div>
       <div class="assistance">
         <p>
@@ -278,4 +280,43 @@
     </div>
   </div>
 </form>
-{{obj}}
+
+
+<!--.................................. SAVE PREVIEW POPUP..................  -->
+
+<div>
+  <p-dialog header="Title" [(visible)]="display" *ngIf=" !editedJobId" onHide="modalclose()" [resizable]="true">
+ <div *ngIf="savedDraftData">
+
+  <p *ngIf="savedDraftData.type">Opportunity Type:- {{savedDraftData.type}}</p>
+  <p *ngIf="savedDraftData.details">Internship details:-- {{savedDraftData.details}}</p>
+  <div *ngIf="savedDraftData.skills?.length">
+    <p *ngFor="let item of savedDraftData?.skills">skills:- {{item}}</p>
+  </div>
+  <p *ngIf="savedDraftData.intranshipType">intranshipType:-- {{savedDraftData.intranshipType}} </p>
+  <p *ngIf="savedDraftData.jobOpening">jobOpening:-- {{savedDraftData.jobOpening}}</p>
+  <div *ngIf="savedDraftData.perks?.length  ">
+    <p *ngFor="let item of savedDraftData.perks">perks:- {{item}}</p>
+  </div>
+  <div *ngIf="savedDraftData.responsibilities?.length">
+    <p *ngFor="let item of savedDraftData.responsibilities"> responsibilities::-- {{item}}</p>
+</div>
+  <p *ngIf="savedDraftData.salary">salary:-- {{savedDraftData.salary}}</p>
+  <p *ngIf="savedDraftData.salaryType">salaryType:-- {{savedDraftData.salaryType}}  </p>
+  <div *ngIf="savedDraftData.skills?.length">
+    <p *ngFor="let item of savedDraftData?.skills">skills:-- {{item}}</p>
+  </div>
+  <p *ngIf="savedDraftData.startDate">startDate:- {{savedDraftData.startDate}}  </p>
+  <p *ngIf="savedDraftData.stipend">stipend::-- {{savedDraftData.stipend}}</p>
+
+  
+ </div>
+
+ <button type="submit" class="post_btn" (click)="submitForm()">Post Internship</button>
+ <br>
+ <button class="post_btn" (click)="edit()">edit</button>
+</p-dialog>
+
+<!-- <button type="button" (click)="showDialog()" icon="pi pi-info-circle" label="Show"></button> -->
+
+</div>

@@ -1,12 +1,27 @@
 <button class="add_job_btn" type="button" (click)="addJobs()">Add Job</button>
+<div
+class="search-results-container"
+infiniteScroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="250"
+(scrolled)="onScroll()"
+[scrollWindow]="false"
+>
+</div>
 <ul class="industry_listing">
+
   <li *ngFor="let items of postList">
     <!-- <li> -->
     <div class="listing_head">
       <div class="ribbon_draft">Draft</div>
+      <!-- <i class="pi pi-times" style="color: green ;"></i>  -->
+      <button (click)="delete(items._id)">X</button>
       <figure><img src="" /></figure>
-      <h2>{{ items.details }}</h2>
-      <i class="pi pi-ellipsis-v" (click)="edit(items._id,items)"></i>
+      
+       <h2>{{ items.details }}</h2>
+   
+  <br>
+      <i class="pi pi-ellipsis-v" (click)="edit(items._id)"></i>
     </div>
     <div class="listing_details">
       <ul>
@@ -156,4 +171,5 @@
     </div>
   </li>  -->
 </ul>
+
 <!-- <div class="no-records">No records found</div> -->

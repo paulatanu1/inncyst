@@ -13,7 +13,7 @@ import { IndustryReportsComponent } from './industry-reports/industry-reports.co
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { JobsManagementComponent } from './jobs-management/jobs-management.component';
-
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 @NgModule({
   declarations: [
     IndustryComponent,
@@ -32,7 +32,7 @@ import { JobsManagementComponent } from './jobs-management/jobs-management.compo
     FormsModule,
     InputSwitchModule,
     SplitButtonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,InfiniteScrollModule
   ],
   exports: [InputSwitchModule, SplitButtonModule, SharedModule],
 })
