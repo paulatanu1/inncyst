@@ -53,6 +53,9 @@ export class JobListApiService {
 
     return this.api.ApiCallWithLocalization(form_data, url, 'post');
   }
-
+  editStatus(data:any){
+    // const form_data = new formatData()
+    // return this.api.ApiCallWithLocalization()
+  }
 
 }

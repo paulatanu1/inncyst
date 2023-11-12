@@ -75,4 +75,10 @@ AppliedJobDetails:any=[]
     this.router.navigate(['/jobs/jobs/my-applyed-job/AppliedJobDetailsComponent',a])
 
   }
+  applicationStatus(){
+    alert('jj')
+  }
+  
+  
+
 }

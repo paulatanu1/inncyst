@@ -25,5 +25,9 @@ export class JobPostListService {
     let url = '/auth/user/portfolio/' + id;
     return this.api.ApiCallWithLocalization(data,url,'put')
   }
-  
+  editStatus(data:any,id:any){
+  // const form_data = new formatData(
+  let url = '/industry/student-application-status/'+id
+  return this.api.ApiCallWithLocalization(data,url,'put')
+}
 }

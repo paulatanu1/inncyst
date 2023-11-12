@@ -5,7 +5,10 @@ import { ApiService } from 'src/app/common-service/api.service';
 import { JobPostListService } from './jobs-management-service/job-post-list.service';
 import { JobListApiService } from './posts/job-list-api.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
-
+interface City {
+  name: string;
+  value: string;
+}
 @Component({
   selector: 'app-jobs-management',
   templateUrl: './jobs-management.component.html',
@@ -14,12 +17,18 @@ import { ToastServiceService } from 'src/app/service/toast-service.service';
 })
 export class JobsManagementComponent implements OnInit {
   postList: any = [];
+  visible: boolean = false;
+  status!: City[];
+editedJobId!:any
+  selectedStatus!: City ;
+
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private router: Router,
     private post: JobPostListService,
     private _JobListApiService: JobListApiService,
-    private _toast: ToastServiceService
+    private _toast: ToastServiceService,
+    
   ) {
     window.scrollTo(0, 0);
   }
@@ -28,6 +37,14 @@ export class JobsManagementComponent implements OnInit {
     this._menuHandel.leftMenuActive.next(1);
     this.getJobList();
     window.scrollTo(0, 0);
+
+    this.status = [
+      { name: 'pending', value: 'NY' },
+      { name: 'complete', value: 'RM' },
+      { name: 'rejected', value: 'LDN' },
+     
+
+  ];
   }
 
   getJobList() {
@@ -71,5 +88,41 @@ export class JobsManagementComponent implements OnInit {
   }
   onScroll(){
     
+  }
+  editStatus(id:any){
+    this.visible=true
+   this.editedJobId=id
+  
+  }
+  statusChange(e:any){
+    this.selectedStatus=e.value.name
+    console.log(this.editedJobId,this.selectedStatus)
+    const formData:any = new Object()
+    formData.applicationStatus=this.selectedStatus
+    this.post.editStatus(formData,this.editedJobId).subscribe({
+      next:(res=>{
+
+      console.log(res)  
+      this._toast.showToaster.next({
+        severity: 'success',
+        summary: 'success',
+        detail: res.message,
+      });
+    
+    
+    }),
+    error: (err) => {
+      this._toast.showToaster.next({
+        severity: 'Error',
+        summary: 'Error',
+        detail: err.error.message,
+      });
+    },
+    })
+  }
+
+  studentList(industryId:any,id:any){
+console.log(industryId,id)
+this.router.navigate(['/industry/appliedStudentList'],{queryParams:{industryId:industryId,id:id}})
   }
 }

@@ -14,6 +14,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { JobsManagementComponent } from './jobs-management/jobs-management.component';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { AppliedStudenListComponent } from './applied-studen-list/applied-studen-list.component';
 @NgModule({
   declarations: [
     IndustryComponent,
@@ -24,6 +25,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
     IndustryTopRightPanelComponent,
     IndustryReportsComponent,
     JobsManagementComponent,
+    AppliedStudenListComponent,
   ],
   imports: [
     CommonModule,
