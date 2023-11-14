@@ -106,7 +106,9 @@ export class BasicInternshipComponent implements OnInit {
     ];
   }
   AllJbDetaails() {
-    const url = `/job/all-jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+    // const url = `/job/all-jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+    const url = `/industry/industry-posts?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+
     this.jobService.basicIntershipList(url).subscribe({
       next: (res) => {
         this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];
@@ -128,13 +130,10 @@ export class BasicInternshipComponent implements OnInit {
               element.salary = (element.salary * 12) / 100000;
             });
           },
-          error: (err) => {
-          },
+          error: (err) => {},
         });
       },
-      error:(err)=>{
-      }
-      
+      error: (err) => {},
     });
   }
 
@@ -173,7 +172,7 @@ export class BasicInternshipComponent implements OnInit {
     this.AllJbDetaails();
   }
   sortDropdown(e: any) {
-    alert('jj')
+    alert('jj');
     this.sort = e.value.name;
     this.AllJobDetails = [];
     this.AllJbDetaails();
@@ -197,8 +196,7 @@ export class BasicInternshipComponent implements OnInit {
           element.salary = (element.salary * 12) / 100000;
         });
       },
-      error: (err) => {
-      },
+      error: (err) => {},
     });
   }
   onScroll() {

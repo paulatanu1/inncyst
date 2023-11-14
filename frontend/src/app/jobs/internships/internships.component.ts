@@ -91,8 +91,8 @@ export class InternshipsComponent implements OnInit {
         name: 'Sort by',
         disabled: true,
       },
-      { name: 'ace' },
-      { name: 'dec' },
+      { name: 'asc' },
+      { name: 'dsc' },
     ];
 
     this.jobTypeSort = [
@@ -116,14 +116,12 @@ export class InternshipsComponent implements OnInit {
         disabled: true,
       },
       {
-        name: 'designer',
+        name: 'intranship',
       },
       {
-        name: 'developer',
+        name: 'job',
       },
-      {
-        name: 'marketing',
-      },
+     
     ];
   }
   onRangeChange(e: any) {
@@ -162,15 +160,17 @@ export class InternshipsComponent implements OnInit {
     this.location = '';
     this.salaryFrom = '';
     this.salaryTo = '';
-    this.sort = 'dce';
-    this.limit = 5;
+    this.sort = '';
+    this.limit = 10;
     this.page = 0;
     this. selectedRange=[5000,30000]
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
   AllJbDetaails() {
-    const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+    // const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+    const url = `/industry/industry-posts?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+
     this.jobService.getAllJobDetails('', url).subscribe({
       next: (res) => {
         this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];

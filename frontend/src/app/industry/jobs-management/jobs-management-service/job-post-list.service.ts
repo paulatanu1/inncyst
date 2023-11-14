@@ -8,7 +8,7 @@ export class JobPostListService {
   constructor(private api: ApiService) {}
 
   getPostList() {
-    let url = '/industry/industry-posts?status=&page=0&limit=4';
+    let url = '/industry/industry-posts?status=&page=0&limit=10';
 
     return this.api.ApiCallWithLocalization('', url, 'get');
   }

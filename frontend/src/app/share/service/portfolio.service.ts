@@ -38,4 +38,6 @@ export class PortfolioService {
     return this.api.ApiCallWithLocalization(data,url,'put')
   }
   public hideAddPortfolioModal=new Subject()
+
+  //industry get student list of applied student...........
 }
