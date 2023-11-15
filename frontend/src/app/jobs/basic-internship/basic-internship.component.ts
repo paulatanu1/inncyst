@@ -70,8 +70,8 @@ export class BasicInternshipComponent implements OnInit {
         name: 'Sort by',
         disabled: true,
       },
-      { name: 'ace' },
-      { name: 'dec' },
+      { name: 'asc' },
+      { name: 'dsc' },
     ];
 
     this.jobTypeSort = [
@@ -80,13 +80,13 @@ export class BasicInternshipComponent implements OnInit {
         disabled: true,
       },
       {
-        name: 'part-time',
+        name: 'office',
       },
       {
-        name: 'full-time',
+        name: 'remote',
       },
       {
-        name: 'work-from-home',
+        name: 'hybrid',
       },
     ];
     this.typeSort = [
@@ -95,13 +95,10 @@ export class BasicInternshipComponent implements OnInit {
         disabled: true,
       },
       {
-        name: 'designer',
+        name: 'intranship',
       },
       {
-        name: 'developer',
-      },
-      {
-        name: 'marketing',
+        name: 'job',
       },
     ];
   }
@@ -140,12 +137,12 @@ export class BasicInternshipComponent implements OnInit {
   //reset url
   resetUrl() {
     this.type = '';
+    this.location=''
     this.jobType = '';
-    this.location = '';
     this.salaryFrom = '';
     this.salaryTo = '';
-    this.sort = 'dce';
-    this.limit = 5;
+    this.sort = 'asc';
+    this.limit = 10;
     this.page = 0;
     this.selectedRange = [5000, 30000];
     this.AllJobDetails = [];

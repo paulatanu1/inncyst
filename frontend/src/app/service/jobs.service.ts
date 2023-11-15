@@ -33,7 +33,7 @@ export class JobsService {
     return this.api.ApiCallWithLocalization(details,url,'post')
   }
  getJobDetails(id:any){
-  let url ='/job/jobs/'+id
+  let url ='/industry/industry-posts/'+id
   return this.api.ApiCallWithLocalization('',url,'get')
  } 
 

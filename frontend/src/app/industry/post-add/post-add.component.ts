@@ -26,6 +26,7 @@ interface Payload {
   salaryType: string;
   perks: string;
   id?: string;
+  location:string
 }
 interface SavePayload {
   type?: string;
@@ -41,6 +42,7 @@ interface SavePayload {
   salaryType?: string;
   perks?: string;
   id?: string;
+  location:string
 }
 @Component({
   selector: 'app-post-add',
@@ -109,6 +111,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       salary: [],
       salaryType: [this.cities[0].optionName],
       perks: [[]],
+      location:['']
     });
   }
   ngAfterViewInit(): void {
@@ -134,6 +137,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
                 this.postJob
                   .get('details')
                   ?.patchValue(this.editedJobData.details);
+                  this.postJob.get('location')?.patchValue(this.editedJobData.location)
                 this.postJob
                   .get('skills')
                   ?.patchValue(this.editedJobData.skills);
@@ -180,6 +184,10 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     if (this.postJob.value.type) {
       form_Data.type = this.postJob.value.type;
       console.log(form_Data, 'formValue2');
+    }
+    if(this.postJob.value.location){
+      form_Data.location = this.postJob.value.location;
+      console.log(form_Data, 'formValue12');
     }
     if (this.postJob.value.details) {
       form_Data.details = this.postJob.value.details;
@@ -260,6 +268,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     });
   }
   submitForm() {
+    
     if (this.postJob.valid) {
       let formData: Payload = this.postJob.value;
       formData = { ...formData, id: this.saveDraftId?this.saveDraftId:this.editedJobId };

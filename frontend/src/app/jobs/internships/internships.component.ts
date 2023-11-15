@@ -101,13 +101,13 @@ export class InternshipsComponent implements OnInit {
         disabled: true,
       },
       {
-        name: 'part-time',
+        name: 'office',
       },
       {
-        name: 'full-time',
+        name: 'remote',
       },
       {
-        name: 'work-from-home',
+        name: 'hybrid',
       },
     ];
     this.typeSort = [
@@ -176,8 +176,8 @@ export class InternshipsComponent implements OnInit {
         this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];
         this.totalJob = res.data.total;
         this.AllJobDetails.forEach((element: any) => {
-          element.companyName = element.companyName.toUpperCase();
-          element.intranshipName = element.intranshipName.toUpperCase();
+          element.companyName = element?.companyName?.toUpperCase();
+          element.intranshipName = element?.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
         });
         this.jobId = this.AllJobDetails[0]._id;
@@ -187,8 +187,8 @@ export class InternshipsComponent implements OnInit {
             this.singleJobDetails = [];
             this.singleJobDetails.push(res.data);
             this.singleJobDetails.forEach((element: any) => {
-              element.companyName = element.companyName.toUpperCase();
-              element.intranshipName = element.intranshipName.toUpperCase();
+              element.companyName = element?.companyName?.toUpperCase();
+              element.type = element?.type?.toUpperCase();
               element.salary = (element.salary * 12) / 100000;
             });
           },
@@ -255,6 +255,4 @@ export class InternshipsComponent implements OnInit {
       this.AllJbDetaails();
     }
   }
-
-
 }

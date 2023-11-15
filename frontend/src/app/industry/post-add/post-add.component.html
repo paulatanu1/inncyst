@@ -34,6 +34,17 @@
             formControlName="details"
           />
         </div>
+          <div class="form_field_group">
+            <label>Location</label>
+            <input
+              type="text"
+              placeholder="e.g Kolkata"
+              pInputText
+              formControlName="location"
+            />
+          </div>
+    
+
         <div class="form_field_group">
           <label>
             Skills required
@@ -293,6 +304,7 @@
   <div *ngIf="savedDraftData.skills?.length">
     <p *ngFor="let item of savedDraftData?.skills">skills:- {{item}}</p>
   </div>
+  <p *ngIf="savedDraftData.location">location details:-- {{savedDraftData.location}}</p>
   <p *ngIf="savedDraftData.intranshipType">intranshipType:-- {{savedDraftData.intranshipType}} </p>
   <p *ngIf="savedDraftData.jobOpening">jobOpening:-- {{savedDraftData.jobOpening}}</p>
   <div *ngIf="savedDraftData.perks?.length  ">

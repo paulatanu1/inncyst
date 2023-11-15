@@ -23,7 +23,8 @@ export class JobPostApiService {
       jobOpening: 0,
       responsibilities: [],
       stipend: '',
-      id:''
+      id:'',
+      location:''
     };
     console.log(payloadObj, 'payloadObj');
 
@@ -40,6 +41,7 @@ export class JobPostApiService {
     payloadData.salaryType = payloadObj.salaryType;
     payloadData.perks = payloadObj.perks;
     payloadData.id=payloadObj.id
+    payloadData.location=payloadObj.location
 
     console.log(payloadData);
 
