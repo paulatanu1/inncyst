@@ -180,7 +180,7 @@ export class InternshipsComponent implements OnInit {
           element.intranshipName = element?.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
         });
-        this.jobId = this.AllJobDetails[0]._id;
+        this.jobId = this.AllJobDetails[0]?._id;
         // single job details1st for 1st job and1st time
         this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
           next: (res) => {
@@ -229,8 +229,8 @@ export class InternshipsComponent implements OnInit {
         this.singleJobDetails = [];
         this.singleJobDetails.push(res.data);
         this.singleJobDetails.forEach((element: any) => {
-          element.companyName = element.companyName.toUpperCase();
-          element.intranshipName = element.intranshipName.toUpperCase();
+          element.companyName = element?.companyName?.toUpperCase();
+          element.intranshipName = element?.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
 
 
