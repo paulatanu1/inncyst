@@ -15,7 +15,7 @@
       <!-- <i class="pi pi-times" style="color: green ;"></i>  -->
       <button (click)="delete(items._id)">X</button>
             <br>&nbsp;
-      <button (click)="studentList(items.industryId,items._id)">Applied Student List</button>
+      <button *ngIf="items.status" (click)="studentList(items._id)">Applied Student List</button>
       <figure><img src="" /></figure>
 
       <h2>{{ items.details }}</h2>

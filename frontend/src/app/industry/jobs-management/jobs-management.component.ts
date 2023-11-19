@@ -21,7 +21,7 @@ export class JobsManagementComponent implements OnInit {
   status!: City[];
 editedJobId!:any
   selectedStatus!: City ;
-
+jobStatus:boolean=false;
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private router: Router,
@@ -39,9 +39,8 @@ editedJobId!:any
     window.scrollTo(0, 0);
 
     this.status = [
-      { name: 'pending', value: 'NY' },
-      { name: 'complete', value: 'RM' },
-      { name: 'rejected', value: 'LDN' },
+      { name: 'True', value: 'true' },
+      { name: 'False', value: 'false' },
      
 
   ];
@@ -95,14 +94,15 @@ editedJobId!:any
   
   }
   statusChange(e:any){
-    this.selectedStatus=e.value.name
+    this.selectedStatus=e.value.value
     console.log(this.editedJobId,this.selectedStatus)
     const formData:any = new Object()
-    formData.applicationStatus=this.selectedStatus
+    formData.status=this.selectedStatus
     this.post.editStatus(formData,this.editedJobId).subscribe({
       next:(res=>{
 
       console.log(res)  
+      this.visible=false
       this._toast.showToaster.next({
         severity: 'success',
         summary: 'success',
@@ -121,8 +121,8 @@ editedJobId!:any
     })
   }
 
-  studentList(industryId:any,id:any){
-console.log(industryId,id)
-this.router.navigate(['/industry/appliedStudentList'],{queryParams:{industryId:industryId,id:id}})
+  studentList(id:any){
+console.log(id)
+this.router.navigate(['/industry/appliedStudentList'],{queryParams:{id:id}})
   }
 }

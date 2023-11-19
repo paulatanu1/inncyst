@@ -59,6 +59,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
   obj: any;
   display: boolean = false;
   savedDraftData: any = {};
+  status!:boolean;
   opportunityOptions = [
     {
       name: 'opportunity',
@@ -133,6 +134,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
               next: (res) => {
                 console.log(res.data);
                 this.editedJobData = res.data;
+                this.status=this.editedJobData.status
                 this.postJob.get('type')?.patchValue(this.editedJobData.type);
                 this.postJob
                   .get('details')
@@ -299,6 +301,51 @@ export class PostAddComponent implements OnInit, AfterViewInit {
           });
         },
       });
+
+      // Now you can use formData to send the data to your API
+      console.log(formData);
+
+      // Clear the form or perform any necessary actions
+      // this.postJob.reset();
+    }
+  }
+
+  editJob(id:any){
+    console.log(id);
+    console.log(this.editedJobId)
+    if (this.postJob.valid) {
+      let formData: Payload = this.postJob.value;
+      formData = { ...formData, id: this.saveDraftId?this.saveDraftId:this.editedJobId };
+      if (this.saveDraftId) {
+        formData.id = this.saveDraftId;
+        this.display = false;
+      }
+
+      if(this.editedJobId){
+              this.jobPost.editedJob(this.editedJobId,formData).subscribe({
+        next: (resp) => {
+          console.log(resp);
+          this.display = false;
+          this.router.navigateByUrl('/industry/jobs');
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: resp.message,
+          });
+          this.display = false;
+        },
+        error: (err) => {
+          this.display = false;
+          this.router.navigateByUrl('/industry/jobs')
+
+          this._toast.showToaster.next({
+            severity: 'Error',
+            summary: 'Error',
+            detail: err.error.message,
+          });
+        },
+      });
+      }
 
       // Now you can use formData to send the data to your API
       console.log(formData);

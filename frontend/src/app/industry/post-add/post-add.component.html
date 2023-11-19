@@ -279,8 +279,8 @@
       <div class="buttonSec">
         <button type="button" class="save_preview" *ngIf="!editedJobId" (click)="saveForm()">Save Preview</button>
        
-        <button type="button" class="save_preview" *ngIf=" editedJobId" (click)="submitForm()">submit</button>
-
+        <button type="button" class="save_preview" *ngIf=" editedJobId && !status" (click)="submitForm()">submit</button>
+<button type="button" *ngIf="status" (click)="editJob(editedJobId)">Edit Job</button>
       </div>
       <div class="assistance">
         <p>

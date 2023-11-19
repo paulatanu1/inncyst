@@ -8,7 +8,7 @@ export class JobPostListService {
   constructor(private api: ApiService) {}
 
   getPostList() {
-    let url = '/industry/industry-posts?status=&page=0&limit=10';
+    let url = '/industry/industry-posts?status=&page=0&limit=100';
 
     return this.api.ApiCallWithLocalization('', url, 'get');
   }
@@ -27,7 +27,9 @@ export class JobPostListService {
   }
   editStatus(data:any,id:any){
   // const form_data = new formatData(
-  let url = '/industry/student-application-status/'+id
+  let url = '/industry/post-status/'+id
   return this.api.ApiCallWithLocalization(data,url,'put')
 }
+
+
 }

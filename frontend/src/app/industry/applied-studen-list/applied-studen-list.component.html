@@ -1,1 +1,32 @@
-<p>applied-studen-list works!</p>
+<div *ngIf="studentListData.length > 0">
+<div *ngFor="let item of studentListData">
+
+<p>applicationStatus:-- {{item.applicationStatus}}</p>
+<p>availability:- {{item.availability}}</p>
+<p *ngIf="item.availability_message != null">availability_message:- {{item.availability_message}}</p>
+<p>email:-- {{item.email}}</p>
+<p>jobId:- {{item.jobId}}</p>
+<p>phone :-- {{item.phone}}</p>
+<p>
+    status:- {{item.status}}
+</p>
+<p>studentName:- {{item.studentName}}</p>
+<p>student Id :-- {{item._id}}</p>
+<p> createdAt:-- {{item.userId.createdAt}}</p>
+<p>location:-- {{item.userId.location}}</p>
+</div>
+
+</div>
+<div *ngIf="studentListData?.length == 0">
+
+   <p> Sorry No Student Available.............</p>
+   <p> Sorry No Student Available.............</p>
+   <p> Sorry No Student Available.............</p>
+   <p> Sorry No Student Available.............</p>
+   <p> Sorry No Student Available.............</p>
+   <p> Sorry No Student Available.............</p>
+   <p> Sorry No Student Available.............</p>
+   <p> Sorry No Student Available.............</p>
+   <p> Sorry No Student Available.............</p>
+   <p> Sorry No Student Available.............</p>
+</div>

@@ -53,9 +53,12 @@ export class JobListApiService {
 
     return this.api.ApiCallWithLocalization(form_data, url, 'post');
   }
-  editStatus(data:any){
-    // const form_data = new formatData()
-    // return this.api.ApiCallWithLocalization()
+  editStudentStatus(id:any,data:any){
+    let url='/industry/student-application-status/'+id
+    return this.api.ApiCallWithLocalization(data,url,'put')
   }
-
+getAppliedStudent(id:any){
+  let url='/industry/applied-student/'+id;
+  return this.api.ApiCallWithLocalization('',url,'get')
+}
 }

@@ -53,4 +53,8 @@ export class JobPostApiService {
     console.log(payloadObj);
     return this.apiCall.ApiCallWithLocalization(payloadObj,url,'post')
   }
+  editedJob(id:any,payloadObj:any){
+    let url='/industry/post-edit/'+id
+    return this.apiCall.ApiCallWithLocalization(payloadObj,url,'put')
+  }
 }
