@@ -16,6 +16,7 @@
     ::ng-deep .p-tabview-panels {
         padding: 20px 0;
         .p-tabview-panel {
+            font-family: "Open Sans",sans-serif;
             ul {
                 padding: 0;
                 margin: 0;
@@ -24,37 +25,65 @@
                 flex-wrap: wrap;
             li {
                 list-style-type: none;
-                border: 1px solid #E9E9E9;
-                border-radius: 15px;
+                box-shadow: 0px 0px 12px 0px #ccc;
+                border-radius: 10px;
                 padding: 15px;
                 flex: 0 0 24%;
                 margin-bottom: 20px;
                 position: relative;
-                    & > i {
+                    .ellipsis_icon > i {
                         position: absolute;
                         right: 10px;
                         top: 20px;
                     }
-                    h2 {
-                        font-size: 20px;
-                        font-weight: 700;
-                    }
-                    & > span {
-                        display: inline-block;
-                        border-radius: 14px;
-                        background: #d5f0d8;
-                        color: #49864F;
-                        font-size: 12px;
-                        font-weight: 700;
-                        padding: 4px 12px;
-                        margin-bottom: 20px;
-                        &.applied {
-                            background: #C0E2F3;
-                            color: #0F6F9E;
+                    .company_info_head {
+                        display: flex;
+                        flex-direction: row;
+                        .company_logo {
+                            border-radius: 5px;
+                            width:50px;
+                            height: 50px;
+                            background: #ccc;
+                            margin-right: 15px;
                         }
-                        &.rejected {
-                            background:#EEB2B2;
-                            color: #C63A3A;
+                        .location_info {
+                            strong {
+                                font-size: 12px;
+                                font-weight: 500;
+                                text-transform: capitalize; 
+                                position: relative;
+                                margin-right: 15px;
+                                padding-right: 10px;
+                                display: inline-block;
+                                &:after {
+                                    content: '';
+                                    position: absolute;
+                                    width: 5px;
+                                    height: 5px;
+                                    background: #666;
+                                    border-radius: 50%;
+                                    right: -5px;
+                                    top: 6px;
+                                }
+                            }
+                        }
+                    }
+                    h2 {
+                        font-size:18px;
+                        font-weight: 700;
+                        margin-bottom: 0;
+                    }
+                    .job_profile_info {
+                        margin: 10px 0;
+                        span {
+                            display: inline-block;
+                            vertical-align: middle;
+                            border-radius: 5px;
+                            background: #efefef;
+                            padding: 2px 10px;
+                            font-size: 11px;
+                            text-transform: capitalize;
+                            margin-right: 8px;
                         }
                     }
                     .location_info {
@@ -86,12 +115,38 @@
                                 vertical-align: middle;
                                 margin-right: 10px;
                         }
-                        strong {
-                            font-size: 14px;
-                                color: #522D80;
-                                    font-weight: 600;
+                        span {
+                            &:first-of-type {
+                                background: none;
+                                font-weight: 600;
+                                padding: 0;
+                                text-transform: none;
+                                color: #999;
+                                font-size: 13px;
+                                strong {
+                                    font-size: 18px;
+                                    font-weight: 700;
+                                    color: #3B82F6;
+                                }
+                                
+                            }
                             display: inline-block;
-                            vertical-align: middle;
+                            border-radius: 5px;
+                            background: #d5f0d8;
+                            color: #49864F;
+                            font-size: 12px;
+                            font-weight: 700;
+                            padding: 4px 12px;
+                            text-transform: capitalize;
+                            &.applied {
+                                background: #C0E2F3;
+                                color: #0F6F9E;
+                            }
+
+                            &.rejected {
+                                background: #EEB2B2;
+                                color: #C63A3A;
+                            }
                         }
                     }
                 }  
