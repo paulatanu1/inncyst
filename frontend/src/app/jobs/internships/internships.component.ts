@@ -6,8 +6,10 @@ import { JobsService } from 'src/app/service/jobs.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
 import { InternshipProfileService } from 'src/app/share/service/internship-profile.service';
-import ls from 'localstorage-slim';
+
+// import { OtpVerificationService } from 'src/app/share/registration-otp/otp-verification.service';
 import { OtpVerificationService } from 'src/app/share/registration-otp/otp-verification.service';
+import ls from 'localstorage-slim';
 @Component({
   selector: 'app-internships',
   templateUrl: './internships.component.html',
@@ -89,8 +91,8 @@ export class InternshipsComponent implements OnInit {
         name: 'Sort by',
         disabled: true,
       },
-      { name: 'ace' },
-      { name: 'dec' },
+      { name: 'asc' },
+      { name: 'dsc' },
     ];
 
     this.jobTypeSort = [
@@ -99,13 +101,13 @@ export class InternshipsComponent implements OnInit {
         disabled: true,
       },
       {
-        name: 'part-time',
+        name: 'office',
       },
       {
-        name: 'full-time',
+        name: 'remote',
       },
       {
-        name: 'work-from-home',
+        name: 'hybrid',
       },
     ];
     this.typeSort = [
@@ -114,14 +116,12 @@ export class InternshipsComponent implements OnInit {
         disabled: true,
       },
       {
-        name: 'designer',
+        name: 'intranship',
       },
       {
-        name: 'developer',
+        name: 'job',
       },
-      {
-        name: 'marketing',
-      },
+     
     ];
   }
   onRangeChange(e: any) {
@@ -160,33 +160,35 @@ export class InternshipsComponent implements OnInit {
     this.location = '';
     this.salaryFrom = '';
     this.salaryTo = '';
-    this.sort = 'dce';
-    this.limit = 5;
+    this.sort = '';
+    this.limit = 10;
     this.page = 0;
     this. selectedRange=[5000,30000]
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
   AllJbDetaails() {
-    const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+    // const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+    const url = `/industry/industry-posts?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+
     this.jobService.getAllJobDetails('', url).subscribe({
       next: (res) => {
         this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];
         this.totalJob = res.data.total;
         this.AllJobDetails.forEach((element: any) => {
-          element.companyName = element.companyName.toUpperCase();
-          element.intranshipName = element.intranshipName.toUpperCase();
+          element.companyName = element?.companyName?.toUpperCase();
+          element.intranshipName = element?.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
         });
-        this.jobId = this.AllJobDetails[0]._id;
+        this.jobId = this.AllJobDetails[0]?._id;
         // single job details1st for 1st job and1st time
         this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
           next: (res) => {
             this.singleJobDetails = [];
             this.singleJobDetails.push(res.data);
             this.singleJobDetails.forEach((element: any) => {
-              element.companyName = element.companyName.toUpperCase();
-              element.intranshipName = element.intranshipName.toUpperCase();
+              element.companyName = element?.companyName?.toUpperCase();
+              element.type = element?.type?.toUpperCase();
               element.salary = (element.salary * 12) / 100000;
             });
           },
@@ -227,8 +229,8 @@ export class InternshipsComponent implements OnInit {
         this.singleJobDetails = [];
         this.singleJobDetails.push(res.data);
         this.singleJobDetails.forEach((element: any) => {
-          element.companyName = element.companyName.toUpperCase();
-          element.intranshipName = element.intranshipName.toUpperCase();
+          element.companyName = element?.companyName?.toUpperCase();
+          element.intranshipName = element?.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
 
 
@@ -253,6 +255,4 @@ export class InternshipsComponent implements OnInit {
       this.AllJbDetaails();
     }
   }
-
-
 }

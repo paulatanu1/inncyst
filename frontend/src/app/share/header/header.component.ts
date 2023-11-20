@@ -13,7 +13,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
 import { RegistrationService } from 'src/app/registration-service/registration.service';
@@ -251,6 +251,14 @@ export class HeaderComponent implements OnInit, OnChanges {
         this.loginflow = <boolean>res;
       },
     });
+
+    //for scroll issue
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Scroll to the top of the page
+        window.scrollTo(0, 0);
+    }
+   });
   }
   product() {
     //check allready login user or not

@@ -70,8 +70,8 @@ export class BasicInternshipComponent implements OnInit {
         name: 'Sort by',
         disabled: true,
       },
-      { name: 'ace' },
-      { name: 'dec' },
+      { name: 'asc' },
+      { name: 'dsc' },
     ];
 
     this.jobTypeSort = [
@@ -80,13 +80,13 @@ export class BasicInternshipComponent implements OnInit {
         disabled: true,
       },
       {
-        name: 'part-time',
+        name: 'office',
       },
       {
-        name: 'full-time',
+        name: 'remote',
       },
       {
-        name: 'work-from-home',
+        name: 'hybrid',
       },
     ];
     this.typeSort = [
@@ -95,25 +95,24 @@ export class BasicInternshipComponent implements OnInit {
         disabled: true,
       },
       {
-        name: 'designer',
+        name: 'intranship',
       },
       {
-        name: 'developer',
-      },
-      {
-        name: 'marketing',
+        name: 'job',
       },
     ];
   }
   AllJbDetaails() {
-    const url = `/job/all-jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+    // const url = `/job/all-jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+    const url = `/industry/industry-posts?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+
     this.jobService.basicIntershipList(url).subscribe({
       next: (res) => {
         this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];
         this.totalJob = res.data.total;
         this.AllJobDetails.forEach((element: any) => {
-          element.companyName = element.companyName.toUpperCase();
-          element.intranshipName = element.intranshipName.toUpperCase();
+          element.companyName = element.companyName?.toUpperCase();
+          element.intranshipName = element.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
         });
         this.jobId = this.AllJobDetails[0]._id;
@@ -123,30 +122,27 @@ export class BasicInternshipComponent implements OnInit {
             this.singleJobDetails = [];
             this.singleJobDetails.push(res.data);
             this.singleJobDetails.forEach((element: any) => {
-              element.companyName = element.companyName.toUpperCase();
-              element.intranshipName = element.intranshipName.toUpperCase();
+              element.companyName = element.companyName?.toUpperCase();
+              element.intranshipName = element.intranshipName?.toUpperCase();
               element.salary = (element.salary * 12) / 100000;
             });
           },
-          error: (err) => {
-          },
+          error: (err) => {},
         });
       },
-      error:(err)=>{
-      }
-      
+      error: (err) => {},
     });
   }
 
   //reset url
   resetUrl() {
     this.type = '';
+    this.location=''
     this.jobType = '';
-    this.location = '';
     this.salaryFrom = '';
     this.salaryTo = '';
-    this.sort = 'dce';
-    this.limit = 5;
+    this.sort = 'asc';
+    this.limit = 10;
     this.page = 0;
     this.selectedRange = [5000, 30000];
     this.AllJobDetails = [];
@@ -173,7 +169,7 @@ export class BasicInternshipComponent implements OnInit {
     this.AllJbDetaails();
   }
   sortDropdown(e: any) {
-    alert('jj')
+    alert('jj');
     this.sort = e.value.name;
     this.AllJobDetails = [];
     this.AllJbDetaails();
@@ -192,13 +188,12 @@ export class BasicInternshipComponent implements OnInit {
         this.singleJobDetails = [];
         this.singleJobDetails.push(res.data);
         this.singleJobDetails.forEach((element: any) => {
-          element.companyName = element.companyName.toUpperCase();
-          element.intranshipName = element.intranshipName.toUpperCase();
+          element.companyName = element.companyName?.toUpperCase();
+          element.intranshipName = element.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
         });
       },
-      error: (err) => {
-      },
+      error: (err) => {},
     });
   }
   onScroll() {

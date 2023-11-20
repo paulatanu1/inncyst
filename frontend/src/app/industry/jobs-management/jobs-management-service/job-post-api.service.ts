@@ -23,7 +23,8 @@ export class JobPostApiService {
       jobOpening: 0,
       responsibilities: [],
       stipend: '',
-      id:''
+      id:'',
+      location:''
     };
     console.log(payloadObj, 'payloadObj');
 
@@ -40,6 +41,7 @@ export class JobPostApiService {
     payloadData.salaryType = payloadObj.salaryType;
     payloadData.perks = payloadObj.perks;
     payloadData.id=payloadObj.id
+    payloadData.location=payloadObj.location
 
     console.log(payloadData);
 
@@ -50,5 +52,9 @@ export class JobPostApiService {
     let url = '/industry/add-post';
     console.log(payloadObj);
     return this.apiCall.ApiCallWithLocalization(payloadObj,url,'post')
+  }
+  editedJob(id:any,payloadObj:any){
+    let url='/industry/post-edit/'+id
+    return this.apiCall.ApiCallWithLocalization(payloadObj,url,'put')
   }
 }

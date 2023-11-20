@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 import { of } from 'rxjs/internal/observable/of';
 import { LoginApiService } from './login-api.service';
 import { OtpVerificationService } from '../registration-otp/otp-verification.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import ls from 'localstorage-slim';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
@@ -104,7 +104,13 @@ console.log(this.loginForm.value,'ee')
         // validators: MustMatch('password', 'confirmPassword')
       }
     );
-
+   //for scroll issue
+   this.router.events.subscribe((event) => {
+    if (event instanceof NavigationEnd) {
+      // Scroll to the top of the page
+      window.scrollTo(0, 0);
+  }
+ });
   }
 
   ngOnChanges(): void {
@@ -139,10 +145,10 @@ console.log(userRole,'ur')
           // })
           if (userRole == 'Student') {
             this.router.navigateByUrl('jobs/internships');
-            ls.set('userType','student')
+            ls.set('role','student')
             // this.router.navigate(['/jobs/internship']);
           } else if (userRole == 'Industry') {
-            ls.set('userType','industry')
+            ls.set('role','industry')
             this.router.navigate(['industry']);
           }
         },

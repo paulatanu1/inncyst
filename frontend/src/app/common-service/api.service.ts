@@ -11,8 +11,10 @@ ls.config.encrypt = environment.LS_CONFIG_ENCRYPT;
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private router: Router, private http: HttpClient) {}
-
+  role=ls.get('role')
+  constructor(private router: Router, private http: HttpClient) {
+    console.log(this.role)
+  }
   ApiCallWithLocalization(
     data: any,
     url: any,
@@ -38,14 +40,24 @@ export class ApiService {
     }
 
     let httpHeaderValue = new HttpHeaders();
+    console.log(headertoken,'out')
     if (headertoken == undefined) {
-      httpHeaderValue = httpHeaderValue
-        .set('Authorization', 'Bearer ' + ls.get('login_token'))
-        // .set(
-        //   'Content-Type',
-        //   'multipart/form-data; boundary=----WebKitFormBoundaryFwIrrqToxWfE8BEt'
-        // )
-        .set('X-localization', localization);
+if(ls.get('role')!= null ){
+  console.log(headertoken,'if',this.role)
+
+  httpHeaderValue = httpHeaderValue
+    .set('Authorization', 'Bearer ' + ls.get('login_token'))
+}
+else{
+  httpHeaderValue = httpHeaderValue
+}
+
+  // .set(
+  //   'Content-Type',
+  //   'multipart/form-data; boundary=----WebKitFormBoundaryFwIrrqToxWfE8BEt'
+  // )
+  // .set('X-localization', localization);
+
       httpHeaderValue = httpHeaderValue.set('X-localization', localization);
     }
     //  else {
@@ -74,7 +86,27 @@ export class ApiService {
             return responseobj;
           })
         );
-    } else if (method == 'get') {
+    }
+   else if (method == 'delete') {
+      console.log(httpHeaderValue);
+      return this.http
+        .delete(url, { headers: httpHeaderValue, observe: 'response' })
+        .pipe(
+          timeout(environment.API_TIMEOUT),
+          catchError((e, c) => {
+            return throwError(e);
+          }),
+          map((response: any) => {
+            var responseobj = JSON.parse(JSON.stringify(response.body));
+            responseobj.status = response.status;
+            if (responseobj.token != undefined) {
+              ls.set('login_token', responseobj.token);
+            }
+            return responseobj;
+          })
+        );
+        }
+    else if (method == 'get') {
       console.log(httpHeaderValue, 'http');
       return this.http
         .get(url, { headers: httpHeaderValue, observe: 'response' })

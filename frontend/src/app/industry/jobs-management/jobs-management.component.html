@@ -1,12 +1,27 @@
 <button class="add_job_btn" type="button" (click)="addJobs()">Add Job</button>
+<div
+  class="search-results-container"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="250"
+  (scrolled)="onScroll()"
+  [scrollWindow]="false"
+></div>
 <ul class="industry_listing">
   <li *ngFor="let items of postList">
     <!-- <li> -->
     <div class="listing_head">
       <div class="ribbon_draft">Draft</div>
+      <!-- <i class="pi pi-times" style="color: green ;"></i>  -->
+      <button (click)="delete(items._id)">X</button>
+            <br>&nbsp;
+      <button *ngIf="items.status" (click)="studentList(items._id)">Applied Student List</button>
       <figure><img src="" /></figure>
+
       <h2>{{ items.details }}</h2>
-      <i class="pi pi-ellipsis-v"></i>
+
+      <br />
+      <i class="pi pi-ellipsis-v" (click)="edit(items._id)"></i>
     </div>
     <div class="listing_details">
       <ul>
@@ -34,12 +49,32 @@
       <div class="list_status">
         <label>Status</label>
         <div class="edit_btn">
-          <i class="file-edit"><img src="../../../assets/edit-icon.png" /></i>
+          <i class="file-edit" (click)="editStatus(items._id)"
+            ><img src="../../../assets/edit-icon.png"
+          /></i>
         </div>
       </div>
     </div>
   </li>
   <div *ngIf="postList.length == 0">No Record Found</div>
+
+  <p-dialog
+    
+    [(visible)]="visible"
+    [style]="{ width: '50vw', height: '300px' }"
+  >
+    <p>please update the status</p>
+    <div class="card flex justify-content-center">
+      <p-dropdown
+        [options]="status"
+        [(ngModel)]="selectedStatus"
+        optionLabel="name"
+        placeholder="Select a Status"
+        (onChange)="statusChange($event)"
+      ></p-dropdown>
+    </div>
+  </p-dialog>
+
   <!-- <li>
     <div class="listing_head">
       <div class="ribbon_draft">Draft</div>
@@ -156,4 +191,5 @@
     </div>
   </li>  -->
 </ul>
+
 <!-- <div class="no-records">No records found</div> -->

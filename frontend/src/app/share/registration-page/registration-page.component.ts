@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
 import { RegistrationService } from 'src/app/registration-service/registration.service';
@@ -33,6 +33,7 @@ interface IregistrationOption {
 interface Iotpset{
   email:string ;
   phone:string ;
+  registrationId:string|number
 }
 
 // {
@@ -79,9 +80,11 @@ export class RegistrationPageComponent implements OnInit {
   OtpModal!:boolean;
   userMobileNumber!:string;
   isOtp:boolean = true;
+  registrationId:any
   otpSet:Iotpset={
     email: '',
-    phone: ''
+    phone: '',
+    registrationId:''
   }
   config = {
     allowNumbersOnly: false,
@@ -160,7 +163,13 @@ export class RegistrationPageComponent implements OnInit {
         this.progressBar = res;
       },
     });
-
+   //for scroll issue
+   this.router.events.subscribe((event) => {
+    if (event instanceof NavigationEnd) {
+      // Scroll to the top of the page
+      window.scrollTo(0, 0);
+  }
+ });
   }
 
   optionClick(url: string) {
@@ -197,10 +206,13 @@ export class RegistrationPageComponent implements OnInit {
       this.reg
         .sendRegistrationRequest(this.userName, this.userEmail, this.phone, password, this.userRole)
         .subscribe((response) => {
+       
           console.log(response, 'response');
           this.otpPageOpen=true;
+        
           this.signupPageHide=false
-          
+          this.registrationId=response.data._id;
+          console.log(this.registrationId)
           const { email, name, _id, phone } = response.data;
           ls.set('userEmail', email);
           ls.set('userName', name);
@@ -219,6 +231,10 @@ export class RegistrationPageComponent implements OnInit {
           this.isSignup = true;
           this.openVerificationModal(true);
         },(err)=> {
+          if(err.error.message == 'User Already exist'){
+            this.otpPageOpen=true
+            this.signupPageHide=false
+          }
           this._toast.showToaster.next({
             severity: 'error',
             summary: 'error',
@@ -299,21 +315,26 @@ export class RegistrationPageComponent implements OnInit {
   onSubmitOtp(){
        this.otpSet = {
          email:this.isemailOtp,
-         phone:this.isphoneOtp
+         phone:this.isphoneOtp,
+         registrationId:this.registrationId
        }
        this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
          next: (res)=>{
+
+      
            this.OtpModal=false;
            this.redirectToOtp = false;
+          //  this.otpPageOpen=false
            this.otpVerifivation.logoutSuccess.next(true)
            this.header.userLoggedin.next(true)
            ls.set('logged',true)
            this._toast.showToaster.next({severity:'success',summary:'success',detail:res.message});
            //set route logic for user 
-           if(this.userRole === 'Student'){
+           console.log(this.userRole)
+           if(this.userRole === 'student'){
              this.router.navigate(['/jobs/internships']);
            }
-           else if(this.userRole === 'Industry')
+           else if(this.userRole === 'industry')
            {
              this.router.navigate(['industry']);
            }
