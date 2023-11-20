@@ -39,10 +39,8 @@ jobStatus:boolean=false;
     window.scrollTo(0, 0);
 
     this.status = [
-      { name: 'True', value: 'true' },
-      { name: 'False', value: 'false' },
-     
-
+      { name: 'Published ', value: 'true' },
+      { name: 'Not Published', value: 'false' },   
   ];
   }
 
