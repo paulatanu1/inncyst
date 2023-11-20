@@ -45,6 +45,7 @@ export class InternshipsComponent implements OnInit {
   typeSort: any = [];
   selectedRange: [number, number] = [5000, 30000];
   
+  public daysAgo!: number;
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
@@ -179,6 +180,17 @@ export class InternshipsComponent implements OnInit {
           element.companyName = element?.companyName?.toUpperCase();
           element.intranshipName = element?.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
+          let fullDate:Date = new Date(element.createdAt)
+              console.log(fullDate,'fd')
+                  // Get the current date
+               const currentDate: Date = new Date();
+
+    // Calculate the difference in milliseconds
+                const timeDifference: number = currentDate.getTime() - fullDate.getTime();
+    // Convert the difference to days
+    this.daysAgo = Math.floor(timeDifference / (1000 * 3600 * 24));
+    element.createdAt=this.daysAgo
+    console.log(element.createdAt)
         });
         this.jobId = this.AllJobDetails[0]?._id;
         // single job details1st for 1st job and1st time
@@ -190,6 +202,7 @@ export class InternshipsComponent implements OnInit {
               element.companyName = element?.companyName?.toUpperCase();
               element.type = element?.type?.toUpperCase();
               element.salary = (element.salary * 12) / 100000;
+              
             });
           },
           error: (err) => {

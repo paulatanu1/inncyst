@@ -8,6 +8,7 @@
           (onChange)="selectedJobTypeDropdown($event)"
           class="job_type"
         ></p-dropdown>
+
   
         <p-dropdown
           [options]="Sort"
@@ -76,7 +77,15 @@
                     {{ a.companyName }}
                     <span>{{ a.type }}</span>
                   </h2>
-                </div>
+
+            
+                </div>     <h2>{{a.details}}</h2><br>
+                <h2>{{a.location}}</h2>
+                <h2>salary {{a.salary}}Lpa</h2>
+                <h2>joining:- {{a.startDate}}</h2>
+                <h2>no of openning:-- {{a.jobOpening}}</h2>
+                <h2>{{a.createdAt}} days ago</h2>
+                <h2>{{a.intranshipType}}</h2>
                 <div class="company_tags" *ngFor="let b of a.skills">
                   <span>{{ b }}</span>
                 </div>

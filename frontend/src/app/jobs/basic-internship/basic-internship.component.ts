@@ -35,6 +35,7 @@ export class BasicInternshipComponent implements OnInit {
   selectedType!: string;
   typeSort: any = [];
   selectedRange: [number, number] = [5000, 30000];
+  daysAgo!:number
   constructor(private jobService: JobsService) {}
 
   ngOnInit(): void {
@@ -108,12 +109,24 @@ export class BasicInternshipComponent implements OnInit {
 
     this.jobService.basicIntershipList(url).subscribe({
       next: (res) => {
+        
         this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];
         this.totalJob = res.data.total;
         this.AllJobDetails.forEach((element: any) => {
           element.companyName = element.companyName?.toUpperCase();
           element.intranshipName = element.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
+          let fullDate: Date = new Date(element.createdAt);
+          // Get the current date
+          const currentDate: Date = new Date();
+
+          // Calculate the difference in milliseconds
+          const timeDifference: number =
+            currentDate.getTime() - fullDate.getTime();
+          // Convert the difference to days
+          this.daysAgo = Math.floor(timeDifference / (1000 * 3600 * 24));
+          element.createdAt = this.daysAgo;
+
         });
         this.jobId = this.AllJobDetails[0]._id;
         // single job details1st for 1st job and1st time
@@ -191,6 +204,7 @@ export class BasicInternshipComponent implements OnInit {
           element.companyName = element.companyName?.toUpperCase();
           element.intranshipName = element.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
+        
         });
       },
       error: (err) => {},
