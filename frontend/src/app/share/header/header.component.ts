@@ -168,7 +168,7 @@ export class HeaderComponent implements OnInit, OnChanges {
         label: 'Job Apply',
         icon: 'pi pi-user',
         command: () => {
-          this.router.navigate(['/jobs/jobs/my-applyed-job']);
+          this.router.navigate(['/jobs/my-jobs']);
         },
       },
 
@@ -272,7 +272,7 @@ export class HeaderComponent implements OnInit, OnChanges {
           this.userType = ls.get('userType');
 
           if (this.logInToken && this.userType == 'student') {
-            this.router.navigateByUrl('jobs/internships');
+            this.router.navigateByUrl('jobs/posts');
           } else if (!this.logInToken && !this.userType) {
             this.router.navigateByUrl('jobs/basicInternship');
           }
@@ -314,9 +314,9 @@ export class HeaderComponent implements OnInit, OnChanges {
       this.router.navigateByUrl('/contactus');
       this.progress.isProgressBarShow.next(false);
     } else if (url === 'Jobs') {
-      this.router.navigateByUrl('/jobs/internships');
+      this.router.navigateByUrl('/jobs/posts');
     } else if (url === 'My Jobs') {
-      this.router.navigateByUrl('/jobs/jobs/my-applyed-job');
+      this.router.navigateByUrl('/jobs/my-jobs');
     }
   }
 

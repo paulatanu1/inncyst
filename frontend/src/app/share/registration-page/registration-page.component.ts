@@ -340,7 +340,7 @@ export class RegistrationPageComponent implements OnInit {
         //set route logic for user
         console.log(this.userRole);
         if (this.userRole === 'student') {
-          this.router.navigate(['/jobs/internships']);
+          this.router.navigate(['/jobs/posts']);
         } else if (this.userRole === 'industry') {
           this.router.navigate(['industry']);
         }

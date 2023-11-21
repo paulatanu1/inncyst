@@ -32,7 +32,7 @@ export class AppliedJobDetailsComponent implements OnInit {
   }
 
   backToJobDetails() {
-    this.router.navigateByUrl('/jobs/jobs/my-applyed-job');
+    this.router.navigateByUrl('/jobs/my-jobs');
   }
   ngOnDestroy(): void {
     this.appliedJobId = null;

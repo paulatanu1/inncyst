@@ -60,12 +60,12 @@ export class LoginComponent implements OnInit {
       { title: 'Industry', code: 1 },
     ];
   }
-  dropDown(e:any){
-console.log(e.value,'ee')
-this.loginForm.patchValue({
-  'options':e.value
-})
-console.log(this.loginForm.value,'ee')
+  dropDown(e: any) {
+    console.log(e.value, 'ee');
+    this.loginForm.patchValue({
+      options: e.value,
+    });
+    console.log(this.loginForm.value, 'ee');
   }
 
   ngOnInit(): void {
@@ -89,7 +89,6 @@ console.log(this.loginForm.value,'ee')
       }
     });
 
-    
     this.loginForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -104,13 +103,13 @@ console.log(this.loginForm.value,'ee')
         // validators: MustMatch('password', 'confirmPassword')
       }
     );
-   //for scroll issue
-   this.router.events.subscribe((event) => {
-    if (event instanceof NavigationEnd) {
-      // Scroll to the top of the page
-      window.scrollTo(0, 0);
-  }
- });
+    //for scroll issue
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Scroll to the top of the page
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
   ngOnChanges(): void {
@@ -124,13 +123,12 @@ console.log(this.loginForm.value,'ee')
   }
 
   onLoginSubmit() {
-    
     console.log(this.loginForm.controls);
     if (this.loginForm.valid) {
       let userEmail = this.loginForm.get('email')?.value;
       let password = this.loginForm.get('password')?.value;
       let userRole = this.loginForm.get('options')?.value;
-console.log(userRole,'ur')
+      console.log(userRole, 'ur');
       this.loginService.login(userEmail, password, userRole).subscribe({
         next: (res) => {
           console.log(res);
@@ -144,11 +142,11 @@ console.log(userRole,'ur')
           //   image:res.data.image
           // })
           if (userRole == 'Student') {
-            this.router.navigateByUrl('jobs/internships');
-            ls.set('role','student')
+            this.router.navigateByUrl('jobs/posts');
+            ls.set('role', 'student');
             // this.router.navigate(['/jobs/internship']);
           } else if (userRole == 'Industry') {
-            ls.set('role','industry')
+            ls.set('role', 'industry');
             this.router.navigate(['industry']);
           }
         },

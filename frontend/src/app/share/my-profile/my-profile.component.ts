@@ -17,8 +17,8 @@ interface IprofileDetails {
   question_step: boolean;
   status: boolean;
   createdAt: string;
-  location:  string;
-  description:  string;
+  location: string;
+  description: string;
   skills: string[];
 }
 @Component({
@@ -36,13 +36,13 @@ export class MyProfileComponent implements OnInit {
   imageChangedEvent: any;
   cropperModal: boolean = false;
   imagePath: string = '';
-  cImage:any;
+  cImage: any;
   constructor(
     private internship: InternshipProfileService,
     private formBuilder: FormBuilder,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private _toast: ToastServiceService,
+    private _toast: ToastServiceService
   ) {}
 
   ngOnInit(): void {
@@ -67,13 +67,13 @@ export class MyProfileComponent implements OnInit {
           // console.log(this.profileForm, 'ii');
         }
       });
-         //for scroll issue
+    //for scroll issue
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Scroll to the top of the page
         window.scrollTo(0, 0);
-    }
-   });
+      }
+    });
   }
 
   openEdit() {
@@ -83,27 +83,27 @@ export class MyProfileComponent implements OnInit {
   onSubmit() {
     if (this.profileForm.valid) {
       // Form is valid, you can access form values using this.profileForm.value
-      console.log(this.profileForm.value)
+      console.log(this.profileForm.value);
 
       this.internship.EditProfile(this.profileForm.value).subscribe({
-        next:(res)=>{
-                this._toast.showToaster.next({
-          severity: 'success',
-          summary: 'success',
-          detail: res.success,
-        });
-        this.editProfile = false;
-          console.log(res)
+        next: (res) => {
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: res.success,
+          });
+          this.editProfile = false;
+          console.log(res);
           // this.editProfile = false;
         },
-        error:(err)=>{
+        error: (err) => {
           this._toast.showToaster.next({
             severity: 'error',
             summary: 'error',
-            detail:err.error.message,
+            detail: err.error.message,
           });
-        }
-      })
+        },
+      });
       // You can send the form data to your backend or perform other actions here
     } else {
       // Form is invalid, display error messages or perform other actions as needed
@@ -130,8 +130,8 @@ export class MyProfileComponent implements OnInit {
     this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(
       event.objectUrl as string
     );
-   this.cImage= event.objectUrl;
-    console.log(this.cImage)
+    this.cImage = event.objectUrl;
+    console.log(this.cImage);
     // console.log(event.objectUrl)
     // console.log(this.croppedImage, 'ci');
     // event.blob can be used to upload the cropped image
@@ -146,20 +146,20 @@ export class MyProfileComponent implements OnInit {
     // console.log(this.imageChangedEvent,'img')
   }
   back() {
-    this.router.navigateByUrl('/jobs/internships');
+    this.router.navigateByUrl('/jobs/posts');
   }
 
   croppedComplete() {
     this.cropperModal = false;
     this.imagePath = this.croppedImage;
     // console.log(this.imagePath , 'path');
-    this.ProfileDetails.image= this.cImage
-    this.profileForm.patchValue(this.ProfileDetails)
+    this.ProfileDetails.image = this.cImage;
+    this.profileForm.patchValue(this.ProfileDetails);
     // console.log(this.profileForm)
   }
 
-  Protfolio(){
-    this.router.navigateByUrl('my-profile/protfolio')
+  Protfolio() {
+    this.router.navigateByUrl('my-profile/protfolio');
   }
   ngOnDestroy() {
     this.profile?.unsubscribe();
