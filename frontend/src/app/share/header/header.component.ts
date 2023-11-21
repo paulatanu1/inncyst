@@ -94,7 +94,6 @@ export class HeaderComponent implements OnInit, OnChanges {
     }
 
     this.userType = ls.get('userType');
-    console.log(this.userType);
 
     this.items = [
       {
@@ -146,8 +145,6 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
   ngOnChanges() {
     this.userType = ls.get('userType');
-    console.log(this.userType);
-    console.log(this.logInToken);
   }
   ngOnInit(): void {
     // debugger
@@ -159,7 +156,6 @@ export class HeaderComponent implements OnInit, OnChanges {
       },
     });
 
-    console.log(this.userType);
     this.Profileitems = [
       {
         label: 'Profile',
@@ -231,7 +227,6 @@ export class HeaderComponent implements OnInit, OnChanges {
     //questions enable from service
     this.quiestion.isQuestionSetEnable.subscribe({
       next: (res) => {
-        console.log(res, 'sidebarEnable');
         this.sidebarEnable = res;
         this.isSignup = res;
       },
@@ -257,8 +252,8 @@ export class HeaderComponent implements OnInit, OnChanges {
       if (event instanceof NavigationEnd) {
         // Scroll to the top of the page
         window.scrollTo(0, 0);
-    }
-   });
+      }
+    });
   }
   product() {
     //check allready login user or not
@@ -268,8 +263,6 @@ export class HeaderComponent implements OnInit, OnChanges {
     } else {
       this.logoutSuccess = false;
     }
-    console.log(this.userType);
-    console.log(this.logInToken);
 
     this.dropdownitems = [
       {
@@ -279,7 +272,6 @@ export class HeaderComponent implements OnInit, OnChanges {
           this.userType = ls.get('userType');
 
           if (this.logInToken && this.userType == 'student') {
-            console.log(this.logInToken, this.userType == 'student');
             this.router.navigateByUrl('jobs/internships');
           } else if (!this.logInToken && !this.userType) {
             this.router.navigateByUrl('jobs/basicInternship');
@@ -337,11 +329,9 @@ export class HeaderComponent implements OnInit, OnChanges {
       let phone: string = this.registerForm.get('mobile')?.value;
       let password: string = this.registerForm.get('confirmPassword')?.value;
       let userRole: string = this.registerForm.get('options')?.value;
-      console.log(userName);
       this.reg
         .sendRegistrationRequest(userName, userEmail, phone, password, userRole)
         .subscribe((response) => {
-          console.log(response, 'response');
           this.registerId = response.data._id;
           ls.set('registerId', this.registerId);
           this.isSignup = true;
