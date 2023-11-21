@@ -44,26 +44,24 @@ export class InternshipsComponent implements OnInit {
   selectedType!: string;
   typeSort: any = [];
   selectedRange: [number, number] = [5000, 30000];
-  
+
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
     private messageService: MessageService,
     private jobService: JobsService,
     private internshipService: InternshipProfileService,
-    private otpService:OtpVerificationService
+    private otpService: OtpVerificationService
   ) {}
 
   ngOnInit(): void {
     this.jobService.afterSuccessApplyJobCloseModal.subscribe({
-      
-      next:(res)=>{
-        setTimeout(()=>{
+      next: (res) => {
+        setTimeout(() => {
           this.closeProfileUpdateForm();
-        },1500)
-      
-      }
-    })
+        }, 1500);
+      },
+    });
     this.internshipService.customHeader.next(false);
     this.items = [
       {
@@ -121,17 +119,15 @@ export class InternshipsComponent implements OnInit {
       {
         name: 'job',
       },
-     
     ];
   }
   onRangeChange(e: any) {
-    this.salaryFrom = (e.values[0]).toString();
-    this.salaryTo = (e.values[1]).toString();
+    this.salaryFrom = e.values[0].toString();
+    this.salaryTo = e.values[1].toString();
     console.log(this.salaryFrom, this.salaryTo);
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
-
 
   selectedJobTypeDropdown(event: any) {
     this.jobType = event.value.name;
@@ -150,7 +146,8 @@ export class InternshipsComponent implements OnInit {
   }
   sortLocation() {
     this.AllJobDetails = [];
-    this.location=this.location.charAt(0).toUpperCase() + this.location.slice(1);
+    this.location =
+      this.location.charAt(0).toUpperCase() + this.location.slice(1);
 
     this.AllJbDetaails();
   }
@@ -163,7 +160,7 @@ export class InternshipsComponent implements OnInit {
     this.sort = '';
     this.limit = 10;
     this.page = 0;
-    this. selectedRange=[5000,30000]
+    this.selectedRange = [5000, 30000];
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
@@ -182,38 +179,40 @@ export class InternshipsComponent implements OnInit {
         });
         this.jobId = this.AllJobDetails[0]?._id;
         // single job details1st for 1st job and1st time
-        this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
-          next: (res) => {
-            this.singleJobDetails = [];
-            this.singleJobDetails.push(res.data);
-            this.singleJobDetails.forEach((element: any) => {
-              element.companyName = element?.companyName?.toUpperCase();
-              element.type = element?.type?.toUpperCase();
-              element.salary = (element.salary * 12) / 100000;
-            });
-          },
-          error: (err) => {
-            console.log(err.error.message);
-          },
-        });
-      },
-      error:(err)=>{
-        console.log(err.error.message)
-        if(err.error.message == 'jwt expired'){
-          ls.clear()
-          ls.remove('logoutSuccess');
-          this.otpService.logoutSuccess.next(false)
-          this.router.navigate(['/login']);
-          alert('dd')
+        if (this.jobId) {
+          this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
+            next: (res) => {
+              this.singleJobDetails = [];
+              this.singleJobDetails.push(res.data);
+              this.singleJobDetails.forEach((element: any) => {
+                element.companyName = element?.companyName?.toUpperCase();
+                element.type = element?.type?.toUpperCase();
+                element.salary = (element.salary * 12) / 100000;
+              });
+            },
+            error: (err) => {
+              console.log(err.error.message);
+            },
+          });
         }
-      }
+      },
+      error: (err) => {
+        console.log(err.error.message);
+        if (err.error.message == 'jwt expired') {
+          ls.clear();
+          ls.remove('logoutSuccess');
+          this.otpService.logoutSuccess.next(false);
+          this.router.navigate(['/login']);
+          alert('dd');
+        }
+      },
     });
   }
   applyJob() {
-          this.profileUpdate = true;
-      this.router.navigate(['jobs/internships/skills']);
-    }
-    
+    this.profileUpdate = true;
+    this.router.navigate(['jobs/internships/skills']);
+  }
+
   closeProfileUpdateForm() {
     this.profileUpdate = false;
     // this.router.navigate(['jobs/internships/skills']);
@@ -223,17 +222,15 @@ export class InternshipsComponent implements OnInit {
     this.selectedJob = i;
     this.jobService.getJobDetails(id).subscribe({
       next: (res) => {
-        let id=(res.data._id);
-        console.log(id,'id')
-        this.jobService.getSelectedJobId(res.data._id)
+        let id = res.data._id;
+        console.log(id, 'id');
+        this.jobService.getSelectedJobId(res.data._id);
         this.singleJobDetails = [];
         this.singleJobDetails.push(res.data);
         this.singleJobDetails.forEach((element: any) => {
           element.companyName = element?.companyName?.toUpperCase();
           element.intranshipName = element?.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
-
-
         });
         console.log(this.singleJobDetails, 'res');
       },

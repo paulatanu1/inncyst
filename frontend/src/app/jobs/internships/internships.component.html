@@ -30,17 +30,26 @@
         [(ngModel)]="location"
         placeholder="Please Enter Location"
       />
-   
+
       <button (click)="sortLocation()"><i class="pi pi-search"></i></button>
       <button (click)="resetUrl()"><i class="pi pi-undo"></i></button>
       <div class="slide_range">
         <span>please Select Salary Range</span>
-        <input type="text" pInputText [(ngModel)]="selectedRange" class="w-full"/>
-        <p-slider [(ngModel)]="selectedRange" [min]="5000" [max]="30000" [range]="true" (onSlideEnd)="onRangeChange($event)"></p-slider>
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="selectedRange"
+          class="w-full"
+        />
+        <p-slider
+          [(ngModel)]="selectedRange"
+          [min]="5000"
+          [max]="30000"
+          [range]="true"
+          (onSlideEnd)="onRangeChange($event)"
+        ></p-slider>
       </div>
-     
     </div>
-    
   </div>
   <section class="internship_sec_inner">
     <section class="left_aside_part">
@@ -73,7 +82,7 @@
                   </span>
                 </div>
                 <h2>
-               {{ a.companyName }}
+                  {{ a.companyName }}
                   <span>{{ a.type }}</span>
                 </h2>
               </div>
@@ -99,10 +108,8 @@
             <!-- -::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->
           </ul>
           <section *ngIf="AllJobDetails.length == 0">
-            <h3> No Data Available..........</h3> <h3> No Data Available..........</h3>
-         
-           
-           </section>
+            <p>No Job Posts available</p>
+          </section>
         </div>
       </div>
     </section>
@@ -137,89 +144,91 @@
 
       <button (click)="sortLocation()">search</button>
     </div> -->
-    <section class="right_details_part" >
+    <section class="right_details_part">
       <ng-container *ngIf="AllJobDetails.length == 0">
         <p>No Record Found</p>
       </ng-container>
-      <ng-container *ngIf="AllJobDetails.length > 0"> 
-      <div *ngFor="let a of singleJobDetails">
-        <div class="right_details_head">
-          <div>
-            <span>
-              <img
-                src="{{ a.image ? 'a.image' : '../../../assets/no-image.svg' }}"
-                width="170"
-                height="75"
-              />
-            </span>
-            <div class="company_tags">
-              <span *ngFor="let b of a.skills">{{ b }}</span>
+      <ng-container *ngIf="AllJobDetails.length > 0">
+        <div *ngFor="let a of singleJobDetails">
+          <div class="right_details_head">
+            <div>
+              <span>
+                <img
+                  src="{{
+                    a.image ? 'a.image' : '../../../assets/no-image.svg'
+                  }}"
+                  width="170"
+                  height="75"
+                />
+              </span>
+              <div class="company_tags">
+                <span *ngFor="let b of a.skills">{{ b }}</span>
+              </div>
+            </div>
+            <h2>
+              {{ a.intranshipName }}
+              <span>{{ a.companyName }}</span>
+            </h2>
+          </div>
+          <div class="overview">
+            <h2>Internship Overview</h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+            </p>
+            <h2>Key responsibilities:</h2>
+            <ul>
+              <li>
+                1. Designing, manufacturing, and installing components that
+                fulfill requirements
+              </li>
+              <li>2. Creating plans and designs using CAD technology</li>
+              <li>
+                3. Learning quickly and working independently with minimal
+                supervision
+              </li>
+            </ul>
+            <h2>Skill(s) required</h2>
+            <div class="tags" *ngFor="let b of a.skills">
+              <span>{{ b }}</span>
+            </div>
+            <h2>Salary</h2>
+            <p>Annual CTC:{{ a.salary }} LPA</p>
+            <ul>
+              <span>Annual CTC breakup:</span>
+              <li>1. Fixed component: 80%</li>
+              <li>2. Variable component: 10%</li>
+              <li>3. Other incentives: 10%</li>
+            </ul>
+            <h2>Perks</h2>
+            <div class="tags">
+              <span>Certificate</span>
+              <span>Letter of recommendation</span>
+              <span>Flexible work hours</span>
+            </div>
+            <h2>Additional Information</h2>
+            <p>
+              {{ a.information }}
+            </p>
+            <h2>Number of openings</h2>
+            <p>{{ a.opens }}</p>
+            <div class="apply_btn">
+              <button type="button" (click)="applyJob()">Apply Now</button>
             </div>
           </div>
-          <h2>
-            {{ a.intranshipName }}
-            <span>{{a.companyName}}</span>
-          </h2>
         </div>
-        <div class="overview">
-          <h2>Internship Overview</h2>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </p>
-          <h2>Key responsibilities:</h2>
-          <ul>
-            <li>
-              1. Designing, manufacturing, and installing components that
-              fulfill requirements
-            </li>
-            <li>2. Creating plans and designs using CAD technology</li>
-            <li>
-              3. Learning quickly and working independently with minimal
-              supervision
-            </li>
-          </ul>
-          <h2>Skill(s) required</h2>
-          <div class="tags" *ngFor="let b of a.skills">
-            <span>{{ b }}</span>
-          </div>
-          <h2>Salary</h2>
-          <p>Annual CTC:{{ a.salary }} LPA</p>
-          <ul>
-            <span>Annual CTC breakup:</span>
-            <li>1. Fixed component: 80%</li>
-            <li>2. Variable component: 10%</li>
-            <li>3. Other incentives: 10%</li>
-          </ul>
-          <h2>Perks</h2>
-          <div class="tags">
-            <span>Certificate</span>
-            <span>Letter of recommendation</span>
-            <span>Flexible work hours</span>
-          </div>
-          <h2>Additional Information</h2>
-          <p>
-            {{ a.information }}
-          </p>
-          <h2>Number of openings</h2>
-          <p>{{ a.opens }}</p>
-          <div class="apply_btn">
-            <button type="button" (click)="applyJob()" >Apply Now</button>
-          </div>
-        </div>
-      </div>
-    </ng-container>
+      </ng-container>
     </section>
   </section>
 </section>
-
 
 <p-dialog
   (onHide)="closeProfileUpdateForm()"
