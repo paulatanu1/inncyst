@@ -1,11 +1,17 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <ol type="1">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="myFormSec">
+  <div class="formLeft">
+    <img src="../../../assets/portfolio-vector.png" />
+    <h3>Add Portfolio</h3>
+  </div>
+  <div class="formRight">
+  
+  <ul type="1">
     <li>
-      <label>Title:--</label>
+      <label>Title</label>
       <input type="text" #text formControlName="title" />
     </li>
     <li>
-      <label>Description:--</label>
+      <label>Description</label>
       <p-editor [style]="{ height: '320px' }" formControlName="description">
         <ng-template pTemplate="header">
           <span class="ql-formats">
@@ -25,7 +31,8 @@
       </p-editor>
     </li>
     <li>
-      <div class="px3">
+      <label>Select Upload Option</label>
+      <div class="">
         <p-dropdown
           [options]="uploadItem"
           placeholder="Select a option"
@@ -34,7 +41,7 @@
         ></p-dropdown>
       </div>
     </li>
-  </ol>
+  </ul>
   <div *ngIf="selectedItem == 'Pdf'">
     <label>please upload pdf...</label>
     <br />
@@ -82,7 +89,8 @@
       />
     </div>
   </div>
-  <button type="submit">submit</button>
+  <button type="submit">Submit</button>
+</div>
 </form>
 <!-- </li>
     <li>

@@ -1,5 +1,15 @@
 <section class="portfolio_sec">
-  <div
+  <div class="portfolio_left">
+    <img src="../../../assets/portfolio-image.webp" w="250" h="250" />
+    <h3>Dezven Indiana</h3>
+    <strong>Freelance Developer</strong>
+  </div>
+  <div class="portfolio_right">
+    <p>Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+    text.Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+    text.Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+    text.</p>
+    <div
     (click)="addProtfolio()"
     icon="pi pi-info-circle"
     label="Show"
@@ -7,9 +17,11 @@
   >
     <i class="pi pi-plus"></i><span>Add Portfolio</span>
   </div>
+  </div>
+  
 </section>
 <p-dialog class="dialog" [(visible)]="display" (onHide)="handleDialogHide()">
-  <section class="portfolio_sec">
+  <section class="portfolio_sec_modal">
     <ng-container>
       <div *ngFor="let a of field">
         <app-protfolio-details
@@ -17,9 +29,7 @@
           (individualObj)="getObj($event)"
           (id)="deletedObjId($event)"
         ></app-protfolio-details>
-        <br />
       </div>
-      <br />
     </ng-container>
   </section>
 </p-dialog>
