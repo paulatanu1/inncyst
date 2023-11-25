@@ -190,20 +190,22 @@ export class InternshipsComponent implements OnInit {
         });
         this.jobId = this.AllJobDetails[0]?._id;
         // single job details1st for 1st job and1st time
-        this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
-          next: (res) => {
-            this.singleJobDetails = [];
-            this.singleJobDetails.push(res.data);
-            this.singleJobDetails.forEach((element: any) => {
-              element.companyName = element?.companyName?.toUpperCase();
-              element.type = element?.type?.toUpperCase();
-              element.salary = (element.salary * 12) / 100000;
-            });
-          },
-          error: (err) => {
-            console.log(err.error.message);
-          },
-        });
+        if (this.jobId) {
+          this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
+            next: (res) => {
+              this.singleJobDetails = [];
+              this.singleJobDetails.push(res.data);
+              this.singleJobDetails.forEach((element: any) => {
+                element.companyName = element?.companyName?.toUpperCase();
+                element.type = element?.type?.toUpperCase();
+                element.salary = (element.salary * 12) / 100000;
+              });
+            },
+            error: (err) => {
+              console.log(err.error.message);
+            },
+          });
+        }
       },
       error: (err) => {
         console.log(err.error.message);
@@ -212,7 +214,6 @@ export class InternshipsComponent implements OnInit {
           ls.remove('logoutSuccess');
           this.otpService.logoutSuccess.next(false);
           this.router.navigate(['/login']);
-          alert('dd');
         }
       },
     });

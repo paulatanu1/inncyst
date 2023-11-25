@@ -13,8 +13,8 @@ const routes: Routes = [
   { path: '', component: JobsComponent },
   { path: 'basicInternship', component: BasicInternshipComponent },
   {
-    path: 'internships',
-    canActivate:[UserVerificationGuard],
+    path: 'posts',
+    canActivate: [UserVerificationGuard],
     component: InternshipsComponent,
     children: [
       // {path:'',redirectTo:'skills',pathMatch:'full'},
@@ -23,9 +23,9 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'jobs/my-applyed-job',
+    path: 'my-jobs',
     component: BasicJobComponent,
-    canActivate:[UserVerificationGuard],
+    canActivate: [UserVerificationGuard],
     children: [
       { path: '', component: JobApplyedComponent },
       {

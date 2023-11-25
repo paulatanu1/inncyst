@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   title = 'frontend';
   isDashboard: boolean = true;
   isDisable: boolean = true;
-  loginToken!:any;
+  loginToken!: any;
   urlConfig = {
     '/dashboard': { isDashboard: false, isdisable: false },
     '/industry/': { isDashboard: false, isdisable: false },
@@ -34,10 +34,13 @@ export class AppComponent implements OnInit {
     private lastUrl: LastUrlService,
     private _toast: ToastServiceService,
     private messageService: MessageService,
-  private otpVerifivation:OtpVerificationService,
-  private cdk:ChangeDetectorRef
-
+    private otpVerifivation: OtpVerificationService,
+    private cdk: ChangeDetectorRef
   ) {
+    window.onbeforeunload = () => {
+      console.log('Setting scroll position to top');
+      window.scrollTo(0, 0);
+    };
     //Header show and Hide
     this._router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
@@ -51,14 +54,13 @@ export class AppComponent implements OnInit {
       }
     });
   }
-ngAfterViewChecked(): void {
-  //Called after every check of the component's view. Applies to components only.
-  //Add 'implements AfterViewChecked' to the class.
-  this.cdk.detectChanges()
-}
+  ngAfterViewChecked(): void {
+    //Called after every check of the component's view. Applies to components only.
+    //Add 'implements AfterViewChecked' to the class.
+    this.cdk.detectChanges();
+  }
   ngOnInit(): void {
     this.spinner.show();
-    console.log(this.lastUrl.getPreviousUrl());
 
     setTimeout(() => {
       /** spinner ends after 5 seconds */
@@ -67,7 +69,6 @@ ngAfterViewChecked(): void {
 
     this._toast.showToaster.subscribe({
       next: (res) => {
-        console.log(res, 'res');
         const { severity, summary, detail } = res;
         this.showSuccess(severity, summary, detail);
       },

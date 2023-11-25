@@ -30,10 +30,10 @@ interface IregistrationOption {
   id: number;
 }
 
-interface Iotpset{
-  email:string ;
-  phone:string ;
-  registrationId:string|number
+interface Iotpset {
+  email: string;
+  phone: string;
+  registrationId: string | number;
 }
 
 // {
@@ -45,8 +45,7 @@ interface Iotpset{
   selector: 'app-registration-page',
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss'],
-  providers: [MessageService,NgOtpInputModule],
-  
+  providers: [MessageService, NgOtpInputModule],
 })
 export class RegistrationPageComponent implements OnInit {
   @ViewChild('ngOtpInput1') ngOtpInput1: any;
@@ -69,23 +68,23 @@ export class RegistrationPageComponent implements OnInit {
   progressBar: boolean = false;
   registerId: string = '';
   redirectToOtp: boolean = false;
-  otpPageOpen:boolean=false;
-  signupPageHide:boolean=true;
-  userName!:string;
-  phone!:string;
-  userEmail!:string
-  isphoneOtp:string = '';
-  isemailOtp:string = '';
-  userRole!:string;
-  OtpModal!:boolean;
-  userMobileNumber!:string;
-  isOtp:boolean = true;
-  registrationId:any
-  otpSet:Iotpset={
+  otpPageOpen: boolean = false;
+  signupPageHide: boolean = true;
+  userName!: string;
+  phone!: string;
+  userEmail!: string;
+  isphoneOtp: string = '';
+  isemailOtp: string = '';
+  userRole!: string;
+  OtpModal!: boolean;
+  userMobileNumber!: string;
+  isOtp: boolean = true;
+  registrationId: any;
+  otpSet: Iotpset = {
     email: '',
     phone: '',
-    registrationId:''
-  }
+    registrationId: '',
+  };
   config = {
     allowNumbersOnly: false,
     length: 4,
@@ -93,9 +92,9 @@ export class RegistrationPageComponent implements OnInit {
     disableAutoFocus: false,
     placeholder: '',
     inputStyles: {
-      'width': '50px',
-      'height': '50px'
-    }
+      width: '50px',
+      height: '50px',
+    },
   };
   constructor(
     private messageService: MessageService,
@@ -108,11 +107,10 @@ export class RegistrationPageComponent implements OnInit {
     private question: QuestionSetEnablerService,
     private _toast: ToastServiceService,
     private header: HeaderService,
-    private otpVerifivation:OtpVerificationService,
-  
-    // private _header:HeaderService
+    private otpVerifivation: OtpVerificationService // private _header:HeaderService
   ) {
-   
+    // console.log(window, 'pp');
+
     this.option = [
       // {name: 'Select the option', code: '0'},
       { optionName: 'student', code: '1' },
@@ -134,8 +132,9 @@ export class RegistrationPageComponent implements OnInit {
       },
     ];
   }
- 
+
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.registerForm = this.fb.group(
       {
         userName: ['', [Validators.required, Validators.minLength(4)]],
@@ -149,7 +148,7 @@ export class RegistrationPageComponent implements OnInit {
         ],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required]],
-        options: ['student',[Validators.required]],
+        options: ['student', [Validators.required]],
         agree: [false, [Validators.required, Validators.requiredTrue]],
       },
       {
@@ -163,13 +162,13 @@ export class RegistrationPageComponent implements OnInit {
         this.progressBar = res;
       },
     });
-   //for scroll issue
-   this.router.events.subscribe((event) => {
-    if (event instanceof NavigationEnd) {
-      // Scroll to the top of the page
-      window.scrollTo(0, 0);
-  }
- });
+    //for scroll issue
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Scroll to the top of the page
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
   optionClick(url: string) {
@@ -191,56 +190,64 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   onSubmit() {
-   // console.log(this.registerForm.get('options')?.value);
+    // console.log(this.registerForm.get('options')?.value);
     this.isSubmited = true;
     if (this.isSubmited && this.registerForm.valid) {
       this.registration = false;
       ls.set('type', 1);
-      this.userName= this.registerForm.get('userName')?.value;
+      this.userName = this.registerForm.get('userName')?.value;
       this.userEmail = this.registerForm.get('email')?.value;
       this.phone = this.registerForm.get('mobile')?.value;
       let password: string = this.registerForm.get('confirmPassword')?.value;
       this.userRole = this.registerForm.get('options')?.value;
-      this.userMobileNumber=this.registerForm.get('mobile')?.value;
+      this.userMobileNumber = this.registerForm.get('mobile')?.value;
 
       this.reg
-        .sendRegistrationRequest(this.userName, this.userEmail, this.phone, password, this.userRole)
-        .subscribe((response) => {
-       
-          console.log(response, 'response');
-          this.otpPageOpen=true;
-        
-          this.signupPageHide=false
-          this.registrationId=response.data._id;
-          console.log(this.registrationId)
-          const { email, name, _id, phone } = response.data;
-          ls.set('userEmail', email);
-          ls.set('userName', name);
-          ls.set('registerId', _id);
-          ls.set('phone', phone);
-          ls.set('role', this.userRole);
-          let severity = '';
-          let summary = '';
-          let detail = '';
+        .sendRegistrationRequest(
+          this.userName,
+          this.userEmail,
+          this.phone,
+          password,
+          this.userRole
+        )
+        .subscribe(
+          (response) => {
+            console.log(response, 'response');
+            this.otpPageOpen = true;
 
-          this._toast.showToaster.next({
-            severity: 'success',
-            summary: 'success',
-            detail: response.message,
-          });
-          this.isSignup = true;
-          this.openVerificationModal(true);
-        },(err)=> {
-          if(err.error.message == 'User Already exist'){
-            this.otpPageOpen=true
-            this.signupPageHide=false
+            this.signupPageHide = false;
+            this.registrationId = response.data._id;
+            console.log(this.registrationId);
+            const { email, name, _id, phone } = response.data;
+            ls.set('userEmail', email);
+            ls.set('userName', name);
+            ls.set('registerId', _id);
+            ls.set('phone', phone);
+            ls.set('role', this.userRole);
+            let severity = '';
+            let summary = '';
+            let detail = '';
+
+            this._toast.showToaster.next({
+              severity: 'success',
+              summary: 'success',
+              detail: response.message,
+            });
+            this.isSignup = true;
+            this.openVerificationModal(true);
+          },
+          (err) => {
+            if (err.error.message == 'User Already exist') {
+              this.otpPageOpen = true;
+              this.signupPageHide = false;
+            }
+            this._toast.showToaster.next({
+              severity: 'error',
+              summary: 'error',
+              detail: err.error.message,
+            });
           }
-          this._toast.showToaster.next({
-            severity: 'error',
-            summary: 'error',
-            detail: err.error.message,
-          });
-        });
+        );
     }
   }
 
@@ -303,53 +310,51 @@ export class RegistrationPageComponent implements OnInit {
   //   this.loginflow = false;
   // }
 
-  onEmailOtpChange(event:any){
+  onEmailOtpChange(event: any) {
     //  console.log(event , 'onemailOtpChange')
-      this.isemailOtp = event
-  
+    this.isemailOtp = event;
   }
-  onPhoneOtpChange(event:any){
+  onPhoneOtpChange(event: any) {
     // console.log(event , 'onPhoneOtpChange')
-    this.isphoneOtp= event
+    this.isphoneOtp = event;
   }
-  onSubmitOtp(){
-       this.otpSet = {
-         email:this.isemailOtp,
-         phone:this.isphoneOtp,
-         registrationId:this.registrationId
-       }
-       this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
-         next: (res)=>{
-
-      
-           this.OtpModal=false;
-           this.redirectToOtp = false;
-          //  this.otpPageOpen=false
-           this.otpVerifivation.logoutSuccess.next(true)
-           this.header.userLoggedin.next(true)
-           ls.set('logged',true)
-           this._toast.showToaster.next({severity:'success',summary:'success',detail:res.message});
-           //set route logic for user 
-           console.log(this.userRole)
-           if(this.userRole === 'student'){
-             this.router.navigate(['/jobs/internships']);
-           }
-           else if(this.userRole === 'industry')
-           {
-             this.router.navigate(['industry']);
-           }
-         },
-         error: (err)=>{
-          console.log(err)
-         }
-       })
-      }
-   onHide(){
+  onSubmitOtp() {
+    this.otpSet = {
+      email: this.isemailOtp,
+      phone: this.isphoneOtp,
+      registrationId: this.registrationId,
+    };
+    this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
+      next: (res) => {
+        this.OtpModal = false;
+        this.redirectToOtp = false;
+        //  this.otpPageOpen=false
+        this.otpVerifivation.logoutSuccess.next(true);
+        this.header.userLoggedin.next(true);
+        ls.set('logged', true);
+        this._toast.showToaster.next({
+          severity: 'success',
+          summary: 'success',
+          detail: res.message,
+        });
+        //set route logic for user
+        console.log(this.userRole);
+        if (this.userRole === 'student') {
+          this.router.navigate(['/jobs/posts']);
+        } else if (this.userRole === 'industry') {
+          this.router.navigate(['industry']);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+  onHide() {
     this.isOtp = false;
-    this.OtpModal=false;
+    this.OtpModal = false;
   }
-  onOtpChange(event:any){
-    confirm(event)
+  onOtpChange(event: any) {
+    confirm(event);
   }
-  }
-
+}

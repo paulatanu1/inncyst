@@ -11,10 +11,8 @@ ls.config.encrypt = environment.LS_CONFIG_ENCRYPT;
   providedIn: 'root',
 })
 export class ApiService {
-  role=ls.get('role')
-  constructor(private router: Router, private http: HttpClient) {
-    console.log(this.role)
-  }
+  role = ls.get('role');
+  constructor(private router: Router, private http: HttpClient) {}
   ApiCallWithLocalization(
     data: any,
     url: any,
@@ -40,23 +38,21 @@ export class ApiService {
     }
 
     let httpHeaderValue = new HttpHeaders();
-    console.log(headertoken,'out')
     if (headertoken == undefined) {
-if(ls.get('role')!= null ){
-  console.log(headertoken,'if',this.role)
+      if (ls.get('role') != null) {
+        httpHeaderValue = httpHeaderValue.set(
+          'Authorization',
+          'Bearer ' + ls.get('login_token')
+        );
+      } else {
+        httpHeaderValue = httpHeaderValue;
+      }
 
-  httpHeaderValue = httpHeaderValue
-    .set('Authorization', 'Bearer ' + ls.get('login_token'))
-}
-else{
-  httpHeaderValue = httpHeaderValue
-}
-
-  // .set(
-  //   'Content-Type',
-  //   'multipart/form-data; boundary=----WebKitFormBoundaryFwIrrqToxWfE8BEt'
-  // )
-  // .set('X-localization', localization);
+      // .set(
+      //   'Content-Type',
+      //   'multipart/form-data; boundary=----WebKitFormBoundaryFwIrrqToxWfE8BEt'
+      // )
+      // .set('X-localization', localization);
 
       httpHeaderValue = httpHeaderValue.set('X-localization', localization);
     }
@@ -69,7 +65,6 @@ else{
     // }
 
     if (method == 'post') {
-      console.log(httpHeaderValue);
       return this.http
         .post(url, data, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
@@ -86,9 +81,7 @@ else{
             return responseobj;
           })
         );
-    }
-   else if (method == 'delete') {
-      console.log(httpHeaderValue);
+    } else if (method == 'delete') {
       return this.http
         .delete(url, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
@@ -105,9 +98,7 @@ else{
             return responseobj;
           })
         );
-        }
-    else if (method == 'get') {
-      console.log(httpHeaderValue, 'http');
+    } else if (method == 'get') {
       return this.http
         .get(url, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
@@ -116,7 +107,6 @@ else{
             return throwError(e);
           }),
           map((response: any) => {
-            console.log(response, 'response');
             var responseobj = JSON.parse(JSON.stringify(response.body));
             responseobj.status = response.status;
             if (responseobj.token != undefined) {
@@ -126,7 +116,6 @@ else{
           })
         );
     } else if (method == 'put') {
-      console.log(httpHeaderValue);
       return this.http
         .put(url, data, { headers: httpHeaderValue, observe: 'response' })
         .pipe(
@@ -136,7 +125,6 @@ else{
           })
         );
     } else {
-      console.log(httpHeaderValue);
       return this.http
         .post(url, data, { headers: httpHeaderValue, observe: 'response' })
         .pipe(

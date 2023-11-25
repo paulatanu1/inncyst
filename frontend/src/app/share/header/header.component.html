@@ -64,28 +64,26 @@
       </ul>
     </div>
     <div *ngIf="!customHeader" class="collapse navbar-collapse" id="navbarNav">
-
-     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          (click)="optionClick('My Jobs')"
-          href="javascript:void(0)"
-        >
-         My Jobs
-        </a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-         
-          href="javascript:void(0)"
-         [routerLink]="['/jobs/internships']"
-        >
-        Jobs
-        </a>
-      </li>
-     </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="javascript:void(0)"
+            [routerLink]="['/jobs/posts']"
+          >
+            Jobs
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="optionClick('My Jobs')"
+            href="javascript:void(0)"
+          >
+            My Jobs
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="users-option" *ngIf="!logoutSuccess">
       <div
@@ -104,9 +102,8 @@
         ></button>
       </div>
     </div>
- 
-    <div class="" *ngIf="logoutSuccess">
-      
+
+    <div class="profile-menu" *ngIf="logoutSuccess">
       <button
         #btn
         type="button"
@@ -116,16 +113,20 @@
         (click)="menu.toggle($event)"
         class="profile-dropdown-btn"
       >
-      <p-avatar
-        image="https://www.tm-town.com/assets/default_male600x600-e660e1a712abfc5f638f435f6ef5432c69c6d9250b10cd43bbaa943e55980d5a.png"
-        styleClass="mr-2" size="large" shape="circle"></p-avatar>
-    </button>
+        <p-avatar
+          image="https://www.tm-town.com/assets/default_male600x600-e660e1a712abfc5f638f435f6ef5432c69c6d9250b10cd43bbaa943e55980d5a.png"
+          styleClass="mr-2"
+          size="large"
+          shape="circle"
+        ></p-avatar>
+      </button>
       <p-slideMenu
         #menu
         [model]="Profileitems"
         [popup]="true"
-        [viewportHeight]="220"
+        [viewportHeight]="280"
         [style]="{ 'min-width': '200px' }"
+        appendTo="body"
       ></p-slideMenu>
     </div>
   </div>
@@ -313,8 +314,8 @@
   </div>
 </p-dialog> -->
 <!-- <div *ngIf="logoutSuccess"> -->
-  <p-dialog
-  [(visible)]="loginflow "
+<p-dialog
+  [(visible)]="loginflow"
   [blockScroll]="false"
   [modal]="true"
   [draggable]="false"
@@ -322,13 +323,12 @@
   (onHide)="onClosePopup('login')"
   (click)="cancel()"
 >
-  <app-login (openRegisterFlow)="openRegisterFlow($event)"
-   ></app-login>
+  <app-login (openRegisterFlow)="openRegisterFlow($event)"></app-login>
 </p-dialog>
 
 <app-sign-up-questions
   [sidebarEnable]="sidebarEnable"
-  *ngIf="isSignup "
+  *ngIf="isSignup"
   (quistionSubmit)="quistionSubmit($event)"
 ></app-sign-up-questions>
 
@@ -345,4 +345,3 @@
 <div class="progress-bar" *ngIf="progressBar">
   <p-progressBar mode="indeterminate"></p-progressBar>
 </div>
-
