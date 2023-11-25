@@ -123,11 +123,11 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       pdf: [{}],
       url: [''],
       youtubeUrl: [''],
-      portfoliostatus:['']
+      portfoliostatus:['ongoing']
     });
     this.portfolioStatusOption=[
-      {name:'ongoing'},
-      {name:'completed'}
+      {name:'Ongoing',value:'ongoing'},
+      {name:'Completed',value:'completed'}
     ]
   }
   getPortfolio() {
@@ -322,12 +322,11 @@ console.log(portfoliostatus,'ps')
     this.youtube='';
     this.editDialogForm.get('youtubeUrl')?.setValue(null)
   }
-  selectItemPortfolio(e:any){
-    console.log(e.value.name)
-    // this.selectedPortfolioStatus=e.value.name
-    let value=e.value.name
-    console.log(value)
-    this.editDialogForm.get('portfoliostatus')?.patchValue(e.value.name)
+  selectItemEditPortfolio(e:any){
+    const status=e.value.value
+console.log(status)
+      this.editDialogForm.patchValue({'portfoliostatus':status})
+    console.log(e.value)
     console.log(this.editDialogForm.value)
   }
 }

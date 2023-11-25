@@ -104,17 +104,17 @@
           </span>
         </ng-template>
       </p-editor>
-
-      <div *ngIf="editPortfolioDetails?.portfolioStatus != null">
+<p>kkkkkkkkkkkkk</p>
+      <!-- <div *ngIf="editPortfolioDetails?.portfolioStatus != null"> -->
         <p-dropdown
           [options]="portfolioStatusOption"
-    
+          placeholder="portfolio status"
           optionLabel="name"
+          (onChange)="selectItemEditPortfolio($event)"
           formControlName="portfoliostatus"
-          (onChange)="selectItemPortfolio($event)"
-          [value]="portfolioStatusOption.name"
-        ></p-dropdown>
-      </div>
+        >
+      </p-dropdown>
+      <!-- </div> -->
 
       <div *ngIf="editPortfolioDetails?.url != 'null'">
         <label>uploaded url :--</label>
