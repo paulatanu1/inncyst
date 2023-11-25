@@ -12,6 +12,7 @@ interface Ifield {
   image: {};
   url: string;
   youtubeUrl: string;
+  portfoliostatus:string
 }
 @Component({
   selector: 'app-protfolio',
@@ -57,6 +58,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       image: undefined,
       url: undefined,
       youtubeUrl: undefined,
+      portfoliostatus:undefined
     },
   ];
   commonYoutubeUrl = 'https://www.youtube.com/embed/';
@@ -73,6 +75,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         image: {},
         url: '',
         youtubeUrl: '',
+        portfoliostatus:''
       },
     ];
   }
@@ -105,6 +108,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       image: {},
       url: '',
       youtubeUrl: '',
+      portfoliostatus:''
     });
     console.log(this.field);
 
@@ -119,7 +123,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       pdf: [{}],
       url: [''],
       youtubeUrl: [''],
-      portfoliostatus:[]
+      portfoliostatus:['']
     });
     this.portfolioStatusOption=[
       {name:'ongoing'},
@@ -160,6 +164,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       image: {},
       url: '',
       youtubeUrl: '',
+      portfoliostatus:''
     });
   }
   getObj(e: any) {
@@ -191,6 +196,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         image: {},
         url: '',
         youtubeUrl: '',
+        portfoliostatus:''
       },
     ];
     this.getPortfolio();
@@ -203,6 +209,8 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     this.portfolio.getSinglePortfolio(id).subscribe({
       next: (res) => {
         this.editPortfolioDetails=res.data;
+        let portfoliostatus=res.data.portfolioStatus
+console.log(portfoliostatus,'ps')
         console.log(res,'resss')
         this.editDialogForm.get('title')?.patchValue(res.data.title);
         this.editDialogForm.get('description')?.setValue(res.data.description);
@@ -210,7 +218,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         this.editDialogForm.get('youtubeUrl')?.setValue(res.data.youtubeUrl);
         this.editDialogForm.get('image')?.setValue(res.data.image);
         this.editDialogForm.get('pdf')?.setValue(res.data.pdf);
-        this.editDialogForm.get('portfoliostatus')?.setValue(res.data.portfolioStatus)
+        this.editDialogForm.get('portfoliostatus')?.setValue(portfoliostatus)
         this.editImage = res.data?.image?.split('-')[2];
         this.editPdf = res.data?.pdf?.split('-')[2];
         this.youtube=res.data?.youtubeUrl
@@ -319,7 +327,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     // this.selectedPortfolioStatus=e.value.name
     let value=e.value.name
     console.log(value)
-    this.editDialogForm.get('portfolioStatus')?.setValue(value.name)
+    this.editDialogForm.get('portfoliostatus')?.patchValue(e.value.name)
     console.log(this.editDialogForm.value)
   }
 }
