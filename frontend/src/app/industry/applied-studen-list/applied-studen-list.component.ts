@@ -33,6 +33,8 @@ selectedStatus!: Istatus ;
               console.log(environment.API_URL+item.userId.image)
               // item.userId.image = environment.API_URL + item.userId.image;
               item.resume = environment.API_URL + item.resume;
+              item.portfolioData.image = environment.API_URL + item.portfolioData.image;
+              item.portfolioData.pdf = environment.API_URL + item.portfolioData.pdf;
             })
             console.log(this.studentListData)
           })
@@ -87,4 +89,19 @@ selectedStatus!: Istatus ;
     },
     })
   }
+  // youtubeUrlConvert(url:any){
+  //   let regExp=/^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
+  
+  //   var match = url.match(regExp);
+  
+  //   return match && match[1].length == 11 ? match[1] : false;
+  // }
+  // youtubeUrlChange(e:any){
+  //   let originalFileUrl=e.target.value
+  //   let url=this.youtubeUrlConvert(originalFileUrl)
+    
+  //   if(url != false){
+  //     this.editDialogForm.get('youtubeUrl')?.setValue(`https://www.youtube-nocookie.com/embed/${url}`)
+  //   }
+  //  }
 }

@@ -31,6 +31,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   }
   urrl = 'https://www.youtube.com/embed/6q9NtaWYbBk';
   protfolioVissable: boolean = false;
+  selectedPortfolioStatus:any
   display: boolean = false;
   resizable = true;
   currentTime = new Date().getTime();
@@ -45,6 +46,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   editPortfolioId!: number;
   editPortfolioDetails:any;
   youtube=''
+  portfolioStatusOption:any
   portfolioDetails: any = [
     {
       title: undefined,
@@ -117,7 +119,12 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       pdf: [{}],
       url: [''],
       youtubeUrl: [''],
+      portfoliostatus:[]
     });
+    this.portfolioStatusOption=[
+      {name:'ongoing'},
+      {name:'completed'}
+    ]
   }
   getPortfolio() {
     this.portfolio.getPortfolio().subscribe({
@@ -203,6 +210,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         this.editDialogForm.get('youtubeUrl')?.setValue(res.data.youtubeUrl);
         this.editDialogForm.get('image')?.setValue(res.data.image);
         this.editDialogForm.get('pdf')?.setValue(res.data.pdf);
+        this.editDialogForm.get('portfoliostatus')?.setValue(res.data.portfolioStatus)
         this.editImage = res.data?.image?.split('-')[2];
         this.editPdf = res.data?.pdf?.split('-')[2];
         this.youtube=res.data?.youtubeUrl
@@ -305,5 +313,13 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   removeYoutube(){
     this.youtube='';
     this.editDialogForm.get('youtubeUrl')?.setValue(null)
+  }
+  selectItemPortfolio(e:any){
+    console.log(e.value.name)
+    // this.selectedPortfolioStatus=e.value.name
+    let value=e.value.name
+    console.log(value)
+    this.editDialogForm.get('portfolioStatus')?.setValue(value.name)
+    console.log(this.editDialogForm.value)
   }
 }

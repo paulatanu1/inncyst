@@ -27,6 +27,8 @@ export class ProtfolioDetailsComponent implements OnInit {
   @Output() individualObj = new EventEmitter();
   @Output() id = new EventEmitter();
   uploadItem: any;
+  portfolioStatusOption:any
+  selectedPortfolioStatus:any
   selectedItem!: string;
   url: string = '';
   selectPdf: any;
@@ -79,12 +81,20 @@ export class ProtfolioDetailsComponent implements OnInit {
       { name: 'url' },
       {name:'youtubeVideo'}
     ];
+    this.portfolioStatusOption=[
+      {name:'Ongoing',value:'ongoing'},
+      {name:'Completed',value:'completed'}
+    ]
   }
   selectItem(e: any, id: number) {
     // this.myForm.get('selectedItem')?.patchValue(e.value.name);
     // console.log(e.value.name);
     this.selectedItem=e.value.name
     // console.log(this.myForm.value.selectedItem);
+  }
+  selectItemPortfolio(e:any,id:number){
+    this.selectedPortfolioStatus=e.value.value
+    console.log(this.selectedPortfolioStatus)
   }
 
   //IMAGE UPLOAD START...................................................
@@ -257,6 +267,7 @@ export class ProtfolioDetailsComponent implements OnInit {
     formData.append('image',this.myForm.value.image)
     formData.append('url',this.myForm.value.url)
     formData.append('youtubeUrl',this.myForm.value.youtubeUrl)
+    formData.append('portfoliostatus',this.selectedPortfolioStatus)
 this.portfolio.addPortfolio(formData).subscribe({
   next:(res=>{
     console.log(res,'121')

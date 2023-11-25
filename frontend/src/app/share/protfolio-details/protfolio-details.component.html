@@ -27,6 +27,16 @@
     <li>
       <div class="px3">
         <p-dropdown
+          [options]="portfolioStatusOption"
+          placeholder="portfolio status"
+          optionLabel="name"
+          (onChange)="selectItemPortfolio($event, obj.id)"
+        ></p-dropdown>
+      </div>
+    </li>
+    <li>
+      <div class="px3">
+        <p-dropdown
           [options]="uploadItem"
           placeholder="Select a option"
           optionLabel="name"
@@ -34,6 +44,7 @@
         ></p-dropdown>
       </div>
     </li>
+
   </ol>
   <div *ngIf="selectedItem == 'Pdf'">
     <label>please upload pdf...</label>
@@ -68,7 +79,7 @@
   <div *ngIf="selectedItem == 'url'">
     <div>
       <p>upload url</p>
-      <input type="url" formControlName="url" (change)="urlChange($event)" />
+      <input type="url" formControlName="url" (change)="urlChange($event)" placeholder="youtubeUrl"/>
     </div>
   </div>
 
