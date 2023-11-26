@@ -274,7 +274,6 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       console.log(form_Data, 'formValue3');
     }
     if (this.postJob.value.jobOpening > 0) {
-      alert('pp');
       form_Data.jobOpening = this.postJob.value.jobOpening;
       console.log(form_Data, 'formValue3');
     }
