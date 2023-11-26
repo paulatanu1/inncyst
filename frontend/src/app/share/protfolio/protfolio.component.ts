@@ -12,7 +12,7 @@ interface Ifield {
   image: {};
   url: string;
   youtubeUrl: string;
-  portfoliostatus:string
+  portfolioStatus:string
 }
 @Component({
   selector: 'app-protfolio',
@@ -58,7 +58,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       image: undefined,
       url: undefined,
       youtubeUrl: undefined,
-      portfoliostatus:undefined
+      portfolioStatus:undefined
     },
   ];
   commonYoutubeUrl = 'https://www.youtube.com/embed/';
@@ -75,7 +75,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         image: {},
         url: '',
         youtubeUrl: '',
-        portfoliostatus:''
+        portfolioStatus:''
       },
     ];
   }
@@ -108,7 +108,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       image: {},
       url: '',
       youtubeUrl: '',
-      portfoliostatus:''
+      portfolioStatus:''
     });
     console.log(this.field);
 
@@ -123,11 +123,11 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       pdf: [{}],
       url: [''],
       youtubeUrl: [''],
-      portfoliostatus:['ongoing']
+      portfolioStatus:['']
     });
     this.portfolioStatusOption=[
       {name:'Ongoing',value:'ongoing'},
-      {name:'Completed',value:'completed'}
+      {name:'Completed',value:'complete'}
     ]
   }
   getPortfolio() {
@@ -164,7 +164,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       image: {},
       url: '',
       youtubeUrl: '',
-      portfoliostatus:''
+      portfolioStatus:''
     });
   }
   getObj(e: any) {
@@ -196,7 +196,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         image: {},
         url: '',
         youtubeUrl: '',
-        portfoliostatus:''
+        portfolioStatus:''
       },
     ];
     this.getPortfolio();
@@ -206,7 +206,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     this.editDialog = true;
     this.editPortfolioId = id;
     // this.editDialogForm.setValue(this.)
-    this.portfolio.getSinglePortfolio(id).subscribe({
+    this.portfolio?.getSinglePortfolio(id).subscribe({
       next: (res) => {
         this.editPortfolioDetails=res.data;
         let portfoliostatus=res.data.portfolioStatus
@@ -218,7 +218,8 @@ console.log(portfoliostatus,'ps')
         this.editDialogForm.get('youtubeUrl')?.setValue(res.data.youtubeUrl);
         this.editDialogForm.get('image')?.setValue(res.data.image);
         this.editDialogForm.get('pdf')?.setValue(res.data.pdf);
-        this.editDialogForm.get('portfoliostatus')?.setValue(portfoliostatus)
+        this.editDialogForm.get('portfolioStatus')?.setValue(portfoliostatus)
+        // this.editDialogForm.setValue({'portfolioStatus':portfoliostatus})
         this.editImage = res.data?.image?.split('-')[2];
         this.editPdf = res.data?.pdf?.split('-')[2];
         this.youtube=res.data?.youtubeUrl
@@ -325,7 +326,7 @@ console.log(portfoliostatus,'ps')
   selectItemEditPortfolio(e:any){
     const status=e.value.value
 console.log(status)
-      this.editDialogForm.patchValue({'portfoliostatus':status})
+      this.editDialogForm.patchValue({'portfolioStatus':status})
     console.log(e.value)
     console.log(this.editDialogForm.value)
   }

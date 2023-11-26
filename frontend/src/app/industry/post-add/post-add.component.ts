@@ -12,6 +12,14 @@ interface cities {
   optionName: string;
   code: string;
 }
+interface Ieducation {
+  name: string;
+  value: string;
+}
+interface IexperienceTime {
+  name: string;
+  value: string;
+}
 interface Payload {
   type: string;
   details: string;
@@ -26,7 +34,7 @@ interface Payload {
   salaryType: string;
   perks: string;
   id?: string;
-  location:string
+  location: string;
 }
 interface SavePayload {
   type?: string;
@@ -42,7 +50,7 @@ interface SavePayload {
   salaryType?: string;
   perks?: string;
   id?: string;
-  location:string
+  location: string;
 }
 @Component({
   selector: 'app-post-add',
@@ -51,6 +59,8 @@ interface SavePayload {
 })
 export class PostAddComponent implements OnInit, AfterViewInit {
   cities: cities[];
+  education: Ieducation[];
+  experienceTime: IexperienceTime[];
   city!: string;
   postJob: FormGroup;
   saveDraftId!: string;
@@ -59,7 +69,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
   obj: any;
   display: boolean = false;
   savedDraftData: any = {};
-  status!:boolean;
+  status!: boolean;
   opportunityOptions = [
     {
       name: 'opportunity',
@@ -83,6 +93,13 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     { value: 'Remote', label: 'Remote', inputId: 'remote' },
   ];
 
+  title!: string;
+  formvisibility: boolean = false;
+  intranshipContent: boolean = false;
+  jobContent: boolean = false;
+  submitButtonVisibility: boolean = true;
+  resetbuttonVisibility: boolean = false;
+  salaryType!: string;
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private fb: FormBuilder,
@@ -97,6 +114,18 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       { optionName: 'monthly', code: 'M' },
       { optionName: 'yearly', code: 'Y' },
     ];
+    this.education = [
+      { name: 'HS', value: 'hs' },
+      { name: 'Diploma', value: 'diploma' },
+      { name: 'Bachelors', value: 'bachelor' },
+      { name: 'Masters', value: 'master' },
+    ];
+
+    this.experienceTime = [
+      { name: 'Month', value: 'months' },
+      { name: 'Years', value: 'years' },
+    ];
+
     window.scrollTo(0, 0);
     this.postJob = this.fb.group({
       type: [''],
@@ -106,13 +135,16 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       startDate: [''],
       duration: [''],
       durationIn: [this.cities[0].optionName],
+      education: ['hs'],
+      experience: [0],
+      experienceTime: ['months'],
       jobOpening: [0],
       responsibilities: [[]],
       stipend: [''],
       salary: [],
       salaryType: [this.cities[0].optionName],
       perks: [[]],
-      location:['']
+      location: [''],
     });
   }
   ngAfterViewInit(): void {
@@ -134,18 +166,32 @@ export class PostAddComponent implements OnInit, AfterViewInit {
               next: (res) => {
                 console.log(res.data);
                 this.editedJobData = res.data;
-                this.status=this.editedJobData.status
+                if (res.data.type) {
+                 this.typeSelect();
+                }
+                this.status = this.editedJobData.status;
                 this.postJob.get('type')?.patchValue(this.editedJobData.type);
                 this.postJob
                   .get('details')
                   ?.patchValue(this.editedJobData.details);
-                  this.postJob.get('location')?.patchValue(this.editedJobData.location)
+                this.postJob
+                  .get('location')
+                  ?.patchValue(this.editedJobData.location);
                 this.postJob
                   .get('skills')
                   ?.patchValue(this.editedJobData.skills);
                 this.postJob
                   .get('intranshipType')
                   ?.patchValue(this.editedJobData.intranshipType);
+                this.postJob
+                  .get('education')
+                  ?.patchValue(this.editedJobData.education);
+                this.postJob
+                  .get('experienceTime')
+                  ?.patchValue(this.editedJobData.experienceTime);
+                this.postJob
+                  .get('experience')
+                  ?.patchValue(this.editedJobData.experience);
                 this.postJob
                   .get('startDate')
                   ?.patchValue(this.editedJobData.startDate);
@@ -187,9 +233,21 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       form_Data.type = this.postJob.value.type;
       console.log(form_Data, 'formValue2');
     }
-    if(this.postJob.value.location){
+    if (this.postJob.value.location) {
       form_Data.location = this.postJob.value.location;
       console.log(form_Data, 'formValue12');
+    }
+    if (this.postJob.value.education) {
+      form_Data.education = this.postJob.value.education;
+      console.log(form_Data, 'formValue3');
+    }
+    if (this.postJob.value.experienceTime) {
+      form_Data.experienceTime = this.postJob.value.experienceTime;
+      console.log(form_Data, 'formValue3');
+    }
+    if (this.postJob.value.experience) {
+      form_Data.experience = this.postJob.value.experience;
+      console.log(form_Data, 'formValue3');
     }
     if (this.postJob.value.details) {
       form_Data.details = this.postJob.value.details;
@@ -203,7 +261,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       form_Data.intranshipType = this.postJob.value.intranshipType;
       console.log(form_Data, 'formValue3');
     }
-    if (this.postJob.value.startDate.length > 0) {
+    if (this.postJob.value.startDate?.length > 0) {
       form_Data.startDate = this.postJob.value.startDate;
       console.log(form_Data, 'formValue3');
     }
@@ -216,6 +274,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       console.log(form_Data, 'formValue3');
     }
     if (this.postJob.value.jobOpening > 0) {
+      alert('pp');
       form_Data.jobOpening = this.postJob.value.jobOpening;
       console.log(form_Data, 'formValue3');
     }
@@ -270,10 +329,12 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     });
   }
   submitForm() {
-    
     if (this.postJob.valid) {
       let formData: Payload = this.postJob.value;
-      formData = { ...formData, id: this.saveDraftId?this.saveDraftId:this.editedJobId };
+      formData = {
+        ...formData,
+        id: this.saveDraftId ? this.saveDraftId : this.editedJobId,
+      };
       if (this.saveDraftId) {
         formData.id = this.saveDraftId;
         this.display = false;
@@ -310,41 +371,44 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     }
   }
 
-  editJob(id:any){
+  editJob(id: any) {
     console.log(id);
-    console.log(this.editedJobId)
+    console.log(this.editedJobId);
     if (this.postJob.valid) {
       let formData: Payload = this.postJob.value;
-      formData = { ...formData, id: this.saveDraftId?this.saveDraftId:this.editedJobId };
+      formData = {
+        ...formData,
+        id: this.saveDraftId ? this.saveDraftId : this.editedJobId,
+      };
       if (this.saveDraftId) {
         formData.id = this.saveDraftId;
         this.display = false;
       }
 
-      if(this.editedJobId){
-              this.jobPost.editedJob(this.editedJobId,formData).subscribe({
-        next: (resp) => {
-          console.log(resp);
-          this.display = false;
-          this.router.navigateByUrl('/industry/jobs');
-          this._toast.showToaster.next({
-            severity: 'success',
-            summary: 'success',
-            detail: resp.message,
-          });
-          this.display = false;
-        },
-        error: (err) => {
-          this.display = false;
-          this.router.navigateByUrl('/industry/jobs')
+      if (this.editedJobId) {
+        this.jobPost.editedJob(this.editedJobId, formData).subscribe({
+          next: (resp) => {
+            console.log(resp);
+            this.display = false;
+            this.router.navigateByUrl('/industry/jobs');
+            this._toast.showToaster.next({
+              severity: 'success',
+              summary: 'success',
+              detail: resp.message,
+            });
+            this.display = false;
+          },
+          error: (err) => {
+            this.display = false;
+            this.router.navigateByUrl('/industry/jobs');
 
-          this._toast.showToaster.next({
-            severity: 'Error',
-            summary: 'Error',
-            detail: err.error.message,
-          });
-        },
-      });
+            this._toast.showToaster.next({
+              severity: 'Error',
+              summary: 'Error',
+              detail: err.error.message,
+            });
+          },
+        });
       }
 
       // Now you can use formData to send the data to your API
@@ -369,5 +433,39 @@ export class PostAddComponent implements OnInit, AfterViewInit {
   }
   edit() {
     this.display = false;
+  }
+
+  //.......................
+  //   internshipSelect(e:any){
+  // console.log(e.target.value)
+
+  // this.title=e.target.value;
+  // }
+  typeSelect() {
+    let type = this.postJob.get('type')?.value;
+    console.log(type);
+    this.title = type;
+    this.formvisibility = true;
+    if (type == 'intranship') {
+      this.intranshipContent = true;
+      this.jobContent = false;
+      this.salaryType = 'Stipend';
+    }
+    if (type == 'job') {
+      this.intranshipContent = false;
+      this.jobContent = true;
+      this.salaryType = 'Salary';
+    }
+    this.submitButtonVisibility = false;
+    this.resetbuttonVisibility = true;
+  }
+  typeReset() {
+    this.formvisibility = false;
+    this.intranshipContent = false;
+    this.jobContent = false;
+    this.salaryType = '';
+    this.postJob.reset();
+    this.submitButtonVisibility = true;
+    this.resetbuttonVisibility = false;
   }
 }
