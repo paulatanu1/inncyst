@@ -20,6 +20,7 @@
                 background: #D9D9D9;
                 border-radius: 100%;
                 display: block;
+                overflow: hidden;
             }
         }
         .contact_details {
@@ -56,6 +57,13 @@
                     }
                 }
             }
+            textarea {
+                margin-top:10px;
+                width: 100%;
+                background: #FFFFFF;
+                border: 1px solid #262626;
+                border-radius: 8px;
+            }
         }
         label {
             color: #000000;
@@ -64,7 +72,7 @@
             display: block;
             margin-bottom: 5px;
         }
-        input {
+        input[type=text] {
             width: 100%;
             background: #FFFFFF;
             border: 1px solid #262626;
@@ -81,25 +89,56 @@
                 line-height: 28px;
             }
             .uploadField {
-                display: flex;
-                flex-direction: row;
+                width:100%;
                 border: 1px solid #000000;
                 border-radius: 8px 8px 8px 8px;
                 height: 85px;
                 overflow: hidden;
-                & > span {
+                position: relative;
+                &:before {
+                    // background: #E30000;
+                    // border-right: 1px solid #000000;
+                    // border-radius: 8px 0 0 8px;
+                    // flex:0 0 80px;
+                    // color: #FFFFFF;
+                    // font-weight: 600;
+                    // font-size: 16px;
+                    // line-height: 85px;
+                    // text-align: center;
+                    // position: relative;
+                    // left: 0;
+                    // width: 83px;
+                    content: "PDF";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    display: inline-block;
+                    width: 80px;
+                    height: 85px;
                     background: #E30000;
                     border-right: 1px solid #000000;
-                    border-radius: 8px 0 0 8px;
-                    flex:0 0 80px;
-                    color: #FFFFFF;
+                    color: #fff;
                     font-weight: 600;
+                    z-index: 25;
                     font-size: 16px;
                     line-height: 85px;
+                    padding: 0 15px;
+                    text-transform: uppercase;
+                    pointer-events: none;
+                    border-radius: 8px 0 0 8px;
                     text-align: center;
                 }
+                // &:after {
+
+                // }
                 .p-element {
                     flex:0 0 90%;
+                }
+                input {
+                    border: none;
+                    height: 85px;
+                    padding-left: 0;
+                    opacity: 0;
                 }
             }
             ::ng-deep .p-fileupload-choose {
@@ -183,4 +222,7 @@
         display: inline-block;
         vertical-align: middle;
     }
+}
+.modal-content {
+    box-shadow: none;
 }

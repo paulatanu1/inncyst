@@ -11,11 +11,8 @@ ls.config.encrypt = environment.LS_CONFIG_ENCRYPT;
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-  ) {}
-
+  role = ls.get('role');
+  constructor(private router: Router, private http: HttpClient) {}
   ApiCallWithLocalization(
     data: any,
     url: any,
@@ -42,13 +39,30 @@ export class ApiService {
 
     let httpHeaderValue = new HttpHeaders();
     if (headertoken == undefined) {
+      if (ls.get('role') != null) {
+        httpHeaderValue = httpHeaderValue.set(
+          'Authorization',
+          'Bearer ' + ls.get('login_token')
+        );
+      } else {
+        httpHeaderValue = httpHeaderValue;
+      }
+
+      // .set(
+      //   'Content-Type',
+      //   'multipart/form-data; boundary=----WebKitFormBoundaryFwIrrqToxWfE8BEt'
+      // )
+      // .set('X-localization', localization);
+
       httpHeaderValue = httpHeaderValue.set('X-localization', localization);
-    } else {
-      httpHeaderValue = httpHeaderValue
-        .set('Authorization', 'Bearer ' + ls.set('login_token',true))
-        //.set('Content-Type', 'application/json')
-        .set('X-localization', localization);
     }
+    //  else {
+
+    //   httpHeaderValue = httpHeaderValue
+    //     .set('Authorization', 'Bearer ' + ls.set('login_token', ls.get('login_token')))
+    //     //.set('Content-Type', 'application/json')
+    //     .set('X-localization', localization);
+    // }
 
     if (method == 'post') {
       return this.http
@@ -61,8 +75,23 @@ export class ApiService {
           map((response: any) => {
             var responseobj = JSON.parse(JSON.stringify(response.body));
             responseobj.status = response.status;
-            console.log(responseobj.status ,'status')
-            console.log(responseobj.token , 'token');
+            if (responseobj.token != undefined) {
+              ls.set('login_token', responseobj.token);
+            }
+            return responseobj;
+          })
+        );
+    } else if (method == 'delete') {
+      return this.http
+        .delete(url, { headers: httpHeaderValue, observe: 'response' })
+        .pipe(
+          timeout(environment.API_TIMEOUT),
+          catchError((e, c) => {
+            return throwError(e);
+          }),
+          map((response: any) => {
+            var responseobj = JSON.parse(JSON.stringify(response.body));
+            responseobj.status = response.status;
             if (responseobj.token != undefined) {
               ls.set('login_token', responseobj.token);
             }
@@ -84,6 +113,15 @@ export class ApiService {
               ls.set('login_token', responseobj.token);
             }
             return responseobj;
+          })
+        );
+    } else if (method == 'put') {
+      return this.http
+        .put(url, data, { headers: httpHeaderValue, observe: 'response' })
+        .pipe(
+          timeout(environment.API_TIMEOUT),
+          catchError((e, c) => {
+            return throwError(e);
           })
         );
     } else {

@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -14,17 +14,50 @@ import { ChangePasswordComponent } from './share/change-password/change-password
 import { MyProfileComponent } from './share/my-profile/my-profile.component';
 import { IndustryModule } from './industry/industry.module';
 import { NgOtpInputModule } from 'ng-otp-input';
-
+import { LoginDetailsService } from './common-service/login-details.service';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { PageNotFoundComponent } from './share/page-not-found/page-not-found.component';
+import { ProtfolioComponent } from './share/protfolio/protfolio.component';
+import { ProtfolioDetailsComponent } from './share/protfolio-details/protfolio-details.component';
+import {EditorModule} from 'primeng/editor';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { SanitizerUrlPipe } from './pipe/sanitizer-url.pipe';
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, ChangePasswordComponent, MyProfileComponent,],
-  imports: [BrowserModule, NgOtpInputModule,AppRoutingModule, SharedModule,BrowserAnimationsModule,FormsModule,ReactiveFormsModule,RouterModule.forRoot([]),NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),HttpClientModule ],
-  exports: [SharedModule,FormsModule,ReactiveFormsModule,NgOtpInputModule],
-  providers: [SharedModule,{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true,
-  },NgOtpInputModule],
+  declarations: [
+    AppComponent,
+    LoginPageComponent,
+    ChangePasswordComponent,
+    MyProfileComponent,
+    PageNotFoundComponent,
+    ProtfolioComponent,
+    ProtfolioDetailsComponent,
+    SanitizerUrlPipe,
+  ],
+  imports: [
+    BrowserModule,
+    NgOtpInputModule,
+    AppRoutingModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot([]),
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
+    HttpClientModule,
+    InfiniteScrollModule,EditorModule,PdfViewerModule
+  ],
+  exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
+  providers: [
+    SharedModule,
+    LoginDetailsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    NgOtpInputModule,
+  ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

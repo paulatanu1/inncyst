@@ -1,0 +1,188 @@
+<section class="portfolio_sec">
+  <div
+    (click)="addProtfolio()"
+    icon="pi pi-info-circle"
+    label="Show"
+    class="add_portfolio_btn"
+  >
+    <i class="pi pi-plus"></i><span>Add Portfolio</span>
+  </div>
+</section>
+<p-dialog class="dialog" [(visible)]="display" (onHide)="handleDialogHide()">
+  <section class="portfolio_sec">
+    <ng-container>
+      <div *ngFor="let a of field">
+        <app-protfolio-details
+          [obj]="a"
+          (individualObj)="getObj($event)"
+          (id)="deletedObjId($event)"
+        ></app-protfolio-details>
+        <br />
+      </div>
+      <br />
+    </ng-container>
+  </section>
+</p-dialog>
+
+<!-- <button (click)="getProtfolio()">get obj</button> -->
+
+<hr />
+<!-- .........................................details start here............-->
+<div>
+  <div *ngIf="portfolioDetails.length == 0">
+    <p>no data found</p>
+  </div>
+  <ng-container *ngIf="portfolioDetails.length != 0">
+    <div *ngFor="let item of portfolioDetails">
+      <button (click)="editPortfolio(item._id)">edit</button><br />
+      <button (click)="deletePortfolio(item._id)">delete</button>
+      <p>title:-- {{ item.title }}</p>
+      <p [innerHtml]="item.description"></p>
+      <p>portfolio status :--  {{item.portfolioStatus}}</p>
+      <ng-container *ngIf="item.image != 'http://localhost:5500null'">
+        <p>Image:--<img [src]="item.image" alt="" /></p>
+      </ng-container>
+      <ng-container *ngIf="item.url">
+        Url:--
+        <a target="blank" [href]="item.description">{{ item.url }}</a>
+      </ng-container>
+      <ng-container *ngIf="item.pdf != 'http://localhost:5500null'">
+        <p>Pdf:--</p>
+        <pdf-viewer
+          [src]="item.pdf"
+          [render-text]="true"
+          [original-size]="false"
+          style="width: 400px; height: 500px"
+        ></pdf-viewer>
+      </ng-container>
+
+      <ng-container *ngIf="item.youtubeUrl">
+        <P>YOUTUBE</P>
+        <iframe
+          width="560"
+          height="315"
+          [src]="item.youtubeUrl | sanitizerUrl"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </ng-container>
+
+      <hr />
+    </div>
+  </ng-container>
+</div>
+<!-- EDIT DIALOG-->
+<div>
+  <p-dialog
+    header="Title"
+    [(visible)]="editDialog"
+    (onHide)="onHideEditDialog()"
+  >
+    Content
+
+    <form [formGroup]="editDialogForm" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="title" placeholder="title" />
+
+      <p-editor
+        [style]="{ height: '320px' }"
+        formControlName="description"
+        placeholder="description"
+      >
+        <ng-template pTemplate="header">
+          <span class="ql-formats">
+            <button type="button" class="ql-bold" aria-label="Bold"></button>
+            <button
+              type="button"
+              class="ql-italic"
+              aria-label="Italic"
+            ></button>
+            <button
+              type="button"
+              class="ql-underline"
+              aria-label="Underline"
+            ></button>
+          </span>
+        </ng-template>
+      </p-editor>
+<p>kkkkkkkkkkkkk</p>
+      <!-- <div *ngIf="editPortfolioDetails?.portfolioStatus != null"> -->
+        <p-dropdown
+          [options]="portfolioStatusOption"
+          optionLabel="name"
+          (onChange)="selectItemEditPortfolio($event)"
+          formControlName="portfolioStatus"
+          optionValue="value"
+        >
+      </p-dropdown>
+      <!-- </div> -->
+
+      <div *ngIf="editPortfolioDetails?.url != 'null'">
+        <label>uploaded url :--</label>
+        <input
+          type="url"
+          formControlName="url"
+          placeholder="URL"
+          (change)="urlChange($event)"
+        />
+      </div>
+      <div *ngIf="editPortfolioDetails?.image != null">
+        <ng-container *ngIf="editImage">
+          {{ editImage }}
+          <button (click)="removeImg()">X</button>
+        </ng-container>
+
+        <ng-container *ngIf="!editImage">
+          <label>please upload Image...</label>
+          <br />
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onImageSelected($event)"
+            id="imageInput"
+          />
+        </ng-container>
+      </div>
+      <div *ngIf="editPortfolioDetails?.pdf != null">
+        <ng-container *ngIf="editPdf">
+          {{ editPdf }}
+          <button (click)="removePdf()">X</button>
+        </ng-container>
+        <ng-container *ngIf="!editPdf">
+          <label>please upload pdf...</label>
+          <br />
+          <input
+            type="file"
+            name="pdfFile"
+            #fileInput
+            id="pdfInput"
+            (change)="pdfSelected($event)"
+            accept=".pdf"
+          />
+          <br />
+        </ng-container>
+      </div>
+      <div *ngIf="editPortfolioDetails?.youtubeUrl != ''">
+        <ng-container *ngIf="youtube">
+          <P>YOUTUBE</P>
+          <iframe
+            width="560"
+            height="315"
+            [src]="editPortfolioDetails.youtubeUrl | sanitizerUrl"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+          <button (click)="removeYoutube()">X</button>
+        </ng-container>
+        <ng-container *ngIf="!youtube">
+          <p>upload Youtubeurl</p>
+          <input
+            type="url"
+            formControlName="youtubeUrl"
+            (change)="youtubeUrlChange($event)"
+          />
+        </ng-container>
+      </div>
+      <button type="submit">submit</button>
+    </form>
+  </p-dialog>
+</div>

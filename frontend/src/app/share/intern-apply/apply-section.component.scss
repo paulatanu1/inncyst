@@ -115,3 +115,11 @@ button {
 ::ng-deep .p-dialog-content {
   padding: 0 !important;
 }
+
+@media only screen and (min-width:320px) and (max-width:767px) {
+  .section-wrapper {
+    .jobs {
+      padding: 25px;
+    }
+  }
+}

@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container-fluid" *ngIf="signupPageHide">
   <div class="sign-up-wrapper">
     <div class="left-section">
@@ -88,7 +89,7 @@
           </div>
           <div
             class="col-12 md:col-12 mt-3 mb-4 full-width"
-            style="position: relative"
+            style="position: relative;"
           >
             <span class="p-float-label">
               <p-password
@@ -134,7 +135,7 @@
 
           <div class="col-12 md:col-12 mt-3 mb-4 dropdown-full-width mt-5">
             <span class="p-float-label">
-               <label class="dropdown-lable-field" for="float-input">
+              <label class="dropdown-lable-field" for="float-input">
                 Select The correct option
               </label>
               <p-dropdown
@@ -143,10 +144,9 @@
                 formControlName="options"
                 optionValue="optionName"
               ></p-dropdown>
-             
             </span>
           </div>
-          <div class="col-12 md:col-12 mt-3 mb-3" style="position: relative">
+          <div class="col-12 md:col-12 mt-3 mb-3" style="position: relative;">
             <span class="checkbox-sec">
               <input type="checkbox" formControlName="agree" />
               <label>I have read and agree to the Terms of Service</label>
@@ -184,7 +184,6 @@
 </div>
 <!-- <ng-otp-input  [formCtrl]="YourFormControl"  [config]="{length:5}"></ng-otp-input> -->
 
-
 <!-- <app-registration-otp
   (OtpModal)="OtpModal($event)"
  
@@ -201,63 +200,68 @@
   <div class="right-section">
     <div class="form-wrapper">
       <h5>OTP Verification</h5>
-        <div class="col-12 md:col-12 mt-3 mb-4 form-wrapper-section">
-          <div class="text-area">
-            <p class="heading-line">
-              Enter the 4 digit OTP code sent at your email
-              <b>{{ userEmail }}</b>
-            </p>
-            <a class="cancel-btn" herf="#">Cancel</a>
-          </div>
-          <div class="otp-input-section">
-            <label class="field-label">
-              Enter OTP
-              <sup>*</sup>
-            </label>
-            <span class="p-float-label">
-              <ng-otp-input
-                *ngIf="redirectToOtp === true"
-                #ngOtpInput1
-                [config]="{ length: 4 }"
-                (onInputChange)="onEmailOtpChange($event)"
-              ></ng-otp-input>
-            </span>
-          </div>
-          <div class="resend-section">
-            Didn’t received the code?
-            <a href="#">Resend Code</a>
-          </div>
+      <div class="col-12 md:col-12 mt-3 mb-4 form-wrapper-section">
+        <div class="text-area">
+          <p class="heading-line">
+            Enter the 4 digit OTP code sent at your email
+            <b>{{ userEmail }}</b>
+          </p>
+          <a class="cancel-btn" herf="#">Cancel</a>
         </div>
-        <div class="devider"></div>
-        <div class="col-12 md:col-12 mt-3 mb-4 form-wrapper-section">
-          <div class="text-area">
-            <p class="heading-line">
-              Enter the 4 digit OTP code sent at your Number
-              <b>+91 {{ phone }}</b>
-            </p>
-            <a class="cancel-btn" herf="#">Cancel</a>
-          </div>
-          <div class="otp-input-section">
-            <label class="field-label">
-              Enter OTP
-              <sup>*</sup>
-            </label>
-            <span class="p-float-label">
-              <ng-otp-input
-                #ngOtpInput2
-                [config]="{ length: 4 }"
-                (onInputChange)="onPhoneOtpChange($event)"
-              ></ng-otp-input>
-            </span>
-          </div>
-          <div class="resend-section">
-            Didn’t received the code?
-            <a href="">Resend Code</a>
-          </div>
+        <div class="otp-input-section">
+          <label class="field-label">
+            Enter OTP
+            <sup>*</sup>
+          </label>
+          <span class="p-float-label">
+            <ng-otp-input
+              *ngIf="redirectToOtp === true"
+              #ngOtpInput1
+              [config]="{ length: 4 }"
+              (onInputChange)="onEmailOtpChange($event)"
+            ></ng-otp-input>
+          </span>
         </div>
-        <div class="submit-btn">
-          <p-button class="submit-btns" type="submit" label="verify" (onClick)="onSubmitOtp()"></p-button>
+        <div class="resend-section">
+          Didn’t received the code?
+          <a href="#">Resend Code</a>
         </div>
+      </div>
+      <div class="devider"></div>
+      <div class="col-12 md:col-12 mt-3 mb-4 form-wrapper-section">
+        <div class="text-area">
+          <p class="heading-line">
+            Enter the 4 digit OTP code sent at your Number
+            <b>+91 {{ phone }}</b>
+          </p>
+          <a class="cancel-btn" herf="#">Cancel</a>
+        </div>
+        <div class="otp-input-section">
+          <label class="field-label">
+            Enter OTP
+            <sup>*</sup>
+          </label>
+          <span class="p-float-label">
+            <ng-otp-input
+              #ngOtpInput2
+              [config]="{ length: 4 }"
+              (onInputChange)="onPhoneOtpChange($event)"
+            ></ng-otp-input>
+          </span>
+        </div>
+        <div class="resend-section">
+          Didn’t received the code?
+          <a href="">Resend Code</a>
+        </div>
+      </div>
+      <div class="submit-btn">
+        <p-button
+          class="submit-btns"
+          type="submit"
+          label="verify"
+          (onClick)="onSubmitOtp()"
+        ></p-button>
+      </div>
       <!-- </form> -->
 
       <div class="login-area mb-3 mt-3">
@@ -271,3 +275,4 @@
 <div *ngIf="redirectToOtp === true">
   <p>redirect== true regitration otp pge</p>
 </div>
+<app-footer></app-footer>

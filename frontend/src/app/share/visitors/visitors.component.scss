@@ -103,3 +103,47 @@
     }
   }
 }
+@media only screen and (min-width:320px) and (max-width:767px) {
+  .visitor-wrapper {
+    margin-top: 50px;
+    .numbers-section {
+      ul {
+        flex-direction: column;
+        width: 80%;
+        justify-content: flex-start;
+        align-items: flex-start;
+        li {
+          margin-bottom: 15px;
+          .numbers {
+            font-size: 50px;
+            line-height: 40px;
+          }
+          p {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .overlap-area {
+      width: 90%;
+      top: -40px;
+      height: auto;
+      .test-area {
+        flex-direction: column;
+        padding: 20px;
+        .text {
+          .text-sec {
+            font-size: 30px;
+            line-height: 36px;
+          }
+        }
+        .btn-section {
+          button {
+            margin-top: 20px;
+            padding: 10px 30px;
+          }
+        }
+      }
+    }
+  }
+}

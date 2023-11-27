@@ -1,6 +1,6 @@
-<app-header *ngIf="isDashboard"></app-header>
+<!-- <app-header *ngIf="isDashboard"></app-header> -->
 <router-outlet></router-outlet>
-<app-footer *ngIf="isDisable"></app-footer>
+<!-- <app-footer *ngIf="isDisable"></app-footer> -->
 <ngx-spinner
   bdColor="rgba(0, 0, 0, 0.8)"
   size="medium"
@@ -10,5 +10,4 @@
 >
   <!-- <p style="color: white;">Loading...</p> -->
 </ngx-spinner>
-
 <p-toast position="top-right" [baseZIndex]="5000"></p-toast>

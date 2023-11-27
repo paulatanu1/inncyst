@@ -1,0 +1,117 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <ol type="1">
+    <li>
+      <label>Title:--</label>
+      <input type="text" #text formControlName="title" />
+    </li>
+    <li>
+      <label>Description:--</label>
+      <p-editor [style]="{ height: '320px' }" formControlName="description">
+        <ng-template pTemplate="header">
+          <span class="ql-formats">
+            <button type="button" class="ql-bold" aria-label="Bold"></button>
+            <button
+              type="button"
+              class="ql-italic"
+              aria-label="Italic"
+            ></button>
+            <button
+              type="button"
+              class="ql-underline"
+              aria-label="Underline"
+            ></button>
+          </span>
+        </ng-template>
+      </p-editor>
+    </li>
+    <li>
+      <div class="px3">
+        <p-dropdown
+          [options]="portfolioStatusOption"
+          placeholder="portfolio status"
+          optionLabel="name"
+          (onChange)="selectItemPortfolio($event, obj.id)"
+        ></p-dropdown>
+      </div>
+    </li>
+    <li>
+      <div class="px3">
+        <p-dropdown
+          [options]="uploadItem"
+          placeholder="Select a option"
+          optionLabel="name"
+          (onChange)="selectItem($event, obj.id)"
+        ></p-dropdown>
+      </div>
+    </li>
+
+  </ol>
+  <div *ngIf="selectedItem == 'Pdf'">
+    <label>please upload pdf...</label>
+    <br />
+    <input
+      type="file"
+      name="pdfFile"
+      #fileInput
+      id="pdfInput"
+      formControlName="pdf"
+      (change)="pdfSelected($event)"
+      accept=".pdf"
+    />
+    <br />
+    <button (click)="deletePdf()">X</button>
+    <br />
+  </div>
+  <div *ngIf="selectedItem == 'Image'">
+    <label>please upload Image...</label>
+    <div>
+      <input
+        type="file"
+        formControlName="image"
+        accept="image/*"
+        (change)="onImageSelected($event)"
+        id="imageInput"
+      />
+      <button (click)="removeImage()">X</button>
+    </div>
+  </div>
+
+  <div *ngIf="selectedItem == 'url'">
+    <div>
+      <p>upload url</p>
+      <input type="url" formControlName="url" (change)="urlChange($event)" placeholder="youtubeUrl"/>
+    </div>
+  </div>
+
+  <div *ngIf="selectedItem == 'youtubeVideo'">
+    <div>
+      <p>upload Youtubeurl</p>
+      <input
+        type="url"
+        formControlName="youtubeUrl"
+        (change)="youtubeUrlChange($event)"
+      />
+    </div>
+  </div>
+  <button type="submit">submit</button>
+</form>
+<!-- </li>
+    <li>
+      <div class="px3">
+        <p-dropdown
+  
+          [options]="uploadItem"
+          [(ngModel)]="selectedItem"
+          placeholder="Select a option"
+          optionLabel="name"
+          (onChange)="selectItem($event, obj.id)"
+        ></p-dropdown>
+      </div>
+    </li> 
+   
+  </ol> -->
+
+<!-- <button (click)="UploadProtfolio(text.value)">
+  Upload Protfolio
+</button>  -->
+<!-- <iframe src="https://www.youtube.com/embed/6q9NtaWYbBk"></iframe> -->

@@ -9,15 +9,18 @@
     display: flex;
     align-items: center;
     padding-left: 0;
+
     .logo-section {
       width: 214px;
       height: 90px;
       list-style: none;
       margin-right: 50px;
     }
+
     .menu-item {
       list-style: none;
       padding: 0 20px;
+
       a {
         text-decoration: none;
         font-weight: 400;
@@ -35,6 +38,7 @@
   ul {
     .menu-heading {
       list-style: none;
+
       a {
         font-weight: 400;
         font-size: 24px;
@@ -44,9 +48,11 @@
         text-decoration: none;
       }
     }
+
     .menu-items {
       list-style: none;
       padding-bottom: 15px;
+
       a {
         font-weight: 400;
         font-size: 20px;
@@ -58,11 +64,14 @@
     }
   }
 }
+
 .footer-mid-section {
   display: flex;
   width: 100%;
+
   .left-sec-text {
     width: 53%;
+
     h4 {
       font-weight: 800;
       font-size: 72px;
@@ -80,5 +89,46 @@
     line-height: 25px;
     letter-spacing: 0.5px;
     color: #e0e0e0;
+  }
+}
+
+.powred-by {
+  color: #ffffff;
+  text-align: center;
+}
+
+@media only screen and (min-width:320px) and (max-width:767px) {
+  .footer-wrapper {
+    padding: 35px 20px;
+
+    .footer-section-top {
+      .nav-footer {
+        display: block;
+
+        li {
+          display: inline-block;
+        }
+
+        .logo-section {
+          display: block;
+          margin: 0 auto 20px;
+        }
+
+      }
+    }
+
+    .footer-mid-section {
+      display: block;
+
+      .left-sec-text {
+        width: 100%;
+
+        h4 {
+          font-size: 40px;
+          line-height: 50px;
+          margin-bottom: 20px;
+        }
+      }
+    }
   }
 }

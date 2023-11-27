@@ -1,0 +1,95 @@
+<div *ngIf="studentListData.length > 0">
+  <div *ngFor="let item of studentListData">
+    <p>applicationStatus:-- {{ item.applicationStatus }}</p>
+    <p>availability:- {{ item.availability }}</p>
+    <p *ngIf="item.availability_message != null">
+      availability_message:- {{ item.availability_message }}
+    </p>
+    <p>email:-- {{ item.email }}</p>
+    <p>jobId:- {{ item.jobId }}</p>
+    <p>phone :-- {{ item.phone }}</p>
+    <p>status:- {{ item.status }}</p>
+    <p>studentName:- {{ item.studentName }}</p>
+    <p>student Id :-- {{ item._id }}</p>
+    <p>createdAt:-- {{ item.userId.createdAt }}</p>
+    <p>location:-- {{ item.userId.location }}</p>
+    <p *ngFor="let item of item.userId.skills">skills:- {{ item }}</p>
+    <img [src]="item.userId.image" />
+    <p>verified:-- {{ item.userId.verifie }}</p>
+    {{ item.userId.image }}
+    pdf:--
+    <pdf-viewer
+      [src]="item.pdf"
+      [render-text]="true"
+      [original-size]="false"
+      style="width: 400px; height: 500px"
+    ></pdf-viewer>
+    <div>
+      <h1>Portfolio Details:----</h1>
+<p>title:-- {{item.portfolioData.title}}
+</p>
+<p [innerHtml]="item.portfolioData.description"></p>
+
+<p>url:-- {{item.portfolioData.url}}</p>
+<p>portfolioStatus:-- {{item.portfolioData.portfolioStatus}}</p>
+<p>description:-- {{item.portfolioData.description}}</p>
+<ng-container *ngIf="item.portfolioData.image != 'http://localhost:5500null'">
+  <p>Image:--<img [src]="item.portfolioData.image" alt="" /></p>
+</ng-container>
+<ng-container *ngIf="item.portfolioData.url">
+  Url:--
+  <a target="blank" [href]="item.portfolioData.description">{{ item.portfolioData.url }}</a>
+</ng-container>
+<ng-container *ngIf="item.portfolioData.pdf != 'http://localhost:5500null'">
+  <p>Pdf:--</p>
+  <pdf-viewer
+    [src]="item.portfolioData.pdf"
+    [render-text]="true"
+    [original-size]="false"
+    style="width: 400px; height: 500px"
+  ></pdf-viewer>
+</ng-container>
+<!-- <ng-container *ngIf="item.portfolioData.youtubeUrl">
+  <P>YOUTUBE</P>
+  <iframe
+    width="560"
+    height="315"
+    [src]="item.portfolioData.youtubeUrl | sanitizerUrl"
+    frameborder="0"
+    allowfullscreen
+  ></iframe>
+</ng-container> -->
+
+    </div>
+    <button (click)="openStatus()">Edit status</button>
+    <button (click)="updateStatus(item._id)"></button>
+    <p-dialog
+      header="Title"
+      [(visible)]="editDialog"
+      [style]="{ width: '50vw', height: '300px' }"
+    >
+      >
+      <div class="card flex justify-content-center">
+        <p-dropdown
+          [options]="status"
+          [(ngModel)]="selectedStatus"
+          optionLabel="name"
+          placeholder="Select a Status"
+          (onChange)="statusChange($event, item._id)"
+        ></p-dropdown>
+      </div>
+    </p-dialog>
+  </div>
+</div>
+<div *ngIf="studentListData?.length == 0">
+  <p>Sorry No Student Available.............</p>
+  <p>Sorry No Student Available.............</p>
+  <p>Sorry No Student Available.............</p>
+  <p>Sorry No Student Available.............</p>
+  <p>Sorry No Student Available.............</p>
+  <p>Sorry No Student Available.............</p>
+  <p>Sorry No Student Available.............</p>
+  <p>Sorry No Student Available.............</p>
+  <p>Sorry No Student Available.............</p>
+  <p>Sorry No Student Available.............</p>
+</div>

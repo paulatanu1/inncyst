@@ -1,0 +1,157 @@
+.job_tabs {
+    margin: 125px auto 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    max-width: 1297px;
+    flex-wrap: wrap;
+    ::ng-deep .p-element {
+        width: 100%;
+    }
+    ::ng-deep .p-tabview-nav {
+        li {
+            padding-right: 40px;
+        }
+    }
+    ::ng-deep .p-tabview-panels {
+        padding: 20px 0;
+        .p-tabview-panel {
+            font-family: "Open Sans",sans-serif;
+            ul {
+                padding: 0;
+                margin: 0;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            li {
+                list-style-type: none;
+                box-shadow: 0px 0px 12px 0px #ccc;
+                border-radius: 10px;
+                padding: 15px;
+                flex: 0 0 24%;
+                margin-bottom: 20px;
+                position: relative;
+                    .ellipsis_icon > i {
+                        position: absolute;
+                        right: 10px;
+                        top: 20px;
+                    }
+                    .company_info_head {
+                        display: flex;
+                        flex-direction: row;
+                        .company_logo {
+                            border-radius: 5px;
+                            width:50px;
+                            height: 50px;
+                            background: #ccc;
+                            margin-right: 15px;
+                        }
+                        .location_info {
+                            strong {
+                                font-size: 12px;
+                                font-weight: 500;
+                                text-transform: capitalize; 
+                                position: relative;
+                                margin-right: 15px;
+                                padding-right: 10px;
+                                display: inline-block;
+                                &:after {
+                                    content: '';
+                                    position: absolute;
+                                    width: 5px;
+                                    height: 5px;
+                                    background: #666;
+                                    border-radius: 50%;
+                                    right: -5px;
+                                    top: 6px;
+                                }
+                            }
+                        }
+                    }
+                    h2 {
+                        font-size:18px;
+                        font-weight: 700;
+                        margin-bottom: 0;
+                    }
+                    .job_profile_info {
+                        margin: 10px 0;
+                        span {
+                            display: inline-block;
+                            vertical-align: middle;
+                            border-radius: 5px;
+                            background: #efefef;
+                            padding: 2px 10px;
+                            font-size: 11px;
+                            text-transform: capitalize;
+                            margin-right: 8px;
+                        }
+                    }
+                    .location_info {
+                        margin-bottom: 6px;
+                        i {
+                        display: inline-block;
+                        vertical-align: middle; 
+                        margin-right: 5px;
+                        }
+                        span {
+                            font-size: 12px;
+                            color: #6C6C6C;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                    .company_info {
+                        border-top: 1px solid #e9e9e9;
+                        margin-top: 15px;
+                        padding-top: 15px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        img {
+                            max-width: 60%;
+                            height: auto;
+                            display: inline-block;
+                                vertical-align: middle;
+                                margin-right: 10px;
+                        }
+                        span {
+                            &:first-of-type {
+                                background: none;
+                                font-weight: 600;
+                                padding: 0;
+                                text-transform: none;
+                                color: #999;
+                                font-size: 13px;
+                                strong {
+                                    font-size: 18px;
+                                    font-weight: 700;
+                                    color: #3B82F6;
+                                }
+                                
+                            }
+                            display: inline-block;
+                            border-radius: 5px;
+                            background: #d5f0d8;
+                            color: #49864F;
+                            font-size: 12px;
+                            font-weight: 700;
+                            padding: 4px 12px;
+                            text-transform: capitalize;
+                            &.applied {
+                                background: #C0E2F3;
+                                color: #0F6F9E;
+                            }
+
+                            &.rejected {
+                                background: #EEB2B2;
+                                color: #C63A3A;
+                            }
+                        }
+                    }
+                }  
+            }
+            
+        }
+    }
+}

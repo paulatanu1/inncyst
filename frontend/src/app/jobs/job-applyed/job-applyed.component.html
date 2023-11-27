@@ -1,0 +1,101 @@
+<app-header></app-header>
+<div class="job_tabs">
+  <p-tabView>
+    <p-tabPanel header="Applied">
+      <ul>
+        <li *ngFor="let a of AppliedJobDetails">
+          <div class="ellipsis_icon">
+            <p-overlayPanel #op>
+              <ng-template pTemplate="content">
+                <button (click)="details(a._id)">Details</button>
+                <br />
+                <button (click)="applicationStatus()">
+                  Application Status
+                </button>
+              </ng-template>
+            </p-overlayPanel>
+            <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
+          </div>
+          <div class="company_info_head">
+            <div class="company_logo"></div>
+            <div>
+              <h2>{{ a?.intranshipDetails.intranshipName }}</h2>
+              <div class="location_info">
+                <strong>{{ a?.intranshipDetails.companyName }}</strong>
+                <span>{{ a?.intranshipDetails.location }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="job_profile_info">
+            <span>5-10 Years</span>
+            <span>Full-time</span>
+            <span>Onsite</span>
+          </div>
+
+          <div class="location_info">
+            <i class="pi pi-calendar"></i>
+            <span>{{ a?.intranshipDetails.createdAt | date }}</span>
+          </div>
+
+          <div class="company_info">
+            <!-- <img src="../../../assets/canva.png" width="78" height="32" />  -->
+
+            <!-- <button (click)="details(a)"> send........</button> -->
+            <span>
+              <strong>$1500/</strong>
+              m
+            </span>
+            <span>{{ a?.applicationStatus }}</span>
+          </div>
+        </li>
+        <!-- <li>
+                <i class="pi pi-ellipsis-v"></i>
+                <h2>Front End Developer</h2>
+                <span class="applied">Applied</span>
+                <div class="location_info">
+                    <i class="pi pi-map-marker"></i><span>Kolkata, West Bengal</span>
+                </div>
+                <div class="location_info">
+                    <i class="pi pi-calendar"></i> <span>Applied on Jul 27</span>
+                </div>
+                <div class="company_info">
+                    <img src="../../../assets/canva.png" width="78" height="32" />
+                    <strong>Satisfix Software systems</strong>
+                </div>
+            </li>
+            <li>
+                <i class="pi pi-ellipsis-v"></i>
+                <h2>Front End Developer</h2>
+                <span class="rejected">Not selected by employer</span>
+                <div class="location_info">
+                    <i class="pi pi-map-marker"></i><span>Kolkata, West Bengal</span>
+                </div>
+                <div class="location_info">
+                    <i class="pi pi-calendar"></i> <span>Applied on Jul 27</span>
+                </div>
+                <div class="company_info">
+                    <img src="../../../assets/canva.png" width="78" height="32" />
+                    <strong>Satisfix Software systems</strong>
+                </div>
+            </li>
+            <li>
+                <i class="pi pi-ellipsis-v"></i>
+                <h2>Front End Developer</h2>
+                <span class="rejected">Not selected by employer</span>
+                <div class="location_info">
+                    <i class="pi pi-map-marker"></i><span>Kolkata, West Bengal</span>
+                </div>
+                <div class="location_info">
+                    <i class="pi pi-calendar"></i> <span>Applied on Jul 27</span>
+                </div>
+                <div class="company_info">
+                    <img src="../../../assets/canva.png" width="78" height="32" />
+                    <strong>Satisfix Software systems</strong>
+                </div>
+            </li> -->
+      </ul>
+    </p-tabPanel>
+    <p-tabPanel header="Interviews"></p-tabPanel>
+  </p-tabView>
+</div>
+<app-footer></app-footer>

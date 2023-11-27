@@ -8,17 +8,20 @@
     }
   }
 }
+
 .sign-up-wrapper {
-  margin-top: 113px;
+  margin-top: 116px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  // padding-top: 237px;
 
   .left-section {
     width: 50%;
     display: flex;
     align-items: center;
     border-right: 2px solid #ededed;
+
     .left-image-wrapper {
       img {
         width: 100%;
@@ -29,9 +32,11 @@
   .right-section {
     width: 50%;
     padding-left: 50px;
+
     .form-wrapper {
       max-width: 525px;
       padding: 0 20px;
+
       h5 {
         text-align: center;
         font-weight: 700;
@@ -45,8 +50,10 @@
     }
   }
 }
+
 .full-width {
   margin-bottom: 45px !important;
+
   ::ng-deep .p-password {
     width: 100%;
 
@@ -60,6 +67,7 @@
   width: 100%;
   margin-bottom: 45px !important;
   position: relative;
+
   .p-inputwrapper {
     width: 100%;
 
@@ -73,27 +81,33 @@
     }
   }
 }
-::ng-deep .p-float-label > label {
+
+::ng-deep .p-float-label>label {
   font-weight: 700;
   font-size: 16px;
   line-height: 120%;
   letter-spacing: 0.005em;
   color: #522d80;
 }
+
 ::ng-deep .p-float-label {
-  & .p-inputwrapper-filled ~ label,
-  & .p-inputwrapper-focus ~ label {
+
+  & .p-inputwrapper-filled~label,
+  & .p-inputwrapper-focus~label {
     font-size: 16px;
     top: -20px;
   }
+
   input {
-    &:focus ~ label,
-    &.p-filled ~ label {
+
+    &:focus~label,
+    &.p-filled~label {
       font-size: 16px;
       top: -20px;
     }
   }
 }
+
 .dropdown-full-width {
   ::ng-deep .p-dropdown {
     width: 100%;
@@ -103,6 +117,7 @@
 .full-width-number-field {
   margin-bottom: 45px !important;
   position: relative;
+
   ::ng-deep input {
     width: 100%;
   }
@@ -120,10 +135,10 @@
 .submit-btn {
   ::ng-deep .p-button {
     width: 100%;
-    background: #8cd3f6;
+    background: #3b82f6;
     box-shadow: -3px 2px 6px rgb(0 0 0 / 25%);
     border-radius: 8px;
-    border: 1px solid #8cd3f6;
+    border: 1px solid #3b82f6;
     font-weight: 700;
     font-size: 16px;
     line-height: 120%;
@@ -135,6 +150,7 @@
     line-height: 62px;
   }
 }
+
 .login-area {
   text-align: center;
 
@@ -151,35 +167,43 @@
     }
   }
 }
+
 .submit-btns {
   width: 100%;
 }
+
 .checkbox-sec {
   input {
     margin-right: 10px;
   }
+
   label {
     color: #9a9ab0;
     font-weight: 400;
     font-size: 14px;
   }
 }
+
 .error_msg {
   position: absolute;
   right: 0;
   color: #e24c4c;
   font-size: 12px;
 }
+
 .otp-wrapper {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  padding-top: 130px;
+
   .left-section {
     width: 50%;
     display: flex;
     align-items: center;
     border-right: 2px solid #ededed;
   }
+
   .right-section {
     width: 50%;
   }
@@ -187,6 +211,7 @@
 
 .form-wrapper {
   padding: 0 20px;
+
   h5 {
     text-align: center;
     font-weight: 700;
@@ -201,6 +226,7 @@
 .full-width {
   ::ng-deep .p-password {
     width: 100%;
+
     input {
       width: 100%;
     }
@@ -209,11 +235,14 @@
 
 .full-width-number {
   width: 100%;
+
   .p-inputwrapper {
     width: 100%;
+
     ::ng-deep .p-inputnumber {
       width: 100%;
       width: 100%;
+
       input {
         width: 100%;
       }
@@ -245,10 +274,10 @@
 .submit-btn {
   ::ng-deep .p-button {
     width: 100%;
-    background: #8cd3f6;
+    background: #3b82f6;
     box-shadow: -3px 2px 6px rgb(0 0 0 / 25%);
     border-radius: 8px;
-    border: 1px solid #8cd3f6;
+    border: 1px solid #3b82f6;
     font-weight: 700;
     font-size: 16px;
     line-height: 120%;
@@ -259,6 +288,7 @@
 
 .login-area {
   text-align: center;
+
   a {
     font-style: normal;
     font-weight: 400;
@@ -266,6 +296,7 @@
     line-height: 21px;
     color: #000000;
     text-decoration: none;
+
     span {
       color: #522d80;
     }
@@ -278,18 +309,22 @@
 
 .form-wrapper-section {
   padding: 0 30px;
+
   .text-area {
     display: flex;
     justify-content: space-between;
+
     .heading-line {
       font-weight: 500;
       font-size: 14px;
       line-height: 130%;
       color: #373f46;
+
       b {
         display: block;
       }
     }
+
     .cancel-btn {
       font-weight: 400;
       font-size: 12px;
@@ -300,11 +335,13 @@
       text-decoration: none;
     }
   }
+
   .otp-input-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     .field-label {
       font-weight: 500;
       font-size: 16px;
@@ -314,6 +351,7 @@
       margin-bottom: 10px;
     }
   }
+
   .resend-section {
     text-align: center;
     font-weight: 400;
@@ -321,6 +359,7 @@
     line-height: 20px;
     color: #000000;
     margin-top: 10px;
+
     a {
       text-decoration: none;
       color: #522d80;

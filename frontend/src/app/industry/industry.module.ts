@@ -12,6 +12,10 @@ import { IndustryTopPanelComponent } from './industry-top-panel/industry-top-pan
 import { IndustryReportsComponent } from './industry-reports/industry-reports.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { JobsManagementComponent } from './jobs-management/jobs-management.component';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { AppliedStudenListComponent } from './applied-studen-list/applied-studen-list.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,8 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     IndustryTopPanelComponent,
     IndustryTopRightPanelComponent,
     IndustryReportsComponent,
+    JobsManagementComponent,
+    AppliedStudenListComponent,
   ],
   imports: [
     CommonModule,
@@ -30,8 +36,8 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     FormsModule,
     InputSwitchModule,
     SplitButtonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,InfiniteScrollModule,PdfViewerModule
   ],
-  exports: [InputSwitchModule, SplitButtonModule],
+  exports: [InputSwitchModule, SplitButtonModule, SharedModule],
 })
 export class IndustryModule {}

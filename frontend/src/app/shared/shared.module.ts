@@ -6,8 +6,8 @@ import { SharedComponent } from './shared.component';
 import { HeaderComponent } from '../share/header/header.component';
 import { FooterComponent } from '../share/footer/footer.component';
 import { SliderComponent } from '../share/slider/slider.component';
-import {SplitButtonModule} from 'primeng/splitbutton';
-import {ButtonModule} from 'primeng/button';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ApplySectionComponent } from '../share/intern-apply/apply-section.component';
 import { WhatWeDoComponent } from '../share/what-we-do/what-we-do.component';
@@ -17,32 +17,36 @@ import { OurTeamComponent } from '../share/our-team/our-team.component';
 import { TestimonialsComponent } from '../share/testimonials/testimonials.component';
 import { VisitorsComponent } from '../share/visitors/visitors.component';
 import { ExprienceComponent } from '../share/exprience/exprience.component';
-import {DialogModule} from 'primeng/dialog';
-import {TabMenuModule} from 'primeng/tabmenu';
-import {TabViewModule} from 'primeng/tabview';
-import {InputTextModule} from 'primeng/inputtext';
-import {PasswordModule} from 'primeng/password';
+import { DialogModule } from 'primeng/dialog';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { TabViewModule } from 'primeng/tabview';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 import { MiniHeaderComponent } from '../share/mini-header/mini-header.component';
 import { RippleModule } from 'primeng/ripple';
-import {InputNumberModule} from 'primeng/inputnumber';
-import {DropdownModule} from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
 import { SignUpQuestionsComponent } from '../share/sign-up-questions/sign-up-questions.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {SidebarModule} from 'primeng/sidebar';
-import {CalendarModule} from 'primeng/calendar';
+import { SidebarModule } from 'primeng/sidebar';
+import { CalendarModule } from 'primeng/calendar';
 import { LoginComponent } from '../share/login/login.component';
 import { RegistrationOtpComponent } from '../share/registration-otp/registration-otp.component';
 import { NgOtpInputModule } from 'ng-otp-input';
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
-import {ProgressBarModule} from 'primeng/progressbar';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {FileUploadModule} from 'primeng/fileupload';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { FileUploadModule } from 'primeng/fileupload';
 import { RegistrationPageComponent } from '../share/registration-page/registration-page.component';
-import {AvatarModule} from 'primeng/avatar';
-import {AvatarGroupModule} from 'primeng/avatargroup';
-import {SlideMenuModule} from 'primeng/slidemenu';
-import {CheckboxModule} from 'primeng/checkbox';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { SlideMenuModule } from 'primeng/slidemenu';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ChipsModule } from 'primeng/chips';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
@@ -63,38 +67,42 @@ import {CheckboxModule} from 'primeng/checkbox';
     LoginComponent,
     RegistrationOtpComponent,
     ProgressBarComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
   ],
   imports: [
     CommonModule,
-     SharedRoutingModule,
-     SplitButtonModule,
-     ButtonModule,
-     CarouselModule,
-     DialogModule,
-     TabMenuModule,
-     TabViewModule,
-     InputTextModule,
-     PasswordModule,
-     RippleModule,
-     InputNumberModule,
-     DropdownModule,
-     FormsModule,
-     ReactiveFormsModule,
-     SidebarModule,
-     CalendarModule,
-     NgOtpInputModule,
-     ToastModule,
-     ProgressBarModule,
-     AvatarModule,
-     AvatarGroupModule,
-     SlideMenuModule,
-     RadioButtonModule,
-     CheckboxModule,
-     FileUploadModule
-    ],
+    SharedRoutingModule,
+    SplitButtonModule,
+    ButtonModule,
+    CarouselModule,
+    DialogModule,
+    TabMenuModule,
+    TabViewModule,
+    InputTextModule,
+    PasswordModule,
+    RippleModule,
+    InputNumberModule,
+    DropdownModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SidebarModule,
+    CalendarModule,
+    NgOtpInputModule,
+    ToastModule,
+    ProgressBarModule,
+    AvatarModule,
+    AvatarGroupModule,
+    SlideMenuModule,
+    RadioButtonModule,
+    CheckboxModule,
+    FileUploadModule,
+    ChipsModule,
+    InputTextareaModule,
+    ImageCropperModule,
+    OverlayPanelModule,
+  ],
   exports: [
-    HeaderComponent, 
+    HeaderComponent,
     FooterComponent,
     SliderComponent,
     SplitButtonModule,
@@ -127,8 +135,12 @@ import {CheckboxModule} from 'primeng/checkbox';
     SlideMenuModule,
     RadioButtonModule,
     CheckboxModule,
-    FileUploadModule
+    FileUploadModule,
+    ChipsModule,
+    InputTextareaModule,
+    ImageCropperModule,
+    OverlayPanelModule,
   ],
-  providers:[DatePipe]
+  providers: [DatePipe],
 })
 export class SharedModule {}

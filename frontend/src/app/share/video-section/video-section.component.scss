@@ -1,27 +1,32 @@
-.video-wrapper{
+.video-wrapper {
     margin-bottom: -6px;
     position: relative;
-    video{
+
+    video {
         width: 100%;
         object-fit: cover;
     }
-    .video-texts{
+
+    .video-texts {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        p{
+
+        p {
             font-weight: 600;
             font-size: 20px;
             line-height: 26px;
             text-align: center;
-            color: #27AE60;
+            color: #4f388a;
+            text-shadow: 3px 1px 5px #4f388abf;
         }
-        h5{
+
+        h5 {
             font-weight: 600;
             font-size: 40px;
             line-height: 46px;
@@ -29,6 +34,19 @@
             color: #FFFFFF;
             width: 50%;
             margin: 0 auto;
+            text-shadow: 2px 3px 5px black;
+        }
+    }
+}
+
+@media only screen and (min-width:320px) and (max-width:767px) {
+    .video-wrapper {
+        .video-texts {
+            h5 {
+                font-size: 30px;
+                line-height: 36px;
+                width: 90%;
+            }
         }
     }
 }

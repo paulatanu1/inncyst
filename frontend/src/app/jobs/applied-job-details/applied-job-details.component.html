@@ -1,0 +1,45 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+  <h1>company details:--</h1>
+  <p>
+    intranshipName:-
+    {{ appliedJobDetails.intranshipDetails.intranshipName }}
+  </p>
+  <p>companyName :- {{ appliedJobDetails.intranshipDetails.companyName }}</p>
+  <p>createdAt:- {{ appliedJobDetails.intranshipDetails.createdAt | date }}</p>
+  <p>hasApplied:- {{ appliedJobDetails.intranshipDetails.hasApplied }}</p>
+  <p>
+    intranshipType:-
+    {{ appliedJobDetails.intranshipDetails.intranshipType }}
+  </p>
+  <p>jobType:- {{ appliedJobDetails.intranshipDetails.jobType }}</p>
+  <p>location:- {{ appliedJobDetails.intranshipDetails.location }}</p>
+  <p>salary:- {{ appliedJobDetails.intranshipDetails.salary }}</p>
+  <p>status:-- {{ appliedJobDetails.intranshipDetails.status }}</p>
+  <div *ngIf="appliedJobDetails.intranshipDetails.perks.length">
+    <p *ngFor="let a of appliedJobDetails.intranshipDetails.perks">
+      {{ a }}
+    </p>
+  </div>
+  <div *ngIf="appliedJobDetails.intranshipDetails.skills">
+    <p *ngFor="let a of appliedJobDetails.intranshipDetails.skills">
+      {{ a }}
+    </p>
+  </div>
+
+  <img [src]="appliedJobDetails.intranshipDetails.image" />
+  <p>
+    extra information:-
+    {{ appliedJobDetails.intranshipDetails.information }}
+  </p>
+</div>
+
+<button (click)="backToJobDetails()" style="color: blue;border: 2px solid red; padding: 20px;" 
+>Back</button>

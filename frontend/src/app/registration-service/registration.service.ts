@@ -13,10 +13,10 @@ export class RegistrationService {
     const form_data:any = new Object();
     form_data.name = userName;
     form_data.email = userEmail;
-    form_data.phone = phoneNumber;
+    form_data.phone = phoneNumber.toString();
     form_data.password = password;
-    form_data.userRole = userRole
-
+    form_data.role = userRole
+console.log(form_data,'rupam')
     return this.api.ApiCallWithLocalization(form_data, url, 'post')
   }
 }

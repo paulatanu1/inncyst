@@ -13,7 +13,17 @@ import { UploadResumeStepComponent } from './upload-resume-step/upload-resume-st
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonModule} from 'primeng/radiobutton';
-
+import { FileUploadModule } from 'primeng/fileupload';
+import { JobApplyedComponent } from './job-applyed/job-applyed.component';
+import { TabViewModule } from 'primeng/tabview';
+import { BasicInternshipComponent } from './basic-internship/basic-internship.component';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { DropdownModule } from 'primeng/dropdown';
+import { SliderModule } from 'primeng/slider';
+import { AppliedJobDetailsComponent } from './applied-job-details/applied-job-details.component';
+import { BasicJobComponent } from './basic-job/basic-job.component';
+import {EditorModule} from 'primeng/editor';
 
 @NgModule({
   declarations: [
@@ -21,7 +31,11 @@ import { RadioButtonModule} from 'primeng/radiobutton';
     BannerCardsComponent,
     InternshipsComponent,
     RequiredSkillStepComponent,
-    UploadResumeStepComponent
+    UploadResumeStepComponent,
+    JobApplyedComponent,
+    BasicInternshipComponent,
+    AppliedJobDetailsComponent,
+    BasicJobComponent,
   ],
   imports: [
     CommonModule,
@@ -31,9 +45,13 @@ import { RadioButtonModule} from 'primeng/radiobutton';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    RadioButtonModule
+    RadioButtonModule,
+    FileUploadModule,
+    TabViewModule,
+    BreadcrumbModule,InfiniteScrollModule,DropdownModule, SliderModule,
+    DialogModule,EditorModule
   ],
   exports:[DialogModule, SharedModule],
-  providers:[]
+  // providers:[LoginDetailsService]
 })
 export class JobsModule { }
