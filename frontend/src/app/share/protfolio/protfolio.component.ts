@@ -12,6 +12,7 @@ interface Ifield {
   image: {};
   url: string;
   youtubeUrl: string;
+  portfolioStatus:string
 }
 @Component({
   selector: 'app-protfolio',
@@ -31,6 +32,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   }
   urrl = 'https://www.youtube.com/embed/6q9NtaWYbBk';
   protfolioVissable: boolean = false;
+  selectedPortfolioStatus:any
   display: boolean = false;
   resizable = true;
   currentTime = new Date().getTime();
@@ -45,6 +47,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   editPortfolioId!: number;
   editPortfolioDetails:any;
   youtube=''
+  portfolioStatusOption:any
   portfolioDetails: any = [
     {
       title: undefined,
@@ -55,6 +58,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       image: undefined,
       url: undefined,
       youtubeUrl: undefined,
+      portfolioStatus:undefined
     },
   ];
   commonYoutubeUrl = 'https://www.youtube.com/embed/';
@@ -71,6 +75,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         image: {},
         url: '',
         youtubeUrl: '',
+        portfolioStatus:''
       },
     ];
   }
@@ -103,6 +108,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       image: {},
       url: '',
       youtubeUrl: '',
+      portfolioStatus:''
     });
     console.log(this.field);
 
@@ -117,7 +123,12 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       pdf: [{}],
       url: [''],
       youtubeUrl: [''],
+      portfolioStatus:['']
     });
+    this.portfolioStatusOption=[
+      {name:'Ongoing',value:'ongoing'},
+      {name:'Completed',value:'complete'}
+    ]
   }
   getPortfolio() {
     this.portfolio.getPortfolio().subscribe({
@@ -153,6 +164,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       image: {},
       url: '',
       youtubeUrl: '',
+      portfolioStatus:''
     });
   }
   getObj(e: any) {
@@ -184,6 +196,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         image: {},
         url: '',
         youtubeUrl: '',
+        portfolioStatus:''
       },
     ];
     this.getPortfolio();
@@ -193,16 +206,20 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     this.editDialog = true;
     this.editPortfolioId = id;
     // this.editDialogForm.setValue(this.)
-    this.portfolio.getSinglePortfolio(id).subscribe({
+    this.portfolio?.getSinglePortfolio(id).subscribe({
       next: (res) => {
         this.editPortfolioDetails=res.data;
+        let portfoliostatus=res.data.portfolioStatus
+console.log(portfoliostatus,'ps')
         console.log(res,'resss')
         this.editDialogForm.get('title')?.patchValue(res.data.title);
-        this.editDialogForm.get('description')?.setValue(res.data.description);
-        this.editDialogForm.get('url')?.setValue(res.data.url);
-        this.editDialogForm.get('youtubeUrl')?.setValue(res.data.youtubeUrl);
-        this.editDialogForm.get('image')?.setValue(res.data.image);
-        this.editDialogForm.get('pdf')?.setValue(res.data.pdf);
+        this.editDialogForm.get('description')?.patchValue(res.data.description);
+        this.editDialogForm.get('url')?.patchValue(res.data.url);
+        this.editDialogForm.get('youtubeUrl')?.patchValue(res.data.youtubeUrl);
+        this.editDialogForm.get('image')?.patchValue(res.data.image);
+        this.editDialogForm.get('pdf')?.patchValue(res.data.pdf);
+        this.editDialogForm.patchValue({'portfolioStatus':portfoliostatus})
+        // this.editDialogForm.setValue({'portfolioStatus':portfoliostatus})
         this.editImage = res.data?.image?.split('-')[2];
         this.editPdf = res.data?.pdf?.split('-')[2];
         this.youtube=res.data?.youtubeUrl
@@ -305,5 +322,13 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   removeYoutube(){
     this.youtube='';
     this.editDialogForm.get('youtubeUrl')?.setValue(null)
+  }
+  selectItemEditPortfolio(e:any){
+    const status=e.value.value
+console.log(this.editDialogForm.get('portfolioStatus')?.value)
+// this.editDialogForm.get('portfolioStatus')?.setValue(status)
+      this.editDialogForm.patchValue({'portfolioStatus':status})
+    console.log(e.value)
+    console.log(this.editDialogForm.value)
   }
 }

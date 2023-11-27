@@ -3,8 +3,10 @@ import {
   Component,
   EventEmitter,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -26,6 +28,7 @@ import { OtpVerificationService } from '../registration-otp/otp-verification.ser
 import { LoginApiService } from '../login/login-api.service';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
 import { InternshipProfileService } from '../service/internship-profile.service';
+import { SlideMenu } from 'primeng/slidemenu';
 interface options {
   optionName: string;
   code: string;
@@ -41,7 +44,7 @@ interface IregistrationOption {
   styleUrls: ['./header.component.scss'],
   providers: [MessageService],
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   items: MenuItem[];
   dropdownitems: MenuItem[];
   registration: boolean = false;
@@ -69,6 +72,8 @@ export class HeaderComponent implements OnInit, OnChanges {
   logInToken!: any;
   userType!: any;
   customHeader: boolean = true;
+  @ViewChild('slideMenu') slidemenu!: SlideMenu;
+  isMenuOpen: boolean = true;
   //Outputs
   constructor(
     private otpService: OtpVerificationService,
@@ -94,7 +99,6 @@ export class HeaderComponent implements OnInit, OnChanges {
     }
 
     this.userType = ls.get('userType');
-    console.log(this.userType);
 
     this.items = [
       {
@@ -146,10 +150,9 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
   ngOnChanges() {
     this.userType = ls.get('userType');
-    console.log(this.userType);
-    console.log(this.logInToken);
   }
   ngOnInit(): void {
+    this.closeMenu();
     // debugger
     // this.logoutSuccess=true;
     // this.logoutSuccess=<boolean>ls.get('logoutSuccess');
@@ -159,7 +162,6 @@ export class HeaderComponent implements OnInit, OnChanges {
       },
     });
 
-    console.log(this.userType);
     this.Profileitems = [
       {
         label: 'Profile',
@@ -172,7 +174,7 @@ export class HeaderComponent implements OnInit, OnChanges {
         label: 'Job Apply',
         icon: 'pi pi-user',
         command: () => {
-          this.router.navigate(['/jobs/jobs/my-applyed-job']);
+          this.router.navigate(['/jobs/my-jobs']);
         },
       },
 
@@ -231,7 +233,6 @@ export class HeaderComponent implements OnInit, OnChanges {
     //questions enable from service
     this.quiestion.isQuestionSetEnable.subscribe({
       next: (res) => {
-        console.log(res, 'sidebarEnable');
         this.sidebarEnable = res;
         this.isSignup = res;
       },
@@ -257,8 +258,8 @@ export class HeaderComponent implements OnInit, OnChanges {
       if (event instanceof NavigationEnd) {
         // Scroll to the top of the page
         window.scrollTo(0, 0);
-    }
-   });
+      }
+    });
   }
   product() {
     //check allready login user or not
@@ -268,8 +269,6 @@ export class HeaderComponent implements OnInit, OnChanges {
     } else {
       this.logoutSuccess = false;
     }
-    console.log(this.userType);
-    console.log(this.logInToken);
 
     this.dropdownitems = [
       {
@@ -279,8 +278,7 @@ export class HeaderComponent implements OnInit, OnChanges {
           this.userType = ls.get('userType');
 
           if (this.logInToken && this.userType == 'student') {
-            console.log(this.logInToken, this.userType == 'student');
-            this.router.navigateByUrl('jobs/internships');
+            this.router.navigateByUrl('jobs/posts');
           } else if (!this.logInToken && !this.userType) {
             this.router.navigateByUrl('jobs/basicInternship');
           }
@@ -322,9 +320,9 @@ export class HeaderComponent implements OnInit, OnChanges {
       this.router.navigateByUrl('/contactus');
       this.progress.isProgressBarShow.next(false);
     } else if (url === 'Jobs') {
-      this.router.navigateByUrl('/jobs/internships');
+      this.router.navigateByUrl('/jobs/posts');
     } else if (url === 'My Jobs') {
-      this.router.navigateByUrl('/jobs/jobs/my-applyed-job');
+      this.router.navigateByUrl('/jobs/my-jobs');
     }
   }
 
@@ -337,11 +335,9 @@ export class HeaderComponent implements OnInit, OnChanges {
       let phone: string = this.registerForm.get('mobile')?.value;
       let password: string = this.registerForm.get('confirmPassword')?.value;
       let userRole: string = this.registerForm.get('options')?.value;
-      console.log(userName);
       this.reg
         .sendRegistrationRequest(userName, userEmail, phone, password, userRole)
         .subscribe((response) => {
-          console.log(response, 'response');
           this.registerId = response.data._id;
           ls.set('registerId', this.registerId);
           this.isSignup = true;
@@ -435,5 +431,22 @@ export class HeaderComponent implements OnInit, OnChanges {
   cancel() {
     this.forgotPassword = false;
     this.loginModal = true;
+  }
+
+  closeMenu() {
+    console.log('close0');
+    console.log(this.slidemenu);
+
+    if (this.isMenuOpen) {
+      console.log('close1');
+      // this.slidemenu.hide();
+      this.isMenuOpen = false;
+    }
+  }
+
+  ngOnDestroy(): void {
+    console.log('close3');
+    this.isMenuOpen = false;
+    // this.slidemenu.hide();
   }
 }

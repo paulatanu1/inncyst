@@ -1,5 +1,6 @@
 .form-wrapper {
   padding: 0 20px;
+
   h5 {
     text-align: center;
     font-weight: 700;
@@ -10,11 +11,14 @@
     color: #522d80;
   }
 }
+
 #navbarNav {
   justify-content: center;
+
   .navbar-nav {
     .nav-item {
       padding: 0 10px;
+
       a {
         font-weight: 600;
         font-size: 18px;
@@ -23,7 +27,7 @@
   }
 }
 
-::ng-deep .p-float-label > label {
+::ng-deep .p-float-label>label {
   font-weight: 400;
   font-size: 16px;
   line-height: 120%;
@@ -43,13 +47,16 @@
   background: #fff;
   width: 100%;
   top: 0;
+
   ::ng-deep .profile-dropdown-btn {
     width: auto;
     padding: 10px 10px 6px 10px;
+
     span.p-button-icon {
-      order:2;
+      order: 2;
     }
   }
+
   ::ng-deep .p-avatar {
     border-radius: 50%;
     width: 48px;
@@ -57,18 +64,22 @@
     background: #fff;
     margin-right: 15px;
   }
+
   ::ng-deep .p-slidemenu {
     border: 1px solid #ced4da;
     width: auto;
+
     .p-menuitem-link {
       padding: 15px 15px;
     }
   }
 }
+
 .users-option {
   display: flex;
   align-items: center;
   margin-right: 50px;
+
   .register {
     margin-right: 10px;
   }
@@ -84,6 +95,7 @@
     }
   }
 }
+
 .login {
   .p-button {
     background: #ffffff;
@@ -114,6 +126,7 @@
         color: #737373;
       }
     }
+
     .p-splitbutton-menubutton {
       padding: 0 !important;
       width: auto !important;
@@ -133,12 +146,14 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+
   .left-section {
     width: 50%;
     display: flex;
     align-items: center;
     border-right: 2px solid #ededed;
   }
+
   .right-section {
     width: 50%;
   }
@@ -147,6 +162,7 @@
 .full-width {
   ::ng-deep .p-password {
     width: 100%;
+
     input {
       width: 100%;
     }
@@ -155,11 +171,14 @@
 
 .full-width-number {
   width: 100%;
+
   .p-inputwrapper {
     width: 100%;
+
     ::ng-deep .p-inputnumber {
       width: 100%;
       width: 100%;
+
       input {
         width: 100%;
       }
@@ -205,6 +224,7 @@
 
 .login-area {
   text-align: center;
+
   a {
     font-style: normal;
     font-weight: 400;
@@ -212,6 +232,7 @@
     line-height: 21px;
     color: #000000;
     text-decoration: none;
+
     span {
       color: #522d80;
     }
@@ -226,6 +247,7 @@
   position: fixed;
   top: 1px;
   width: 100%;
+
   // padding-top: 66px;
   ::ng-deep .p-progressbar {
     height: 2px;
@@ -237,4 +259,8 @@
   .navbar-brand {
     margin: auto;
   }
+}
+
+.profile-menu {
+  position: relative;
 }

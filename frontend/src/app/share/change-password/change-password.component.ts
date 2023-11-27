@@ -17,7 +17,7 @@ export class ChangePasswordComponent implements OnInit {
     private fb: FormBuilder,
     private loginApi: LoginApiService,
     private _toast: ToastServiceService,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +46,7 @@ export class ChangePasswordComponent implements OnInit {
             summary: 'success',
             detail: res.message,
           });
-          this.router.navigate(['/jobs/internships'])
+          this.router.navigate(['/jobs/posts']);
         },
         error: (err) => {
           this._toast.showToaster.next({
