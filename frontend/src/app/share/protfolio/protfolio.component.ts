@@ -213,12 +213,12 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
 console.log(portfoliostatus,'ps')
         console.log(res,'resss')
         this.editDialogForm.get('title')?.patchValue(res.data.title);
-        this.editDialogForm.get('description')?.setValue(res.data.description);
-        this.editDialogForm.get('url')?.setValue(res.data.url);
-        this.editDialogForm.get('youtubeUrl')?.setValue(res.data.youtubeUrl);
-        this.editDialogForm.get('image')?.setValue(res.data.image);
-        this.editDialogForm.get('pdf')?.setValue(res.data.pdf);
-        this.editDialogForm.get('portfolioStatus')?.setValue(portfoliostatus)
+        this.editDialogForm.get('description')?.patchValue(res.data.description);
+        this.editDialogForm.get('url')?.patchValue(res.data.url);
+        this.editDialogForm.get('youtubeUrl')?.patchValue(res.data.youtubeUrl);
+        this.editDialogForm.get('image')?.patchValue(res.data.image);
+        this.editDialogForm.get('pdf')?.patchValue(res.data.pdf);
+        this.editDialogForm.patchValue({'portfolioStatus':portfoliostatus})
         // this.editDialogForm.setValue({'portfolioStatus':portfoliostatus})
         this.editImage = res.data?.image?.split('-')[2];
         this.editPdf = res.data?.pdf?.split('-')[2];
@@ -325,7 +325,8 @@ console.log(portfoliostatus,'ps')
   }
   selectItemEditPortfolio(e:any){
     const status=e.value.value
-console.log(status)
+console.log(this.editDialogForm.get('portfolioStatus')?.value)
+// this.editDialogForm.get('portfolioStatus')?.setValue(status)
       this.editDialogForm.patchValue({'portfolioStatus':status})
     console.log(e.value)
     console.log(this.editDialogForm.value)
