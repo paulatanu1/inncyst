@@ -238,7 +238,7 @@ export class RegistrationPageComponent implements OnInit {
           },
           (err) => {
             if (err.error.message == 'User Already exist') {
-              this.otpPageOpen = true;
+              this.otpPageOpen = false;
               this.signupPageHide = false;
             }
             this._toast.showToaster.next({

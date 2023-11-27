@@ -1,3 +1,4 @@
+<app-header></app-header>
 <section class="internship_sec">
   <div class="top_filter_sec">
     <div class="sorting">
@@ -85,15 +86,15 @@
                   {{ a.companyName }}
                   <span>{{ a.type }}</span>
                 </h2>
-              
               </div>
-              <h2>{{a.intranshipType}}</h2>
-              <h2>{{a.details}}</h2><br>
-              <h2>{{a.location}}</h2>
-              <h2>salary {{a.salary}}Lpa</h2>
-              <h2>joining:- {{a.startDate}}</h2>
-              <h2>no of openning:-- {{a.jobOpening}}</h2>
-              <h2>{{a.createdAt}} days ago</h2>
+              <h2>{{ a.intranshipType }}</h2>
+              <h2>{{ a.details }}</h2>
+              <br />
+              <h2>{{ a.location }}</h2>
+              <h2>salary {{ a.salary }}Lpa</h2>
+              <h2>joining:- {{ a.startDate }}</h2>
+              <h2>no of openning:-- {{ a.jobOpening }}</h2>
+              <h2>{{ a.createdAt }} days ago</h2>
               <div class="company_tags">
                 <span *ngFor="let b of a.skills">{{ b }}</span>
               </div>
@@ -261,3 +262,4 @@
   </div>
   <router-outlet></router-outlet>
 </p-dialog>
+<app-footer></app-footer>

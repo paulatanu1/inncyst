@@ -1,3 +1,4 @@
+<app-header></app-header>
 <section class="my_profile_sec" *ngIf="ProfileDetails">
   <div class="profile_whole_sec">
     <div class="my_profile_sec_inner">
@@ -5,12 +6,11 @@
         <figure>
           <img [src]="imagePath" />
           <span>
-            {{ ProfileDetails.status ? "Active" : "Deactive" }}
+            {{ ProfileDetails.status ? 'Active' : 'Deactive' }}
           </span>
         </figure>
       </div>
       <div class="profile_details">
-        
         <button (click)="back()" class="back_btn">Back To Job</button>
         <button (click)="openEdit()" class="edit_btn">Edit</button>
 
@@ -19,7 +19,7 @@
           {{
             ProfileDetails.location
               ? ProfileDetails.location
-              : "Update Your Location"
+              : 'Update Your Location'
           }}
         </p>
         <div class="mail_register">
@@ -29,7 +29,7 @@
           </a>
           <strong>
             Site Register On
-            <span>{{ ProfileDetails.createdAt | date : "MMM d, y" }}</span>
+            <span>{{ ProfileDetails.createdAt | date: 'MMM d, y' }}</span>
           </strong>
         </div>
         <span>
@@ -69,7 +69,11 @@
   position="right"
   [style]="{ width: '50em' }"
 >
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="edit-profile-form">
+  <form
+    [formGroup]="profileForm"
+    (ngSubmit)="onSubmit()"
+    class="edit-profile-form"
+  >
     <div class="profile-section">
       <div class="left-section">
         <div class="profile-pic">
@@ -85,15 +89,14 @@
           ></p-fileUpload> -->
           <div class="file-upload-wrapper">
             <input
-            class="upload-btn"
-            type="file"
-            accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"
-            (change)="fileChangeEvent($event)"
-          />
-          <label></label>
-          <button type="button" class="button-upload">Select File</button>
+              class="upload-btn"
+              type="file"
+              accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"
+              (change)="fileChangeEvent($event)"
+            />
+            <label></label>
+            <button type="button" class="button-upload">Select File</button>
           </div>
-          
         </div>
       </div>
       <div class="right-section">
@@ -186,3 +189,4 @@
 
   <button type="submit" (click)="croppedComplete()">Cropped</button>
 </p-dialog>
+<app-footer></app-footer>
