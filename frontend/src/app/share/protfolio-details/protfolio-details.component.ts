@@ -15,6 +15,7 @@ interface Ifield {
       youtubeUrl:string;
     }
   ];
+  portfolioStatus:string
 }
 @Component({
   selector: 'app-protfolio-details',
@@ -55,7 +56,8 @@ export class ProtfolioDetailsComponent implements OnInit {
         image: {},
         video: [],
         url: '',
-        youtubeUrl:''
+        youtubeUrl:'',
+        portfolioStatus:''
    
   };
   urlValue:string=''
@@ -83,7 +85,7 @@ export class ProtfolioDetailsComponent implements OnInit {
     ];
     this.portfolioStatusOption=[
       {name:'Ongoing',value:'ongoing'},
-      {name:'Completed',value:'completed'}
+      {name:'Completed',value:'complete'}
     ]
   }
   selectItem(e: any, id: number) {
@@ -267,7 +269,7 @@ export class ProtfolioDetailsComponent implements OnInit {
     formData.append('image',this.myForm.value.image)
     formData.append('url',this.myForm.value.url)
     formData.append('youtubeUrl',this.myForm.value.youtubeUrl)
-    formData.append('portfoliostatus',this.selectedPortfolioStatus)
+    formData.append('portfolioStatus',this.selectedPortfolioStatus)
 this.portfolio.addPortfolio(formData).subscribe({
   next:(res=>{
     console.log(res,'121')
