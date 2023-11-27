@@ -123,10 +123,11 @@
       <p-slideMenu
         #menu
         [model]="Profileitems"
-        [popup]="true"
+        [popup]="isMenuOpen"
         [viewportHeight]="280"
         [style]="{ 'min-width': '200px' }"
         appendTo="body"
+        #slideMenu
       ></p-slideMenu>
     </div>
   </div>
