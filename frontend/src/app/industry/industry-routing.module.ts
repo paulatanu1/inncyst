@@ -9,6 +9,7 @@ import { IndustryReportsComponent } from './industry-reports/industry-reports.co
 import { AuthenticateGuard } from '../Guard/authenticate.guard';
 import { IndustryVerificationGuard } from '../Guard/industry-verification.guard';
 import { AppliedStudenListComponent } from './applied-studen-list/applied-studen-list.component';
+import { IndustryProfileComponent } from './industry-profile/industry-profile.component';
 
 const routes:Routes = [
   {path:'',component:IndustryComponent, 
@@ -16,7 +17,8 @@ const routes:Routes = [
     {path:'',component:IndustryDashboardComponent  },
     { path: 'jobs', loadChildren: () => import('./industry-job-management/industry-job-management.module').then(m => m.IndustryJobManagementModule) ,canActivate:[IndustryVerificationGuard]  ,},
     {path:'reports',component:IndustryReportsComponent,canActivate:[IndustryVerificationGuard]  ,},
-    {path:'appliedStudentList',component:AppliedStudenListComponent,canActivate:[IndustryVerificationGuard]}
+    {path:'appliedStudentList',component:AppliedStudenListComponent,canActivate:[IndustryVerificationGuard]},
+    {path:'profile',component:IndustryProfileComponent,canActivate:[IndustryVerificationGuard]}
   ]},
   // { path: 'jobs', loadChildren: () => import('./industry-job-management/industry-job-management.module').then(m => m.IndustryJobManagementModule) }
 ];

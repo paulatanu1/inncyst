@@ -1,0 +1,27 @@
+<h1>please complete your profile........</h1>
+<form [formGroup]="profileForm" (ngSubmit)="submitForm()">
+<div>
+    <label>Compnany Name</label>
+    <input type="text" formControlName="companyName">
+</div>
+<div>
+    <label>Compnany established Year</label>
+    <input type="text" formControlName="companyEstdYear">
+</div>
+<div>
+    <label>Compnany Details</label>
+    <input type="text" formControlName="aboutCompany">
+</div>
+<div>
+    <label>Compnany employee</label>
+    <input type="number" formControlName="empCount">
+</div>
+<div>
+    <label>Compnany workplace</label>
+    <input type="text" formControlName="workPlace">
+</div>
+
+<button type="submit" *ngIf="submitButton">submit</button>
+</form>
+<button (click)="editProfile()" *ngIf="!submitButton">Edit Profile</button>
+<!-- <button (click)="getProfile()">getProfile details</button> -->
