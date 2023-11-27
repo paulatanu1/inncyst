@@ -439,7 +439,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
 
     if (this.isMenuOpen) {
       console.log('close1');
-      this.slidemenu.hide();
+      // this.slidemenu.hide();
       this.isMenuOpen = false;
     }
   }
@@ -447,6 +447,6 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy(): void {
     console.log('close3');
     this.isMenuOpen = false;
-    this.slidemenu.hide();
+    // this.slidemenu.hide();
   }
 }
