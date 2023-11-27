@@ -10,7 +10,9 @@
               value="intranship"
               inputId="intranship"
               formControlName="type"
+             
             ></p-radioButton>
+            <!-- <input type="radio" value="intranship"  formControlName="type" (click)="internshipSelect($event)"> -->
             <label for="internship">Internship</label>
           </div>
           <div class="field-radiobutton">
@@ -19,14 +21,19 @@
               inputId="job"
               formControlName="type"
             ></p-radioButton>
+            <!-- <input type="radio" value="job"  formControlName="type" (click)="internshipSelect($event)"> -->
             <label for="job">Job</label>
           </div>
+          <p style="background-color: brown;" (click)="typeSelect()" *ngIf="submitButtonVisibility">submit</p>
+
+          <p style="background-color: burlywood;" (click)="typeReset()" *ngIf="resetbuttonVisibility">Reset</p>
         </div>
       </div>
-      <h3>Internship details</h3>
+      <div *ngIf="formvisibility">
+      <h3>{{title}} details</h3>
       <div class="form_group">
         <div class="form_field_group">
-          <label>Internship details</label>
+          <label>{{title}} details</label>
           <input
             type="text"
             placeholder="e.g Android app development"
@@ -43,7 +50,29 @@
               formControlName="location"
             />
           </div>
-    
+    <div>
+<label>Education Qualification:--</label>
+<p-dropdown
+[options]="education"
+optionLabel="name"
+optionValue="value"
+
+formControlName="education"
+></p-dropdown>
+
+<div *ngIf="jobContent">
+  <label>Experience</label>
+  <input type="number" formControlName="experience">
+  <p-dropdown
+  [options]="experienceTime"
+  optionLabel="name"
+  optionValue="value"
+  
+  formControlName="experienceTime"
+  ></p-dropdown>
+
+</div>
+    </div>
 
         <div class="form_field_group">
           <label>
@@ -62,7 +91,7 @@
           </p>
         </div>
         <div class="form_field_group">
-          <label>Internship type</label>
+          <label>{{title}} type</label>
           <div class="field-radiobutton">
             <p-radioButton
               value="office"
@@ -97,6 +126,7 @@
             pInputText
           />
         </div>
+        <div  *ngIf="intranshipContent">
         <div class="form_field_group">
           <label>Internship start date</label>
           <div class="field-radiobutton">
@@ -136,9 +166,10 @@
             ></p-dropdown>
           </div>
         </div>
-        <div class="form_field_group">
+        </div>
+        <div class="form_field_group" *ngIf="jobContent">
           <label>
-            Intern's responsibilities
+           Job's responsibilities
             <em>Selected intern's day-to-day responsibilities include:</em>
           </label>
           <!-- <input type="text" placeholder="e.g Java" pInputText /> -->
@@ -178,7 +209,7 @@
           </div>
         </div> -->
         <div class="form_field_group">
-          <label>Stipend</label>
+          <label>{{salaryType}}</label>
           <div class="field-radiobutton">
             <p-radioButton
               value="fixed"
@@ -187,7 +218,7 @@
             ></p-radioButton>
             <label for="fixed">Fixed</label>
           </div>
-          <div class="field-radiobutton">
+          <div class="field-radiobutton" *ngIf="intranshipContent">
             <p-radioButton
               value="unpaid"
               inputId="Unpaid"
@@ -223,7 +254,7 @@
         <div class="form_field_group perks">
           <label>
             Perks
-            <span>(Optional)</span>
+            <!-- <span>(Optional)</span> -->
           </label>
           <div class="field-checkbox">
             <p-checkbox
@@ -280,7 +311,7 @@
         <button type="button" class="save_preview" *ngIf="!editedJobId" (click)="saveForm()">Save Preview</button>
        
         <button type="button" class="save_preview" *ngIf=" editedJobId && !status" (click)="submitForm()">submit</button>
-<button type="button" *ngIf="status" (click)="editJob(editedJobId)">Edit Job</button>
+         <button type="button" *ngIf="status" (click)="editJob(editedJobId)">Edit Job</button>
       </div>
       <div class="assistance">
         <p>
@@ -289,6 +320,7 @@
         </p>
       </div>
     </div>
+  </div>
   </div>
 </form>
 
@@ -300,6 +332,8 @@
  <div *ngIf="savedDraftData">
 
   <p *ngIf="savedDraftData.type">Opportunity Type:- {{savedDraftData.type}}</p>
+  <p *ngIf="savedDraftData.education">Education Qualification :-- {{savedDraftData.eduction}}</p>
+  <p *ngIf="savedDraftData.experience">Experience :-- {{savedDraftData.experience}} <span>{{savedDraftData.experienceTime}}</span></p>
   <p *ngIf="savedDraftData.details">Internship details:-- {{savedDraftData.details}}</p>
   <div *ngIf="savedDraftData.skills?.length">
     <p *ngFor="let item of savedDraftData?.skills">skills:- {{item}}</p>
@@ -320,11 +354,11 @@
   </div>
   <p *ngIf="savedDraftData.startDate">startDate:- {{savedDraftData.startDate}}  </p>
   <p *ngIf="savedDraftData.stipend">stipend::-- {{savedDraftData.stipend}}</p>
-
+<p *ngIf="savedDraftData.duration">Intranship Duration:--{{savedDraftData.duration}} <span >{{savedDraftData.durationIn}}</span></p>
   
  </div>
 
- <button type="submit" class="post_btn" (click)="submitForm()">Post Internship</button>
+ <button type="submit" class="post_btn" (click)="submitForm()">Published</button>
  <br>
  <button class="post_btn" (click)="edit()">edit</button>
 </p-dialog>
