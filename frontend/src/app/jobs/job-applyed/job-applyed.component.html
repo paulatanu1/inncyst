@@ -6,9 +6,8 @@
           <div class="ellipsis_icon">
             <p-overlayPanel #op>
               <ng-template pTemplate="content">
-                <button (click)="details(a._id)">Details</button>
-                <br>
-                <button (click)="applicationStatus()">Application Status</button>
+                <button (click)="details(a._id)"><i class="pi pi-info-circle"></i>Details</button>
+                <button (click)="applicationStatus()"><i class="pi pi-file"></i>Application Status</button>
               </ng-template>
             </p-overlayPanel>
             <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
