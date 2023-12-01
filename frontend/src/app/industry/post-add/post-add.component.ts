@@ -27,14 +27,19 @@ interface Payload {
   intranshipType: string;
   startDate: string;
   duration: string;
+  durationIn:string;
   jobOpening: number;
-  responsibilities: string[];
+  responsibilities: [];
   stipend: string;
   salary: number;
   salaryType: string;
   perks: string;
   id?: string;
   location: string;
+  experienceTime:string;
+  education:string
+  experience:number
+
 }
 interface SavePayload {
   type?: string;
@@ -44,12 +49,13 @@ interface SavePayload {
   startDate?: string;
   duration?: string;
   jobOpening?: number;
-  responsibilities?: string[];
+  responsibilities?: [];
   stipend?: string;
   salary?: string;
   salaryType?: string;
   perks?: string;
   id?: string;
+  experience:number
   location: string;
 }
 @Component({
@@ -132,11 +138,11 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       details: [''],
       skills: [[]],
       intranshipType: [''],
-      startDate: [''],
+      startDate: [undefined],
       duration: [''],
       durationIn: [this.cities[0].optionName],
       education: ['hs'],
-      experience: [0],
+      experience: [undefined],
       experienceTime: ['months'],
       jobOpening: [0],
       responsibilities: [[]],
@@ -157,6 +163,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     //when edit posted job or any saved job then get id
     this.activatedRoute.queryParams.subscribe({
       next: (res: any) => {
+        console.log(res,'kk')
         this.editedJobId = res['id'];
 
         if (this.editedJobId != undefined) {
@@ -277,7 +284,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       form_Data.jobOpening = this.postJob.value.jobOpening;
       console.log(form_Data, 'formValue3');
     }
-    if (this.postJob.value.responsibilities.length > 0) {
+    if (this.postJob.value.responsibilities.length) {
       form_Data.responsibilities = this.postJob.value.responsibilities;
       console.log(form_Data, 'formValue3');
     }
@@ -328,12 +335,15 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     });
   }
   submitForm() {
+    
     if (this.postJob.valid) {
       let formData: Payload = this.postJob.value;
+      console.log(formData)
       formData = {
         ...formData,
         id: this.saveDraftId ? this.saveDraftId : this.editedJobId,
       };
+      console.log(formData,'psj')
       if (this.saveDraftId) {
         formData.id = this.saveDraftId;
         this.display = false;

@@ -7,7 +7,10 @@ import { ApiService } from 'src/app/common-service/api.service';
 })
 export class ProfileService {
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) { 
+
+    
+  }
   profile(data:any){
     let url='/industry/industry-question'
     return this.api.ApiCallWithLocalization(data,url,'post')
