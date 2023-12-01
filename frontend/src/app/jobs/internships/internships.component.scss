@@ -141,9 +141,22 @@
                     }
                     .company_details_head {
                         display: flex;
-                        flex-direction: row;
-                        &>div {
-                            display: block;                
+                        flex-direction: column;
+                        div.comapny_details {
+                            display: flex;
+                            margin-bottom: 10px;
+                            h2 {
+                                font-size: 16px;
+                                font-weight: bold;
+                            }
+                            span.posted_time {
+                                font-size: 13px;
+                                color: #6C6C6C;
+                                margin-bottom: 0;
+                                display: block;
+                                font-weight: 500;
+                                margin-top: 8px;
+                            }
                             &>span {
                                 border: 0.5px solid #C0C0C0;
                                 display: block;
@@ -151,25 +164,60 @@
                                 width: 90px;
                                 height: 48px;
                                 text-align: center;
+                                margin-right: 10px;
                                 img {
                                     height: 38px;
                                     width: auto;
                                 }
                             }
                         }               
-                        h2 {
+                        & > h2 {
                             color: #252525;
-                            font-weight: 600;
-                            font-size: 13px;
-                            line-height: 18px;
-                            margin-left: 10px;               
+                            font-weight: 700;
+                            font-size: 20px;
+                            line-height: 24px; 
+                            text-transform: capitalize;   
+                            align-items: center;    
                             span {
-                                color: #8B8B8B;
-                                font-weight: 400;
-                                font-size: 10px;
-                                display: block;
-                                line-height: 14px;
+                                color: #3B82F6;
+                                font-weight: 600;
+                                font-size: 16px;
+                                line-height: 22px;
+                                margin-top: 8px;
                             }
+                        }
+                        
+                        .tags {
+                            display: flex;
+                            justify-content: flex-start;
+                            margin-top: 4px;
+                            flex-wrap: wrap;
+                            span {
+                                background: #F2F2F2;
+                                border-radius: 14px;
+                                padding: 5px 12px;
+                                vertical-align: middle;
+                                color: #522D80;
+                                font-weight: 700;
+                                font-size: 12px;
+                                margin-right: 10px;
+                                margin-bottom: 10px;
+                            }
+                        }
+                    }
+                    .location {
+                        i {
+                            margin-right: 5px;
+                            font-size: 13px;
+                            display: inline-block;
+                            vertical-align: text-bottom;
+                        }
+                        span {
+                            display: inline-block;
+                            vertical-align: middle;
+                            margin-right: 15px;
+                            text-transform: capitalize;
+                            font-size: 13px;
                         }
                     }
                     .company_tags {
@@ -183,8 +231,9 @@
                             color: #522D80;
                             font-weight: 700;
                             font-size: 12px;
-                            margin-right: 18px;
+                            margin-right: 10px;
                             margin-bottom: 10px;
+                            text-transform: capitalize;
                         }
                     }
                     .type_applied {
