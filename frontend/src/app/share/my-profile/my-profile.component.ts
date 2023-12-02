@@ -50,17 +50,18 @@ export class MyProfileComponent implements OnInit {
       name: ['', Validators.required],
       shortDescription: [''],
       skills: [[]], // Initialize as an empty array
-      location: [' '],
+      location: [''],
       phone: ['', Validators.required],
       email: ['', Validators.required],
       image: [''],
+      description:['']
     });
 
     this.profile = this.internship
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
-        // console.log(this.ProfileDetails)
+        console.log(this.ProfileDetails,'pd')
         // console.log(this.ProfileDetails, 'ProfileDetails');
         if (this.ProfileDetails) {
           this.profileForm.patchValue(this.ProfileDetails);
