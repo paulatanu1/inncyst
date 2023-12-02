@@ -24,6 +24,7 @@ studentPortfolioData:any=[]
 
     this.activatedRoute.queryParams.subscribe({
       next:res=>{
+        if(res['id']){
         this._JobListApiService.getAppliedStudent(res['id']).subscribe({
           next:(res=>{
             this.studentListData=res.data
@@ -43,10 +44,18 @@ studentPortfolioData:any=[]
             this.studentPortfolioData.forEach((item:any)=>{
               item.pdf = environment.API_URL + item.pdf;
               item.image = environment.API_URL + item.image;
-              console.log(item.youtubeUrl)
+              let youtubeEndPonint=item.youtubeUrl?.split('/').slice(-1)
+              // console.log(youtubeEndPonint)
+              if(youtubeEndPonint !== undefined && youtubeEndPonint[0] !== ''){
+
+                item.youtubeUrl='https://www.youtube-nocookie.com/embed/'+youtubeEndPonint;
+                console.log(item.youtubeUrl)
+              }
+              // console.log(item.youtubeUrl)
             })
           })
         })
+      }
       }
     })
 

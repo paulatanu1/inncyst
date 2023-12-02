@@ -30,10 +30,9 @@
       <li *ngFor="let items of item.portfolioData; let i = index">
         <p> Portfolio </p>
         <p>title:-- {{ items.title }}</p>
-        {{items.url}}
+   
         <p [innerHtml]="items.description"></p>
 
-        <p>url:-- {{ items.url }}</p>
         <p>portfolioStatus:-- {{ items.portfolioStatus }}</p>
         <ng-container *ngIf="items.image != 'http://localhost:5500null'">
           <p>Image:--<img [src]="items.image" alt="" /></p>
@@ -53,12 +52,12 @@
             style="width: 400px; height: 500px"
           ></pdf-viewer>
         </ng-container>
-        <ng-container *ngIf="items.youtubeUrl">
+        <ng-container *ngIf="items.youtubeUrl ">
             <P>YOUTUBE</P>
             <iframe
               width="560"
               height="315"
-              src="{{items.youtubeUrl}}"
+              [src]="items.youtubeUrl"
               frameborder="0"
               allowfullscreen
             ></iframe>
