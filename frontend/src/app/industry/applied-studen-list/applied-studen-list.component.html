@@ -20,7 +20,7 @@
     {{ item.userId.image }}
     pdf:--
     <pdf-viewer
-      [src]="item.pdf"
+      [src]="item.resume"
       [render-text]="true"
       [original-size]="false"
       style="width: 400px; height: 500px"
@@ -53,16 +53,16 @@
             style="width: 400px; height: 500px"
           ></pdf-viewer>
         </ng-container>
-        <!-- <ng-container *ngIf="items.youtubeUrl">
+        <ng-container *ngIf="items.youtubeUrl">
             <P>YOUTUBE</P>
             <iframe
               width="560"
               height="315"
-              [src]="items.youtubeUrl | sanitizerUrl"
+              src="{{items.youtubeUrl}}"
               frameborder="0"
               allowfullscreen
             ></iframe>
-          </ng-container> -->
+          </ng-container>
         <hr />
       </li>
     </ol>

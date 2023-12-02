@@ -30,17 +30,21 @@ studentPortfolioData:any=[]
             this.studentPortfolioData=res.data[0].portfolioData
 
             console.log(this.studentPortfolioData)
-            this.studentListData.forEach((item:any)=>{
+            this.studentListData.forEach((item:any,index:any)=>{
               console.log(item.userId)
               console.log(item.userId.image)
               // let img='/'+item.userId.image.split('/').slice(-1)
               // console.log(img)
               // item.userId.image = environment.API_URL + img;
-              item.resume = environment.API_URL + item.resume;
-              // item.portfolioData.image = environment.API_URL + item.portfolioData.image;
-              item.portfolioData.pdf = environment.API_URL + item.portfolioData.pdf;
+              // item.resume = environment.API_URL + item.resume;
+
             })
             console.log(this.studentListData)
+            this.studentPortfolioData.forEach((item:any)=>{
+              item.pdf = environment.API_URL + item.pdf;
+              item.image = environment.API_URL + item.image;
+              console.log(item.youtubeUrl)
+            })
           })
         })
       }
