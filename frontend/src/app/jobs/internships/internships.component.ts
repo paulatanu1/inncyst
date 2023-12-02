@@ -220,7 +220,7 @@ export class InternshipsComponent implements OnInit {
   }
   applyJob() {
     this.profileUpdate = true;
-    this.router.navigate(['jobs/internships/skills']);
+    this.router.navigate(['jobs/posts/skills']);
   }
 
   closeProfileUpdateForm() {

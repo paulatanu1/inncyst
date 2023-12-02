@@ -17,23 +17,27 @@ studentListData:any=[]
 editDialog:boolean=false
 status!:Istatus[]
 selectedStatus!: Istatus ;
+studentPortfolioData:any=[]
   constructor(private activatedRoute:ActivatedRoute, private _JobListApiService:JobListApiService,private _toast:ToastServiceService) { }
 
   ngOnInit(): void {
 
     this.activatedRoute.queryParams.subscribe({
       next:res=>{
-        console.log(res)
         this._JobListApiService.getAppliedStudent(res['id']).subscribe({
           next:(res=>{
             this.studentListData=res.data
-            console.log(this.studentListData[0].userId.image)
+            this.studentPortfolioData=res.data[0].portfolioData
+
+            console.log(this.studentPortfolioData)
             this.studentListData.forEach((item:any)=>{
               console.log(item.userId)
-              console.log(environment.API_URL+item.userId.image)
-              // item.userId.image = environment.API_URL + item.userId.image;
+              console.log(item.userId.image)
+              // let img='/'+item.userId.image.split('/').slice(-1)
+              // console.log(img)
+              // item.userId.image = environment.API_URL + img;
               item.resume = environment.API_URL + item.resume;
-              item.portfolioData.image = environment.API_URL + item.portfolioData.image;
+              // item.portfolioData.image = environment.API_URL + item.portfolioData.image;
               item.portfolioData.pdf = environment.API_URL + item.portfolioData.pdf;
             })
             console.log(this.studentListData)

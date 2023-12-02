@@ -11,7 +11,8 @@ import { ToastServiceService } from 'src/app/service/toast-service.service';
 })
 export class IndustryProfileComponent implements OnInit {
   profileForm!: FormGroup;
-  submitButton=false;
+  submitButton = false;
+  profileData:any = {};
   constructor(
     private fb: FormBuilder,
     private _ProfileService: ProfileService,
@@ -34,43 +35,74 @@ export class IndustryProfileComponent implements OnInit {
     console.log(this.profileForm.value);
     const form_Data = new Object();
     // form_Data.app
-    this._ProfileService.profile(this.profileForm.value).subscribe({
-      next: (res) => {
-        console.log(res);
-        this._toast.showToaster.next({
-          severity: 'success',
-          summary: 'success',
-          detail: res.message,
-        });
-        // this.router.navigateByUrl('/industry/jobs');
-        this.submitButton=false;
+    if(!this.profileData.industryId.question_step){
 
-this.getProfile();      },
-      error: (err) => {
-        this._toast.showToaster.next({
-          severity: 'warn',
-          summary: 'Warn',
-          detail: 'Please Fillup Details',
-        });
-        this.router.navigateByUrl('/industry/jobs');
-      },
-    });
+      this._ProfileService.profile(this.profileForm.value).subscribe({
+        next: (res) => {
+          console.log(res);
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: res.message,
+          });
+          // this.router.navigateByUrl('/industry/jobs');
+          this.submitButton = false;
+  
+          this.getProfile();
+        },
+        error: (err) => {
+          this._toast.showToaster.next({
+            severity: 'warn',
+            summary: 'Warn',
+            detail: 'Please Fillup Details',
+          });
+          // this.router.navigateByUrl('/industry/jobs');
+        },
+      });
+    }
+    else{
+      this._ProfileService.EditProfile(this.profileForm.value,this.profileData._id).subscribe({
+        next:(res)=>{
+          console.log(res,'edit')
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: res.message,
+          });
+          // this.router.navigateByUrl('/industry/jobs');
+          this.submitButton = false;
+  
+          this.getProfile();
+        },
+        error: (err) => {
+          this._toast.showToaster.next({
+            severity: 'warn',
+            summary: 'Warn',
+            detail: 'Please Fillup Details',
+          });
+          // this.router.navigateByUrl('/industry/jobs');
+        },
+      })
+    }
   }
   getProfile() {
     this._ProfileService.getProfile().subscribe({
       next: (res) => {
-        console.log(res);
-        this.profileForm.get('companyName')?.setValue(res.data.companyName)
-        this.profileForm.get('companyEstdYear')?.setValue(res.data.companyEstdYear)
-        this.profileForm.get('aboutCompany')?.setValue(res.data.aboutCompany)
-        this.profileForm.get('empCount')?.setValue(res.data.empCount)
-        this.profileForm.get('workPlace')?.setValue(res.data.workPlace)
-this.profileForm.disable();
+        // console.log(res);
+        this.profileData = res.data;
+        this.profileForm.get('companyName')?.setValue(res.data.companyName);
+        this.profileForm
+          .get('companyEstdYear')
+          ?.setValue(res.data.companyEstdYear);
+        this.profileForm.get('aboutCompany')?.setValue(res.data.aboutCompany);
+        this.profileForm.get('empCount')?.setValue(res.data.empCount);
+        this.profileForm.get('workPlace')?.setValue(res.data.workPlace);
+        this.profileForm.disable();
       },
     });
   }
-  editProfile(){
-    this.submitButton=true;
+  editProfile() {
+    this.submitButton = true;
     this.profileForm.enable();
   }
 }

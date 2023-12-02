@@ -13,13 +13,20 @@
             </p-overlayPanel>
             <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
           </div>
+
+          <!-- <div class="card flex justify-content-center">
+            <p-overlayPanel #op>
+                <img src="https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg" alt="product" />
+            </p-overlayPanel>
+            <p-button (click)="op.toggle($event)" icon="pi pi-image" label="Show"></p-button>
+        </div> -->
           <div class="company_info_head">
             <div class="company_logo"></div>
             <div>
-              <h2>{{ a?.intranshipDetails.intranshipName }}</h2>
+              <h2>{{ a?.intranshipDetails?.intranshipName }}</h2>
               <div class="location_info">
-                <strong>{{ a?.intranshipDetails.companyName }}</strong>
-                <span>{{ a?.intranshipDetails.location }}</span>
+                <strong>{{ a.intranshipDetails?.companyName }}</strong>
+                <span>{{ a.intranshipDetails?.location }}</span>
               </div>
             </div>
           </div>
@@ -31,7 +38,7 @@
 
           <div class="location_info">
             <i class="pi pi-calendar"></i>
-            <span>{{ a?.intranshipDetails.createdAt | date }}</span>
+            <span>{{ a.intranshipDetails?.createdAt | date }}</span>
           </div>
 
           <div class="company_info">
@@ -42,54 +49,10 @@
               <strong>$1500/</strong>
               m
             </span>
-            <span>{{ a?.applicationStatus }}</span>
+            <span>{{ a.applicationStatus }}</span>
           </div>
         </li>
-        <!-- <li>
-                <i class="pi pi-ellipsis-v"></i>
-                <h2>Front End Developer</h2>
-                <span class="applied">Applied</span>
-                <div class="location_info">
-                    <i class="pi pi-map-marker"></i><span>Kolkata, West Bengal</span>
-                </div>
-                <div class="location_info">
-                    <i class="pi pi-calendar"></i> <span>Applied on Jul 27</span>
-                </div>
-                <div class="company_info">
-                    <img src="../../../assets/canva.png" width="78" height="32" />
-                    <strong>Satisfix Software systems</strong>
-                </div>
-            </li>
-            <li>
-                <i class="pi pi-ellipsis-v"></i>
-                <h2>Front End Developer</h2>
-                <span class="rejected">Not selected by employer</span>
-                <div class="location_info">
-                    <i class="pi pi-map-marker"></i><span>Kolkata, West Bengal</span>
-                </div>
-                <div class="location_info">
-                    <i class="pi pi-calendar"></i> <span>Applied on Jul 27</span>
-                </div>
-                <div class="company_info">
-                    <img src="../../../assets/canva.png" width="78" height="32" />
-                    <strong>Satisfix Software systems</strong>
-                </div>
-            </li>
-            <li>
-                <i class="pi pi-ellipsis-v"></i>
-                <h2>Front End Developer</h2>
-                <span class="rejected">Not selected by employer</span>
-                <div class="location_info">
-                    <i class="pi pi-map-marker"></i><span>Kolkata, West Bengal</span>
-                </div>
-                <div class="location_info">
-                    <i class="pi pi-calendar"></i> <span>Applied on Jul 27</span>
-                </div>
-                <div class="company_info">
-                    <img src="../../../assets/canva.png" width="78" height="32" />
-                    <strong>Satisfix Software systems</strong>
-                </div>
-            </li> -->
+        
       </ul>
     </p-tabPanel>
     <p-tabPanel header="Interviews"></p-tabPanel>

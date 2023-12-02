@@ -24,7 +24,10 @@
             <!-- <input type="radio" value="job"  formControlName="type" (click)="internshipSelect($event)"> -->
             <label for="job">Job</label>
           </div>
-          <p style="background-color: brown;" (click)="typeSelect()" *ngIf="submitButtonVisibility">submit</p>
+          <p style="background-color: brown;" 
+          [ngClass]="{'disabled': !postJob.value.type}"
+          
+          (click)="typeSelect()" *ngIf="submitButtonVisibility">submit</p>
 
           <p style="background-color: burlywood;" (click)="typeReset()" *ngIf="resetbuttonVisibility">Reset</p>
         </div>

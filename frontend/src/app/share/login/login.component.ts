@@ -131,7 +131,7 @@ export class LoginComponent implements OnInit {
       console.log(userRole, 'ur');
       this.loginService.login(userEmail, password, userRole).subscribe({
         next: (res) => {
-          console.log(res);
+          console.log(res,'2dec');
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
           if(res.LOGIN_TYPE === 'industry' && res.data.question_step == false){
@@ -145,12 +145,12 @@ export class LoginComponent implements OnInit {
           //   image:res.data.image
           // })
 
-          if (userRole == 'Student' ) {
+          if (res.LOGIN_TYPE == 'student' ) {
             this.router.navigateByUrl('jobs/posts');
             ls.set('role', 'student');
           
             // this.router.navigate(['/jobs/internship']);
-          } else if (userRole == 'Industry') {
+          } else if (res.LOGIN_TYPE == 'industry') {
             ls.set('role', 'industry');
             this.router.navigate(['industry']);
             if(res.LOGIN_TYPE === 'industry' && res.data.question_step == false){

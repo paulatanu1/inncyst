@@ -238,72 +238,55 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     const form_Data: any = new Object();
     if (this.postJob.value.type) {
       form_Data.type = this.postJob.value.type;
-      console.log(form_Data, 'formValue2');
-    }
+         }
     if (this.postJob.value.location) {
       form_Data.location = this.postJob.value.location;
-      console.log(form_Data, 'formValue12');
-    }
+         }
     if (this.postJob.value.education) {
       form_Data.education = this.postJob.value.education;
-      console.log(form_Data, 'formValue3');
-    }
+         }
     if (this.postJob.value.experienceTime) {
       form_Data.experienceTime = this.postJob.value.experienceTime;
-      console.log(form_Data, 'formValue3');
-    }
+         }
     if (this.postJob.value.experience) {
       form_Data.experience = this.postJob.value.experience;
-      console.log(form_Data, 'formValue3');
-    }
+        }
     if (this.postJob.value.details) {
       form_Data.details = this.postJob.value.details;
-      console.log(form_Data, 'formValue3');
-    }
+         }
     if (this.postJob.value.skills.length > 0) {
       form_Data.skills = this.postJob.value.skills;
-      console.log(form_Data, 'formValue3');
-    }
+          }
     if (this.postJob.value.intranshipType) {
       form_Data.intranshipType = this.postJob.value.intranshipType;
-      console.log(form_Data, 'formValue3');
-    }
+        }
     if (this.postJob.value.startDate?.length > 0) {
       form_Data.startDate = this.postJob.value.startDate;
-      console.log(form_Data, 'formValue3');
-    }
+          }
     if (this.postJob.value.duration.length > 0) {
       form_Data.duration = this.postJob.value.duration;
-      console.log(form_Data, 'formValue3');
-    }
+         }
     if (this.postJob.value.durationIn.length > 0) {
       form_Data.durationIn = this.postJob.value.durationIn;
-      console.log(form_Data, 'formValue3');
-    }
+         }
     if (this.postJob.value.jobOpening > 0) {
       form_Data.jobOpening = this.postJob.value.jobOpening;
-      console.log(form_Data, 'formValue3');
-    }
+         }
     if (this.postJob.value.responsibilities.length) {
       form_Data.responsibilities = this.postJob.value.responsibilities;
-      console.log(form_Data, 'formValue3');
-    }
+          }
     if (this.postJob.value.stipend.length > 0) {
       form_Data.stipend = this.postJob.value.stipend;
-      console.log(form_Data, 'formValue3');
-    }
+          }
     if (this.postJob.value.salary > 0) {
       form_Data.salary = this.postJob.value.salary;
-      console.log(form_Data, 'formValue3');
-    }
+          }
     if (this.postJob.value.salaryType.length > 0) {
       form_Data.salaryType = this.postJob.value.salaryType;
-      console.log(form_Data, 'formValue3');
-    }
+         }
     if (this.postJob.value.perks.length > 0) {
       form_Data.perks = this.postJob.value.perks;
-      console.log(form_Data, 'formValue3');
-    }
+         }
     // console.log(form_Data, 'form_Data');
     // const formData:SavePayload=this.postJob.value
     this.jobPost.saveJob(form_Data).subscribe({
@@ -335,7 +318,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     });
   }
   submitForm() {
-    
+    console.log(this.postJob.value,'submit')
     if (this.postJob.valid) {
       let formData: Payload = this.postJob.value;
       console.log(formData)
@@ -473,8 +456,8 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     this.intranshipContent = false;
     this.jobContent = false;
     this.salaryType = '';
-    this.postJob.reset();
     this.submitButtonVisibility = true;
     this.resetbuttonVisibility = false;
+    this.postJob.reset();
   }
 }

@@ -22,15 +22,15 @@ export class JobApplyedComponent implements OnInit {
   //FUNCTION TO CAPITALIZED OF 1ST CHARECRTER OF EACH WORD
   capitalizeWords(str: any) {
     // Split the input string into words
-    const words = str.split(' ');
+    const words = str?.split(' ');
 
     // Capitalize the first character of each word
-    const capitalizedWords = words.map((word: any) => {
+    const capitalizedWords = words?.map((word: any) => {
       return word.charAt(0).toUpperCase() + word.slice(1);
     });
 
     // Join the capitalized words back into a single string
-    const result = capitalizedWords.join(' ');
+    const result = capitalizedWords?.join(' ');
 
     return result;
   }
@@ -41,17 +41,21 @@ export class JobApplyedComponent implements OnInit {
       next: (res) => {
         this.AppliedJobDetails = [];
         this.AppliedJobDetails = res.data;
-        console.log(this.AppliedJobDetails, 'aaaa');
-        // console.log(this.AppliedJobDetails, 'applyedJobDetails');
-        this.AppliedJobDetails?.forEach((element: any) => {
-          element.intranshipDetails.intranshipName = this.capitalizeWords(
-            element.intranshipDetails.intranshipName
-          );
-          console.log(this.AppliedJobDetails);
-          element.intranshipDetails.companyName = this.capitalizeWords(
-            element.intranshipDetails.companyName
-          );
-        });
+        if(this.AppliedJobDetails.length){
+
+          console.log(this.AppliedJobDetails, 'aaaa');
+          // console.log(this.AppliedJobDetails, 'applyedJobDetails');
+          this.AppliedJobDetails?.forEach((element: any) => {
+            if(element.intranshipDetails.intranshipName){
+            element.intranshipDetails.intranshipName = this.capitalizeWords(
+              element.intranshipDetails?.intranshipName
+            );}
+            console.log(this.AppliedJobDetails);
+            element.intranshipDetails.companyName = this.capitalizeWords(
+              element.intranshipDetails.companyName
+            );
+          });
+        }
         // this._toast.showToaster.next({
         //   severity: 'success',
         //   summary: 'success',

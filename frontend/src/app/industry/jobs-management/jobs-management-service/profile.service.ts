@@ -15,7 +15,10 @@ export class ProfileService {
     let url='/industry/industry-question'
     return this.api.ApiCallWithLocalization(data,url,'post')
   }
-
+EditProfile(data:any,id:any){
+  let url = '/industry/industry-question/'+id
+  return this.api.ApiCallWithLocalization(data,url,'post')
+}
   getProfile(){
     let url='/industry/profile'
     return this.api.ApiCallWithLocalization('',url,'get')

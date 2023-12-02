@@ -15,6 +15,7 @@
     <p>location:-- {{ item.userId.location }}</p>
     <p *ngFor="let item of item.userId.skills">skills:- {{ item }}</p>
     <img [src]="item.userId.image" />
+    {{ item.userId.image }}
     <p>verified:-- {{ item.userId.verifie }}</p>
     {{ item.userId.image }}
     pdf:--
@@ -24,45 +25,50 @@
       [original-size]="false"
       style="width: 400px; height: 500px"
     ></pdf-viewer>
-    <div>
+    <ol type="none">
       <h1>Portfolio Details:----</h1>
-<p>title:-- {{item.portfolioData.title}}
-</p>
-<p [innerHtml]="item.portfolioData.description"></p>
+      <li *ngFor="let items of item.portfolioData; let i = index">
+        <p> Portfolio </p>
+        <p>title:-- {{ items.title }}</p>
+        {{items.url}}
+        <p [innerHtml]="items.description"></p>
 
-<p>url:-- {{item.portfolioData.url}}</p>
-<p>portfolioStatus:-- {{item.portfolioData.portfolioStatus}}</p>
-<p>description:-- {{item.portfolioData.description}}</p>
-<ng-container *ngIf="item.portfolioData.image != 'http://localhost:5500null'">
-  <p>Image:--<img [src]="item.portfolioData.image" alt="" /></p>
-</ng-container>
-<ng-container *ngIf="item.portfolioData.url">
-  Url:--
-  <a target="blank" [href]="item.portfolioData.description">{{ item.portfolioData.url }}</a>
-</ng-container>
-<ng-container *ngIf="item.portfolioData.pdf != 'http://localhost:5500null'">
-  <p>Pdf:--</p>
-  <pdf-viewer
-    [src]="item.portfolioData.pdf"
-    [render-text]="true"
-    [original-size]="false"
-    style="width: 400px; height: 500px"
-  ></pdf-viewer>
-</ng-container>
-<!-- <ng-container *ngIf="item.portfolioData.youtubeUrl">
-  <P>YOUTUBE</P>
-  <iframe
-    width="560"
-    height="315"
-    [src]="item.portfolioData.youtubeUrl | sanitizerUrl"
-    frameborder="0"
-    allowfullscreen
-  ></iframe>
-</ng-container> -->
+        <p>url:-- {{ items.url }}</p>
+        <p>portfolioStatus:-- {{ items.portfolioStatus }}</p>
+        <ng-container *ngIf="items.image != 'http://localhost:5500null'">
+          <p>Image:--<img [src]="items.image" alt="" /></p>
+        </ng-container>
+        <ng-container *ngIf="items.url">
+          Url:--
+          <a target="blank" [href]="items.description">{{
+            items.url
+          }}</a>
+        </ng-container>
+        <ng-container *ngIf="items.pdf != 'http://localhost:5500null'">
+          <p>Pdf:--</p>
+          <pdf-viewer
+            [src]="items.pdf"
+            [render-text]="true"
+            [original-size]="false"
+            style="width: 400px; height: 500px"
+          ></pdf-viewer>
+        </ng-container>
+        <!-- <ng-container *ngIf="items.youtubeUrl">
+            <P>YOUTUBE</P>
+            <iframe
+              width="560"
+              height="315"
+              [src]="items.youtubeUrl | sanitizerUrl"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </ng-container> -->
+        <hr />
+      </li>
+    </ol>
 
-    </div>
     <button (click)="openStatus()">Edit status</button>
-    <button (click)="updateStatus(item._id)"></button>
+    <button (click)="updateStatus(item._id)">update</button>
     <p-dialog
       header="Title"
       [(visible)]="editDialog"
