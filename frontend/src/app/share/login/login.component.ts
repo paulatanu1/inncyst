@@ -134,9 +134,8 @@ export class LoginComponent implements OnInit {
           console.log(res,'2dec');
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
-          if(res.LOGIN_TYPE === 'industry' && res.data.question_step == false){
-
-          }
+          ls.set('questionStep',res.data.question_step)
+      
           // ls.set('logoutSuccess',true)
           // ls.set('loginDetails',{
           //   name:res.data.name,

@@ -29,7 +29,7 @@ interface IprofileDetails {
 export class MyProfileComponent implements OnInit {
   croppedImage: any;
   @ViewChild('cropper') cropper!: ElementRef;
-  ProfileDetails!: IprofileDetails;
+  ProfileDetails:any;
   profile: Subscription | undefined;
   editProfile: boolean = false;
   profileForm: FormGroup = new FormGroup({});
@@ -43,12 +43,10 @@ export class MyProfileComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private router: Router,
     private _toast: ToastServiceService
-  ) {}
+  ) {
 
-  ngOnInit(): void {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
-      shortDescription: [''],
       skills: [[]], // Initialize as an empty array
       location: [''],
       phone: ['', Validators.required],
@@ -56,6 +54,9 @@ export class MyProfileComponent implements OnInit {
       image: [''],
       description:['']
     });
+  }
+
+  ngOnInit(): void {
 
     this.profile = this.internship
       .sendInternshipProfileRequest()
@@ -64,8 +65,22 @@ export class MyProfileComponent implements OnInit {
         console.log(this.ProfileDetails,'pd')
         // console.log(this.ProfileDetails, 'ProfileDetails');
         if (this.ProfileDetails) {
-          this.profileForm.patchValue(this.ProfileDetails);
+          // this.profileForm.patchValue(this.ProfileDetails);
           // console.log(this.profileForm, 'ii');
+
+          this.profileForm.get('name')?.patchValue(this.ProfileDetails.name);
+          
+          this.profileForm.get('description')?.patchValue(this.ProfileDetails.description);
+          
+          this.profileForm.get('location')?.patchValue(this.ProfileDetails.location)
+          
+          this.profileForm.get('phone')?.patchValue(this.ProfileDetails.phone)
+          
+          this.profileForm.get('email')?.patchValue(this.ProfileDetails.email)
+          
+          // this.profileForm.get('image')?.patchValue(this.ProfileDetails.image)
+          this.profileForm.get('skills')?.patchValue(this.ProfileDetails.skills)
+
         }
       });
     //for scroll issue

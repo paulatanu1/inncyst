@@ -21,7 +21,12 @@
     <input type="text" formControlName="workPlace">
 </div>
 
+<div>
+    <input type="file" (change)="onFileSelected($event)" >
+    <!-- <button (click)="uploadImage()">Upload Image</button> -->
+</div>
 <button type="submit" *ngIf="submitButton">submit</button>
 </form>
-<button (click)="editProfile()" *ngIf="!submitButton">Edit Profile</button>
+<button (click)="editProfile()" *ngIf="!submitButton && questionStep">Edit Profile</button>
 <!-- <button (click)="getProfile()">getProfile details</button> -->
+<button (click)="addPortfolio()" *ngIf="!questionStep">add</button>
