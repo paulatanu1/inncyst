@@ -45,6 +45,7 @@ interface IregistrationOption {
   providers: [MessageService],
 })
 export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
+  profileMenu: any;
   items: MenuItem[];
   dropdownitems: MenuItem[];
   registration: boolean = false;
