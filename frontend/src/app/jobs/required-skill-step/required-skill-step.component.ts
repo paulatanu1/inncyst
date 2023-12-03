@@ -13,6 +13,6 @@ export class RequiredSkillStepComponent implements OnInit {
   ngOnInit(): void {
   }
    nextPage() {
-    this.router.navigate(['jobs/internships/uploadresume']);
+    this.router.navigate(['jobs/posts/uploadresume']);
   }
 }

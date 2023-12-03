@@ -24,7 +24,7 @@ import { SliderModule } from 'primeng/slider';
 import { AppliedJobDetailsComponent } from './applied-job-details/applied-job-details.component';
 import { BasicJobComponent } from './basic-job/basic-job.component';
 import {EditorModule} from 'primeng/editor';
-
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 @NgModule({
   declarations: [
     JobsComponent,
@@ -49,7 +49,7 @@ import {EditorModule} from 'primeng/editor';
     FileUploadModule,
     TabViewModule,
     BreadcrumbModule,InfiniteScrollModule,DropdownModule, SliderModule,
-    DialogModule,EditorModule
+    DialogModule,EditorModule,OverlayPanelModule
   ],
   exports:[DialogModule, SharedModule],
   // providers:[LoginDetailsService]

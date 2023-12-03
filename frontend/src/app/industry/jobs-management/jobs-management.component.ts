@@ -56,11 +56,11 @@ jobStatus:boolean=false;
   addJobs() {
     this.router.navigate(['/industry/jobs/add-job']);
   }
-  edit(id: number) {
+  edit(id: number,type:string) {
     // alert(id)
     // console.log(data)
     this.router.navigate(['/industry/jobs/add-job'], {
-      queryParams: { id: id },
+      queryParams: { id: id ,type:type},
     });
   }
   delete(id: any) {
