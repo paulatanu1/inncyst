@@ -39,7 +39,8 @@ export class MyProfileComponent implements OnInit {
   cImage: any;
   @ViewChild('fileInput', { static: true })
   fileInput!: ElementRef<HTMLInputElement>;
-
+  description: string = 'Please Add Your Description';
+  skillSet: [] = [];
   constructor(
     private internship: InternshipProfileService,
     private formBuilder: FormBuilder,
@@ -59,12 +60,24 @@ export class MyProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getProfileDetails();
+    //for scroll issue
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
+  }
+
+  getProfileDetails() {
     this.profile = this.internship
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
         if (this.ProfileDetails) {
           this.imagePath = this.ProfileDetails.image;
+          this.description = this.ProfileDetails.description;
+          this.skillSet = this.ProfileDetails.skills;
           this.profileForm.get('name')?.patchValue(this.ProfileDetails.name);
 
           this.profileForm
@@ -85,12 +98,6 @@ export class MyProfileComponent implements OnInit {
             ?.patchValue(this.ProfileDetails.skills);
         }
       });
-    //for scroll issue
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        window.scrollTo(0, 0);
-      }
-    });
   }
 
   openEdit() {
@@ -98,6 +105,9 @@ export class MyProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.imagePath) {
+      this.profileForm.get('image')?.setValue(this.imagePath);
+    }
     if (this.profileForm.valid) {
       // Form is valid, you can access form values using this.profileForm.value
       this.internship.EditProfile(this.profileForm.value).subscribe({
@@ -108,6 +118,7 @@ export class MyProfileComponent implements OnInit {
             detail: res.success,
           });
           this.editProfile = false;
+          this.getProfileDetails();
         },
         error: (err) => {
           this._toast.showToaster.next({

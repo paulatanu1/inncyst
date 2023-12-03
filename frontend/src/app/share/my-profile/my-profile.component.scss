@@ -1,20 +1,25 @@
 .my_profile_sec {
     margin-top: 113px;
     padding-top: 60px;
+
     .profile_whole_sec {
         max-width: 1120px;
         margin: 0 auto;
     }
+
     .my_profile_sec_inner {
         display: flex;
         flex-direction: row;
+
         .profile_img {
             margin-right: 50px;
+
             figure {
                 background: #D9D9D9;
                 width: 236px;
                 height: 236px;
                 position: relative;
+
                 span {
                     border-radius: 30px;
                     background: #59D189;
@@ -32,9 +37,11 @@
                 }
             }
         }
+
         .profile_details {
             position: relative;
             flex: 0 0 75%;
+
             .portfolio_btn {
                 color: #fff;
                 border-radius: 30px;
@@ -48,6 +55,7 @@
                 text-transform: uppercase;
                 padding: 4px 15px;
             }
+
             button.edit_btn {
                 color: #fff;
                 border-radius: 30px;
@@ -68,6 +76,7 @@
                     background: linear-gradient(180deg, #299BDF 0%, #3CAEF2 100%);
                 }
             }
+
             button.back_btn {
                 color: #fff;
                 border-radius: 30px;
@@ -88,6 +97,7 @@
                     background: linear-gradient(180deg, #299BDF 0%, #3CAEF2 100%);
                 }
             }
+
             h2 {
                 font-size: 28px;
                 font-weight: 600;
@@ -185,8 +195,10 @@
     display: flex;
     align-items: flex-start;
     gap: 35px;
+
     .left-section {
-        flex:0 0 35%;
+        flex: 0 0 35%;
+
         .file-upload-wrapper {
             position: relative;
             border-radius: 8px;
@@ -194,6 +206,7 @@
             height: 39px;
             background: #eee;
             margin-top: 40px;
+
             input[type=file] {
                 display: block;
                 width: auto;
@@ -201,6 +214,7 @@
                 position: absolute;
                 // visibility: hidden;
             }
+
             label {
                 color: #81808d;
                 font-size: 13px;
@@ -213,9 +227,10 @@
                 border-radius: 8px 0 0 8px;
                 cursor: not-allowed;
                 float: left;
-                width:165px;
+                width: 165px;
                 overflow: hidden;
             }
+
             button {
                 cursor: pointer;
                 display: inline-block;
@@ -236,17 +251,22 @@
             }
         }
     }
+
     .right-section {
         flex: 0 0 60%;
+
         ::ng-deep .p-inputwrapper {
             width: 100%;
+
             ::ng-deep .p-chips {
                 width: 100%;
+
                 ul {
                     width: 100%;
                 }
             }
         }
+
         .p-input-icon-left {
             input {
                 width: 100%;
@@ -254,6 +274,7 @@
         }
     }
 }
+
 .edit-profile-form {
     .save_btn {
         border-radius: 5px;
@@ -290,4 +311,25 @@
     flex-direction: column;
     width: 100%;
     row-gap: 10px;
+}
+
+.skills {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.skills li {
+    list-style: none;
+    min-width: 50px;
+    width: auto;
+    border: 1px solid #4ab1c9;
+    padding: 3px;
+    border-radius: 3px;
+    background-color: rgb(123 198 216);
+    color: #fff;
+    margin: 0 3px;
+    text-align: center;
 }
