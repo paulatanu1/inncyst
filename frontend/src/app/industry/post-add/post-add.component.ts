@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LeftMenuHandelService } from '../left-menu-handel.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JobPostApiService } from '../jobs-management/jobs-management-service/job-post-api.service';
@@ -27,18 +27,18 @@ interface Payload {
   intranshipType: string;
   startDate: string;
   duration: string;
-  durationIn: string;
+  durationIn:string;
   jobOpening: number;
   responsibilities: [];
-stipend: string;
   salary: number;
   salaryType: string;
   perks: string;
   id?: string;
   location: string;
-  experienceTime: string;
-  education: string;
-  experience: number;
+  experienceTime:string;
+  education:string
+  experience:number
+
 }
 interface SavePayload {
   type?: string;
@@ -54,7 +54,7 @@ interface SavePayload {
   salaryType?: string;
   perks?: string;
   id?: string;
-  experience: number;
+  experience:number
   location: string;
 }
 @Component({
@@ -63,18 +63,22 @@ interface SavePayload {
   styleUrls: ['./post-add.component.scss'],
 })
 export class PostAddComponent implements OnInit, AfterViewInit {
-industryType: string | undefined;
+  @ViewChild('job', {static: false}) jobChecked!:ElementRef
+  @ViewChild('internship', {static: false}) internshipChecked!:ElementRef
+
+  industryType: string | undefined;
   industryForm!: FormGroup;
   jobForm!:FormGroup;
   cities: cities[];
   education: Ieducation[];
   experienceTime: IexperienceTime[];
   city!: string;
-  postJob: FormGroup;
+  // postJob: FormGroup;
   saveDraftId!: string;
   editedJobId!: string;
 editedJobType!:string
   editedJobData: any;
+  editedinternshipData:any
 industryTypeFalse!:string;
   obj: any;
   display: boolean = false;
@@ -110,7 +114,7 @@ industryTypeFalse!:string;
   submitButtonVisibility: boolean = true;
   resetbuttonVisibility: boolean = false;
   salaryType!: string;
-  constructor(
+    constructor(
     private _menuHandel: LeftMenuHandelService,
     private fb: FormBuilder,
     private jobPost: JobPostApiService,
@@ -137,25 +141,25 @@ industryTypeFalse!:string;
     ];
 
     window.scrollTo(0, 0);
-    this.postJob = this.fb.group({
-      type: [''],
-      details: [''],
-      skills: [[]],
-      intranshipType: [''],
-      startDate: [undefined],
-      duration: [''],
-      durationIn: [this.cities[0].optionName],
-      education: ['hs'],
-      experience: [undefined],
-      experienceTime: ['months'],
-      jobOpening: [0],
-      responsibilities: [[]],
-      stipend: [''],
-      salary: [],
-      salaryType: [this.cities[0].optionName],
-      perks: [[]],
-      location: [''],
-    });
+    // this.postJob = this.fb.group({
+    //   type: [''],
+    //   details: [''],
+    //   skills: [[]],
+    //   intranshipType: [''],
+    //   startDate: [undefined],
+    //   duration: [''],
+    //   durationIn: [this.cities[0].optionName],
+    //   education: ['hs'],
+    //   experience: [undefined],
+    //   experienceTime: ['months'],
+    //   jobOpening: [0],
+    //   responsibilities: [[]],
+    //   stipend: [''],
+    //   salary: [],
+    //   salaryType: [this.cities[0].optionName],
+    //   perks: [[]],
+    //   location: [''],
+    // });
   
     this.industryForm = this.fb.group({
       type: ['intranship'],
@@ -218,55 +222,75 @@ this.editedJobType=res['type'];
             .subscribe({
               next: (res) => {
                 console.log(res.data);
-                this.editedJobData = res.data;
+
                 if (res.data.type) {
-                 this.typeSelect();
+                  if(res.data.type == 'intranship'){
+                    this.industryTypeFalse='internship';
+                    this.typeSelection();
+                    this.editedinternshipData = res.data;
+                    this.status = this.editedinternshipData.status;
+
+                    this.industryForm.get('type')?.patchValue(this.editedinternshipData.type);
+                    this.industryForm
+                  .get('details')
+                  ?.patchValue(this.editedinternshipData.details);
+                  }
                 }
-                this.status = this.editedJobData.status;
-                this.postJob.get('type')?.patchValue(this.editedJobData.type);
-                this.postJob
+                if(res.data.type == 'job'){
+                  this.industryTypeFalse='job';
+                  this.typeSelection();
+                    this.editedJobData = res.data;
+                    this.status = this.editedJobData.status;
+                    this.jobForm.get('type')?.patchValue(this.editedJobData.type);
+                    this.jobForm
                   .get('details')
                   ?.patchValue(this.editedJobData.details);
-                this.postJob
-                  .get('location')
-                  ?.patchValue(this.editedJobData.location);
-                this.postJob
-                  .get('skills')
-                  ?.patchValue(this.editedJobData.skills);
-                this.postJob
-                  .get('intranshipType')
-                  ?.patchValue(this.editedJobData.intranshipType);
-                this.postJob
-                  .get('education')
-                  ?.patchValue(this.editedJobData.education);
-                this.postJob
-                  .get('experienceTime')
-                  ?.patchValue(this.editedJobData.experienceTime);
-                this.postJob
-                  .get('experience')
-                  ?.patchValue(this.editedJobData.experience);
-                this.postJob
-                  .get('startDate')
-                  ?.patchValue(this.editedJobData.startDate);
-                this.postJob
-                  .get('duration')
-                  ?.patchValue(this.editedJobData.duration);
-                this.postJob
-                  .get('jobOpening')
-                  ?.patchValue(this.editedJobData.jobOpening);
-                this.postJob
-                  .get('responsibilities')
-                  ?.patchValue(this.editedJobData.responsibilities);
-                this.postJob
-                  .get('stipend')
-                  ?.patchValue(this.editedJobData.stipend);
-                this.postJob
-                  .get('salary')
-                  ?.patchValue(this.editedJobData.salary);
-                this.postJob
-                  .get('salaryType')
-                  ?.patchValue(this.editedJobData.salaryType);
-                this.postJob.get('perks')?.patchValue(this.editedJobData.perks);
+                }
+
+              //   this.postJob.get('type')?.patchValue(this.editedJobData.type);
+              //   this.postJob
+              //     .get('details')
+              //     ?.patchValue(this.editedJobData.details);
+              //   this.postJob
+              //     .get('location')
+              //     ?.patchValue(this.editedJobData.location);
+              //   this.postJob
+              //     .get('skills')
+              //     ?.patchValue(this.editedJobData.skills);
+              //   this.postJob
+              //     .get('intranshipType')
+              //     ?.patchValue(this.editedJobData.intranshipType);
+              //   this.postJob
+              //     .get('education')
+              //     ?.patchValue(this.editedJobData.education);
+              //   this.postJob
+              //     .get('experienceTime')
+              //     ?.patchValue(this.editedJobData.experienceTime);
+              //   this.postJob
+              //     .get('experience')
+              //     ?.patchValue(this.editedJobData.experience);
+              //   this.postJob
+              //     .get('startDate')
+              //     ?.patchValue(this.editedJobData.startDate);
+              //   this.postJob
+              //     .get('duration')
+              //     ?.patchValue(this.editedJobData.duration);
+              //   this.postJob
+              //     .get('jobOpening')
+              //     ?.patchValue(this.editedJobData.jobOpening);
+              //   this.postJob
+              //     .get('responsibilities')
+              //     ?.patchValue(this.editedJobData.responsibilities);
+              //   this.postJob
+              //     .get('stipend')
+              //     ?.patchValue(this.editedJobData.stipend);
+              //   this.postJob
+              //     .get('salary')
+              //     ?.patchValue(this.editedJobData.salary);
+              //   this.postJob
+              //     .get('salaryType')
+              //     ?.patchValue(this.editedJobData.salaryType);
+              //   this.postJob.get('perks')?.patchValue(this.editedJobData.perks);
               },
             });
         }
@@ -396,7 +420,7 @@ save_preview_job() {
   if (this.jobForm.value.salary > 0) {
     form_Data.salary = this.jobForm.value.salary;
   }
-  if (this.jobForm.value.salaryType.length > 0) {
+  if (this.jobForm.value.salaryType) {
     form_Data.salaryType = this.jobForm.value.salaryType;
   }
   if (this.jobForm.value.perks.length > 0) {
@@ -435,49 +459,49 @@ save_preview_job() {
   editJob(id: any) {
     console.log(id);
     console.log(this.editedJobId);
-    if (this.postJob.valid) {
-      let formData: Payload = this.postJob.value;
-      formData = {
-        ...formData,
-        id: this.saveDraftId ? this.saveDraftId : this.editedJobId,
-      };
-      if (this.saveDraftId) {
-        formData.id = this.saveDraftId;
-        this.display = false;
-      }
+    // if (this.postJob.valid) {
+    //   let formData: Payload = this.postJob.value;
+    //   formData = {
+    //     ...formData,
+    //     id: this.saveDraftId ? this.saveDraftId : this.editedJobId,
+    //   };
+    //   if (this.saveDraftId) {
+    //     formData.id = this.saveDraftId;
+    //     this.display = false;
+    //   }
 
-      if (this.editedJobId) {
-        this.jobPost.editedJob(this.editedJobId, formData).subscribe({
-          next: (resp) => {
-            console.log(resp);
-            this.display = false;
-            this.router.navigateByUrl('/industry/jobs');
-            this._toast.showToaster.next({
-              severity: 'success',
-              summary: 'success',
-              detail: resp.message,
-            });
-            this.display = false;
-          },
-          error: (err) => {
-            this.display = false;
-            this.router.navigateByUrl('/industry/jobs');
+    //   if (this.editedJobId) {
+    //     this.jobPost.editedJob(this.editedJobId, formData).subscribe({
+    //       next: (resp) => {
+    //         console.log(resp);
+    //         this.display = false;
+    //         this.router.navigateByUrl('/industry/jobs');
+    //         this._toast.showToaster.next({
+    //           severity: 'success',
+    //           summary: 'success',
+    //           detail: resp.message,
+    //         });
+    //         this.display = false;
+    //       },
+    //       error: (err) => {
+    //         this.display = false;
+    //         this.router.navigateByUrl('/industry/jobs');
 
-            this._toast.showToaster.next({
-              severity: 'Error',
-              summary: 'Error',
-              detail: err.error.message,
-            });
-          },
-        });
-      }
+    //         this._toast.showToaster.next({
+    //           severity: 'Error',
+    //           summary: 'Error',
+    //           detail: err.error.message,
+    //         });
+    //       },
+    //     });
+    //   }
 
-      // Now you can use formData to send the data to your API
-      console.log(formData);
+    //   // Now you can use formData to send the data to your API
+    //   console.log(formData);
 
-      // Clear the form or perform any necessary actions
-      // this.postJob.reset();
-    }
+    //   // Clear the form or perform any necessary actions
+    //   // this.postJob.reset();
+    // }
   }
 
   handleInternshipRadioButtonChange(event: Event) {
@@ -502,25 +526,25 @@ save_preview_job() {
 
   // this.title=e.target.value;
   // }
-  typeSelect() {
-console.log(this.industryType);
-    let type = this.postJob.get('type')?.value;
-    console.log(type);
-    this.title = type;
-    this.formvisibility = true;
-    if (type == 'intranship') {
-      this.intranshipContent = true;
-      this.jobContent = false;
-      this.salaryType = 'Stipend';
-    }
-    if (type == 'job') {
-      this.intranshipContent = false;
-      this.jobContent = true;
-      this.salaryType = 'Salary';
-    }
-    this.submitButtonVisibility = false;
-    this.resetbuttonVisibility = true;
-  }
+//   typeSelect() {
+// console.log(this.industryType);
+//     let type = this.postJob.get('type')?.value;
+//     console.log(type);
+//     this.title = type;
+//     this.formvisibility = true;
+//     if (type == 'intranship') {
+//       this.intranshipContent = true;
+//       this.jobContent = false;
+//       this.salaryType = 'Stipend';
+//     }
+//     if (type == 'job') {
+//       this.intranshipContent = false;
+//       this.jobContent = true;
+//       this.salaryType = 'Salary';
+//     }
+//     this.submitButtonVisibility = false;
+//     this.resetbuttonVisibility = true;
+//   }
 // typeReset() {
   //   // this.formvisibility = false;
   //   // this.intranshipContent = false;
@@ -547,8 +571,9 @@ console.log(this.jobForm.value)
 
 //type select
 
-typeSelection(value:string){
-  this.industryType=value;
+typeSelection(){
+  
+  this.industryType=this.industryTypeFalse;
   console.log(this.industryType)
   if(this.industryType == 'job'){
     this.industryForm.reset();
@@ -567,16 +592,18 @@ typeSelection(value:string){
     // this.submitButtonVisibility = true;
     // this.resetbuttonVisibility = false;
     // this.postJob.reset();
+   this.jobChecked.nativeElement.checked=false
+   this.internshipChecked.nativeElement.checked=false
     this.industryType=undefined;
     this.industryForm.reset();
-    this.jobForm.reset();
+        this.jobForm.reset();
 
   }
-//final submit internship
-submitFormInternship(){
-  console.log(this.industryForm.value)
-  if (this.industryForm.valid) {
-    let formData = this.postJob.value;
+
+  submitFormjob(){
+    console.log(this.jobForm.value)
+  if (this.jobForm.valid) {
+    let formData = this.jobForm.value;
     console.log(formData);
     formData = {
       ...formData,
@@ -587,7 +614,53 @@ submitFormInternship(){
       formData.id = this.saveDraftId;
       this.display = false;
     }
-    this.jobPost.submitJob(formData).subscribe({
+    this.jobPost.internshipSubmit(formData).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        this.display = false;
+        this.router.navigateByUrl('/industry/jobs');
+        this._toast.showToaster.next({
+          severity: 'success',
+          summary: 'success',
+          detail: resp.message,
+        });
+        this.display = false;
+      },
+      error: (err) => {
+        this.display = false;
+        // this.router.navigateByUrl('/industry/jobs')
+
+        this._toast.showToaster.next({
+          severity: 'Error',
+          summary: 'Error',
+          detail: err.error.message,
+        });
+      },
+    });
+
+    // Now you can use formData to send the data to your API
+    console.log(formData);
+
+    // Clear the form or perform any necessary actions
+    // this.postJob.reset();
+  }
+  }
+//final submit internship
+submitFormInternship(){
+  console.log(this.industryForm.value)
+  if (this.industryForm.valid) {
+    let formData = this.industryForm.value;
+    console.log(formData);
+    formData = {
+      ...formData,
+      id: this.saveDraftId ? this.saveDraftId : this.editedJobId,
+    };
+    console.log(formData, 'psj');
+    if (this.saveDraftId) {
+      formData.id = this.saveDraftId;
+      this.display = false;
+    }
+    this.jobPost.internshipSubmit(formData).subscribe({
       next: (resp) => {
         console.log(resp);
         this.display = false;
@@ -620,49 +693,49 @@ submitFormInternship(){
 }
 
 // final submit job
-submitForm() {
-  console.log(this.postJob.value, 'submit');
-  if (this.postJob.valid) {
-    let formData = this.postJob.value;
-    console.log(formData);
-    formData = {
-      ...formData,
-      id: this.saveDraftId ? this.saveDraftId : this.editedJobId,
-    };
-    console.log(formData, 'psj');
-    if (this.saveDraftId) {
-      formData.id = this.saveDraftId;
-      this.display = false;
-    }
-this.jobPost.submitJob(formData).subscribe({
-      next: (resp) => {
-        console.log(resp);
-        this.display = false;
-        this.router.navigateByUrl('/industry/jobs');
-        this._toast.showToaster.next({
-          severity: 'success',
-          summary: 'success',
-          detail: resp.message,
-        });
-        this.display = false;
-      },
-      error: (err) => {
-        this.display = false;
-        // this.router.navigateByUrl('/industry/jobs')
+// submitForm() {
+//   console.log(this.postJob.value, 'submit');
+//   if (this.postJob.valid) {
+//     let formData = this.postJob.value;
+//     console.log(formData);
+//     formData = {
+//       ...formData,
+//       id: this.saveDraftId ? this.saveDraftId : this.editedJobId,
+//     };
+//     console.log(formData, 'psj');
+//     if (this.saveDraftId) {
+//       formData.id = this.saveDraftId;
+//       this.display = false;
+//     }
+// this.jobPost.submitJob(formData).subscribe({
+//       next: (resp) => {
+//         console.log(resp);
+//         this.display = false;
+//         this.router.navigateByUrl('/industry/jobs');
+//         this._toast.showToaster.next({
+//           severity: 'success',
+//           summary: 'success',
+//           detail: resp.message,
+//         });
+//         this.display = false;
+//   },
+//       error: (err) => {
+//         this.display = false;
+//         // this.router.navigateByUrl('/industry/jobs')
 
-        this._toast.showToaster.next({
-          severity: 'Error',
-          summary: 'Error',
-          detail: err.error.message,
-        });
-      },
-    });
+//         this._toast.showToaster.next({
+//           severity: 'Error',
+//           summary: 'Error',
+//           detail: err.error.message,
+//         });
+//       },
+//     });
 
-    // Now you can use formData to send the data to your API
-    console.log(formData);
+//     // Now you can use formData to send the data to your API
+//     console.log(formData);
 
-    // Clear the form or perform any necessary actions
-    // this.postJob.reset();
-  }
-}
+//     // Clear the form or perform any necessary actions
+//     // this.postJob.reset();
+//   }
+// }
 }

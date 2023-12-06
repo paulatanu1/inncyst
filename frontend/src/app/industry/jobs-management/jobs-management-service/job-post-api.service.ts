@@ -57,7 +57,10 @@ export class JobPostApiService {
 internshipSubmit(data:any){
   console.log(data)
   let url = '/industry/submit-post'
+  return this.apiCall.ApiCallWithLocalization(data, url, 'post');
 }
+
+
   saveJob(payloadObj:any){
     let url = '/industry/add-post';
     console.log(payloadObj);

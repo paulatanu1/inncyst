@@ -1,21 +1,22 @@
 <div class="field-radiobutton">
-  <p-radioButton
+  <input type="radio"
     value="job"
     inputId="job"
     [(ngModel)]="industryTypeFalse"
-    (click)="typeSelection('job')"
-  ></p-radioButton>
+
+    #job
+  >
   <!-- <input type="radio" value="job"  formControlName="type" (click)="internshipSelect($event)"> -->
   <label for="job">Job</label>
 </div>
 
 <div class="field-radiobutton">
-  <p-radioButton
+  <input type="radio"
     value="internship"
     inputId="internship"
     [(ngModel)]="industryTypeFalse"
-    (click)="typeSelection('internship')"
-  ></p-radioButton>
+ #internship
+  >
 
   <!-- <input type="radio" value="intranship"  formControlName="type" (click)="internshipSelect($event)"> -->
   <label for="internship">Internship</label>
@@ -27,7 +28,13 @@
 >
   submit
 </p> -->
-
+<p
+  style="background-color: burlywood"
+  (click)="typeSelection()"
+  *ngIf="!industryType"
+>
+  submit
+</p>
 <p
   style="background-color: burlywood"
   (click)="typeReset()"
@@ -38,7 +45,7 @@
 <!--==================================================================================================================================================================================================================-->
 <div *ngIf="industryType == 'internship'">
 
-    <form [formGroup]="industryForm" (ngSubmit)="internshipSubmitForm()">
+    <form [formGroup]="industryForm" (ngSubmit)="submitFormInternship()">
       <div class="post_job_form_sec">
         <h2>Post internship</h2>
         <div class="post_job_form">
@@ -278,12 +285,12 @@
           >
             Save Preview
           </button>
-
+          
           <button
             type="button"
             class="save_preview"
             *ngIf="editedJobId && !status"
-            (click)="submitForm()"
+            (click)="submitFormInternship()"
           >
             submit
           </button>
@@ -308,7 +315,7 @@
 
 <div *ngIf="industryType == 'job'">
 
-  <form [formGroup]="jobForm" (ngSubmit)="jobSubmitForm()">
+  <form [formGroup]="jobForm" (ngSubmit)="submitFormjob()">
     <div class="post_job_form_sec">
       <h2>Post job</h2>
       <div class="post_job_form">
@@ -534,12 +541,12 @@
         >
           Save Preview
         </button>
-
+     
         <button
           type="button"
           class="save_preview"
           *ngIf="editedJobId && !status"
-          (click)="submitForm()"
+          (click)="submitFormjob()"
         >
           submit
         </button>
@@ -960,12 +967,16 @@
       </p>
     </div>
 
-    <button type="submit" class="post_btn" (click)="submitForm()">
+    <!-- <button type="submit" class="post_btn" (click)="submitForm()">
       Published
-    </button>
+    </button> -->
 
     <br>
     <button  class="post_btn" (click)="submitFormInternship()" *ngIf="industryType == 'internship'">published i</button>
+    <br />
+
+    <br>
+    <button  class="post_btn" (click)="submitFormjob()" *ngIf="industryType == 'job'">published job</button>
     <br />
     <button class="post_btn" (click)="edit()">edit</button>
   </p-dialog>

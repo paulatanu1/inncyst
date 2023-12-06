@@ -25,6 +25,10 @@
     <input type="file" (change)="onFileSelected($event)" >
     <!-- <button (click)="uploadImage()">Upload Image</button> -->
 </div>
+
+<!-- <div>
+    <img src=""  formControlName="workPlace">
+</div> -->
 <button type="submit" *ngIf="submitButton">submit</button>
 </form>
 <button (click)="editProfile()" *ngIf="!submitButton && questionStep">Edit Profile</button>
