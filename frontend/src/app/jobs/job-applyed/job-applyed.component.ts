@@ -52,7 +52,7 @@ export class JobApplyedComponent implements OnInit {
             );}
             console.log(this.AppliedJobDetails);
             element.intranshipDetails.companyName = this.capitalizeWords(
-              element.intranshipDetails.companyName
+            element.intranshipDetails.companyName
             );
           });
         }
