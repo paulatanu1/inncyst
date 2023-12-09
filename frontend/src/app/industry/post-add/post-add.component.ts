@@ -234,7 +234,44 @@ this.editedJobType=res['type'];
                     this.industryForm
                   .get('details')
                   ?.patchValue(this.editedinternshipData.details);
+                   this.industryForm
+                  .get('skills')
+                  ?.patchValue(this.editedinternshipData.skills);
+                   this.industryForm
+                  .get('intranshipType')
+                  ?.patchValue(this.editedinternshipData.intranshipType);
+                   this.industryForm
+                  .get('startDate')
+                  ?.patchValue(this.editedinternshipData.startDate);
+                   this.industryForm
+                  .get('education')
+                  ?.patchValue(this.editedinternshipData.education);
+                   this.industryForm
+                  .get('jobOpening')
+                  ?.patchValue(this.editedinternshipData.jobOpening);
+                   this.industryForm
+                  .get('salary')
+                  ?.patchValue(this.editedinternshipData.salary);
+                   this.industryForm
+                  .get('salaryType')
+                  ?.patchValue(this.editedinternshipData.salaryType);
+                   this.industryForm
+                  .get('perks')
+                  ?.patchValue(this.editedinternshipData.perks);
+                   this.industryForm
+                  .get('location')
+                  ?.patchValue(this.editedinternshipData.location);
+                  this.industryForm
+                  .get('stipend')
+                  ?.patchValue(this.editedinternshipData.stipend);
+                  this.industryForm
+                  .get('duration')
+                  ?.patchValue(this.editedinternshipData.duration);
+                  this.industryForm
+                  .get('durationIn')
+                  ?.patchValue(this.editedinternshipData.durationIn);
                   }
+                  
                 }
                 if(res.data.type == 'job'){
                   this.industryTypeFalse='job';
@@ -245,6 +282,43 @@ this.editedJobType=res['type'];
                     this.jobForm
                   .get('details')
                   ?.patchValue(this.editedJobData.details);
+                  this.jobForm
+                  .get('skills')
+                  ?.patchValue(this.editedJobData.skills);
+                  this.jobForm
+                  .get('intranshipType')
+                  ?.patchValue(this.editedJobData.intranshipType);
+                  this.jobForm
+                  .get('details')
+                  ?.patchValue(this.editedJobData.education);
+                  this.jobForm
+                  .get('experience')
+                  ?.patchValue(this.editedJobData.experience);
+                  this.jobForm
+                  .get('experienceTime')
+                  ?.patchValue(this.editedJobData.experienceTime);
+                  this.jobForm
+                  .get('jobOpening')
+                  ?.patchValue(this.editedJobData.jobOpening);
+                  this.jobForm
+                  .get('responsibilities')
+                  ?.patchValue(this.editedJobData.responsibilities);
+                  this.jobForm
+                  .get('stipend')
+                  ?.patchValue(this.editedJobData.stipend);
+                  this.jobForm
+                  .get('salary')
+                  ?.patchValue(this.editedJobData.salary);
+                  this.jobForm
+                  .get('salaryType')
+                  ?.patchValue(this.editedJobData.salaryType);
+                  this.jobForm
+                  .get('perks')
+                  ?.patchValue(this.editedJobData.perks);
+                  this.jobForm
+                  .get('location')
+                  ?.patchValue(this.editedJobData.location);
+                  
                 }
 
               //   this.postJob.get('type')?.patchValue(this.editedJobData.type);
@@ -503,7 +577,9 @@ save_preview_job() {
     //   // this.postJob.reset();
     // }
   }
-
+  editInternship(id:any){
+    console.log(id)
+  }
   handleInternshipRadioButtonChange(event: Event) {
     console.log(event);
   }
