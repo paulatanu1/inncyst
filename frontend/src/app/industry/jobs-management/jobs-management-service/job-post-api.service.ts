@@ -66,6 +66,13 @@ internshipSubmit(data:any){
     console.log(payloadObj);
     return this.apiCall.ApiCallWithLocalization(payloadObj,url,'post')
   }
+
+  
+  saveJob2(payloadObj:any){
+    let url = '/industry/add-post';
+    console.log(payloadObj);
+    return this.apiCall.ApiCallWithLocalization(payloadObj,url,'post')
+  }
   editedJob(id:any,payloadObj:any){
     let url='/industry/post-edit/'+id
     return this.apiCall.ApiCallWithLocalization(payloadObj,url,'put')

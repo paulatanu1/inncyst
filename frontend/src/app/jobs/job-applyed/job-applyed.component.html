@@ -23,10 +23,10 @@
           <div class="company_info_head">
             <div class="company_logo"></div>
             <div>
-              <h2>{{ a?.intranshipDetails?.intranshipName }}</h2>
+              <h2>{{ a?.jobDetails?.company?.companyName }}</h2>
               <div class="location_info">
-                <strong>{{ a.intranshipDetails?.companyName }}</strong>
-                <span>{{ a.intranshipDetails?.location }}</span>
+                <!-- <strong>{{ a.jobDetails?.companyName }}</strong> -->
+                <span>{{ a?.jobDetails?.location }}</span>
               </div>
                           </div>
                       </div>
@@ -38,7 +38,7 @@
 
           <div class="location_info">
             <i class="pi pi-calendar"></i>
-            <span>{{ a.intranshipDetails?.createdAt | date }}</span>
+            <span>{{ a?.jobDetails?.createdAt | date }}</span>
           </div>
 
           <div class="company_info">

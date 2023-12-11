@@ -1,33 +1,26 @@
 <div class="field-radiobutton">
-  <input type="radio"
+  <input
+    type="radio"
     value="job"
     inputId="job"
     [(ngModel)]="industryTypeFalse"
-
     #job
-  >
-  <!-- <input type="radio" value="job"  formControlName="type" (click)="internshipSelect($event)"> -->
+  />
   <label for="job">Job</label>
 </div>
 
 <div class="field-radiobutton">
-  <input type="radio"
+  <input
+    type="radio"
     value="internship"
     inputId="internship"
     [(ngModel)]="industryTypeFalse"
- #internship
-  >
+    #internship
+  />
 
-  <!-- <input type="radio" value="intranship"  formControlName="type" (click)="internshipSelect($event)"> -->
+
   <label for="internship">Internship</label>
 </div>
-<!-- <p
-  style="background-color: brown"
-  (click)="typeSelect()"
-  *ngIf="submitButtonVisibility"
->
-  submit
-</p> -->
 <p
   style="background-color: burlywood"
   (click)="typeSelection()"
@@ -44,11 +37,10 @@
 </p>
 <!--==================================================================================================================================================================================================================-->
 <div *ngIf="industryType == 'internship'">
-
-    <form [formGroup]="industryForm" (ngSubmit)="submitFormInternship()">
-      <div class="post_job_form_sec">
-        <h2>Post internship</h2>
-        <div class="post_job_form">
+  <form [formGroup]="industryForm" (ngSubmit)="submitFormInternship()">
+    <div class="post_job_form_sec">
+      <h2>Post internship</h2>
+      <div class="post_job_form">
         <h3>{{ industryType }} details</h3>
         <div class="form_group">
           <div class="form_field_group">
@@ -77,8 +69,6 @@
               optionValue="value"
               formControlName="education"
             ></p-dropdown>
-
-      
           </div>
 
           <div class="form_field_group">
@@ -131,7 +121,7 @@
               pInputText
             />
           </div>
-          <div >
+          <div>
             <div class="form_field_group">
               <label>Internship start date</label>
               <div class="field-radiobutton">
@@ -172,7 +162,7 @@
               </div>
             </div>
           </div>
-      
+
           <div class="form_field_group">
             <label>{{ salaryType }}</label>
             <div class="field-radiobutton">
@@ -255,14 +245,217 @@
               <span>(Optional)</span>
             </label>
             <p>Why should you be hired for this role?</p>
+
+            <textarea
+              type="text"
+              formControlName="letter"
+              placeholder="Are you available for 1 month, starting immediately, for a full-time work from home internship? If not, what is the time period you are available for and the earliest date you can startthis internship on?"
+              rows="4"
+              cols="50"
+            ></textarea>
           </div>
           <div class="form_field_group">
             <label>Availability</label>
-            <p>
+            <!-- <p>
               Are you available for 1 month, starting immediately, for a
               full-time work from home internship? If not, what is the time
               period you are available for and the earliest date you can start
               this internship on?
+            </p> -->
+            <textarea
+              formControlName="availability"
+              rows="4"
+              cols="50"
+              placeholder=" Are you available for 1 month, starting immediately, for a full-time work from home internship? If not, what is the time  period you are available for and the earliest date you can start this internship on"
+            ></textarea>
+            <!-- <input type="text" formControlName="availability"> -->
+            <div class="add_more">
+              <p-chips
+              separator=" "
+              formControlName="moreQuestions"
+              placeholder="Add any Questions"
+            ></p-chips>
+            <p>
+              Please add
+              <b>space</b>
+              after adding any skill.
+            </p>
+
+              <!-- <textarea
+                formControlName="moreQuestions"
+                rows="4"
+                cols="50"
+                placeholder=" Add any Questions"
+              ></textarea> -->
+            </div>
+          </div>
+        </div>
+        <div class="buttonSec">
+          <div *ngIf="!EditInternship">
+          <button
+            type="button"
+            class="save_preview"
+           
+            (click)="internshipSavePreveiw()"
+          >
+            Save Preview
+          </button>
+          <!-- <button
+            type="button"
+            class="save_preview"
+            *ngIf="editedJobId && !status"
+            (click)="submitFormInternship()"
+          >
+            submit
+          </button>  -->
+          <button
+            type="button"
+            class="save_preview"
+            *ngIf="saveDraftId || editedJobId"
+            (click)="submitFormInternship()"
+          >
+            Submit
+          </button>
+        </div>
+        <div *ngIf="EditInternship">
+          <button
+          type="button"
+          class="save_preview"
+          *ngIf="saveDraftId || editedJobId"
+          (click)="internshipFormEnable()"
+        >
+          Submit
+        </button>
+      </div>
+          <!-- <button type="button" *ngIf="status" (click)="editInternship(editedJobId)">
+            Edit Job
+          </button> -->
+        </div>
+        <div class="assistance">
+          <p>
+            Need assistance? Please visit
+            <span>Help Center</span>
+          </p>
+        </div>
+        <!-- <button type="submit">Submit </button> -->
+      </div>
+    </div>
+  </form>
+</div>
+<!-- =====================================================================================================================================================================================================================-->
+
+<!-- =====================================================================================================================================================================================================================-->
+
+<div *ngIf="industryType == 'job'">
+  <form [formGroup]="jobForm" (ngSubmit)="submitFormjob()">
+    <div class="post_job_form_sec">
+      <h2>Post job</h2>
+      <div class="post_job_form">
+        <h3>{{ industryType }} details</h3>
+        <div class="form_group">
+          <div class="form_field_group">
+            <label>{{ title }} details</label>
+            <input
+              type="text"
+              placeholder="e.g Android app development"
+              pInputText
+              formControlName="details"
+            />
+            {{editedJobData?.details}}
+          </div>
+          <div class="form_field_group">
+            <label>Location</label>
+            <input
+              type="text"
+              placeholder="e.g Kolkata"
+              pInputText
+              formControlName="location"
+            />
+          </div>
+          <div>
+            <label>Education Qualification:--</label>
+            <p-dropdown
+              [options]="education"
+              optionLabel="name"
+              optionValue="value"
+              formControlName="education"
+            ></p-dropdown>
+            <div>
+              <label>Experience</label>
+              <input type="number" formControlName="experience" />
+              <p-dropdown
+                [options]="experienceTime"
+                optionLabel="name"
+                optionValue="value"
+                formControlName="experienceTime"
+              ></p-dropdown>
+            </div>
+          </div>
+
+          <div class="form_field_group">
+            <label> Skills required </label>
+            <!-- <input type="text" placeholder="e.g Java" pInputText /> -->
+            <p-chips
+              separator=" "
+              formControlName="skills"
+              placeholder="Hint: a, b, c"
+            ></p-chips>
+            <p>
+              Please add
+              <b>space</b>
+              after adding any skill.
+            </p>
+          </div>
+          <div class="form_field_group">
+            <label>{{ title }} type</label>
+            <div class="field-radiobutton">
+              <p-radioButton
+                value="office"
+                inputId="in-office"
+                formControlName="intranshipType"
+              ></p-radioButton>
+              <label for="in-office">In-office</label>
+            </div>
+            <div class="field-radiobutton">
+              <p-radioButton
+                value="hybrid"
+                inputId="in-office"
+                formControlName="intranshipType"
+              ></p-radioButton>
+              <label for="hybrid">Hybrid</label>
+            </div>
+            <div class="field-radiobutton">
+              <p-radioButton
+                value="remote"
+                inputId="in-office"
+                formControlName="intranshipType"
+              ></p-radioButton>
+              <label for="remote">Remote</label>
+            </div>
+          </div>
+          <div class="form_field_group">
+            <label>Number of openings</label>
+            <input
+              formControlName="jobOpening"
+              type="number"
+              placeholder="e.g 6"
+              pInputText
+            />
+          </div>
+          <div class="form_field_group">
+            <label>
+              Job's responsibilities
+              <em>Selected intern's day-to-day responsibilities include:</em>
+            </label>
+            <p-chips
+              separator=" "
+              formControlName="responsibilities"
+              placeholder="e.g designing product concepts"
+            ></p-chips>
+            <p>
+              Please add
+              <b>space</b>
+              after adding any skill.
             </p>
             <div class="add_more">
               <i>
@@ -272,31 +465,146 @@
                   height="18"
                 />
               </i>
-              Add any Questions
+              Add more responsibilities
+            </div>
+          </div>
+
+          <div class="form_field_group">
+            <label>{{ salaryType }}</label>
+            <div class="field-radiobutton">
+              <p-radioButton
+                value="fixed"
+                inputId="fixed"
+                formControlName="stipend"
+              ></p-radioButton>
+              <label for="fixed">Fixed</label>
+            </div>
+            <div class="field-radiobutton">
+              <p-radioButton
+                value="paid"
+                inputId="Performance based"
+                formControlName="stipend"
+              ></p-radioButton>
+              <label for="later">Performance based</label>
+            </div>
+          </div>
+          <div class="form_field_group stipend">
+            <div class="twoColForm">
+              <input
+                formControlName="salary"
+                type="text"
+                placeholder="e.g 10000/-"
+                pInputText
+              />
+              <p-dropdown
+                [options]="cities"
+                optionLabel="optionName"
+                optionValue="optionName"
+                formControlName="salaryType"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="form_field_group perks">
+            <label>
+              Perks
+              <!-- <span>(Optional)</span> -->
+            </label>
+            <div class="field-checkbox">
+              <p-checkbox
+                value="certificate"
+                inputId="certificate"
+                formControlName="perks"
+              ></p-checkbox>
+              <label for="ny">Certificate</label>
+            </div>
+            <div class="field-checkbox">
+              <p-checkbox
+                value="letter of recommendationk"
+                inputId="lor"
+                formControlName="perks"
+              ></p-checkbox>
+              <label for="ny">Letter of recommendation</label>
+            </div>
+            <div class="field-checkbox">
+              <p-checkbox
+                value="others"
+                inputId="others"
+                formControlName="perks"
+              ></p-checkbox>
+              <label for="ny">Others</label>
+            </div>
+          </div>
+        </div>
+        <h3>Cover letter & assessment question</h3>
+        <div class="form_group">
+          <div class="form_field_group">
+            <label>
+              Cover letter
+              <span>(Optional)</span>
+            </label>
+            <p>Why should you be hired for this role?</p>
+            <textarea
+            type="text"
+            formControlName="letter"
+            placeholder="Are you available for 1 month, starting immediately, for a full-time work from home internship? If not, what is the time period you are available for and the earliest date you can startthis internship on?"
+            rows="4"
+            cols="50"
+          ></textarea>
+          </div>
+          <div class="form_field_group">
+            <label>Availability</label>
+            <textarea
+            formControlName="availability"
+            rows="4"
+            cols="50"
+            placeholder=" Are you available for 1 month, starting immediately, for a full-time work from home internship? If not, what is the time  period you are available for and the earliest date you can start this internship on"
+          ></textarea>
+            <div class="add_more">
+              <p-chips
+              separator=" "
+              formControlName="moreQuestions"
+              placeholder="Add any Questions"
+            ></p-chips>
+            <p>
+              Please add
+              <b>space</b>
+              after adding any skill.
+            </p>
             </div>
           </div>
         </div>
         <div class="buttonSec">
+          <div *ngIf="!EditJob">
           <button
             type="button"
             class="save_preview"
-            *ngIf="!editedJobId"
-            (click)="internshipSavePreveiw()"
+           
+            (click)="save_preview_job()"
           >
             Save Preview
           </button>
-          
           <button
             type="button"
             class="save_preview"
-            *ngIf="editedJobId && !status"
-            (click)="submitFormInternship()"
+            *ngIf="saveDraftId || editedJobId"
+            (click)="submitFormjob()"
           >
             submit
           </button>
-          <button type="button" *ngIf="status" (click)="editInternship(editedJobId)">
-            Edit Job
-          </button>
+        </div>
+        <div *ngIf="EditJob">
+          <button
+          type="button"
+          class="save_preview"
+          *ngIf="saveDraftId || editedJobId"
+          (click)="jobFormEnable()"
+        >
+         Edit
+        </button>
+        </div>
+          <!-- <button type="button" *ngIf="status" (click)="editJob(editedJobId)">
+          Edit Job
+        </button> -->
         </div>
         <div class="assistance">
           <p>
@@ -304,270 +612,14 @@
             <span>Help Center</span>
           </p>
         </div>
-        <button type="submit">Submit </button>
-        </div>
-        </div>
-    </form>
-</div>
-<!-- =====================================================================================================================================================================================================================--> 
-
-<!-- =====================================================================================================================================================================================================================--> 
-
-<div *ngIf="industryType == 'job'">
-
-  <form [formGroup]="jobForm" (ngSubmit)="submitFormjob()">
-    <div class="post_job_form_sec">
-      <h2>Post job</h2>
-      <div class="post_job_form">
-      <h3>{{ industryType }} details</h3>
-      <div class="form_group">
-        <div class="form_field_group">
-          <label>{{ title }} details</label>
-          <input
-            type="text"
-            placeholder="e.g Android app development"
-            pInputText
-            formControlName="details"
-          />
-        </div>
-        <div class="form_field_group">
-          <label>Location</label>
-          <input
-            type="text"
-            placeholder="e.g Kolkata"
-            pInputText
-            formControlName="location"
-          />
-        </div>
-        <div>
-          <label>Education Qualification:--</label>
-          <p-dropdown
-            [options]="education"
-            optionLabel="name"
-            optionValue="value"
-            formControlName="education"
-          ></p-dropdown>
-          <div >
-            <label>Experience</label>
-            <input type="number" formControlName="experience" />
-            <p-dropdown
-              [options]="experienceTime"
-              optionLabel="name"
-              optionValue="value"
-              formControlName="experienceTime"
-            ></p-dropdown>
-          </div>
-    
-        </div>
-
-        <div class="form_field_group">
-          <label> Skills required </label>
-          <!-- <input type="text" placeholder="e.g Java" pInputText /> -->
-          <p-chips
-            separator=" "
-            formControlName="skills"
-            placeholder="Hint: a, b, c"
-          ></p-chips>
-          <p>
-            Please add
-            <b>space</b>
-            after adding any skill.
-          </p>
-        </div>
-        <div class="form_field_group">
-          <label>{{ title }} type</label>
-          <div class="field-radiobutton">
-            <p-radioButton
-              value="office"
-              inputId="in-office"
-              formControlName="intranshipType"
-            ></p-radioButton>
-            <label for="in-office">In-office</label>
-          </div>
-          <div class="field-radiobutton">
-            <p-radioButton
-              value="hybrid"
-              inputId="in-office"
-              formControlName="intranshipType"
-            ></p-radioButton>
-            <label for="hybrid">Hybrid</label>
-          </div>
-          <div class="field-radiobutton">
-            <p-radioButton
-              value="remote"
-              inputId="in-office"
-              formControlName="intranshipType"
-            ></p-radioButton>
-            <label for="remote">Remote</label>
-          </div>
-        </div>
-        <div class="form_field_group">
-          <label>Number of openings</label>
-          <input
-            formControlName="jobOpening"
-            type="number"
-            placeholder="e.g 6"
-            pInputText
-          />
-        </div>
-        <div class="form_field_group" >
-          <label>
-            Job's responsibilities
-            <em>Selected intern's day-to-day responsibilities include:</em>
-          </label>
-          <p-chips
-            separator=" "
-            formControlName="responsibilities"
-            placeholder="e.g designing product concepts"
-          ></p-chips>
-          <p>
-            Please add
-            <b>space</b>
-            after adding any skill.
-          </p>
-          <div class="add_more">
-            <i>
-              <img
-                src="../../../assets/plus-icon.png"
-                width="18"
-                height="18"
-              />
-            </i>
-            Add more responsibilities
-          </div>
-        </div>
-    
-        <div class="form_field_group">
-          <label>{{ salaryType }}</label>
-          <div class="field-radiobutton">
-            <p-radioButton
-              value="fixed"
-              inputId="fixed"
-              formControlName="stipend"
-            ></p-radioButton>
-            <label for="fixed">Fixed</label>
-          </div>
-          <div class="field-radiobutton">
-            <p-radioButton
-              value="paid"
-              inputId="Performance based"
-              formControlName="stipend"
-            ></p-radioButton>
-            <label for="later">Performance based</label>
-          </div>
-        </div>
-        <div class="form_field_group stipend">
-          <div class="twoColForm">
-            <input
-              formControlName="salary"
-              type="text"
-              placeholder="e.g 10000/-"
-              pInputText
-            />
-            <p-dropdown
-              [options]="cities"
-              optionLabel="optionName"
-              optionValue="optionName"
-              formControlName="salaryType"
-            ></p-dropdown>
-          </div>
-        </div>
-        <div class="form_field_group perks">
-          <label>
-            Perks
-            <!-- <span>(Optional)</span> -->
-          </label>
-          <div class="field-checkbox">
-            <p-checkbox
-              value="certificate"
-              inputId="certificate"
-              formControlName="perks"
-            ></p-checkbox>
-            <label for="ny">Certificate</label>
-          </div>
-          <div class="field-checkbox">
-            <p-checkbox
-              value="letter of recommendationk"
-              inputId="lor"
-              formControlName="perks"
-            ></p-checkbox>
-            <label for="ny">Letter of recommendation</label>
-          </div>
-          <div class="field-checkbox">
-            <p-checkbox
-              value="others"
-              inputId="others"
-              formControlName="perks"
-            ></p-checkbox>
-            <label for="ny">Others</label>
-          </div>
-        </div>
+        <!-- <button type="submit">Submit </button> -->
       </div>
-      <h3>Cover letter & assessment question</h3>
-      <div class="form_group">
-        <div class="form_field_group">
-          <label>
-            Cover letter
-            <span>(Optional)</span>
-          </label>
-          <p>Why should you be hired for this role?</p>
-        </div>
-        <div class="form_field_group">
-          <label>Availability</label>
-          <p>
-            Are you available for 1 month, starting immediately, for a
-            full-time work from home internship? If not, what is the time
-            period you are available for and the earliest date you can start
-            this internship on?
-          </p>
-          <div class="add_more">
-            <i>
-              <img
-                src="../../../assets/plus-icon.png"
-                width="18"
-                height="18"
-              />
-            </i>
-            Add any Questions
-          </div>
-        </div>
-      </div>
-      <div class="buttonSec">
-        <button
-          type="button"
-          class="save_preview"
-          *ngIf="!editedJobId"
-          (click)="save_preview_job()"
-        >
-          Save Preview
-        </button>
-     
-        <button
-          type="button"
-          class="save_preview"
-          *ngIf="editedJobId && !status"
-          (click)="submitFormjob()"
-        >
-          submit
-        </button>
-        <button type="button" *ngIf="status" (click)="editJob(editedJobId)">
-          Edit Job
-        </button>
-      </div>
-      <div class="assistance">
-        <p>
-          Need assistance? Please visit
-          <span>Help Center</span>
-        </p>
-      </div>
-      <button type="submit">Submit </button>
-      </div>
-      </div>
+    </div>
   </form>
 </div>
 
-<!-- =====================================================================================================================================================================================================================--> 
- <!-- <form [formGroup]="postJob" (ngSubmit)="submitForm()">
+<!-- =====================================================================================================================================================================================================================-->
+<!-- <form [formGroup]="postJob" (ngSubmit)="submitForm()">
   <div class="post_job_form_sec">
     <h2>Post internship/job</h2>
     <div class="post_job_form">
@@ -905,7 +957,7 @@
 </form>  -->
 
 <!--.................................. SAVE PREVIEW POPUP..................  -->
-
+<!-- 
 <div>
   <p-dialog
     header="Title"
@@ -914,7 +966,7 @@
     onHide="modalclose()"
     [resizable]="true"
   >
-    <div *ngIf="savedDraftData">
+    <div *ngIf="savedDraftData || editedJobId">
       <p *ngIf="savedDraftData.type">
         Opportunity Type:- {{ savedDraftData.type }}
       </p>
@@ -965,21 +1017,41 @@
         Intranship Duration:--{{ savedDraftData.duration }}
         <span>{{ savedDraftData.durationIn }}</span>
       </p>
+
+      <h3>COVER LETTER..........</h3>
+      <p *ngIf="savedDraftData?.coverLetter?.letter">
+        Intranship Duration:--{{ savedDraftData.coverLetter.letter }}
+        <span>{{ savedDraftData.durationIn }}</span>
+      </p>     <p *ngIf="savedDraftData?.coverLetter?.letter">
+        Intranship Duration:--{{ savedDraftData.coverLetter.availability }}
+        <span>{{ savedDraftData.durationIn }}</span>
+      </p>     <p *ngIf="savedDraftData?.coverLetter?.letter">
+        Intranship Duration:--{{ savedDraftData.coverLetter.moreQuestions }}
+        <span>{{ savedDraftData.durationIn }}</span>
+      </p>
     </div>
 
-    <!-- <button type="submit" class="post_btn" (click)="submitForm()">
-      Published
-    </button> -->
 
-    <br>
-    <button  class="post_btn" (click)="submitFormInternship()" *ngIf="industryType == 'internship'">published i</button>
+    <br />
+    <button
+      class="post_btn"
+      (click)="submitFormInternship()"
+      *ngIf="industryType == 'internship'"
+    >
+      Published Internship
+    </button>
     <br />
 
-    <br>
-    <button  class="post_btn" (click)="submitFormjob()" *ngIf="industryType == 'job'">published job</button>
+    <br />
+    <button
+      class="post_btn"
+      (click)="submitFormjob()"
+      *ngIf="industryType == 'job'"
+    >
+      Published Job
+    </button>
     <br />
     <button class="post_btn" (click)="edit()">edit</button>
   </p-dialog>
 
-  <!-- <button type="button" (click)="showDialog()" icon="pi pi-info-circle" label="Show"></button> -->
-</div>
+</div> -->
