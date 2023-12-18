@@ -214,10 +214,21 @@
               <span>Letter of recommendation</span>
               <span>Flexible work hours</span>
             </div>
-            <h2>Additional Information</h2>
-            <p>
-              {{ a.information }}
-            </p>
+            <div >
+
+              <h2 *ngIf="a.coverLetter.availability || a.coverLetter.letter">Additional Information</h2>
+              <p *ngIf="a.coverLetter.availability">
+                availability:-- 
+                {{ a.coverLetter.availability }}
+              </p>
+              <P *ngIf="a.coverLetter.letter">
+                letter:-- {{a.coverLetter.letter}}
+              </P>
+
+              <P *ngFor="let a of a.coverLetter.moreQuestions">
+                letter:-- {{a}}
+              </P>
+            </div>
             <h2>Number of openings</h2>
             <p>{{ a.jobOpening }}</p>
             <div class="apply_btn">

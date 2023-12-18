@@ -19,6 +19,9 @@ export class IndustryProfileComponent implements OnInit {
   fileName!: string;
   questionStep: any;
   id: any;
+  editProfileData = false;
+  openImageUploadButton = false;
+  viewProfile = true;
   constructor(
     private fb: FormBuilder,
     private _ProfileService: ProfileService,
@@ -60,7 +63,7 @@ export class IndustryProfileComponent implements OnInit {
             });
             // this.router.navigateByUrl('/industry/jobs');
             this.submitButton = false;
-
+            this.viewProfile = true;
             this.getProfile();
           },
           error: (err) => {
@@ -92,7 +95,7 @@ export class IndustryProfileComponent implements OnInit {
             });
             // this.router.navigateByUrl('/industry/jobs');
             this.submitButton = false;
-
+            this.viewProfile = true;
             this.getProfile();
           },
           error: (err) => {
@@ -113,19 +116,20 @@ export class IndustryProfileComponent implements OnInit {
         this.profileData = res.data;
         this.questionStep = res.data?.industryId.question_step;
         console.log(this.profileData);
-        if(this.profileData){
-          
+        if (this.profileData) {
           this.profileForm.get('companyName')?.setValue(res.data?.companyName);
           this.profileForm
             .get('companyEstdYear')
             ?.setValue(res.data?.companyEstdYear);
-          this.profileForm.get('aboutCompany')?.setValue(res.data?.aboutCompany);
+          this.profileForm
+            .get('aboutCompany')
+            ?.setValue(res.data?.aboutCompany);
           this.profileForm.get('empCount')?.setValue(res.data?.empCount);
           this.profileForm.get('workPlace')?.setValue(res.data?.workPlace);
           this.profileForm.get('image')?.setValue(res.data?.image);
           this.profileForm.disable();
         }
-        if(!this.profileData){
+        if (!this.profileData) {
           this.profileForm.enable();
         }
       },
@@ -134,13 +138,15 @@ export class IndustryProfileComponent implements OnInit {
   editProfile() {
     this.submitButton = true;
     this.profileForm.enable();
+    this.editProfileData = true;
+    this.viewProfile = false;
   }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     this.fileName = this.selectedFile.name;
     this.convertToBase64();
-    // console.log(this.selectedFile);
+    this.openImageUploadButton = false;
   }
 
   convertToBase64() {
@@ -185,5 +191,9 @@ export class IndustryProfileComponent implements OnInit {
         // this.router.navigateByUrl('/industry/jobs');
       },
     });
+  }
+  removeImage() {
+    this.profileForm.get('image')?.setValue(null);
+    this.openImageUploadButton = true;
   }
 }

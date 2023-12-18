@@ -16,7 +16,7 @@ interface City {
   encapsulation: ViewEncapsulation.None,
 })
 export class JobsManagementComponent implements OnInit {
-  postList: any = [];
+  postList:any=[]
   visible: boolean = false;
   status!: City[];
 editedJobId!:any
@@ -68,7 +68,8 @@ loading:boolean=false;
         console.log(res)
         this.totalItem=res.data.total;
         console.log(this.totalItem)
-        this.postList =[...this.postList, res.data.items];
+        this.postList = [...this.postList,...res.data.items];
+        // this.postList=this.postList.push(...res.data.items)
         console.log(this.postList)
         console.log(res.data.items)
         this.loading=false
@@ -94,12 +95,13 @@ loading:boolean=false;
     console.log(id);
     this.post.deletePortFolio(id).subscribe({
       next: (res) => {
-        this.getJobList()
+      
         this._toast.showToaster.next({
           severity: 'success',
           summary: 'success',
           detail: res.message,
         });
+        this.getJobList()
       },
       error: (err) => {
         this._toast.showToaster.next({
@@ -107,6 +109,7 @@ loading:boolean=false;
           summary: 'Error',
           detail: err.error.message,
         });
+        this.getJobList()
       },
     });
   }
