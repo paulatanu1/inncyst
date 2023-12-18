@@ -72,28 +72,38 @@
               <div class="company_details_head">
                 <div class="comapny_details">
                   <span>
-                    <img src="{{a.image ? 'a.image' : '../../../assets/no-image.svg'}}" width="90" height="48" loading="lazy" />
+                    <img
+                      src="{{
+                        a.image ? 'a.image' : '../../../assets/no-image.svg'
+                      }}"
+                      width="90"
+                      height="48"
+                      loading="lazy"
+                    />
                   </span>
                   <h2>
                     {{ a.companyName }}MailChimp
-                    <span class="posted_time">Posted {{a.createdAt}} days ago</span>
+                    <span class="posted_time"
+                      >Posted {{ a.createdAt }} days ago</span
+                    >
                   </h2>
                 </div>
-                
-                <h2>{{a.details}}</h2>
-                <div class="tags">
 
+                <h2>{{ a.details }}</h2>
+                <div class="tags">
                   <span>1-3 Years</span>
                   <span>Graduation/Diploma</span>
-                  <span>{{a.salary}} Lpa</span>
+                  <span>{{ a.salary }} Lpa</span>
                   <span>{{ a.intranshipType }}</span>
                 </div>
-                
               </div>
               <div class="location">
-                <span><i class="pi pi-map-marker"></i> {{a.location}}Kolkata</span>
+                <span
+                  ><i class="pi pi-map-marker"></i>
+                  {{ a.location }}Kolkata</span
+                >
                 <span><i class="pi pi-briefcase"></i>{{ a.type }}</span>
-                <span><i class="pi pi-user-plus"></i>{{a.jobOpening}}</span>
+                <span><i class="pi pi-user-plus"></i>{{ a.jobOpening }}</span>
               </div>
               <div class="company_tags">
                 <span *ngFor="let b of a.skills">{{ b }}</span>
@@ -179,16 +189,11 @@
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
             </p>
-            <h2>Key responsibilities:</h2>
-            <ul>
+           
+            <ul *ngFor="let item of a.responsibilities">
+              <h2>Key responsibilities:</h2>
               <li>
-                1. Designing, manufacturing, and installing components that
-                fulfill requirements
-              </li>
-              <li>2. Creating plans and designs using CAD technology</li>
-              <li>
-                3. Learning quickly and working independently with minimal
-                supervision
+                {{ item }}
               </li>
             </ul>
             <h2>Skill(s) required</h2>
@@ -214,7 +219,7 @@
               {{ a.information }}
             </p>
             <h2>Number of openings</h2>
-            <p>{{ a.opens }}</p>
+            <p>{{ a.jobOpening }}</p>
             <div class="apply_btn">
               <button type="button" (click)="applyJob()">Apply Now</button>
             </div>

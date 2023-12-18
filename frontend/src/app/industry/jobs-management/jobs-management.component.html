@@ -5,8 +5,8 @@
   [infiniteScrollDistance]="2"
   [infiniteScrollThrottle]="250"
   (scrolled)="onScroll()"
-  [scrollWindow]="false"
-></div>
+  [scrollWindow]="true"
+>
 <ul class="industry_listing">
   <li *ngFor="let items of postList">
     <!-- <li> -->
@@ -191,5 +191,6 @@
     </div>
   </li>  -->
 </ul>
-
+<h1 *ngIf="loading">loading...................</h1>
+</div>
 <!-- <div class="no-records">No records found</div> -->

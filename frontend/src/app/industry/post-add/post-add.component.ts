@@ -483,6 +483,7 @@ this.industryForm.disable();
   }
   //job save preview
   save_preview_job() {
+    alert('job save preview')
     console.log(this.jobForm.value, 'formValue');
     const form_Data: any = new Object();
     if (this.jobForm.value.type) {
@@ -503,7 +504,7 @@ this.industryForm.disable();
     if (this.jobForm.value.details) {
       form_Data.details = this.jobForm.value.details;
     }
-    if (this.jobForm.value.skills.length > 0) {
+    if (this.jobForm.value.skills?.length>0 ) {
       form_Data.skills = this.jobForm.value.skills;
     }
     if (this.jobForm.value.jobOpening > 0) {

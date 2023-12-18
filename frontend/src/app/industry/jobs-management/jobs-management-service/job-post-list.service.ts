@@ -7,8 +7,8 @@ import { ApiService } from 'src/app/common-service/api.service';
 export class JobPostListService {
   constructor(private api: ApiService) {}
 
-  getPostList() {
-    let url = '/industry/industry-posts?status=&page=0&limit=100';
+  getPostList(page:number,limit:number=10) {
+    let url = `/industry/industry-posts?status=&page=${page}&limit=${limit}`;
 
     return this.api.ApiCallWithLocalization('', url, 'get');
   }

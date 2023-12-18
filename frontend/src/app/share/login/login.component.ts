@@ -135,7 +135,7 @@ export class LoginComponent implements OnInit {
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
           ls.set('questionStep',res.data.question_step)
-      
+      ls.set('id',res.data._id)
           // ls.set('logoutSuccess',true)
           // ls.set('loginDetails',{
           //   name:res.data.name,

@@ -1,4 +1,6 @@
-<h1>please complete your profile........</h1>
+<div *ngIf="!profileData">
+
+<h1>please {{profileData?'update':'complete'}} your profile........</h1>
 <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
 <div>
     <label>Compnany Name</label>
@@ -29,8 +31,36 @@
 <!-- <div>
     <img src=""  formControlName="workPlace">
 </div> -->
-<button type="submit" *ngIf="submitButton">submit</button>
+<!-- <button type="submit" *ngIf="submitButton">submit</button> -->
 </form>
-<button (click)="editProfile()" *ngIf="!submitButton && questionStep">Edit Profile</button>
+<!-- <button (click)="editProfile()" *ngIf="!submitButton && questionStep">Edit Profile</button> -->
 <!-- <button (click)="getProfile()">getProfile details</button> -->
 <button (click)="addPortfolio()" *ngIf="!questionStep">add</button>
+</div>
+
+<div *ngIf="profileData">
+<p>
+    COMPANNY NAME:-- {{profileData.companyName}}
+</p>
+<p>
+    COMPANY established Year:- {{profileData.companyEstdYear}}
+</p>
+<p>Company Details:-- {{profileData.aboutCompany}}</p>
+<p>
+    Company employee ::-- {{profileData.empCount}}
+</p>
+
+<p>Company workPlace:- {{profileData.workPlace}}</p>
+
+<br>
+<img [src]="profileData.image" alt="">
+
+<button (click)="editProfile()" *ngIf="!submitButton && questionStep">Edit Profile</button>
+
+
+</div>
+
+<div *ngIf="editProfile">
+
+
+</div>
