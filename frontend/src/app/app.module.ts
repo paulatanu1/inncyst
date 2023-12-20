@@ -19,9 +19,11 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { PageNotFoundComponent } from './share/page-not-found/page-not-found.component';
 import { ProtfolioComponent } from './share/protfolio/protfolio.component';
 import { ProtfolioDetailsComponent } from './share/protfolio-details/protfolio-details.component';
-import {EditorModule} from 'primeng/editor';
+import { EditorModule } from 'primeng/editor';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SanitizerUrlPipe } from './pipe/sanitizer-url.pipe';
+import { MatSliderModule } from '@angular/material/slider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,10 @@ import { SanitizerUrlPipe } from './pipe/sanitizer-url.pipe';
     RouterModule.forRoot([]),
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     HttpClientModule,
-    InfiniteScrollModule,EditorModule,PdfViewerModule
+    InfiniteScrollModule,
+    EditorModule,
+    PdfViewerModule,
+    MatSliderModule,
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [

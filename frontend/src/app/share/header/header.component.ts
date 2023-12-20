@@ -45,6 +45,7 @@ interface IregistrationOption {
   providers: [MessageService],
 })
 export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
+  profileMenu: any;
   items: MenuItem[];
   dropdownitems: MenuItem[];
   registration: boolean = false;
@@ -161,38 +162,6 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
         this.customHeader = <boolean>res;
       },
     });
-
-    this.Profileitems = [
-      {
-        label: 'Profile',
-        icon: 'pi pi-user',
-        command: () => {
-          this.router.navigate(['my-profile']);
-        },
-      },
-      {
-        label: 'Job Apply',
-        icon: 'pi pi-user',
-        command: () => {
-          this.router.navigate(['/jobs/my-jobs']);
-        },
-      },
-
-      {
-        label: 'Change Password',
-        icon: 'pi pi-lock',
-        command: () => {
-          this.router.navigate(['change-password']);
-        },
-      },
-      {
-        label: 'Logout',
-        icon: 'pi pi-power-off',
-        command: () => {
-          this.logOutUser();
-        },
-      },
-    ];
 
     this.isUserLogged = ls.get('logged');
     this.registerForm = this.fb.group(
