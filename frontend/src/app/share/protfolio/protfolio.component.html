@@ -43,10 +43,10 @@
     <p>no data found</p>
   </div>
   <ng-container *ngIf="portfolioDetails.length != 0">
-    <div *ngFor="let item of portfolioDetails">
+    <div class="portfolio_details_sec" *ngFor="let item of portfolioDetails">
       <button (click)="editPortfolio(item._id)">edit</button><br />
       <button (click)="deletePortfolio(item._id)">delete</button>
-      <p>title:-- {{ item.title }}</p>
+      <h2>{{ item.title }}</h2>
       <p [innerHtml]="item.description"></p>
       <p>portfolio status :--  {{item.portfolioStatus}}</p>
       <ng-container *ngIf="item.image != 'http://localhost:5500null'">
@@ -114,7 +114,6 @@
           </span>
         </ng-template>
       </p-editor>
-<p>kkkkkkkkkkkkk</p>
       <!-- <div *ngIf="editPortfolioDetails?.portfolioStatus != null"> -->
         <p-dropdown
           [options]="portfolioStatusOption"

@@ -42,6 +42,7 @@
                 }
                 ::ng-deep .p-dropdown {
                     width: 100%;
+                    text-transform: capitalize;
                 }
             }
         }
@@ -56,5 +57,29 @@
             display: block;
             width: 100%;
         }
+    }
+}
+.selectOption {
+    margin-bottom: 20px;
+    label {
+        display: block;
+        text-transform: capitalize;
+        font-size: 14px;
+    }
+    input[type=url] {
+        border: 1px solid #ccc9c9;
+        border-radius: 4px;
+        height: 40px;
+        line-height:40px;
+        width: 100%;
+        padding: 0 10px;
+        color: #6c757d;
+        &:focus {
+            outline: none;
+        }
+    }
+    button {
+        float: right;
+        padding:3px
     }
 }

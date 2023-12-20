@@ -42,7 +42,7 @@
       </div>
     </li>
     <li>
-      <div class="px3">
+      <div class="">
         <p-dropdown
           [options]="uploadItem"
           placeholder="Select a option"
@@ -54,9 +54,8 @@
 
 
   </ul>
-  <div *ngIf="selectedItem == 'Pdf'">
-    <label>please upload pdf...</label>
-    <br />
+  <div class="selectOption" *ngIf="selectedItem == 'Pdf'">
+    <label>Please upload pdf...</label>
     <input
       type="file"
       name="pdfFile"
@@ -66,12 +65,12 @@
       (change)="pdfSelected($event)"
       accept=".pdf"
     />
-    <br />
-    <button (click)="deletePdf()">X</button>
-    <br />
+    <button (click)="deletePdf()">
+      <i class="pi pi-times"></i>
+    </button>
   </div>
-  <div *ngIf="selectedItem == 'Image'">
-    <label>please upload Image...</label>
+  <div class="selectOption" *ngIf="selectedItem == 'Image'">
+    <label>Please upload Image...</label>
     <div>
       <input
         type="file"
@@ -80,20 +79,20 @@
         (change)="onImageSelected($event)"
         id="imageInput"
       />
-      <button (click)="removeImage()">X</button>
+      <button (click)="removeImage()"><i class="pi pi-times"></i></button>
     </div>
   </div>
 
-  <div *ngIf="selectedItem == 'url'">
+  <div class="selectOption" *ngIf="selectedItem == 'url'">
     <div>
-      <p>upload url</p>
+      <label>upload url</label>
       <input type="url" formControlName="url" (change)="urlChange($event)" placeholder="youtubeUrl"/>
     </div>
   </div>
 
-  <div *ngIf="selectedItem == 'youtubeVideo'">
+  <div class="selectOption" *ngIf="selectedItem == 'youtubeVideo'">
     <div>
-      <p>upload Youtubeurl</p>
+      <label>upload Youtubeurl</label>
       <input
         type="url"
         formControlName="youtubeUrl"

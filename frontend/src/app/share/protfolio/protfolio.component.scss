@@ -82,3 +82,11 @@
 .portfolio_sec_modal {
     min-width: 800px;
 }
+.portfolio_details_sec {
+    padding-top: 60px;
+    max-width: 1120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin:auto
+}
