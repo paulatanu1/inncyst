@@ -39,10 +39,11 @@
 <hr />
 <!-- .........................................details start here............-->
 <div>
-  <div *ngIf="portfolioDetails.length == 0">
+  <div *ngIf="portfolioDetails.length == 0 && !editPortfolioDetails">
     <p>no data found</p>
   </div>
-  <ng-container *ngIf="portfolioDetails.length != 0">
+  <h1 *ngIf="loading">loading..........</h1>
+  <ng-container *ngIf="portfolioDetails.length != 0 && !loading">
     <div *ngFor="let item of portfolioDetails">
       <button (click)="editPortfolio(item._id)">edit</button><br />
       <button (click)="deletePortfolio(item._id)">delete</button>

@@ -11,7 +11,7 @@ import { InternshipProfileService } from 'src/app/share/service/internship-profi
 })
 export class JobApplyedComponent implements OnInit {
   AppliedJobDetails: any = [];
-
+loadding=false;
   constructor(
     private internshipService: InternshipProfileService,
     private jobService: JobsService,
@@ -36,11 +36,13 @@ export class JobApplyedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadding=true;
     this.internshipService.customHeader.next(false);
     this.jobService.applyedJobDetails().subscribe({
       next: (res) => {
         this.AppliedJobDetails = [];
         this.AppliedJobDetails = res.data;
+        this.loadding=false;
         if(this.AppliedJobDetails.length){
 
           console.log(this.AppliedJobDetails, 'aaaa');
@@ -63,6 +65,7 @@ export class JobApplyedComponent implements OnInit {
         // });
       },
       error: (err) => {
+        this.loadding=false;
         this._toast.showToaster.next({
           severity: 'error',
           summary: 'error',

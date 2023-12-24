@@ -1,14 +1,66 @@
 <app-header></app-header>
 <div class="job_tabs">
   <p-tabView>
+    <h1 *ngIf="loadding">loading..........</h1>
     <p-tabPanel header="Applied">
+      <!-- NEW SECTION..............-->
+      <div>
+        <ul>
+          <li *ngFor="let a of AppliedJobDetails">
+            <div class="ellipsis_icon">
+              <p-overlayPanel #op>
+                <ng-template pTemplate="content">
+                  <button (click)="details(a._id)">
+                    <i class="pi pi-info-circle"></i>Details
+                  </button>
+                  <button (click)="applicationStatus()">
+                    <i class="pi pi-file"></i>Application Status
+                  </button>
+                </ng-template>
+              </p-overlayPanel>
+              <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
+            </div>
+            <div class="company_info_head">
+              <div class="company_logo"></div>
+              <div>
+                <h2>{{ a?.jobDetails?.company?.companyName }}</h2>
+                <div class="location_info">
+                  <!-- <strong>{{ a.jobDetails?.companyName }}</strong> -->
+                  <span>{{ a?.jobDetails?.location }}</span>
+                </div>
+              </div>
+            </div>
+            <p>Required Skill Set:-- </p>
+            <p *ngFor="let skill of a.jobDetails.skills">
+              {{skill}}
+            </p>
+            <p>Education Required:-- {{a.jobDetails.education}}</p>
+            <p>experience required:-- {{a.jobDetails.experience}} {{a.jobDetails.experienceTime}}</p>
+        <p>Post Openning For :-- {{a.jobDetails.jobOpening}}</p>
+        <p>Sallary:-- {{a.jobDetails.salary}} /{{a.jobDetails.salaryType}} </p>
+      <p>Job Type :-- {{a.jobDetails.type}} </p>
+      <p>Perks:--</p>
+      <p *ngFor="let perks of a.jobDetails.perks">{{perks}}</p>  
+      <p>Job Location :- {{a.jobDetails.location}}</p> 
+      <p>Job Posted Date:- {{a.jobDetails.createdAt | date}}</p>
+      <p>Application status:- {{a.applicationStatus}}</p>
+      </li>
+        </ul>
+      </div>
+
+
+      <!-- old section-->
       <ul>
         <li *ngFor="let a of AppliedJobDetails">
           <div class="ellipsis_icon">
             <p-overlayPanel #op>
               <ng-template pTemplate="content">
-                <button (click)="details(a._id)"><i class="pi pi-info-circle"></i>Details</button>
-                <button (click)="applicationStatus()"><i class="pi pi-file"></i>Application Status</button>
+                <button (click)="details(a._id)">
+                  <i class="pi pi-info-circle"></i>Details
+                </button>
+                <button (click)="applicationStatus()">
+                  <i class="pi pi-file"></i>Application Status
+                </button>
               </ng-template>
             </p-overlayPanel>
             <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
@@ -28,8 +80,8 @@
                 <!-- <strong>{{ a.jobDetails?.companyName }}</strong> -->
                 <span>{{ a?.jobDetails?.location }}</span>
               </div>
-                          </div>
-                      </div>
+            </div>
+          </div>
           <div class="job_profile_info">
             <span>5-10 Years</span>
             <span>Full-time</span>
@@ -52,7 +104,6 @@
             <span>{{ a.applicationStatus }}</span>
           </div>
         </li>
-        
       </ul>
     </p-tabPanel>
     <p-tabPanel header="Interviews"></p-tabPanel>

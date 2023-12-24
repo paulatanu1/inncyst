@@ -48,6 +48,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   editPortfolioDetails:any;
   youtube=''
   portfolioStatusOption:any
+  loading=false;
   portfolioDetails: any = [
     {
       title: undefined,
@@ -131,9 +132,11 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     ]
   }
   getPortfolio() {
+    this.loading=true;
     this.portfolio.getPortfolio().subscribe({
       next: (res) => {
         this.portfolioDetails = res.data;
+        this.loading=false
         console.log(this.portfolioDetails, 'res2');
         this.portfolioDetails.forEach((item: any) => {
           // alert('kk')
@@ -150,6 +153,9 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
           // item.youtubeUrl=a
         });
       },
+      error:(err=>{
+        this.loading=false;
+      })
     });
   }
 

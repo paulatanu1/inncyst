@@ -54,6 +54,7 @@
   </div>
   <section class="internship_sec_inner">
     <section class="left_aside_part">
+      <h1 *ngIf="leftSideListLoadding">Loadding.............</h1>
       <div class="company_lists">
         <div
           class="search-results-container"
@@ -64,6 +65,7 @@
           [scrollWindow]="false"
         >
           <ul>
+            
             <li
               *ngFor="let a of AllJobDetails; let i = index"
               (click)="jobDetails(a._id, i)"
@@ -82,7 +84,7 @@
                     />
                   </span>
                   <h2>
-                    {{ a.companyName }}MailChimp
+                    {{ a.companyName }} :-- MailChimp
                     <span class="posted_time"
                       >Posted {{ a.createdAt }} days ago</span
                     >
@@ -91,16 +93,17 @@
 
                 <h2>{{ a.details }}</h2>
                 <div class="tags">
-                  <span>1-3 Years</span>
+                  <span>{{a.type}}</span>
+                  <span *ngIf="a.experience">experience :- {{a.experience}} {{a.experienceTime}}</span>
                   <span>Graduation/Diploma</span>
-                  <span>{{ a.salary }} Lpa</span>
+                  <span>{{ a.salary }} /  {{a.salaryType}}</span>
                   <span>{{ a.intranshipType }}</span>
                 </div>
               </div>
               <div class="location">
                 <span
                   ><i class="pi pi-map-marker"></i>
-                  {{ a.location }}Kolkata</span
+                  {{ a.location }}</span
                 >
                 <span><i class="pi pi-briefcase"></i>{{ a.type }}</span>
                 <span><i class="pi pi-user-plus"></i>{{ a.jobOpening }}</span>
@@ -112,7 +115,8 @@
 
             <!-- -::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->
           </ul>
-          <section *ngIf="AllJobDetails.length == 0">
+        
+          <section *ngIf="AllJobDetails.length == 0 && !leftSideListLoadding">
             <p>No Job Posts available</p>
           </section>
         </div>
@@ -149,8 +153,11 @@
 
       <button (click)="sortLocation()">search</button>
     </div> -->
+   
     <section class="right_details_part">
-      <ng-container *ngIf="AllJobDetails.length == 0">
+      <h1 *ngIf=" rightSideLoadding">Loadding.........</h1>
+
+      <ng-container *ngIf="AllJobDetails.length == 0 && !rightSideLoadding ">
         <p>No Record Found</p>
       </ng-container>
       <ng-container *ngIf="AllJobDetails.length > 0">
@@ -166,9 +173,9 @@
                   height="75"
                 />
               </span>
-              <div class="company_tags">
+              <!-- <div class="company_tags">
                 <span *ngFor="let b of a.skills">{{ b }}</span>
-              </div>
+              </div> -->
             </div>
             <h2>
               {{ a.intranshipName }}
@@ -176,38 +183,37 @@
             </h2>
           </div>
           <div class="overview">
-            <h2>Internship Overview</h2>
+            <h2>{{a.type}} Overview</h2>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
+     {{a.details}}
             </p>
-           
+            <h2>Key responsibilities:</h2>
             <ul *ngFor="let item of a.responsibilities">
-              <h2>Key responsibilities:</h2>
+              
               <li>
                 {{ item }}
               </li>
             </ul>
+            <div>
+              <h2>education qualification :-- {{a.education}}</h2>
+            </div>
+            <div >
+              <h2 *ngIf="a.experience" >minimum experience</h2>
+{{a.experience}} {{a.experienceTime}}
+            </div>
             <h2>Skill(s) required</h2>
             <div class="tags" *ngFor="let b of a.skills">
               <span>{{ b }}</span>
             </div>
             <h2>Salary</h2>
-            <p>Annual CTC:{{ a.salary }} LPA</p>
-            <ul>
+            <p>{{ a.salary }} / {{a.salaryType}}</p>
+            <!-- <ul>
               <span>Annual CTC breakup:</span>
               <li>1. Fixed component: 80%</li>
               <li>2. Variable component: 10%</li>
               <li>3. Other incentives: 10%</li>
-            </ul>
+            </ul> -->
+            <p>salary type :- {{a.stipend}}</p>
             <h2>Perks</h2>
             <div class="tags">
               <span>Certificate</span>
@@ -230,7 +236,8 @@
               </P>
             </div>
             <h2>Number of openings</h2>
-            <p>{{ a.jobOpening }}</p>
+            <p class="company_tags">{{ a.jobOpening }}</p>
+            <h1>work models :-  </h1> {{a.intranshipType }}          
             <div class="apply_btn">
               <button type="button" (click)="applyJob()">Apply Now</button>
             </div>
