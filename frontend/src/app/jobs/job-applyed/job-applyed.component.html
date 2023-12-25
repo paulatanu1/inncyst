@@ -21,7 +21,15 @@
               <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
             </div>
             <div class="company_info_head">
-              <div class="company_logo"></div>
+              <div class="company_logo">
+                <img
+                [src]="a.jobDetails.company?.image?a.jobDetails.company?.image:'../../../assets/no-image.svg'"
+                  width="90"
+                  height="48"
+                  loading="lazy"
+                />
+      
+              </div>
               <div>
                 <h2>{{ a?.jobDetails?.company?.companyName }}</h2>
                 <div class="location_info">
@@ -50,7 +58,7 @@
 
 
       <!-- old section-->
-      <ul>
+      <!-- <ul>
         <li *ngFor="let a of AppliedJobDetails">
           <div class="ellipsis_icon">
             <p-overlayPanel #op>
@@ -66,18 +74,12 @@
             <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
           </div>
 
-          <!-- <div class="card flex justify-content-center">
-            <p-overlayPanel #op>
-                <img src="https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg" alt="product" />
-            </p-overlayPanel>
-            <p-button (click)="op.toggle($event)" icon="pi pi-image" label="Show"></p-button>
-        </div> -->
+         
           <div class="company_info_head">
             <div class="company_logo"></div>
             <div>
               <h2>{{ a?.jobDetails?.company?.companyName }}</h2>
               <div class="location_info">
-                <!-- <strong>{{ a.jobDetails?.companyName }}</strong> -->
                 <span>{{ a?.jobDetails?.location }}</span>
               </div>
             </div>
@@ -94,9 +96,7 @@
           </div>
 
           <div class="company_info">
-            <!-- <img src="../../../assets/canva.png" width="78" height="32" />  -->
-
-            <!-- <button (click)="details(a)"> send........</button> -->
+          
             <span>
               <strong>$1500/</strong>
               m
@@ -104,7 +104,7 @@
             <span>{{ a.applicationStatus }}</span>
           </div>
         </li>
-      </ul>
+      </ul> -->
     </p-tabPanel>
     <p-tabPanel header="Interviews"></p-tabPanel>
   </p-tabView>

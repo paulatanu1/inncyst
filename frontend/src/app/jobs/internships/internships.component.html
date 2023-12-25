@@ -75,29 +75,29 @@
                 <div class="comapny_details">
                   <span>
                     <img
-                      src="{{
-                        a.image ? 'a.image' : '../../../assets/no-image.svg'
-                      }}"
+                    [src]="a.company?.image?a.company?.image:'../../../assets/no-image.svg'"
                       width="90"
                       height="48"
                       loading="lazy"
                     />
                   </span>
                   <h2>
-                    {{ a.companyName }} :-- MailChimp
+                    {{a.company?.companyName}} 
                     <span class="posted_time"
-                      >Posted {{ a.createdAt }} days ago</span
+                      >Posted {{a.createdAt}} days ago</span
                     >
+                   
                   </h2>
                 </div>
 
                 <h2>{{ a.details }}</h2>
                 <div class="tags">
-                  <span>{{a.type}}</span>
+                 
                   <span *ngIf="a.experience">experience :- {{a.experience}} {{a.experienceTime}}</span>
-                  <span>Graduation/Diploma</span>
+                  <span>{{a.education}}</span>
                   <span>{{ a.salary }} /  {{a.salaryType}}</span>
                   <span>{{ a.intranshipType }}</span>
+                
                 </div>
               </div>
               <div class="location">
@@ -106,6 +106,8 @@
                   {{ a.location }}</span
                 >
                 <span><i class="pi pi-briefcase"></i>{{ a.type }}</span>
+                <span *ngIf="a.duration">{{a.duration}} {{a.durationIn}} </span>
+
                 <span><i class="pi pi-user-plus"></i>{{ a.jobOpening }}</span>
               </div>
               <div class="company_tags">
@@ -166,20 +168,21 @@
             <div>
               <span>
                 <img
-                  src="{{
-                    a.image ? 'a.image' : '../../../assets/no-image.svg'
-                  }}"
+                
+                [src]="a.company.image ?a.company.image:'../../../assets/no-image.svg'"
                   width="170"
                   height="75"
-                />
-              </span>
+                />              </span>
+              
               <!-- <div class="company_tags">
                 <span *ngFor="let b of a.skills">{{ b }}</span>
               </div> -->
             </div>
             <h2>
-              {{ a.intranshipName }}
-              <span>{{ a.companyName }}</span>
+              <span>company name:- {{ a.company.companyName }}</span>
+              <span>company description:- {{ a.company.aboutCompany }}</span>
+              <span>company foundation:- {{ a.company.companyEstdYear }}</span>
+              <span>No of Employees:- {{ a.company.empCount }}</span>
             </h2>
           </div>
           <div class="overview">
@@ -187,7 +190,7 @@
             <p>
      {{a.details}}
             </p>
-            <h2>Key responsibilities:</h2>
+            <h2 *ngIf="a.responsibilities.length > 0">Key responsibilities:</h2>
             <ul *ngFor="let item of a.responsibilities">
               
               <li>
@@ -230,10 +233,13 @@
               <P *ngIf="a.coverLetter.letter">
                 letter:-- {{a.coverLetter.letter}}
               </P>
-
-              <P *ngFor="let a of a.coverLetter.moreQuestions">
-                letter:-- {{a}}
-              </P>
+<p *ngIf="a.coverLetter.moreQuestions.length > 0"> Another Question :--</p>
+<ul type="circle">
+  <li *ngFor="let a of a.coverLetter.moreQuestions">
+    {{a}}
+  </li>
+</ul>
+         
             </div>
             <h2>Number of openings</h2>
             <p class="company_tags">{{ a.jobOpening }}</p>

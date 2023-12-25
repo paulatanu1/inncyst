@@ -162,7 +162,11 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
         this.customHeader = <boolean>res;
       },
     });
-
+this._login.loginFlow.subscribe({
+  next:(res)=>{
+    this.loginflow=<boolean>res;
+  }
+})
     this.Profileitems = [
       {
         label: 'Profile',

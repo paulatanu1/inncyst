@@ -6,6 +6,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+import { environment } from 'src/environments/environment';
 
 interface IprofileDetails {
   name: string;
@@ -63,6 +64,7 @@ export class MyProfileComponent implements OnInit {
       .subscribe((response) => {
         this.ProfileDetails = response.data;
         console.log(this.ProfileDetails,'pd')
+ this.imagePath=this.ProfileDetails.image
         // console.log(this.ProfileDetails, 'ProfileDetails');
         if (this.ProfileDetails) {
           // this.profileForm.patchValue(this.ProfileDetails);
@@ -80,9 +82,11 @@ export class MyProfileComponent implements OnInit {
           
           // this.profileForm.get('image')?.patchValue(this.ProfileDetails.image)
           this.profileForm.get('skills')?.patchValue(this.ProfileDetails.skills)
-
+         this.profileForm.get('image')?.patchValue(this.ProfileDetails.image);
         }
+   
       });
+
     //for scroll issue
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
