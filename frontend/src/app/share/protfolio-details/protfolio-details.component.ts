@@ -47,6 +47,7 @@ export class ProtfolioDetailsComponent implements OnInit {
   urlArray={}
   myForm!:FormGroup;
   urlValueArray: Array<string> = [];
+  loading=false
   selectObj = {
     title: '',
     id: '',
@@ -261,6 +262,8 @@ export class ProtfolioDetailsComponent implements OnInit {
     //UPLOAD PROTFOLIO TO THE SERVER....................................
   onSubmit(){
     console.log(this.myForm.value)
+    this.loading=true;
+
     const formData = new FormData();
     // Object.keys(this.myForm.controls).forEach(key=> formData.append(key,this.myForm.get(key)?.value))
     formData.append('title',this.myForm.value.title)
@@ -272,6 +275,7 @@ export class ProtfolioDetailsComponent implements OnInit {
     formData.append('portfolioStatus',this.selectedPortfolioStatus)
 this.portfolio.addPortfolio(formData).subscribe({
   next:(res=>{
+    this.loading=false;
     console.log(res,'121')
     this.portfolio.hideAddPortfolioModal.next(false)
     this._toast.showToaster.next({
@@ -280,7 +284,11 @@ this.portfolio.addPortfolio(formData).subscribe({
       detail: res.message,
     });
 
-  })
+  }
+  ),
+error:(er)=>{
+  this.loading=false;
+}
 })
   }
 youtubeUrlConvert(url:any){

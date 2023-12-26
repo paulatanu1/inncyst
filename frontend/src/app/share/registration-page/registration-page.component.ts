@@ -134,6 +134,14 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.login.otpPage.subscribe({
+      next:(res)=>{
+        console.log(res,'res')
+        this.otpPageOpen=<boolean>res;
+        this.signupPageHide=false
+      }
+    })
     window.scrollTo(0, 0);
     this.registerForm = this.fb.group(
       {
@@ -242,6 +250,7 @@ export class RegistrationPageComponent implements OnInit {
             if (err.error.message == 'User Already exist') {
               this.otpPageOpen = false;
               this.signupPageHide = false;
+              this.login.loginFlow.next(true)
             }
             this._toast.showToaster.next({
               severity: 'error',

@@ -39,11 +39,12 @@
 <hr />
 <!-- .........................................details start here............-->
 <div>
-  <div *ngIf="portfolioDetails.length == 0">
+  <div *ngIf="portfolioDetails.length == 0 && !editPortfolioDetails">
     <p>no data found</p>
   </div>
-  <ng-container *ngIf="portfolioDetails.length != 0">
-    
+  
+<h1 *ngIf="loading">loading..........</h1>
+<ng-container *ngIf="portfolioDetails.length != 0 && !loading">    
     <div class="portfolio_details_sec">
       <ul>
         <li *ngFor="let item of portfolioDetails">
@@ -171,7 +172,31 @@
         </ul>
       
 
+<<<<<<< HEAD
       
+=======
+      <p-editor
+        [style]="{ height: '320px' }"
+        formControlName="description"
+        placeholder="description"
+      >
+        <ng-template pTemplate="header">
+          <span class="ql-formats">
+            <button type="button" class="ql-bold" aria-label="Bold"></button>
+            <button
+              type="button"
+              class="ql-italic"
+              aria-label="Italic"
+            ></button>
+            <button
+              type="button"
+              class="ql-underline"
+              aria-label="Underline"
+            ></button>
+          </span>
+        </ng-template>
+      </p-editor>
+>>>>>>> 20231206-rupam-01
       <!-- <div *ngIf="editPortfolioDetails?.portfolioStatus != null"> -->
         
       <!-- </div> -->

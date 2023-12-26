@@ -6,6 +6,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+import { environment } from 'src/environments/environment';
 
 interface IprofileDetails {
   name: string;
@@ -74,30 +75,37 @@ export class MyProfileComponent implements OnInit {
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
+        console.log(this.ProfileDetails,'pd')
+ this.imagePath=this.ProfileDetails.image
+        // console.log(this.ProfileDetails, 'ProfileDetails');
         if (this.ProfileDetails) {
           this.imagePath = this.ProfileDetails.image;
           this.description = this.ProfileDetails.description;
           this.skillSet = this.ProfileDetails.skills;
           this.profileForm.get('name')?.patchValue(this.ProfileDetails.name);
-
-          this.profileForm
-            .get('description')
-            ?.patchValue(this.ProfileDetails.description);
-
-          this.profileForm
-            .get('location')
-            ?.patchValue(this.ProfileDetails.location);
-
-          this.profileForm.get('phone')?.patchValue(this.ProfileDetails.phone);
-
-          this.profileForm.get('email')?.patchValue(this.ProfileDetails.email);
-
+          
+          this.profileForm.get('description')?.patchValue(this.ProfileDetails.description);
+          
+          this.profileForm.get('location')?.patchValue(this.ProfileDetails.location)
+          
+          this.profileForm.get('phone')?.patchValue(this.ProfileDetails.phone)
+          
+          this.profileForm.get('email')?.patchValue(this.ProfileDetails.email)
+          
           // this.profileForm.get('image')?.patchValue(this.ProfileDetails.image)
-          this.profileForm
-            .get('skills')
-            ?.patchValue(this.ProfileDetails.skills);
+          this.profileForm.get('skills')?.patchValue(this.ProfileDetails.skills)
+         this.profileForm.get('image')?.patchValue(this.ProfileDetails.image);
         }
+   
       });
+
+    //for scroll issue
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Scroll to the top of the page
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
   openEdit() {

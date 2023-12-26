@@ -11,7 +11,7 @@ import { InternshipProfileService } from 'src/app/share/service/internship-profi
 })
 export class JobApplyedComponent implements OnInit {
   AppliedJobDetails: any = [];
-
+loadding=false;
   constructor(
     private internshipService: InternshipProfileService,
     private jobService: JobsService,
@@ -36,23 +36,25 @@ export class JobApplyedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadding=true;
     this.internshipService.customHeader.next(false);
     this.jobService.applyedJobDetails().subscribe({
       next: (res) => {
         this.AppliedJobDetails = [];
         this.AppliedJobDetails = res.data;
+        this.loadding=false;
         if(this.AppliedJobDetails.length){
 
           console.log(this.AppliedJobDetails, 'aaaa');
           // console.log(this.AppliedJobDetails, 'applyedJobDetails');
           this.AppliedJobDetails?.forEach((element: any) => {
-            if(element.intranshipDetails.intranshipName){
-            element.intranshipDetails.intranshipName = this.capitalizeWords(
-              element.intranshipDetails?.intranshipName
-            );}
+            // if(element.jobDetails.intranshipName){
+            // element.intranshipDetails.intranshipName = this.capitalizeWords(
+            //   element.intranshipDetails?.intranshipName
+            // );}
             console.log(this.AppliedJobDetails);
-            element.intranshipDetails.companyName = this.capitalizeWords(
-              element.intranshipDetails.companyName
+            element.jobDetails.company.companyName = this.capitalizeWords(
+              element.jobDetails.company.companyName
             );
           });
         }
@@ -63,6 +65,7 @@ export class JobApplyedComponent implements OnInit {
         // });
       },
       error: (err) => {
+        this.loadding=false;
         this._toast.showToaster.next({
           severity: 'error',
           summary: 'error',

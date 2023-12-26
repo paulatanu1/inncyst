@@ -13,6 +13,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import ls from 'localstorage-slim';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
+import { LoginEnablerService } from 'src/app/service/login-enabler.service';
 interface options {
   name: string;
   code: string;
@@ -51,7 +52,8 @@ export class LoginComponent implements OnInit {
     private otpVerifivation: OtpVerificationService,
     private router: Router,
     private _toast: ToastServiceService,
-    private loginDetails: LoginDetailsService
+    private loginDetails: LoginDetailsService,
+    private _LoginEnablerService:LoginEnablerService
   ) {
     this.options = [{ name: 'Select the option', code: '0' }];
 
@@ -69,6 +71,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
     this.loginService.loginModal.subscribe((val) => {
       this.loginModal = <boolean>val;
     });
@@ -135,7 +139,7 @@ export class LoginComponent implements OnInit {
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
           ls.set('questionStep',res.data.question_step)
-      
+          ls.set('id',res.data._id)
           // ls.set('logoutSuccess',true)
           // ls.set('loginDetails',{
           //   name:res.data.name,
@@ -158,10 +162,28 @@ export class LoginComponent implements OnInit {
           }
         },
         error: (err) => {
-          console.log(err);
-          alert('User Not Found!!!!!');
-          this.otpVerifivation.loginflow.next(false);
-          this.router.navigateByUrl('/home');
+
+          console.log(err.error.message);
+          if(err.error.message == 'Please varify your email and phone'){
+            this._LoginEnablerService.otpPage.next(true)
+            this._LoginEnablerService.loginFlow.next(false)
+            this.loginModal=false
+            this.router.navigateByUrl('/registeration')
+            this._toast.showToaster.next({
+              severity: 'error',
+              summary: 'error',
+              detail: err.error.message,
+            });
+          }
+         else{
+
+           this._toast.showToaster.next({
+             severity: 'error',
+             summary: 'error',
+             detail: err.error.message,
+           });          this.otpVerifivation.loginflow.next(false);
+           this.router.navigateByUrl('/home');
+         }
         },
       });
     }

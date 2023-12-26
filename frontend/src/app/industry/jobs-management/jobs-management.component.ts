@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { LeftMenuHandelService } from '../left-menu-handel.service';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/common-service/api.service';
@@ -16,12 +16,16 @@ interface City {
   encapsulation: ViewEncapsulation.None,
 })
 export class JobsManagementComponent implements OnInit {
-  postList: any = [];
+  postList:any=[]
   visible: boolean = false;
   status!: City[];
 editedJobId!:any
   selectedStatus!: City ;
 jobStatus:boolean=false;
+page=0;
+limit=10;
+totalItem!:number
+loading:boolean=false;
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private router: Router,
@@ -31,6 +35,19 @@ jobStatus:boolean=false;
     
   ) {
     window.scrollTo(0, 0);
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll1(event: Event): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      if(this.totalItem > this.postList.length){
+        console.log(this.totalItem,this.postList.length)
+        console.log('scrol,,,,,,,,,,,',event);
+        this.page=this.page+1;
+        this.getJobList();
+
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -45,11 +62,22 @@ jobStatus:boolean=false;
   }
 
   getJobList() {
-    this.post.getPostList().subscribe({
+    this.loading=true;
+    this.post.getPostList(this.page,this.limit).subscribe({
       next: (res) => {
-        this.postList = res.data.items;
+        console.log(res)
+        this.totalItem=res.data.total;
+        console.log(this.totalItem)
+        this.postList = [...this.postList,...res.data.items];
+        // this.postList=this.postList.push(...res.data.items)
+        console.log(this.postList)
+        console.log(res.data.items)
+        this.loading=false
         console.log(this.postList, this.postList.length);
       },
+      error:(err)=>{
+        this.loading=false
+      }
     });
   }
 
@@ -67,12 +95,13 @@ jobStatus:boolean=false;
     console.log(id);
     this.post.deletePortFolio(id).subscribe({
       next: (res) => {
-        this.getJobList()
+      
         this._toast.showToaster.next({
           severity: 'success',
           summary: 'success',
           detail: res.message,
         });
+        this.getJobList()
       },
       error: (err) => {
         this._toast.showToaster.next({
@@ -80,11 +109,19 @@ jobStatus:boolean=false;
           summary: 'Error',
           detail: err.error.message,
         });
+        this.getJobList()
       },
     });
   }
   onScroll(){
-    
+    console.log('scrol...........')
+    if(this.totalItem >= this.postList.length){
+      console.log(this.totalItem,this.postList.length)
+      console.log('scrol,,,,,,,,,,,',event);
+      this.page=this.page+1;
+      this.getJobList();
+
+    }
   }
   editStatus(id:any){
     this.visible=true
