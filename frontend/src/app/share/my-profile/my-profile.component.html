@@ -4,7 +4,7 @@
     <div class="my_profile_sec_inner">
       <div class="profile_img">
         <figure>
-          <img [src]="imagePath" />
+          <img [src]="imagePath" alt="profile image" />
           <span>
             {{ ProfileDetails.status ? 'Active' : 'Deactive' }}
           </span>
@@ -23,7 +23,7 @@
           }}
         </p>
         <div class="mail_register">
-          <a href="mailto:amanda.jg@gmail.com">
+          <a>
             <img src="../../../assets/mail-icon.png" />
             {{ ProfileDetails.email }}
           </a>
@@ -37,11 +37,11 @@
           +91 {{ ProfileDetails.phone }}
         </span>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula
-          tincidunt urna sit amet placerat. Ut erat nisl, dignissim et ligula
-          nec, sodales molestie tellus. Quisque ultricies lorem ligula, id
-          fermentum tortor vehicula sed.Vestibulum sapien erat.
+          {{ description }}
         </p>
+        <ul class="skills">
+          <li *ngFor="let item of skillSet">{{ item | uppercase }}</li>
+        </ul>
         <button (click)="Protfolio()" class="portfolio_btn">
           Go To Portfolio
         </button>
@@ -76,8 +76,8 @@
   >
     <div class="profile-section">
       <div class="left-section">
-        <div class="profile-pic" >
-          <img [src]="imagePath" alt=""    />
+        <div class="profile-pic">
+          <img [src]="imagePath" alt="" />
           <!-- <p-fileUpload
             mode="basic"
             name="demo[]"
@@ -93,8 +93,7 @@
               type="file"
               accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"
               (change)="fileChangeEvent($event)"
-             
-              formControlName="image"
+              #fileInput
             />
             <label></label>
             <button type="button" class="button-upload">Select File</button>
@@ -121,7 +120,11 @@
           placeholder="Hint: graphics, html, css"
           formControlName="skills"
         ></p-chips>
-        <h5>Please add <strong>space</strong> after adding any skills</h5>
+        <h5>
+          Please add
+          <strong>space</strong>
+          after adding any skills
+        </h5>
         <input
           type="text"
           pInputText
@@ -178,16 +181,12 @@
     [aspectRatio]="1 / 1"
     format="png"
     (imageCropped)="imageCropped($event)"
-    (imageLoaded)="imageLoaded()"
-    (cropperReady)="cropperReady()"
-    (loadImageFailed)="loadImageFailed()"
-    (imgCroppedDone)="ImgCroppedDone($event)"
-    (imgCroppedCancel)="CancelImgCroppedDone()"
     [resizeToWidth]="236"
     [resizeToHeight]="236"
     [cropperMinWidth]="236"
     [cropperMinHeight]="236"
     [autoCrop]="true"
+    [output]="'base64'"
   ></image-cropper>
 
   <button type="submit" (click)="croppedComplete()">Cropped</button>

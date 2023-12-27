@@ -30,7 +30,7 @@ interface IprofileDetails {
 export class MyProfileComponent implements OnInit {
   croppedImage: any;
   @ViewChild('cropper') cropper!: ElementRef;
-  ProfileDetails:any;
+  ProfileDetails: any;
   profile: Subscription | undefined;
   editProfile: boolean = false;
   profileForm: FormGroup = new FormGroup({});
@@ -38,6 +38,10 @@ export class MyProfileComponent implements OnInit {
   cropperModal: boolean = false;
   imagePath: string = '';
   cImage: any;
+  @ViewChild('fileInput', { static: true })
+  fileInput!: ElementRef<HTMLInputElement>;
+  description: string = 'Please Add Your Description';
+  skillSet: [] = [];
   constructor(
     private internship: InternshipProfileService,
     private formBuilder: FormBuilder,
@@ -45,7 +49,6 @@ export class MyProfileComponent implements OnInit {
     private router: Router,
     private _toast: ToastServiceService
   ) {
-
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
       skills: [[]], // Initialize as an empty array
@@ -53,12 +56,21 @@ export class MyProfileComponent implements OnInit {
       phone: ['', Validators.required],
       email: ['', Validators.required],
       image: [''],
-      description:['']
+      description: [''],
     });
   }
 
   ngOnInit(): void {
+    this.getProfileDetails();
+    //for scroll issue
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
+  }
 
+  getProfileDetails() {
     this.profile = this.internship
       .sendInternshipProfileRequest()
       .subscribe((response) => {
@@ -67,9 +79,9 @@ export class MyProfileComponent implements OnInit {
  this.imagePath=this.ProfileDetails.image
         // console.log(this.ProfileDetails, 'ProfileDetails');
         if (this.ProfileDetails) {
-          // this.profileForm.patchValue(this.ProfileDetails);
-          // console.log(this.profileForm, 'ii');
-
+          this.imagePath = this.ProfileDetails.image;
+          this.description = this.ProfileDetails.description;
+          this.skillSet = this.ProfileDetails.skills;
           this.profileForm.get('name')?.patchValue(this.ProfileDetails.name);
           
           this.profileForm.get('description')?.patchValue(this.ProfileDetails.description);
@@ -101,10 +113,11 @@ export class MyProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.imagePath) {
+      this.profileForm.get('image')?.setValue(this.imagePath);
+    }
     if (this.profileForm.valid) {
       // Form is valid, you can access form values using this.profileForm.value
-      console.log(this.profileForm.value);
-
       this.internship.EditProfile(this.profileForm.value).subscribe({
         next: (res) => {
           this._toast.showToaster.next({
@@ -113,8 +126,7 @@ export class MyProfileComponent implements OnInit {
             detail: res.success,
           });
           this.editProfile = false;
-          console.log(res);
-          // this.editProfile = false;
+          this.getProfileDetails();
         },
         error: (err) => {
           this._toast.showToaster.next({
@@ -124,46 +136,20 @@ export class MyProfileComponent implements OnInit {
           });
         },
       });
-      // You can send the form data to your backend or perform other actions here
     } else {
       // Form is invalid, display error messages or perform other actions as needed
     }
   }
 
-  ImgCroppedDone(event: Event) {
-    // console.log(event, 'event done');
-  }
-
-  CancelImgCroppedDone() {}
-
-  loadImageFailed() {
-    // throw new Error('Method not implemented.');
-  }
-  cropperReady() {
-    // throw new Error('Method not implemented.');
-  }
-  imageLoaded() {
-    // throw new Error('Method not implemented.');
-    // console.log('loaded');
-  }
   imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(
-      event.objectUrl as string
-    );
-    this.cImage = event.objectUrl;
-    console.log(this.cImage);
-    // console.log(event.objectUrl)
-    // console.log(this.croppedImage, 'ci');
-    // event.blob can be used to upload the cropped image
+    this.croppedImage = event.base64;
+    this.fileInput.nativeElement.value = '';
+    this.profileForm.get('image')?.setValue(this.croppedImage);
   }
 
   fileChangeEvent(event: any): void {
-    // console.log(event, 'event');
-    // console.log(this.cropper.nativeElement, 'this.cropper.nativeElement');
-    // this.cropper.nativeElement.toggle();
     this.imageChangedEvent = event;
     this.cropperModal = true;
-    // console.log(this.imageChangedEvent,'img')
   }
   back() {
     this.router.navigateByUrl('/jobs/posts');
@@ -172,10 +158,6 @@ export class MyProfileComponent implements OnInit {
   croppedComplete() {
     this.cropperModal = false;
     this.imagePath = this.croppedImage;
-    // console.log(this.imagePath , 'path');
-    this.ProfileDetails.image = this.cImage;
-    this.profileForm.patchValue(this.ProfileDetails);
-    // console.log(this.profileForm)
   }
 
   Protfolio() {
