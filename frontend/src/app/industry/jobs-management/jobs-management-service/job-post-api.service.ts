@@ -23,8 +23,12 @@ export class JobPostApiService {
       jobOpening: 0,
       responsibilities: [],
       stipend: '',
-      id:'',
-      location:''
+      id: '',
+      location: '',
+      durationIn: '',
+      experienceTime: '',
+      education: '',
+      experience:0
     };
     console.log(payloadObj, 'payloadObj');
 
@@ -42,13 +46,29 @@ export class JobPostApiService {
     payloadData.perks = payloadObj.perks;
     payloadData.id=payloadObj.id
     payloadData.location=payloadObj.location
-
+    payloadData.durationIn=payloadObj.durationIn
+    payloadData.experienceTime=payloadObj.experienceTime
+    payloadData.education=payloadObj.education
+    payloadData.experience=payloadObj.experience
     console.log(payloadData);
 
     return this.apiCall.ApiCallWithLocalization(payloadData, url, 'put');
   }
+internshipSubmit(data:any){
+  console.log(data)
+  let url = '/industry/submit-post'
+  return this.apiCall.ApiCallWithLocalization(data, url, 'post');
+}
+
 
   saveJob(payloadObj:any){
+    let url = '/industry/add-post';
+    console.log(payloadObj);
+    return this.apiCall.ApiCallWithLocalization(payloadObj,url,'post')
+  }
+
+  
+  saveJob2(payloadObj:any){
     let url = '/industry/add-post';
     console.log(payloadObj);
     return this.apiCall.ApiCallWithLocalization(payloadObj,url,'post')

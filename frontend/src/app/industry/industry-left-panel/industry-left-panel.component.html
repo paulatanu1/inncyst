@@ -43,7 +43,7 @@
             </p>
           </a>
         </li>
-        <li
+        <!-- <li
           class="nav-item"
           [ngClass]="{ active: activeleftmenu == 2 }"
           [routerLink]="['/industry/reports']"
@@ -54,9 +54,32 @@
               Reports
             </p>
           </a>
-        </li>
-        <li style="color: white;"><b>Profile</b></li>
-        <li (click)="logout()" style="color: white;"><b>logout</b></li>
+        </li> -->
+        <li
+        class="nav-item"
+        [ngClass]="{ active: activeleftmenu == 3 }"
+        [routerLink]="['/industry/profile']"
+      >
+        <a class="nav-link">
+          <i class="nav-icon fas fa-copy"></i>
+          <p>
+            Profile
+          </p>
+        </a>
+      </li>
+      <li
+      class="nav-item"
+      [ngClass]="{ active: activeleftmenu == 4 }"
+      
+    >
+      <a class="nav-link">
+        <i class="nav-icon fas fa-copy"></i>
+        <p (click)="logout()">
+          logout
+        </p>
+      </a>
+    </li>
+      
         <!-- <li class="nav-item">
           <a class="nav-link">
             <i class="nav-icon fas fa-th"></i>

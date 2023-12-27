@@ -1,0 +1,111 @@
+.internship_sec {
+    padding: 0 70px;
+    font-family: 'Raleway';
+    background: #f3f3f3;
+    padding:50px 0;
+    margin-top: 112px;
+    .internship_sec_inner {
+        width: 100%;
+        max-width: 1297px;
+        margin: 0 auto;
+        & > h2 {
+            text-transform: capitalize;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .location_info {
+            margin-bottom: 6px;
+            strong {
+                font-size: 16px;
+                font-weight: 500;
+                text-transform: capitalize;
+                position: relative;
+                margin-right: 15px;
+                padding-right: 10px;
+                display: inline-block;
+                vertical-align: middle;
+                color: #6C6C6C;
+            }
+            i {
+                display: inline-block;
+                vertical-align: text-top;
+                margin-right: 5px;
+            }
+
+            span {
+                font-size: 16px;
+                color: #6C6C6C;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        .job_profile_info {
+            margin: 10px 0 20px;
+            span {
+                display: inline-block;
+                vertical-align: middle;
+                border-radius: 5px;
+                background: #d2d1d1;
+                padding: 2px 10px;
+                font-size: 12px;
+                font-weight: 600;
+                text-transform: capitalize;
+                margin-right: 8px;
+                line-height: 20px;
+                i {
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: 12px;
+                }
+            }
+        }
+        & > h3 {
+            position: relative;
+            &:after {
+                content:'';
+                position: absolute;
+                background: #ccc;
+                width: 100%;
+                height: 1px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                right:0;
+                z-index: 1;
+            }
+            span {
+                background: #f3f3f3;
+                display: inline-block;
+                padding: 5px 15px 5px 0;
+                position: relative;
+                z-index:2;
+                i {
+                    margin-right: 7px;
+                    font-size: 20px;
+                }
+            }
+        }
+        .skillset {
+            display:flex;
+            align-items: center;
+            span {
+                margin-right: 15px;
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
+        & > button {
+            background: #522D80;
+            border-radius: 5px;
+            color: #FFFFFF;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-top: 50px;
+        }
+    }
+}

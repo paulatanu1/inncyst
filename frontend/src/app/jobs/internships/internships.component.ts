@@ -44,7 +44,8 @@ export class InternshipsComponent implements OnInit {
   selectedType!: string;
   typeSort: any = [];
   selectedRange: [number, number] = [5000, 30000];
-
+leftSideListLoadding=false
+rightSideLoadding=false;
   public daysAgo!: number;
   constructor(
     private loginDetails: LoginDetailsService,
@@ -166,6 +167,8 @@ export class InternshipsComponent implements OnInit {
     this.AllJbDetaails();
   }
   AllJbDetaails() {
+    this.leftSideListLoadding=true;
+    this.rightSideLoadding=true
     // const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
     const url = `/industry/industry-posts?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
 
@@ -173,10 +176,13 @@ export class InternshipsComponent implements OnInit {
       next: (res) => {
         this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];
         this.totalJob = res.data.total;
+        this.leftSideListLoadding=false;
+        // this.rightSideLoadding=false;
+
         this.AllJobDetails.forEach((element: any) => {
           element.companyName = element?.companyName?.toUpperCase();
           element.intranshipName = element?.intranshipName?.toUpperCase();
-          element.salary = (element.salary * 12) / 100000;
+          // element.salary = (element.salary * 12) / 100000;
           let fullDate: Date = new Date(element.createdAt);
           // Get the current date
           const currentDate: Date = new Date();
@@ -193,21 +199,24 @@ export class InternshipsComponent implements OnInit {
         if (this.jobId) {
           this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
             next: (res) => {
+              this.rightSideLoadding=false;
               this.singleJobDetails = [];
               this.singleJobDetails.push(res.data);
               this.singleJobDetails.forEach((element: any) => {
                 element.companyName = element?.companyName?.toUpperCase();
                 element.type = element?.type?.toUpperCase();
-                element.salary = (element.salary * 12) / 100000;
+                // element.salary = (element.salary * 12) / 100000;
               });
             },
             error: (err) => {
+              this.rightSideLoadding=false
               console.log(err.error.message);
             },
           });
         }
       },
       error: (err) => {
+        this.leftSideListLoadding=false
         console.log(err.error.message);
         if (err.error.message == 'jwt expired') {
           ls.clear();
@@ -220,7 +229,7 @@ export class InternshipsComponent implements OnInit {
   }
   applyJob() {
     this.profileUpdate = true;
-    this.router.navigate(['jobs/internships/skills']);
+    this.router.navigate(['jobs/posts/skills']);
   }
 
   closeProfileUpdateForm() {
@@ -229,9 +238,11 @@ export class InternshipsComponent implements OnInit {
   }
 
   jobDetails(id: string, i: number) {
+    this.rightSideLoadding=true;
     this.selectedJob = i;
     this.jobService.getJobDetails(id).subscribe({
       next: (res) => {
+        this.rightSideLoadding=false;
         let id = res.data._id;
         console.log(id, 'id');
         this.jobService.getSelectedJobId(res.data._id);
@@ -245,6 +256,7 @@ export class InternshipsComponent implements OnInit {
         console.log(this.singleJobDetails, 'res');
       },
       error: (err) => {
+        this.rightSideLoadding=false
         console.log(err);
       },
     });

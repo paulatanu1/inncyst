@@ -22,7 +22,7 @@ export class InternshipProfileService {
     form_data.phone=data.phone;
     form_data.skills=data.skills;
     form_data.location=data.location;
-    form_data.description=data.shortDescription
+    form_data.description=data.description
     let url='/auth/edit-profile'
   return this.api.ApiCallWithLocalization(form_data,url,'put')
 }

@@ -76,8 +76,8 @@
   >
     <div class="profile-section">
       <div class="left-section">
-        <div class="profile-pic">
-          <img [src]="imagePath" alt="" />
+        <div class="profile-pic" >
+          <img [src]="imagePath" alt=""    />
           <!-- <p-fileUpload
             mode="basic"
             name="demo[]"
@@ -93,6 +93,8 @@
               type="file"
               accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"
               (change)="fileChangeEvent($event)"
+             
+              formControlName="image"
             />
             <label></label>
             <button type="button" class="button-upload">Select File</button>
@@ -112,19 +114,20 @@
           pInputText
           class="p-inputtext-sm"
           placeholder="Short Description"
-          formControlName="shortDescription"
+          formControlName="description"
         />
         <p-chips
-          separator=","
+          separator=" "
           placeholder="Hint: graphics, html, css"
           formControlName="skills"
         ></p-chips>
-
+        <h5>Please add <strong>space</strong> after adding any skills</h5>
         <input
           type="text"
           pInputText
           class="p-inputtext-sm"
           placeholder="Location"
+          formControlName="location"
         />
 
         <span class="p-input-icon-left">
@@ -147,12 +150,12 @@
             formControlName="phone"
           />
         </span>
-        <textarea
+        <!-- <textarea
           rows="5"
           cols="3"
           pInputTextarea
           placeholder="Describe here ....."
-        ></textarea>
+        ></textarea> -->
       </div>
     </div>
     <input type="submit" value="Save" class="save_btn" />

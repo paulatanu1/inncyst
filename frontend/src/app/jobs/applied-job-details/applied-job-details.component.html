@@ -1,45 +1,39 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div>
-  <h1>company details:--</h1>
-  <p>
+<section class="internship_sec">
+  <div class="internship_sec_inner">
+  <h2>{{ appliedJobDetails.intranshipDetails.intranshipType }}</h2>
+  <div class="location_info">
+    <strong><i class="pi pi-building"></i> {{appliedJobDetails.intranshipDetails.companyName }}</strong>
+    <strong><i class="pi pi-map-marker"></i>{{ appliedJobDetails.intranshipDetails.location }}</strong>
+    <strong><i class="pi pi-calendar"></i>{{ appliedJobDetails.intranshipDetails.createdAt | date }}</strong>
+  </div>
+  <div class="job_profile_info">
+    <span>₹ {{ appliedJobDetails.intranshipDetails.salary }}</span>
+    <span><i class="pi pi-bookmark-fill"></i> {{ appliedJobDetails.intranshipDetails.hasApplied }}</span>
+    <span><i class="pi pi-briefcase"></i> {{ appliedJobDetails.intranshipDetails.jobType }}</span>
+  </div>
+  <!-- <p>
     intranshipName:-
     {{ appliedJobDetails.intranshipDetails.intranshipName }}
   </p>
-  <p>companyName :- {{ appliedJobDetails.intranshipDetails.companyName }}</p>
-  <p>createdAt:- {{ appliedJobDetails.intranshipDetails.createdAt | date }}</p>
-  <p>hasApplied:- {{ appliedJobDetails.intranshipDetails.hasApplied }}</p>
-  <p>
-    intranshipType:-
-    {{ appliedJobDetails.intranshipDetails.intranshipType }}
-  </p>
-  <p>jobType:- {{ appliedJobDetails.intranshipDetails.jobType }}</p>
-  <p>location:- {{ appliedJobDetails.intranshipDetails.location }}</p>
-  <p>salary:- {{ appliedJobDetails.intranshipDetails.salary }}</p>
-  <p>status:-- {{ appliedJobDetails.intranshipDetails.status }}</p>
-  <div *ngIf="appliedJobDetails.intranshipDetails.perks.length">
+  <p>status:-- {{ appliedJobDetails.intranshipDetails.status }}</p> -->
+  <h3><span><i class="pi pi-info-circle"></i>Benefits and Perks</span></h3>
+  <div class="skillset" *ngIf="appliedJobDetails.intranshipDetails.perks.length">
     <p *ngFor="let a of appliedJobDetails.intranshipDetails.perks">
       {{ a }}
     </p>
   </div>
-  <div *ngIf="appliedJobDetails.intranshipDetails.skills">
-    <p *ngFor="let a of appliedJobDetails.intranshipDetails.skills">
-      {{ a }}
-    </p>
+  <h3><span><i class="pi pi-wrench"></i>Skills</span></h3>
+  <div class="skillset" *ngIf="appliedJobDetails.intranshipDetails.skills">
+    <span *ngFor="let a of appliedJobDetails.intranshipDetails.skills">
+      <i class="pi pi-check-square"></i> {{ a }}
+    </span>
   </div>
 
   <img [src]="appliedJobDetails.intranshipDetails.image" />
-  <p>
-    extra information:-
-    {{ appliedJobDetails.intranshipDetails.information }}
-  </p>
-</div>
+  <h3><span><i class="pi pi-info-circle"></i>Details</span></h3>
+  <p>{{ appliedJobDetails.intranshipDetails.information }}</p>
 
-<button (click)="backToJobDetails()" style="color: blue;border: 2px solid red; padding: 20px;" 
->Back</button>
+
+<button (click)="backToJobDetails()">Back</button>
+</div>
+</section>

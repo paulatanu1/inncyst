@@ -1,28 +1,86 @@
 <app-header></app-header>
 <div class="job_tabs">
   <p-tabView>
+    <h1 *ngIf="loadding">loading..........</h1>
     <p-tabPanel header="Applied">
-      <ul>
+      <!-- NEW SECTION..............-->
+      <div>
+        <ul>
+          <li *ngFor="let a of AppliedJobDetails">
+            <div class="ellipsis_icon">
+              <p-overlayPanel #op>
+                <ng-template pTemplate="content">
+                  <button (click)="details(a._id)">
+                    <i class="pi pi-info-circle"></i>Details
+                  </button>
+                  <button (click)="applicationStatus()">
+                    <i class="pi pi-file"></i>Application Status
+                  </button>
+                </ng-template>
+              </p-overlayPanel>
+              <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
+            </div>
+            <div class="company_info_head">
+              <div class="company_logo">
+                <img
+                [src]="a.jobDetails.company?.image?a.jobDetails.company?.image:'../../../assets/no-image.svg'"
+                  width="90"
+                  height="48"
+                  loading="lazy"
+                />
+      
+              </div>
+              <div>
+                <h2>{{ a?.jobDetails?.company?.companyName }}</h2>
+                <div class="location_info">
+                  <!-- <strong>{{ a.jobDetails?.companyName }}</strong> -->
+                  <span>{{ a?.jobDetails?.location }}</span>
+                </div>
+              </div>
+            </div>
+            <p>Required Skill Set:-- </p>
+            <p *ngFor="let skill of a.jobDetails.skills">
+              {{skill}}
+            </p>
+            <p>Education Required:-- {{a.jobDetails.education}}</p>
+            <p>experience required:-- {{a.jobDetails.experience}} {{a.jobDetails.experienceTime}}</p>
+        <p>Post Openning For :-- {{a.jobDetails.jobOpening}}</p>
+        <p>Sallary:-- {{a.jobDetails.salary}} /{{a.jobDetails.salaryType}} </p>
+      <p>Job Type :-- {{a.jobDetails.type}} </p>
+      <p>Perks:--</p>
+      <p *ngFor="let perks of a.jobDetails.perks">{{perks}}</p>  
+      <p>Job Location :- {{a.jobDetails.location}}</p> 
+      <p>Job Posted Date:- {{a.jobDetails.createdAt | date}}</p>
+      <p>Application status:- {{a.applicationStatus}}</p>
+      </li>
+        </ul>
+      </div>
+
+
+      <!-- old section-->
+      <!-- <ul>
         <li *ngFor="let a of AppliedJobDetails">
           <div class="ellipsis_icon">
             <p-overlayPanel #op>
               <ng-template pTemplate="content">
-                <button (click)="details(a._id)">Details</button>
-                <br />
+                <button (click)="details(a._id)">
+                  <i class="pi pi-info-circle"></i>Details
+                </button>
                 <button (click)="applicationStatus()">
-                  Application Status
+                  <i class="pi pi-file"></i>Application Status
                 </button>
               </ng-template>
             </p-overlayPanel>
             <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
           </div>
+
+         
           <div class="company_info_head">
             <div class="company_logo"></div>
             <div>
-              <h2>{{ a?.intranshipDetails.intranshipName }}</h2>
+              <h2>{{ a?.jobDetails?.company?.companyName }}</h2>
               <div class="location_info">
-                <strong>{{ a?.intranshipDetails.companyName }}</strong>
-                <span>{{ a?.intranshipDetails.location }}</span>
+                <span>{{ a?.jobDetails?.location }}</span>
               </div>
             </div>
           </div>
@@ -34,66 +92,19 @@
 
           <div class="location_info">
             <i class="pi pi-calendar"></i>
-            <span>{{ a?.intranshipDetails.createdAt | date }}</span>
+            <span>{{ a?.jobDetails?.createdAt | date }}</span>
           </div>
 
           <div class="company_info">
-            <!-- <img src="../../../assets/canva.png" width="78" height="32" />  -->
-
-            <!-- <button (click)="details(a)"> send........</button> -->
+          
             <span>
               <strong>$1500/</strong>
               m
             </span>
-            <span>{{ a?.applicationStatus }}</span>
+            <span>{{ a.applicationStatus }}</span>
           </div>
         </li>
-        <!-- <li>
-                <i class="pi pi-ellipsis-v"></i>
-                <h2>Front End Developer</h2>
-                <span class="applied">Applied</span>
-                <div class="location_info">
-                    <i class="pi pi-map-marker"></i><span>Kolkata, West Bengal</span>
-                </div>
-                <div class="location_info">
-                    <i class="pi pi-calendar"></i> <span>Applied on Jul 27</span>
-                </div>
-                <div class="company_info">
-                    <img src="../../../assets/canva.png" width="78" height="32" />
-                    <strong>Satisfix Software systems</strong>
-                </div>
-            </li>
-            <li>
-                <i class="pi pi-ellipsis-v"></i>
-                <h2>Front End Developer</h2>
-                <span class="rejected">Not selected by employer</span>
-                <div class="location_info">
-                    <i class="pi pi-map-marker"></i><span>Kolkata, West Bengal</span>
-                </div>
-                <div class="location_info">
-                    <i class="pi pi-calendar"></i> <span>Applied on Jul 27</span>
-                </div>
-                <div class="company_info">
-                    <img src="../../../assets/canva.png" width="78" height="32" />
-                    <strong>Satisfix Software systems</strong>
-                </div>
-            </li>
-            <li>
-                <i class="pi pi-ellipsis-v"></i>
-                <h2>Front End Developer</h2>
-                <span class="rejected">Not selected by employer</span>
-                <div class="location_info">
-                    <i class="pi pi-map-marker"></i><span>Kolkata, West Bengal</span>
-                </div>
-                <div class="location_info">
-                    <i class="pi pi-calendar"></i> <span>Applied on Jul 27</span>
-                </div>
-                <div class="company_info">
-                    <img src="../../../assets/canva.png" width="78" height="32" />
-                    <strong>Satisfix Software systems</strong>
-                </div>
-            </li> -->
-      </ul>
+      </ul> -->
     </p-tabPanel>
     <p-tabPanel header="Interviews"></p-tabPanel>
   </p-tabView>

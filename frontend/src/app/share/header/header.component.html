@@ -103,7 +103,7 @@
       </div>
     </div>
 
-    <div class="profile-menu" *ngIf="logoutSuccess">
+    <!-- <div class="profile-menu" *ngIf="logoutSuccess">
       <button
         #btn
         type="button"
@@ -129,6 +129,32 @@
         appendTo="body"
         #slideMenu
       ></p-slideMenu>
+    </div> -->
+
+    <div class="profile-container" *ngIf="logoutSuccess">
+      <div class="img-wrapper">
+        <img
+          src="https://www.tm-town.com/assets/default_male600x600-e660e1a712abfc5f638f435f6ef5432c69c6d9250b10cd43bbaa943e55980d5a.png"
+          alt="Profile Image"
+          class="profile-image"
+        />
+      </div>
+
+      <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+        <mat-icon svgIcon="assets/expand_more">
+          <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        </mat-icon>
+      </button>
+      <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item [routerLink]="['/my-profile']">Profile</button>
+        <button mat-menu-item [routerLink]="['/jobs/my-jobs']">
+          Job Applyed
+        </button>
+        <button mat-menu-item [routerLink]="['change-password']">
+          Change Password
+        </button>
+        <button mat-menu-item (click)="logOutUser()">Logout</button>
+      </mat-menu>
     </div>
   </div>
 </nav>

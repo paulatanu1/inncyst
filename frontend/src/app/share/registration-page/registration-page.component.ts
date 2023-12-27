@@ -134,6 +134,14 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.login.otpPage.subscribe({
+      next:(res)=>{
+        console.log(res,'res')
+        this.otpPageOpen=<boolean>res;
+        this.signupPageHide=false
+      }
+    })
     window.scrollTo(0, 0);
     this.registerForm = this.fb.group(
       {
@@ -227,7 +235,9 @@ export class RegistrationPageComponent implements OnInit {
             let severity = '';
             let summary = '';
             let detail = '';
-
+// if(response.data.question_step == false && response.data.role == 'industry'){
+//   this.router.navigateByUrl('/industry/profile');
+// }
             this._toast.showToaster.next({
               severity: 'success',
               summary: 'success',
@@ -240,6 +250,7 @@ export class RegistrationPageComponent implements OnInit {
             if (err.error.message == 'User Already exist') {
               this.otpPageOpen = false;
               this.signupPageHide = false;
+              this.login.loginFlow.next(true)
             }
             this._toast.showToaster.next({
               severity: 'error',
@@ -326,6 +337,7 @@ export class RegistrationPageComponent implements OnInit {
     };
     this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
       next: (res) => {
+        console.log(res)
         this.OtpModal = false;
         this.redirectToOtp = false;
         //  this.otpPageOpen=false

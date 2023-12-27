@@ -6,6 +6,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+import { environment } from 'src/environments/environment';
 
 interface IprofileDetails {
   name: string;
@@ -29,7 +30,7 @@ interface IprofileDetails {
 export class MyProfileComponent implements OnInit {
   croppedImage: any;
   @ViewChild('cropper') cropper!: ElementRef;
-  ProfileDetails!: IprofileDetails;
+  ProfileDetails:any;
   profile: Subscription | undefined;
   editProfile: boolean = false;
   profileForm: FormGroup = new FormGroup({});
@@ -43,30 +44,49 @@ export class MyProfileComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private router: Router,
     private _toast: ToastServiceService
-  ) {}
+  ) {
 
-  ngOnInit(): void {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
-      shortDescription: [''],
       skills: [[]], // Initialize as an empty array
-      location: [' '],
+      location: [''],
       phone: ['', Validators.required],
       email: ['', Validators.required],
       image: [''],
+      description:['']
     });
+  }
+
+  ngOnInit(): void {
 
     this.profile = this.internship
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
-        // console.log(this.ProfileDetails)
+        console.log(this.ProfileDetails,'pd')
+ this.imagePath=this.ProfileDetails.image
         // console.log(this.ProfileDetails, 'ProfileDetails');
         if (this.ProfileDetails) {
-          this.profileForm.patchValue(this.ProfileDetails);
+          // this.profileForm.patchValue(this.ProfileDetails);
           // console.log(this.profileForm, 'ii');
+
+          this.profileForm.get('name')?.patchValue(this.ProfileDetails.name);
+          
+          this.profileForm.get('description')?.patchValue(this.ProfileDetails.description);
+          
+          this.profileForm.get('location')?.patchValue(this.ProfileDetails.location)
+          
+          this.profileForm.get('phone')?.patchValue(this.ProfileDetails.phone)
+          
+          this.profileForm.get('email')?.patchValue(this.ProfileDetails.email)
+          
+          // this.profileForm.get('image')?.patchValue(this.ProfileDetails.image)
+          this.profileForm.get('skills')?.patchValue(this.ProfileDetails.skills)
+         this.profileForm.get('image')?.patchValue(this.ProfileDetails.image);
         }
+   
       });
+
     //for scroll issue
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

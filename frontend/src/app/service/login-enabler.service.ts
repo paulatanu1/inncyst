@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, subscribeOn } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginEnablerService {
   loginEnable = new Subject<boolean>()
-  constructor() { }
+  loginFlow = new Subject<boolean>()
+  otpPage = new Subject<boolean>()
+  constructor() {
+    console.log(this.otpPage)
+   }
 }

@@ -31,11 +31,16 @@
                 flex: 0 0 24%;
                 margin-bottom: 20px;
                 position: relative;
-                    .ellipsis_icon > i {
-                        position: absolute;
-                        right: 10px;
-                        top: 20px;
+                    .ellipsis_icon {
+                        & > i {
+                                position: absolute;
+                                right: 10px;
+                                top: 20px;
+                                cursor: pointer;
+                            }
                     }
+                    
+                    
                     .company_info_head {
                         display: flex;
                         flex-direction: row;
@@ -154,4 +159,19 @@
             
         }
     }
+}
+::ng-deep .p-overlaypanel-content {
+    padding: 10px 15px;
+    button {
+        background: none;
+        display: block;
+        margin-bottom: 10px;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        i {
+            margin-right: 10px;
+        }
+    }
+
 }

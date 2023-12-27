@@ -1,4 +1,6 @@
 export interface IpostJob {
+  experienceTime: string;
+  durationIn: string;
   type: string;
   salary: number;
   salaryType: string;
@@ -11,8 +13,11 @@ export interface IpostJob {
   jobOpening: number;
   responsibilities: string[];
   stipend: string;
-  id?:string
-  location:string
+  id?:string;
+  location:string;
+  education:string;
+  experience:number;
+  
 }
 
 export interface Ipayload {
@@ -29,5 +34,9 @@ export interface Ipayload {
   responsibilities: string[];
   stipend: string;
   id?:string
-  location:string
+  location:string,
+  experienceTime:string,
+  durationIn:string,
+  education:string,
+  experience:number
 }
