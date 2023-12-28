@@ -4,33 +4,40 @@
     max-width: 1120px;
     display: flex;
     justify-content: space-between;
+
     .portfolio_left {
         flex: 0 0 30%;
+
         img {
             width: 250px;
             height: 250px;
         }
+
         h3 {
             font-size: 22px;
             position: relative;
             padding-bottom: 10px;
+
             &::after {
-                content:'';
+                content: '';
                 position: absolute;
                 background: #3B82F6;
                 width: 15%;
-                height:2px;
+                height: 2px;
                 left: 0;
                 bottom: 2px;
             }
         }
     }
+
     .portfolio_right {
         flex: 0 0 68%;
+
         p {
             font-size: 14px;
         }
     }
+
     .add_portfolio_btn {
         border: dashed 2px #999;
         padding: 20px;
@@ -44,6 +51,7 @@
         place-content: center;
         cursor: pointer;
         margin-top: 40px;
+
         i {
             display: block;
             margin: 0 auto 10px;
@@ -52,33 +60,41 @@
             font-weight: 600;
             font-size: 24px;
         }
+
         span {
             font-weight: 500;
         }
     }
 }
-.dialog{
+
+.dialog {
     height: 300px !important;
 }
+
 .portfolio_sec_modal {
     width: 500px;
+
     h3 {
         font-size: 22px;
         font-weight: 600;
         text-align: center;
     }
+
     ul {
         list-style-type: none;
         padding: 0;
+
         li {
             list-style: none;
         }
     }
 }
+
 .myFormSec {
     display: flex;
     flex-direction: row;
 }
+
 .portfolio_sec_modal {
     min-width: 800px;
 }
@@ -220,4 +236,7 @@
             width: 100%;
         }
     }
+}
+::ng-deep .p-dialog .p-dialog-header {
+    border: none;
 }

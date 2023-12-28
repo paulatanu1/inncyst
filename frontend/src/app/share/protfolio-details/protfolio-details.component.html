@@ -42,20 +42,22 @@
       </div>
     </li>
     <li>
-      <div class="">
+      <div class="px1">
+        <label>Select Media Type</label>
         <p-dropdown
-          [options]="uploadItem"
-          placeholder="Select a option"
-          optionLabel="name"
-          (onChange)="selectItem($event, obj.id)"
-        ></p-dropdown>
+        [options]="uploadItem"
+        placeholder="Select a option"
+        optionLabel="name"
+        (onChange)="selectItem($event, obj.id)"
+        appendTo="body"
+      ></p-dropdown>
       </div>
     </li>
 
 
   </ul>
-  <div class="selectOption" *ngIf="selectedItem == 'Pdf'">
-    <label>Please upload pdf...</label>
+  <div class="youtube-url position-relative" *ngIf="selectedItem == 'Pdf'">
+    <label>Upload pdf file</label>
     <input
       type="file"
       name="pdfFile"
@@ -65,43 +67,45 @@
       (change)="pdfSelected($event)"
       accept=".pdf"
     />
-    <button (click)="deletePdf()">
+    <button class="remove" (click)="deletePdf()">
       <i class="pi pi-times"></i>
     </button>
   </div>
-  <div class="selectOption" *ngIf="selectedItem == 'Image'">
+  <div class="youtube-url" *ngIf="selectedItem == 'Image'">
     <label>Please upload Image...</label>
     <div>
-      <input
-        type="file"
-        formControlName="image"
-        accept="image/*"
-        (change)="onImageSelected($event)"
-        id="imageInput"
-      />
-      <button (click)="removeImage()"><i class="pi pi-times"></i></button>
+ 
+<div>
+  <input
+    type="file"
+    formControlName="image"
+    accept="image/*"
+    (change)="onImageSelected($event)"
+    id="imageInput"
+  />
+  <button (click)="removeImage()"><i class="pi pi-times"></i></button>
+</div>
     </div>
-  </div>
 
-  <div class="selectOption" *ngIf="selectedItem == 'url'">
+  <div class="youtube-url" *ngIf="selectedItem == 'url'">
     <div>
-      <label>upload URL</label>
-      <input type="url" formControlName="url" (change)="urlChange($event)" placeholder="youtubeUrl"/>
+      <p>Paste url</p>
+      <input type="url" formControlName="url" (change)="urlChange($event)" placeholder="Paste URL here .. "/>
     </div>
-  </div>
 
-  <div class="selectOption" *ngIf="selectedItem == 'youtubeVideo'">
+  <div class="youtube-url" *ngIf="selectedItem == 'youtubeVideo'">
     <div>
-      <label>upload Youtube URL</label>
+      <p>Paste Youtube url</p>
       <input
         type="url"
         formControlName="youtubeUrl"
         (change)="youtubeUrlChange($event)"
+        placeholder="Paste your link here .. "
       />
     </div>
+  
+    <button type="submit">Submit</button>
   </div>
-  <button type="submit">Submit</button>
-</div>
 </form>
 <!-- </li>
     <li>
