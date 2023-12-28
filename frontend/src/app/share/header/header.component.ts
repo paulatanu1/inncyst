@@ -403,18 +403,13 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   closeMenu() {
-    console.log('close0');
-    console.log(this.slidemenu);
-
     if (this.isMenuOpen) {
-      console.log('close1');
       // this.slidemenu.hide();
       this.isMenuOpen = false;
     }
   }
 
   ngOnDestroy(): void {
-    console.log('close3');
     this.isMenuOpen = false;
     // this.slidemenu.hide();
   }

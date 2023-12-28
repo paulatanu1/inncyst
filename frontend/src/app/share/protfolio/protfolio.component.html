@@ -1,3 +1,4 @@
+<app-header></app-header>
 <section class="portfolio_sec">
   <div class="portfolio_left">
     <img src="../../../assets/portfolio-image.webp" w="250" h="250" />
@@ -5,20 +6,24 @@
     <strong>Freelance Developer</strong>
   </div>
   <div class="portfolio_right">
-    <p>Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-    text.Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-    text.Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-    text.</p>
+    <p>
+      Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem
+      Ipsum has been the industry's standard dummy text.Lorem Ipsum is simply
+      dummy text of the and typesetting industry. Lorem Ipsum has been the
+      industry's standard dummy text.Lorem Ipsum is simply dummy text of the and
+      typesetting industry. Lorem Ipsum has been the industry's standard dummy
+      text.
+    </p>
     <div
-    (click)="addProtfolio()"
-    icon="pi pi-info-circle"
-    label="Show"
-    class="add_portfolio_btn"
-  >
-    <i class="pi pi-plus"></i><span>Add Portfolio</span>
+      (click)="addProtfolio()"
+      icon="pi pi-info-circle"
+      label="Show"
+      class="add_portfolio_btn"
+    >
+      <i class="pi pi-plus"></i>
+      <span>Add Portfolio</span>
+    </div>
   </div>
-  </div>
-  
 </section>
 <p-dialog class="dialog" [(visible)]="display" (onHide)="handleDialogHide()">
   <section class="portfolio_sec_modal">
@@ -44,13 +49,17 @@
   </div>
   <ng-container *ngIf="portfolioDetails.length != 0">
     <div *ngFor="let item of portfolioDetails">
-      <button (click)="editPortfolio(item._id)">edit</button><br />
+      <button (click)="editPortfolio(item._id)">edit</button>
+      <br />
       <button (click)="deletePortfolio(item._id)">delete</button>
       <p>title:-- {{ item.title }}</p>
       <p [innerHtml]="item.description"></p>
-      <p>portfolio status :--  {{item.portfolioStatus}}</p>
+      <p>portfolio status :-- {{ item.portfolioStatus }}</p>
       <ng-container *ngIf="item.image != 'http://localhost:5500null'">
-        <p>Image:--<img [src]="item.image" alt="" /></p>
+        <p>
+          Image:--
+          <img [src]="item.image" alt="" />
+        </p>
       </ng-container>
       <ng-container *ngIf="item.url">
         Url:--
@@ -62,7 +71,7 @@
           [src]="item.pdf"
           [render-text]="true"
           [original-size]="false"
-          style="width: 400px; height: 500px"
+          style="width: 400px; height: 500px;"
         ></pdf-viewer>
       </ng-container>
 
@@ -114,19 +123,17 @@
           </span>
         </ng-template>
       </p-editor>
-<p>kkkkkkkkkkkkk</p>
       <!-- <div *ngIf="editPortfolioDetails?.portfolioStatus != null"> -->
-        <p-dropdown
-          [options]="portfolioStatusOption"
-          optionLabel="name"
-          (onChange)="selectItemEditPortfolio($event)"
-          formControlName="portfolioStatus"
-          optionValue="value"
-        >
-      </p-dropdown>
+      <p-dropdown
+        [options]="portfolioStatusOption"
+        optionLabel="name"
+        (onChange)="selectItemEditPortfolio($event)"
+        formControlName="portfolioStatus"
+        optionValue="value"
+      ></p-dropdown>
       <!-- </div> -->
 
-      <div *ngIf="editPortfolioDetails?.url != 'null'">
+      <div *ngIf="editPortfolioDetails?.url != null">
         <label>uploaded url :--</label>
         <input
           type="url"
@@ -152,12 +159,15 @@
           />
         </ng-container>
       </div>
+      <!-- {{ editPortfolioDetails | json }}
+      {{ editPortfolioDetails?.pdf != null }}
+      {{ editPortfolioDetails?.pdf }} -->
       <div *ngIf="editPortfolioDetails?.pdf != null">
         <ng-container *ngIf="editPdf">
           {{ editPdf }}
           <button (click)="removePdf()">X</button>
         </ng-container>
-        <ng-container *ngIf="!editPdf">
+        <ng-container *ngIf="editPdf">
           <label>please upload pdf...</label>
           <br />
           <input
@@ -196,3 +206,4 @@
     </form>
   </p-dialog>
 </div>
+<app-footer></app-footer>

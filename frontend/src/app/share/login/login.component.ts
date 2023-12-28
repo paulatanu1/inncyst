@@ -61,11 +61,9 @@ export class LoginComponent implements OnInit {
     ];
   }
   dropDown(e: any) {
-    console.log(e.value, 'ee');
     this.loginForm.patchValue({
       options: e.value,
     });
-    console.log(this.loginForm.value, 'ee');
   }
 
   ngOnInit(): void {
@@ -123,19 +121,16 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSubmit() {
-    console.log(this.loginForm.controls);
     if (this.loginForm.valid) {
       let userEmail = this.loginForm.get('email')?.value;
       let password = this.loginForm.get('password')?.value;
       let userRole = this.loginForm.get('options')?.value;
-      console.log(userRole, 'ur');
       this.loginService.login(userEmail, password, userRole).subscribe({
         next: (res) => {
-          console.log(res,'2dec');
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
-          ls.set('questionStep',res.data.question_step)
-      
+          ls.set('questionStep', res.data.question_step);
+
           // ls.set('logoutSuccess',true)
           // ls.set('loginDetails',{
           //   name:res.data.name,
@@ -144,22 +139,29 @@ export class LoginComponent implements OnInit {
           //   image:res.data.image
           // })
 
-          if (res.LOGIN_TYPE == 'student' ) {
+          if (res.LOGIN_TYPE == 'student') {
             this.router.navigateByUrl('jobs/posts');
             ls.set('role', 'student');
-          
+
             // this.router.navigate(['/jobs/internship']);
           } else if (res.LOGIN_TYPE == 'industry') {
             ls.set('role', 'industry');
             this.router.navigate(['industry']);
-            if(res.LOGIN_TYPE === 'industry' && res.data.question_step == false){
+            if (
+              res.LOGIN_TYPE === 'industry' &&
+              res.data.question_step == false
+            ) {
               this.router.navigateByUrl('/industry/profile');
             }
           }
         },
         error: (err) => {
-          console.log(err);
-          alert('User Not Found!!!!!');
+          alert('!!!');
+          this._toast.showToaster.next({
+            severity: 'error',
+            summary: 'error',
+            detail: 'User Not Found!!',
+          });
           this.otpVerifivation.loginflow.next(false);
           this.router.navigateByUrl('/home');
         },
@@ -224,7 +226,6 @@ export class LoginComponent implements OnInit {
         this.confirmPassword = '';
       },
       error: (res) => {
-        console.log(res, 'err');
         this._toast.showToaster.next({
           severity: 'error',
           summary: 'error',
