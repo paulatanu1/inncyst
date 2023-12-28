@@ -86,7 +86,7 @@
                     <span class="posted_time"
                       >Posted {{a.createdAt}} days ago</span
                     >
-                   
+                   <button style="background-color: RED;" (click)="detailsPage(a._id)">Details</button>
                   </h2>
                 </div>
 
@@ -124,39 +124,10 @@
         </div>
       </div>
     </section>
-    <!-- <div class="sorting">
-      <h1>sorting.............</h1>
-      <p-dropdown
-        [options]="Sort"
-        [(ngModel)]="sorting"
-        optionLabel="name"
-        (onChange)="sortDropdown($event)"
-      ></p-dropdown>
-
-      <p-dropdown
-        [options]="jobTypeSort"
-        [(ngModel)]="selectedJobType"
-        optionLabel="name"
-        (onChange)="selectedJobTypeDropdown($event)"
-      ></p-dropdown>
-
-      <p-dropdown
-        [options]="typeSort"
-        [(ngModel)]="selectedType"
-        optionLabel="name"
-        (onChange)="selectedTypeDropdown($event)"
-      ></p-dropdown>
-
-      <input
-        type="text"
-        [(ngModel)]="location"
-        placeholder="Please Enter Location"
-      />
-
-      <button (click)="sortLocation()">search</button>
-    </div> -->
+    
+    
    
-    <section class="right_details_part">
+    <!-- <section class="right_details_part">
       <h1 *ngIf=" rightSideLoadding">Loadding.........</h1>
 
       <ng-container *ngIf="AllJobDetails.length == 0 && !rightSideLoadding ">
@@ -174,9 +145,7 @@
                   height="75"
                 />              </span>
               
-              <!-- <div class="company_tags">
-                <span *ngFor="let b of a.skills">{{ b }}</span>
-              </div> -->
+             
             </div>
             <h2>
               <span>company name:- {{ a.company.companyName }}</span>
@@ -210,12 +179,7 @@
             </div>
             <h2>Salary</h2>
             <p>{{ a.salary }} / {{a.salaryType}}</p>
-            <!-- <ul>
-              <span>Annual CTC breakup:</span>
-              <li>1. Fixed component: 80%</li>
-              <li>2. Variable component: 10%</li>
-              <li>3. Other incentives: 10%</li>
-            </ul> -->
+           
             <p>salary type :- {{a.stipend}}</p>
             <h2>Perks</h2>
             <div class="tags">
@@ -250,11 +214,11 @@
           </div>
         </div>
       </ng-container>
-    </section>
+    </section> -->
   </section>
 </section>
 
-<p-dialog
+<!-- <p-dialog
   (onHide)="closeProfileUpdateForm()"
   [(visible)]="profileUpdate"
   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
@@ -276,5 +240,5 @@
     ></p-steps>
   </div>
   <router-outlet></router-outlet>
-</p-dialog>
+</p-dialog> -->
 <app-footer></app-footer>

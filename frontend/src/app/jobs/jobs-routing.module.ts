@@ -9,14 +9,17 @@ import { JobApplyedComponent } from './job-applyed/job-applyed.component';
 import { AppliedJobDetailsComponent } from './applied-job-details/applied-job-details.component';
 import { BasicJobComponent } from './basic-job/basic-job.component';
 import { UserVerificationGuard } from '../Guard/user-verification.guard';
+import { JobDetailsComponent } from './job-details/job-details.component';
 const routes: Routes = [
   { path: '', component: JobsComponent },
   { path: 'basicInternship', component: BasicInternshipComponent },
+  {path:'details/:id',component:JobDetailsComponent},
   {
     path: 'posts',
     canActivate: [UserVerificationGuard],
     component: InternshipsComponent,
     children: [
+     
       // {path:'',redirectTo:'skills',pathMatch:'full'},
       { path: 'skills', component: RequiredSkillStepComponent },
       { path: 'uploadresume', component: UploadResumeStepComponent },

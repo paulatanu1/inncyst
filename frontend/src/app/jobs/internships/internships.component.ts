@@ -178,7 +178,7 @@ rightSideLoadding=false;
         this.totalJob = res.data.total;
         this.leftSideListLoadding=false;
         // this.rightSideLoadding=false;
-
+        console.log(this.AllJobDetails,'ad')
         this.AllJobDetails.forEach((element: any) => {
           element.companyName = element?.companyName?.toUpperCase();
           element.intranshipName = element?.intranshipName?.toUpperCase();
@@ -273,5 +273,8 @@ rightSideLoadding=false;
       console.log(this.page);
       this.AllJbDetaails();
     }
+  }
+  detailsPage(id:any){
+    this.router.navigate(['/jobs/details/'+id])
   }
 }

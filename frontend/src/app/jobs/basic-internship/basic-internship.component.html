@@ -57,7 +57,7 @@
             <ul>
               <li
                 *ngFor="let a of AllJobDetails; let i = index"
-                (click)="jobDetails(a._id, i)"
+                (click)="gotoLogin()"
                 [ngClass]="{ is_active: selectedJob == i }"
               >
               <div class="company_details_head">
@@ -121,37 +121,8 @@
           </div>
         </div>
       </section>
-      <!-- <div class="sorting">
-        <h1>sorting.............</h1>
-        <p-dropdown
-          [options]="Sort"
-          [(ngModel)]="sorting"
-          optionLabel="name"
-          (onChange)="sortDropdown($event)"
-        ></p-dropdown>
-  
-        <p-dropdown
-          [options]="jobTypeSort"
-          [(ngModel)]="selectedJobType"
-          optionLabel="name"
-          (onChange)="selectedJobTypeDropdown($event)"
-        ></p-dropdown>
-  
-        <p-dropdown
-          [options]="typeSort"
-          [(ngModel)]="selectedType"
-          optionLabel="name"
-          (onChange)="selectedTypeDropdown($event)"
-        ></p-dropdown>
-  
-        <input
-          type="text"
-          [(ngModel)]="location"
-          placeholder="Please Enter Location"
-        />
-  
-        <button (click)="sortLocation()">search</button>
-      </div> -->
+      
+<!--    
       <section class="right_details_part">
         <div class="noData">
         <ng-container *ngIf="AllJobDetails.length == 0">
@@ -176,7 +147,6 @@
               </div>
               <h2>
                 {{ a.intranshipName }}
-                <!-- <span>{{a.companyName}}</span> -->
               </h2>
             </div>
             <div class="overview">
@@ -228,13 +198,10 @@
               </p>
               <h2>Number of openings</h2>
               <p>{{ a.opens }}</p>
-              <!-- <div class="apply_btn">
-                <button type="button" (click)="applyJob()" >Apply Now</button>
-              </div> -->
             </div>
           </div>
         </ng-container>   
-      </section>
+      </section> -->
     </section>
   </section>
   
