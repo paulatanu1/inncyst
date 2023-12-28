@@ -10,6 +10,7 @@ import { JobsService } from 'src/app/service/jobs.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { LoginApiService } from 'src/app/share/login/login-api.service';
 import { InternshipProfileService } from 'src/app/share/service/internship-profile.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-upload-resume-step',
@@ -35,16 +36,22 @@ export class UploadResumeStepComponent implements OnInit {
     private jobService: JobsService,
     private router:Router,
     private api:ApiService,
-    private internship: InternshipProfileService
+    private internship: InternshipProfileService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-this.jobService.sendSelectedJobId().subscribe({
+// this.jobService.sendSelectedJobId().subscribe({
+//   next:(res=>{
+//     this.appliedJobId=<string>res;
+//     alert(res)
+//   })
+// })
+this.activatedRoute.params.subscribe({
   next:(res=>{
-    this.appliedJobId=<string>res;
-    alert(res)
-  })
-})
+    this.appliedJobId=res['id']
+  })}
+)
     this.internship.sendInternshipProfileRequest().subscribe({
       next:(res=>{
         this.userLoginDetails=res.data;
