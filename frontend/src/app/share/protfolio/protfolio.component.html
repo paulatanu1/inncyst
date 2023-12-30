@@ -48,7 +48,7 @@
     <p>no data found</p>
   </div>
   
-<h1 *ngIf="loading">loading..........</h1>
+<app-loader *ngIf="loading"></app-loader>
 <ng-container *ngIf="portfolioDetails.length != 0 && !loading">    
     <div class="portfolio_details_sec">
       <ul>

@@ -10,7 +10,8 @@ import { JobsService } from 'src/app/service/jobs.service';
 export class JobDetailsComponent implements OnInit {
   AllJobDetails: any = [];
   singleJobDetails:any=[]
-  profileUpdate=false
+  profileUpdate=false;
+  applied=false;
   constructor(private activatedRoute: ActivatedRoute,    private jobService: JobsService,
     ) {}
 
@@ -21,6 +22,9 @@ export class JobDetailsComponent implements OnInit {
 
         this.jobService.getJobDetails(res['id']).subscribe({
           next: (res) => {
+            console.log(res,'rrrr')
+            this.applied=res.data.applied
+            console.log(this.applied)
             // this.rightSideLoadding = false;
             this.singleJobDetails = [];
             this.singleJobDetails.push(res.data);

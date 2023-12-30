@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="job_tabs">
   <p-tabView>
-    <h1 *ngIf="loadding">loading..........</h1>
+    <app-loader *ngIf="loadding"></app-loader>
     <p-tabPanel header="Applied">
       <!-- NEW SECTION..............-->
       <div>

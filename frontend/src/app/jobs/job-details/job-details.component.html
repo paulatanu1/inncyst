@@ -98,7 +98,7 @@
       <h1>work models :-</h1>
       {{ a.intranshipType }}
       <div class="apply_btn">
-        <button type="button" (click)="applyJob()">Apply Now</button>
+        <button [disabled]="applied" type="button" (click)="applyJob()">Apply Now</button>
       </div>
     </div>
   </div>

@@ -49,6 +49,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import { MatMenuModule } from '@angular/material/menu';
     LoginComponent,
     RegistrationOtpComponent,
     ProgressBarComponent,
-    RegistrationPageComponent,
+    RegistrationPageComponent,LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -144,6 +145,7 @@ import { MatMenuModule } from '@angular/material/menu';
     InputTextareaModule,
     ImageCropperModule,
     OverlayPanelModule,
+    LoaderComponent
   ],
   providers: [DatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
