@@ -10,9 +10,9 @@
             <div class="ellipsis_icon">
               <p-overlayPanel #op>
                 <ng-template pTemplate="content">
-                  <button (click)="details(a._id)">
+                  <!-- <button (click)="details(a._id)">
                     <i class="pi pi-info-circle"></i>Details
-                  </button>
+                  </button> -->
                   <button (click)="applicationStatus()">
                     <i class="pi pi-file"></i>Application Status
                   </button>
@@ -44,13 +44,16 @@
             </span>
             </p>
             <p><strong>Education Required :</strong> {{a.jobDetails.education}}</p>
-            <p><strong>Experience Required :</strong> {{a.jobDetails.experience}} {{a.jobDetails.experienceTime}}</p>
+            <p><strong *ngIf="a.jobDetails.type == 'job'">Experience Required :</strong> {{a.jobDetails.experience}} {{a.jobDetails.experienceTime}}</p>
             <p><strong>Post Openning For :</strong> {{a.jobDetails.jobOpening}}</p>
             <p><strong>Salary :</strong> {{a.jobDetails.salary}} /{{a.jobDetails.salaryType}} </p>
             <p><strong>Job Type :</strong> {{a.jobDetails.type}} </p>
             <p><strong>Perks :</strong> <span *ngFor="let perks of a.jobDetails.perks">{{perks}}</span></p>
             <p><strong>Job Location :</strong>{{a.jobDetails.location}}</p> 
             <p><strong>Job Posted Date :</strong> {{a.jobDetails.createdAt | date}}</p>
+            <p *ngIf="a.jobDetails.type == 'job'"><strong>Responsibility:</strong>
+            <span *ngFor="let responsibilities of a.jobDetails.responsibilities">{{responsibilities}}</span>
+            </p>
       </div>
       <div class="app_status"><strong>Application status : </strong>{{a.applicationStatus}}</div>
       </li>
