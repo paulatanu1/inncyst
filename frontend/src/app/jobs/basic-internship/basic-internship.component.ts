@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { JobsService } from 'src/app/service/jobs.service';
+import { LoginEnablerService } from 'src/app/service/login-enabler.service';
+import { ToastServiceService } from 'src/app/service/toast-service.service';
 
 @Component({
   selector: 'app-basic-internship',
@@ -36,7 +38,8 @@ export class BasicInternshipComponent implements OnInit {
   typeSort: any = [];
   selectedRange: [number, number] = [5000, 30000];
   daysAgo!:number
-  constructor(private jobService: JobsService) {}
+  constructor(private jobService: JobsService,private _LoginEnablerService:LoginEnablerService,
+    private _toast:ToastServiceService) {}
 
   ngOnInit(): void {
     // this.jobService.basicIntershipList().subscribe({
@@ -215,5 +218,13 @@ export class BasicInternshipComponent implements OnInit {
       this.page++;
       this.AllJbDetaails();
     }
+  }
+  gotoLogin(){
+    // this._LoginEnablerService.loginFlow.next(true)
+    this._toast.showToaster.next({
+      severity: 'success',
+      summary: 'success',
+      detail: 'please login to view the page',
+    });
   }
 }

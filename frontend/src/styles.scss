@@ -2,6 +2,8 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
 @import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 ::ng-deep .p-button:focus {
   box-shadow: none !important;
 }

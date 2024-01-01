@@ -57,39 +57,47 @@
             <ul>
               <li
                 *ngFor="let a of AllJobDetails; let i = index"
-                (click)="jobDetails(a._id, i)"
+                (click)="gotoLogin()"
                 [ngClass]="{ is_active: selectedJob == i }"
               >
-                <div class="company_details_head">
-                  <div>
-                    <span>
-                      <img
-                        src="{{
-                          a.image ? 'a.image' : '../../../assets/no-image.svg'
-                        }}"
-                        width="170"
-                        height="75"
-                        loading="lazy"
-                      />
-                    </span>
-                  </div>
+              <div class="company_details_head">
+                <div class="comapny_details">
+                  <span>
+                    <img src="{{a.image ? 'a.image' : '../../../assets/no-image.svg'}}" width="90" height="48" loading="lazy" />
+                  </span>
                   <h2>
-                    {{ a.companyName }}
-                    <span>{{ a.type }}</span>
+                    {{ a.companyName }}MailChimp
+                    <span class="posted_time">Posted {{a.createdAt}} days ago</span>
                   </h2>
-
-            
-                </div>     <h2>{{a.details}}</h2><br>
-                <h2>{{a.location}}</h2>
-                <h2>salary {{a.salary}}Lpa</h2>
-                <h2>joining:- {{a.startDate}}</h2>
-                <h2>no of openning:-- {{a.jobOpening}}</h2>
-                <h2>{{a.createdAt}} days ago</h2>
-                <h2>{{a.intranshipType}}</h2>
-                <div class="company_tags" *ngFor="let b of a.skills">
-                  <span>{{ b }}</span>
                 </div>
-                <div class="type_applied">
+              
+                <h2>{{a.details}}</h2>
+                <div class="tags">
+              
+                  <span>1-3 Years</span>
+                  <span>Graduation/Diploma</span>
+                  <span>{{a.salary}} Lpa</span>
+                  <span>{{ a.intranshipType }}</span>
+                </div>
+              
+              </div>
+                 
+                <div class="location">
+                  <span><i class="pi pi-map-marker"></i> {{a.location}}Kolkata</span>
+                  <span><i class="pi pi-briefcase"></i>{{ a.type }}</span>
+                  <span><i class="pi pi-user-plus"></i>{{a.jobOpening}}</span>
+                </div>
+                <!-- <h2>{{a.details}}</h2><br> -->
+                <!-- <h2>{{a.location}}</h2> -->
+                <!-- <h2>salary {{a.salary}}Lpa</h2>
+                <h2>joining:- {{a.startDate}}</h2> -->
+                <!-- <h2>no of openning:-- {{a.jobOpening}}</h2> -->
+                <!-- <h2>{{a.createdAt}} days ago</h2>
+                <h2>{{a.intranshipType}}</h2> -->
+                <div class="company_tags">
+                  <span *ngFor="let b of a.skills">{{ b }}</span>
+                </div>
+                <!-- <div class="type_applied">
                   <span>
                     <img src="../../../assets/work.svg" width="20" height="20" />
                     <strong>{{ a.jobType }}</strong>
@@ -102,50 +110,19 @@
                     />
                     <strong>{{ a.hasApplied }}</strong>
                   </span>
-                </div>
+                </div> -->
               </li>
   
               <!-- -::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->
             </ul>
             <section class="noData" *ngIf="AllJobDetails.length == 0">
               <h3> No Data Available</h3>
-           
-             
              </section>
           </div>
         </div>
       </section>
-      <!-- <div class="sorting">
-        <h1>sorting.............</h1>
-        <p-dropdown
-          [options]="Sort"
-          [(ngModel)]="sorting"
-          optionLabel="name"
-          (onChange)="sortDropdown($event)"
-        ></p-dropdown>
-  
-        <p-dropdown
-          [options]="jobTypeSort"
-          [(ngModel)]="selectedJobType"
-          optionLabel="name"
-          (onChange)="selectedJobTypeDropdown($event)"
-        ></p-dropdown>
-  
-        <p-dropdown
-          [options]="typeSort"
-          [(ngModel)]="selectedType"
-          optionLabel="name"
-          (onChange)="selectedTypeDropdown($event)"
-        ></p-dropdown>
-  
-        <input
-          type="text"
-          [(ngModel)]="location"
-          placeholder="Please Enter Location"
-        />
-  
-        <button (click)="sortLocation()">search</button>
-      </div> -->
+      
+<!--    
       <section class="right_details_part">
         <div class="noData">
         <ng-container *ngIf="AllJobDetails.length == 0">
@@ -170,7 +147,6 @@
               </div>
               <h2>
                 {{ a.intranshipName }}
-                <!-- <span>{{a.companyName}}</span> -->
               </h2>
             </div>
             <div class="overview">
@@ -222,13 +198,10 @@
               </p>
               <h2>Number of openings</h2>
               <p>{{ a.opens }}</p>
-              <!-- <div class="apply_btn">
-                <button type="button" (click)="applyJob()" >Apply Now</button>
-              </div> -->
             </div>
           </div>
         </ng-container>   
-      </section>
+      </section> -->
     </section>
   </section>
   

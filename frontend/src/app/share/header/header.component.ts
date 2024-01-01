@@ -45,6 +45,7 @@ interface IregistrationOption {
   providers: [MessageService],
 })
 export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
+  profileMenu: any;
   items: MenuItem[];
   dropdownitems: MenuItem[];
   registration: boolean = false;
@@ -161,7 +162,11 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
         this.customHeader = <boolean>res;
       },
     });
-
+this._login.loginFlow.subscribe({
+  next:(res)=>{
+    this.loginflow=<boolean>res;
+  }
+})
     this.Profileitems = [
       {
         label: 'Profile',
@@ -434,18 +439,13 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   closeMenu() {
-    console.log('close0');
-    console.log(this.slidemenu);
-
     if (this.isMenuOpen) {
-      console.log('close1');
       // this.slidemenu.hide();
       this.isMenuOpen = false;
     }
   }
 
   ngOnDestroy(): void {
-    console.log('close3');
     this.isMenuOpen = false;
     // this.slidemenu.hide();
   }

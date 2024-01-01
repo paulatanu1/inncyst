@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { PortfolioService } from '../service/portfolio.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -12,10 +20,10 @@ interface Ifield {
       img: {};
 
       url: string;
-      youtubeUrl:string;
+      youtubeUrl: string;
     }
   ];
-  portfolioStatus:string
+  portfolioStatus: string;
 }
 @Component({
   selector: 'app-protfolio-details',
@@ -28,8 +36,8 @@ export class ProtfolioDetailsComponent implements OnInit {
   @Output() individualObj = new EventEmitter();
   @Output() id = new EventEmitter();
   uploadItem: any;
-  portfolioStatusOption:any
-  selectedPortfolioStatus:any
+  portfolioStatusOption: any;
+  selectedPortfolioStatus: any;
   selectedItem!: string;
   url: string = '';
   selectPdf: any;
@@ -42,61 +50,66 @@ export class ProtfolioDetailsComponent implements OnInit {
   imgObj = {};
   VideofileInput!: any;
   videoInput!: File | null;
-  ImagefileInput!:any
-  PdffileInput!:any
-  urlArray={}
-  myForm!:FormGroup;
+  ImagefileInput!: any;
+  PdffileInput!: any;
+  urlArray = {};
+  myForm!: FormGroup;
   urlValueArray: Array<string> = [];
+  loading=false
   selectObj = {
     title: '',
     id: '',
     description: '',
-   
-        pdf: {},
-        image: {},
-        video: [],
-        url: '',
-        youtubeUrl:'',
-        portfolioStatus:''
-   
+
+    pdf: {},
+    image: {},
+    video: [],
+    url: '',
+    youtubeUrl: '',
+    portfolioStatus: '',
   };
-  urlValue:string=''
-  youtubeVideoValue:string=''
-  constructor(private _toast:ToastServiceService,private portfolio:PortfolioService,private fb:FormBuilder) {}
+  urlValue: string = '';
+  youtubeVideoValue: string = '';
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+
+  constructor(
+    private _toast: ToastServiceService,
+    private portfolio: PortfolioService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-
-    this.myForm=this.fb.group({
-      title:[''],
-      description:[''],
+    this.myForm = this.fb.group({
+      title: [''],
+      description: [''],
       image: [{}],
       pdf: [{}],
-      url:[''],
-      youtubeUrl:[''],
-      selectedItem:[]
-       })
+      url: [''],
+      youtubeUrl: [''],
+      selectedItem: [],
+    });
     console.log(this.obj);
 
     this.uploadItem = [
       { name: 'Pdf' },
       { name: 'Image' },
       { name: 'url' },
-      {name:'youtubeVideo'}
+      { name: 'youtubeVideo' },
     ];
-    this.portfolioStatusOption=[
-      {name:'Ongoing',value:'ongoing'},
-      {name:'Completed',value:'complete'}
-    ]
+    this.portfolioStatusOption = [
+      { name: 'Ongoing', value: 'ongoing' },
+      { name: 'Completed', value: 'complete' },
+    ];
   }
   selectItem(e: any, id: number) {
     // this.myForm.get('selectedItem')?.patchValue(e.value.name);
     // console.log(e.value.name);
-    this.selectedItem=e.value.name
+    this.selectedItem = e.value.name;
     // console.log(this.myForm.value.selectedItem);
   }
-  selectItemPortfolio(e:any,id:number){
-    this.selectedPortfolioStatus=e.value.value
-    console.log(this.selectedPortfolioStatus)
+  selectItemPortfolio(e: any, id: number) {
+    this.selectedPortfolioStatus = e.value.value;
+    console.log(this.selectedPortfolioStatus);
   }
 
   //IMAGE UPLOAD START...................................................
@@ -105,7 +118,7 @@ export class ProtfolioDetailsComponent implements OnInit {
       this.imgObj = e.target.files[0];
       // this.imgArray[index] = file;
       // this.obj.image = this.imgObj;
-      this.myForm.get('image')?.setValue(this.imgObj)
+      this.myForm.get('image')?.setValue(this.imgObj);
       console.log(this.myForm.value);
     } else {
       this._toast.showToaster.next({
@@ -134,22 +147,32 @@ export class ProtfolioDetailsComponent implements OnInit {
   // }
   //END IMAGE PORTION........................................................
 
-  
   //PDF PORTION START.......................................
 
   pdfSelected(e: any) {
-    if (e.target.files[0].size <= this.pdfMaxSize) {
-      this.pdfObj = e.target.files[0];
-      this.myForm.get('pdf')?.setValue(this.pdfObj)
-      // this.obj.pdf = this.pdfObj;
-      // console.log(this.obj);
+    const selectedFile = e.target.files[0];
+    console.log(selectedFile);
+
+    if (selectedFile.size <= this.pdfMaxSize) {
+      this.pdfObj = selectedFile;
+
+      // Don't attempt to set the value of the file input here
+
+      // Optionally, update the form control value
+      this.myForm.patchValue({ pdf: this.pdfObj });
+      console.log(this.myForm.value);
+
+      // Perform any other actions with this.pdfObj if needed
     } else {
       this._toast.showToaster.next({
-        severity: 'Error',
+        severity: 'error',
         summary: 'Error',
         detail:
-          'Upload failed: File size too big..you can upload files within 25 MB',
+          'Upload failed: File size too big. You can upload files within 25 MB',
       });
+
+      // Reset the file input to clear the selected file
+      this.fileInput.nativeElement.value = '';
     }
   }
 
@@ -160,7 +183,7 @@ export class ProtfolioDetailsComponent implements OnInit {
     }
     this.pdfObj = '';
     // this.obj.pdf = this.pdfObj;
-    this.myForm.get('pdf')?.setValue(null)
+    this.myForm.get('pdf')?.setValue(null);
     // this.obj.uploadedItm[0];
     console.log(this.myForm.value);
   }
@@ -171,7 +194,7 @@ export class ProtfolioDetailsComponent implements OnInit {
   urlChange(e: any) {
     console.log(e.target.value, 'e');
     // this.obj.url = e.target.value;
-    this.myForm.get('url')?.setValue(e.target.value)
+    this.myForm.get('url')?.setValue(e.target.value);
     console.log(this.obj);
   }
 
@@ -220,39 +243,38 @@ export class ProtfolioDetailsComponent implements OnInit {
   }
   // VIDEO PORTION END..............................
 
+  //   UploadProtfolio(text: any) {
+  //     this.obj.title = text;
+  //     this.obj.description = this.desc;
+  //     console.log(this.obj, 'this.obj');
+  //     this.individualObj.emit();
 
-//   UploadProtfolio(text: any) {
-//     this.obj.title = text;
-//     this.obj.description = this.desc;
-//     console.log(this.obj, 'this.obj');
-//     this.individualObj.emit();
-
-//     // const formData: any = new FormData();
-//     // Object.keys(this.obj).forEach(key=>{
-//     //   // console.log(this.obj[key],'ky')
-//     //   formData.append(key,this.obj[key])
-//     //   // for (var pair of formData.entries()) {
-//     //   //   console.log(pair[0] + ': ' + pair[1]);
-//     //   // }
-//     // })
-// const formData = new FormData()
-// formData.append('title','abc')
-// formData.append('description','def')
-//     this.portfolio.addPortfolio(formData).subscribe({
-//       next: (item) => {
-//         console.log(item);
-//         // console.log(this.portfolio.hideAddPortfolioModal.next(false),'k')
-//       },
-//       error: (err) => {
-//         console.log(err);
-//         this._toast.showToaster.next({
-//           severity: 'Error',
-//           summary: 'Error',
-//           detail: err.error.message,
-//         });
-//       },
-//     });
-//   }
+  //     // const formData: any = new FormData();
+  //     // Object.keys(this.obj).forEach(key=>{
+  //     //   // console.log(this.obj[key],'ky')
+  //     //   formData.append(key,this.obj[key])
+  //     //   // for (var pair of formData.entries()) {
+  //     //   //   console.log(pair[0] + ': ' + pair[1]);
+  //     //   // }
+  //     // })
+  // const formData = new FormData()
+  // formData.append('title','abc')
+  // formData.append('description','def')
+  //     this.portfolio.addPortfolio(formData).subscribe({
+  //       next: (item) => {
+  //         console.log(item);
+  //         // console.log(this.portfolio.hideAddPortfolioModal.next(false),'k')
+  //       },
+  //       error: (err) => {
+  //         console.log(err);
+  //         this._toast.showToaster.next({
+  //           severity: 'Error',
+  //           summary: 'Error',
+  //           detail: err.error.message,
+  //         });
+  //       },
+  //     });
+  //   }
 
   //REMOVE SINGLE PROTFOLIO.............................................
   removeObj() {
@@ -261,6 +283,8 @@ export class ProtfolioDetailsComponent implements OnInit {
     //UPLOAD PROTFOLIO TO THE SERVER....................................
   onSubmit(){
     console.log(this.myForm.value)
+    this.loading=true;
+
     const formData = new FormData();
     // Object.keys(this.myForm.controls).forEach(key=> formData.append(key,this.myForm.get(key)?.value))
     formData.append('title',this.myForm.value.title)
@@ -272,6 +296,7 @@ export class ProtfolioDetailsComponent implements OnInit {
     formData.append('portfolioStatus',this.selectedPortfolioStatus)
 this.portfolio.addPortfolio(formData).subscribe({
   next:(res=>{
+    this.loading=false;
     console.log(res,'121')
     this.portfolio.hideAddPortfolioModal.next(false)
     this._toast.showToaster.next({
@@ -280,25 +305,31 @@ this.portfolio.addPortfolio(formData).subscribe({
       detail: res.message,
     });
 
-  })
+  }
+  ),
+error:(er)=>{
+  this.loading=false;
+}
 })
   }
-youtubeUrlConvert(url:any){
-  let regExp=/^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
+  youtubeUrlConvert(url: any) {
+    let regExp =
+      /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
 
-  var match = url.match(regExp);
+    var match = url.match(regExp);
 
-  return match && match[1].length == 11 ? match[1] : false;
-}
+    return match && match[1].length == 11 ? match[1] : false;
+  }
   //youtube url start
-  youtubeUrlChange(e:any){
-    let originalFileUrl=e.target.value
-    let url=this.youtubeUrlConvert(originalFileUrl)
-    
-    if(url != false){
-      this.myForm.get('youtubeUrl')?.setValue(`https://www.youtube-nocookie.com/embed/${url}`)
+  youtubeUrlChange(e: any) {
+    let originalFileUrl = e.target.value;
+    let url = this.youtubeUrlConvert(originalFileUrl);
 
-   }
+    if (url != false) {
+      this.myForm
+        .get('youtubeUrl')
+        ?.setValue(`https://www.youtube-nocookie.com/embed/${url}`);
+    }
     // let staticUrl = 'https://www.youtube-nocookie.com/embed/';
     // let modifyUrl=e.target.value.split('=')[1]
     // let newurl = staticUrl + modifyUrl;

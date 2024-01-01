@@ -1,3 +1,116 @@
-.px3{
+.px3 {
     padding: 50px 0;
+}
+
+.myFormSec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    .formLeft {
+        flex: 0 0 50%;
+        text-align: center;
+    }
+
+    .formRight {
+        flex: 0 0 48%;
+
+        ul {
+            padding-left: 0;
+
+            li {
+                list-style: none;
+                border-radius: 4px;
+                border: 1px solid #e5e6e7;
+                padding: 10px;
+                margin-bottom: 10px;
+
+                label {
+                    display: block;
+                    font-size: 14px;
+                    font-weight: 600;
+                    margin-bottom: 5px;
+                }
+
+                input {
+                    border: none;
+                    width: 100%;
+                    border-bottom: 1px solid #ccc9c9;
+                    font-size: 13px;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                ::ng-deep .p-editor-container {
+                    height: 180px;
+
+                    .p-editor-content {
+                        height: calc(100% - 40px) !important;
+                    }
+                }
+
+                ::ng-deep .p-dropdown {
+                    width: 100%;
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        &>button {
+            background: #522D80;
+            border-radius: 5px;
+            color: #FFFFFF;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            padding: 10px 20px;
+            display: block;
+            width: 100%;
+        }
+    }
+}
+.selectOption {
+    margin-bottom: 20px;
+    label {
+        display: block;
+        text-transform: capitalize;
+        font-size: 14px;
+    }
+    input[type=url] {
+        border: 1px solid #ccc9c9;
+        border-radius: 4px;
+        height: 40px;
+        line-height:40px;
+        width: 100%;
+        padding: 0 10px;
+        color: #6c757d;
+        &:focus {
+            outline: none;
+        }
+    }
+    button {
+        float: right;
+        padding:3px
+    }
+}
+
+.youtube-url input {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.remove {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    background-color: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
 }

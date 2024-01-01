@@ -16,6 +16,7 @@ import { JobsManagementComponent } from './jobs-management/jobs-management.compo
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { AppliedStudenListComponent } from './applied-studen-list/applied-studen-list.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { IndustryProfileComponent } from './industry-profile/industry-profile.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     IndustryReportsComponent,
     JobsManagementComponent,
     AppliedStudenListComponent,
+    IndustryProfileComponent,
   ],
   imports: [
     CommonModule,

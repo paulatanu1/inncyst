@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
@@ -47,6 +47,9 @@ import { ChipsModule } from 'primeng/chips';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     LoginComponent,
     RegistrationOtpComponent,
     ProgressBarComponent,
-    RegistrationPageComponent,
+    RegistrationPageComponent,LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -100,6 +103,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     InputTextareaModule,
     ImageCropperModule,
     OverlayPanelModule,
+    MatIconModule,
+    MatMenuModule,
   ],
   exports: [
     HeaderComponent,
@@ -140,7 +145,9 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     InputTextareaModule,
     ImageCropperModule,
     OverlayPanelModule,
+    LoaderComponent
   ],
   providers: [DatePipe],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule {}

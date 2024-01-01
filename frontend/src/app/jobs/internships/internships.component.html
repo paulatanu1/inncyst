@@ -54,6 +54,7 @@
   </div>
   <section class="internship_sec_inner">
     <section class="left_aside_part">
+      <app-loader *ngIf="leftSideListLoadding"></app-loader>
       <div class="company_lists">
         <div
           class="search-results-container"
@@ -64,97 +65,72 @@
           [scrollWindow]="false"
         >
           <ul>
+            
             <li
               *ngFor="let a of AllJobDetails; let i = index"
               (click)="jobDetails(a._id, i)"
               [ngClass]="{ is_active: selectedJob == i }"
             >
               <div class="company_details_head">
-                <div>
+                <div class="comapny_details">
                   <span>
                     <img
-                      src="{{
-                        a.image ? 'a.image' : '../../../assets/no-image.svg'
-                      }}"
+                    [src]="a.company?.image?a.company?.image:'../../../assets/no-image.svg'"
                       width="90"
                       height="48"
                       loading="lazy"
                     />
                   </span>
+                  <h2>
+                    {{a.company?.companyName}} 
+                    <span class="posted_time"
+                      >Posted {{a.createdAt}} days ago</span
+                    >
+                   <button style="background-color: RED;" (click)="detailsPage(a._id)">Details</button>
+                  </h2>
                 </div>
-                <h2>
-                  {{ a.companyName }}
-                  <span>{{ a.type }}</span>
-                </h2>
+
+                <h2>{{ a.details }}</h2>
+                <div class="tags">
+                 
+                  <span *ngIf="a.experience">experience :- {{a.experience}} {{a.experienceTime}}</span>
+                  <span>{{a.education}}</span>
+                  <span>{{ a.salary }} /  {{a.salaryType}}</span>
+                  <span>{{ a.intranshipType }}</span>
+                
+                </div>
               </div>
-              <h2>{{ a.intranshipType }}</h2>
-              <h2>{{ a.details }}</h2>
-              <br />
-              <h2>{{ a.location }}</h2>
-              <h2>salary {{ a.salary }}Lpa</h2>
-              <h2>joining:- {{ a.startDate }}</h2>
-              <h2>no of openning:-- {{ a.jobOpening }}</h2>
-              <h2>{{ a.createdAt }} days ago</h2>
+              <div class="location">
+                <span
+                  ><i class="pi pi-map-marker"></i>
+                  {{ a.location }}</span
+                >
+                <span><i class="pi pi-briefcase"></i>{{ a.type }}</span>
+                <span *ngIf="a.duration">{{a.duration}} {{a.durationIn}} </span>
+
+                <span><i class="pi pi-user-plus"></i>{{ a.jobOpening }}</span>
+              </div>
               <div class="company_tags">
                 <span *ngFor="let b of a.skills">{{ b }}</span>
-              </div>
-              <div class="type_applied">
-                <span>
-                  <img src="../../../assets/work.svg" width="20" height="20" />
-                  <strong>{{ a.jobType }}</strong>
-                </span>
-                <span>
-                  <img
-                    src="../../../assets/profile.svg"
-                    width="20"
-                    height="20"
-                  />
-                  <strong>{{ a.hasApplied }}</strong>
-                </span>
               </div>
             </li>
 
             <!-- -::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->
           </ul>
-          <section *ngIf="AllJobDetails.length == 0">
+        
+          <section class="noData" *ngIf="AllJobDetails.length == 0 && !leftSideListLoadding">
             <p>No Job Posts available</p>
           </section>
         </div>
       </div>
     </section>
-    <!-- <div class="sorting">
-      <h1>sorting.............</h1>
-      <p-dropdown
-        [options]="Sort"
-        [(ngModel)]="sorting"
-        optionLabel="name"
-        (onChange)="sortDropdown($event)"
-      ></p-dropdown>
+    
+    
+   
+    <!-- <section class="right_details_part">
+      <h1 *ngIf=" rightSideLoadding">Loadding.........</h1>
 
-      <p-dropdown
-        [options]="jobTypeSort"
-        [(ngModel)]="selectedJobType"
-        optionLabel="name"
-        (onChange)="selectedJobTypeDropdown($event)"
-      ></p-dropdown>
-
-      <p-dropdown
-        [options]="typeSort"
-        [(ngModel)]="selectedType"
-        optionLabel="name"
-        (onChange)="selectedTypeDropdown($event)"
-      ></p-dropdown>
-
-      <input
-        type="text"
-        [(ngModel)]="location"
-        placeholder="Please Enter Location"
-      />
-
-      <button (click)="sortLocation()">search</button>
-    </div> -->
-    <section class="right_details_part">
-      <ng-container *ngIf="AllJobDetails.length == 0">
+      <ng-container *ngIf="AllJobDetails.length == 0 && !rightSideLoadding ">
         <p>No Record Found</p>
       </ng-container>
       <ng-container *ngIf="AllJobDetails.length > 0">
@@ -163,83 +139,86 @@
             <div>
               <span>
                 <img
-                  src="{{
-                    a.image ? 'a.image' : '../../../assets/no-image.svg'
-                  }}"
+                
+                [src]="a.company.image ?a.company.image:'../../../assets/no-image.svg'"
                   width="170"
                   height="75"
-                />
-              </span>
-              <div class="company_tags">
-                <span *ngFor="let b of a.skills">{{ b }}</span>
-              </div>
+                />              </span>
+              
+             
             </div>
             <h2>
-              {{ a.intranshipName }}
-              <span>{{ a.companyName }}</span>
+              <span>company name:- {{ a.company.companyName }}</span>
+              <span>company description:- {{ a.company.aboutCompany }}</span>
+              <span>company foundation:- {{ a.company.companyEstdYear }}</span>
+              <span>No of Employees:- {{ a.company.empCount }}</span>
             </h2>
           </div>
           <div class="overview">
-            <h2>Internship Overview</h2>
+            <h2>{{a.type}} Overview</h2>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
+     {{a.details}}
             </p>
-            <h2>Key responsibilities:</h2>
-            <ul>
+            <h2 *ngIf="a.responsibilities.length > 0">Key responsibilities:</h2>
+            <ul *ngFor="let item of a.responsibilities">
+              
               <li>
-                1. Designing, manufacturing, and installing components that
-                fulfill requirements
-              </li>
-              <li>2. Creating plans and designs using CAD technology</li>
-              <li>
-                3. Learning quickly and working independently with minimal
-                supervision
+                {{ item }}
               </li>
             </ul>
+            <div>
+              <h2>education qualification :-- {{a.education}}</h2>
+            </div>
+            <div >
+              <h2 *ngIf="a.experience" >minimum experience</h2>
+{{a.experience}} {{a.experienceTime}}
+            </div>
             <h2>Skill(s) required</h2>
             <div class="tags" *ngFor="let b of a.skills">
               <span>{{ b }}</span>
             </div>
             <h2>Salary</h2>
-            <p>Annual CTC:{{ a.salary }} LPA</p>
-            <ul>
-              <span>Annual CTC breakup:</span>
-              <li>1. Fixed component: 80%</li>
-              <li>2. Variable component: 10%</li>
-              <li>3. Other incentives: 10%</li>
-            </ul>
+            <p>{{ a.salary }} / {{a.salaryType}}</p>
+           
+            <p>salary type :- {{a.stipend}}</p>
             <h2>Perks</h2>
             <div class="tags">
               <span>Certificate</span>
               <span>Letter of recommendation</span>
               <span>Flexible work hours</span>
             </div>
-            <h2>Additional Information</h2>
-            <p>
-              {{ a.information }}
-            </p>
+            <div >
+
+              <h2 *ngIf="a.coverLetter.availability || a.coverLetter.letter">Additional Information</h2>
+              <p *ngIf="a.coverLetter.availability">
+                availability:-- 
+                {{ a.coverLetter.availability }}
+              </p>
+              <P *ngIf="a.coverLetter.letter">
+                letter:-- {{a.coverLetter.letter}}
+              </P>
+<p *ngIf="a.coverLetter.moreQuestions.length > 0"> Another Question :--</p>
+<ul type="circle">
+  <li *ngFor="let a of a.coverLetter.moreQuestions">
+    {{a}}
+  </li>
+</ul>
+         
+            </div>
             <h2>Number of openings</h2>
-            <p>{{ a.opens }}</p>
+            <p class="company_tags">{{ a.jobOpening }}</p>
+            <h1>work models :-  </h1> {{a.intranshipType }}          
             <div class="apply_btn">
               <button type="button" (click)="applyJob()">Apply Now</button>
             </div>
           </div>
         </div>
       </ng-container>
-    </section>
+    </section> -->
   </section>
 </section>
 
-<p-dialog
+<!-- <p-dialog
   (onHide)="closeProfileUpdateForm()"
   [(visible)]="profileUpdate"
   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
@@ -261,5 +240,5 @@
     ></p-steps>
   </div>
   <router-outlet></router-outlet>
-</p-dialog>
+</p-dialog> -->
 <app-footer></app-footer>
