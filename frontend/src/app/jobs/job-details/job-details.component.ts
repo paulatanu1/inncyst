@@ -12,10 +12,12 @@ export class JobDetailsComponent implements OnInit {
   singleJobDetails:any=[]
   profileUpdate=false;
   applied=false;
+  loading=false;
   constructor(private activatedRoute: ActivatedRoute,    private jobService: JobsService,
     ) {}
 
   ngOnInit(): void {
+    this.loading=true;
     this.activatedRoute.params.subscribe({
       next: (res) => {
         console.log(res['id']);
@@ -33,10 +35,12 @@ export class JobDetailsComponent implements OnInit {
               element.type = element?.type?.toUpperCase();
               // element.salary = (element.salary * 12) / 100000;
             });
+            this.loading=false;
           },
           error: (err) => {
             // this.rightSideLoadding = false;
             console.log(err.error.message);
+            this.loading=false
           },
         });
       },

@@ -56,8 +56,8 @@
       </div>
     </div>
   </li>
-  <div *ngIf="postList.length == 0">No Record Found</div>
-
+  <div *ngIf="postList.length == 0 && !loading">No Record Found</div>
+  <app-loader *ngIf="loading "></app-loader>
   <p-dialog
     
     [(visible)]="visible"
@@ -191,6 +191,5 @@
     </div>
   </li>  -->
 </ul>
-<app-loader *ngIf="loading"></app-loader>
 </div>
 <!-- <div class="no-records">No records found</div> -->
