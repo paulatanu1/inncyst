@@ -64,11 +64,12 @@
           (scrolled)="onScroll()"
           [scrollWindow]="false"
         >
-          <ul>
+          <ul >
             
             <li
               *ngFor="let a of AllJobDetails; let i = index"
-              (click)="jobDetails(a._id, i)"
+              (click)="jobDetails(a._id, i);detailsPage(a._id)"
+      
               [ngClass]="{ is_active: selectedJob == i }"
             >
               <div class="company_details_head">
