@@ -1,4 +1,4 @@
-<div *ngIf="!profileData">
+<div *ngIf="!questionStep">
   <h1>please {{ profileData ? "update" : "complete" }} your profile........</h1>
   <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
     <div>
@@ -36,8 +36,9 @@
   <!-- <button (click)="getProfile()">getProfile details</button> -->
   <button (click)="addPortfolio()" *ngIf="!questionStep">add</button>
 </div>
-
-<div *ngIf="profileData && viewProfile">
+{{!questionStep}}
+{{(profileData | json) == null}}
+<div *ngIf="(profileData | json) != '{}' && viewProfile && questionStep">
   <p>COMPANNY NAME:-- {{ profileData.companyName }}</p>
   <p>COMPANY established Year:- {{ profileData.companyEstdYear }}</p>
   <p>Company Details:-- {{ profileData.aboutCompany }}</p>

@@ -179,7 +179,7 @@ export class IndustryProfileComponent implements OnInit {
         });
         // this.router.navigateByUrl('/industry/jobs');
         this.submitButton = false;
-
+       
         this.getProfile();
       },
       error: (err) => {
