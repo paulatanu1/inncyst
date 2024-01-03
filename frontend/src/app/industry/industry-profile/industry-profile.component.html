@@ -36,8 +36,7 @@
   <!-- <button (click)="getProfile()">getProfile details</button> -->
   <button (click)="addPortfolio()" *ngIf="!questionStep">add</button>
 </div>
-{{!questionStep}}
-{{(profileData | json) == null}}
+
 <div *ngIf="(profileData | json) != '{}' && viewProfile && questionStep">
   <p>COMPANNY NAME:-- {{ profileData.companyName }}</p>
   <p>COMPANY established Year:- {{ profileData.companyEstdYear }}</p>
