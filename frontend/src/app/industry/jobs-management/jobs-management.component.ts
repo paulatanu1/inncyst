@@ -87,6 +87,7 @@ loading:boolean=false;
   edit(id: number,type:string) {
     // alert(id)
     // console.log(data)
+    console.log(id,type,'jjj')
     this.router.navigate(['/industry/jobs/add-job'], {
       queryParams: { id: id ,type:type},
     });
