@@ -22,6 +22,7 @@ export class IndustryProfileComponent implements OnInit {
   editProfileData = false;
   openImageUploadButton = false;
   viewProfile = true;
+  loading=false
   constructor(
     private fb: FormBuilder,
     private _ProfileService: ProfileService,
@@ -110,12 +111,14 @@ export class IndustryProfileComponent implements OnInit {
     }
   }
   getProfile() {
+    this.loading=true
     this._ProfileService.getProfile().subscribe({
       next: (res) => {
         console.log(res);
         this.profileData = res.data;
         this.questionStep = res.data?.industryId.question_step;
         console.log(this.profileData);
+        this.loading=false
         if (this.profileData) {
           this.profileForm.get('companyName')?.setValue(res.data?.companyName);
           this.profileForm
