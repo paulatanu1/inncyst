@@ -27,6 +27,7 @@
         background: #FFF;
         flex: 0 0 400px;
         margin-bottom: 30px;
+        position: relative;
         .listing_head {
             padding: 20px 18px;
             border-bottom: 1px solid #A9A9A9;
@@ -68,6 +69,13 @@
                     right: -9px;
                 }
             }
+            .listing_head_info {
+                .applied_list {
+                    padding: 3px 10px;
+                    border-radius: 5px;
+                    margin-top: 10px;
+                }
+            }
             figure {
                 width: 43px;
                 height: 43px;
@@ -75,6 +83,8 @@
                 border-radius: 50%;
                 margin:0 10px 0 0;
                 flex: 0 0 43px;
+                display: inline-block;
+                vertical-align: middle;
             }
             h2 {
                 color: #522D80;
@@ -82,6 +92,15 @@
                 font-style: normal;
                 font-weight: 700;
                 margin: 0;
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .delete_btn {
+                position: absolute;
+                right: 40px;
+                top: 13px;
+                background: none;
+
             }
             & > i {
                 color: #000;
@@ -97,7 +116,7 @@
                 list-style: none;
                 margin: 0;
                 padding:0 0 20px;
-                border-bottom: 1px solid rgba(169,169,169,0.6);
+                
                 li {
                     display: flex;
                     flex-direction: row;
@@ -117,20 +136,28 @@
                     }
                 }
             }
-            .list_status {
-                padding-top: 16px;
-                position: relative;
-                label {
-                    color: #522D80;
-                    font-size: 13px;
-                    font-style: normal;
-                    font-weight: 700;
-                }
-                .edit_btn {
-                    position: absolute;
-                    right: 0;
-                    top: 16px;
-                }
+        }
+        .list_status {
+            padding: 10px 30px;
+            position: absolute;
+            bottom:0;
+            border-top: 1px solid rgba(169, 169, 169, 0.6);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            label {
+                color: #522D80;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 700;
+                margin-bottom: 0;
+            }
+
+            .edit_btn {
+                position: absolute;
+                right: 20px;
+                top: 4px;
             }
         }
     }
@@ -143,6 +170,26 @@
     font-weight: 500;
     color: #522D80;
     font-size: 20px;
+}
+.update_status {
+    
+    h2 {
+        color: #000;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+    & > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+    }
+    p {
+        
+        font-weight: 500;
+    }
 }
 
 @media only screen and (max-width:767px) {
