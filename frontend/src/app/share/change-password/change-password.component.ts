@@ -20,10 +20,11 @@ export class ChangePasswordComponent implements OnInit {
     private loginApi: LoginApiService,
     private _toast: ToastServiceService,
     private router: Router,
-    private _menuHandel:LeftMenuHandelService  ) {}
+    private _menuHandel: LeftMenuHandelService
+  ) {}
 
   ngOnInit(): void {
-    this._menuHandel.leftMenuActive.next(5)
+    this._menuHandel.leftMenuActive.next(5);
     this.changePasswordForm = this.fb.group(
       {
         oldPassword: [null, [Validators.required, Validators.minLength(6)]],
@@ -41,7 +42,6 @@ export class ChangePasswordComponent implements OnInit {
     return pass === confirmPassword ? null : { notSame: true };
   }
   onChangePasswordSubmit() {
-
     if (this.changePasswordForm.valid) {
       this.loginApi.changePassword(this.changePasswordForm?.value).subscribe({
         next: (res) => {
@@ -50,13 +50,11 @@ export class ChangePasswordComponent implements OnInit {
             summary: 'success',
             detail: res.message,
           });
-       console.log()
-       if(ls.get('role') == 'industry'){
-        this.router.navigate(['/industry/jobs']);
-       }else{
-
-         this.router.navigate(['/jobs/posts']);
-       }
+          if (ls.get('role') == 'industry') {
+            this.router.navigate(['/industry/jobs']);
+          } else {
+            this.router.navigate(['/jobs/posts']);
+          }
         },
         error: (err) => {
           this._toast.showToaster.next({
