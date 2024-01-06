@@ -172,26 +172,34 @@
     font-size: 20px;
 }
 .update_status {
-    
     h2 {
         color: #000;
         font-size: 30px;
         font-style: normal;
         font-weight: 600;
         text-transform: capitalize;
+        font-family: Raleway;
+        margin-bottom: 40px;
     }
     & > div {
         display: flex;
         flex-direction: row;
         align-items: center;
-        
+        label {
+            margin: 0 15px 0 0;
+        }
+        div {
+            margin: 0;
+        }
     }
     p {
         
         font-weight: 500;
     }
 }
-
+.p-dialog .p-dialog-header {
+    padding: 0;
+}
 @media only screen and (max-width:767px) {
     .industry_listing {
         padding-left: 0;
