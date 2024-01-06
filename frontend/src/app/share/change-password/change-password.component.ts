@@ -4,6 +4,8 @@ import { ConfirmPasswordValidator } from 'src/app/common-service/passwordValidat
 import { LoginApiService } from '../login/login-api.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { Router } from '@angular/router';
+import { LeftMenuHandelService } from 'src/app/industry/left-menu-handel.service';
+import ls from 'localstorage-slim';
 
 @Component({
   selector: 'app-change-password',
@@ -17,10 +19,11 @@ export class ChangePasswordComponent implements OnInit {
     private fb: FormBuilder,
     private loginApi: LoginApiService,
     private _toast: ToastServiceService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private _menuHandel:LeftMenuHandelService  ) {}
 
   ngOnInit(): void {
+    this._menuHandel.leftMenuActive.next(5)
     this.changePasswordForm = this.fb.group(
       {
         oldPassword: [null, [Validators.required, Validators.minLength(6)]],
@@ -38,6 +41,7 @@ export class ChangePasswordComponent implements OnInit {
     return pass === confirmPassword ? null : { notSame: true };
   }
   onChangePasswordSubmit() {
+
     if (this.changePasswordForm.valid) {
       this.loginApi.changePassword(this.changePasswordForm?.value).subscribe({
         next: (res) => {
@@ -46,7 +50,13 @@ export class ChangePasswordComponent implements OnInit {
             summary: 'success',
             detail: res.message,
           });
-          this.router.navigate(['/jobs/posts']);
+       console.log()
+       if(ls.get('role') == 'industry'){
+        this.router.navigate(['/industry/jobs']);
+       }else{
+
+         this.router.navigate(['/jobs/posts']);
+       }
         },
         error: (err) => {
           this._toast.showToaster.next({

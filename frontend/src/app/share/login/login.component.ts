@@ -145,13 +145,11 @@ export class LoginComponent implements OnInit {
           // })
 
           if (res.LOGIN_TYPE == 'student') {
-            alert('student')
             this.router.navigateByUrl('jobs/posts');
             ls.set('role', 'student');
 
             // this.router.navigate(['/jobs/internship']);
           } else if (res.LOGIN_TYPE == 'industry') {
-            alert('studentuuuuuuuu')
 
             ls.set('role', 'industry');
             this.router.navigate(['industry']);
