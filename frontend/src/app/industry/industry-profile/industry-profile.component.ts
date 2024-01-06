@@ -4,6 +4,7 @@ import { ProfileService } from '../jobs-management/jobs-management-service/profi
 import { Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import ls from 'localstorage-slim';
+import { LeftMenuHandelService } from '../left-menu-handel.service';
 
 @Component({
   selector: 'app-industry-profile',
@@ -27,7 +28,8 @@ export class IndustryProfileComponent implements OnInit {
     private fb: FormBuilder,
     private _ProfileService: ProfileService,
     private router: Router,
-    private _toast: ToastServiceService
+    private _toast: ToastServiceService,
+    private _menuHandel:LeftMenuHandelService
   ) {
     this.questionStep = ls.get('questionStep');
     if (this.questionStep) {
@@ -36,6 +38,7 @@ export class IndustryProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._menuHandel.leftMenuActive.next(3)
     this.id = ls.get('id');
     console.log(this.id);
     console.log(this.questionStep);
@@ -66,6 +69,8 @@ export class IndustryProfileComponent implements OnInit {
             this.submitButton = false;
             this.viewProfile = true;
             this.getProfile();
+            ls.set('questionStep',true)
+
           },
           error: (err) => {
             this._toast.showToaster.next({
@@ -118,7 +123,11 @@ export class IndustryProfileComponent implements OnInit {
         this.profileData = res.data;
         this.questionStep = res.data?.industryId.question_step;
         console.log(this.profileData);
+        
         this.loading=false
+        console.log(res.data.industryId.question_step)
+        ls.set('questionStep',res.data.industryId.question_step)
+        console.log(ls.get('questionStep'))
         if (this.profileData) {
           this.profileForm.get('companyName')?.setValue(res.data?.companyName);
           this.profileForm
@@ -173,8 +182,7 @@ export class IndustryProfileComponent implements OnInit {
     this._ProfileService.profile(this.profileForm.value).subscribe({
       next: (res) => {
         console.log(res);
-        ls.remove('questionStep');
-        ls.set('questionStep', res.data);
+        ls.set('questionStep', true);
         this._toast.showToaster.next({
           severity: 'success',
           summary: 'success',
@@ -182,7 +190,7 @@ export class IndustryProfileComponent implements OnInit {
         });
         // this.router.navigateByUrl('/industry/jobs');
         this.submitButton = false;
-       
+        ls.set('questionStep',true)
         this.getProfile();
       },
       error: (err) => {

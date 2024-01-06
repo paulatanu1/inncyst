@@ -134,7 +134,7 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    ls.set('questionStep',false)
     this.login.otpPage.subscribe({
       next:(res)=>{
         console.log(res,'res')
@@ -337,12 +337,13 @@ export class RegistrationPageComponent implements OnInit {
     };
     this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
       next: (res) => {
-        console.log(res)
+        console.log(res,'uuu')
         this.OtpModal = false;
         this.redirectToOtp = false;
         //  this.otpPageOpen=false
         this.otpVerifivation.logoutSuccess.next(true);
         this.header.userLoggedin.next(true);
+        ls.set('questionStep',res.data.question_step)
         ls.set('logged', true);
         this._toast.showToaster.next({
           severity: 'success',
