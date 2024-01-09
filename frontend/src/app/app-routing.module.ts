@@ -7,12 +7,13 @@ import { PageNotFoundComponent } from './share/page-not-found/page-not-found.com
 import { UserVerificationGuard } from './Guard/user-verification.guard';
 import { AuthenticateGuard } from './Guard/authenticate.guard';
 import { ProtfolioComponent } from './share/protfolio/protfolio.component';
+import { OutsideUrlProtectGuard } from './Guard/outside-url-protect.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./homepage/homepage.module').then((m) => m.HomepageModule),
+      import('./homepage/homepage.module').then((m) => m.HomepageModule)
   },
   {
     path: 'shared',
@@ -32,17 +33,17 @@ const routes: Routes = [
   {
     path: 'contactus',
     loadChildren: () =>
-      import('./contact-us/contact-us.module').then((m) => m.ContactUsModule),
+      import('./contact-us/contact-us.module').then((m) => m.ContactUsModule),canActivate:[OutsideUrlProtectGuard]
   },
   {
     path: '',
     redirectTo: '/home',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'about-us',
     loadChildren: () =>
-      import('./about-us/about-us.module').then((m) => m.AboutUsModule),
+      import('./about-us/about-us.module').then((m) => m.AboutUsModule),canActivate:[OutsideUrlProtectGuard]
   },
   {
     path: 'registeration',
