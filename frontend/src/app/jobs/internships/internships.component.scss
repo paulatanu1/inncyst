@@ -254,6 +254,19 @@
                             }
                         }
                     }
+                    .details_btn {
+                        border:1px solid #522D80;
+                        border-radius:5px;
+                        height: 40px;
+                        line-height: 40px;
+                        text-align: center;
+                        display: block;
+                        margin-top: 20px;
+                        width: 100%;
+                        background-color: #F1E6FF;
+                        color:#522D80 ;
+                        font-weight: 500;
+                    }
                 }
             }
         }
