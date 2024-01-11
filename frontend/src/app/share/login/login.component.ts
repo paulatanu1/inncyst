@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   newPassword: any;
   confirmPassword: any;
   closePopup: boolean = false;
+  abc!:string
   //Output
   @Output() openRegisterFlow = new EventEmitter();
 
@@ -55,6 +56,8 @@ export class LoginComponent implements OnInit {
     private loginDetails: LoginDetailsService,
     private _LoginEnablerService:LoginEnablerService
   ) {
+ this.abc=this.loginService.getPreviousUrl();
+console.log(this.abc,'abc')
     this.options = [{ name: 'Select the option', code: '0' }];
 
     this.loginOptionType = [
