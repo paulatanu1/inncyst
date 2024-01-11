@@ -13,14 +13,13 @@
     <div class="listing_head">
       <div class="ribbon_draft">Draft</div>
       <!-- <i class="pi pi-times" style="color: green ;"></i>  -->
-      <button (click)="delete(items._id)">X</button>
-            <br>&nbsp;
-      <button *ngIf="items.status" (click)="studentList(items._id)">Applied Student List</button>
+      <div class="listing_head_info">
       <figure><img src="" /></figure>
-
       <h2>{{ items.details }}</h2>
-
-      <br />
+      <br/>
+        <button class="applied_list" *ngIf="items.status" (click)="studentList(items._id)">Applied Student List</button>
+      </div>
+      <button class="delete_btn" (click)="delete(items._id)"><i class="pi pi-trash"></i></button>
       <i class="pi pi-ellipsis-v" (click)="edit(items._id,items.type)"></i>
     </div>
     <div class="listing_details">
@@ -46,32 +45,35 @@
           <label>{{ items.jobOpening }}</label>
         </li>
       </ul>
-      <div class="list_status">
-        <label>Status</label>
-        <div class="edit_btn">
-          <i class="file-edit" (click)="editStatus(items._id)"
-            ><img src="../../../assets/edit-icon.png"
-          /></i>
-        </div>
+    </div>
+    <div class="list_status">
+      <label>Status</label>
+      <div class="edit_btn">
+        <i class="file-edit" (click)="editStatus(items._id)"><img src="../../../assets/edit-icon.png" /></i>
       </div>
     </div>
   </li>
   <div *ngIf="postList.length == 0 && !loading">No Record Found</div>
   <app-loader *ngIf="loading "></app-loader>
   <p-dialog
-    
     [(visible)]="visible"
-    [style]="{ width: '50vw', height: '300px' }"
+    [style]="{ width: '30vw', height: '300px' }"
+    [draggable]="false"
   >
-    <p>please update the status</p>
-    <div class="card flex justify-content-center">
-      <p-dropdown
-        [options]="status"
-        [(ngModel)]="selectedStatus"
-        optionLabel="name"
-        placeholder="Select a Status"
-        (onChange)="statusChange($event)"
-      ></p-dropdown>
+  <div class="update_status">
+    <h2>please update the status</h2>
+    <div>
+      <label>Select the status</label>
+      <div class="card flex justify-content-center">
+        <p-dropdown
+          [options]="status"
+          [(ngModel)]="selectedStatus"
+          optionLabel="name"
+          placeholder="Select a Status"
+          (onChange)="statusChange($event)"
+        ></p-dropdown>
+      </div>
+    </div>
     </div>
   </p-dialog>
 
