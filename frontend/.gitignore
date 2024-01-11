@@ -3,7 +3,6 @@ node_modules
 frontend.zip
 
 # compiled output
-/dist
 /tmp
 /out-tsc
 # Only exists if Bazel was run
