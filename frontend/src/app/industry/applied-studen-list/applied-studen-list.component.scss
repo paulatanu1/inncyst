@@ -1,0 +1,29 @@
+.applicationStatus {
+    border-radius: 11px;
+    border: 0.5px solid #999;
+    background: #FFF;
+    padding:20px;
+    color: #000;
+    font-family: Raleway;
+    
+    p {
+        line-height: 22px;
+    }
+    label {
+        color: #000;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        display: inline-block;
+        vertical-align: middle;
+        margin:0 10px 0 0;
+        text-transform: capitalize;
+    }
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+    }
+}

@@ -1,23 +1,25 @@
 <div *ngIf="studentListData.length > 0">
   <div *ngFor="let item of studentListData">
-    <p>applicationStatus:-- {{ item.applicationStatus }}</p>
-    <p>availability:- {{ item.availability }}</p>
-    <p *ngIf="item.availability_message != null">
-      availability_message:- {{ item.availability_message }}
-    </p>
-    <p>email:-- {{ item.email }}</p>
-    <p>jobId:- {{ item.jobId }}</p>
-    <p>phone :-- {{ item.phone }}</p>
-    <p>status:- {{ item.status }}</p>
-    <p>studentName:- {{ item.studentName }}</p>
-    <p>student Id :-- {{ item._id }}</p>
-    <p>createdAt:-- {{ item.userId.createdAt }}</p>
-    <p>location:-- {{ item.userId.location }}</p>
-    <p *ngFor="let item of item.userId.skills">skills:- {{ item }}</p>
-    <img [src]="item.userId.image" />
-    {{ item.userId.image }}
-    <p>verified:-- {{ item.userId.verifie }}</p>
-    {{ item.userId.image }}
+    <div class="applicationStatus">
+      <p><label>Application Status</label> <span>{{ item.applicationStatus }}</span></p>
+      <p><label>Availability</label><span>{{ item.availability }}</span></p>
+      <p *ngIf="item.availability_message != null">
+        <label>availability_message</label><span>{{ item.availability_message }}</span>
+      </p>
+      <p><label>email</label><span>{{ item.email }}</span></p>
+      <p><label>job Id</label><span> {{ item.jobId }}</span></p>
+      <p><label>phone</label><span>{{ item.phone }}</span></p>
+      <p><label>status</label><span> {{ item.status }}</span></p>
+      <p><label>student Name</label><span> {{ item.studentName }}</span></p>
+      <p><label>Student Id </label><span>{{ item._id }}</span></p>
+      <p><label>Created At</label><span> {{ item.userId.createdAt }}</span></p>
+      <p><label>location</label><span> {{ item.userId.location }}</span></p>
+      <p *ngFor="let item of item.userId.skills">skills:- {{ item }}</p>
+      <img [src]="item.userId.image" />
+      {{ item.userId.image }}
+      <p>verified:-- {{ item.userId.verifie }}</p>
+      {{ item.userId.image }}
+    </div>
     pdf:--
     <pdf-viewer
       [src]="item.resume"
