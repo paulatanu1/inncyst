@@ -40,8 +40,8 @@ console.log(this.loginService.getPreviousUrl(),'abcd')
  if(this.login_token){
   //prevent allow access if userType is !=student
   this._toast.showToaster.next({
-    severity: 'Error',
-    summary: 'Error',
+    severity: 'error',
+    summary: 'error',
     detail: 'Access Denied: Sorry!! After login You do not have permission to view this page . ',
   });
   this.router.navigateByUrl(this.loginService.getPreviousUrl())

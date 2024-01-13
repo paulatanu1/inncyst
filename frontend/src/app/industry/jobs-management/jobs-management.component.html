@@ -8,22 +8,46 @@
   [scrollWindow]="true"
 >
 <ul class="industry_listing">
-  <li *ngFor="let items of postList">
+  <li *ngFor="let items of postList;let i=index">
     <!-- <li> -->
     <div class="listing_head">
-      <div class="ribbon_draft">Draft</div>
+      <div class="ribbon_draft" *ngIf="items.status == false">Draft</div>
       <!-- <i class="pi pi-times" style="color: green ;"></i>  -->
       <div class="listing_head_info">
-      <figure><img src="" /></figure>
+      <figure><img [src]="items?.company?.image" /></figure>
       <h2>{{ items.details }}</h2>
       <br/>
         <button class="applied_list" *ngIf="items.status" (click)="studentList(items._id)">Applied Student List</button>
       </div>
-      <button class="delete_btn" (click)="delete(items._id)"><i class="pi pi-trash"></i></button>
-      <i class="pi pi-ellipsis-v" (click)="edit(items._id,items.type)"></i>
+      <!-- <button class="delete_btn" (click)="delete(items._id)"><i class="pi pi-trash"></i></button> -->
+      <!-- <i class="pi pi-ellipsis-v" (click)="edit(items._id,items.type)"></i> -->
+      <div class="ellipsis_icon">
+        <p-overlayPanel #op>
+          <ng-template pTemplate>
+           <ul type="none">
+            <li></li>
+            <li><button (click)="edit(items._id,items.type)">
+              <i class="pi pi-pencil"></i>Edit
+            </button></li>
+           </ul>
+            
+            <button (click)="delete(items._id,i)">
+              <i class="pi pi-trash"></i>Delete
+            </button>
+          </ng-template>
+        </p-overlayPanel>
+  
+        <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
+      </div>
+
+
     </div>
     <div class="listing_details">
       <ul>
+        <li>
+          <strong>Job Type</strong>
+          <label>{{items.type}}</label>
+        </li>
         <li>
           <strong>Opportunity type:</strong>
           <label>{{ items.details }}</label>

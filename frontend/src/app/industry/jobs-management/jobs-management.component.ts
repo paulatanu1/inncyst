@@ -92,25 +92,27 @@ loading:boolean=false;
       queryParams: { id: id ,type:type},
     });
   }
-  delete(id: any) {
+  delete(id: any,index:any) {
+    this.postList.splice(index,1);
     console.log(id);
     this.post.deletePortFolio(id).subscribe({
       next: (res) => {
-      
+        // this.postList=[]
+        // this.router.navigate(['/industry/jobs'])
+        // this.getJobList()
         this._toast.showToaster.next({
           severity: 'success',
           summary: 'success',
           detail: res.message,
         });
-        this.getJobList()
       },
       error: (err) => {
+        // this.getJobList()
         this._toast.showToaster.next({
-          severity: 'Error',
-          summary: 'Error',
+          severity: 'error',
+          summary: 'error',
           detail: err.error.message,
         });
-        this.getJobList()
       },
     });
   }
@@ -149,8 +151,8 @@ loading:boolean=false;
     }),
     error: (err) => {
       this._toast.showToaster.next({
-        severity: 'Error',
-        summary: 'Error',
+        severity: 'error',
+        summary: 'error',
         detail: err.error.message,
       });
     },

@@ -27,8 +27,8 @@ export class QuestionStepGuard implements CanActivate {
     }
     else{
       this._toast.showToaster.next({
-        severity: 'Error',
-        summary: 'Error',
+        severity: 'error',
+        summary: 'error',
         detail: 'Access Denied: please update your profile to view the page '
       });
       this.router.navigateByUrl('/industry/profile')

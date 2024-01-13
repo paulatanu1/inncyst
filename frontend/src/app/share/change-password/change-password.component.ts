@@ -15,13 +15,23 @@ import ls from 'localstorage-slim';
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm!: FormGroup;
   isSubmited: boolean = false;
+  userTypeChecking=true
+  type!:string
   constructor(
     private fb: FormBuilder,
     private loginApi: LoginApiService,
     private _toast: ToastServiceService,
     private router: Router,
     private _menuHandel: LeftMenuHandelService
-  ) {}
+  ) {
+    this.type=<string>ls.get('role')
+    console.log(this.type)
+    if(this.type == 'industry'){
+      this.userTypeChecking=false
+    }else{
+      this.userTypeChecking=true
+    }
+  }
 
   ngOnInit(): void {
     this._menuHandel.leftMenuActive.next(5);

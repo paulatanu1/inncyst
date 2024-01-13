@@ -99,8 +99,8 @@ studentPortfolioData:any=[]
     }),
     error: (err) => {
       this._toast.showToaster.next({
-        severity: 'Error',
-        summary: 'Error',
+        severity: 'error',
+        summary: 'error',
         detail: err.error.message,
       });
     },

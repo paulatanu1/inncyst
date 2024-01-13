@@ -44,9 +44,7 @@
 <hr />
 <!-- .........................................details start here............-->
 <div>
-  <div *ngIf="portfolioDetails.length == 0 && !editPortfolioDetails">
-    <p>no data found</p>
-  </div>
+
   
 <app-loader *ngIf="loading"></app-loader>
 <ng-container *ngIf="portfolioDetails.length != 0 && !loading">    

@@ -123,6 +123,7 @@
               type="number"
               placeholder="e.g 6"
               pInputText
+              (keydown)="onKeydownMain($event)"
             />
           </div>
           <div>
@@ -272,6 +273,7 @@
               cols="50"
               placeholder=" Are you available for 1 month, starting immediately, for a full-time work from home internship? If not, what is the time  period you are available for and the earliest date you can start this internship on"
             ></textarea>
+            <label>More Question</label>
             <!-- <input type="text" formControlName="availability"> -->
             <div class="add_more">
               <p-chips
@@ -282,7 +284,7 @@
             <p class="short_note">
               Please add
               <b>space</b>
-              after adding any skill.
+              after adding any Questions.
             </p>
 
               <!-- <textarea
@@ -388,7 +390,7 @@
           <div class="form_field_group stipend">
             <label>Experience</label>
               <div class="twoColForm">
-                <input type="number" formControlName="experience" class="p-inputtext" />
+                <input type="number" formControlName="experience" class="p-inputtext" (keydown)="onKeydownMain($event)" />
                 <p-dropdown
                   [options]="experienceTime"
                   optionLabel="name"
@@ -446,6 +448,7 @@
               type="number"
               placeholder="e.g 6"
               pInputText
+              (keydown)="onKeydownMain($event)"
             />
           </div>
           <div class="form_field_group">

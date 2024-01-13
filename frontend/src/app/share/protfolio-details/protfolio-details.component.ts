@@ -122,8 +122,8 @@ export class ProtfolioDetailsComponent implements OnInit {
       console.log(this.myForm.value);
     } else {
       this._toast.showToaster.next({
-        severity: 'Error',
-        summary: 'Error',
+        severity: 'error',
+        summary: 'error',
         detail:
           'Upload failed: File size too big..you can upload files within 12 MB',
       });
@@ -166,7 +166,7 @@ export class ProtfolioDetailsComponent implements OnInit {
     } else {
       this._toast.showToaster.next({
         severity: 'error',
-        summary: 'Error',
+        summary: 'error',
         detail:
           'Upload failed: File size too big. You can upload files within 25 MB',
       });
@@ -225,8 +225,8 @@ export class ProtfolioDetailsComponent implements OnInit {
       this.videoInput = input?.files[0];
     } else {
       this._toast.showToaster.next({
-        severity: 'Error',
-        summary: 'Error',
+        severity: 'error',
+        summary: 'error',
         detail:
           'Upload failed: File size too big..you can upload files within 12MB',
       });
@@ -309,6 +309,12 @@ this.portfolio.addPortfolio(formData).subscribe({
   ),
 error:(er)=>{
   this.loading=false;
+  this._toast.showToaster.next({
+    severity: 'error',
+    summary: 'error',
+    detail: er.error.message,
+  });
+
 }
 })
   }

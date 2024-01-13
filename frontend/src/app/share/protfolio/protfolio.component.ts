@@ -246,8 +246,8 @@ console.log(portfoliostatus,'ps')
       this.editDialogForm.get('image')?.setValue(this.imgObj);
     } else {
       this._toast.showToaster.next({
-        severity: 'Error',
-        summary: 'Error',
+        severity: 'error',
+        summary: 'error',
         detail:
           'Upload failed: File size too big..you can upload files within 12 MB',
       });
@@ -264,8 +264,8 @@ console.log(portfoliostatus,'ps')
       this.editDialogForm.get('pdf')?.setValue(this.pdfObj);
     } else {
       this._toast.showToaster.next({
-        severity: 'Error',
-        summary: 'Error',
+        severity: 'error',
+        summary: 'error',
         detail:
           'Upload failed: File size too big..you can upload files within 25 MB',
       });
