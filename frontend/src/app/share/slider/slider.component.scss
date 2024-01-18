@@ -126,3 +126,70 @@ button {
   font-weight: 700;
   color: #ffffff;
 }
+
+
+@media only screen and (min-width:375px) and (max-width:767px) {
+  .banner-section {
+    .banner-img-area {
+      height:auto;
+    }
+    .banner-text-area {
+      top: 5px;
+      left: 10px;
+      .text-1 {
+        margin-bottom: 6px;
+        font-size: 17px;
+      }
+      .text-2 {
+        font-size: 20px;
+        line-height: 22px;
+        max-width: 90%;
+      }
+      .text-3 {
+        font-size: 16px;
+          line-height: 18px;
+          color: #555555;
+          max-width: 100%;
+          margin-top: 29px;
+      }
+      .buttons-area  {
+        .rate-us {
+          padding: 6px 12px;
+          font-size: 14px;
+          line-height: 18px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width:768px) and (max-width:1023px) {
+  .banner-section {
+      .banner-img-area {
+        height: auto;
+      }
+  
+      .banner-text-area {
+        top: 75px;
+        left: 134px;
+  
+        .text-1 {
+          margin-bottom: 6px;
+        }
+  
+        .text-2 {
+          font-size: 25px;
+          line-height: 28px;
+          max-width: 90%;
+        }
+  
+        .text-3 {
+          font-size: 20px;
+          line-height: 25px;
+          color: #555555;
+          max-width: 50%;
+          margin-top: 29px;
+        }
+      }
+    }
+}
