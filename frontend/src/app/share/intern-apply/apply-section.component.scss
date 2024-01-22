@@ -123,3 +123,14 @@ button {
     }
   }
 }
+
+@media only screen and (min-width:768px) and (max-width:1023px) {
+  .section-wrapper {
+    .jobs {
+      padding: 35px 60px 25px 30px;
+      .heading {
+        font-size: 32px;
+      }
+    }
+  }
+}

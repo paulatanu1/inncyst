@@ -147,3 +147,21 @@
     }
   }
 }
+
+@media only screen and (min-width:768px) and (max-width:1023px) {
+  .overlap-area {
+    width: 75%;
+    .test-area {
+      .text {
+        .text-sec {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+  .numbers-section {
+    ul {
+      width: 85%;
+    }
+  }
+}
