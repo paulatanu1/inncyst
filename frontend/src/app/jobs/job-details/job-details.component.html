@@ -4,80 +4,72 @@
 <section class="job_details_sec">
   <div class="job_details_sec_inner" *ngFor="let a of singleJobDetails">
     <div class="job_details_head">
-        <span>
-          <img
-            [src]="
-              a.company.image ? a.company.image : '../../../assets/no-image.svg'
-            "
-            width="170"
-            height="75"
-          />
-        </span>
-
-        <!-- <div class="company_tags">
-              <span *ngFor="let b of a.skills">{{ b }}</span>
-            </div> -->
-      <div class="job_details_right">
-        <h2>{{ a.company.companyName }}</h2>
-        <p>
-          <span><i class="pi pi-building"></i>{{ a.company.companyEstdYear }}</span>
-          <span><i class="pi pi-users"></i>{{ a.company.empCount }}</span>
-          <span><i class="pi pi-briefcase"></i>{{ a.intranshipType }}</span>
-        </p>
-        <p class="desc">
-            <i class="pi pi-list"></i> 
-            <strong> Skills :</strong> <span class="tags">
-              <span *ngFor="let b of a.skills">{{ b }}</span>
-            </span>
-        </p>
-      </div>
+    <h2>{{ a.company.companyName }}</h2>
+    <p>
+      <span>{{a.location}}</span>
+      <span>{{ a.intranshipType }}</span>
+    </p>
+    <p>
+      <span>Posted 5 hours ago</span>
+      <span>{{a.jobOpening}} applicants</span>
+    </p>
     </div>
-    <div class="overview">
-      <h3>About Job :</h3>
-      <p>{{ a.company.aboutCompany }}</p>
-      <h3>{{ a.type }} Overview</h3>
-      <p>
-        {{ a.details }}
-      </p>
-      <h3 *ngIf="a.responsibilities.length > 0">Key responsibilities:</h3>
+    <ul class="jobType_setup">
+      <li>
+        <span>Job Type</span> {{a.type}}
+      </li>
+      <li>
+        <span>Job Setup</span> {{a.intranshipType}}
+      </li>
+      <li>
+        <span>Experience Level</span> {{ a.experience }} {{ a.experienceTime }}
+      </li>
+      <li>
+        <span>Salary Offer</span> {{ a.salary }} / month
+      </li>
+    </ul>
+    <div class="job_para">
+      <strong>Job Description</strong>
+      {{a.details}}
+    </div>
+    <div class="job_para">
+      <strong>Responsibilities</strong>
       <ul *ngFor="let item of a.responsibilities">
         <li>
           {{ item }}
         </li>
       </ul>
-      <div>
-        <h3>education qualification </h3>
-        <p>{{ a.education }}</p>
-      </div>
-      <div>
-        <h3 *ngIf="a.experience">minimum experience</h3>
-        <p>{{ a.experience }} {{ a.experienceTime }}</p>
-      </div>
-      <h3>Salary</h3>
-      <p>{{ a.salary }} / {{ a.salaryType }}</p>
+    </div>
+    <div class="job_para">
+      <strong>Requirements</strong>
+      <ul>
+        <li>{{ a.education }}</li>
+        <li>{{ a.coverLetter.availability }}</li>
+        <li>{{ a.coverLetter.letter }}</li>
+        <li><strong> Skills :</strong> <span class="tags">
+          <span *ngFor="let b of a.skills">{{ b }}</span>
+        </span></li>
+      </ul>
+    </div>
+    <div class="overview">      
       <!-- <ul>
             <span>Annual CTC breakup:</span>
             <li>1. Fixed component: 80%</li>
             <li>2. Variable component: 10%</li>
             <li>3. Other incentives: 10%</li>
           </ul> -->
-      <p>salary type :- {{ a.stipend }}</p>
-      <h3>Perks</h3>
-      <div class="tags">
-        <span>Certificate</span>
-        <span>Letter of recommendation</span>
-        <span>Flexible work hours</span>
-      </div>
+      <!-- <p>salary type :- {{ a.stipend }}</p>
+     
       <div>
         <h3 *ngIf="a.coverLetter.availability || a.coverLetter.letter">
           Additional Information
         </h3>
         <p *ngIf="a.coverLetter.availability">
           availability:--
-          {{ a.coverLetter.availability }}
+          
         </p>
         <p *ngIf="a.coverLetter.letter">
-          letter:-- {{ a.coverLetter.letter }}
+          letter:-- 
         </p>
         <p *ngIf="a.coverLetter.moreQuestions.length > 0">
           Another Question :--
@@ -87,9 +79,7 @@
             {{ a }}
           </li>
         </ul>
-      </div>
-      <h3>Number of openings</h3>
-      <p class="company_tags">{{ a.jobOpening }}</p>
+      </div> -->
      
       <div class="apply_btn">
         <button [disabled]="applied" type="button" (click)="applyJob()">Apply Now</button>
