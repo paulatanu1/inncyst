@@ -10,15 +10,18 @@ import { AuthenticateGuard } from '../Guard/authenticate.guard';
 import { IndustryVerificationGuard } from '../Guard/industry-verification.guard';
 import { AppliedStudenListComponent } from './applied-studen-list/applied-studen-list.component';
 import { IndustryProfileComponent } from './industry-profile/industry-profile.component';
+import { QuestionStepGuard } from '../Guard/question-step.guard';
+import { ChangePasswordComponent } from '../share/change-password/change-password.component';
 
 const routes:Routes = [
   {path:'',component:IndustryComponent, 
   children:[
-    {path:'',component:IndustryDashboardComponent  },
-    { path: 'jobs', loadChildren: () => import('./industry-job-management/industry-job-management.module').then(m => m.IndustryJobManagementModule) ,canActivate:[IndustryVerificationGuard]  ,},
-    {path:'reports',component:IndustryReportsComponent,canActivate:[IndustryVerificationGuard]  ,},
-    {path:'appliedStudentList',component:AppliedStudenListComponent,canActivate:[IndustryVerificationGuard]},
-    {path:'profile',component:IndustryProfileComponent,canActivate:[IndustryVerificationGuard]}
+    {path:'',component:IndustryDashboardComponent ,canActivate:[QuestionStepGuard] },
+    { path: 'jobs', loadChildren: () => import('./industry-job-management/industry-job-management.module').then(m => m.IndustryJobManagementModule) ,canActivate:[IndustryVerificationGuard,QuestionStepGuard]  ,},
+    {path:'reports',component:IndustryReportsComponent,canActivate:[IndustryVerificationGuard,QuestionStepGuard]  ,},
+    {path:'appliedStudentList',component:AppliedStudenListComponent,canActivate:[IndustryVerificationGuard,QuestionStepGuard]},
+    {path:'profile',component:IndustryProfileComponent,canActivate:[IndustryVerificationGuard]},
+    {path:'changePassword',component:ChangePasswordComponent,canActivate:[QuestionStepGuard]}
   ]},
   // { path: 'jobs', loadChildren: () => import('./industry-job-management/industry-job-management.module').then(m => m.IndustryJobManagementModule) }
 ];

@@ -145,11 +145,26 @@
             .desc {
               margin-left: 20px;
               h5 {
-                font-size: 16px;
+                font-size: 14px;
               }
             }
           }
         }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width:768px) and (max-width:1023px) {
+  .wrapper {
+    .left-section {
+      .overlap-setion {
+        position: static;
+      }
+    }
+    .right-section {
+      ul {
+        padding: 20px 0 0;
       }
     }
   }

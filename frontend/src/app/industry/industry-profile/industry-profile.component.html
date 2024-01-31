@@ -1,9 +1,9 @@
-<div *ngIf="!profileData">
+<div *ngIf="!questionStep">
   <h1>please {{ profileData ? "update" : "complete" }} your profile........</h1>
   <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
     <div>
       <label>Compnany Name</label>
-      <input type="text" formControlName="companyName" />
+      <input pInputText type="text" formControlName="companyName" />
     </div>
     <div>
       <label>Compnany established Year</label>
@@ -11,15 +11,15 @@
     </div>
     <div>
       <label>Compnany Details</label>
-      <input type="text" formControlName="aboutCompany" />
+      <input pInputText type="text" formControlName="aboutCompany" />
     </div>
     <div>
       <label>Compnany employee</label>
-      <input type="number" formControlName="empCount" />
+      <input pInputText type="number" formControlName="empCount" />
     </div>
     <div>
       <label>Compnany workplace</label>
-      <input type="text" formControlName="workPlace" />
+      <input pInputText type="text" formControlName="workPlace" />
     </div>
 
     <div>
@@ -37,7 +37,7 @@
   <button (click)="addPortfolio()" *ngIf="!questionStep">add</button>
 </div>
 
-<div *ngIf="profileData && viewProfile">
+<div *ngIf="(profileData | json) != '{}' && viewProfile && questionStep">
   <p>COMPANNY NAME:-- {{ profileData.companyName }}</p>
   <p>COMPANY established Year:- {{ profileData.companyEstdYear }}</p>
   <p>Company Details:-- {{ profileData.aboutCompany }}</p>
@@ -58,23 +58,26 @@
   <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
     <div>
       <label>Compnany Name</label>
-      <input type="text" formControlName="companyName" />
+      <input pInputText type="text" formControlName="companyName" />
     </div>
     <div>
       <label>Compnany established Year</label>
-      <input type="text" formControlName="companyEstdYear" />
+      <input pInputText type="text" formControlName="companyEstdYear" />
     </div>
     <div>
       <label>Compnany Details</label>
-      <input type="text" formControlName="aboutCompany" />
+      <textarea pInputText type="text" formControlName="aboutCompany" >
+
+      </textarea>
+      
     </div>
     <div>
       <label>Compnany employee</label>
-      <input type="number" formControlName="empCount" />
+      <input pInputText type="number" formControlName="empCount" />
     </div>
     <div>
       <label>Compnany workplace</label>
-      <input type="text" formControlName="workPlace" />
+      <input pInputText type="text" formControlName="workPlace" />
     </div>
     <div *ngIf="!openImageUploadButton">
       <img [src]="profileForm.get('image')?.value" alt="" />
@@ -91,3 +94,6 @@
     <button type="submit">submit</button>
   </form>
 </div>
+
+
+<app-loader *ngIf="loading "></app-loader>

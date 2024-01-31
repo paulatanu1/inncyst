@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import ls from 'localstorage-slim';
 import { Subject } from 'rxjs';
 import { ApiService } from 'src/app/common-service/api.service';
@@ -17,14 +18,29 @@ interface IformData {
 })
 export class LoginApiService {
   url: string = '';
-  constructor(private api: ApiService) {}
+  private previousUrl!: string;
+  private currentUrl: string;
+  constructor(private api: ApiService,private router: Router) {
+
+    this.currentUrl = this.router.url;
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) { 
+        console.log(this.previousUrl,'previous url')
+        console.log(event.url)       
+        // this.previousUrl = this.currentUrl;
+        this.currentUrl = event.url;
+      };
+    });
+  }
   public loginModal = new Subject();
   public forgotPassword = new Subject();
   public forgotPasswordOtp = new Subject();
   public resetPassword = new Subject();
   public closePopup = new Subject();
 
-
+  public getPreviousUrl() {
+    return this.currentUrl;
+  } 
 
 
   login(userEmail: string, password: string, userRole: string) {

@@ -68,7 +68,8 @@
             
             <li
               *ngFor="let a of AllJobDetails; let i = index"
-              (click)="jobDetails(a._id, i)"
+              (click)="jobDetails(a._id, i);detailsPage(a._id)"
+      
               [ngClass]="{ is_active: selectedJob == i }"
             >
               <div class="company_details_head">
@@ -83,10 +84,8 @@
                   </span>
                   <h2>
                     {{a.company?.companyName}} 
-                    <span class="posted_time"
-                      >Posted {{a.createdAt}} days ago</span
-                    >
-                   <button style="background-color: RED;" (click)="detailsPage(a._id)">Details</button>
+                    <span class="posted_time">Posted {{a.createdAt}} days ago</span
+                    >                   
                   </h2>
                 </div>
 
@@ -113,6 +112,7 @@
               <div class="company_tags">
                 <span *ngFor="let b of a.skills">{{ b }}</span>
               </div>
+              <button (click)="detailsPage(a._id)" class="details_btn">Details</button>
             </li>
 
             <!-- -::::::::::::::::::::::::::::::::::Job details part::::::::::::::::::::::::::::::-->

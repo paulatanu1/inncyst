@@ -1,45 +1,49 @@
-<div class="field-radiobutton">
-  <input
-    type="radio"
-    value="job"
-    inputId="job"
-    [(ngModel)]="industryTypeFalse"
-    #job
-  />
-  <label for="job">Job</label>
+<div class="add_post_form">
+<h2>Post internship</h2>
+<div class="post_job_form_sec">
+  <div class="post_job_form">
+    <h3>Opportunity type</h3>
+    <div class="form_group">
+      <div class="field-radiobutton">
+        <input
+          type="radio"
+          value="job"
+          inputId="job"
+          [(ngModel)]="industryTypeFalse"
+          #job
+        />
+        <label for="job">Job</label>
+      </div>
+
+      <div class="field-radiobutton">
+        <input
+          type="radio"
+          value="internship"
+          inputId="internship"
+          [(ngModel)]="industryTypeFalse"
+          #internship
+        />
+        <label for="internship">Internship</label>
+      </div>
+      <button
+        (click)="typeSelection()"
+        *ngIf="!industryType"
+      >
+        Submit
+      </button>
+      <button
+        (click)="typeReset()"
+        *ngIf="industryType"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
 </div>
-
-<div class="field-radiobutton">
-  <input
-    type="radio"
-    value="internship"
-    inputId="internship"
-    [(ngModel)]="industryTypeFalse"
-    #internship
-  />
-
-
-  <label for="internship">Internship</label>
-</div>
-<p
-  style="background-color: burlywood"
-  (click)="typeSelection()"
-  *ngIf="!industryType"
->
-  submit
-</p>
-<p
-  style="background-color: burlywood"
-  (click)="typeReset()"
-  *ngIf="industryType"
->
-  Reset
-</p>
 <!--==================================================================================================================================================================================================================-->
 <div *ngIf="industryType == 'internship'">
   <form [formGroup]="industryForm" (ngSubmit)="submitFormInternship()">
     <div class="post_job_form_sec">
-      <h2>Post internship</h2>
       <div class="post_job_form">
         <h3>{{ industryType }} details</h3>
         <div class="form_group">
@@ -61,7 +65,7 @@
               formControlName="location"
             />
           </div>
-          <div>
+          <div class="form_field_group">
             <label>Education Qualification:--</label>
             <p-dropdown
               [options]="education"
@@ -79,7 +83,7 @@
               formControlName="skills"
               placeholder="Hint: a, b, c"
             ></p-chips>
-            <p>
+            <p class="short_note">
               Please add
               <b>space</b>
               after adding any skill.
@@ -119,6 +123,7 @@
               type="number"
               placeholder="e.g 6"
               pInputText
+              (keydown)="onKeydownMain($event)"
             />
           </div>
           <div>
@@ -268,6 +273,7 @@
               cols="50"
               placeholder=" Are you available for 1 month, starting immediately, for a full-time work from home internship? If not, what is the time  period you are available for and the earliest date you can start this internship on"
             ></textarea>
+            <label>More Question</label>
             <!-- <input type="text" formControlName="availability"> -->
             <div class="add_more">
               <p-chips
@@ -275,10 +281,10 @@
               formControlName="moreQuestions"
               placeholder="Add any Questions"
             ></p-chips>
-            <p>
+            <p class="short_note">
               Please add
               <b>space</b>
-              after adding any skill.
+              after adding any Questions.
             </p>
 
               <!-- <textarea
@@ -291,7 +297,7 @@
           </div>
         </div>
         <div class="buttonSec">
-          <div >
+          <div *ngIf="!EditInternship">
           <button
             type="button"
             class="save_preview"
@@ -350,7 +356,6 @@
 <div *ngIf="industryType == 'job'">
   <form [formGroup]="jobForm" (ngSubmit)="submitFormjob()">
     <div class="post_job_form_sec">
-      <h2>Post job</h2>
       <div class="post_job_form">
         <h3>{{ industryType }} details</h3>
         <div class="form_group">
@@ -373,25 +378,27 @@
               formControlName="location"
             />
           </div>
-          <div>
-            <label>Education Qualification:--</label>
+          <div class="form_field_group">
+            <label>Education Qualification</label>
             <p-dropdown
               [options]="education"
               optionLabel="name"
               optionValue="value"
               formControlName="education"
             ></p-dropdown>
-            <div>
-              <label>Experience</label>
-              <input type="number" formControlName="experience" />
-              <p-dropdown
-                [options]="experienceTime"
-                optionLabel="name"
-                optionValue="value"
-                formControlName="experienceTime"
-              ></p-dropdown>
-            </div>
           </div>
+          <div class="form_field_group stipend">
+            <label>Experience</label>
+              <div class="twoColForm">
+                <input type="number" formControlName="experience" class="p-inputtext" (keydown)="onKeydownMain($event)" />
+                <p-dropdown
+                  [options]="experienceTime"
+                  optionLabel="name"
+                  optionValue="value"
+                  formControlName="experienceTime"
+                ></p-dropdown>
+              </div>
+           </div>
 
           <div class="form_field_group">
             <label> Skills required </label>
@@ -401,7 +408,7 @@
               formControlName="skills"
               placeholder="Hint: a, b, c"
             ></p-chips>
-            <p>
+            <p class="short_note">
               Please add
               <b>space</b>
               after adding any skill.
@@ -441,6 +448,7 @@
               type="number"
               placeholder="e.g 6"
               pInputText
+              (keydown)="onKeydownMain($event)"
             />
           </div>
           <div class="form_field_group">
@@ -453,7 +461,7 @@
               formControlName="responsibilities"
               placeholder="e.g designing product concepts"
             ></p-chips>
-            <p>
+            <p class="short_note">
               Please add
               <b>space</b>
               after adding any skill.
@@ -566,7 +574,7 @@
               formControlName="moreQuestions"
               placeholder="Add any Questions"
             ></p-chips>
-            <p>
+            <p class="short_note">
               Please add
               <b>space</b>
               after adding any skill.
@@ -617,5 +625,6 @@
       </div>
     </div>
   </form>
+</div>
 </div>
 

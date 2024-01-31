@@ -78,3 +78,12 @@ h3 {
     }
   }
 }
+@media only screen and (min-width:768px) and (max-width:1023px) {
+  .what-we-do-section {
+    .row {
+      & > div {
+        flex: 0 0 100%;
+      }
+    }
+  }
+}

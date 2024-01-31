@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   newPassword: any;
   confirmPassword: any;
   closePopup: boolean = false;
+  abc!:string
   //Output
   @Output() openRegisterFlow = new EventEmitter();
 
@@ -55,6 +56,8 @@ export class LoginComponent implements OnInit {
     private loginDetails: LoginDetailsService,
     private _LoginEnablerService:LoginEnablerService
   ) {
+ this.abc=this.loginService.getPreviousUrl();
+console.log(this.abc,'abc')
     this.options = [{ name: 'Select the option', code: '0' }];
 
     this.loginOptionType = [
@@ -131,6 +134,7 @@ export class LoginComponent implements OnInit {
       let userRole = this.loginForm.get('options')?.value;
       this.loginService.login(userEmail, password, userRole).subscribe({
         next: (res) => {
+          console.log(res)
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
           ls.set('questionStep',res.data.question_step)
@@ -149,6 +153,7 @@ export class LoginComponent implements OnInit {
 
             // this.router.navigate(['/jobs/internship']);
           } else if (res.LOGIN_TYPE == 'industry') {
+
             ls.set('role', 'industry');
             this.router.navigate(['industry']);
             if (

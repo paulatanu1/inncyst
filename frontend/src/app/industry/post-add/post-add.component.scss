@@ -1,8 +1,4 @@
-.post_job_form_sec {
-    max-width: 735px;
-    margin: 40px auto;
-    font-family: "Raleway", sans-serif;
-
+.add_post_form {
     h2 {
         color: #522D80;
         font-size: 36px;
@@ -12,6 +8,11 @@
         text-align: center;
         margin: 0 0 70px;
     }
+}
+.post_job_form_sec {
+    max-width: 735px;
+    margin: 40px auto;
+    font-family: "Raleway", sans-serif;
 
     .post_job_form {
         h3 {
@@ -20,6 +21,8 @@
             font-style: normal;
             font-weight: 600;
             line-height: normal;
+            text-transform: capitalize;
+            margin-bottom: 5px;
         }
 
         .form_group {
@@ -32,7 +35,16 @@
             &>div.form_field_group:last-of-type {
                 margin-bottom: 0;
             }
-
+            button {
+                padding: 5px 15px;
+                border-radius: 5px;
+                border: 1px solid #19A6EC;
+                background: transparent;
+                color: #19A6EC;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+            }
             .field-radiobutton {
                 display: inline-block;
                 vertical-align: middle;
@@ -60,7 +72,7 @@
                     line-height: normal;
                     display: block;
                     margin-bottom: 10px;
-
+                    text-transform: capitalize;
                     span {
                         color: #656565;
                         font-size: 14px;
@@ -90,7 +102,7 @@
 
                 input {
                     border-radius: 8px;
-                    border: 0.55px solid rgba(108, 108, 108, 0.3);
+                    border: 1px solid rgba(108, 108, 108, 0.55);
                     height: 56px;
                     line-height: 56px;
                     color: #9A9AB0;
@@ -99,7 +111,29 @@
                     letter-spacing: 0.08px;
                     width: 100%;
                 }
-
+                ::ng-deep .p-dropdown {
+                    border-radius: 8px;
+                    border: 1px solid rgba(108, 108, 108, 0.55);
+                    height: 56px;
+                    line-height: 56px;
+                    color: #9A9AB0;
+                    font-size: 16px;
+                    font-weight: 400;
+                    letter-spacing: 0.08px;
+                    & .p-dropdown-label {
+                        padding: 0 12px;
+                    }
+                }
+                textarea {
+                    border-radius: 8px;
+                    border: 1px solid rgba(108, 108, 108, 0.55);
+                    color: #9A9AB0;
+                    font-size: 16px;
+                    font-weight: 400;
+                    letter-spacing: 0.08px;
+                    width: 100%;
+                    padding: 12px;
+                }
                 .twoColForm {
                     display: flex;
 
@@ -144,8 +178,9 @@
 
                 &.perks {
                     .field-checkbox {
-                        width: 40%;
+                        width: auto;
                         display: inline-block;
+                        margin-right: 20px;
 
                         label {
                             color: #000;
@@ -165,6 +200,9 @@
                     font-style: normal;
                     font-weight: 400;
                     line-height: normal;
+                    &.short_note {
+                        margin-top: 5px;
+                    }
                 }
             }
         }
@@ -189,6 +227,7 @@
                     font-weight: 500;
                     line-height: 24px;
                     background: transparent;
+                    text-transform: capitalize;
 
                     &:hover {
                         background: #19A6EC;

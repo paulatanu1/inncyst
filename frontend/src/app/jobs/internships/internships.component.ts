@@ -126,23 +126,26 @@ rightSideLoadding=false;
   onRangeChange(e: any) {
     this.salaryFrom = e.values[0].toString();
     this.salaryTo = e.values[1].toString();
-    console.log(this.salaryFrom, this.salaryTo);
+    this.page=0;
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
 
   selectedJobTypeDropdown(event: any) {
     this.jobType = event.value.name;
+    this.page=0;
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
   sortDropdown(e: any) {
     this.sort = e.value.name;
+    this.page=0;
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
   selectedTypeDropdown(e: any) {
     this.type = e.value.name;
+    this.page=0;
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
@@ -150,7 +153,7 @@ rightSideLoadding=false;
     this.AllJobDetails = [];
     this.location =
       this.location.charAt(0).toUpperCase() + this.location.slice(1);
-
+      this.page=0;
     this.AllJbDetaails();
   }
   resetUrl() {

@@ -255,9 +255,25 @@
 }
 
 
-@media only screen and (min-width:320px) and (max-width:767px) {
+@media only screen and (min-width:375px) and (max-width:767px) {
   .navbar-brand {
-    margin: auto;
+    width: 160px;
+    height: auto;
+    margin-left: 0;
+  }
+  .navbar-toggler {
+    order: 3;
+    margin-right: 10px;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .navbar-collapse  {
+    position: absolute;
+    top: 90px;
+    background: white;
+    width: 100%;
+    box-shadow: 4px 3px 9px 0px #999;
   }
 }
 

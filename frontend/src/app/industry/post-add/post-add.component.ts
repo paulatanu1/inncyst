@@ -474,8 +474,8 @@ this.industryForm.disable();
       },
       error: (err) => {
         this._toast.showToaster.next({
-          severity: 'Error',
-          summary: 'Error',
+          severity: 'error',
+          summary: 'error',
           detail: err.error.message,
         });
       },
@@ -567,8 +567,8 @@ this.industryForm.disable();
       },
       error: (err) => {
         this._toast.showToaster.next({
-          severity: 'Error',
-          summary: 'Error',
+          severity: 'error',
+          summary: 'error',
           detail: err.error.message,
         });
       },
@@ -749,8 +749,8 @@ this.industryForm.disable();
           // this.router.navigateByUrl('/industry/jobs')
 
           this._toast.showToaster.next({
-            severity: 'Error',
-            summary: 'Error',
+            severity: 'error',
+            summary: 'rror',
             detail: err.error.message,
           });
         },
@@ -797,8 +797,8 @@ this.industryForm.disable();
           // this.router.navigateByUrl('/industry/jobs')
 
           this._toast.showToaster.next({
-            severity: 'Error',
-            summary: 'Error',
+            severity: 'error',
+            summary: 'error',
             detail: err.error.message,
           });
         },
@@ -811,7 +811,14 @@ this.industryForm.disable();
       // this.postJob.reset();
     }
   }
+  onKeydownMain(event:any){
+    console.log(event.key == 0)
+    console.log(event.charCode)
+    if(event.key == 0 && event.charCode==0){
 
+      event.preventDefault()
+    }
+  }
   // final submit job
   // submitForm() {
   //   console.log(this.postJob.value, 'submit');

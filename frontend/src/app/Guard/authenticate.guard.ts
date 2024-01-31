@@ -28,8 +28,8 @@ export class AuthenticateGuard implements CanActivate {
       console.log(this.login_token)
       //prevent allow access if userType is !=student
       this._toast.showToaster.next({
-        severity: 'Error',
-        summary: 'Error',
+        severity: 'error',
+        summary: 'error',
         detail: 'Access Denied: You do not have permission to view this page. ',
       });
     alert('Access Denied: You do not have permission to view this page AG.')

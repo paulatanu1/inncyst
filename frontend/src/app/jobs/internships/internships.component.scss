@@ -110,8 +110,7 @@
         margin: 0 auto;
     }
     .left_aside_part {
-        flex: 0 0 30%;
-        max-width: 398px;
+        flex: 0 0 100%;
         .company_lists {
             // height: 1000px;
             // overflow: scroll;
@@ -130,12 +129,18 @@
             ul {
                 list-style: none;
                 padding: 0 10px 0 0;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
                 li {
                     background: #FFFFFF;
                     border: 1px solid transparent;
                     border-radius: 12px;
                     padding: 22px 22px 10px;
-                    margin-bottom: 16px;
+                    margin:0 8px 16px;
+                    flex: 0 0 32%;
+                    position: relative;
                     &:hover, &.is_active {
                         border: 1px solid #522D80;
                     }
@@ -253,6 +258,25 @@
                                 margin-left: 8px;
                             }
                         }
+                    }
+                    .details_btn {
+                        border:1px solid #522D80;
+                        border-radius:5px;
+                        height: 40px;
+                        line-height: 40px;
+                        text-align: center;
+                        display: block;
+                        margin-top: 20px;
+                        width: 100%;
+                        background-color: #F1E6FF;
+                        color:#522D80 ;
+                        font-weight: 500;
+                        bottom: 10px;
+                        position: absolute;
+                        width: 92%;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
                     }
                 }
             }
