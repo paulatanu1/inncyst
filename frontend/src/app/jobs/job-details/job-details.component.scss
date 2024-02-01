@@ -7,58 +7,87 @@
         padding-top: 30px;
         .job_details_head {
             display: flex;
-            flex-direction: row;
-            border-bottom: 0.5px solid #ccc;
+            flex-direction: column;
+            border-bottom:1px solid rgba(231, 230, 230, 1);
             margin-bottom: 20px;
+            padding-bottom: 15px;
             span {
                 margin-right: 30px;
                 text-transform: capitalize;
             }
-            .job_details_right {
-                h2{
+            h2 {
+                font-size:24px;
+                font-weight: 700;
+                line-height: 36px;
+                text-transform: uppercase;
+            }
+            p {
+                margin-bottom: 5px;
+                span {
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 22px;
                     text-transform: capitalize;
-                    color: #19A6EC;
+                    position: relative;
+                    &:nth-child(2n):before {
+                        content: '';
+                        position: absolute;
+                        background: rgba(94, 99, 104, 1);
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 50%;
+                        left: -16px;
+                        top: 8px;
+                    }
                 }
-                & > p {
-                    margin-bottom: 10px;
-                    span {
-                        display: inline-block;
-                        margin-right: 20px;
-                        color: #7b7b7b;
-                       
-                        i {
-                            margin-right: 8px;
-                        }
-                    }
-                    .tags {
-                        display: flex;
-                        justify-content: flex-start;
-                        margin-top: 4px;
-                        flex-wrap: wrap;
-                        margin-left: 10px;
-
-                        span {
-                            background: #F2F2F2;
-                            border-radius: 14px;
-                            padding: 5px 12px;
-                            vertical-align: middle;
-                            color: #522D80;
-                            font-weight: 700;
-                            font-size: 12px;
-                            margin-right: 10px;
-                        }
-                    }
-                    &.desc {
-                         display: flex;
-                         align-items: center;
-                         i {
-                            margin-right: 8px;
-                         }
-                    }
-                    
+            }
+        }  
+        ul.jobType_setup {
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+            margin:35px 0;
+            li {
+                list-style-type: none;
+                padding: 12px 15px;
+                border-radius: 10px;
+                background: rgba(4, 173, 230, 0.07);
+                margin-right: 15px;
+                color: rgba(4, 173, 230, 1);
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 30px;
+                text-transform: capitalize;
+                
+                span {
+                    display: block;
+                    color: rgba(94, 99, 104, 1);
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 20px;
                 }
             }
         }
+        .job_para{
+            margin-bottom: 20px;
+            strong {
+                display: block;
+                font-size: 17px;
+                line-height: 21px;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+            ul {
+                li {
+                    margin-bottom: 5px;
+                    strong {
+                        margin-bottom: 0;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+        
         .overview {
             h3 {
                 font-size: 18px;
