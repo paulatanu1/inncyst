@@ -21,7 +21,14 @@
       <label>Compnany workplace</label>
       <input pInputText type="text" formControlName="workPlace" />
     </div>
-
+    <div>
+      <label>Branch Office</label>
+      <input pInputText type="text" formControlName="branchOffice" />
+    </div>
+    <div>
+      <label>Corporate Office</label>
+      <input pInputText type="text" formControlName="corporateOffice" />
+    </div>
     <div>
       <input type="file" (change)="onFileSelected($event)" />
       <!-- <button (click)="uploadImage()">Upload Image</button> -->
@@ -44,6 +51,8 @@
   <p>Company employee ::-- {{ profileData.empCount }}</p>
 
   <p>Company workPlace:- {{ profileData.workPlace }}</p>
+<p>Branch Office:-- {{profileData.branchOffice}}</p>
+<p>Corporate Office:-- {{profileData.corporateOffice}}</p>
 
   <br />
   <img [src]="profileData.image" alt="" />
@@ -78,6 +87,14 @@
     <div>
       <label>Compnany workplace</label>
       <input pInputText type="text" formControlName="workPlace" />
+    </div>
+    <div>
+      <label>Branch Office</label>
+      <input pInputText type="text" formControlName="branchOffice" />
+    </div>
+    <div>
+      <label>Corporate Office</label>
+      <input pInputText type="text" formControlName="corporateOffice" />
     </div>
     <div *ngIf="!openImageUploadButton">
       <img [src]="profileForm.get('image')?.value" alt="" />
