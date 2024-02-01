@@ -7,101 +7,111 @@
   (scrolled)="onScroll()"
   [scrollWindow]="true"
 >
-<ul class="industry_listing">
-  <li *ngFor="let items of postList;let i=index">
-    <!-- <li> -->
-    <div class="listing_head">
-      <div class="ribbon_draft" *ngIf="items.status == false">Draft</div>
-      <!-- <i class="pi pi-times" style="color: green ;"></i>  -->
-      <div class="listing_head_info">
-      <figure><img [src]="items?.company?.image" /></figure>
-      <h2>{{ items.details }}</h2>
-      <br/>
-        <button class="applied_list" *ngIf="items.status" (click)="studentList(items._id)">Applied Student List</button>
-      </div>
-      <!-- <button class="delete_btn" (click)="delete(items._id)"><i class="pi pi-trash"></i></button> -->
-      <!-- <i class="pi pi-ellipsis-v" (click)="edit(items._id,items.type)"></i> -->
-      <div class="ellipsis_icon">
-        <p-overlayPanel #op>
-          <ng-template pTemplate>
-           <ul type="none">
-            <li></li>
-            <li><button (click)="edit(items._id,items.type)">
-              <i class="pi pi-pencil"></i>Edit
-            </button></li>
-           </ul>
-            
-            <button (click)="delete(items._id,i)">
-              <i class="pi pi-trash"></i>Delete
-            </button>
-          </ng-template>
-        </p-overlayPanel>
-  
-        <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
-      </div>
+  <ul class="industry_listing">
+    <li *ngFor="let items of postList; let i = index">
+      <!-- <li> -->
+      <div class="listing_head">
+        <div class="ribbon_draft" *ngIf="items.status == false">Draft</div>
+        <!-- <i class="pi pi-times" style="color: green ;"></i>  -->
+        <div class="listing_head_info">
+          <figure><img [src]="items?.company?.image" /></figure>
+          <h2>{{ items.details }}</h2>
+          <br />
+          <button
+            class="applied_list"
+            *ngIf="items.status"
+            (click)="studentList(items._id)"
+          >
+            Applied Student List
+          </button>
+        </div>
+        <!-- <button class="delete_btn" (click)="delete(items._id)"><i class="pi pi-trash"></i></button> -->
+        <!-- <i class="pi pi-ellipsis-v" (click)="edit(items._id,items.type)"></i> -->
+        <div class="ellipsis_icon">
+          <p-overlayPanel #op>
+            <ng-template pTemplate>
+              <ul type="none">
+                <li></li>
+                <li>
+                  <button (click)="edit(items._id, items.type)">
+                    <i class="pi pi-pencil"></i>
+                    Edit
+                  </button>
+                </li>
+              </ul>
 
+              <button (click)="delete(items._id, i)">
+                <i class="pi pi-trash"></i>
+                Delete
+              </button>
+            </ng-template>
+          </p-overlayPanel>
 
-    </div>
-    <div class="listing_details">
-      <ul>
-        <li>
-          <strong>Job Type</strong>
-          <label>{{items.type}}</label>
-        </li>
-        <li>
-          <strong>Opportunity type:</strong>
-          <label>{{ items.details }}</label>
-        </li>
-        <li>
-          <strong>Internship start date:</strong>
-          <label>{{ items.startDate }}</label>
-        </li>
-        <li>
-          <strong>Stipend:</strong>
-          <label>{{ items.salary }} /-</label>
-        </li>
-        <li>
-          <strong>Internship duration:</strong>
-          <label>{{ items.duration }} </label>
-        </li>
-        <li>
-          <strong>Number of openings:</strong>
-          <label>{{ items.jobOpening }}</label>
-        </li>
-      </ul>
-    </div>
-    <div class="list_status">
-      <label>Status</label>
-      <div class="edit_btn">
-        <i class="file-edit" (click)="editStatus(items._id)"><img src="../../../assets/edit-icon.png" /></i>
+          <i class="pi pi-ellipsis-v" (click)="op.toggle($event)"></i>
+        </div>
       </div>
-    </div>
-  </li>
-  <div *ngIf="postList.length == 0 && !loading">No Record Found</div>
-  <app-loader *ngIf="loading "></app-loader>
-  <p-dialog
-    [(visible)]="visible"
-    [style]="{ width: '30vw', height: '300px' }"
-    [draggable]="false"
-  >
-  <div class="update_status">
-    <h2>please update the status</h2>
-    <div>
-      <label>Select the status</label>
-      <div class="card flex justify-content-center">
-        <p-dropdown
-          [options]="status"
-          [(ngModel)]="selectedStatus"
-          optionLabel="name"
-          placeholder="Select a Status"
-          (onChange)="statusChange($event)"
-        ></p-dropdown>
+      <div class="listing_details">
+        <ul>
+          <li>
+            <strong>Job Type</strong>
+            <label>{{ items.type }}</label>
+          </li>
+          <li>
+            <strong>Opportunity type:</strong>
+            <label>{{ items.details }}</label>
+          </li>
+          <li>
+            <strong>Internship start date:</strong>
+            <label>{{ items.startDate }}</label>
+          </li>
+          <li>
+            <strong>Stipend:</strong>
+            <label>{{ items.salary }} /-</label>
+          </li>
+          <li>
+            <strong>Internship duration:</strong>
+            <label>{{ items.duration }}</label>
+          </li>
+          <li>
+            <strong>Number of openings:</strong>
+            <label>{{ items.jobOpening }}</label>
+          </li>
+        </ul>
       </div>
-    </div>
-    </div>
-  </p-dialog>
+      <div class="list_status">
+        <label>Status</label>
+        <div class="edit_btn">
+          <i class="file-edit" (click)="editStatus(items._id)">
+            <img src="../../../assets/edit-icon.png" />
+          </i>
+        </div>
+      </div>
+    </li>
+    <div *ngIf="postList.length == 0 && !loading">No Record Found</div>
+    <app-loader *ngIf="loading"></app-loader>
+    <p-dialog
+      [(visible)]="visible"
+      [style]="{ width: '30vw', height: '300px' }"
+      [draggable]="false"
+    >
+      <div class="update_status">
+        <h2>Upadte Job Status</h2>
+        <div class="status-area">
+          <label>Change Status</label>
+          <div class="card flex justify-content-center">
+            <p-dropdown
+              [options]="status"
+              [(ngModel)]="selectedStatus"
+              optionLabel="name"
+              placeholder="Select a Status"
+              (onChange)="statusChange($event)"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </p-dialog>
 
-  <!-- <li>
+    <!-- <li>
     <div class="listing_head">
       <div class="ribbon_draft">Draft</div>
       <figure><img src="" /></figure>
@@ -216,6 +226,6 @@
       </div>
     </div>
   </li>  -->
-</ul>
+  </ul>
 </div>
 <!-- <div class="no-records">No records found</div> -->
