@@ -1,16 +1,17 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <a class="brand-link logo-switch">
-    <img
+    <!-- <img
       src="/docs/3.2/assets/img/logo-xs.png"
       alt="AdminLTE Docs Logo Small"
       class="brand-image-xl logo-xs"
-    />
+    /> -->
     <img
-      src="/docs/3.2/assets/img/logo-xl.png"
-      alt="AdminLTE Docs Logo Large"
+      [src]="profileImage"
+      
       class="brand-image-xs logo-xl"
       style="left: 12px;"
     />
+    <p>{{profileName}}</p>
   </a>
   <div class="sidebar">
     <nav class="mt-2">

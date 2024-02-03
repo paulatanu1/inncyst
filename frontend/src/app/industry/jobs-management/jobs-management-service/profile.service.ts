@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { ApiService } from 'src/app/common-service/api.service';
 
 @Injectable({
@@ -23,4 +24,6 @@ EditProfile(data:any,id:any){
     let url='/industry/profile'
     return this.api.ApiCallWithLocalization('',url,'get')
   }
+  public profileImage = new Subject()
+  public profileName = new Subject()
 }

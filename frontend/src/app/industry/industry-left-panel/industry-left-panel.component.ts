@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { LeftMenuHandelService } from '../left-menu-handel.service';
 import ls from 'localstorage-slim';
 import { Router } from '@angular/router';
+import { ProfileService } from '../jobs-management/jobs-management-service/profile.service';
 @Component({
   selector: 'app-industry-left-panel',
   templateUrl: './industry-left-panel.component.html',
@@ -9,10 +10,21 @@ import { Router } from '@angular/router';
 })
 export class IndustryLeftPanelComponent implements OnInit {
   activeleftmenu:number = 0
-  constructor(private _menuHandel:LeftMenuHandelService,private router:Router) { }
+  profileImage!:string
+  profileName!:string
+  constructor(private _menuHandel:LeftMenuHandelService,private router:Router,private profileService:ProfileService) { }
 
   ngOnInit( ): void {
-
+this.profileService.profileImage.subscribe({
+  next:(res:any)=>{
+    this.profileImage=res
+  }
+})
+this.profileService.profileName.subscribe({
+  next:(res:any)=>{
+    this.profileName=res
+  }
+})
     this._menuHandel.leftMenuActive.subscribe({
       next:(res)=>{
         this.activeleftmenu = res

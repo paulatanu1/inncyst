@@ -125,7 +125,8 @@ export class IndustryProfileComponent implements OnInit {
         this.profileData = res.data;
         this.questionStep = res.data?.industryId.question_step;
         console.log(this.profileData);
-        
+        this._ProfileService.profileImage.next(this.profileData.image)
+        this._ProfileService.profileName.next(this.profileData.companyName)
         this.loading=false
         console.log(res.data.industryId.question_step)
         ls.set('questionStep',res.data.industryId.question_step)
