@@ -49,6 +49,8 @@ export class IndustryProfileComponent implements OnInit {
       empCount: [undefined],
       workPlace: [''],
       image: [''],
+      branchOffice:[''],
+      corporateOffice:['']
     });
   }
   submitForm() {
@@ -139,6 +141,9 @@ export class IndustryProfileComponent implements OnInit {
           this.profileForm.get('empCount')?.setValue(res.data?.empCount);
           this.profileForm.get('workPlace')?.setValue(res.data?.workPlace);
           this.profileForm.get('image')?.setValue(res.data?.image);
+          this.profileForm.get('branchOffice')?.setValue(res.data?.branchOffice)
+          this.profileForm.get('corporateOffice')?.setValue(res.data?.corporateOffice)
+
           this.profileForm.disable();
         }
         if (!this.profileData) {
