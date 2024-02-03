@@ -8,12 +8,14 @@ import { UserVerificationGuard } from './Guard/user-verification.guard';
 import { AuthenticateGuard } from './Guard/authenticate.guard';
 import { ProtfolioComponent } from './share/protfolio/protfolio.component';
 import { OutsideUrlProtectGuard } from './Guard/outside-url-protect.guard';
+import { IndustryVerificationGuard } from './Guard/industry-verification.guard';
+import { IndustryCheckGuard } from './Guard/industry-check.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./homepage/homepage.module').then((m) => m.HomepageModule)
+      import('./homepage/homepage.module').then((m) => m.HomepageModule),canActivate:[IndustryCheckGuard]
   },
   {
     path: 'shared',
