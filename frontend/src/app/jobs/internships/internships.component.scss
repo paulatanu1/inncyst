@@ -19,7 +19,7 @@
             justify-content: center;
             & > input[type=text] {
                 border-radius: 12px;
-                border: 0.5px solid #C8C8C8;
+                border: 1px solid #522D80;
                 background: #FAFAFA;
                 padding:14px 16px;
                 margin-right: 10px;
@@ -53,14 +53,14 @@
             height: 50px;
             .p-dropdown {
                 border-radius: 5px;
-                background: #6E41E2;
+                background: #F3E9FF;
                 margin-right: 20px;
                 // border-right: 1px solid #d4d4d4;
                 .p-dropdown-label {
-                    color: #fff;
+                    color: #522D80;
                 }
                 .p-dropdown-trigger-icon {
-                    color: white;
+                    color: #522D80;
                 }
             }
         }
@@ -87,10 +87,10 @@
 
             .p-dropdown {
                 border-radius: 5px;
-                background: #fff;
+                background: #F3E9FF;
                 margin-right: 20px;
                 // border-left: 1px solid #d4d4d4;
-                border: 1px solid #522D80;
+                
                 .p-dropdown-label {
                     color: #522D80;
                 }
