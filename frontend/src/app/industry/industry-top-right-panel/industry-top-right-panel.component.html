@@ -1,5 +1,5 @@
 <div class="top_header_panel">
-  <div class="search_panel">
+  <div class="search_panel" *ngIf="userRole != 'industry'">
     <div class="p-inputgroup">
       <button type="button" pButton ><i class="pi pi-search"></i></button>
       <input type="text" pInputText placeholder="Search" />

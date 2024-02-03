@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import ls from 'localstorage-slim';
 
 @Component({
   selector: 'app-industry-top-right-panel',
@@ -7,7 +8,11 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 })
 export class IndustryTopRightPanelComponent implements OnInit {
   currentTheme: string | null = '';
-  constructor(private renderer: Renderer2) { }
+  userRole!:string
+  constructor(private renderer: Renderer2) { 
+this.userRole=<string>ls.get('role')
+console.log(this.userRole)
+  }
 
   ngOnInit(): void {
 
