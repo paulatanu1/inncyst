@@ -38,11 +38,11 @@
       </li>
     </ul>
     <div class="job_para">
-      <strong>Job Description</strong>
+      <strong>Job Description :</strong>
       {{ a.details }}
     </div>
     <div class="job_para">
-      <strong>Responsibilities</strong>
+      <strong>Responsibilities :</strong>
       <ul *ngFor="let item of a.responsibilities">
         <li>
           {{ item }}
@@ -50,17 +50,26 @@
       </ul>
     </div>
     <div class="job_para">
-      <strong>Requirements</strong>
+      <strong>Requirements :</strong>
       <ul>
         <li>{{ a.education }}</li>
-        <li>{{ a.coverLetter.availability }}</li>
-        <li>{{ a.coverLetter.letter }}</li>
-        <li>
-          <strong>Skills :</strong>
-          <span class="tags">
-            <span *ngFor="let b of a.skills">{{ b }}</span>
-          </span>
+        <li *ngIf="a.coverLetter.availability">
+          {{ a.coverLetter.availability }}
         </li>
+        <li *ngIf="a.coverLetter.letter">{{ a.coverLetter.letter }}</li>
+        <!-- <li>
+          <span class="tags">
+            <span >{{ b }}</span>
+          </span>
+        </li> -->
+      </ul>
+      <strong>Skills :</strong>
+      <ul>
+        <li *ngFor="let skill of a.skills">{{ skill }}</li>
+      </ul>
+      <strong>Perks :</strong>
+      <ul>
+        <li *ngFor="let perk of a.perks">{{ perk }}</li>
       </ul>
     </div>
     <div class="overview">
