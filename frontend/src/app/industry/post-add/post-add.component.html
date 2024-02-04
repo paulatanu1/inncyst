@@ -48,6 +48,15 @@
         <h3>{{ industryType }} details</h3>
         <div class="form_group">
           <div class="form_field_group">
+            <label>Title</label>
+            <input
+              type="text"
+              placeholder="e.g angular developer"
+              pInputText
+              formControlName="title"
+            />
+          </div>
+          <div class="form_field_group">
             <label>{{ title }} details</label>
             <input
               type="text"
@@ -297,7 +306,7 @@
           </div>
         </div>
         <div class="buttonSec">
-          <div *ngIf="!EditInternship">
+          <!-- <div *ngIf="!EditInternship">
           <button
             type="button"
             class="save_preview"
@@ -306,15 +315,7 @@
           >
             Save Preview
           </button>
-          <!-- <button
-            type="button"
-            class="save_preview"
-            *ngIf="editedJobId && !status"
-            (click)="submitFormInternship()"
-          >
-            submit
-          </button>  -->
-    
+  
           <button
             type="button"
             class="save_preview"
@@ -332,8 +333,26 @@
           (click)="internshipFormEnable()"
         >
           Edit
-        </button>
-      </div>
+        </button> -->
+
+        <button
+        type="button"
+        class="save_preview"
+       
+        (click)="internshipSavePreveiw()"
+      >
+        Save Preview
+      </button>
+
+      <button
+        type="button"
+        class="save_preview"
+        *ngIf="saveDraftId || editedJobId"
+        (click)="submitFormInternship()"
+      >
+        Submit
+      </button>
+      <!-- </div> -->
           <!-- <button type="button" *ngIf="status" (click)="editInternship(editedJobId)">
             Edit Job
           </button> -->
@@ -359,6 +378,15 @@
       <div class="post_job_form">
         <h3>{{ industryType }} details</h3>
         <div class="form_group">
+          <div class="form_field_group">
+            <label>Title</label>
+            <input
+              type="text"
+              placeholder="e.g angular developer"
+              pInputText
+              formControlName="title"
+            />
+          </div>
           <div class="form_field_group">
             <label>{{ title }} details</label>
             <input
@@ -583,7 +611,7 @@
           </div>
         </div>
         <div class="buttonSec">
-          <div *ngIf="!EditJob">
+          <!-- <div *ngIf="!EditJob">
           <button
             type="button"
             class="save_preview"
@@ -598,7 +626,7 @@
             *ngIf="saveDraftId || editedJobId"
             (click)="submitFormjob()"
           >
-            submit
+            submit ....
           </button>
         </div>
         <div *ngIf="EditJob">
@@ -610,7 +638,32 @@
         >
          Edit
         </button>
-        </div>
+        <button
+        type="button"
+        class="save_preview"
+        *ngIf="saveDraftId || editedJobId"
+        (click)="submitFormjob()"
+      >
+        submit ....
+      </button> -->
+
+      <button
+      type="button"
+      class="save_preview"
+     
+      (click)="save_preview_job()"
+    >
+      Save Preview
+    </button>
+    <button
+      type="button"
+      class="save_preview"
+      *ngIf="saveDraftId || editedJobId"
+      (click)="submitFormjob()"
+    >
+      submit
+    </button>
+        <!-- </div> -->
           <!-- <button type="button" *ngIf="status" (click)="editJob(editedJobId)">
           Edit Job
         </button> -->
@@ -625,6 +678,7 @@
       </div>
     </div>
   </form>
+
 </div>
 </div>
 

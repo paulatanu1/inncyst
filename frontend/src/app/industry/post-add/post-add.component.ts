@@ -171,6 +171,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
 
     this.industryForm = this.fb.group({
       type: ['intranship'],
+      title:[''],
       details: [''],
       skills: [[]],
       intranshipType: [''],
@@ -191,6 +192,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
 
     this.jobForm = this.fb.group({
       type: ['job'],
+      title:[''],
       details: [''],
       skills: [[]],
       intranshipType: [''],
@@ -243,9 +245,10 @@ export class PostAddComponent implements OnInit, AfterViewInit {
                     this.typeSelection();
                     this.editedinternshipData = res.data;
                   this.EditInternship=true
-this.industryForm.disable();
+                //  this.industryForm.disable();
                     this.status = this.editedinternshipData.status;
-
+this.industryForm.get('title')
+?.patchValue(this.editedinternshipData.title);
                     this.industryForm
                       .get('type')
                       ?.patchValue(this.editedinternshipData.type);
@@ -305,7 +308,7 @@ this.industryForm.disable();
                   this.typeSelection();
                   this.editedJobData = res.data;
                   this.EditJob=true
-                  this.jobForm.disable();
+                  // this.jobForm.disable();
                   console.log(this.editedJobData.details  )
                   this.status = this.editedJobData.status;
                   console.log(this.editedJobData?.coverLetter?.letter)
@@ -313,6 +316,7 @@ this.industryForm.disable();
                   this.jobForm
                     .get('details')
                     ?.patchValue(res.data.details);
+                    this.jobForm.get('title')?.patchValue(res.data.title);
                   this.jobForm
                     .get('skills')
                     ?.patchValue(this.editedJobData.skills);
@@ -391,6 +395,9 @@ this.industryForm.disable();
     if (this.industryForm.value.type) {
       form_Data.type = this.industryForm.value.type;
     }
+    if(this.industryForm.value.title){
+      form_Data.title = this.industryForm.value.title;
+    }
     if (this.industryForm.value.location) {
       form_Data.location = this.industryForm.value.location;
     }
@@ -460,7 +467,7 @@ this.industryForm.disable();
         });
         this.display = true;
         this.EditInternship=true;
-        this.industryForm.disable();
+        // this.industryForm.disable();
         this._JobPostListService
           .getSinglePortfolio(this.saveDraftId)
           .subscribe({
@@ -491,6 +498,9 @@ this.industryForm.disable();
     }
     if (this.jobForm.value.location) {
       form_Data.location = this.jobForm.value.location;
+    }
+    if (this.jobForm.value.title) {
+      form_Data.title = this.jobForm.value.title;
     }
     if (this.jobForm.value.education) {
       form_Data.education = this.jobForm.value.education;
@@ -555,7 +565,7 @@ this.industryForm.disable();
         });
         this.display = true;
         this.EditJob=true;
-        this.jobForm.disable();
+        // this.jobForm.disable();
         this._JobPostListService
           .getSinglePortfolio(this.saveDraftId)
           .subscribe({
@@ -717,7 +727,8 @@ this.industryForm.disable();
   }
 
   submitFormjob() {
-    console.log(this.jobForm.value);
+
+    console.log(this.jobForm.valid);
     if (this.jobForm.valid) {
       let formData = this.jobForm.value;
       console.log(formData);
@@ -733,6 +744,7 @@ this.industryForm.disable();
       this.jobPost.internshipSubmit(formData).subscribe({
         next: (resp) => {
           console.log(resp);
+            this.jobForm.disable();
           this.display = false;
           this.router.navigateByUrl('/industry/jobs');
           this._toast.showToaster.next({
@@ -747,7 +759,7 @@ this.industryForm.disable();
         error: (err) => {
           this.display = false;
           // this.router.navigateByUrl('/industry/jobs')
-
+this.jobForm.enable()
           this._toast.showToaster.next({
             severity: 'error',
             summary: 'rror',
@@ -761,6 +773,13 @@ this.industryForm.disable();
 
       // Clear the form or perform any necessary actions
       // this.postJob.reset();
+    }
+    else{
+      this._toast.showToaster.next({
+        severity: 'error',
+        summary: 'rror',
+        detail: 'please fillup all the field',
+      })
     }
   }
   //final submit internship
@@ -795,7 +814,7 @@ this.industryForm.disable();
         error: (err) => {
           this.display = false;
           // this.router.navigateByUrl('/industry/jobs')
-
+this.industryForm.enable()
           this._toast.showToaster.next({
             severity: 'error',
             summary: 'error',
@@ -809,6 +828,13 @@ this.industryForm.disable();
 
       // Clear the form or perform any necessary actions
       // this.postJob.reset();
+    }
+    else{
+      this._toast.showToaster.next({
+        severity: 'error',
+        summary: 'error',
+        detail:'please fillup all the field',
+      });
     }
   }
   onKeydownMain(event:any){
