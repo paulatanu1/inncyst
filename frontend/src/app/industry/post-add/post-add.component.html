@@ -58,12 +58,22 @@
           </div>
           <div class="form_field_group">
             <label>{{ title }} details</label>
-            <input
+
+            <p-editor [style]="{ height: '320px' }" formControlName="details">
+              <!-- <ng-template pTemplate="header">
+                <span class="ql-formats">
+                  <button type="button" class="ql-bold" aria-label="Bold"></button>
+                  <button type="button" class="ql-italic" aria-label="Italic"></button>
+                  <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+              </ng-template> -->
+            </p-editor>
+            <!-- <input
               type="text"
               placeholder="e.g Android app development"
               pInputText
               formControlName="details"
-            />
+            /> -->
           </div>
           <div class="form_field_group">
             <label>Location</label>
@@ -484,6 +494,7 @@
               Job's responsibilities
               <em>Selected intern's day-to-day responsibilities include:</em>
             </label>
+      
             <p-chips
               separator=","
               formControlName="responsibilities"
