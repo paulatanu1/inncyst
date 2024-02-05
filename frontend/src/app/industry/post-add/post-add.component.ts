@@ -838,9 +838,7 @@ this.industryForm.enable()
     }
   }
   onKeydownMain(event:any){
-    console.log(event.key == 0)
-    console.log(event.charCode)
-    if(event.key == 0 && event.charCode==0){
+    if(event.key == 0 && event.charCode==0 && event.target.value.length == 0){
 
       event.preventDefault()
     }

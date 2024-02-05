@@ -39,13 +39,15 @@
     </ul>
     <div class="job_para">
       <strong>Job Description :</strong>
-      {{ a.details }}
+      <p [innerHTML]="a.details">
+
+      </p>
     </div>
     <div class="job_para">
       <strong>Responsibilities :</strong>
       <ul *ngFor="let item of a.responsibilities">
-        <li>
-          {{ item }}
+        <li [innerHTML]="item">
+        
         </li>
       </ul>
     </div>

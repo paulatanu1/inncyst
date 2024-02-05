@@ -26,6 +26,7 @@ page=0;
 limit=10;
 totalItem!:number
 loading:boolean=false;
+jobTitle!:any
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private router: Router,
@@ -126,9 +127,10 @@ loading:boolean=false;
 
     }
   }
-  editStatus(id:any){
+  editStatus(id:any,title:any){
     this.visible=true
    this.editedJobId=id
+   this.jobTitle=title
   
   }
   statusChange(e:any){

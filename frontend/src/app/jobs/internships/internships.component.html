@@ -89,7 +89,7 @@
                   </h2>
                 </div>
 
-                <h2>{{ a.details }}</h2>
+                <h2 [innerHTML]="a.details"></h2>
                 <div class="tags">
                  
                   <span *ngIf="a.experience">experience :- {{a.experience}} {{a.experienceTime}}</span>
