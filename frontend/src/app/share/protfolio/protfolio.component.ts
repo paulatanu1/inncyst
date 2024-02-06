@@ -93,11 +93,9 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     this.portfolio.hideAddPortfolioModal.subscribe({
       next: (res) => {
         this.display = res as unknown as boolean;
-        console.log(res);
         this.getPortfolio();
       },
     });
-    console.log(this.field, 'this');
     const currentTime = new Date().getTime();
 
     this.field.push({
@@ -111,7 +109,6 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       youtubeUrl: '',
       portfolioStatus:''
     });
-    console.log(this.field);
 
     // 1st time call all portfolio details.......
     this.getPortfolio();
@@ -137,7 +134,6 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       next: (res) => {
         this.portfolioDetails = res.data;
         this.loading=false
-        console.log(this.portfolioDetails, 'res2');
         this.portfolioDetails.forEach((item: any) => {
           //  const newUrl:any= item.url.split('=')[1] || null;
           //  item.url=this.commonYoutubeUrl+newUrl
@@ -173,7 +169,6 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     });
   }
   getObj(e: any) {
-    console.log(this.field, 'f');
   }
 
   deletedObjId(e: any) {
@@ -215,8 +210,6 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
       next: (res) => {
         this.editPortfolioDetails=res.data;
         let portfoliostatus=res.data.portfolioStatus
-console.log(portfoliostatus,'ps')
-        console.log(res,'resss')
         this.editDialogForm.get('title')?.patchValue(res.data.title);
         this.editDialogForm.get('description')?.patchValue(res.data.description);
         this.editDialogForm.get('url')?.patchValue(res.data.url);
@@ -228,7 +221,6 @@ console.log(portfoliostatus,'ps')
         this.editImage = res.data?.image?.split('-')[2];
         this.editPdf = res.data?.pdf?.split('-')[2];
         this.youtube=res.data?.youtubeUrl
-        console.log(this.youtube,'youtube')
       },
     });
   }
@@ -290,16 +282,13 @@ console.log(portfoliostatus,'ps')
     }
    }
   onSubmit() {
-    console.log(this.editDialogForm.value);
     const formData = new FormData();
     Object.keys(this.editDialogForm.controls).forEach((key) =>
       formData.append(key, this.editDialogForm.get(key)?.value)
     );
     // Object.keys(this.editDialogForm.controls).forEach(key=>formData.append(key,this.editDialogForm.get(key)?.value))
-    console.log(formData);
     this.portfolio.editPortfolio(this.editPortfolioId, formData).subscribe({
       next: (res) => {
-        console.log(res);
         this._toast.showToaster.next({
           severity: 'success',
           summary: 'Portfolio update successfully.',
@@ -314,7 +303,6 @@ console.log(portfoliostatus,'ps')
   deletePortfolio(id: any) {
     this.portfolio.deletePortFolio(id).subscribe({
       next: (res) => {
-        console.log(res);
         this.getPortfolio();
         this._toast.showToaster.next({
           severity: 'success',
@@ -330,10 +318,7 @@ console.log(portfoliostatus,'ps')
   }
   selectItemEditPortfolio(e:any){
     const status=e.value.value
-console.log(this.editDialogForm.get('portfolioStatus')?.value)
 // this.editDialogForm.get('portfolioStatus')?.setValue(status)
       this.editDialogForm.patchValue({'portfolioStatus':status})
-    console.log(e.value)
-    console.log(this.editDialogForm.value)
   }
 }

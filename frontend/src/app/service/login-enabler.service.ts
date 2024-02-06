@@ -9,6 +9,5 @@ export class LoginEnablerService {
   loginFlow = new Subject<boolean>()
   otpPage = new Subject<boolean>()
   constructor() {
-    console.log(this.otpPage)
    }
 }

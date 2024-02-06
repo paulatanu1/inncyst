@@ -22,13 +22,9 @@ export class JobDetailsComponent implements OnInit {
     this.loading = true;
     this.activatedRoute.params.subscribe({
       next: (res) => {
-        console.log(res['id']);
-
         this.jobService.getJobDetails(res['id']).subscribe({
           next: (res) => {
-            console.log(res, 'rrrr');
             this.applied = res.data.applied;
-            console.log(this.applied);
             // this.rightSideLoadding = false;
             this.singleJobDetails = [];
             this.singleJobDetails.push(res.data);
@@ -41,7 +37,6 @@ export class JobDetailsComponent implements OnInit {
           },
           error: (err) => {
             // this.rightSideLoadding = false;
-            console.log(err.error.message);
             this.loading = false;
           },
         });

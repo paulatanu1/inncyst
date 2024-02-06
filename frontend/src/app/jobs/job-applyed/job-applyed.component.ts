@@ -45,14 +45,12 @@ loadding=false;
         this.loadding=false;
         if(this.AppliedJobDetails.length){
 
-          console.log(this.AppliedJobDetails, 'aaaa');
           // console.log(this.AppliedJobDetails, 'applyedJobDetails');
           this.AppliedJobDetails?.forEach((element: any) => {
             // if(element.jobDetails.intranshipName){
             // element.intranshipDetails.intranshipName = this.capitalizeWords(
             //   element.intranshipDetails?.intranshipName
             // );}
-            console.log(this.AppliedJobDetails);
             element.jobDetails.company.companyName = this.capitalizeWords(
               element.jobDetails.company.companyName
             );

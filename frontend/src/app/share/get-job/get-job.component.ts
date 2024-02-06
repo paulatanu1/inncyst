@@ -14,7 +14,6 @@ export class GetJobComponent implements OnInit {
   }
 
   openModal(){
-    console.log('click')
     this.isRegisterModal = true;
   }
   
