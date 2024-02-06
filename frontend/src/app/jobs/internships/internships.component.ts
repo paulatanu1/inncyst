@@ -156,6 +156,13 @@ rightSideLoadding=false;
       this.page=0;
     this.AllJbDetaails();
   }
+  clearSearchList(){
+    if(this.location == ''){
+      this.AllJobDetails = [];
+      this.page=0;
+      this.AllJbDetaails();
+    }
+  }
   resetUrl() {
     this.type = '';
     this.jobType = '';

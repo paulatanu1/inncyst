@@ -139,7 +139,6 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
         this.loading=false
         console.log(this.portfolioDetails, 'res2');
         this.portfolioDetails.forEach((item: any) => {
-          // alert('kk')
           //  const newUrl:any= item.url.split('=')[1] || null;
           //  item.url=this.commonYoutubeUrl+newUrl
           item.image = environment.API_URL + item.image;

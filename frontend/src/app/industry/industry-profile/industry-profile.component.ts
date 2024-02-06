@@ -89,7 +89,6 @@ export class IndustryProfileComponent implements OnInit {
 
     // }
     // else if(this.profileData.industryId.question_step || this.profileData == null){
-    alert('oo');
     if (this.questionStep) {
       this._ProfileService
         .EditProfile(this.profileForm.value, this.profileData._id)

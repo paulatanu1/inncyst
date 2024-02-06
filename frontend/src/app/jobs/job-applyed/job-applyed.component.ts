@@ -75,7 +75,6 @@ loadding=false;
     });
   }
   jobOption() {
-    alert('jj');
   }
   ngOnDestroy() {
     this.internshipService.customHeader.next(true);
@@ -86,6 +85,5 @@ loadding=false;
     this.router.navigate(['/jobs/my-jobs/AppliedJobDetailsComponent', a]);
   }
   applicationStatus() {
-    alert('jj');
   }
 }

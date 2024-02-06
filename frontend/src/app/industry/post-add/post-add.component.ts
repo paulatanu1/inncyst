@@ -389,7 +389,6 @@ this.industryForm.get('title')
   }
   //internship save preview
   internshipSavePreveiw() {
-    alert('kkk');
     console.log(this.industryForm.value, 'formValue');
     const form_Data: any = new Object();
     if (this.industryForm.value.type) {
@@ -490,7 +489,6 @@ this.industryForm.get('title')
   }
   //job save preview
   save_preview_job() {
-    alert('job save preview')
     console.log(this.jobForm.value, 'formValue');
     const form_Data: any = new Object();
     if (this.jobForm.value.type) {

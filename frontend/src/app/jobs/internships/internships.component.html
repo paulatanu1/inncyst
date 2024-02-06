@@ -30,6 +30,8 @@
         type="text"
         [(ngModel)]="location"
         placeholder="Please Enter Location"
+        (keyup.enter)="sortLocation()"
+        (keyup.backspace)="clearSearchList()"
       />
 
       <button (click)="sortLocation()"><i class="pi pi-search"></i></button>
@@ -69,9 +71,7 @@
             <li
               *ngFor="let a of AllJobDetails; let i = index"
               (click)="jobDetails(a._id, i);detailsPage(a._id)"
-      
-              [ngClass]="{ is_active: selectedJob == i }"
-            >
+                          >
               <div class="company_details_head">
                 <div class="comapny_details">
                   <span>
