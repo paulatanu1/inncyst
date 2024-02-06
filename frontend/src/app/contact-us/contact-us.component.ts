@@ -36,7 +36,6 @@ export class ContactUsComponent implements OnInit {
 
   onSubmitContactForm() {
     if (this.contactUsForm.valid) {
-      console.log(this.contactUsForm.value);
       this.submitData.submitContactForm(this.contactUsForm.value).subscribe({
         next: (res) => {
           this._toast.showToaster.next({

@@ -11,7 +11,6 @@ export class IndustryTopRightPanelComponent implements OnInit {
   userRole!:string
   constructor(private renderer: Renderer2) { 
 this.userRole=<string>ls.get('role')
-console.log(this.userRole)
   }
 
   ngOnInit(): void {

@@ -20,8 +20,6 @@ export class QuestionStepGuard implements CanActivate {
     this.questionStep = <boolean>ls.get('questionStep');
   }
   canActivate(): boolean {
-    console.log(ls.get('questionStep') == true)
-    console.log(this.questionStep,'guard')
     if (ls.get('questionStep') == true) {
       return true;
     }

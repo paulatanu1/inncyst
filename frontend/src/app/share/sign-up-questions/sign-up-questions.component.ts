@@ -29,7 +29,6 @@ export class SignUpQuestionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.display = this.sidebarEnable;
-    console.log(this.display , this.sidebarEnable , 'sidebar')
     this.questionSets =this.fb.group({
       companyName: ['',[Validators.required]],
       companyEstableYear:['',[Validators.required]],
@@ -49,11 +48,8 @@ export class SignUpQuestionsComponent implements OnInit {
     // this.quistionSubmit.emit(true);
     // this.isOtpPage = true
 
-    console.log(this.questionSets , 'questionSets')
     const establishmentYear = this.pipe.transform(this.questionSets?.get('companyEstableYear')?.value,'yyyy')?.toString()
-    console.log(establishmentYear)
     let id:string | null = ls.get('registerId')
-    console.log(id , 'iddd')
     if(establishmentYear){
     this.answersSet = {
       id:id,
@@ -69,13 +65,11 @@ export class SignUpQuestionsComponent implements OnInit {
     this.questionSet.submitIndustraryQuestionAnswers( this.answersSet).subscribe({
       next: (res)=>{
         // this.api
-        console.log(res, 'response')
         // this.quistionSubmit.emit(true);
         this.redirectToOtp = true
 
       },
       error: (err)=>{
-        console.log(err, 'error')
       }
     })
     
