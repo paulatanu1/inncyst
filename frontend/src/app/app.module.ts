@@ -23,6 +23,8 @@ import { EditorModule } from 'primeng/editor';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SanitizerUrlPipe } from './pipe/sanitizer-url.pipe';
 import { MatSliderModule } from '@angular/material/slider';
+import {FieldsetModule} from 'primeng/fieldset';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { MatSliderModule } from '@angular/material/slider';
     EditorModule,
     PdfViewerModule,
     MatSliderModule,
+    FieldsetModule
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [

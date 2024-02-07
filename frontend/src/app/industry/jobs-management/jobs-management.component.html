@@ -16,8 +16,6 @@
       <div class="listing_head_info">
       <figure><img [src]="items?.company?.image" /></figure>
       <!-- <h2 [innerHTML]="items.details"></h2> -->
-      <br/>
-        <button class="applied_list" *ngIf="items.status" (click)="studentList(items._id)">Applied Student List</button>
       </div>
       <!-- <button class="delete_btn" (click)="delete(items._id)"><i class="pi pi-trash"></i></button> -->
       <!-- <i class="pi pi-ellipsis-v" (click)="edit(items._id,items.type)"></i> -->
@@ -74,12 +72,15 @@
         </li>
       </ul>
     </div>
+    <div><button class="applied_list" *ngIf="items.status" (click)="studentList(items._id)">Applied Student List</button>
+    </div>
     <div class="list_status">
       <label>Status</label>
       <div class="edit_btn">
         <i class="file-edit" (click)="editStatus(items._id,items.title)"><img src="../../../assets/edit-icon.png" /></i>
       </div>
     </div>
+    
   </li>
   <div *ngIf="postList.length == 0 && !loading">No Record Found</div>
   <app-loader *ngIf="loading "></app-loader>
