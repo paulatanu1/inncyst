@@ -31,7 +31,6 @@ export class IndustryVerificationGuard implements CanActivate {
         summary: 'error',
         detail: 'Access Denied: You do not have permission to view this page. ',
       });
-    alert('Access Denied: You do not have permission to view this page IV.')
       this.router.navigateByUrl('/home')
       return false
     }

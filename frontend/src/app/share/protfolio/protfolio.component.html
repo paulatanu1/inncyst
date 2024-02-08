@@ -124,14 +124,14 @@
               formControlName="portfolioStatus" optionValue="value">
             </p-dropdown>
           </li>
-          <li>
-            <div *ngIf="editPortfolioDetails?.url != 'null'">
+          <li *ngIf="editPortfolioDetails?.url != 'null'">
+            <div >
               <label>uploaded url :--</label>
               <input type="url" formControlName="url" placeholder="URL" (change)="urlChange($event)" />
             </div>
           </li>
-          <li>
-            <div *ngIf="editPortfolioDetails?.image != null">
+          <li  *ngIf="editPortfolioDetails?.image != null">
+            <div>
               <ng-container *ngIf="editImage">
                 {{ editImage }}
                 <button (click)="removeImg()">X</button>
@@ -144,8 +144,8 @@
               </ng-container>
             </div>
           </li>
-          <li>
-            <div *ngIf="editPortfolioDetails?.pdf != null">
+          <li  *ngIf="editPortfolioDetails?.pdf != null">
+            <div>
               <ng-container *ngIf="editPdf">
                 {{ editPdf }}
                 <button (click)="removePdf()">X</button>
@@ -158,8 +158,8 @@
               </ng-container>
             </div>
           </li>
-          <li>
-            <div *ngIf="editPortfolioDetails?.youtubeUrl != ''">
+          <li *ngIf="editPortfolioDetails?.youtubeUrl != ''">
+            <div >
               <ng-container *ngIf="youtube">
                 <P>YOUTUBE</P>
                 <iframe width="560" height="315" [src]="editPortfolioDetails.youtubeUrl | sanitizerUrl" frameborder="0"
@@ -174,107 +174,8 @@
           </li>
         </ul>
 
-      <p-editor
-        [style]="{ height: '320px' }"
-        formControlName="description"
-        placeholder="description"
-      >
-        <ng-template pTemplate="header">
-          <span class="ql-formats">
-            <button type="button" class="ql-bold" aria-label="Bold"></button>
-            <button
-              type="button"
-              class="ql-italic"
-              aria-label="Italic"
-            ></button>
-            <button
-              type="button"
-              class="ql-underline"
-              aria-label="Underline"
-            ></button>
-          </span>
-        </ng-template>
-      </p-editor>
-
-      <p-dropdown
-        [options]="portfolioStatusOption"
-        optionLabel="name"
-        (onChange)="selectItemEditPortfolio($event)"
-        formControlName="portfolioStatus"
-        optionValue="value"
-      ></p-dropdown>
-      <!-- </div> -->
-
-      <div *ngIf="editPortfolioDetails?.url != null">
-        <label>uploaded url :--</label>
-        <input
-          type="url"
-          formControlName="url"
-          placeholder="URL"
-          (change)="urlChange($event)"
-        />
-      </div>
-      <div *ngIf="editPortfolioDetails?.image != null">
-        <ng-container *ngIf="editImage">
-          {{ editImage }}
-          <button (click)="removeImg()">X</button>
-        </ng-container>
-
-        <ng-container *ngIf="!editImage">
-          <label>please upload Image...</label>
-          <br />
-          <input
-            type="file"
-            accept="image/*"
-            (change)="onImageSelected($event)"
-            id="imageInput"
-          />
-        </ng-container>
-      </div>
-      <!-- {{ editPortfolioDetails | json }}
-      {{ editPortfolioDetails?.pdf != null }}
-      {{ editPortfolioDetails?.pdf }} -->
-      <div *ngIf="editPortfolioDetails?.pdf != null">
-        <ng-container *ngIf="editPdf">
-          {{ editPdf }}
-          <button (click)="removePdf()">X</button>
-        </ng-container>
-        <ng-container *ngIf="editPdf">
-          <label>please upload pdf...</label>
-          <br />
-          <input
-            type="file"
-            name="pdfFile"
-            #fileInput
-            id="pdfInput"
-            (change)="pdfSelected($event)"
-            accept=".pdf"
-          />
-          <br />
-        </ng-container>
-      </div>
-      <div *ngIf="editPortfolioDetails?.youtubeUrl != ''">
-        <ng-container *ngIf="youtube">
-          <P>YOUTUBE</P>
-          <iframe
-            width="560"
-            height="315"
-            [src]="editPortfolioDetails.youtubeUrl | sanitizerUrl"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-          <button (click)="removeYoutube()">X</button>
-        </ng-container>
-        <ng-container *ngIf="!youtube">
-          <p>upload Youtubeurl</p>
-          <input
-            type="url"
-            formControlName="youtubeUrl"
-            (change)="youtubeUrlChange($event)"
-          />
-        </ng-container>
-      </div>
->>>>>>> 20231203-profile-image-fix
+     
+   
       <button type="submit">submit</button>
       </div>
     </form>

@@ -137,7 +137,6 @@ export class RegistrationPageComponent implements OnInit {
     ls.set('questionStep',false)
     this.login.otpPage.subscribe({
       next:(res)=>{
-        console.log(res,'res')
         this.otpPageOpen=<boolean>res;
         this.signupPageHide=false
       }
@@ -220,12 +219,9 @@ export class RegistrationPageComponent implements OnInit {
         )
         .subscribe(
           (response) => {
-            console.log(response, 'response');
             this.otpPageOpen = true;
-
             this.signupPageHide = false;
             this.registrationId = response.data._id;
-            console.log(this.registrationId);
             const { email, name, _id, phone } = response.data;
             ls.set('userEmail', email);
             ls.set('userName', name);
@@ -337,7 +333,6 @@ export class RegistrationPageComponent implements OnInit {
     };
     this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
       next: (res) => {
-        console.log(res,'uuu')
         this.OtpModal = false;
         this.redirectToOtp = false;
         //  this.otpPageOpen=false
@@ -351,7 +346,6 @@ export class RegistrationPageComponent implements OnInit {
           detail: res.message,
         });
         //set route logic for user
-        console.log(this.userRole);
         if (this.userRole === 'student') {
           this.router.navigate(['/jobs/posts']);
         } else if (this.userRole === 'industry') {
@@ -359,7 +353,6 @@ export class RegistrationPageComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.log(err);
       },
     });
   }

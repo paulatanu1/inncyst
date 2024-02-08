@@ -17,7 +17,6 @@ export class JobsService {
   }
 
   uploadResume(data:any){
-    console.log(data)
     let url='/student/upload-resume-demo'
     // const form_data:any = new FormData();
     // // let id='64fd77665810ffdaf7e9b5b2'
@@ -29,7 +28,6 @@ export class JobsService {
   }
   applyJob(details:any){
     let url= '/student/apply-job';
-    console.log(details)
     return this.api.ApiCallWithLocalization(details,url,'post')
   }
  getJobDetails(id:any){

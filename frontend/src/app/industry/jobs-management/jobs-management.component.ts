@@ -26,6 +26,7 @@ page=0;
 limit=10;
 totalItem!:number
 loading:boolean=false;
+jobTitle!:any
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private router: Router,
@@ -41,8 +42,6 @@ loading:boolean=false;
   onScroll1(event: Event): void {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       if(this.totalItem > this.postList.length){
-        console.log(this.totalItem,this.postList.length)
-        console.log('scrol,,,,,,,,,,,',event);
         this.page=this.page+1;
         this.getJobList();
 
@@ -65,15 +64,10 @@ loading:boolean=false;
     this.loading=true;
     this.post.getPostList(this.page,this.limit).subscribe({
       next: (res) => {
-        console.log(res)
         this.totalItem=res.data.total;
-        console.log(this.totalItem)
         this.postList = [...this.postList,...res.data.items];
         // this.postList=this.postList.push(...res.data.items)
-        console.log(this.postList)
-        console.log(res.data.items)
         this.loading=false
-        console.log(this.postList, this.postList.length);
       },
       error:(err)=>{
         this.loading=false
@@ -87,14 +81,12 @@ loading:boolean=false;
   edit(id: number,type:string) {
     // alert(id)
     // console.log(data)
-    console.log(id,type,'jjj')
     this.router.navigate(['/industry/jobs/add-job'], {
       queryParams: { id: id ,type:type},
     });
   }
   delete(id: any,index:any) {
     this.postList.splice(index,1);
-    console.log(id);
     this.post.deletePortFolio(id).subscribe({
       next: (res) => {
         // this.postList=[]
@@ -117,29 +109,25 @@ loading:boolean=false;
     });
   }
   onScroll(){
-    console.log('scrol...........')
     if(this.totalItem >= this.postList.length){
-      console.log(this.totalItem,this.postList.length)
-      console.log('scrol,,,,,,,,,,,',event);
       this.page=this.page+1;
       this.getJobList();
 
     }
   }
-  editStatus(id:any){
+  editStatus(id:any,title:any){
     this.visible=true
    this.editedJobId=id
+   this.jobTitle=title
   
   }
   statusChange(e:any){
     this.selectedStatus=e.value.value
-    console.log(this.editedJobId,this.selectedStatus)
     const formData:any = new Object()
     formData.status=this.selectedStatus
     this.post.editStatus(formData,this.editedJobId).subscribe({
       next:(res=>{
 
-      console.log(res)  
       this.visible=false
       this._toast.showToaster.next({
         severity: 'success',
@@ -160,7 +148,6 @@ loading:boolean=false;
   }
 
   studentList(id:any){
-console.log(id)
 this.router.navigate(['/industry/appliedStudentList'],{queryParams:{id:id}})
   }
 }

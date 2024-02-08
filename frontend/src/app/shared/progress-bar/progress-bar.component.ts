@@ -17,9 +17,7 @@ export class ProgressBarComponent implements OnInit,OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges():void {
-    console.log(this.response)
     this.isprogressVisible = this.response;
-    console.log(this.isprogressVisible,'this.isprogressVisible')
   }
 
 }

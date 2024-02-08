@@ -38,7 +38,6 @@ export class AppComponent implements OnInit {
     private cdk: ChangeDetectorRef
   ) {
     window.onbeforeunload = () => {
-      console.log('Setting scroll position to top');
       window.scrollTo(0, 0);
     };
     //Header show and Hide

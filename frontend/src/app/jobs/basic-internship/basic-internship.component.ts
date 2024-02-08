@@ -185,7 +185,6 @@ export class BasicInternshipComponent implements OnInit {
     this.AllJbDetaails();
   }
   sortDropdown(e: any) {
-    alert('jj');
     this.sort = e.value.name;
     this.AllJobDetails = [];
     this.AllJbDetaails();

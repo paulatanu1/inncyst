@@ -6,7 +6,7 @@
         font-size: 24px;
         color: #000000;
         line-height:28px;
-        margin-bottom: 15px;
+        margin: 15px 0 20px;
     }
     .contact_img_details {
         display: flex;
@@ -195,6 +195,13 @@
                 margin-left: 10px;
             }
         }
+    }
+}
+::ng-deep .p-dialog-header {
+    .p-dialog-header-icon {
+        position: absolute;
+        right: 25px;
+        top: 15px;
     }
 }
 .dialog-footer {

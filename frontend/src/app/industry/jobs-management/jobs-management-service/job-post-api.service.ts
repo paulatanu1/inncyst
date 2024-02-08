@@ -30,8 +30,6 @@ export class JobPostApiService {
       education: '',
       experience:0
     };
-    console.log(payloadObj, 'payloadObj');
-
     payloadData.type = payloadObj.type;
     payloadData.details = payloadObj.details;
     payloadData.skills = payloadObj.skills;
@@ -50,12 +48,10 @@ export class JobPostApiService {
     payloadData.experienceTime=payloadObj.experienceTime
     payloadData.education=payloadObj.education
     payloadData.experience=payloadObj.experience
-    console.log(payloadData);
 
     return this.apiCall.ApiCallWithLocalization(payloadData, url, 'put');
   }
 internshipSubmit(data:any){
-  console.log(data)
   let url = '/industry/submit-post'
   return this.apiCall.ApiCallWithLocalization(data, url, 'post');
 }
@@ -63,14 +59,12 @@ internshipSubmit(data:any){
 
   saveJob(payloadObj:any){
     let url = '/industry/add-post';
-    console.log(payloadObj);
     return this.apiCall.ApiCallWithLocalization(payloadObj,url,'post')
   }
 
   
   saveJob2(payloadObj:any){
     let url = '/industry/add-post';
-    console.log(payloadObj);
     return this.apiCall.ApiCallWithLocalization(payloadObj,url,'post')
   }
   editedJob(id:any,payloadObj:any){

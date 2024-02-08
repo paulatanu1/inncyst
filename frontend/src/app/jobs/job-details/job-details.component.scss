@@ -1,34 +1,54 @@
 .job_details_sec {
     margin-top: 120px;
+
     .job_details_sec_inner {
         width: 100%;
         max-width: 1297px;
         margin: 0 auto;
-        padding-top: 30px;
+        padding: 30px;
+
         .job_details_head {
             display: flex;
-            flex-direction: column;
-            border-bottom:1px solid rgba(231, 230, 230, 1);
+            // flex-direction: column;
+            border-bottom: 1px solid rgba(231, 230, 230, 1);
             margin-bottom: 20px;
             padding-bottom: 15px;
+
+            .company-logo {
+                width: 100px;
+                height: 100px;
+                background-color: #0d92bc38;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
             span {
                 margin-right: 30px;
                 text-transform: capitalize;
             }
+
             h2 {
-                font-size:24px;
+                font-size: 24px;
                 font-weight: 700;
                 line-height: 36px;
                 text-transform: uppercase;
             }
+
             p {
                 margin-bottom: 5px;
+
                 span {
                     font-size: 16px;
                     font-weight: 400;
                     line-height: 22px;
                     text-transform: capitalize;
                     position: relative;
+
                     &:nth-child(2n):before {
                         content: '';
                         position: absolute;
@@ -41,12 +61,14 @@
                     }
                 }
             }
-        }  
+        }
+
         ul.jobType_setup {
             display: flex;
             flex-direction: row;
             padding: 0;
-            margin:35px 0;
+            margin: 35px 0;
+
             li {
                 list-style-type: none;
                 padding: 12px 15px;
@@ -58,7 +80,7 @@
                 font-weight: 700;
                 line-height: 30px;
                 text-transform: capitalize;
-                
+
                 span {
                     display: block;
                     color: rgba(94, 99, 104, 1);
@@ -68,8 +90,10 @@
                 }
             }
         }
-        .job_para{
+
+        .job_para {
             margin-bottom: 20px;
+
             strong {
                 display: block;
                 font-size: 17px;
@@ -77,9 +101,11 @@
                 font-weight: 700;
                 margin-bottom: 15px;
             }
+
             ul {
                 li {
                     margin-bottom: 5px;
+
                     strong {
                         margin-bottom: 0;
                         font-size: 14px;
@@ -87,7 +113,7 @@
                 }
             }
         }
-        
+
         .overview {
             h3 {
                 font-size: 18px;
@@ -96,6 +122,7 @@
                 text-transform: capitalize;
             }
         }
+
         .apply_btn {
             button {
                 border-radius: 5px;
@@ -105,7 +132,7 @@
                 font-style: normal;
                 font-weight: 500;
                 line-height: 24px;
-                padding:10px 20px
+                padding: 10px 20px
             }
         }
     }

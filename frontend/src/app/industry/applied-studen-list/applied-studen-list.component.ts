@@ -30,17 +30,13 @@ studentPortfolioData:any=[]
             this.studentListData=res.data
             this.studentPortfolioData=res.data[0].portfolioData
 
-            console.log(this.studentPortfolioData)
             this.studentListData.forEach((item:any,index:any)=>{
-              console.log(item.userId)
-              console.log(item.userId.image)
               // let img='/'+item.userId.image.split('/').slice(-1)
               // console.log(img)
               // item.userId.image = environment.API_URL + img;
               // item.resume = environment.API_URL + item.resume;
 
             })
-            console.log(this.studentListData)
             this.studentPortfolioData.forEach((item:any)=>{
               item.pdf = environment.API_URL + item.pdf;
               item.image = environment.API_URL + item.image;
@@ -49,7 +45,6 @@ studentPortfolioData:any=[]
               if(youtubeEndPonint !== undefined && youtubeEndPonint[0] !== ''){
 
                 item.youtubeUrl='https://www.youtube-nocookie.com/embed/'+youtubeEndPonint;
-                console.log(item.youtubeUrl)
               }
               // console.log(item.youtubeUrl)
             })
@@ -81,13 +76,10 @@ studentPortfolioData:any=[]
   }
   statusChange(e:any,id:any){
     this.selectedStatus=e.value.value
-    console.log(this.selectedStatus)
     const formData:any = new Object()
     formData.applicationStatus=this.selectedStatus
     this._JobListApiService.editStudentStatus(id,formData).subscribe({
       next:(res=>{
-
-      console.log(res)  
       this.editDialog=false
       this._toast.showToaster.next({
         severity: 'success',

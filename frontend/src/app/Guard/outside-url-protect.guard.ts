@@ -25,7 +25,6 @@ this.login_token=<string>ls.get('login_token')
 //   }
 // });
 this.previousUrl=this.loginService.getPreviousUrl();
-console.log(this.loginService.getPreviousUrl(),'abcd')
 }
 
 // getPreviousUrl(): string {
@@ -45,7 +44,6 @@ console.log(this.loginService.getPreviousUrl(),'abcd')
     detail: 'Access Denied: Sorry!! After login You do not have permission to view this page . ',
   });
   this.router.navigateByUrl(this.loginService.getPreviousUrl())
-  console.log(this.loginService.getPreviousUrl(),'abcde')
   return false 
 
 }

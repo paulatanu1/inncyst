@@ -75,9 +75,7 @@ export class MyProfileComponent implements OnInit {
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
-        console.log(this.ProfileDetails,'pd')
  this.imagePath=this.ProfileDetails.image
-        // console.log(this.ProfileDetails, 'ProfileDetails');
         if (this.ProfileDetails) {
           this.imagePath = this.ProfileDetails.image;
           this.description = this.ProfileDetails.description;

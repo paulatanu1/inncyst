@@ -88,7 +88,6 @@ export class ProtfolioDetailsComponent implements OnInit {
       youtubeUrl: [''],
       selectedItem: [],
     });
-    console.log(this.obj);
 
     this.uploadItem = [
       { name: 'Pdf' },
@@ -104,12 +103,11 @@ export class ProtfolioDetailsComponent implements OnInit {
   selectItem(e: any, id: number) {
     // this.myForm.get('selectedItem')?.patchValue(e.value.name);
     // console.log(e.value.name);
-    this.selectedItem = e.value.name;
+this.selectedItem = e.value.name;
     // console.log(this.myForm.value.selectedItem);
   }
   selectItemPortfolio(e: any, id: number) {
     this.selectedPortfolioStatus = e.value.value;
-    console.log(this.selectedPortfolioStatus);
   }
 
   //IMAGE UPLOAD START...................................................
@@ -119,7 +117,6 @@ export class ProtfolioDetailsComponent implements OnInit {
       // this.imgArray[index] = file;
       // this.obj.image = this.imgObj;
       this.myForm.get('image')?.setValue(this.imgObj);
-      console.log(this.myForm.value);
     } else {
       this._toast.showToaster.next({
         severity: 'error',
@@ -140,7 +137,6 @@ export class ProtfolioDetailsComponent implements OnInit {
     this.obj.image = {};
     // this.imgArray.splice(i, 1);
     // this.obj.image = this.imgArray;
-    console.log(this.obj);
   }
   // addImage() {
   //   this.imgArray.push(null);
@@ -151,8 +147,6 @@ export class ProtfolioDetailsComponent implements OnInit {
 
   pdfSelected(e: any) {
     const selectedFile = e.target.files[0];
-    console.log(selectedFile);
-
     if (selectedFile.size <= this.pdfMaxSize) {
       this.pdfObj = selectedFile;
 
@@ -160,7 +154,6 @@ export class ProtfolioDetailsComponent implements OnInit {
 
       // Optionally, update the form control value
       this.myForm.patchValue({ pdf: this.pdfObj });
-      console.log(this.myForm.value);
 
       // Perform any other actions with this.pdfObj if needed
     } else {
@@ -185,17 +178,14 @@ export class ProtfolioDetailsComponent implements OnInit {
     // this.obj.pdf = this.pdfObj;
     this.myForm.get('pdf')?.setValue(null);
     // this.obj.uploadedItm[0];
-    console.log(this.myForm.value);
   }
 
   //END PDF PORTION.........................................
 
   //URL PORTION START......................
   urlChange(e: any) {
-    console.log(e.target.value, 'e');
     // this.obj.url = e.target.value;
     this.myForm.get('url')?.setValue(e.target.value);
-    console.log(this.obj);
   }
 
   // addUrl() {
@@ -219,7 +209,6 @@ export class ProtfolioDetailsComponent implements OnInit {
   //VIDEO PORTION START..............................
 
   videoSelected(e: any) {
-    console.log(e, 'e');
     if (e.target.files[0].size <= this.videoMaxSize) {
       let input: any = e.target as HTMLInputElement;
       this.videoInput = input?.files[0];
@@ -282,7 +271,6 @@ export class ProtfolioDetailsComponent implements OnInit {
   }
     //UPLOAD PROTFOLIO TO THE SERVER....................................
   onSubmit(){
-    console.log(this.myForm.value)
     this.loading=true;
 
     const formData = new FormData();
@@ -297,7 +285,6 @@ export class ProtfolioDetailsComponent implements OnInit {
 this.portfolio.addPortfolio(formData).subscribe({
   next:(res=>{
     this.loading=false;
-    console.log(res,'121')
     this.portfolio.hideAddPortfolioModal.next(false)
     this._toast.showToaster.next({
       severity: 'success',

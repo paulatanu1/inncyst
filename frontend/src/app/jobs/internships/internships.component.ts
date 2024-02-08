@@ -156,6 +156,13 @@ rightSideLoadding=false;
       this.page=0;
     this.AllJbDetaails();
   }
+  clearSearchList(){
+    if(this.location == ''){
+      this.AllJobDetails = [];
+      this.page=0;
+      this.AllJbDetaails();
+    }
+  }
   resetUrl() {
     this.type = '';
     this.jobType = '';
@@ -181,7 +188,6 @@ rightSideLoadding=false;
         this.totalJob = res.data.total;
         this.leftSideListLoadding=false;
         // this.rightSideLoadding=false;
-        console.log(this.AllJobDetails,'ad')
         this.AllJobDetails.forEach((element: any) => {
           element.companyName = element?.companyName?.toUpperCase();
           element.intranshipName = element?.intranshipName?.toUpperCase();
@@ -213,14 +219,12 @@ rightSideLoadding=false;
             },
             error: (err) => {
               this.rightSideLoadding=false
-              console.log(err.error.message);
             },
           });
         }
       },
       error: (err) => {
         this.leftSideListLoadding=false
-        console.log(err.error.message);
         if (err.error.message == 'jwt expired') {
           ls.clear();
           ls.remove('logoutSuccess');
@@ -247,7 +251,6 @@ rightSideLoadding=false;
       next: (res) => {
         this.rightSideLoadding=false;
         let id = res.data._id;
-        console.log(id, 'id');
         this.jobService.getSelectedJobId(res.data._id);
         this.singleJobDetails = [];
         this.singleJobDetails.push(res.data);
@@ -256,11 +259,9 @@ rightSideLoadding=false;
           element.intranshipName = element?.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
         });
-        console.log(this.singleJobDetails, 'res');
       },
       error: (err) => {
         this.rightSideLoadding=false
-        console.log(err);
       },
     });
   }
@@ -268,12 +269,8 @@ rightSideLoadding=false;
     this.internshipService.customHeader.next(true);
   }
   onScroll() {
-    console.log(this.sort, 'sort');
-    console.log(this.sorting);
-
     if (this.totalJob > this.AllJobDetails.length) {
       this.page++;
-      console.log(this.page);
       this.AllJbDetaails();
     }
   }

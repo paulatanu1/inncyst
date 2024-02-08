@@ -2,27 +2,27 @@
   <h1>please {{ profileData ? "update" : "complete" }} your profile........</h1>
   <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
     <div>
-      <label>Compnany Name</label>
+      <label>Compnany Name <sup>*</sup></label>
       <input pInputText type="text" formControlName="companyName" />
     </div>
     <div>
-      <label>Compnany established Year</label>
+      <label>Compnany established Year <sup>*</sup></label>
       <input type="text" formControlName="companyEstdYear" />
     </div>
     <div>
-      <label>Compnany Details</label>
+      <label>Compnany Details <sup>*</sup></label>
       <input pInputText type="text" formControlName="aboutCompany" />
     </div>
     <div>
-      <label>Compnany employee</label>
+      <label>Compnany employee <sup>*</sup></label>
       <input pInputText type="number" formControlName="empCount" />
     </div>
     <div>
-      <label>Compnany workplace</label>
+      <label>Compnany workplace <sup>*</sup></label>
       <input pInputText type="text" formControlName="workPlace" />
     </div>
     <div>
-      <label>Branch Office</label>
+      <label>Branch Office </label>
       <input pInputText type="text" formControlName="branchOffice" />
     </div>
     <div>
@@ -30,7 +30,7 @@
       <input pInputText type="text" formControlName="corporateOffice" />
     </div>
     <div>
-      <input type="file" (change)="onFileSelected($event)" />
+      <input type="file" (change)="onFileSelected($event)" /><sup>*</sup>
       <!-- <button (click)="uploadImage()">Upload Image</button> -->
     </div>
 
@@ -66,26 +66,26 @@
   <h1>please {{ profileData ? "update" : "complete" }} your profile........</h1>
   <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
     <div>
-      <label>Compnany Name</label>
+      <label>Compnany Name <sup>*</sup></label>
       <input pInputText type="text" formControlName="companyName" />
     </div>
     <div>
-      <label>Compnany established Year</label>
+      <label>Compnany established Year <sup>*</sup></label>
       <input pInputText type="text" formControlName="companyEstdYear" />
     </div>
     <div>
-      <label>Compnany Details</label>
+      <label>Compnany Details <sup>*</sup></label>
       <textarea pInputText type="text" formControlName="aboutCompany" >
 
       </textarea>
       
     </div>
     <div>
-      <label>Compnany employee</label>
+      <label>Compnany employee <sup>*</sup></label>
       <input pInputText type="number" formControlName="empCount" />
     </div>
     <div>
-      <label>Compnany workplace</label>
+      <label>Compnany workplace <sup>*</sup></label>
       <input pInputText type="text" formControlName="workPlace" />
     </div>
     <div>

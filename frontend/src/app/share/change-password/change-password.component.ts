@@ -25,7 +25,6 @@ export class ChangePasswordComponent implements OnInit {
     private _menuHandel: LeftMenuHandelService
   ) {
     this.type=<string>ls.get('role')
-    console.log(this.type)
     if(this.type == 'industry'){
       this.userTypeChecking=false
     }else{

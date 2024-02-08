@@ -4,54 +4,77 @@
 <section class="job_details_sec">
   <div class="job_details_sec_inner" *ngFor="let a of singleJobDetails">
     <div class="job_details_head">
-    <h2>{{ a.company.companyName }}</h2>
-    <p>
-      <span>{{a.location}}</span>
-      <span>{{ a.intranshipType }}</span>
-    </p>
-    <p>
-      <span>Posted 5 hours ago</span>
-      <span>{{a.jobOpening}} applicants</span>
-    </p>
+      <div class="company-logo">
+        <img [src]="a.company.image" alt="company logo" />
+      </div>
+      <div>
+        <h2>{{ a.company.companyName }}</h2>
+        <p>
+          <span>{{ a.location }}</span>
+          <span>{{ a.intranshipType }}</span>
+        </p>
+        <p>
+          <span>Posted {{ calculateDaysAgo(a.createdAt) }} days ago</span>
+          <span>{{ a.jobOpening }} applicants</span>
+        </p>
+      </div>
     </div>
     <ul class="jobType_setup">
       <li>
-        <span>Job Type</span> {{a.type}}
+        <span>Job Type</span>
+        {{ a.type }}
       </li>
       <li>
-        <span>Job Setup</span> {{a.intranshipType}}
+        <span>Job Setup</span>
+        {{ a.intranshipType }}
       </li>
       <li>
-        <span>Experience Level</span> {{ a.experience }} {{ a.experienceTime }}
+        <span>Experience Level</span>
+        {{ a.experience }} {{ a.experienceTime }}
       </li>
       <li>
-        <span>Salary Offer</span> {{ a.salary }} / month
+        <span>Salary Offer</span>
+        {{ a.salary }} / month
       </li>
     </ul>
     <div class="job_para">
-      <strong>Job Description</strong>
-      {{a.details}}
+      <strong>Job Description :</strong>
+      <p [innerHTML]="a.details">
+
+      </p>
     </div>
     <div class="job_para">
-      <strong>Responsibilities</strong>
+      <strong>Responsibilities :</strong>
       <ul *ngFor="let item of a.responsibilities">
-        <li>
-          {{ item }}
+        <li [innerHTML]="item">
+        
         </li>
       </ul>
     </div>
     <div class="job_para">
-      <strong>Requirements</strong>
+      <strong>Requirements :</strong>
       <ul>
         <li>{{ a.education }}</li>
-        <li>{{ a.coverLetter.availability }}</li>
-        <li>{{ a.coverLetter.letter }}</li>
-        <li><strong> Skills :</strong> <span class="tags">
-          <span *ngFor="let b of a.skills">{{ b }}</span>
-        </span></li>
+        <li *ngIf="a.coverLetter.availability">
+          {{ a.coverLetter.availability }}
+        </li>
+        <li *ngIf="a.coverLetter.letter">{{ a.coverLetter.letter }}</li>
+        <!-- <li>
+          <span class="tags">
+            <span >{{ b }}</span>
+          </span>
+        </li> -->
+      </ul>
+      <strong>Skills :</strong>
+      <ul>
+        <li *ngFor="let skill of a.skills">{{ skill }}</li>
+      </ul>
+      <strong>Perks :</strong>
+      <ul>
+        <li *ngFor="let perk of a.perks">{{ perk }}</li>
       </ul>
     </div>
-    <div class="overview">      
+    <div class="overview">
       <!-- <ul>
             <span>Annual CTC breakup:</span>
             <li>1. Fixed component: 80%</li>
@@ -80,9 +103,11 @@
           </li>
         </ul>
       </div> -->
-     
+
       <div class="apply_btn">
-        <button [disabled]="applied" type="button" (click)="applyJob()">Apply Now</button>
+        <button [disabled]="applied" type="button" (click)="applyJob()">
+          Apply Now
+        </button>
       </div>
     </div>
   </div>
@@ -96,11 +121,11 @@
   [draggable]="false"
 >
   <ng-template pTemplate="header">
-    <h2>
-      Applying for {{ singleJobDetails[0].details }}
-      <!-- {{singleJobDetails[0].type}} -->
-      <!-- <span>{{ singleJobDetails[0].companyName }}</span> -->
-    </h2>
+    <!-- <h2>
+      Applying for {{ singleJobDetails[0].details }} -->
+    <!-- {{singleJobDetails[0].type}} -->
+    <!-- <span>{{ singleJobDetails[0].companyName }}</span> -->
+    <!-- </h2> -->
   </ng-template>
   <div>
     <!-- <p-steps
@@ -109,7 +134,7 @@
       [readonly]="false"
     ></p-steps> -->
   </div>
-<app-upload-resume-step></app-upload-resume-step>
+  <app-upload-resume-step></app-upload-resume-step>
 </p-dialog>
 
 <app-footer></app-footer>

@@ -17,7 +17,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { AppliedStudenListComponent } from './applied-studen-list/applied-studen-list.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { IndustryProfileComponent } from './industry-profile/industry-profile.component';
-
+import { EditorModule } from 'primeng/editor';
 @NgModule({
   declarations: [
     IndustryComponent,
@@ -38,7 +38,7 @@ import { IndustryProfileComponent } from './industry-profile/industry-profile.co
     FormsModule,
     InputSwitchModule,
     SplitButtonModule,
-    ReactiveFormsModule,InfiniteScrollModule,PdfViewerModule
+    ReactiveFormsModule,InfiniteScrollModule,PdfViewerModule,EditorModule
   ],
   exports: [InputSwitchModule, SplitButtonModule, SharedModule],
 })
