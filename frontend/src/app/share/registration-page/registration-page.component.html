@@ -116,6 +116,17 @@
               <label for="float-input">Confirm Password</label>
             </span>
             <div
+            class="error_msg"
+            *ngIf="
+              (isSubmited && registerForm.get('confirmPassword')?.invalid) ||
+              (registerForm.get('confirmPassword')?.invalid &&
+                (registerForm.get('confirmPassword')?.dirty ||
+                  registerForm.get('confirmPassword')?.touched))
+            "
+          >
+          Confirm Passsword is Required
+          </div>
+            <div
               *ngIf="submitted && registerForm.get('confirmPassword')?.errors"
               class="alert alert-danger error_msg"
             >
