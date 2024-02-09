@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import ls from 'localstorage-slim';
+import { Observable } from 'rxjs';
 import { ToastServiceService } from '../service/toast-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserVerificationGuard implements CanActivate {
+export class IndustryCheckGuard implements CanActivate {
   userType!:string
   login_token!:string
   constructor(private _toast:ToastServiceService,private router:Router)
@@ -17,23 +18,14 @@ export class UserVerificationGuard implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot):boolean {
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-      //Allow access if userType = student
-    if(this.userType == 'student'){
-      return true;
-    }
-     else{
-      //prevent allow access if userType is !=student
-      this._toast.showToaster.next({
-        severity: 'error',
-        summary: 'error',
-        detail: 'Access Denied: You do not have permission to view this page. ',
-      });
-      this.router.navigateByUrl('/home')
+    if(this.userType === 'industry' && this.login_token){
+      this.router.navigateByUrl('/industry')
       return false
     }
+      return true;
+
   }
+  
 }
-
-

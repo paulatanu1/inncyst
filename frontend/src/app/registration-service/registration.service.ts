@@ -16,7 +16,6 @@ export class RegistrationService {
     form_data.phone = phoneNumber.toString();
     form_data.password = password;
     form_data.role = userRole
-console.log(form_data,'rupam')
     return this.api.ApiCallWithLocalization(form_data, url, 'post')
   }
 }

@@ -57,7 +57,6 @@ export class LoginComponent implements OnInit {
     private _LoginEnablerService:LoginEnablerService
   ) {
  this.abc=this.loginService.getPreviousUrl();
-console.log(this.abc,'abc')
     this.options = [{ name: 'Select the option', code: '0' }];
 
     this.loginOptionType = [
@@ -134,7 +133,6 @@ console.log(this.abc,'abc')
       let userRole = this.loginForm.get('options')?.value;
       this.loginService.login(userEmail, password, userRole).subscribe({
         next: (res) => {
-          console.log(res)
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
           ls.set('questionStep',res.data.question_step)
@@ -166,7 +164,6 @@ console.log(this.abc,'abc')
         },
         error: (err) => {
 
-          console.log(err.error.message);
           if(err.error.message == 'Please varify your email and phone'){
             this._LoginEnablerService.otpPage.next(true)
             this._LoginEnablerService.loginFlow.next(false)

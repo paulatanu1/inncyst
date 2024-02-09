@@ -40,8 +40,6 @@ export class IndustryProfileComponent implements OnInit {
   ngOnInit(): void {
     this._menuHandel.leftMenuActive.next(3)
     this.id = ls.get('id');
-    console.log(this.id);
-    console.log(this.questionStep);
     this.profileForm = this.fb.group({
       companyName: [''],
       companyEstdYear: [undefined],
@@ -54,14 +52,12 @@ export class IndustryProfileComponent implements OnInit {
     });
   }
   submitForm() {
-    console.log(this.profileForm.value);
     const form_Data = new Object();
     if (!this.questionStep) {
       this._ProfileService
         .EditProfile(this.profileForm.value, this.id)
         .subscribe({
           next: (res) => {
-            console.log(res, 'edit');
             this._toast.showToaster.next({
               severity: 'success',
               summary: 'success',
@@ -89,13 +85,11 @@ export class IndustryProfileComponent implements OnInit {
 
     // }
     // else if(this.profileData.industryId.question_step || this.profileData == null){
-    alert('oo');
     if (this.questionStep) {
       this._ProfileService
         .EditProfile(this.profileForm.value, this.profileData._id)
         .subscribe({
           next: (res) => {
-            console.log(res, 'edit');
             this._toast.showToaster.next({
               severity: 'success',
               summary: 'success',
@@ -121,15 +115,12 @@ export class IndustryProfileComponent implements OnInit {
     this.loading=true
     this._ProfileService.getProfile().subscribe({
       next: (res) => {
-        console.log(res);
         this.profileData = res.data;
         this.questionStep = res.data?.industryId.question_step;
-        console.log(this.profileData);
-        
+        this._ProfileService.profileImage.next(this.profileData.image)
+        this._ProfileService.profileName.next(this.profileData.companyName)
         this.loading=false
-        console.log(res.data.industryId.question_step)
         ls.set('questionStep',res.data.industryId.question_step)
-        console.log(ls.get('questionStep'))
         if (this.profileData) {
           this.profileForm.get('companyName')?.setValue(res.data?.companyName);
           this.profileForm
@@ -175,7 +166,6 @@ export class IndustryProfileComponent implements OnInit {
 
     reader.onload = (e: any) => {
       this.base64 = e.target.result as string;
-      console.log(this.base64, 'b64');
       this.profileForm.get('image')?.patchValue(this.base64);
     };
 
@@ -183,10 +173,8 @@ export class IndustryProfileComponent implements OnInit {
   }
 
   addPortfolio() {
-    console.log(this.profileForm.value);
     this._ProfileService.profile(this.profileForm.value).subscribe({
       next: (res) => {
-        console.log(res);
         ls.set('questionStep', true);
         this._toast.showToaster.next({
           severity: 'success',

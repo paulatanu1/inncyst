@@ -16,7 +16,6 @@ export class RefreshGuard implements CanActivate {
   canActivate(): boolean {
     // const performance = window.performance || window.msPerformance || window.webkitPerformance;
     if (performance && performance.navigation.type == 1) {
-      console.log(performance.navigation);
       // Page is being refreshed (type 1 is a page reload)
       this.router.navigate(['/jobs/my-jobs']); // Navigate to the parent route
       return true; // Preven activation of the current route

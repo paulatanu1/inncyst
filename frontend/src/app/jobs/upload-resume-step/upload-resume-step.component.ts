@@ -56,7 +56,6 @@ this.activatedRoute.params.subscribe({
       next:(res=>{
         this.userLoginDetails=res.data;
         this.jobId=res.data._id
-        console.log(this.userLoginDetails,'logindetails')
       })
     })
   }
@@ -68,7 +67,6 @@ this.activatedRoute.params.subscribe({
     this.selectedFile = event.target.files[0];
      this.fileName=this.selectedFile.name;
      this.convertToBase64();
-    // console.log(this.selectedFile);
   }
 
   convertToBase64() {
@@ -80,7 +78,6 @@ this.activatedRoute.params.subscribe({
 
     reader.onload = (e:any) => {
       this.base64 = e.target.result as string;
-      console.log(this.base64);
     };
 
     reader.readAsDataURL(this.selectedFile);
@@ -99,10 +96,8 @@ this.activatedRoute.params.subscribe({
       alert(this.appliedJobId)
       form_data.jobId=this.appliedJobId;
       form_data.resume=this.base64;
-      console.log(form_data,'jobId')
       this.jobService.uploadResume(form_data).subscribe({
         next: ((res:any) => {
-          console.log(res);
           this.resumeUploadSucess = true;
           this._toast.showToaster.next({
             severity: 'success',
@@ -131,11 +126,9 @@ this.activatedRoute.params.subscribe({
       availability_message: this.availability_messageValue,
       jobId: this.appliedJobId,
     };
-    console.log(details);
     if (this.resumeUploadSucess) {
       this.jobService.applyJob(details).subscribe({
         next: (res:any) => {
-          console.log(res);
           this._toast.showToaster.next({
             severity: 'success',
             summary: 'success',
@@ -144,8 +137,6 @@ this.activatedRoute.params.subscribe({
           this.jobService.afterSuccessApplyJobCloseModal.next(true);
         },
         error: (res:any) => {
-          console.log(res);
-        
             this._toast.showToaster.next({
               severity: 'error',
               summary: 'error',

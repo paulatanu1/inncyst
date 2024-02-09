@@ -25,8 +25,6 @@ export class LoginApiService {
     this.currentUrl = this.router.url;
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) { 
-        console.log(this.previousUrl,'previous url')
-        console.log(event.url)       
         // this.previousUrl = this.currentUrl;
         this.currentUrl = event.url;
       };
@@ -81,7 +79,6 @@ return this.api.ApiCallWithLocalization(form_data,this.url,'put')
     const form_data:any=new Object()
 form_data.old_password=data.oldPassword;
 form_data.new_password=data.confirmPassword
-    console.log(form_data,'form_data')
     return this.api.ApiCallWithLocalization(form_data,url,'post')
 
   }
