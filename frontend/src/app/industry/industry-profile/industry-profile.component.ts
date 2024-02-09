@@ -5,11 +5,36 @@ import { Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import ls from 'localstorage-slim';
 import { LeftMenuHandelService } from '../left-menu-handel.service';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-industry-profile',
   templateUrl: './industry-profile.component.html',
   styleUrls: ['./industry-profile.component.scss'],
+  animations: [
+    trigger('buttonAnimation', [
+      state(
+        'visible',
+        style({
+          opacity: 1,
+        })
+      ),
+      state(
+        'hidden',
+        style({
+          opacity: 0,
+        })
+      ),
+      transition('visible => hidden', animate('0.5s ease-in-out')),
+      transition('hidden => visible', animate('0.5s ease-in-out')),
+    ]),
+  ],
 })
 export class IndustryProfileComponent implements OnInit {
   profileForm!: FormGroup;
@@ -23,13 +48,13 @@ export class IndustryProfileComponent implements OnInit {
   editProfileData = false;
   openImageUploadButton = false;
   viewProfile = true;
-  loading=false
+  loading = false;
   constructor(
     private fb: FormBuilder,
     private _ProfileService: ProfileService,
     private router: Router,
     private _toast: ToastServiceService,
-    private _menuHandel:LeftMenuHandelService
+    private _menuHandel: LeftMenuHandelService
   ) {
     this.questionStep = ls.get('questionStep');
     if (this.questionStep) {
@@ -38,7 +63,7 @@ export class IndustryProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._menuHandel.leftMenuActive.next(3)
+    this._menuHandel.leftMenuActive.next(3);
     this.id = ls.get('id');
     this.profileForm = this.fb.group({
       companyName: [''],
@@ -47,8 +72,8 @@ export class IndustryProfileComponent implements OnInit {
       empCount: [undefined],
       workPlace: [''],
       image: [''],
-      branchOffice:[''],
-      corporateOffice:['']
+      branchOffice: [''],
+      corporateOffice: [''],
     });
   }
   submitForm() {
@@ -67,8 +92,7 @@ export class IndustryProfileComponent implements OnInit {
             this.submitButton = false;
             this.viewProfile = true;
             this.getProfile();
-            ls.set('questionStep',true)
-
+            ls.set('questionStep', true);
           },
           error: (err) => {
             this._toast.showToaster.next({
@@ -112,15 +136,15 @@ export class IndustryProfileComponent implements OnInit {
     }
   }
   getProfile() {
-    this.loading=true
+    this.loading = true;
     this._ProfileService.getProfile().subscribe({
       next: (res) => {
         this.profileData = res.data;
         this.questionStep = res.data?.industryId.question_step;
-        this._ProfileService.profileImage.next(this.profileData.image)
-        this._ProfileService.profileName.next(this.profileData.companyName)
-        this.loading=false
-        ls.set('questionStep',res.data.industryId.question_step)
+        this._ProfileService.profileImage.next(this.profileData.image);
+        this._ProfileService.profileName.next(this.profileData.companyName);
+        this.loading = false;
+        ls.set('questionStep', res.data.industryId.question_step);
         if (this.profileData) {
           this.profileForm.get('companyName')?.setValue(res.data?.companyName);
           this.profileForm
@@ -132,8 +156,12 @@ export class IndustryProfileComponent implements OnInit {
           this.profileForm.get('empCount')?.setValue(res.data?.empCount);
           this.profileForm.get('workPlace')?.setValue(res.data?.workPlace);
           this.profileForm.get('image')?.setValue(res.data?.image);
-          this.profileForm.get('branchOffice')?.setValue(res.data?.branchOffice)
-          this.profileForm.get('corporateOffice')?.setValue(res.data?.corporateOffice)
+          this.profileForm
+            .get('branchOffice')
+            ?.setValue(res.data?.branchOffice);
+          this.profileForm
+            .get('corporateOffice')
+            ?.setValue(res.data?.corporateOffice);
 
           this.profileForm.disable();
         }
@@ -183,7 +211,7 @@ export class IndustryProfileComponent implements OnInit {
         });
         // this.router.navigateByUrl('/industry/jobs');
         this.submitButton = false;
-        ls.set('questionStep',true)
+        ls.set('questionStep', true);
         this.getProfile();
       },
       error: (err) => {

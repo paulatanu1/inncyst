@@ -125,3 +125,8 @@ button {
 .some-class {
   print-color-adjust: exact;
 }
+
+
+::ng-deep .p-dialog .p-dialog-header {
+  padding: 0 !important;
+}
