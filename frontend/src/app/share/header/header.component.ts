@@ -75,6 +75,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   customHeader: boolean = true;
   @ViewChild('slideMenu') slidemenu!: SlideMenu;
   isMenuOpen: boolean = true;
+  profileImage:any;
   //Outputs
   constructor(
     private otpService: OtpVerificationService,
@@ -92,6 +93,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
     private cdk: ChangeDetectorRef
   ) {
     //check allready login user or not
+    this.profileImage=ls.get('profileImage')
     this.logInToken = ls.get('login_token');
     if (this.logInToken) {
       this.logoutSuccess = true;

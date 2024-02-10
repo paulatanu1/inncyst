@@ -184,9 +184,13 @@
         </form>
 
         <div (click)="registrationLoginOption()" class="login-area mb-3 mt-3">
-          <a href="javascript:void(0)" (click)="redirectToLogin()">
+          <a href="javascript:void(0)" [routerLink]="['/Login']">
             Already registered?
             <span>Login</span>
+          </a>
+          <a href="javascript:void(0)" [routerLink]="['/home']" style="display: block;">
+           <span>Back to Home</span>
+          
           </a>
         </div>
       </div>
@@ -201,7 +205,7 @@
 ></app-registration-otp> -->
 
 <!-- hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
-{{otpPageOpen}}
+
 <div class="otp-wrapper" *ngIf="otpPageOpen">
   <div class="left-section">
     <div class="left-image-wrapper">
@@ -276,7 +280,7 @@
       <!-- </form> -->
 
       <div class="login-area mb-3 mt-3">
-        <a href="#">
+        <a [routerLink]="['/Login']">
           <span>Back to login</span>
         </a>
       </div>

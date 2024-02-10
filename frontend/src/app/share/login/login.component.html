@@ -17,7 +17,7 @@
         </div>
         <div class="col-12 md:col-12 mt-3 mb-4 full-width">
           <span class="p-float-label">
-            <p-password formControlName="password"></p-password>
+            <p-password formControlName="password" [feedback]="false"></p-password>
             <label for="float-input">Password</label>
           </span>
         </div>
@@ -51,6 +51,7 @@
           <span>Sign Up</span>
         </a>
         <p (click)="fogotPassword()">forgot password</p>
+        <button [routerLink]="['/home']">Back to Home</button>
       </div>
     </div>
   </div>
@@ -121,6 +122,7 @@
           ><img src="../../../assets/right-arrow.svg" />Back to login</a
         ></span
       >
+     
     </div>
   </div>
 </section>

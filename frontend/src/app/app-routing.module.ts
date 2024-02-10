@@ -10,6 +10,9 @@ import { ProtfolioComponent } from './share/protfolio/protfolio.component';
 import { OutsideUrlProtectGuard } from './Guard/outside-url-protect.guard';
 import { IndustryVerificationGuard } from './Guard/industry-verification.guard';
 import { IndustryCheckGuard } from './Guard/industry-check.guard';
+import { LoginModule } from './login/login.module';
+import { LoginModuleComponent } from './login-module/login-module.component';
+import { LoginModuleModule } from './login-module/login-module.module';
 
 const routes: Routes = [
   {
@@ -55,11 +58,16 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'login',
-    loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginModule),
+    path:'Login',loadChildren:()=>
+      import('./login-module/login-module.module').then((m)=>m.LoginModuleModule),
     
   },
+  // {
+  //   path: 'login',
+  //   loadChildren: () =>
+  //     import('./login/login.module').then((m) => m.LoginModule),
+    
+  // },
   {
     path: 'industry',
     loadChildren: () =>
@@ -79,6 +87,7 @@ const routes: Routes = [
     component: ChangePasswordComponent,
     canActivate: [AuthenticateGuard],
   },
+  { path: 'newLogin', loadChildren: () => import('./login-module/login-module.module').then(m => m.LoginModuleModule) },
   {
     path: '**',
     component: PageNotFoundComponent,
