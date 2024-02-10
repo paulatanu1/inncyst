@@ -13,11 +13,20 @@ import { IndustryReportsComponent } from './industry-reports/industry-reports.co
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { JobsManagementComponent } from './jobs-management/jobs-management.component';
-import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppliedStudenListComponent } from './applied-studen-list/applied-studen-list.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { IndustryProfileComponent } from './industry-profile/industry-profile.component';
 import { EditorModule } from 'primeng/editor';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
+import { PanelModule } from 'primeng/panel';
+import { ImageModule } from 'primeng/image';
+
 @NgModule({
   declarations: [
     IndustryComponent,
@@ -38,7 +47,18 @@ import { EditorModule } from 'primeng/editor';
     FormsModule,
     InputSwitchModule,
     SplitButtonModule,
-    ReactiveFormsModule,InfiniteScrollModule,PdfViewerModule,EditorModule
+    ReactiveFormsModule,
+    InfiniteScrollModule,
+    PdfViewerModule,
+    EditorModule,
+    InputTextModule,
+    InputNumberModule,
+    FileUploadModule,
+    ButtonModule,
+    DropdownModule,
+    CalendarModule,
+    PanelModule,
+    ImageModule,
   ],
   exports: [InputSwitchModule, SplitButtonModule, SharedModule],
 })

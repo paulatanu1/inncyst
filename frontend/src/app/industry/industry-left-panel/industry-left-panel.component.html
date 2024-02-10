@@ -7,11 +7,10 @@
     /> -->
     <img
       [src]="profileImage"
-      
       class="brand-image-xs logo-xl"
       style="left: 12px;"
     />
-    <p>{{profileName}}</p>
+    <!-- <p>{{profileName}}</p> -->
   </a>
   <div class="sidebar">
     <nav class="mt-2">
@@ -26,7 +25,7 @@
           [routerLink]="['/industry']"
         >
           <a class="nav-link">
-            <i class="nav-icon fas fa-microchip"></i>
+            <i class="nav-icon fas fa-database"></i>
             <p>
               Dashboard
             </p>
@@ -38,7 +37,7 @@
           [routerLink]="['/industry/jobs']"
         >
           <a class="nav-link">
-            <i class="nav-icon fas fa-handshake"></i>
+            <i class="nav-icon fas fa-clipboard"></i>
             <p>
               Jobs
             </p>
@@ -57,42 +56,50 @@
           </a>
         </li> -->
         <li
-        class="nav-item"
-        [ngClass]="{ active: activeleftmenu == 3 }"
-        [routerLink]="['/industry/profile']"
-      >
-        <a class="nav-link">
-          <i class="nav-icon fas fa-copy"></i>
-          <p>
-            Profile
-          </p>
-        </a>
-      </li>
-      <li
-      class="nav-item"
-      [ngClass]="{ active: activeleftmenu == 5 }"
-      [routerLink]="['/industry/changePassword']"
-    >
-      <a class="nav-link">
-        <i class="nav-icon fas fa-copy"></i>
-        <p>
-          Change Password
-        </p>
-      </a>
-    </li>
-      <li
-      class="nav-item"
-      [ngClass]="{ active: activeleftmenu == 4 }"
-      
-    >
-      <a class="nav-link">
-        <i class="nav-icon fas fa-copy"></i>
-        <p (click)="logout()">
-          logout
-        </p>
-      </a>
-    </li>
-      
+          class="nav-item"
+          [ngClass]="{ active: activeleftmenu == 3 }"
+          [routerLink]="['/industry/profile']"
+        >
+          <a class="nav-link">
+            <<<<<<< HEAD
+            <i class="nav-icon fas fa-user"></i>
+            =======
+            <i class="nav-icon fas fa-copy"></i>
+            >>>>>>> 20230209-atanu-01
+            <p>
+              Profile
+            </p>
+          </a>
+        </li>
+        <li
+          class="nav-item"
+          [ngClass]="{ active: activeleftmenu == 5 }"
+          [routerLink]="['/industry/changePassword']"
+        >
+          <a class="nav-link">
+            <<<<<<< HEAD
+            <i class="nav-icon fas fa-key"></i>
+            =======
+            <i class="nav-icon fas fa-copy"></i>
+            >>>>>>> 20230209-atanu-01
+            <p>
+              Change Password
+            </p>
+          </a>
+        </li>
+        <li class="nav-item" [ngClass]="{ active: activeleftmenu == 4 }">
+          <a class="nav-link">
+            <<<<<<< HEAD
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            =======
+            <i class="nav-icon fas fa-copy"></i>
+            >>>>>>> 20230209-atanu-01
+            <p (click)="logout()">
+              logout
+            </p>
+          </a>
+        </li>
+        <<<<<<< HEAD ======= >>>>>>> 20230209-atanu-01
         <!-- <li class="nav-item">
           <a class="nav-link">
             <i class="nav-icon fas fa-th"></i>
