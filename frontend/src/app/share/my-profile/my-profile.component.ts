@@ -52,10 +52,21 @@ export class MyProfileComponent implements OnInit {
   ) {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
-      skills: this.formBuilder.array([new FormControl()]), // Initialize as an empty array
-      location: [''],
       phone: ['', Validators.required],
       email: ['', Validators.required],
+      location: [''],
+      gender:[''],
+      age:[''],
+      areaOfInterest:[''],
+      project:[''],
+      achivements:[''],
+      about:[''],
+
+      stream:[''],
+      branch:[''],
+      institution:[''],
+
+      skills: this.formBuilder.array([new FormControl()]), // Initialize as an empty array   
       image: [''],
       description: [''],
     });
@@ -92,7 +103,7 @@ export class MyProfileComponent implements OnInit {
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
- this.imagePath=this.ProfileDetails.image
+        this.imagePath=this.ProfileDetails?.image;
         if (this.ProfileDetails) {
           this.imagePath = this.ProfileDetails.image;
           this.description = this.ProfileDetails.description;
