@@ -24,6 +24,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SanitizerUrlPipe } from './pipe/sanitizer-url.pipe';
 import { MatSliderModule } from '@angular/material/slider';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ProtfolioComponent,
     ProtfolioDetailsComponent,
     SanitizerUrlPipe,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
       multi: true,
     },
     NgOtpInputModule,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
