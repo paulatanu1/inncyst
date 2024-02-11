@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import ls from 'localstorage-slim';
 
 @Component({
   selector: 'app-apply-section',
@@ -7,15 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplySectionComponent implements OnInit {
   isRegisterModal:boolean = false;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
 
   openModal(){
-    this.isRegisterModal = true;
+if(ls.get('login_token')){
+  this.router.navigateByUrl('/jobs/posts')
+}
+  else{
+    this.router.navigateByUrl('/registeration')
+
   }
+    // this.isRegisterModal = true;
+  }
+
+
   onhideModal(){
     this.isRegisterModal = false;
   }

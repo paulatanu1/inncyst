@@ -284,10 +284,11 @@ this._login.loginFlow.subscribe({
         command: () => {
           this.userType = ls.get('userType');
 
-          if (this.logInToken && this.userType == 'student') {
-            this.router.navigateByUrl('jobs/posts');
-          } else if (!this.logInToken && !this.userType) {
-            this.router.navigateByUrl('jobs/basicInternship');
+          if (ls.get('login_token') ) {
+            this.router.navigateByUrl('/jobs/posts');
+          } else if (!ls.get('login_token') ) {
+
+            this.router.navigateByUrl('/registeration');
           }
         },
       },

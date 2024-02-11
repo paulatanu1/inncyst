@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { InternshipProfileService } from '../service/internship-profile.service';
 import { Subscription } from 'rxjs';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
@@ -52,7 +52,7 @@ export class MyProfileComponent implements OnInit {
   ) {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
-      skills: [[]], // Initialize as an empty array
+      skills: this.formBuilder.array([new FormControl()]), // Initialize as an empty array
       location: [''],
       phone: ['', Validators.required],
       email: ['', Validators.required],
@@ -70,7 +70,23 @@ export class MyProfileComponent implements OnInit {
       }
     });
   }
-
+  get skillsArray() {
+    return this.profileForm.get('skills') as FormArray;
+  }
+ 
+  getSkillsArrayControls() {
+    return (this.profileForm.get('skills') as FormArray).controls;
+  }
+ 
+  addnewSkill() {
+    this.skillsArray.push(new FormControl());
+    console.log(this.profileForm.value);
+  }
+  removeSkill(index: any) {
+    this.skillsArray.removeAt(index);
+    console.log(this.profileForm.value);
+  }
+ 
   getProfileDetails() {
     this.profile = this.internship
       .sendInternshipProfileRequest()

@@ -1,40 +1,6 @@
 <div *ngIf="!questionStep">
   <h1>please {{ profileData ? 'update' : 'complete' }} your profile.</h1>
-  <!-- <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
-    <div>
-      <label>Compnany Name <sup>*</sup></label>
-      <input pInputText type="text" formControlName="companyName" />
-    </div>
-    <div>
-      <label>Compnany established Year <sup>*</sup></label>
-      <input type="text" formControlName="companyEstdYear" />
-    </div>
-    <div>
-      <label>Compnany Details <sup>*</sup></label>
-      <input pInputText type="text" formControlName="aboutCompany" />
-    </div>
-    <div>
-      <label>Compnany employee <sup>*</sup></label>
-      <input pInputText type="number" formControlName="empCount" />
-    </div>
-    <div>
-      <label>Compnany workplace <sup>*</sup></label>
-      <input pInputText type="text" formControlName="workPlace" />
-    </div>
-    <div>
-      <label>Branch Office </label>
-      <input pInputText type="text" formControlName="branchOffice" />
-    </div>
-    <div>
-      <label>Corporate Office</label>
-      <input pInputText type="text" formControlName="corporateOffice" />
-    </div>
-    <div>
-      <input type="file" (change)="onFileSelected($event)" /><sup>*</sup>
-    </div>
-  </form> -->
-
-  <!-- app.component.html -->
+  
   <form
     [formGroup]="profileForm"
     (ngSubmit)="submitForm()"

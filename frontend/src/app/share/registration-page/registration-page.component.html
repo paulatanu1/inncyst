@@ -1,4 +1,4 @@
-<app-header></app-header>
+
 <div class="container-fluid" *ngIf="signupPageHide">
   <div class="sign-up-wrapper">
     <div class="left-section">
@@ -94,7 +94,7 @@
             <span class="p-float-label">
               <p-password
                 formControlName="password"
-                [toggleMask]="true"
+                [toggleMask]="true" [feedback]="false"
               ></p-password>
               <label for="float-input">Password</label>
             </span>
@@ -112,7 +112,7 @@
           </div>
           <div class="col-12 md:col-12 mt-3 mb-4 full-width">
             <span class="p-float-label">
-              <p-password formControlName="confirmPassword"></p-password>
+              <p-password formControlName="confirmPassword" [feedback]="false" [toggleMask]="true"></p-password>
               <label for="float-input">Confirm Password</label>
             </span>
             <div
@@ -287,4 +287,4 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

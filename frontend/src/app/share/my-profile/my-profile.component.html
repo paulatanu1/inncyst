@@ -147,9 +147,38 @@
         </p-fieldset>
         <p-fieldset legend="Skills" [toggleable]="true">
           <div class="formGroup">
-            <p-chips separator=" " placeholder="Hint: graphics, html, css" formControlName="skills"></p-chips>
+
+            <ng-container formArrayName="skills">
+              <div style="display: block; margin-top: 6px">
+              <span
+                  style="color: red; margin-left: 15px; display: inline-block"
+                  (click)="addnewSkill()"
+                  >Add more</span
+                >
+              </div>
+              <div
+                *ngFor="let skill of getSkillsArrayControls(); let i = index"
+                style="margin-top: 7px"
+              >
+                <input
+                  type="text"
+                  [formControlName]="i"
+                  style="display: inline-block; margin-top: 5px"
+                />
+                <button
+                  (click)="removeSkill(i)"
+                  style="color: red; margin-left: 15px; font-size: 18px"
+                >
+                  X
+                </button>
+              </div>
+            </ng-container>
+
+
+
+            <!-- <p-chips separator=" " placeholder="Hint: graphics, html, css" formControlName="skills"></p-chips> -->
           </div>     
-          <span>Please add <strong>space</strong> after adding any skills</span>
+          <!-- <span>Please add <strong>space</strong> after adding any skills</span> -->
         </p-fieldset>
         <!-- <input
           type="text"
