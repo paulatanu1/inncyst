@@ -195,66 +195,22 @@
     display: flex;
     align-items: flex-start;
     gap: 35px;
-
-    .left-section {
-        flex: 0 0 35%;
-
-        .file-upload-wrapper {
-            position: relative;
-            border-radius: 8px;
-            border: 1px solid #d3d5d9;
-            height: 39px;
-            background: #eee;
-            margin-top: 40px;
-
-            input[type=file] {
-                display: block;
-                width: auto;
-                font-size: 16px;
-                position: absolute;
-                // visibility: hidden;
-            }
-
-            label {
-                color: #81808d;
-                font-size: 13px;
-                line-height: 38px;
-                height: 38px;
-                padding: 0 12px;
-                margin: 0;
-                font-weight: 400;
-                -webkit-appearance: none;
-                border-radius: 8px 0 0 8px;
-                cursor: not-allowed;
-                float: left;
-                width: 165px;
-                overflow: hidden;
-            }
-
-            button {
-                cursor: pointer;
-                display: inline-block;
-                color: #fff;
-                font-size: 13px;
-                line-height: 38px;
-                text-transform: uppercase;
-                padding: 0 10px;
-                border: none;
-                margin-left: -1px;
-                float: right;
-                -o-transition: all .2s ease-in;
-                -webkit-transition: all .2s ease-in;
-                transition: all .2s ease-in;
-                border-radius: 0 7px 7px 0;
-                background-color: #9696a9;
-                height: 38px;
+    .right-section {
+        flex: 0 0 100%;
+        .formGroup {
+            margin-bottom:25px;
+            & > span {
+                width: 100%;
             }
         }
-    }
-
-    .right-section {
-        flex: 0 0 60%;
-
+        ::ng-deep .p-float-label {
+            input {
+                width: 100%;
+            }
+            label {
+                font-size: 13px;
+            }
+        }
         ::ng-deep .p-inputwrapper {
             width: 100%;
 
@@ -266,7 +222,20 @@
                 }
             }
         }
-
+        ::ng-deep .p-fieldset {
+            padding: 10px;
+            .p-fieldset-legend {
+                float: none;
+                width: auto;
+                font-size: 14px;
+                a {
+                    text-decoration: none;
+                }
+            }
+            .p-fieldset-content {
+                padding-bottom: 0;
+            }
+        }
         .p-input-icon-left {
             input {
                 width: 100%;

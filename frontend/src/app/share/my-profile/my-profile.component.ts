@@ -8,6 +8,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { environment } from 'src/environments/environment';
 
+
 interface IprofileDetails {
   name: string;
   email: string;
