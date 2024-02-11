@@ -198,7 +198,7 @@
     .right-section {
         flex: 0 0 100%;
         .formGroup {
-            margin-bottom: 10px;
+            margin-bottom:25px;
             & > span {
                 width: 100%;
             }
@@ -206,6 +206,9 @@
         ::ng-deep .p-float-label {
             input {
                 width: 100%;
+            }
+            label {
+                font-size: 13px;
             }
         }
         ::ng-deep .p-inputwrapper {
@@ -219,7 +222,20 @@
                 }
             }
         }
-
+        ::ng-deep .p-fieldset {
+            padding: 10px;
+            .p-fieldset-legend {
+                float: none;
+                width: auto;
+                font-size: 14px;
+                a {
+                    text-decoration: none;
+                }
+            }
+            .p-fieldset-content {
+                padding-bottom: 0;
+            }
+        }
         .p-input-icon-left {
             input {
                 width: 100%;
