@@ -1,41 +1,25 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary is-leftSidebarPanel">
   <a class="brand-link logo-switch">
     <!-- <img
       src="/docs/3.2/assets/img/logo-xs.png"
       alt="AdminLTE Docs Logo Small"
       class="brand-image-xl logo-xs"
     /> -->
-    <img
-      [src]="profileImage"
-      class="brand-image-xs logo-xl"
-      style="left: 12px;"
-    />
+    <img [src]="profileImage" class="brand-image-xs logo-xl" style="left: 12px;" />
     <!-- <p>{{profileName}}</p> -->
   </a>
   <div class="sidebar">
     <nav class="mt-2">
-      <ul
-        class="nav nav-pills nav-sidebar nav-child-indent flex-column"
-        data-widget="treeview"
-        role="menu"
-      >
-        <li
-          class="nav-item"
-          [ngClass]="{ active: activeleftmenu === 0 }"
-          [routerLink]="['/industry']"
-        >
+      <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu">
+        <li class="nav-item" [ngClass]="{ active: activeleftmenu === 0 }" [routerLink]="['/industry']">
           <a class="nav-link">
-            <i class="nav-icon fas fa-database"></i>
+            <i class="nav-icon fa fa-th-large fa-regular"></i>
             <p>
               Dashboard
             </p>
           </a>
         </li>
-        <li
-          [ngClass]="{ active: activeleftmenu == 1 }"
-          class="nav-item"
-          [routerLink]="['/industry/jobs']"
-        >
+        <li [ngClass]="{ active: activeleftmenu == 1 }" class="nav-item" [routerLink]="['/industry/jobs']">
           <a class="nav-link">
             <i class="nav-icon fas fa-clipboard"></i>
             <p>
@@ -55,27 +39,17 @@
             </p>
           </a>
         </li> -->
-        <li
-          class="nav-item"
-          [ngClass]="{ active: activeleftmenu == 3 }"
-          [routerLink]="['/industry/profile']"
-        >
+        <li class="nav-item" [ngClass]="{ active: activeleftmenu == 3 }" [routerLink]="['/industry/profile']">
           <a class="nav-link">
             <i class="nav-icon fas fa-user"></i>
-            <i class="nav-icon fas fa-copy"></i>
             <p>
               Profile
             </p>
           </a>
         </li>
-        <li
-          class="nav-item"
-          [ngClass]="{ active: activeleftmenu == 5 }"
-          [routerLink]="['/industry/changePassword']"
-        >
+        <li class="nav-item" [ngClass]="{ active: activeleftmenu == 5 }" [routerLink]="['/industry/changePassword']">
           <a class="nav-link">
             <i class="nav-icon fas fa-key"></i>
-            <i class="nav-icon fas fa-copy"></i>
             <p>
               Change Password
             </p>
@@ -84,14 +58,27 @@
         <li class="nav-item" [ngClass]="{ active: activeleftmenu == 4 }">
           <a class="nav-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>
-            <i class="nav-icon fas fa-copy"></i>
             <p (click)="logout()">
               logout
             </p>
           </a>
         </li>
-       
+
       </ul>
     </nav>
+
+    <div class="leftbottom-card">
+      <div class="box">
+        <div class="icon">
+          <i class="fas fa-question"></i>
+        </div>
+        <div class="desc">
+          <span>Lorem Ipsum</span>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit</p>
+        </div>
+        <button>Go To Here</button>
+      </div>
+    </div>
+
   </div>
 </aside>

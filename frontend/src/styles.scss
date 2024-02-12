@@ -130,3 +130,32 @@ button {
 ::ng-deep .p-dialog .p-dialog-header {
   padding: 0 !important;
 }
+
+body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse .main-sidebar li.nav-item {
+  margin: 0.5rem 0 ;
+}
+
+.os-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse  img.brand-image-xs {
+  padding-left: 7px;
+  padding-right: 7px;
+  max-height: 36px;
+  object-fit: contain;
+  visibility: visible;
+  animation-name: fadeIn;
+  left: 0px !important;
+}
+
+body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse a.brand-link.logo-switch::before {
+  display: none;
+}
+
+body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse .leftbottom-card {
+  visibility: hidden;
+}
+
