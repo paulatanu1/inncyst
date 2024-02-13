@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { environment } from 'src/environments/environment';
+import { DatePipe } from '@angular/common';
 
 
 interface IprofileDetails {
@@ -48,21 +49,19 @@ export class MyProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private _toast: ToastServiceService
+    private _toast: ToastServiceService,
+    private datePipe: DatePipe
   ) {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
       phone: ['', Validators.required],
       email: ['', Validators.required],
       location: [''],
-      gender:[''],
+      gender:['male'],
       age:[''],
       areaOfInterest:[''],
-      project:[''],
-      achivements:[''],
-      about:[''],
-
-      stream:[''],
+      semester:['1'],
+            stream:[''],
       branch:[''],
       institution:[''],
 
@@ -71,7 +70,30 @@ export class MyProfileComponent implements OnInit {
       description: [''],
     });
   }
+  genderList=[
+    {name:'Male',value:'male'},
+    {name:'Female',value:'female'},
+    {name:'Cant say',value:'cantsay'}
+  ]
+  branchList=[
+    {name:'Kolkata',value:'kolkata'},
+    {name:'Delhi',value:'delhi'},  
+  ]
+  streamList=[
+    {name:'BCA',value:'bca'},
+    {name:'MCA',value:'mca'}, 
+  ]
+  semesterList=[
+    {name:'I',value:'1'},
+    {name:'II',value:'2'},
+    {name:'III',value:'3'},
+    {name:'IV',value:'4'},
+    {name:'V',value:'5'},
+    {name:'VI',value:'6'},
+    {name:'VII',value:'7'},
+    {name:'VIII',value:'8'},
 
+  ]
   ngOnInit(): void {
     this.getProfileDetails();
     //for scroll issue
@@ -137,8 +159,15 @@ export class MyProfileComponent implements OnInit {
   openEdit() {
     this.editProfile = true;
   }
+  dateSelect(e:any){
+    const date = this.datePipe.transform(e, 'yyy-MM-dd')
+    console.log(date)
+    // console.log(e)
+    this.profileForm.get('age')?.setValue(date)
+  }
 
   onSubmit() {
+    console.log(this.profileForm.value)
     if (this.imagePath) {
       this.profileForm.get('image')?.setValue(this.imagePath);
     }

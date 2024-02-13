@@ -106,8 +106,91 @@
             </span>
           </div>
         </p-fieldset>
+        
+        <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <p-dropdown
+              [options]="genderList"
+              optionLabel="name"
+              optionValue="value"
+              formControlName="gender"
+            ></p-dropdown>
 
-        <p-fieldset legend="Work Experience" [toggleable]="true">
+              <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your gender" formControlName="gender" /> -->
+            </span>
+          </div>
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+
+              <p-calendar formControlName="age" dateFormat="mm-dd-yy" (onSelect)="dateSelect($event)" placeholder="select your DOB"></p-calendar>
+              <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your age" formControlName="age" /> -->
+            </span>
+          </div>
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your interest" formControlName="areaOfInterest" />
+            </span>
+          </div>
+    
+          
+          
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <p-dropdown
+              [options]="streamList"
+              optionLabel="name"
+              optionValue="value"
+              formControlName="stream"
+            ></p-dropdown>
+
+              <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your stream" formControlName="stream" /> -->
+            </span>
+          </div>
+
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+
+              <p-dropdown
+              [options]="branchList"
+              optionLabel="name"
+              optionValue="value"
+              formControlName="branch"
+            ></p-dropdown>
+
+              <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your branch" formControlName="branch" /> -->
+            </span>
+          </div>
+
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your institution name" formControlName="institution" />
+            </span>
+          </div>
+
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+
+              <p-dropdown
+              [options]="semesterList"
+              optionLabel="name"
+              optionValue="value"
+              formControlName="semester"
+            ></p-dropdown>
+
+              <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your semester" formControlName="semester" /> -->
+            </span>
+          </div>
+
+          
+
+        <!-- <p-fieldset legend="Work Experience" [toggleable]="true">
           <div class="formGroup">
             <span class="p-float-label">
               <input id="float-input" type="text" pInputText>
@@ -130,8 +213,8 @@
             <p-editor [style]="{'height':'320px'}"></p-editor>
           </div>
           
-        </p-fieldset>
-        <p-fieldset legend="Education" [toggleable]="true">
+        </p-fieldset> -->
+        <!-- <p-fieldset legend="Education" [toggleable]="true">
           <div class="formGroup">
             <span class="p-float-label">
               <input id="float-input" type="text" pInputText>
@@ -144,7 +227,7 @@
               <label for="float-input">Board Name</label>
             </span>
           </div>
-        </p-fieldset>
+        </p-fieldset> -->
         <p-fieldset legend="Skills" [toggleable]="true">
           <div class="formGroup">
 

@@ -15,6 +15,7 @@ export class InternshipProfileService {
   }
 
   EditProfile(data:any){
+    console.log(data)
     const form_data:any = new Object();
     form_data.name=data.name
     form_data.email=data.email;
