@@ -25,7 +25,8 @@ import { SanitizerUrlPipe } from './pipe/sanitizer-url.pipe';
 import { MatSliderModule } from '@angular/material/slider';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import {FieldsetModule} from 'primeng/fieldset';
-
+import { TabViewModule } from 'primeng/tabview';
+import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {FieldsetModule} from 'primeng/fieldset';
     ProtfolioDetailsComponent,
     SanitizerUrlPipe,
     ErrorPageComponent,
+    UploadcvComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import {FieldsetModule} from 'primeng/fieldset';
     EditorModule,
     PdfViewerModule,
     MatSliderModule,
-    FieldsetModule
+    FieldsetModule,
+    TabViewModule
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [

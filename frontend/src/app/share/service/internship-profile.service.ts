@@ -24,7 +24,21 @@ export class InternshipProfileService {
     form_data.skills=data.skills;
     form_data.location=data.location;
     form_data.description=data.description
+    form_data.dob=data.dob;
+    form_data.areaOfInterest=data.areaOfInterest;
+    form_data.branch=data.branch;
+    form_data.gender=data.gender;
+    form_data.institution=data.institution;
+    form_data.semester=data.semester;
+    form_data.stream=data.stream;
     let url='/auth/edit-profile'
   return this.api.ApiCallWithLocalization(form_data,url,'put')
+}
+uploadResume(data:any){
+  console.log(data);
+  const form_data:any = new Object();
+  form_data.resume=data
+  let url="/user-resume";
+  return this.api.ApiCallWithLocalization(form_data,url,'post')
 }
 }

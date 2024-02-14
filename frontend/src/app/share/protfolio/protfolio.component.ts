@@ -253,6 +253,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     if (e.target.files[0].size <= this.pdfMaxSize) {
       this.pdfObj = e.target.files[0];
       this.editDialogForm.get('pdf')?.setValue(this.pdfObj);
+      console.log(this.editDialogForm.value)
     } else {
       this._toast.showToaster.next({
         severity: 'error',

@@ -58,17 +58,18 @@ export class MyProfileComponent implements OnInit {
       email: ['', Validators.required],
       location: [''],
       gender:['male'],
-      age:[''],
+      dob:[''],
       areaOfInterest:[''],
       semester:['1'],
             stream:[''],
-      branch:[''],
+      branch:['kolkata'],
       institution:[''],
 
       skills: this.formBuilder.array([new FormControl()]), // Initialize as an empty array   
       image: [''],
       description: [''],
     });
+    this.getProfileDetails();
   }
   genderList=[
     {name:'Male',value:'male'},
@@ -125,24 +126,33 @@ export class MyProfileComponent implements OnInit {
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
+        console.log(response.data)
         this.imagePath=this.ProfileDetails?.image;
         if (this.ProfileDetails) {
           this.imagePath = this.ProfileDetails.image;
           this.description = this.ProfileDetails.description;
           this.skillSet = this.ProfileDetails.skills;
           this.profileForm.get('name')?.patchValue(this.ProfileDetails.name);
-          
-          this.profileForm.get('description')?.patchValue(this.ProfileDetails.description);
-          
-          this.profileForm.get('location')?.patchValue(this.ProfileDetails.location)
-          
           this.profileForm.get('phone')?.patchValue(this.ProfileDetails.phone)
           
           this.profileForm.get('email')?.patchValue(this.ProfileDetails.email)
+         
           
+          this.profileForm.get('location')?.patchValue(this.ProfileDetails.location)
+          this.profileForm.get('gender:')?.patchValue(this.ProfileDetails.gender);
+          this.profileForm.get('dob:')?.patchValue(this.ProfileDetails.image);
+          this.profileForm.get('areaOfInterest:')?.patchValue(this.ProfileDetails.areaOfInterest);
+          this.profileForm.get('semester:')?.patchValue(this.ProfileDetails.semester);
+          this.profileForm.get('stream:')?.patchValue(this.ProfileDetails.stream);
+          this.profileForm.get('branch:')?.patchValue(this.ProfileDetails.branch);
+          this.profileForm.get('institution:')?.patchValue(this.ProfileDetails.institution);
+          this.profileForm.get('skills: ')?.patchValue(this.ProfileDetails.skills);
+
+
+          this.profileForm.get('image')?.patchValue(this.ProfileDetails.image);
+          this.profileForm.get('description')?.patchValue(this.ProfileDetails.description);
           // this.profileForm.get('image')?.patchValue(this.ProfileDetails.image)
-          this.profileForm.get('skills')?.patchValue(this.ProfileDetails.skills)
-         this.profileForm.get('image')?.patchValue(this.ProfileDetails.image);
+        
         }
    
       });
@@ -163,7 +173,8 @@ export class MyProfileComponent implements OnInit {
     const date = this.datePipe.transform(e, 'yyy-MM-dd')
     console.log(date)
     // console.log(e)
-    this.profileForm.get('age')?.setValue(date)
+    this.profileForm.get('dob')?.setValue(date)
+    console.log(this.profileForm.value)
   }
 
   onSubmit() {

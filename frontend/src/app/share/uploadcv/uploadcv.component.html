@@ -1,0 +1,7 @@
+<p>uploadcv works!</p>
+<div>
+    <label>upload your resume......</label>
+    <input type="file" name="pdfFile" #fileInput id="pdfInput" formControlName="pdf" (change)="pdfSelected($event)"
+    accept=".pdf" />
+    <button (click)="pdfSubmit()">Submit</button>
+</div>
