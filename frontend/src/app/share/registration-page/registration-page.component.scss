@@ -10,7 +10,7 @@
 }
 
 .sign-up-wrapper {
-  margin-top: 116px;
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -373,4 +373,32 @@
   background: #522d80;
   margin: 0 auto;
   border-radius: 10px;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 10px 30px;
+  transition: 0.3s all ease-in-out;
+  color: rgb(0 0 0);
+  border-radius: 4px;
+  box-shadow: 2px 3px 2px 0px #ddd;
+}
+
+.back-btn:hover {
+  background: #8cd3f636;
+  transition: 0.3s all ease-in-out;
+  color: #522d80;
+}
+
+.back-btn:hover i {
+  color: #522d80;
+}
+
+.back-btn i {
+  padding-right: 5px;
+}
+
+.back {
+  color: rgb(0, 0, 0);
 }

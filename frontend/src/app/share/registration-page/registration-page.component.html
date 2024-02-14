@@ -1,4 +1,3 @@
-
 <div class="container-fluid" *ngIf="signupPageHide">
   <div class="sign-up-wrapper">
     <div class="left-section">
@@ -94,7 +93,8 @@
             <span class="p-float-label">
               <p-password
                 formControlName="password"
-                [toggleMask]="true" [feedback]="false"
+                [toggleMask]="true"
+                [feedback]="false"
               ></p-password>
               <label for="float-input">Password</label>
             </span>
@@ -112,20 +112,24 @@
           </div>
           <div class="col-12 md:col-12 mt-3 mb-4 full-width">
             <span class="p-float-label">
-              <p-password formControlName="confirmPassword" [feedback]="false" [toggleMask]="true"></p-password>
+              <p-password
+                formControlName="confirmPassword"
+                [feedback]="false"
+                [toggleMask]="true"
+              ></p-password>
               <label for="float-input">Confirm Password</label>
             </span>
             <div
-            class="error_msg"
-            *ngIf="
-              (isSubmited && registerForm.get('confirmPassword')?.invalid) ||
-              (registerForm.get('confirmPassword')?.invalid &&
-                (registerForm.get('confirmPassword')?.dirty ||
-                  registerForm.get('confirmPassword')?.touched))
-            "
-          >
-          Confirm Passsword is Required
-          </div>
+              class="error_msg"
+              *ngIf="
+                (isSubmited && registerForm.get('confirmPassword')?.invalid) ||
+                (registerForm.get('confirmPassword')?.invalid &&
+                  (registerForm.get('confirmPassword')?.dirty ||
+                    registerForm.get('confirmPassword')?.touched))
+              "
+            >
+              Confirm Passsword is Required
+            </div>
             <div
               *ngIf="submitted && registerForm.get('confirmPassword')?.errors"
               class="alert alert-danger error_msg"
@@ -147,7 +151,7 @@
           <div class="col-12 md:col-12 mt-3 mb-4 dropdown-full-width mt-5">
             <span class="p-float-label">
               <label class="dropdown-lable-field" for="float-input">
-                Select The correct option
+                Signup as
               </label>
               <p-dropdown
                 [options]="option"
@@ -184,27 +188,25 @@
         </form>
 
         <div (click)="registrationLoginOption()" class="login-area mb-3 mt-3">
-          <a href="javascript:void(0)" [routerLink]="['/Login']">
+          <a [routerLink]="['/Login']">
             Already registered?
             <span>Login</span>
           </a>
-          <a href="javascript:void(0)" [routerLink]="['/home']" style="display: block;">
-           <span>Back to Home</span>
-          
-          </a>
+          <div class="text-center mt-2">
+            <a
+              class="back-btn"
+              [routerLink]="['/home']"
+              style="display: inline-block;"
+            >
+              <i class="fa fa-arrow-left"></i>
+              <span class="back">Back to Home</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- <ng-otp-input  [formCtrl]="YourFormControl"  [config]="{length:5}"></ng-otp-input> -->
-
-<!-- <app-registration-otp
-  (OtpModal)="OtpModal($event)"
- 
-></app-registration-otp> -->
-
-<!-- hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
 
 <div class="otp-wrapper" *ngIf="otpPageOpen">
   <div class="left-section">
@@ -237,9 +239,9 @@
             ></ng-otp-input>
           </span>
         </div>
-        <div class="resend-section">
+        <div class="resend-section" (click)="resendOtp('email')">
           Didn’t received the code?
-          <a href="#">Resend Code</a>
+          <a>Resend Code</a>
         </div>
       </div>
       <div class="devider"></div>
@@ -249,7 +251,7 @@
             Enter the 4 digit OTP code sent at your Number
             <b>+91 {{ phone }}</b>
           </p>
-          <a class="cancel-btn" herf="#">Cancel</a>
+          <!-- <a class="cancel-btn">Cancel</a> -->
         </div>
         <div class="otp-input-section">
           <label class="field-label">
@@ -264,9 +266,9 @@
             ></ng-otp-input>
           </span>
         </div>
-        <div class="resend-section">
+        <div class="resend-section" (click)="resendOtp('phone')">
           Didn’t received the code?
-          <a href="">Resend Code</a>
+          <a>Resend Code</a>
         </div>
       </div>
       <div class="submit-btn">
