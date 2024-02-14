@@ -65,7 +65,7 @@ export class MyProfileComponent implements OnInit {
       branch:['kolkata'],
       institution:[''],
 
-      skills: this.formBuilder.array([new FormControl()]), // Initialize as an empty array   
+      skills: this.formBuilder.array([]), // Initialize as an empty array   
       image: [''],
       description: [''],
     });
@@ -134,27 +134,20 @@ export class MyProfileComponent implements OnInit {
           this.skillSet = this.ProfileDetails.skills;
           this.profileForm.get('name')?.patchValue(this.ProfileDetails.name);
           this.profileForm.get('phone')?.patchValue(this.ProfileDetails.phone)
-          
           this.profileForm.get('email')?.patchValue(this.ProfileDetails.email)
-         
-          
           this.profileForm.get('location')?.patchValue(this.ProfileDetails.location)
           this.profileForm.get('gender:')?.patchValue(this.ProfileDetails.gender);
-          this.profileForm.get('dob:')?.patchValue(this.ProfileDetails.image);
-          this.profileForm.get('areaOfInterest:')?.patchValue(this.ProfileDetails.areaOfInterest);
-          this.profileForm.get('semester:')?.patchValue(this.ProfileDetails.semester);
-          this.profileForm.get('stream:')?.patchValue(this.ProfileDetails.stream);
-          this.profileForm.get('branch:')?.patchValue(this.ProfileDetails.branch);
-          this.profileForm.get('institution:')?.patchValue(this.ProfileDetails.institution);
-          this.profileForm.get('skills: ')?.patchValue(this.ProfileDetails.skills);
-
-
+          this.profileForm.get('dob')?.patchValue(this.ProfileDetails.image);
+          this.profileForm.get('areaOfInterest')?.patchValue(this.ProfileDetails.areaOfInterest);
+          this.profileForm.get('semester')?.patchValue(this.ProfileDetails.semester);
+          this.profileForm.get('stream')?.patchValue(this.ProfileDetails.stream);
+          this.profileForm.get('branch')?.patchValue(this.ProfileDetails.branch);
+          this.profileForm.get('institution')?.patchValue(this.ProfileDetails.institution);
+          this.profileForm.get('skills')?.patchValue(this.ProfileDetails.skills);
           this.profileForm.get('image')?.patchValue(this.ProfileDetails.image);
           this.profileForm.get('description')?.patchValue(this.ProfileDetails.description);
           // this.profileForm.get('image')?.patchValue(this.ProfileDetails.image)
-        
         }
-   
       });
 
     //for scroll issue
@@ -165,7 +158,13 @@ export class MyProfileComponent implements OnInit {
       }
     });
   }
-
+  // get skills() {
+  //   return this.profile?.get('skills') as FormArray;
+  // }
+  // getskillsControl() {
+  //   return (this.profile?.get('skills') as FormArray).controls;
+  // }
+ 
   openEdit() {
     this.editProfile = true;
   }
