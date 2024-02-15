@@ -27,6 +27,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import {FieldsetModule} from 'primeng/fieldset';
 import { TabViewModule } from 'primeng/tabview';
 import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
+import { AddProjectComponent } from './share/add-project/add-project.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
     SanitizerUrlPipe,
     ErrorPageComponent,
     UploadcvComponent,
+    AddProjectComponent,
   ],
   imports: [
     BrowserModule,
