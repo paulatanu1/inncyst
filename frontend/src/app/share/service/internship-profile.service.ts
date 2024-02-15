@@ -38,7 +38,7 @@ uploadResume(data:any){
   console.log(data);
   const form_data:any = new Object();
   form_data.resume=data
-  let url="/user-resume";
+  let url="/student/user-resume";
   return this.api.ApiCallWithLocalization(form_data,url,'post')
 }
 }

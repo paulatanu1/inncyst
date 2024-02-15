@@ -1,17 +1,18 @@
 <app-header></app-header>
 
 <div style="margin-top: 100px;">
-  <p-tabView >
+  <p-tabView (onChange)="handleChange($event)" [selected]="status == 0">
 
-    <p-tabPanel header="Personal Information">
-      <section class="my_profile_sec" *ngIf="ProfileDetails">
+    <p-tabPanel header="Personal Information"  
+    >
+      <section class="my_profile_sec" *ngIf=" status == 0 && ProfileDetails">
         <div class="profile_whole_sec">
           <div class="my_profile_sec_inner">
             <div class="profile_img">
               <figure>
                 <img [src]="imagePath" alt="profile image" />
                 <span>
-                  {{ ProfileDetails.status ? 'Active' : 'Deactive' }}
+                  {{ ProfileDetails?.status ? 'Active' : 'Deactive' }}
                 </span>
               </figure>
             </div>
@@ -307,21 +308,19 @@
   <button type="submit" (click)="croppedComplete()">Cropped</button>
 </p-dialog>
   </p-tabPanel>
-  <p-tabPanel header="Upload your cv">
-    <p>
-     
-     <app-uploadcv></app-uploadcv>
-    </p>
+  <p-tabPanel header="Upload your cv" [selected]="status == 1">
+     <app-uploadcv *ngIf=" status == 1"></app-uploadcv>
+
   </p-tabPanel>
-  <p-tabPanel header="Project" >
-    <app-protfolio></app-protfolio>
+  <p-tabPanel header="Project"  [selected]="status == 2">
+    <app-protfolio *ngIf=" status == 2"></app-protfolio>
       <!-- <p>
           At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
           qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
       </p> -->
   </p-tabPanel>
-  <p-tabPanel header="Talent/Achivment">
-    <p>
+  <p-tabPanel header="Talent/Achivment"  [selected]="status == 3">
+    <p *ngIf=" status == 3">
       Comming Soon.................
     </p>
 </p-tabPanel>

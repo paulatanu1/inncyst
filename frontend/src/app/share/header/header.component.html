@@ -142,7 +142,7 @@
         </mat-icon>
       </button>
       <mat-menu #profileMenu="matMenu">
-        <button mat-menu-item [routerLink]="['/my-profile']">Profile</button>
+        <button mat-menu-item [routerLink]="['/my-profile']" [queryParams]="{ status:0 }">Profile</button>
         <button mat-menu-item [routerLink]="['/jobs/my-jobs']">
           Job Applyed
         </button>
