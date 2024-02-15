@@ -13,6 +13,7 @@ import { IndustryCheckGuard } from './Guard/industry-check.guard';
 import { LoginModule } from './login/login.module';
 import { LoginModuleComponent } from './login-module/login-module.component';
 import { LoginModuleModule } from './login-module/login-module.module';
+import { BasicProfileComponent } from './share/basic-profile/basic-profile.component';
 
 const routes: Routes = [
   {
@@ -76,7 +77,7 @@ const routes: Routes = [
   },
   {
     path: 'my-profile',
-    component: MyProfileComponent,
+    component: BasicProfileComponent,
     canActivate: [AuthenticateGuard],
   },
   {
