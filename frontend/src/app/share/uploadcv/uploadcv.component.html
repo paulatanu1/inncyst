@@ -1,7 +1,18 @@
-<p>uploadcv works!</p>
-<div>
+<div  *ngIf="!existingCv">
     <label>upload your resume......</label>
-    <input type="file" name="pdfFile" #fileInput id="pdfInput" formControlName="pdf" (change)="pdfSelected($event)"
+    <input type="file" name="pdfFile" #fileInput id="pdfInput"   (change)="pdfSelected($event)"
     accept=".pdf" />
     <button (click)="pdfSubmit()">Submit</button>
 </div>
+
+<div *ngIf="existingCv">
+    <button (click)="editedCv = true">Edit</button>
+ 
+    <pdf-viewer
+    [src]="existingCv"
+    [render-text]="true"
+    [original-size]="false"
+    style="width: 100%; height: 400px"
+  ></pdf-viewer>
+</div>
+

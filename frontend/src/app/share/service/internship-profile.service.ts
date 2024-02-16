@@ -14,6 +14,7 @@ export class InternshipProfileService {
     return this.api.ApiCallWithLocalization('', url, 'get');
   }
 
+
   EditProfile(data:any){
     console.log(data)
     const form_data:any = new Object();
@@ -40,5 +41,9 @@ uploadResume(data:any){
   form_data.resume=data
   let url="/student/user-resume";
   return this.api.ApiCallWithLocalization(form_data,url,'post')
+}
+getCv(){
+  let url="/student/user-resume";
+return this.api.ApiCallWithLocalization('',url,'get')
 }
 }

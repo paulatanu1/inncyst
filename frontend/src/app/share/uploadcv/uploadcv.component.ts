@@ -7,17 +7,27 @@ import { InternshipProfileService } from '../service/internship-profile.service'
 @Component({
   selector: 'app-uploadcv',
   templateUrl: './uploadcv.component.html',
-  styleUrls: ['./uploadcv.component.scss']
+  styleUrls: ['./uploadcv.component.scss'],
 })
 export class UploadcvComponent implements OnInit {
-
-  constructor( private _toast: ToastServiceService,private api: ApiService,private internship: InternshipProfileService) { }
+  constructor(
+    private _toast: ToastServiceService,
+    private api: ApiService,
+    private internship: InternshipProfileService
+  ) {}
   pdfMaxSize: number = 26214400;
-  pdfObj:any;
-resume:any
-@ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  pdfObj: any;
+  resume: any;
+  existingCv: any;
+  editedCv: boolean = false;
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   ngOnInit(): void {
+    this.internship.getCv().subscribe({
+      next: (res) => {
+        this.existingCv = res.data[0].resume;
+      },
+    });
   }
   pdfSelected(e: any) {
     const selectedFile = e.target.files[0];
@@ -35,51 +45,23 @@ resume:any
       this.fileInput.nativeElement.value = '';
     }
   }
-  pdfSubmit(){
-
+  pdfSubmit() {
     // const file = e.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
       const base64String = reader.result as string;
-      this.resume=base64String;
+      this.resume = base64String;
       console.log(this.resume);
       this.internship.uploadResume(this.resume).subscribe({
-        next:(res)=>{
-          console.log(res)
-        }
-      })
-   ;
+        next: (res) => {
+          console.log(res);
+        },
+      });
     };
-    if (
-      this.pdfObj
-    ) {
+    if (this.pdfObj) {
       reader.readAsDataURL(this.pdfObj);
     }
-
-    // form_data.resume=this.resume;
-
-    // const form_data:any = new FormData();
-
-    // form_data.append('resume',this.pdfObj)
-    // form_data.forEach((value: any,key: any)=>{
-    //   console.log(key,value)
-    // })
-
+  }
 
  
-
-
-  //   console.log(this.pdfObj)
-  //   const resume=this.pdfObj
-
-  //   const form_data:any = new Object();
-  //   form_data.resume=this.pdfObj;
-  //   console.log(form_data)
-  //   const url="/user-resume"
-  //  this.internship.uploadResume(form_data).subscribe({
-  //   next:(res)=>{
-  //     console.log(res)
-  //   }
-  //  })
-  }
 }
