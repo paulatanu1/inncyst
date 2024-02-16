@@ -5,6 +5,10 @@ import { ApiService } from 'src/app/common-service/api.service';
 import { JobPostListService } from './jobs-management-service/job-post-list.service';
 import { JobListApiService } from './posts/job-list-api.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectItem } from 'primeng/api';
+
+
 interface City {
   name: string;
   value: string;
@@ -16,6 +20,24 @@ interface City {
   encapsulation: ViewEncapsulation.None,
 })
 export class JobsManagementComponent implements OnInit {
+  sortOptions!: SelectItem[];
+  sortOrder!: number;
+  sortField!: string;
+  sortKey!: string;
+
+  onSortChange(event: any) {
+    let value = event.value;
+
+    if (value.indexOf('!') === 0) {
+        this.sortOrder = -1;
+        this.sortField = value.substring(1, value.length);
+    } else {
+        this.sortOrder = 1;
+        this.sortField = value;
+    }
+}
+
+  value: string | undefined;
   postList:any=[]
   visible: boolean = false;
   status!: City[];
@@ -146,6 +168,7 @@ jobTitle!:any
     },
     })
   }
+  
 
   studentList(id:any){
 this.router.navigate(['/industry/appliedStudentList'],{queryParams:{id:id}})

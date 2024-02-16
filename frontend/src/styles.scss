@@ -159,3 +159,27 @@ body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse .leftbottom-
   visibility: hidden;
 }
 
+.p-overlaypanel-content {
+  padding: 0.5rem 0rem !important;
+}
+
+.p-inputtext:enabled:focus {
+  border: 0;
+  box-shadow: none;
+}
+
+
+
+.layout-navbar-fixed .wrapper .main-header {
+  left: 0;
+  position: relative !important;
+  right: 0;
+  top: 0;
+  z-index: 1037;
+  border-bottom: 0 !important;
+}
+
+.main-footer {
+  border-top: 0;
+}
+
