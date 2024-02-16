@@ -165,7 +165,7 @@ this.profileForm.get('skills')?.valueChanges.subscribe({
           this.profileForm
             .get('gender:')
             ?.patchValue(this.ProfileDetails.gender);
-          this.profileForm.get('dob')?.patchValue(this.ProfileDetails.image);
+          this.profileForm.get('dob')?.patchValue(this.ProfileDetails.dob);
           this.profileForm
             .get('areaOfInterest')
             ?.patchValue(this.ProfileDetails.areaOfInterest);
