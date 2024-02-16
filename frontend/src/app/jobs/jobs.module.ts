@@ -28,6 +28,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { JobDetailsComponent } from './job-details/job-details.component';
+import { JobListProfileComponent } from './job-list-profile/job-list-profile.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { JobDetailsComponent } from './job-details/job-details.component';
     AppliedJobDetailsComponent,
     BasicJobComponent,
     JobDetailsComponent,
+    JobListProfileComponent,
   ],
   imports: [
     CommonModule,
