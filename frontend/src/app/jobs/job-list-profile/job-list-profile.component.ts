@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InternshipProfileService } from 'src/app/share/service/internship-profile.service';
 
 @Component({
   selector: 'app-job-list-profile',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobListProfileComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private internshipProfileService:InternshipProfileService) { }
+profileDetails!:any;
   ngOnInit(): void {
+    this.internshipProfileService.sendInternshipProfileRequest().subscribe({
+      next:(res)=>{
+        console.log(res.data)
+        this.profileDetails=res.data
+      }
+    })
   }
 
 }

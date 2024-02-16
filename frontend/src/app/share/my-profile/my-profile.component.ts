@@ -116,6 +116,11 @@ this.activatedRoute.queryParamMap.subscribe({
   },
 });
 
+this.profileForm.get('skills')?.valueChanges.subscribe({
+  next:(res)=>{
+    this.skillSet=res
+  }
+})
 
     this.getProfileDetails();
     //for scroll issue
@@ -145,7 +150,6 @@ this.activatedRoute.queryParamMap.subscribe({
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
-        console.log(this.ProfileDetails);
         this.imagePath = this.ProfileDetails?.image;
         if (this.ProfileDetails) {
           this.imagePath = this.ProfileDetails.image;
@@ -182,7 +186,6 @@ this.activatedRoute.queryParamMap.subscribe({
             .get('description')
             ?.patchValue(this.ProfileDetails.description);
 
-          console.log(this.skillLength);
           if (this.skillLength) {
             for (let i = 1; i <= this.skillLength; i++) {
              
@@ -210,9 +213,8 @@ this.activatedRoute.queryParamMap.subscribe({
     this.editProfile = true;
   }
   dateSelect(e: any) {
-    const date = this.datePipe.transform(e, 'yyy-MM-dd');
-    console.log(date);
-    // console.log(e)
+    console.log(e)
+    const date = this.datePipe.transform(e,'dd-MM-yyy');
     this.profileForm.get('dob')?.setValue(date);
   }
 
@@ -268,11 +270,7 @@ this.activatedRoute.queryParamMap.subscribe({
   ngOnDestroy() {
     this.profile?.unsubscribe();
   }
-  // change(status: string) {
-  //   this.status = status;
-  //   console.log(this.status)
-    
-  // }
+ 
   handleChange(e:any){
 this.status=e.index  
 const urlTree=this.router.parseUrl(this.router.url);

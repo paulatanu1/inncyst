@@ -1,60 +1,75 @@
-<div class="job-profile-top">
-    <span class="profile-img">
-
-    </span>
-    <h2>Rupam Saha</h2>
-    <a>8583882759</a><br/>
-    <a href="mailto:john.doe@gmail.com">john.doe@gmail.com</a><br/>
-    <p>Description</p>
-</div>
-<div class="job-profile-info">
-    <h3>Additional Info</h3>
-    <p>
-        <strong>Gender:</strong>
-        <span>Male</span>
-    </p>
-    <p>
-        <strong>Age:</strong>
-        <span>24</span>
-    </p>
-    <p>
-        <strong>Location:</strong>
-        <span>Kolkata</span>
-    </p>
-    <p>
-        <strong>Institution:</strong>
-        <span>Male</span>
-    </p>
-    <p>
-        <strong>Profile Created:</strong>
-        <span>9th February, 2023 5:46 p.m</span>
-    </p>
-    <p>
-        <strong>Date of Birth:</strong>
-        <span>17th Dec, 1999</span>
-    </p>
-</div>
-
-<div class="job-profile-info">
-    <h3>Educational Info</h3>
-    <p>
-        <strong>Area of Interest:</strong>
-        <span>Javascript</span>
-    </p>
-    <p>
-        <strong>Role:</strong>
-        <span>Student</span>
-    </p>
-    <p>
-        <strong>Semester:</strong>
-        <span>1</span>
-    </p>
-    <p>
-        <strong>Skills:</strong>
-        <span>C, C++, Java</span>
-    </p>
-    <p>
-        <strong>Profile Created:</strong>
-        <span>9th February, 2023 5:46 p.m</span>
-    </p>
-</div>
+<ng-container *ngIf="profileDetails">
+    <div class="job-profile-top">
+        <span class="profile-img">
+            <img src="{{profileDetails?.image}}">
+        </span>
+        <h2>{{profileDetails?.name}}</h2>
+        <a>{{profileDetails?.phone}}</a><br/>
+        <a href="mailto:john.doe@gmail.com">{{profileDetails?.email}}</a><br/>
+        <p [innerHTML]="profileDetails?.description"></p>
+    </div>
+    <div class="job-profile-info">
+        <h3>Additional Info</h3>
+        <p>
+            <strong>Gender:</strong>
+            <span>{{profileDetails?.gender}}</span>
+        </p>
+        <p>
+            <strong>Age:</strong>
+            <span>{{profileDetails?.age}}</span>
+        </p>
+        <p>
+            <strong>Location:</strong>
+            <span>{{profileDetails?.location}}</span>
+        </p>
+        <p>
+            <strong>Institution:</strong>
+            <span>{{profileDetails?.institution}}</span>
+        </p>
+        <p>
+            <strong>Date of Birth:</strong>
+            <span>{{profileDetails?.dob}}</span>
+        </p>
+        <p>
+            <strong>Branch:</strong>
+            <span>{{profileDetails?.branch}}</span>
+        </p>
+        
+        <p>
+            <strong>Profile created:</strong>
+            <span>{{profileDetails?.createdAt}}</span>
+        </p>
+    
+    </div>
+    
+    <div class="job-profile-info">
+        <h3>Educational Info</h3>
+        <p>
+            <strong>Area of Interest:</strong>
+            <span>{{profileDetails?.areaOfInterest}}</span>
+        </p>
+        <p>
+            <strong>Role:</strong>
+            <span>{{profileDetails?.role}}</span>
+        </p>
+        <p>
+            <strong>Stream:</strong>
+            <span>{{profileDetails?.stream}}</span>
+        </p>
+        <p>
+            <strong>Semester:</strong>
+            <span>{{profileDetails?.semester}}</span>
+        </p>
+        <p>
+            <strong>Skills:</strong>
+            <span *ngFor="let skill of profileDetails?.skills">
+               {{skill}},
+            </span>
+           
+        </p>
+        <p>
+            <strong>Profile Created:</strong>
+            <span>9th February, 2023 5:46 p.m</span>
+        </p>
+    </div>
+</ng-container>
