@@ -1,0 +1,34 @@
+<button (click)="addNewAchivment()">Add(+)</button>
+
+<form [formGroup]="achivmentForm" (submit)="submit()" *ngIf="formOpen">
+    <button (click)="removeGroup()">Remove</button>
+  <div>
+    <div style="margin: 15px; border: 2px solid red; padding: 15px">
+      <!-- <button (click)="removeGroup(i)">remove(X)</button> -->
+      <div>
+        <label>Title</label>
+        <input type="text" formControlName="title" />
+      </div>
+      <div>
+        <label>Description</label>
+        <input type="text" formControlName="description" />
+      </div>
+      <div>
+        <label>completion date</label>
+        <p-calendar
+          formControlName="date"
+          [showTime]="false"
+          dateFormat="dd-mm-yy"
+          dataType="date"
+          (onSelect)="dateSelect($event)"
+          placeholder="select your completion date"
+        ></p-calendar>
+      </div>
+      <div>
+        <label>where is held</label>
+        <input type="text" formControlName="held" />
+      </div>
+    </div>
+  </div>
+  <button type="submit" >Submit</button>
+</form>

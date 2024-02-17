@@ -18,13 +18,16 @@ export class UploadcvComponent implements OnInit {
   pdfMaxSize: number = 26214400;
   pdfObj: any;
   resume: any;
+  cvObject:any
   existingCv: any;
   editedCv: boolean = false;
+  updateCv=false;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   ngOnInit(): void {
     this.internship.getCv().subscribe({
       next: (res) => {
+        this.cvObject=res.data[0]
         this.existingCv = res.data[0].resume;
       },
     });
@@ -45,22 +48,47 @@ export class UploadcvComponent implements OnInit {
       this.fileInput.nativeElement.value = '';
     }
   }
+  updateCV(){
+    this.existingCv = '';
+    this.updateCv=true
+  }
   pdfSubmit() {
     // const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const base64String = reader.result as string;
-      this.resume = base64String;
-      console.log(this.resume);
-      this.internship.uploadResume(this.resume).subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-      });
-    };
-    if (this.pdfObj) {
-      reader.readAsDataURL(this.pdfObj);
+
+
+    if(this.updateCv == false){
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        this.resume = base64String;
+        this.internship.uploadResume(this.resume).subscribe({
+          next: (res) => {
+            this.updateCv=false
+          },
+        });
+      };
+      if (this.pdfObj) {
+        reader.readAsDataURL(this.pdfObj);
+      }
     }
+  if(this.updateCv == true){
+    const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        this.resume = base64String;
+        console.log(this.resume);
+        this.internship.editResume(this.resume,this.cvObject._id).subscribe({
+          next: (res) => {
+            this.existingCv=res.body.data.resume
+            console.log(res.body.data.resume);
+            this.updateCv=false
+          },
+        });
+      };
+      if (this.pdfObj) {
+        reader.readAsDataURL(this.pdfObj);
+      }
+  }
   }
 
  

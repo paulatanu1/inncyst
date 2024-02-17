@@ -6,7 +6,7 @@
 </div>
 
 <div *ngIf="existingCv">
-    <button (click)="editedCv = true">Edit</button>
+    <button (click)="updateCV()">update Cv</button>
  
     <pdf-viewer
     [src]="existingCv"

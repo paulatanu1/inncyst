@@ -42,6 +42,14 @@ uploadResume(data:any){
   let url="/student/user-resume";
   return this.api.ApiCallWithLocalization(form_data,url,'post')
 }
+
+editResume(data:any,id:number){
+  let url=`/student/user-resume/${id}`
+  console.log(url)
+  const form_data:any = new Object();
+  form_data.resume=data;
+  return this.api.ApiCallWithLocalization(form_data,url,'put')
+}
 getCv(){
   let url="/student/user-resume";
 return this.api.ApiCallWithLocalization('',url,'get')

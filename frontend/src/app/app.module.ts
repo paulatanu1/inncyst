@@ -28,6 +28,7 @@ import {FieldsetModule} from 'primeng/fieldset';
 import { TabViewModule } from 'primeng/tabview';
 import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
 import { AddProjectComponent } from './share/add-project/add-project.component';
+import { AchivmentComponent } from './share/achivment/achivment.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AddProjectComponent } from './share/add-project/add-project.component';
     ErrorPageComponent,
     UploadcvComponent,
     AddProjectComponent,
+    AchivmentComponent,
   ],
   imports: [
     BrowserModule,
