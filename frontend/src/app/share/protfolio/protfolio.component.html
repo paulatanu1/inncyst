@@ -16,16 +16,17 @@
     </p>
     <div
       (click)="addProtfolio()"
+      [routerLink]="['/add-profile']"
       icon="pi pi-info-circle"
       label="Show"
       class="add_portfolio_btn"
     >
       <i class="pi pi-plus"></i>
-      <span>Add Portfolio</span>
+      <span >Add Portfolio</span>
     </div>
   </div>
 </section>
-<p-dialog class="dialog" [(visible)]="display" (onHide)="handleDialogHide()" [draggable]="false" [resizable]="false">
+<!-- <p-dialog class="dialog" [(visible)]="display" (onHide)="handleDialogHide()" [draggable]="false" [resizable]="false">
   <section class="portfolio_sec_modal">
     <ng-container>
       <div *ngFor="let a of field">
@@ -37,7 +38,7 @@
       </div>
     </ng-container>
   </section>
-</p-dialog>
+</p-dialog> -->
 
 <!-- <button (click)="getProtfolio()">get obj</button> -->
 

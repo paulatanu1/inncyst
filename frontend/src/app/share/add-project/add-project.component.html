@@ -1,4 +1,4 @@
-<form class="myFormSec">
+<form class="myFormSec" (ngSubmit)="onSubmit()" [formGroup]="myForm">
     <div class="formRight">
 
         <ul type="1">
@@ -33,20 +33,56 @@
             <li>
                 <label>Project Status</label>
                 <div class="">
-                    <p-dropdown  placeholder="project status" optionLabel="name"
-                        ></p-dropdown>
+                    <p-dropdown placeholder="project status" optionLabel="name" (onChange)="selectItemPortfolio($event)"
+                        [options]="portfolioStatusOption"></p-dropdown>
                 </div>
             </li>
             <li>
                 <label>Publication / Patent</label>
                 <input type="text" #text formControlName="patent" />
             </li>
-            <li>
+            <!-- <li>
                 <label>Upload Image / PDF / Video link of your project</label>
                 <input type="text" #text formControlName="upload" />
+            </li> -->
+            <li>
+                <div class="youtube-url position-relative">
+                    <label>Add pdf</label>
+                    <input type="file" name="pdfFile" #fileInput id="pdfInput"      formControlName="pdf"
+                        (change)="pdfSelected($event)" accept=".pdf" />
+                </div>
+            </li>
+            <li>
+                <div class="youtube-url">
+                    <label>Upload Image...</label>
+
+
+                    <div>
+                        <input type="file" formControlName="image" accept="image/*" (change)="onImageSelected($event)"
+                            id="imageInput" />
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="youtube-url">
+                    <div>
+                        <label>Add URL</label>
+                        <input type="url" formControlName="url" (change)="urlChange($event)"
+                            placeholder="Paste URL here .. " />
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="youtube-url">
+                    <div>
+                        <label>Add Youtube url</label>
+                        <input type="url" formControlName="youtubeUrl" (change)="youtubeUrlChange($event)"
+                            placeholder="Paste your link here .. " />
+                    </div>
+                    </div>
             </li>
         </ul>
-        
+
         <button type="submit">Submit</button>
     </div>
 
