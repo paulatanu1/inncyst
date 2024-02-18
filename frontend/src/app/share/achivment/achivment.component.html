@@ -32,3 +32,56 @@
   </div>
   <button type="submit" >Submit</button>
 </form>
+
+<div>
+  <div *ngFor="let achivment of achivmentDetails">
+    <div style="margin: 20px;padding: 20px; border: 2px solid red;">
+      <button (click)="edit(achivment.id)">Edit</button>
+      <br>
+      <button (click)="delete(achivment.id)">delete</button>
+
+      <p>title:- {{achivment.title}}</p>
+      <p>description :-- {{achivment.description}}
+      </p>
+      <p>date :- {{achivment.date | date}}</p>
+      <p> where is held :- {{achivment.held}}</p>
+    </div>
+
+  </div>
+</div>
+
+<p-dialog header="Header" [(visible)]="visible" [style]="{width: '50vw'}">
+
+  <form [formGroup]="achivmentEditForm" (submit)="editSubmit()">
+    <!-- <button (click)="removeGroup()">Remove</button> -->
+  <div>
+    <div style="margin: 15px; border: 2px solid red; padding: 15px">
+      <!-- <button (click)="removeGroup(i)">remove(X)</button> -->
+      <div>
+        <label>Title</label>
+        <input type="text" formControlName="title" />
+      </div>
+      <div>
+        <label>Description</label>
+        <input type="text" formControlName="description" />
+      </div>
+      <div>
+        <label>completion date</label>
+        <p-calendar
+          formControlName="date"
+          [showTime]="false"
+          dateFormat="dd-mm-yy"
+          dataType="date"
+          (onSelect)="editDateSelect($event)"
+          placeholder="select your completion date"
+        ></p-calendar>
+      </div>
+      <div>
+        <label>where is held</label>
+        <input type="text" formControlName="held" />
+      </div>
+    </div>
+  </div>
+  <button type="submit" >Submit</button>
+</form>
+</p-dialog>

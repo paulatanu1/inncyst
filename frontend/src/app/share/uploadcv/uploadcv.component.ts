@@ -31,6 +31,8 @@ export class UploadcvComponent implements OnInit {
         this.existingCv = res.data[0].resume;
       },
     });
+
+   
   }
   pdfSelected(e: any) {
     const selectedFile = e.target.files[0];
