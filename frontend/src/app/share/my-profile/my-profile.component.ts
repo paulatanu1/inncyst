@@ -213,7 +213,6 @@ this.profileForm.get('skills')?.valueChanges.subscribe({
     this.editProfile = true;
   }
   dateSelect(e: any) {
-    console.log(e)
     const date = this.datePipe.transform(e,'dd-MM-yyy');
     this.profileForm.get('dob')?.setValue(date);
   }

@@ -16,7 +16,6 @@ export class InternshipProfileService {
 
 
   EditProfile(data:any){
-    console.log(data)
     const form_data:any = new Object();
     form_data.name=data.name
     form_data.email=data.email;
@@ -36,7 +35,6 @@ export class InternshipProfileService {
   return this.api.ApiCallWithLocalization(form_data,url,'put')
 }
 uploadResume(data:any){
-  console.log(data);
   const form_data:any = new Object();
   form_data.resume=data
   let url="/student/user-resume";
@@ -45,7 +43,6 @@ uploadResume(data:any){
 
 editResume(data:any,id:number){
 let url=`/student/user-resume/${id}`
-  console.log(url)
   const form_data:any = new Object();
   form_data.resume=data;
   return this.api.ApiCallWithLocalization(form_data,url,'put')
@@ -56,7 +53,6 @@ return this.api.ApiCallWithLocalization('',url,'get')
 }
 
 addAchivment(data:any){
-  console.log(data)
   const form_data:any=new Object();
   form_data.title=data.title;
   form_data.description=data.description;

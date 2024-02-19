@@ -54,9 +54,14 @@
         <li *ngFor="let item of portfolioDetails">
           <button (click)="editPortfolio(item._id)"><i class="pi pi-pencil"></i></button>
           <button (click)="deletePortfolio(item._id)"><i class="pi pi-trash"></i></button>
-          <h2>{{ item.title }}</h2>
+          <h2><b>title:- </b>{{ item.title }}</h2>
           <p [innerHtml]="item.description"></p>
-          <p><span class="status">{{item.portfolioStatus}}</span></p>
+          <p><b>keyword:- </b>{{item?.keyword}}</p>
+          <p><b>organisation:- </b>{{item?.organisation}}</p>
+          <p><b>patent:- </b>{{item?.patent}}</p>
+          <p><b>area:- </b>{{item?.area}}</p>
+
+          <p><span class="status"><b>status:- </b>{{item.portfolioStatus}}</span></p>
           <ng-container *ngIf="item.image != 'http://localhost:5500null'">
             <p class="tags"><i class="pi pi-tag"></i>Image</p>
             <p><img [src]="item.image" alt="" /></p>

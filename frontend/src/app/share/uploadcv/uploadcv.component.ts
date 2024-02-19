@@ -65,6 +65,7 @@ export class UploadcvComponent implements OnInit {
         this.resume = base64String;
         this.internship.uploadResume(this.resume).subscribe({
           next: (res) => {
+            this.existingCv=res.body.data.resume
             this.updateCv=false
           },
         });
@@ -78,11 +79,9 @@ export class UploadcvComponent implements OnInit {
       reader.onloadend = () => {
         const base64String = reader.result as string;
         this.resume = base64String;
-        console.log(this.resume);
         this.internship.editResume(this.resume,this.cvObject._id).subscribe({
           next: (res) => {
             this.existingCv=res.body.data.resume
-            console.log(res.body.data.resume);
             this.updateCv=false
           },
         });

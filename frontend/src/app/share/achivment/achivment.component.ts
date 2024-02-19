@@ -56,12 +56,10 @@ addAchivment(){
   this.internship.getAchivement().subscribe({
     next:(res)=>{
       this.achivmentDetails=res.data
-      console.log(this.achivmentDetails,'1')
     }
   })
 }
 edit(id:any){
-console.log(id)
 this.editAchivmentId=id
 this.visible=true;
 this.internship.getSingleAchivment(this.editAchivmentId).subscribe({
@@ -88,7 +86,6 @@ submit(){
   if(this.achivmentForm.valid){
     this.internship.addAchivment(this.achivmentForm.value).subscribe({
       next:(res)=>{
-        console.log(res,'2')
         this.addAchivment();
         this.formOpen=false;
         this.achivmentForm.reset();
@@ -111,10 +108,8 @@ submit(){
   }
 }
 editSubmit(){
-console.log(this.achivmentEditForm.value)
 this.internship.editAchivment(this.achivmentEditForm.value,this.editAchivmentId).subscribe({
   next:(res)=>{
-    console.log(res);
     this.addAchivment();
     this.visible=false
 

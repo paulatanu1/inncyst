@@ -209,7 +209,6 @@ export class AddProjectComponent implements OnInit {
 
     onSubmit(){
       this.loading=true;
-  console.log(this.myForm.value)
       const formData = new FormData();
       // Object.keys(this.myForm.controls).forEach(key=> formData.append(key,this.myForm.get(key)?.value))
       formData.append('title',this.myForm.value?.title)
@@ -225,7 +224,6 @@ export class AddProjectComponent implements OnInit {
       formData.append('portfolioStatus',this.selectedPortfolioStatus)
   this.portfolio.addPortfolio(formData).subscribe({
     next:(res=>{
-      console.log(res)
       this.loading=false;
       this.router.navigate(['/my-profile'],{queryParams:{status:2}})
       this.portfolio.hideAddPortfolioModal.next(false)
