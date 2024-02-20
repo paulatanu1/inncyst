@@ -45,6 +45,8 @@
     border-radius: 15px;
     display: flex;
     align-items: center;
+    width: 70%;
+    margin: 0 auto;
     button {
         margin-left: auto;
         background: #04ADE6;
@@ -55,5 +57,10 @@
         padding: 0 30px;
         height: 35px;
         line-height: 35px;
+        i {
+            margin-left: 7px;
+            display: inline-block;
+            vertical-align: middle;
+        }
     }
 }
