@@ -85,7 +85,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   id = 0;
   addProtfolio() {
     // this.protfolioVissable = !this.protfolioVissable;
-    this.display = true;
+    // this.display = true;
     // this.addField();
   }
   ngOnInit(): void {
@@ -253,7 +253,6 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
     if (e.target.files[0].size <= this.pdfMaxSize) {
       this.pdfObj = e.target.files[0];
       this.editDialogForm.get('pdf')?.setValue(this.pdfObj);
-      console.log(this.editDialogForm.value)
     } else {
       this._toast.showToaster.next({
         severity: 'error',

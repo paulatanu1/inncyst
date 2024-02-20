@@ -13,7 +13,6 @@ profileDetails!:any;
   ngOnInit(): void {
     this.internshipProfileService.sendInternshipProfileRequest().subscribe({
       next:(res)=>{
-        console.log(res.data)
         this.profileDetails=res.data
       }
     })

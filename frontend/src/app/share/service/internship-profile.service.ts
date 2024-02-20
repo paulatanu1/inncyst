@@ -16,7 +16,6 @@ export class InternshipProfileService {
 
 
   EditProfile(data:any){
-    console.log(data)
     const form_data:any = new Object();
     form_data.name=data.name
     form_data.email=data.email;
@@ -36,7 +35,6 @@ export class InternshipProfileService {
   return this.api.ApiCallWithLocalization(form_data,url,'put')
 }
 uploadResume(data:any){
-  console.log(data);
   const form_data:any = new Object();
   form_data.resume=data
   let url="/student/user-resume";
@@ -44,8 +42,7 @@ uploadResume(data:any){
 }
 
 editResume(data:any,id:number){
-  let url=`/student/user-resume/${id}`
-  console.log(url)
+let url=`/student/user-resume/${id}`
   const form_data:any = new Object();
   form_data.resume=data;
   return this.api.ApiCallWithLocalization(form_data,url,'put')
@@ -53,5 +50,39 @@ editResume(data:any,id:number){
 getCv(){
   let url="/student/user-resume";
 return this.api.ApiCallWithLocalization('',url,'get')
+}
+
+addAchivment(data:any){
+  const form_data:any=new Object();
+  form_data.title=data.title;
+  form_data.description=data.description;
+  form_data.date=data.date;
+  form_data.held=data.held;
+  let url ="/student/student-achivement"
+  return this.api.ApiCallWithLocalization(form_data,url,'post')
+}
+
+getAchivement(){
+  let url ="/student/student-achivement"
+return this.api.ApiCallWithLocalization('',url,'get')
+}
+editAchivment(data:any,id:any){
+  const form_data:any=new Object();
+  form_data.title=data.title;
+  form_data.description=data.description;
+  form_data.date=data.date;
+  form_data.held=data.held; 
+  let url=`/student/student-achivement/${id}`
+  return this.api.ApiCallWithLocalization(form_data,url,'put')
+
+}
+getSingleAchivment(id:any){
+  let url=`/student/student-achivement/${id}`
+  return this.api.ApiCallWithLocalization('',url,'get')
+}
+deleteAchivment(id:any){
+  let url=`/student/student-achivement/${id}`;
+  return this.api.ApiCallWithLocalization('',url,'delete')
+
 }
 }
