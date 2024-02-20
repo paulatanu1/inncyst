@@ -31,6 +31,21 @@
             background: #FFF;
             padding: 32px 25px;
             margin-bottom: 28px;
+
+            .p-inputtext:enabled:focus {
+                border: 1px solid #cfcfcf;
+                box-shadow: none;
+            }
+
+            .p-inputtext {
+
+                &:hover {
+
+                    border: 1px solid #cfcfcf;
+
+                }
+
+            }
             
 
             &>div.form_field_group:last-of-type {
