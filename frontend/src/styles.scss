@@ -174,7 +174,10 @@ body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse .leftbottom-
   padding: 0.5rem 0rem !important;
 }
 
-
+.p-inputtext:enabled:focus {
+  // border: 0;
+  box-shadow: none;
+}
 
 
 .layout-navbar-fixed .wrapper .main-header {
