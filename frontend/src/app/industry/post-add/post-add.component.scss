@@ -31,10 +31,68 @@
             background: #FFF;
             padding: 32px 25px;
             margin-bottom: 28px;
+            
 
             &>div.form_field_group:last-of-type {
                 margin-bottom: 0;
             }
+            div.form_field_group {
+
+                     p {
+
+                        line-height: 1.4 !important;
+
+                    }
+
+            }
+
+            // Supriya Css
+
+            .form_group_inline {
+
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                white-space: nowrap;
+
+            }
+
+            .contact_group {
+
+                input {
+
+                    width: 100%;
+
+                }
+
+                input:first-child {
+
+                    width: 100px;
+
+                }
+
+                
+
+            }
+
+            .form_grid_group {
+
+                display: grid;
+                grid-template-columns: 2fr 2fr;
+                gap: 15px;
+                
+
+            }
+
+            .alert {
+                p:first-child {
+                    font-weight: 500;
+                }
+                p {
+                    line-height: 1.4 !important;
+                }
+            }
+
             button {
                 padding: 5px 15px;
                 border-radius: 5px;
