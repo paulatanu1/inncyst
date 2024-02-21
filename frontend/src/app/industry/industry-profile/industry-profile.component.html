@@ -1,5 +1,5 @@
 <div *ngIf="!questionStep">
-  <h1>please {{ profileData ? 'update' : 'complete' }} your profile........</h1>
+  <h1>please {{ profileData ? 'complete' : 'update' }} your profile........</h1>
   <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
     <div>
       <label>Compnany Name</label>
