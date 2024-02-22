@@ -715,7 +715,7 @@
                 <p-radioButton
                   value="office"
                   inputId="part-Time"
-                  formControlName=""
+                  formControlName="workType"
                 ></p-radioButton>
                 <label for="in-office">Part-time</label>
               </div>
@@ -723,7 +723,7 @@
                 <p-radioButton
                   value="hybrid"
                   inputId="full-time"
-                  formControlName=""
+                  formControlName="workType"
                 ></p-radioButton>
                 <label for="hybrid">Full-time</label>
               </div>
@@ -923,52 +923,25 @@
               </label>
               <div class="form_group_inline">
                 <p-dropdown
-                  option=""
-                  optionLabel="name"
-                  optionValue="value"
+                  [options]="currency"
+                  optionLabel="currenctType"
+                  optionValue="code"
                 ></p-dropdown>
-                <input
-                  formControlName=""
-                  type="number"
-                  placeholder="e.g 6"
-                  pInputText
-                />
+                <input type="number" placeholder="e.g 6" pInputText />
                 to
-                <input
-                  formControlName=""
-                  type="number"
-                  placeholder="e.g 6"
-                  pInputText
-                />
+                <input type="number" placeholder="e.g 6" pInputText />
                 per year
               </div>
             </div>
             <div class="form_field_group">
               <div class="form_group_inline">
-                <p-checkbox name="groupname" value="val1"></p-checkbox>
+                <p-checkbox
+                  name="groupname"
+                  value="val1"
+                  formControlName="probationPeriod"
+                ></p-checkbox>
                 <p class="mb-0">This job has a probation period</p>
               </div>
-            </div>
-            <div class="form__field_group">
-              <label>
-                Perks
-                <br />
-                <span class="text-xs text-gray">(Optional)</span>
-              </label>
-              <!-- <div class="form_grid_group mt-2">
-                <div class="form_group_inline">
-                  <p-checkbox name="groupname" value="val1"></p-checkbox>
-                  <p class="mb-0">5 days a week</p>
-                </div>
-                <div class="form_group_inline">
-                  <p-checkbox name="groupname" value="val2"></p-checkbox>
-                  <p class="mb-0">Health Insurance</p>
-                </div>
-                <div class="form_group_inline">
-                  <p-checkbox name="groupname" value="val3"></p-checkbox>
-                  <p class="mb-0">Life Insurance</p>
-                </div>
-              </div> -->
             </div>
           </div>
           <h3>Cover letter, availability & assessment question</h3>
