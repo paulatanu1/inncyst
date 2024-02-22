@@ -17,15 +17,18 @@
 </div>
 <div class="search-results-container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="250"
   (scrolled)="onScroll()" [scrollWindow]="true">
+
+
+
   <ul class="industry_listing jobs-profile">
     <li *ngFor="let items of postList; let i = index">
       <div class="card">
-        <div class="ribbon_draft" *ngIf="items.status == false">Draft</div>
+        <div class="ribbon_draft" *ngIf="items?.status == false">Draft</div>
+        <!-- <button class="applied_list" *ngIf="items?.status" (click)="studentList(items._id)">
+          Applied Student List
+        </button> -->
         <div class="card-body">
           <div class="item-status">
-            <button class="applied_list" *ngIf="items.status" (click)="studentList(items._id)">
-              Applied Student List
-            </button>
             <div class="ellipsis_icon">
               <p-overlayPanel #op>
                 <ng-template pTemplate>
@@ -54,6 +57,9 @@
             </div>
           </div>
           <div class="items-description border-bottom">
+            <button class="applied_list" *ngIf="items.status" (click)="studentList(items._id)">
+              Applied Student List
+            </button>
             <div class="profile-img">
               <figure><img [src]="items?.company?.image" /></figure>
             </div>

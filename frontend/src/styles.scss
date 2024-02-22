@@ -146,11 +146,6 @@ body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse .main-sideba
   margin: 0.5rem 0;
 }
 
-.os-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
 body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse img.brand-image-xs {
   padding-left: 7px;
@@ -187,6 +182,21 @@ body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse .leftbottom-
   top: 0;
   z-index: 1037;
   border-bottom: 0 !important;
+}
+
+.is-leftSidebarPanel {
+
+    .os-padding {
+
+      .os-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100% !important;
+      }
+
+    }
+
 }
 
 .main-footer {
