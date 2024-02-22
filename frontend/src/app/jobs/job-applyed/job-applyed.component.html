@@ -5,6 +5,9 @@
     <p-tabPanel header="Applied">
       <!-- NEW SECTION..............-->
       <div>
+        <button style="background-color: red;"
+        [routerLink]="['/jobs/posts']"
+        >Back</button>
         <ul>
           <li *ngFor="let a of AppliedJobDetails">
             <div class="ellipsis_icon">
@@ -23,7 +26,7 @@
             <div class="company_info_head">
               <div class="company_logo">
                 <img
-                [src]="a.jobDetails.company?.image?a.jobDetails.company?.image:'../../../assets/no-image.svg'"
+                [src]="a.jobDetails.company?.image ? a?.jobDetails.company?.image:'../../../assets/no-image.svg'"
                   width="80"
                   height="78"
                   loading="lazy"
