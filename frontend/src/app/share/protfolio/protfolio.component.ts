@@ -85,7 +85,7 @@ export class ProtfolioComponent implements OnInit, AfterViewInit {
   id = 0;
   addProtfolio() {
     // this.protfolioVissable = !this.protfolioVissable;
-    this.display = true;
+    // this.display = true;
     // this.addField();
   }
   ngOnInit(): void {

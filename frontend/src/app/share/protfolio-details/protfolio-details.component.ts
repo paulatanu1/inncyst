@@ -188,22 +188,6 @@ this.selectedItem = e.value.name;
     this.myForm.get('url')?.setValue(e.target.value);
   }
 
-  // addUrl() {
-  //   this.urlArray.push({ value: '' });
-  // }
-  // submitUrl() {
-  //   this.urlValueArray = this.urlArray.map((input) => input.value);
-  //   console.log('Form values:', this.urlValueArray);
-  //   this.obj.url = this.urlValueArray;
-  // }
-
-  // removeUrl(i: number) {
-  //   this.urlValueArray.splice(i, 1);
-  //   this.urlArray.splice(i, 1);
-  //   this.obj.url = this.urlValueArray;
-  // ;
-  // }
-
   //END URL PORTION........................
 
   //VIDEO PORTION START..............................
@@ -232,39 +216,7 @@ this.selectedItem = e.value.name;
   }
   // VIDEO PORTION END..............................
 
-  //   UploadProtfolio(text: any) {
-  //     this.obj.title = text;
-  //     this.obj.description = this.desc;
-  //     console.log(this.obj, 'this.obj');
-  //     this.individualObj.emit();
-
-  //     // const formData: any = new FormData();
-  //     // Object.keys(this.obj).forEach(key=>{
-  //     //   // console.log(this.obj[key],'ky')
-  //     //   formData.append(key,this.obj[key])
-  //     //   // for (var pair of formData.entries()) {
-  //     //   //   console.log(pair[0] + ': ' + pair[1]);
-  //     //   // }
-  //     // })
-  // const formData = new FormData()
-  // formData.append('title','abc')
-  // formData.append('description','def')
-  //     this.portfolio.addPortfolio(formData).subscribe({
-  //       next: (item) => {
-  //         console.log(item);
-  //         // console.log(this.portfolio.hideAddPortfolioModal.next(false),'k')
-  //       },
-  //       error: (err) => {
-  //         console.log(err);
-  //         this._toast.showToaster.next({
-  //           severity: 'Error',
-  //           summary: 'Error',
-  //           detail: err.error.message,
-  //         });
-  //       },
-  //     });
-  //   }
-
+ 
   //REMOVE SINGLE PROTFOLIO.............................................
   removeObj() {
     this.id.emit(this.obj.id);
@@ -323,14 +275,5 @@ error:(er)=>{
         .get('youtubeUrl')
         ?.setValue(`https://www.youtube-nocookie.com/embed/${url}`);
     }
-    // let staticUrl = 'https://www.youtube-nocookie.com/embed/';
-    // let modifyUrl=e.target.value.split('=')[1]
-    // let newurl = staticUrl + modifyUrl;
-    // console.log(newurl,'newurl')
-    // console.log(e.target.value);
-    // this.myForm.get('youtubeUrl').setValue(newurl);
-    // console.log(e.target.value,'e')
-    // this.obj.youtubeUrl=e.target.value;
-    // console.log(e.target.value)
   }
 }

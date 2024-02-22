@@ -13,6 +13,7 @@ import { IndustryCheckGuard } from './Guard/industry-check.guard';
 import { LoginModule } from './login/login.module';
 import { LoginModuleComponent } from './login-module/login-module.component';
 import { LoginModuleModule } from './login-module/login-module.module';
+import { AddProjectComponent } from './share/add-project/add-project.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,11 @@ const routes: Routes = [
     path: 'my-profile',
     component: MyProfileComponent,
     canActivate: [AuthenticateGuard],
+  },
+  {
+    path:'add-profile',
+    component:AddProjectComponent,
+    canActivate:[AuthenticateGuard]
   },
   {
     path:'my-profile/protfolio',component:ProtfolioComponent,canActivate: [AuthenticateGuard],
