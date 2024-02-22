@@ -42,6 +42,7 @@ loadding=false;
       next: (res) => {
         this.AppliedJobDetails = [];
         this.AppliedJobDetails = res.data;
+        console.log(this.AppliedJobDetails)
         this.loadding=false;
         if(this.AppliedJobDetails.length){
 

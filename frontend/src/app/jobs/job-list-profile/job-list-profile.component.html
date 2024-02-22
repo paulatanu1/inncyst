@@ -1,4 +1,6 @@
 <ng-container *ngIf="profileDetails">
+    <button style="background-color: red;" [routerLink]="['//my-profile']"
+    [queryParams]="{status:0}">Profile</button>
     <div class="job-profile-top">
         <span class="profile-img">
             <img src="{{profileDetails?.image}}">
