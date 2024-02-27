@@ -97,35 +97,33 @@
             <label for="float-input">Location</label>
             </span>
           </div>
-        </p-fieldset>
-        
-        <div class="formGroup">
+          <div class="formGroup">
             <span class="p-input-icon-left">
               <i class="pi pi-envelope"></i>
-              <p-dropdown
-              [options]="genderList"
-              optionLabel="name"
-              optionValue="value"
-              formControlName="gender"
-            ></p-dropdown>
-
+              <p-dropdown [options]="genderList" optionLabel="name" optionValue="value" formControlName="gender"></p-dropdown>
+          
               <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your gender" formControlName="gender" /> -->
             </span>
           </div>
           <div class="formGroup">
             <span class="p-input-icon-left">
               <i class="pi pi-envelope"></i>
-
-              <p-calendar formControlName="dob" [showTime]="false"  dateFormat="dd-mm-yy" dataType="date" (onSelect)="dateSelect($event)" placeholder="select your DOB"></p-calendar>
+          
+              <p-calendar formControlName="dob" [showTime]="false" dateFormat="dd-mm-yy" dataType="date"
+                (onSelect)="dateSelect($event)" placeholder="select your DOB"></p-calendar>
               <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your age" formControlName="age" /> -->
             </span>
           </div>
           <div class="formGroup">
             <span class="p-input-icon-left">
               <i class="pi pi-envelope"></i>
-              <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your interest" formControlName="areaOfInterest" />
+              <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your interest"
+                formControlName="areaOfInterest" />
             </span>
           </div>
+        </p-fieldset>
+        
+        
         
           <!-- <div class="formGroup">
             <span class="p-input-icon-left">
@@ -133,7 +131,7 @@
               <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your branch" formControlName="branch" />
             </span>
           </div> -->
-          
+          <p-fieldset legend="Educational Information" [toggleable]="true">
           <div class="formGroup">
             <span class="p-input-icon-left">
               <i class="pi pi-envelope"></i>
@@ -185,7 +183,7 @@
             </span>
           </div>
 
-          
+          </p-fieldset>
 
         <!-- <p-fieldset legend="Work Experience" [toggleable]="true">
           <div class="formGroup">

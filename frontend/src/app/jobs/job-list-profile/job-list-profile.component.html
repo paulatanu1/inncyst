@@ -1,7 +1,7 @@
 <ng-container *ngIf="profileDetails">
-    <button style="background-color: red;" [routerLink]="['//my-profile']"
-    [queryParams]="{status:0}">Profile</button>
+    
     <div class="job-profile-top">
+        <button class="back_profile_btn" [routerLink]="['//my-profile']" [queryParams]="{status:0}">Profile</button>
         <span class="profile-img">
             <img src="{{profileDetails?.image}}">
         </span>

@@ -5,9 +5,7 @@
     <p-tabPanel header="Applied">
       <!-- NEW SECTION..............-->
       <div>
-        <button style="background-color: red;"
-        [routerLink]="['/jobs/posts']"
-        >Back</button>
+        <button [routerLink]="['/jobs/posts']"  class="back_btn"><i class="pi pi-angle-left"></i>Back</button>
         <ul>
           <li *ngFor="let a of AppliedJobDetails">
             <div class="ellipsis_icon">

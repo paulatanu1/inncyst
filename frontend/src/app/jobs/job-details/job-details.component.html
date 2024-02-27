@@ -80,11 +80,10 @@
         <button [disabled]="applied" type="button" (click)="applyJob()">
           Apply Now
         </button>
+        <button [routerLink]="['/jobs/posts']" class="back_btn">Back</button>
       </div>
     </div>
-    <button style="background-color: red;"
-[routerLink]="['/jobs/posts']"
->Back</button>
+    
   </div>
   <!-- </ng-container> -->
 </section>
