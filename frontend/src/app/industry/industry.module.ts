@@ -26,6 +26,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { PanelModule } from 'primeng/panel';
 import { ImageModule } from 'primeng/image';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ImageModule } from 'primeng/image';
     CalendarModule,
     PanelModule,
     ImageModule,
+    MultiSelectModule,
   ],
   exports: [InputSwitchModule, SplitButtonModule, SharedModule],
 })

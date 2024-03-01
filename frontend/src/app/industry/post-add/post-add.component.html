@@ -34,7 +34,7 @@
       </div>
     </div>
   </div>
-  <!--==================================================================================================================================================================================================================-->
+  <!--Internship Block-->
   <div *ngIf="industryType == 'internship'">
     <form [formGroup]="industryForm" (ngSubmit)="submitFormInternship()">
       <div class="post_job_form_sec">
@@ -48,6 +48,7 @@
                 placeholder="e.g angular developer"
                 pInputText
                 formControlName="title"
+                tooltip="Add Title"
               />
             </div>
             <div class="form_field_group">
@@ -92,31 +93,18 @@
                 placeholder="e.g Kolkata"
                 pInputText
                 formControlName="location"
+                tooltip="Office Location"
               />
             </div>
             <div class="form_field_group">
-              <label>Education Qualification</label>
-              <p-dropdown
-                [options]="education"
-                optionLabel="name"
-                optionValue="value"
-                formControlName="education"
-              ></p-dropdown>
-            </div>
-
-            <div class="form_field_group">
               <label>Skills required</label>
-              <!-- <input type="text" placeholder="e.g Java" pInputText /> -->
-              <p-chips
-                separator=" "
+              <p-multiSelect
+                [options]="skillList"
                 formControlName="skills"
-                placeholder="Hint: a, b, c"
-              ></p-chips>
-              <p class="short_note">
-                Please add
-                <b>space</b>
-                after adding any skill.
-              </p>
+                optionLabel="skills"
+                [maxSelectedLabels]="3"
+                tooltip="Select Skills"
+              ></p-multiSelect>
             </div>
             <div class="form_field_group">
               <label>{{ title }} type</label>
@@ -143,6 +131,25 @@
                   formControlName="intranshipType"
                 ></p-radioButton>
                 <label for="remote">Remote</label>
+              </div>
+            </div>
+            <div class="form_field_group">
+              <label>Part-time/Full-Time</label>
+              <div class="field-radiobutton">
+                <p-radioButton
+                  value="part"
+                  formControlName="jobType"
+                ></p-radioButton>
+                <label for="">Part-time</label>
+              </div>
+              <div class="field-radiobutton">
+                <div class="field-radiobutton">
+                  <p-radioButton
+                    value="full"
+                    formControlName="jobType"
+                  ></p-radioButton>
+                  <label for="">Full-time</label>
+                </div>
               </div>
             </div>
             <div class="form_field_group">
@@ -198,22 +205,99 @@
                 </div>
               </div>
             </div>
+            <div class="form_field_group">
+              <label>
+                Interns's responsibilities
+                <em>Selected intern's day-to-day responsibilities include:</em>
+              </label>
 
+              <p-editor
+                formControlName="responsiblity"
+                [style]="{ height: '150px', display: 'block' }"
+                placeholder="e.g Android app development"
+              >
+                <ng-template pTemplate="header">
+                  <span class="ql-formats">
+                    <button
+                      type="button"
+                      class="ql-bold"
+                      aria-label="Bold"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-italic"
+                      aria-label="Italic"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-underline"
+                      aria-label="Underline"
+                    ></button>
+                  </span>
+                </ng-template>
+              </p-editor>
+            </div>
+            <div class="form_field_group">
+              <label>Additional candidate preferences</label>
+              <p-editor
+                formControlName="addtionalCandidatePreference"
+                [style]="{ height: '200px', display: 'block' }"
+                placeholder="e.g Computer Science Graduate Preferred"
+              >
+                <ng-template pTemplate="header">
+                  <span class="ql-formats">
+                    <button
+                      type="button"
+                      class="ql-bold"
+                      aria-label="Bold"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-italic"
+                      aria-label="Italic"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-underline"
+                      aria-label="Underline"
+                    ></button>
+                  </span>
+                </ng-template>
+              </p-editor>
+            </div>
+            <div class="form_field_group">
+              <div class="form_group_inline">
+                <p-checkbox name="groupname" value="val1"></p-checkbox>
+                <p class="mb-0">
+                  Allow applications from women also who are willing to
+                  start/restart their career.
+                  <a href="#">Know more</a>
+                </p>
+              </div>
+            </div>
             <div class="form_field_group">
               <label>{{ salaryType }}</label>
               <div class="field-radiobutton">
                 <p-radioButton
+                  formControlName="salaryIn"
                   value="fixed"
                   inputId="fixed"
-                  formControlName="stipend"
                 ></p-radioButton>
                 <label for="fixed">Fixed</label>
               </div>
               <div class="field-radiobutton">
                 <p-radioButton
+                  formControlName="salaryIn"
+                  value="Negotiable"
+                  inputId="Negotiable"
+                ></p-radioButton>
+                <label for="Negotiable">Negotiable</label>
+              </div>
+              <div class="field-radiobutton">
+                <p-radioButton
                   value="unpaid"
+                  formControlName="salaryIn"
                   inputId="Unpaid"
-                  formControlName="stipend"
                 ></p-radioButton>
                 <label for="later">Unpaid</label>
               </div>
@@ -221,10 +305,14 @@
                 <p-radioButton
                   value="paid"
                   inputId="Performance based"
-                  formControlName="stipend"
+                  formControlName="salaryIn"
                 ></p-radioButton>
                 <label for="later">Performance based</label>
               </div>
+              <p>
+                The stipend must be negotiated and finalised before the
+                internship starts
+              </p>
             </div>
             <div class="form_field_group stipend">
               <div class="twoColForm">
@@ -273,12 +361,96 @@
               </div>
             </div>
           </div>
-          <h3>Cover letter & assessment question</h3>
+          <!-- <h3>Salary & perks</h3>
           <div class="form_group">
+            <div class="form_field_group">
+              <label>{{ salaryType }}</label>
+              <div class="field-radiobutton">
+                <p-radioButton value="fixed" inputId="fixed"></p-radioButton>
+                <label for="fixed">Fixed</label>
+              </div>
+              <div class="field-radiobutton">
+                <p-radioButton value="unpaid" inputId="Unpaid"></p-radioButton>
+                <label for="later">Unpaid</label>
+              </div>
+              <div class="field-radiobutton">
+                <p-radioButton
+                  value="paid"
+                  inputId="Performance based"
+                ></p-radioButton>
+                <label for="later">Performance based</label>
+              </div>
+            </div>
+            <div class="form_field_group">
+              <div class="form_group_inline">
+                <p-dropdown
+                  option=""
+                  optionLabel="name"
+                  optionValue="value"
+                ></p-dropdown>
+                <input type="number" placeholder="e.g 10000" pInputText />
+                <p-dropdown
+                  option=""
+                  optionLabel="name"
+                  optionValue="/month"
+                ></p-dropdown>
+              </div>
+            </div>
+            <div class="form__field_group">
+              <label>
+                Perks
+                <span class="text-xs text-gray">(Optional)</span>
+              </label>
+              <div class="form_grid_group mt-2">
+                <div class="form_group_inline">
+                  <p-checkbox name="groupname" value="val1"></p-checkbox>
+                  <p class="mb-0">Certificate</p>
+                </div>
+                <div class="form_group_inline">
+                  <p-checkbox name="groupname" value="val2"></p-checkbox>
+                  <p class="mb-0">Letter of recommendation</p>
+                </div>
+                <div class="form_group_inline">
+                  <p-checkbox name="groupname" value="val3"></p-checkbox>
+                  <p class="mb-0">Flexible work hours</p>
+                </div>
+                <div class="form_group_inline">
+                  <p-checkbox name="groupname" value="val3"></p-checkbox>
+                  <p class="mb-0">5 days a week</p>
+                </div>
+                <div class="form_group_inline">
+                  <p-checkbox name="groupname" value="val3"></p-checkbox>
+                  <p class="mb-0">Informal dress code</p>
+                </div>
+                <div class="form_group_inline">
+                  <p-checkbox name="groupname" value="val3"></p-checkbox>
+                  <p class="mb-0">Free snacks & beverages</p>
+                </div>
+              </div>
+            </div>
+            <div class="form_field_group mt-3">
+              <div class="form_group_inline">
+                <label>
+                  Does this internship come with a pre-placement offer (PPO)?
+                  <span class="text-xs text-gray">(Optional)</span>
+                </label>
+                <p-inputSwitch checked></p-inputSwitch>
+              </div>
+            </div>
+          </div> -->
+
+          <h3>Cover letter, availability & assessment question</h3>
+          <div class="form_group">
+            <div class="form_field_group">
+              <p>
+                Cover letter & availability question will be asked to every
+                applicant by default. If you wish, you may ask two more
+                customized question as an assessment.
+              </p>
+            </div>
             <div class="form_field_group">
               <label>
                 Cover letter
-                <span>(Optional)</span>
               </label>
               <p>Why should you be hired for this role?</p>
 
@@ -325,6 +497,19 @@
                 placeholder=" Add any Questions"
               ></textarea> -->
               </div>
+            </div>
+          </div>
+
+          <div class="form_group">
+            <label>Alternative mobile number for this listing</label>
+            <p>
+              Our team will call you on this number in case of any query
+              regarding this listing only. Primary account number will not be
+              updated.
+            </p>
+            <div class="form_group_inline contact_group">
+              <input type="text" value="+91" pInputText readonly />
+              <input type="number" pInputText />
             </div>
           </div>
           <div class="buttonSec">
@@ -400,6 +585,18 @@
           <h3>{{ industryType }} details</h3>
           <div class="form_group">
             <div class="form_field_group">
+              <div class="alert alert-primary">
+                <p>
+                  We accept only fresher jobs (0-2 years experience) with a
+                  minimum CTC of 2LPA post probation*.
+                </p>
+                <p class="text-xs">
+                  * A job listing with a probation of up to 6 months and minimum
+                  Rp, 10,000 per month salary during probation is allowed.
+                </p>
+              </div>
+            </div>
+            <div class="form_field_group">
               <label>Title</label>
               <input
                 type="text"
@@ -408,6 +605,7 @@
                 formControlName="title"
               />
             </div>
+
             <div class="form_field_group">
               <label>{{ title }} details</label>
               <p-editor
@@ -521,6 +719,25 @@
               </div>
             </div>
             <div class="form_field_group">
+              <label>Part-time/Full-Time</label>
+              <div class="field-radiobutton">
+                <p-radioButton
+                  value="office"
+                  inputId="part-Time"
+                  formControlName=""
+                ></p-radioButton>
+                <label for="in-office">Part-time</label>
+              </div>
+              <div class="field-radiobutton">
+                <p-radioButton
+                  value="hybrid"
+                  inputId="full-time"
+                  formControlName=""
+                ></p-radioButton>
+                <label for="hybrid">Full-time</label>
+              </div>
+            </div>
+            <div class="form_field_group">
               <label>Number of openings</label>
               <input
                 formControlName="jobOpening"
@@ -536,53 +753,89 @@
                 <em>Selected intern's day-to-day responsibilities include:</em>
               </label>
 
-
-
               <p-editor
-              [style]="{ height: '100px', display: 'block' }"
-              formControlName="responsibilities"
-              placeholder="e.g Android app development"
-            >
-              <ng-template pTemplate="header">
-                <span class="ql-formats">
-                  <button
-                    type="button"
-                    class="ql-bold"
-                    aria-label="Bold"
-                  ></button>
-                  <button
-                    type="button"
-                    class="ql-italic"
-                    aria-label="Italic"
-                  ></button>
-                  <button
-                    type="button"
-                    class="ql-underline"
-                    aria-label="Underline"
-                  ></button>
-                </span>
-              </ng-template>
-            </p-editor>
-              <!-- <p-chips
-                separator=","
+                [style]="{ height: '100px', display: 'block' }"
                 formControlName="responsibilities"
-                placeholder="e.g designing product concepts"
-              ></p-chips>
-              <p class="short_note">
-                Please add
-                <b>comma(,)</b>
-                after adding any skill.
-              </p>
-              <div class="add_more">
-                <i>
-                  <img
-                    src="../../../assets/plus-icon.png"
-                    width="18"
-                    height="18"
-                  />
-                </i>
-                Add more responsibilities
-              </div> -->
+                placeholder="e.g Android app development"
+              >
+                <ng-template pTemplate="header">
+                  <span class="ql-formats">
+                    <button
+                      type="button"
+                      class="ql-bold"
+                      aria-label="Bold"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-italic"
+                      aria-label="Italic"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-underline"
+                      aria-label="Underline"
+                    ></button>
+                  </span>
+                </ng-template>
+              </p-editor>
+            </div>
+
+            <div class="form_field_group">
+              <label>Job Description</label>
+              <p-editor
+                [style]="{ height: '150px', display: 'block' }"
+                formControlName="jobDescription"
+                placeholder="Key responsibilities"
+              >
+                <ng-template pTemplate="header">
+                  <span class="ql-formats">
+                    <button
+                      type="button"
+                      class="ql-bold"
+                      aria-label="Bold"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-italic"
+                      aria-label="Italic"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-underline"
+                      aria-label="Underline"
+                    ></button>
+                  </span>
+                </ng-template>
+              </p-editor>
+            </div>
+
+            <div class="form_field_group">
+              <label>Additional candidate preferences</label>
+              <p-editor
+                [style]="{ height: '200px', display: 'block' }"
+                formControlName="preferencesAdditional"
+                placeholder="e.g Computer Science Graduate Preferred"
+              >
+                <ng-template pTemplate="header">
+                  <span class="ql-formats">
+                    <button
+                      type="button"
+                      class="ql-bold"
+                      aria-label="Bold"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-italic"
+                      aria-label="Italic"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-underline"
+                      aria-label="Underline"
+                    ></button>
+                  </span>
+                </ng-template>
+              </p-editor>
             </div>
 
             <div class="form_field_group">
@@ -651,8 +904,89 @@
               </div>
             </div>
           </div>
-          <h3>Cover letter & assessment question</h3>
+          <h3>Salary & perks</h3>
           <div class="form_group">
+            <div class="form_field_group">
+              <label>
+                CTC
+              </label>
+              <div class="form_group_inline">
+                <p-dropdown
+                  option=""
+                  optionLabel="name"
+                  optionValue="value"
+                ></p-dropdown>
+                <input
+                  formControlName=""
+                  type="number"
+                  placeholder="e.g 6"
+                  pInputText
+                />
+                to
+                <input
+                  formControlName=""
+                  type="number"
+                  placeholder="e.g 6"
+                  pInputText
+                />
+                per year
+              </div>
+            </div>
+            <div class="form_field_group">
+              <div class="form_group_inline">
+                <p-checkbox name="groupname" value="val1"></p-checkbox>
+                <p class="mb-0">This job has a probation period</p>
+              </div>
+            </div>
+            <div class="form__field_group">
+              <label>
+                Perks
+                <br />
+                <span class="text-xs text-gray">(Optional)</span>
+              </label>
+              <div class="form_grid_group mt-2">
+                <div class="form_group_inline">
+                  <p-checkbox name="groupname" value="val1"></p-checkbox>
+                  <p class="mb-0">5 days a week</p>
+                </div>
+                <div class="form_group_inline">
+                  <p-checkbox name="groupname" value="val2"></p-checkbox>
+                  <p class="mb-0">Health Insurance</p>
+                </div>
+                <div class="form_group_inline">
+                  <p-checkbox name="groupname" value="val3"></p-checkbox>
+                  <p class="mb-0">Life Insurance</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3>Cover letter, availability & assessment question</h3>
+          <div class="form_group">
+            <div class="form_field_group">
+              <p>
+                Cover letter & availability question will be asked to every
+                applicant by default. If you wish, you may ask two more
+                customized question as an assessment.
+              </p>
+            </div>
+            <div class="form_field_group">
+              <label>
+                Cover letter
+              </label>
+              <p>
+                Why should you be hired for this role?
+              </p>
+            </div>
+            <div class="form_field_group">
+              <label>
+                Availability
+              </label>
+              <p>
+                Are you available for a full-time remote job starting
+                immidiately? If not, what is the earliest date you can start
+                this job?
+              </p>
+            </div>
             <div class="form_field_group">
               <label>
                 Cover letter
@@ -687,6 +1021,18 @@
                   after adding any skill.
                 </p>
               </div>
+            </div>
+          </div>
+          <div class="form_group">
+            <label>Alternative mobile number for this listing</label>
+            <p>
+              Our team will call you on this number in case of any query
+              regarding this listing only. Primary account number will not be
+              updated.
+            </p>
+            <div class="form_group_inline contact_group">
+              <input type="text" value="+91" pInputText readonly />
+              <input type="number" pInputText />
             </div>
           </div>
           <div class="buttonSec">

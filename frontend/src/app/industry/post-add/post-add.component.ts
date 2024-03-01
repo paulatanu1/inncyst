@@ -62,6 +62,11 @@ interface SavePayload {
   experience: number;
   location: string;
 }
+
+interface IskillSet {
+  name: string;
+  code: number;
+}
 @Component({
   selector: 'app-post-add',
   templateUrl: './post-add.component.html',
@@ -89,9 +94,9 @@ export class PostAddComponent implements OnInit, AfterViewInit {
   display: boolean = false;
   savedDraftData: any = {};
   status!: boolean;
-  savedDraftCoverLetterData={}
-  EditInternship=false;
-  EditJob=false
+  savedDraftCoverLetterData = {};
+  EditInternship = false;
+  EditJob = false;
   opportunityOptions = [
     {
       name: 'opportunity',
@@ -122,6 +127,15 @@ export class PostAddComponent implements OnInit, AfterViewInit {
   submitButtonVisibility: boolean = true;
   resetbuttonVisibility: boolean = false;
   salaryType!: string;
+  skillList: IskillSet[] = [];
+
+  //   this.cities = [
+  //     {name: 'New York', code: 'NY'},
+  //     {name: 'Rome', code: 'RM'},
+  //     {name: 'London', code: 'LDN'},
+  //     {name: 'Istanbul', code: 'IST'},
+  //     {name: 'Paris', code: 'PRS'}
+  // ];
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private fb: FormBuilder,
@@ -171,28 +185,31 @@ export class PostAddComponent implements OnInit, AfterViewInit {
 
     this.industryForm = this.fb.group({
       type: ['intranship'],
-      title:[''],
+      title: [''],
       details: [''],
       skills: [[]],
       intranshipType: [''],
       startDate: [undefined],
       duration: [''],
       durationIn: [this.cities[0].optionName],
-      education: ['hs'],
       jobOpening: [0],
       salary: [],
       salaryType: [this.cities[0].optionName],
       perks: [[]],
       location: [''],
       stipend: [''],
-      letter:[''],
-      availability:[''],
-      moreQuestions:[[]]
+      letter: [''],
+      availability: [''],
+      moreQuestions: [[]],
+      jobType: [],
+      salaryIn: [],
+      responsiblity: [''],
+      addtionalCandidatePreference: [''],
     });
 
     this.jobForm = this.fb.group({
       type: ['job'],
-      title:[''],
+      title: [''],
       details: [''],
       skills: [[]],
       intranshipType: [''],
@@ -206,9 +223,9 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       salaryType: [this.cities[0].optionName],
       perks: [[]],
       location: [''],
-      letter:[''],
-      availability:[''],
-      moreQuestions:[[]]
+      letter: [''],
+      availability: [''],
+      moreQuestions: [[]],
     });
   }
 
@@ -216,6 +233,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     window.scrollTo(0, 0);
   }
   ngOnInit(): void {
+    this.getSkillLists();
     this._menuHandel.leftMenuActive.next(1);
     window.scrollTo(0, 0);
 
@@ -236,17 +254,17 @@ export class PostAddComponent implements OnInit, AfterViewInit {
             .getSinglePortfolio(this.editedJobId)
             .subscribe({
               next: (res) => {
-               
                 if (res.data.type) {
                   if (res.data.type == 'intranship') {
                     this.industryTypeFalse = 'internship';
                     this.typeSelection();
                     this.editedinternshipData = res.data;
-                  this.EditInternship=true
-                //  this.industryForm.disable();
+                    this.EditInternship = true;
+                    //  this.industryForm.disable();
                     this.status = this.editedinternshipData.status;
-this.industryForm.get('title')
-?.patchValue(this.editedinternshipData.title);
+                    this.industryForm
+                      .get('title')
+                      ?.patchValue(this.editedinternshipData.title);
                     this.industryForm
                       .get('type')
                       ?.patchValue(this.editedinternshipData.type);
@@ -289,30 +307,33 @@ this.industryForm.get('title')
                     this.industryForm
                       .get('durationIn')
                       ?.patchValue(this.editedinternshipData.durationIn);
-                      this.industryForm
+                    this.industryForm
                       .get('letter')
-                      ?.patchValue(this.editedinternshipData?.coverLetter?.letter);
-                      this.industryForm
+                      ?.patchValue(
+                        this.editedinternshipData?.coverLetter?.letter
+                      );
+                    this.industryForm
                       .get('availability')
-                      ?.patchValue(this.editedinternshipData?.coverLetter?.availability);
-                      this.industryForm
+                      ?.patchValue(
+                        this.editedinternshipData?.coverLetter?.availability
+                      );
+                    this.industryForm
                       .get('moreQuestions')
-                      ?.patchValue(this.editedinternshipData?.coverLetter?.moreQuestions);
-                
+                      ?.patchValue(
+                        this.editedinternshipData?.coverLetter?.moreQuestions
+                      );
                   }
                 }
                 if (res.data.type == 'job') {
                   this.industryTypeFalse = 'job';
                   this.typeSelection();
                   this.editedJobData = res.data;
-                  this.EditJob=true
+                  this.EditJob = true;
                   // this.jobForm.disable();
                   this.status = this.editedJobData.status;
                   this.jobForm.get('type')?.patchValue(this.editedJobData.type);
-                  this.jobForm
-                    .get('details')
-                    ?.patchValue(res.data.details);
-                    this.jobForm.get('title')?.patchValue(res.data.title);
+                  this.jobForm.get('details')?.patchValue(res.data.details);
+                  this.jobForm.get('title')?.patchValue(res.data.title);
                   this.jobForm
                     .get('skills')
                     ?.patchValue(this.editedJobData.skills);
@@ -350,19 +371,18 @@ this.industryForm.get('title')
                     .get('location')
                     ?.patchValue(this.editedJobData.location);
 
-                    this.jobForm
+                  this.jobForm
                     .get('letter')
                     ?.patchValue(this.editedJobData?.coverLetter?.letter);
-                    this.jobForm
+                  this.jobForm
                     .get('availability')
-                    ?.patchValue(this.editedJobData?.coverLetter?.availability);this.jobForm
+                    ?.patchValue(this.editedJobData?.coverLetter?.availability);
+                  this.jobForm
                     .get('moreQuestions')
-                    ?.patchValue(this.editedJobData?.coverLetter?.moreQuestions);
+                    ?.patchValue(
+                      this.editedJobData?.coverLetter?.moreQuestions
+                    );
                 }
-
-       
-
-                
               },
             });
         }
@@ -375,12 +395,23 @@ this.industryForm.get('title')
       }
     });
   }
-  internshipFormEnable(){
-    this.EditInternship=false;
+
+  getSkillLists() {
+    this.jobPost.fetchSkills().subscribe({
+      next: (res) => {
+        this.skillList = res.result.map((skill: any) => ({ skills: skill }));
+        console.log(this.skillList);
+      },
+      error: (err) => {},
+    });
+  }
+
+  internshipFormEnable() {
+    this.EditInternship = false;
     this.industryForm.enable();
   }
-  jobFormEnable(){
-    this.EditJob=false;
+  jobFormEnable() {
+    this.EditJob = false;
     this.jobForm.enable();
   }
   //internship save preview
@@ -389,7 +420,7 @@ this.industryForm.get('title')
     if (this.industryForm.value.type) {
       form_Data.type = this.industryForm.value.type;
     }
-    if(this.industryForm.value.title){
+    if (this.industryForm.value.title) {
       form_Data.title = this.industryForm.value.title;
     }
     if (this.industryForm.value.location) {
@@ -439,13 +470,13 @@ this.industryForm.get('title')
       form_Data.id = this.editedJobId;
     }
 
-    if (this.industryForm.value.letter ) {
+    if (this.industryForm.value.letter) {
       form_Data.letter = this.industryForm.value.letter;
-    }   if (this.industryForm.value.availability) {
-
+    }
+    if (this.industryForm.value.availability) {
       form_Data.availability = this.industryForm.value.availability;
-    }   if (this.industryForm.value.moreQuestions?.length>0) {
-
+    }
+    if (this.industryForm.value.moreQuestions?.length > 0) {
       form_Data.moreQuestions = this.industryForm.value.moreQuestions;
     }
     // console.log(form_Data, 'form_Data');
@@ -459,7 +490,7 @@ this.industryForm.get('title')
           detail: res.message,
         });
         this.display = true;
-        this.EditInternship=true;
+        this.EditInternship = true;
         // this.industryForm.disable();
         this._JobPostListService
           .getSinglePortfolio(this.saveDraftId)
@@ -467,7 +498,6 @@ this.industryForm.get('title')
             next: (res) => {
               this.savedDraftData = res.data;
               // this.  savedDraftCoverLetterData=res.data.
-
             },
           });
       },
@@ -504,7 +534,7 @@ this.industryForm.get('title')
     if (this.jobForm.value.details) {
       form_Data.details = this.jobForm.value.details;
     }
-    if (this.jobForm.value.skills?.length>0 ) {
+    if (this.jobForm.value.skills?.length > 0) {
       form_Data.skills = this.jobForm.value.skills;
     }
     if (this.jobForm.value.jobOpening > 0) {
@@ -533,13 +563,13 @@ this.industryForm.get('title')
       form_Data.id = this.editedJobId;
     }
 
-    if (this.jobForm.value.letter ) {
+    if (this.jobForm.value.letter) {
       form_Data.letter = this.jobForm.value.letter;
-    }   if (this.jobForm.value.availability) {
-
+    }
+    if (this.jobForm.value.availability) {
       form_Data.availability = this.jobForm.value.availability;
-    }   if (this.jobForm.value.moreQuestions?.length>0) {
-
+    }
+    if (this.jobForm.value.moreQuestions?.length > 0) {
       form_Data.moreQuestions = this.jobForm.value.moreQuestions;
     }
     // console.log(form_Data, 'form_Data');
@@ -553,7 +583,7 @@ this.industryForm.get('title')
           detail: res.message,
         });
         this.display = true;
-        this.EditJob=true;
+        this.EditJob = true;
         // this.jobForm.disable();
         this._JobPostListService
           .getSinglePortfolio(this.saveDraftId)
@@ -573,7 +603,6 @@ this.industryForm.get('title')
     });
   }
   editJob(id: any) {
-  
     // if (this.postJob.valid) {
     //   let formData: Payload = this.postJob.value;
     //   formData = {
@@ -584,7 +613,6 @@ this.industryForm.get('title')
     //     formData.id = this.saveDraftId;
     //     this.display = false;
     //   }
-
     //   if (this.editedJobId) {
     //     this.jobPost.editedJob(this.editedJobId, formData).subscribe({
     //       next: (resp) => {
@@ -601,7 +629,6 @@ this.industryForm.get('title')
     //       error: (err) => {
     //         this.display = false;
     //         this.router.navigateByUrl('/industry/jobs');
-
     //         this._toast.showToaster.next({
     //           severity: 'Error',
     //           summary: 'Error',
@@ -610,18 +637,14 @@ this.industryForm.get('title')
     //       },
     //     });
     //   }
-
     //   // Now you can use formData to send the data to your API
     //   console.log(formData);
-
     //   // Clear the form or perform any necessary actions
     //   // this.postJob.reset();
     // }
   }
-  editInternship(id: any) {
-  }
-  handleInternshipRadioButtonChange(event: Event) {
-  }
+  editInternship(id: any) {}
+  handleInternshipRadioButtonChange(event: Event) {}
 
   // handleJobRadioButtonChange(event: Event) {
   //   console.log(event);
@@ -674,11 +697,9 @@ this.industryForm.get('title')
 
   // }
 
-  internshipSubmitForm() {
-  }
+  internshipSubmitForm() {}
 
-  jobSubmitForm() {
-  }
+  jobSubmitForm() {}
 
   //type select
 
@@ -709,7 +730,6 @@ this.industryForm.get('title')
   }
 
   submitFormjob() {
-
     if (this.jobForm.valid) {
       let formData = this.jobForm.value;
       formData = {
@@ -722,7 +742,7 @@ this.industryForm.get('title')
       }
       this.jobPost.internshipSubmit(formData).subscribe({
         next: (resp) => {
-            this.jobForm.disable();
+          this.jobForm.disable();
           this.display = false;
           this.router.navigateByUrl('/industry/jobs');
           this._toast.showToaster.next({
@@ -731,13 +751,13 @@ this.industryForm.get('title')
             detail: resp.message,
           });
           this.display = false;
-          this.EditJob=true;
+          this.EditJob = true;
           this.jobForm.disable();
         },
         error: (err) => {
           this.display = false;
           // this.router.navigateByUrl('/industry/jobs')
-this.jobForm.enable()
+          this.jobForm.enable();
           this._toast.showToaster.next({
             severity: 'error',
             summary: 'rror',
@@ -750,17 +770,20 @@ this.jobForm.enable()
 
       // Clear the form or perform any necessary actions
       // this.postJob.reset();
-    }
-    else{
+    } else {
       this._toast.showToaster.next({
         severity: 'error',
         summary: 'rror',
         detail: 'please fillup all the field',
-      })
+      });
     }
   }
   //final submit internship
   submitFormInternship() {
+    this.industryForm.value.skills = this.industryForm.value.skills.map(
+      (skillObject: { skills: any }) => skillObject.skills
+    );
+    // return;
     if (this.industryForm.valid) {
       let formData = this.industryForm.value;
       formData = {
@@ -782,12 +805,12 @@ this.jobForm.enable()
           });
           this.display = false;
           this.industryForm.disable();
-          this.EditInternship=true;
+          this.EditInternship = true;
         },
         error: (err) => {
           this.display = false;
           // this.router.navigateByUrl('/industry/jobs')
-this.industryForm.enable()
+          this.industryForm.enable();
           this._toast.showToaster.next({
             severity: 'error',
             summary: 'error',
@@ -800,19 +823,21 @@ this.industryForm.enable()
 
       // Clear the form or perform any necessary actions
       // this.postJob.reset();
-    }
-    else{
+    } else {
       this._toast.showToaster.next({
         severity: 'error',
         summary: 'error',
-        detail:'please fillup all the field',
+        detail: 'please fillup all the field',
       });
     }
   }
-  onKeydownMain(event:any){
-    if(event.key == 0 && event.charCode==0 && event.target.value.length == 0){
-
-      event.preventDefault()
+  onKeydownMain(event: any) {
+    if (
+      event.key == 0 &&
+      event.charCode == 0 &&
+      event.target.value.length == 0
+    ) {
+      event.preventDefault();
     }
   }
   // final submit job
