@@ -82,6 +82,10 @@
     }
 }
 
+.p-overlaypanel:after, .p-overlaypanel:before {
+    display: none;
+}
+
 .oppertunity-type {
 
     p {
@@ -96,10 +100,11 @@
 }
 
 .industry_listing {
-    padding: 20px 0 60px 70px;
     display: grid;
-    grid-template-columns: 3fr 3fr 3fr;
+    grid-template-columns: 3fr 3fr;
+    gap: 2.5rem;
     width: 100%;
+    padding: 1rem 0 1rem 2rem;
 
     &>li {
         list-style: none;
@@ -309,6 +314,7 @@ ul.action-btns {
 .jobs-profile {
     li {
         border: 0;
+        margin: 0;
     }
 
     .item-status {
@@ -317,6 +323,7 @@ ul.action-btns {
         position: absolute;
         right: 15px;
         top: 45px;
+        z-index: 9;
 
     }
 
@@ -325,7 +332,7 @@ ul.action-btns {
         box-shadow: none;
         border-radius: 1rem;
         margin-bottom: 0;
-        max-width: 470px;
+        max-width: 100%;
         min-height: 100%;
         height: 430px;
 
@@ -385,6 +392,21 @@ ul.action-btns {
             align-items: center;
             border: 2px solid #ececec00;
             box-shadow: rgb(50 50 93 / 0%) 0px 11px 6px -5px, rgba(0, 0, 0, 0.3) 0px 8px 8px -8px;
+            position: relative;
+
+            button.applied_list {
+
+                font-weight: 600;
+                position: absolute;
+                right: 18px;
+                bottom: 16px;
+                background: #06114b;
+                font-size: 0.7rem;
+                padding: 0.3rem 1.5rem;
+                border-radius: 6px;
+                color: #fff;
+
+            }
 
             .profile-img {
                 width: 70px;
@@ -470,7 +492,7 @@ ul.action-btns {
                         background: rgb(238 180 9 / 16%);
                         padding: 0.7rem;
                         border-radius: 50%;
-                        font-size: 0.7rem;
+                        font-size: 1rem;
                         width: 35px;
                         height: 35px;
                         display: flex;
