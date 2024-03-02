@@ -67,6 +67,10 @@ interface IskillSet {
   name: string;
   code: number;
 }
+interface Icurrency {
+  currenctType: string;
+  code: string;
+}
 @Component({
   selector: 'app-post-add',
   templateUrl: './post-add.component.html',
@@ -136,6 +140,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
   //     {name: 'Istanbul', code: 'IST'},
   //     {name: 'Paris', code: 'PRS'}
   // ];
+  currency!: Icurrency[];
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private fb: FormBuilder,
@@ -163,25 +168,6 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     ];
 
     window.scrollTo(0, 0);
-    // this.postJob = this.fb.group({
-    //   type: [''],
-    //   details: [''],
-    //   skills: [[]],
-    //   intranshipType: [''],
-    //   startDate: [undefined],
-    //   duration: [''],
-    //   durationIn: [this.cities[0].optionName],
-    //   education: ['hs'],
-    //   experience: [undefined],
-    //   experienceTime: ['months'],
-    //   jobOpening: [0],
-    //   responsibilities: [[]],
-    //   stipend: [''],
-    //   salary: [],
-    //   salaryType: [this.cities[0].optionName],
-    //   perks: [[]],
-    //   location: [''],
-    // });
 
     this.industryForm = this.fb.group({
       type: ['intranship'],
@@ -226,7 +212,14 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       letter: [''],
       availability: [''],
       moreQuestions: [[]],
+      alternativeMobile: [''],
+      jobDescription: [''],
+      preferencesAdditional: [''],
+      workType: [''],
+      probationPeriod: [null],
     });
+
+    this.currency = [{ currenctType: 'INR', code: 'ind' }];
   }
 
   ngAfterViewInit(): void {

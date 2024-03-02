@@ -42,7 +42,7 @@
           <h3>{{ industryType }} details</h3>
           <div class="form_group">
             <div class="form_field_group">
-              <label>Title</label>
+              <label>Job title</label>
               <input
                 type="text"
                 placeholder="e.g angular developer"
@@ -757,6 +757,64 @@
                 [style]="{ height: '100px', display: 'block' }"
                 formControlName="responsibilities"
                 placeholder="e.g Android app development"
+              >
+                <ng-template pTemplate="header">
+                  <span class="ql-formats">
+                    <button
+                      type="button"
+                      class="ql-bold"
+                      aria-label="Bold"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-italic"
+                      aria-label="Italic"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-underline"
+                      aria-label="Underline"
+                    ></button>
+                  </span>
+                </ng-template>
+              </p-editor>
+            </div>
+
+            <div class="form_field_group">
+              <label>Job Description</label>
+              <p-editor
+                [style]="{ height: '150px', display: 'block' }"
+                formControlName="jobDescription"
+                placeholder="Key responsibilities"
+              >
+                <ng-template pTemplate="header">
+                  <span class="ql-formats">
+                    <button
+                      type="button"
+                      class="ql-bold"
+                      aria-label="Bold"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-italic"
+                      aria-label="Italic"
+                    ></button>
+                    <button
+                      type="button"
+                      class="ql-underline"
+                      aria-label="Underline"
+                    ></button>
+                  </span>
+                </ng-template>
+              </p-editor>
+            </div>
+
+            <div class="form_field_group">
+              <label>Additional candidate preferences</label>
+              <p-editor
+                [style]="{ height: '200px', display: 'block' }"
+                formControlName="preferencesAdditional"
+                placeholder="e.g Computer Science Graduate Preferred"
               >
                 <ng-template pTemplate="header">
                   <span class="ql-formats">
