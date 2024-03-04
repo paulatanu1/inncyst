@@ -5,14 +5,16 @@
       <h3>Opportunity type</h3>
       <div class="form_group">
         <div class="field-radiobutton">
-          <input
-            type="radio"
-            value="job"
-            inputId="job"
-            [(ngModel)]="industryTypeFalse"
-            #job
-          />
-          <label for="job">Job</label>
+          <label for="job">
+            <input
+              type="radio"
+              value="job"
+              inputId="job"
+              [(ngModel)]="industryTypeFalse"
+              #job
+            />
+            Job
+          </label>
         </div>
 
         <div class="field-radiobutton">
@@ -267,7 +269,11 @@
             </div>
             <div class="form_field_group">
               <div class="form_group_inline">
-                <p-checkbox name="groupname" value="val1"></p-checkbox>
+                <p-checkbox
+                  name="groupname"
+                  value="val1"
+                  formControlName="womenRestart"
+                ></p-checkbox>
                 <p class="mb-0">
                   Allow applications from women also who are willing to
                   start/restart their career.
@@ -509,7 +515,11 @@
             </p>
             <div class="form_group_inline contact_group">
               <input type="text" value="+91" pInputText readonly />
-              <input type="number" pInputText />
+              <input
+                type="number"
+                pInputText
+                formControlName="alternativePhone"
+              />
             </div>
           </div>
           <div class="buttonSec">
@@ -680,16 +690,13 @@
             <div class="form_field_group">
               <label>Skills required</label>
               <!-- <input type="text" placeholder="e.g Java" pInputText /> -->
-              <p-chips
-                separator=" "
+              <p-multiSelect
+                [options]="skillList"
                 formControlName="skills"
-                placeholder="Hint: a, b, c"
-              ></p-chips>
-              <p class="short_note">
-                Please add
-                <b>space</b>
-                after adding any skill.
-              </p>
+                optionLabel="skills"
+                [maxSelectedLabels]="3"
+                tooltip="Select Skills"
+              ></p-multiSelect>
             </div>
             <div class="form_field_group">
               <label>{{ title }} type</label>
@@ -722,17 +729,17 @@
               <label>Part-time/Full-Time</label>
               <div class="field-radiobutton">
                 <p-radioButton
-                  value="office"
+                  value="part"
                   inputId="part-Time"
-                  formControlName=""
+                  formControlName="jobType"
                 ></p-radioButton>
                 <label for="in-office">Part-time</label>
               </div>
               <div class="field-radiobutton">
                 <p-radioButton
-                  value="hybrid"
+                  value="full"
                   inputId="full-time"
-                  formControlName=""
+                  formControlName="jobType"
                 ></p-radioButton>
                 <label for="hybrid">Full-time</label>
               </div>
@@ -970,19 +977,20 @@
               </label>
               <div class="form_group_inline">
                 <p-dropdown
-                  option=""
-                  optionLabel="name"
-                  optionValue="value"
+                  [options]="currency"
+                  optionLabel="currenctType"
+                  optionValue="code"
+                  formControlName="currencyType"
                 ></p-dropdown>
                 <input
-                  formControlName=""
+                  formControlName="ctcFrom"
                   type="number"
                   placeholder="e.g 6"
                   pInputText
                 />
                 to
                 <input
-                  formControlName=""
+                  formControlName="ctcTo"
                   type="number"
                   placeholder="e.g 6"
                   pInputText
@@ -992,29 +1000,12 @@
             </div>
             <div class="form_field_group">
               <div class="form_group_inline">
-                <p-checkbox name="groupname" value="val1"></p-checkbox>
+                <p-checkbox
+                  name="groupname"
+                  value="val1"
+                  formControlName="probationPeriod"
+                ></p-checkbox>
                 <p class="mb-0">This job has a probation period</p>
-              </div>
-            </div>
-            <div class="form__field_group">
-              <label>
-                Perks
-                <br />
-                <span class="text-xs text-gray">(Optional)</span>
-              </label>
-              <div class="form_grid_group mt-2">
-                <div class="form_group_inline">
-                  <p-checkbox name="groupname" value="val1"></p-checkbox>
-                  <p class="mb-0">5 days a week</p>
-                </div>
-                <div class="form_group_inline">
-                  <p-checkbox name="groupname" value="val2"></p-checkbox>
-                  <p class="mb-0">Health Insurance</p>
-                </div>
-                <div class="form_group_inline">
-                  <p-checkbox name="groupname" value="val3"></p-checkbox>
-                  <p class="mb-0">Life Insurance</p>
-                </div>
               </div>
             </div>
           </div>
@@ -1067,18 +1058,21 @@
                 cols="50"
                 placeholder=" Are you available for 1 month, starting immediately, for a full-time work from home internship? If not, what is the time  period you are available for and the earliest date you can start this internship on"
               ></textarea>
-              <div class="add_more">
-                <p-chips
-                  separator=" "
-                  formControlName="moreQuestions"
-                  placeholder="Add any Questions"
-                ></p-chips>
+              <!-- <div class="add_more">
+                <p-multiSelect
+                  [options]="skillList"
+                  formControlName="skills"
+                  optionLabel="skills"
+                  [maxSelectedLabels]="3"
+                  tooltip="Select Skills"
+                ></p-multiSelect>
+               
                 <p class="short_note">
                   Please add
                   <b>space</b>
                   after adding any skill.
                 </p>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="form_group">
@@ -1090,7 +1084,11 @@
             </p>
             <div class="form_group_inline contact_group">
               <input type="text" value="+91" pInputText readonly />
-              <input type="number" pInputText />
+              <input
+                type="number"
+                pInputText
+                formControlName="alternativeMobile"
+              />
             </div>
           </div>
           <div class="buttonSec">

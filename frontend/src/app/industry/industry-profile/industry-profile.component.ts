@@ -144,6 +144,7 @@ export class IndustryProfileComponent implements OnInit {
         this._ProfileService.profileImage.next(this.profileData.image);
         this._ProfileService.profileName.next(this.profileData.companyName);
         this.loading = false;
+        localStorage.setItem('industry-phone', res.data?.industryId.phone);
         ls.set('questionStep', res.data.industryId.question_step);
         if (this.profileData) {
           this.profileForm.get('companyName')?.setValue(res.data?.companyName);

@@ -169,6 +169,9 @@ export class PostAddComponent implements OnInit, AfterViewInit {
 
     window.scrollTo(0, 0);
 
+    const industryPhone = localStorage.getItem('industry-phone');
+    console.log(industryPhone, 'phone');
+
     this.industryForm = this.fb.group({
       type: ['intranship'],
       title: [''],
@@ -191,6 +194,8 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       salaryIn: [],
       responsiblity: [''],
       addtionalCandidatePreference: [''],
+      alternativePhone: [industryPhone],
+      womenRestart: [],
     });
 
     this.jobForm = this.fb.group({
@@ -212,11 +217,15 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       letter: [''],
       availability: [''],
       moreQuestions: [[]],
-      alternativeMobile: [''],
+      alternativeMobile: [localStorage.getItem('industry-phone')],
       jobDescription: [''],
       preferencesAdditional: [''],
       workType: [''],
       probationPeriod: [null],
+      jobType: [],
+      ctcFrom: [],
+      ctcTo: [],
+      currencyType: [],
     });
 
     this.currency = [{ currenctType: 'INR', code: 'ind' }];
@@ -776,7 +785,8 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     this.industryForm.value.skills = this.industryForm.value.skills.map(
       (skillObject: { skills: any }) => skillObject.skills
     );
-    // return;
+    console.log(this.industryForm.value);
+    return;
     if (this.industryForm.valid) {
       let formData = this.industryForm.value;
       formData = {
