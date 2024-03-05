@@ -210,7 +210,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       jobOpening: [0],
       responsibilities: [[]],
       stipend: [''],
-      salary: [],
+      // salary: [],
       salaryType: [this.cities[0].optionName],
       perks: [[]],
       location: [''],
@@ -220,12 +220,11 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       alternativeMobile: [localStorage.getItem('industry-phone')],
       jobDescription: [''],
       preferencesAdditional: [''],
-      workType: [''],
-      probationPeriod: [null],
+      probationPeriod: [''],
       jobType: [],
       ctcFrom: [],
       ctcTo: [],
-      currencyType: [],
+      currencyType: ['Inr'],
     });
 
     this.currency = [{ currenctType: 'INR', code: 'ind' }];
@@ -514,7 +513,11 @@ export class PostAddComponent implements OnInit, AfterViewInit {
   }
   //job save preview
   save_preview_job() {
+    this.jobForm.value.skills = this.jobForm.value.skills.map(
+      (skillObject: { skills: any }) => skillObject.skills
+    );
     const form_Data: any = new Object();
+    console.log(this.jobForm.value);
     if (this.jobForm.value.type) {
       form_Data.type = this.jobForm.value.type;
     }
@@ -573,6 +576,27 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     }
     if (this.jobForm.value.moreQuestions?.length > 0) {
       form_Data.moreQuestions = this.jobForm.value.moreQuestions;
+    }
+    if (this.jobForm.value.skills?.length > 0) {
+      form_Data.skills = this.jobForm.value.skills;
+    }
+    if (this.jobForm.value.currency) {
+      form_Data.currency = this.jobForm.value.currency;
+    }
+    if (this.jobForm.value.currency) {
+      form_Data.ctcFrom = this.jobForm.value.currency;
+    }
+    if (this.jobForm.value.currency) {
+      form_Data.ctcTo = this.jobForm.value.currency;
+    }
+    if (this.jobForm.value.currency) {
+      form_Data.isProbationPeriod = this.jobForm.value.currency;
+    }
+    if (this.jobForm.value.currency) {
+      form_Data.addtionalCandidatePreference = this.jobForm.value.currency;
+    }
+    if (this.jobForm.value.alternativeMobile) {
+      form_Data.alternativeMobile = this.jobForm.value.alternativeMobile;
     }
     // console.log(form_Data, 'form_Data');
     // const formData:SavePayload=this.postJob.value
@@ -786,7 +810,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       (skillObject: { skills: any }) => skillObject.skills
     );
     console.log(this.industryForm.value);
-    return;
+    // return;
     if (this.industryForm.valid) {
       let formData = this.industryForm.value;
       formData = {
