@@ -170,7 +170,6 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     window.scrollTo(0, 0);
 
     const industryPhone = localStorage.getItem('industry-phone');
-    console.log(industryPhone, 'phone');
 
     this.industryForm = this.fb.group({
       type: ['intranship'],
@@ -401,7 +400,6 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     this.jobPost.fetchSkills().subscribe({
       next: (res) => {
         this.skillList = res.result.map((skill: any) => ({ skills: skill }));
-        console.log(this.skillList);
       },
       error: (err) => {},
     });
@@ -520,7 +518,6 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       (skillObject: { skills: any }) => skillObject.skills
     );
     const form_Data: any = new Object();
-    console.log(this.jobForm.value);
     if (this.jobForm.value.type) {
       form_Data.type = this.jobForm.value.type;
     }
@@ -766,9 +763,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
 
       this.jobForm.value.ctcFrom = this.jobForm.value.ctcFrom.toString();
       this.jobForm.value.ctcTo = this.jobForm.value.ctcTo.toString();
-      console.log(this.jobForm.value.ctcFrom, this.jobForm.value.ctcTo);
       let formData = this.jobForm.value;
-      console.log(formData, 'fdd');
       formData = {
         ...formData,
         id: this.saveDraftId ? this.saveDraftId : this.editedJobId,
@@ -823,7 +818,6 @@ export class PostAddComponent implements OnInit, AfterViewInit {
 
     this.industryForm.value.womenRestart =
       this.industryForm.value.womenRestart[0];
-    console.log(this.industryForm.value);
     // return;
     if (this.industryForm.valid) {
       let formData = this.industryForm.value;

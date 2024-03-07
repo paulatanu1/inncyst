@@ -169,9 +169,10 @@ export class JobsManagementComponent implements OnInit {
   }
   onSortChange(event: any) {
     let value = event.value;
-    console.log(value, 'value');
     if (value) {
       this.filterBy = value;
+      this.page = 0;
+      this.postList = [];
       this.getJobList();
     }
   }
@@ -189,7 +190,8 @@ export class JobsManagementComponent implements OnInit {
       // Validation failed: leading space detected
       // You can handle this case, e.g., by removing leading spaces
       // this.query = this.query.trimStart();
-      console.log(this.query.trim());
+      this.page = 0;
+      this.postList = [];
       this.getJobList();
     }
   }
