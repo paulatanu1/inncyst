@@ -186,7 +186,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       salaryType: [this.cities[0].optionName],
       perks: [[]],
       location: [''],
-      stipend: [''],
+      // stipend: [''],
       letter: [''],
       availability: [''],
       moreQuestions: [[]],
@@ -195,7 +195,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       responsiblity: [''],
       addtionalCandidatePreference: [''],
       alternativePhone: [industryPhone],
-      womenRestart: [],
+      womenRestart: [''],
     });
 
     this.jobForm = this.fb.group({
@@ -211,19 +211,19 @@ export class PostAddComponent implements OnInit, AfterViewInit {
       responsibilities: [[]],
       stipend: [''],
       // salary: [],
-      salaryType: [this.cities[0].optionName],
+      // salaryType: [this.cities[0].optionName],
       perks: [[]],
       location: [''],
       letter: [''],
       availability: [''],
       moreQuestions: [[]],
-      alternativeMobile: [localStorage.getItem('industry-phone')],
+      alternativePhone: [localStorage.getItem('industry-phone')],
       jobDescription: [''],
-      preferencesAdditional: [''],
+      addtionalCandidatePreference: [''],
       probationPeriod: [''],
       jobType: [],
-      ctcFrom: [],
-      ctcTo: [],
+      ctcFrom: [''],
+      ctcTo: [''],
       currencyType: ['Inr'],
     });
 
@@ -421,6 +421,9 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     if (this.industryForm.value.type) {
       form_Data.type = this.industryForm.value.type;
     }
+    if (this.industryForm.value.womenRestart) {
+      form_Data.womenRestart = this.industryForm.value.womenRestart;
+    }
     if (this.industryForm.value.title) {
       form_Data.title = this.industryForm.value.title;
     }
@@ -451,9 +454,9 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     if (this.industryForm.value.jobOpening > 0) {
       form_Data.jobOpening = this.industryForm.value.jobOpening;
     }
-    if (this.industryForm.value.stipend.length > 0) {
-      form_Data.stipend = this.industryForm.value.stipend;
-    }
+    // if (this.industryForm.value.stipend.length > 0) {
+    //   form_Data.stipend = this.industryForm.value.stipend;
+    // }
     if (this.industryForm.value.salary > 0) {
       form_Data.salary = this.industryForm.value.salary;
     }
@@ -757,7 +760,15 @@ export class PostAddComponent implements OnInit, AfterViewInit {
 
   submitFormjob() {
     if (this.jobForm.valid) {
+      this.jobForm.value.skills = this.jobForm.value.skills.map(
+        (skillObject: { skills: any }) => skillObject.skills
+      );
+
+      this.jobForm.value.ctcFrom = this.jobForm.value.ctcFrom.toString();
+      this.jobForm.value.ctcTo = this.jobForm.value.ctcTo.toString();
+      console.log(this.jobForm.value.ctcFrom, this.jobForm.value.ctcTo);
       let formData = this.jobForm.value;
+      console.log(formData, 'fdd');
       formData = {
         ...formData,
         id: this.saveDraftId ? this.saveDraftId : this.editedJobId,
@@ -809,6 +820,9 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     this.industryForm.value.skills = this.industryForm.value.skills.map(
       (skillObject: { skills: any }) => skillObject.skills
     );
+
+    this.industryForm.value.womenRestart =
+      this.industryForm.value.womenRestart[0];
     console.log(this.industryForm.value);
     // return;
     if (this.industryForm.valid) {

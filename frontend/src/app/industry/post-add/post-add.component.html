@@ -271,7 +271,7 @@
               <div class="form_group_inline">
                 <p-checkbox
                   name="groupname"
-                  value="val1"
+                  value="true"
                   formControlName="womenRestart"
                 ></p-checkbox>
                 <p class="mb-0">
@@ -820,7 +820,7 @@
               <label>Additional candidate preferences</label>
               <p-editor
                 [style]="{ height: '200px', display: 'block' }"
-                formControlName="preferencesAdditional"
+                formControlName="addtionalCandidatePreference"
                 placeholder="e.g Computer Science Graduate Preferred"
               >
                 <ng-template pTemplate="header">
@@ -844,65 +844,6 @@
                 </ng-template>
               </p-editor>
             </div>
-
-            <!-- <div class="form_field_group">
-              <label>Job Description</label>
-              <p-editor
-                [style]="{ height: '150px', display: 'block' }"
-                formControlName="jobDescription"
-                placeholder="Key responsibilities"
-              >
-                <ng-template pTemplate="header">
-                  <span class="ql-formats">
-                    <button
-                      type="button"
-                      class="ql-bold"
-                      aria-label="Bold"
-                    ></button>
-                    <button
-                      type="button"
-                      class="ql-italic"
-                      aria-label="Italic"
-                    ></button>
-                    <button
-                      type="button"
-                      class="ql-underline"
-                      aria-label="Underline"
-                    ></button>
-                  </span>
-                </ng-template>
-              </p-editor>
-            </div> -->
-
-            <!-- <div class="form_field_group">
-              <label>Additional candidate preferences</label>
-              <p-editor
-                [style]="{ height: '200px', display: 'block' }"
-                formControlName="preferencesAdditional"
-                placeholder="e.g Computer Science Graduate Preferred"
-              >
-                <ng-template pTemplate="header">
-                  <span class="ql-formats">
-                    <button
-                      type="button"
-                      class="ql-bold"
-                      aria-label="Bold"
-                    ></button>
-                    <button
-                      type="button"
-                      class="ql-italic"
-                      aria-label="Italic"
-                    ></button>
-                    <button
-                      type="button"
-                      class="ql-underline"
-                      aria-label="Underline"
-                    ></button>
-                  </span>
-                </ng-template>
-              </p-editor>
-            </div> -->
-
             <div class="form_field_group">
               <label>{{ salaryType }}</label>
               <div class="field-radiobutton">
@@ -922,22 +863,7 @@
                 <label for="later">Performance based</label>
               </div>
             </div>
-            <!-- <div class="form_field_group stipend">
-              <div class="twoColForm">
-                <input
-                  formControlName="salary"
-                  type="text"
-                  placeholder="e.g 10000/-"
-                  pInputText
-                />
-                <p-dropdown
-                  [options]="cities"
-                  optionLabel="optionName"
-                  optionValue="optionName"
-                  formControlName="salaryType"
-                ></p-dropdown>
-              </div>
-            </div> -->
+
             <div class="form_field_group perks">
               <label>
                 Perks
@@ -1058,21 +984,6 @@
                 cols="50"
                 placeholder=" Are you available for 1 month, starting immediately, for a full-time work from home internship? If not, what is the time  period you are available for and the earliest date you can start this internship on"
               ></textarea>
-              <!-- <div class="add_more">
-                <p-multiSelect
-                  [options]="skillList"
-                  formControlName="skills"
-                  optionLabel="skills"
-                  [maxSelectedLabels]="3"
-                  tooltip="Select Skills"
-                ></p-multiSelect>
-               
-                <p class="short_note">
-                  Please add
-                  <b>space</b>
-                  after adding any skill.
-                </p>
-              </div> -->
             </div>
           </div>
           <div class="form_group">
@@ -1087,7 +998,7 @@
               <input
                 type="number"
                 pInputText
-                formControlName="alternativeMobile"
+                formControlName="alternativePhone"
               />
             </div>
           </div>
