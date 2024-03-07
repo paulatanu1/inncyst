@@ -1,4 +1,9 @@
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { LeftMenuHandelService } from '../left-menu-handel.service';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/common-service/api.service';
@@ -7,7 +12,6 @@ import { JobListApiService } from './posts/job-list-api.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectItem } from 'primeng/api';
-
 
 interface City {
   name: string;
@@ -20,53 +24,45 @@ interface City {
   encapsulation: ViewEncapsulation.None,
 })
 export class JobsManagementComponent implements OnInit {
-  sortOptions!: SelectItem[];
+  sortOptions: SelectItem[] = [
+    { label: 'Ascending', value: 'asc' },
+    { label: 'Descending', value: 'desc' },
+    { label: 'Newest', value: 'newest' },
+    { label: 'Oldest', value: 'oldest' },
+  ];
   sortOrder!: number;
   sortField!: string;
   sortKey!: string;
-
-  onSortChange(event: any) {
-    let value = event.value;
-
-    if (value.indexOf('!') === 0) {
-        this.sortOrder = -1;
-        this.sortField = value.substring(1, value.length);
-    } else {
-        this.sortOrder = 1;
-        this.sortField = value;
-    }
-}
-
-  value: string | undefined;
-  postList:any=[]
+  searchValue: string = '';
+  postList: any = [];
   visible: boolean = false;
   status!: City[];
-editedJobId!:any
-  selectedStatus!: City ;
-jobStatus:boolean=false;
-page=0;
-limit=10;
-totalItem!:number
-loading:boolean=false;
-jobTitle!:any
+  editedJobId!: any;
+  selectedStatus!: City;
+  jobStatus: boolean = false;
+  page = 0;
+  limit = 10;
+  totalItem!: number;
+  loading: boolean = false;
+  jobTitle!: any;
+  query = '';
+  filterBy = '';
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private router: Router,
     private post: JobPostListService,
     private _JobListApiService: JobListApiService,
-    private _toast: ToastServiceService,
-    
+    private _toast: ToastServiceService
   ) {
     window.scrollTo(0, 0);
   }
 
   @HostListener('window:scroll', ['$event'])
   onScroll1(event: Event): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      if(this.totalItem > this.postList.length){
-        this.page=this.page+1;
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      if (this.totalItem > this.postList.length) {
+        this.page = this.page + 1;
         this.getJobList();
-
       }
     }
   }
@@ -78,37 +74,39 @@ jobTitle!:any
 
     this.status = [
       { name: 'Published ', value: 'true' },
-      { name: 'Not Published', value: 'false' },   
-  ];
+      { name: 'Not Published', value: 'false' },
+    ];
   }
 
   getJobList() {
-    this.loading=true;
-    this.post.getPostList(this.page,this.limit).subscribe({
-      next: (res) => {
-        this.totalItem=res.data.total;
-        this.postList = [...this.postList,...res.data.items];
-        // this.postList=this.postList.push(...res.data.items)
-        this.loading=false
-      },
-      error:(err)=>{
-        this.loading=false
-      }
-    });
+    this.loading = true;
+    this.post
+      .getPostList(this.page, this.limit, this.query, this.filterBy)
+      .subscribe({
+        next: (res) => {
+          this.totalItem = res.data.total;
+          this.postList = [...this.postList, ...res.data.items];
+          // this.postList=this.postList.push(...res.data.items)
+          this.loading = false;
+        },
+        error: (err) => {
+          this.loading = false;
+        },
+      });
   }
 
   addJobs() {
     this.router.navigate(['/industry/jobs/add-job']);
   }
-  edit(id: number,type:string) {
+  edit(id: number, type: string) {
     // alert(id)
     // console.log(data)
     this.router.navigate(['/industry/jobs/add-job'], {
-      queryParams: { id: id ,type:type},
+      queryParams: { id: id, type: type },
     });
   }
-  delete(id: any,index:any) {
-    this.postList.splice(index,1);
+  delete(id: any, index: any) {
+    this.postList.splice(index, 1);
     this.post.deletePortFolio(id).subscribe({
       next: (res) => {
         // this.postList=[]
@@ -130,47 +128,69 @@ jobTitle!:any
       },
     });
   }
-  onScroll(){
-    if(this.totalItem >= this.postList.length){
-      this.page=this.page+1;
+  onScroll() {
+    if (this.totalItem >= this.postList.length) {
+      this.page = this.page + 1;
       this.getJobList();
-
     }
   }
-  editStatus(id:any,title:any){
-    this.visible=true
-   this.editedJobId=id
-   this.jobTitle=title
-  
+  editStatus(id: any, title: any) {
+    this.visible = true;
+    this.editedJobId = id;
+    this.jobTitle = title;
   }
-  statusChange(e:any){
-    this.selectedStatus=e.value.value
-    const formData:any = new Object()
-    formData.status=this.selectedStatus
-    this.post.editStatus(formData,this.editedJobId).subscribe({
-      next:(res=>{
-
-      this.visible=false
-      this._toast.showToaster.next({
-        severity: 'success',
-        summary: 'success',
-        detail: res.message,
-      });
-    
-    
-    }),
-    error: (err) => {
-      this._toast.showToaster.next({
-        severity: 'error',
-        summary: 'error',
-        detail: err.error.message,
-      });
-    },
-    })
+  statusChange(e: any) {
+    this.selectedStatus = e.value.value;
+    const formData: any = new Object();
+    formData.status = this.selectedStatus;
+    this.post.editStatus(formData, this.editedJobId).subscribe({
+      next: (res) => {
+        this.visible = false;
+        this._toast.showToaster.next({
+          severity: 'success',
+          summary: 'success',
+          detail: res.message,
+        });
+      },
+      error: (err) => {
+        this._toast.showToaster.next({
+          severity: 'error',
+          summary: 'error',
+          detail: err.error.message,
+        });
+      },
+    });
   }
-  
 
-  studentList(id:any){
-this.router.navigate(['/industry/appliedStudentList'],{queryParams:{id:id}})
+  studentList(id: any) {
+    this.router.navigate(['/industry/appliedStudentList'], {
+      queryParams: { id: id },
+    });
+  }
+  onSortChange(event: any) {
+    let value = event.value;
+    console.log(value, 'value');
+    if (value) {
+      this.filterBy = value;
+      this.getJobList();
+    }
+  }
+
+  searchJob(): void {
+    // Triggered on each input change
+    // You can perform additional actions here if needed
+    this.validateSearchInput();
+  }
+
+  validateSearchInput(): void {
+    // Customize the validation logic based on your requirements
+    // const pattern = /^[a-zA-Z0-9][a-zA-Z0-9 ]*$/;
+    if (this.query) {
+      // Validation failed: leading space detected
+      // You can handle this case, e.g., by removing leading spaces
+      // this.query = this.query.trimStart();
+      console.log(this.query.trim());
+      this.getJobList();
+    }
   }
 }

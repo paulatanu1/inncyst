@@ -2,24 +2,39 @@
   <div class="filter-section">
     <span class="p-input-icon-left">
       <i class="pi pi-search"></i>
-      <input type="text" class="jobprofile-search" pInputText [(ngModel)]="value" placeholder="Search..." />
+      <input
+        type="text"
+        class="jobprofile-search"
+        pInputText
+        [(ngModel)]="query"
+        placeholder="Search..."
+        (ngModelChange)="searchJob()"
+      />
     </span>
     <span class="p-input-icon-left">
       <i class="pi pi-filter filter"></i>
-      <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Job"
-        (onChange)="onSortChange($event)" styleClass="mb-2 md:mb-0"></p-dropdown>
+      <p-dropdown
+        [options]="sortOptions"
+        [(ngModel)]="sortKey"
+        placeholder="Sort By Job"
+        (onChange)="onSortChange($event)"
+        styleClass="mb-2 md:mb-0"
+      ></p-dropdown>
     </span>
-
   </div>
   <button class="add_job_btn" type="button" (click)="addJobs()">
     <i class="fa fa-plus"></i>
-    Add Job</button>
+    Add Job
+  </button>
 </div>
-<div class="search-results-container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="250"
-  (scrolled)="onScroll()" [scrollWindow]="true">
-
-
-
+<div
+  class="search-results-container"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="250"
+  (scrolled)="onScroll()"
+  [scrollWindow]="true"
+>
   <ul class="industry_listing jobs-profile">
     <li *ngFor="let items of postList; let i = index">
       <div class="card">
@@ -40,7 +55,7 @@
                         Edit
                       </button>
                     </li>
-                    <hr>
+                    <hr />
                     <li>
                       <button (click)="delete(items._id, i)">
                         <i class="pi pi-trash delete"></i>
@@ -48,8 +63,6 @@
                       </button>
                     </li>
                   </ul>
-
-
                 </ng-template>
               </p-overlayPanel>
 
@@ -57,7 +70,11 @@
             </div>
           </div>
           <div class="items-description border-bottom">
-            <button class="applied_list" *ngIf="items.status" (click)="studentList(items._id)">
+            <button
+              class="applied_list"
+              *ngIf="items.status"
+              (click)="studentList(items._id)"
+            >
               Applied Student List
             </button>
             <div class="profile-img">
@@ -75,7 +92,7 @@
                 </div>
                 <div class="info">
                   <label>OPPORTUNITY TYPE</label>
-                  <p class="oppertunity-type">{{items.type}}</p>
+                  <p class="oppertunity-type">{{ items.type }}</p>
                 </div>
               </div>
             </div>
@@ -92,15 +109,15 @@
               <div class="info">
                 <i class="fas fa-rupee-sign salary"></i>
                 <div>
-                  <label>{{items.type == 'job'?'Job':'Stipend'}}</label>
-                  <p>{{ items.salary }} / {{items.salaryType}}</p>
+                  <label>{{ items.type == 'job' ? 'Job' : 'Stipend' }}</label>
+                  <p>{{ items.salary }} / {{ items.salaryType }}</p>
                 </div>
               </div>
               <div class="info">
                 <i class="fas fa-clock duration"></i>
                 <div>
                   <label>Exprience Required</label>
-                  <p>{{ items.experience }} {{items.experienceTime}}</p>
+                  <p>{{ items.experience }} {{ items.experienceTime }}</p>
                 </div>
               </div>
               <div class="info">
@@ -116,8 +133,10 @@
         <div class="card-footer">
           <label>Status</label>
           <div class="edit_btn">
-            <i class="file-edit fa fa-edit" (click)="editStatus(items._id, items.title)">
-            </i>
+            <i
+              class="file-edit fa fa-edit"
+              (click)="editStatus(items._id, items.title)"
+            ></i>
           </div>
         </div>
       </div>
@@ -201,9 +220,12 @@
     </li>
     <div *ngIf="postList.length == 0 && !loading">No Record Found</div>
 
-
     <app-loader *ngIf="loading"></app-loader>
-    <p-dialog [(visible)]="visible" [style]="{ width: '30vw', height: '300px' }" [draggable]="false">
+    <p-dialog
+      [(visible)]="visible"
+      [style]="{ width: '30vw', height: '300px' }"
+      [draggable]="false"
+    >
       <div class="update_status">
         <h2>
           status update job for
@@ -212,8 +234,13 @@
         <div>
           <label>Select the status</label>
           <div class="card flex justify-content-center">
-            <p-dropdown [options]="status" [(ngModel)]="selectedStatus" optionLabel="name" placeholder="Select a Status"
-              (onChange)="statusChange($event)"></p-dropdown>
+            <p-dropdown
+              [options]="status"
+              [(ngModel)]="selectedStatus"
+              optionLabel="name"
+              placeholder="Select a Status"
+              (onChange)="statusChange($event)"
+            ></p-dropdown>
           </div>
         </div>
       </div>
@@ -336,8 +363,6 @@
   </li>  -->
   </ul>
 
-
-
   <!-- //Supriy
  
   <div class="row">
@@ -349,6 +374,5 @@
       </div>
     </div>
   </div> -->
-
 </div>
 <!-- <div class="no-records">No records found</div> -->
