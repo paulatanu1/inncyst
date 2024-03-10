@@ -26,6 +26,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { PanelModule } from 'primeng/panel';
 import { ImageModule } from 'primeng/image';
+import { AccordionModule } from 'primeng/accordion';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { ImageModule } from 'primeng/image';
     IndustryProfileComponent,
   ],
   imports: [
+    AccordionModule,
     CommonModule,
     IndustryRoutingModule,
     SharedModule,
