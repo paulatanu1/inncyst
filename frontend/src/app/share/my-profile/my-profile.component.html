@@ -229,24 +229,24 @@
             <ng-container formArrayName="skills">
               <div style="display: block; margin-top: 6px">
               <span
-                  style="color: red; margin-left: 15px; display: inline-block"
                   (click)="addnewSkill()"
-                  >Add more</span
+                  class="add_more_btn"
+                  >Add more <i class="pi pi-plus-circle"></i></span
                 >
               </div>
               <div
                 *ngFor="let skill of getSkillsArrayControls(); let i = index"
-                style="margin-top: 7px"
+                class="add_skills"
               >
-              <button (click)="removeSkill(i)" style="color: red; margin-left: 15px; font-size: 18px">
-                X
-              </button>
+              
                 <input
                   type="text"
                   [formControlName]="i"
-                  style="display: inline-block; margin-top: 5px"
+                  class="skill_input"
                 />
-                
+                <button (click)="removeSkill(i)" style="color: red; margin-left: 15px; font-size: 18px">
+                  <i class="pi pi-times-circle"></i>
+                </button>
               </div>
             </ng-container>
 

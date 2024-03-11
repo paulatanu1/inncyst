@@ -55,10 +55,10 @@
             </p>
           </a>
         </li>
-        <li class="nav-item" [ngClass]="{ active: activeleftmenu == 4 }">
+        <li class="nav-item" [ngClass]="{ active: activeleftmenu == 4 }" (click)="logout()">
           <a class="nav-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>
-            <p (click)="logout()">
+            <p >
               logout
             </p>
           </a>
