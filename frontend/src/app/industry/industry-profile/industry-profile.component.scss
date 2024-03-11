@@ -327,10 +327,12 @@
     .form_group {
 
         grid-template-columns: 2fr 2fr;
+        gap: 1rem;
 
         .form_group_inline {
 
             margin-bottom: 2rem;
+            align-items: flex-start;
 
             i {
 
@@ -391,6 +393,7 @@
                 color: #000;
                 font-size: 1rem;
                 font-weight: 600;
+                white-space: normal;
 
             }
 

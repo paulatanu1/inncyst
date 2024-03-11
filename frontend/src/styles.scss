@@ -8,6 +8,10 @@
   box-shadow: none !important;
 }
 
+button:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
 * {
   margin: 0;
   padding: 0;

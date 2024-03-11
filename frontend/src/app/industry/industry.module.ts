@@ -27,6 +27,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { PanelModule } from 'primeng/panel';
 import { ImageModule } from 'primeng/image';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     IndustryProfileComponent,
   ],
   imports: [
+    AccordionModule,
     CommonModule,
     IndustryRoutingModule,
     SharedModule,
