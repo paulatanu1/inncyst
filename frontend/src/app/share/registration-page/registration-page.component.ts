@@ -200,7 +200,6 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.registerForm.value)
     // console.log(this.registerForm.get('options')?.value);
     this.isSubmited = true;
     if (this.isSubmited && this.registerForm.valid) {
