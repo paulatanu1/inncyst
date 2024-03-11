@@ -107,7 +107,7 @@ a.brand-link.logo-switch {
     max-width: 80%;
     margin: auto;
     border-radius: 12px;
-    height: 11rem;
+    height: 13rem;
     display: grid;
     place-content: flex-end;
     position: relative;
@@ -175,8 +175,17 @@ a.brand-link.logo-switch {
       row-gap: 0.5rem;
       text-align: center;
 
+      .desc {
+      
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+      
+        }
+
       span {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+        font-weight: 700;
       }
 
       p {
