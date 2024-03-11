@@ -113,11 +113,11 @@ export class RegistrationPageComponent implements OnInit {
 
     this.option = [
       // {name: 'Select the option', code: '0'},
-      { optionName: 'Candidate', code: '1' },
-      { optionName: 'Employer', code: '2' },
-      { optionName: 'Mentor', code: '3' },
-      { optionName: 'Laboratory', code: '4' },
-      { optionName: 'Manufacturing facility', code: '4' },
+      { optionName: 'Candidate', code: '01' },
+      { optionName: 'Employer', code: '02' },
+      { optionName: 'Mentor', code: '03' },
+      { optionName: 'Laboratory', code: '04' },
+      { optionName: 'Manufacturing facility', code: '05' },
     ];
 
     this.registrationOption = [
@@ -200,6 +200,7 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.registerForm.value)
     // console.log(this.registerForm.get('options')?.value);
     this.isSubmited = true;
     if (this.isSubmited && this.registerForm.valid) {
