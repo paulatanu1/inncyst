@@ -41,7 +41,7 @@ export class LoginApiService {
   } 
 
 
-  login(userEmail: string, password: string, userRole: string) {
+  login(userEmail: string, password: string) {
     this.url = '/auth/login';
     // const form_data: IformData = new Object();
     // const payload = new FormData()
@@ -53,7 +53,7 @@ export class LoginApiService {
     ls.set('userEmail',userEmail)
     form_data.email = userEmail;
     form_data.password = password;
-    form_data.role = userRole.toLowerCase() as string;
+    // form_data.role = userRole.toLowerCase() as string;
     return this.api.ApiCallWithLocalization(form_data, this.url, 'post');
   }
   forgetpassword(email: string) {

@@ -1,12 +1,25 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { InternshipProfileService } from '../service/internship-profile.service';
 import { Subscription } from 'rxjs';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { environment } from 'src/environments/environment';
+import { DatePipe } from '@angular/common';
 
 interface IprofileDetails {
   name: string;
@@ -27,7 +40,7 @@ interface IprofileDetails {
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.scss'],
 })
-export class MyProfileComponent implements OnInit {
+export class MyProfileComponent implements OnInit{
   croppedImage: any;
   @ViewChild('cropper') cropper!: ElementRef;
   ProfileDetails: any;
@@ -42,25 +55,73 @@ export class MyProfileComponent implements OnInit {
   fileInput!: ElementRef<HTMLInputElement>;
   description: string = 'Please Add Your Description';
   skillSet: [] = [];
+  skillLength!: number;
+  genderList = [
+    { name: 'Male', value: 'male' },
+    { name: 'Female', value: 'female' },
+    { name: 'Cant say', value: 'cantsay' },
+  ];
+  branchList = [
+    { name: 'Kolkata', value: 'kolkata' },
+    { name: 'Delhi', value: 'delhi' },
+  ];
+  streamList = [
+    { name: 'BCA', value: 'bca' },
+    { name: 'MCA', value: 'mca' },
+  ];
+  semesterList = [
+    { name: 'I', value: '1' },
+    { name: 'II', value: '2' },
+    { name: 'III', value: '3' },
+    { name: 'IV', value: '4' },
+    { name: 'V', value: '5' },
+    { name: 'VI', value: '6' },
+    { name: 'VII', value: '7' },
+    { name: 'VIII', value: '8' },
+  ];
+  status!: number;
   constructor(
     private internship: InternshipProfileService,
     private formBuilder: FormBuilder,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private _toast: ToastServiceService
+    private _toast: ToastServiceService,
+    private datePipe: DatePipe,
+    private activatedRoute:ActivatedRoute
   ) {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
-      skills: [[]], // Initialize as an empty array
-      location: [''],
       phone: ['', Validators.required],
       email: ['', Validators.required],
+      location: [''],
+      gender: ['male'],
+      dob: [''],
+      areaOfInterest: [''],
+      semester: ['1'],
+      stream: [''],
+      branch: ['kolkata'],
+      institution: [''],
+
+      skills: this.formBuilder.array([]), // Initialize as an empty array
       image: [''],
       description: [''],
     });
   }
 
   ngOnInit(): void {
+//get querryParams
+this.activatedRoute.queryParamMap.subscribe({
+  next: (param) => {
+    this.status =<any> param.get('status');
+  },
+});
+
+this.profileForm.get('skills')?.valueChanges.subscribe({
+  next:(res)=>{
+    this.skillSet=res
+  }
+})
+
     this.getProfileDetails();
     //for scroll issue
     this.router.events.subscribe((event) => {
@@ -69,32 +130,74 @@ export class MyProfileComponent implements OnInit {
       }
     });
   }
+  get skillsArray() {
+    return this.profileForm.get('skills') as FormArray;
+  }
+
+  getSkillsArrayControls() {
+    return (this.profileForm.get('skills') as FormArray).controls;
+  }
+
+  addnewSkill() {
+    this.skillsArray.push(new FormControl());
+  }
+  removeSkill(index: any) {
+    this.skillsArray.removeAt(index);
+  }
 
   getProfileDetails() {
     this.profile = this.internship
       .sendInternshipProfileRequest()
       .subscribe((response) => {
         this.ProfileDetails = response.data;
- this.imagePath=this.ProfileDetails.image
+        this.imagePath = this.ProfileDetails?.image;
         if (this.ProfileDetails) {
           this.imagePath = this.ProfileDetails.image;
           this.description = this.ProfileDetails.description;
           this.skillSet = this.ProfileDetails.skills;
+          this.skillLength = this.ProfileDetails.skills.length;
           this.profileForm.get('name')?.patchValue(this.ProfileDetails.name);
-          
-          this.profileForm.get('description')?.patchValue(this.ProfileDetails.description);
-          
-          this.profileForm.get('location')?.patchValue(this.ProfileDetails.location)
-          
-          this.profileForm.get('phone')?.patchValue(this.ProfileDetails.phone)
-          
-          this.profileForm.get('email')?.patchValue(this.ProfileDetails.email)
-          
-          // this.profileForm.get('image')?.patchValue(this.ProfileDetails.image)
-          this.profileForm.get('skills')?.patchValue(this.ProfileDetails.skills)
-         this.profileForm.get('image')?.patchValue(this.ProfileDetails.image);
+          this.profileForm.get('phone')?.patchValue(this.ProfileDetails.phone);
+          this.profileForm.get('email')?.patchValue(this.ProfileDetails.email);
+          this.profileForm
+            .get('location')
+            ?.patchValue(this.ProfileDetails.location);
+          this.profileForm
+            .get('gender:')
+            ?.patchValue(this.ProfileDetails.gender);
+          this.profileForm.get('dob')?.patchValue(this.ProfileDetails.dob);
+          this.profileForm
+            .get('areaOfInterest')
+            ?.patchValue(this.ProfileDetails.areaOfInterest);
+          this.profileForm
+            .get('semester')
+            ?.patchValue(this.ProfileDetails.semester);
+          this.profileForm
+            .get('stream')
+            ?.patchValue(this.ProfileDetails.stream);
+          this.profileForm
+            .get('branch')
+            ?.patchValue(this.ProfileDetails.branch);
+          this.profileForm
+            .get('institution')
+            ?.patchValue(this.ProfileDetails.institution);
+          this.profileForm.get('image')?.patchValue(this.ProfileDetails.image);
+          this.profileForm
+            .get('description')
+            ?.patchValue(this.ProfileDetails.description);
+
+          if (this.skillLength) {
+            for (let i = 1; i <= this.skillLength; i++) {
+             
+              this.addnewSkill();
+              if (i == this.skillLength) {
+                this.profileForm
+                  .get('skills')
+                  ?.setValue(this.ProfileDetails.skills);
+              }
+            }
+          }
         }
-   
       });
 
     //for scroll issue
@@ -109,13 +212,16 @@ export class MyProfileComponent implements OnInit {
   openEdit() {
     this.editProfile = true;
   }
+  dateSelect(e: any) {
+    const date = this.datePipe.transform(e,'dd-MM-yyy');
+    this.profileForm.get('dob')?.setValue(date);
+  }
 
   onSubmit() {
     if (this.imagePath) {
       this.profileForm.get('image')?.setValue(this.imagePath);
     }
     if (this.profileForm.valid) {
-      // Form is valid, you can access form values using this.profileForm.value
       this.internship.EditProfile(this.profileForm.value).subscribe({
         next: (res) => {
           this._toast.showToaster.next({
@@ -124,7 +230,7 @@ export class MyProfileComponent implements OnInit {
             detail: res.success,
           });
           this.editProfile = false;
-          this.getProfileDetails();
+          // this.getProfileDetails();
         },
         error: (err) => {
           this._toast.showToaster.next({
@@ -135,7 +241,6 @@ export class MyProfileComponent implements OnInit {
         },
       });
     } else {
-      // Form is invalid, display error messages or perform other actions as needed
     }
   }
 
@@ -164,4 +269,11 @@ export class MyProfileComponent implements OnInit {
   ngOnDestroy() {
     this.profile?.unsubscribe();
   }
+ 
+  handleChange(e:any){
+this.status=e.index  
+const urlTree=this.router.parseUrl(this.router.url);
+    urlTree.queryParams['status']=e.index ;   
+    this.router.navigateByUrl(urlTree);
+}
 }

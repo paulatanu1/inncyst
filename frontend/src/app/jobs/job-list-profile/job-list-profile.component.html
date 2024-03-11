@@ -1,0 +1,74 @@
+<ng-container *ngIf="profileDetails">
+    
+    <div class="job-profile-top">
+        <button class="back_profile_btn" [routerLink]="['//my-profile']" [queryParams]="{status:0}">Profile</button>
+        <span class="profile-img">
+            <img src="{{profileDetails?.image}}">
+        </span>
+        <h2>{{profileDetails?.name}}</h2>
+        <a>{{profileDetails?.phone}}</a><br/>
+        <a href="mailto:john.doe@gmail.com">{{profileDetails?.email}}</a><br/>
+        <p [innerHTML]="profileDetails?.description"></p>
+    </div>
+    <div class="job-profile-info">
+        <h3>Additional Info</h3>
+        <p>
+            <strong>Gender:</strong>
+            <span>{{profileDetails?.gender}}</span>
+        </p>
+        <p>
+            <strong>Age:</strong>
+            <span>{{profileDetails?.age}}</span>
+        </p>
+        <p>
+            <strong>Location:</strong>
+            <span>{{profileDetails?.location}}</span>
+        </p>
+        <p>
+            <strong>Institution:</strong>
+            <span>{{profileDetails?.institution}}</span>
+        </p>
+        <p>
+            <strong>Date of Birth:</strong>
+            <span>{{profileDetails?.dob}}</span>
+        </p>
+        <p>
+            <strong>Branch:</strong>
+            <span>{{profileDetails?.branch}}</span>
+        </p>
+        
+        <p>
+            <strong>Profile created:</strong>
+            <span>{{profileDetails?.createdAt | date}}</span>
+        </p>
+    
+    </div>
+    
+    <div class="job-profile-info">
+        <h3>Educational Info</h3>
+        <p>
+            <strong>Area of Interest:</strong>
+            <span>{{profileDetails?.areaOfInterest}}</span>
+        </p>
+        <p>
+            <strong>Role:</strong>
+            <span>{{profileDetails?.role}}</span>
+        </p>
+        <p>
+            <strong>Stream:</strong>
+            <span>{{profileDetails?.stream}}</span>
+        </p>
+        <p>
+            <strong>Semester:</strong>
+            <span>{{profileDetails?.semester}}</span>
+        </p>
+        <p>
+            <strong>Skills:</strong>
+            <span *ngFor="let skill of profileDetails?.skills">
+               {{skill}},
+            </span>
+           
+        </p>
+       
+    </div>
+</ng-container>

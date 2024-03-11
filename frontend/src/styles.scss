@@ -8,9 +8,19 @@
   box-shadow: none !important;
 }
 
+button:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
 * {
   margin: 0;
   padding: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 html {
@@ -35,6 +45,11 @@ img {
 
 button {
   border: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 @font-face {
@@ -129,4 +144,65 @@ button {
 
 ::ng-deep .p-dialog .p-dialog-header {
   padding: 0 !important;
+}
+
+body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse .main-sidebar li.nav-item {
+  margin: 0.5rem 0;
+}
+
+
+body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse img.brand-image-xs {
+  padding-left: 7px;
+  padding-right: 7px;
+  max-height: 36px;
+  object-fit: contain;
+  visibility: visible;
+  animation-name: fadeIn;
+  left: 0px !important;
+}
+
+body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse a.brand-link.logo-switch::before {
+  display: none;
+}
+
+body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse .leftbottom-card {
+  visibility: hidden;
+}
+
+.p-overlaypanel-content {
+  padding: 0.5rem 0rem !important;
+}
+
+.p-inputtext:enabled:focus {
+  // border: 0;
+  box-shadow: none;
+}
+
+
+.layout-navbar-fixed .wrapper .main-header {
+  left: 0;
+  position: relative !important;
+  right: 0;
+  top: 0;
+  z-index: 1037;
+  border-bottom: 0 !important;
+}
+
+.is-leftSidebarPanel {
+
+    .os-padding {
+
+      .os-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100% !important;
+      }
+
+    }
+
+}
+
+.main-footer {
+  border-top: 0;
 }

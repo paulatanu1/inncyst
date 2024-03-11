@@ -1,6 +1,7 @@
 <app-header></app-header>
 
 <app-loader *ngIf="loading"></app-loader>
+
 <section class="job_details_sec">
   <div class="job_details_sec_inner" *ngFor="let a of singleJobDetails">
     <div class="job_details_head">
@@ -75,41 +76,14 @@
       </ul>
     </div>
     <div class="overview">
-      <!-- <ul>
-            <span>Annual CTC breakup:</span>
-            <li>1. Fixed component: 80%</li>
-            <li>2. Variable component: 10%</li>
-            <li>3. Other incentives: 10%</li>
-          </ul> -->
-      <!-- <p>salary type :- {{ a.stipend }}</p>
-     
-      <div>
-        <h3 *ngIf="a.coverLetter.availability || a.coverLetter.letter">
-          Additional Information
-        </h3>
-        <p *ngIf="a.coverLetter.availability">
-          availability:--
-          
-        </p>
-        <p *ngIf="a.coverLetter.letter">
-          letter:-- 
-        </p>
-        <p *ngIf="a.coverLetter.moreQuestions.length > 0">
-          Another Question :--
-        </p>
-        <ul type="circle">
-          <li *ngFor="let a of a.coverLetter.moreQuestions">
-            {{ a }}
-          </li>
-        </ul>
-      </div> -->
-
       <div class="apply_btn">
         <button [disabled]="applied" type="button" (click)="applyJob()">
           Apply Now
         </button>
+        <button [routerLink]="['/jobs/posts']" class="back_btn">Back</button>
       </div>
     </div>
+    
   </div>
   <!-- </ng-container> -->
 </section>

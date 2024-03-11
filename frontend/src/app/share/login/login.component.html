@@ -17,12 +17,15 @@
         </div>
         <div class="col-12 md:col-12 mt-3 mb-4 full-width">
           <span class="p-float-label">
-            <p-password formControlName="password"></p-password>
+            <p-password
+              formControlName="password"
+              [feedback]="false"
+            ></p-password>
             <label for="float-input">Password</label>
           </span>
         </div>
 
-        <div class="col-12 md:col-12 mt-3 mb-4 dropdown-full-width mt-5">
+        <!-- <div class="col-12 md:col-12 mt-3 mb-4 dropdown-full-width mt-5">
           <span class="p-float-label">
             <p-dropdown
               [options]="loginOptionType"
@@ -35,7 +38,7 @@
               Select The correct option
             </label>
           </span>
-        </div>
+        </div> -->
         <div class="submit-btn">
           <p-button
             class="submit-btns"
@@ -51,6 +54,10 @@
           <span>Sign Up</span>
         </a>
         <p (click)="fogotPassword()">forgot password</p>
+        <button class="back-btn" [routerLink]="['/home']">
+          <i class="fa fa-arrow-left"></i>
+          Back to Home
+        </button>
       </div>
     </div>
   </div>
@@ -66,8 +73,9 @@
     <h3>Forgot your password?</h3>
     <div class="subhead">
       <p>
-        Enter your email address and we'll send <br />you an OTP to reset your
-        password.
+        Enter your email address and we'll send
+        <br />
+        you an OTP to reset your password.
       </p>
       <a (click)="ForgotPasswordCancel()">Cancel</a>
     </div>
@@ -77,11 +85,18 @@
         <input type="text" pInputText #email />
       </div>
       <button (click)="forgotPasswordSubmit(email.value)">Submit</button>
-      <span class="backtologin"
-        ><a (click)="backToLogIn()"
-          ><img src="../../../assets/right-arrow.svg" />Back to login</a
-        ></span
-      >
+      <div class="text-center">
+        <a class="back-btn" (click)="backToLogIn()">
+          <i class="fa fa-arrow-left"></i>
+          Back to Login
+        </a>
+      </div>
+      <!-- <span class="backtologin back-btn">
+        <a (click)="backToLogIn()">
+          <i></i>
+          Back to login
+        </a>
+      </span> -->
     </div>
   </div>
 </section>
@@ -96,9 +111,9 @@
     <h3>OTP Verification</h3>
     <div class="subhead">
       <p>
-        Enter the 4 digit OTP code sent at your email <br /><strong
-          >example@gmail.com</strong
-        >
+        Enter the 4 digit OTP code sent at your email
+        <br />
+        <strong>example@gmail.com</strong>
       </p>
       <a (click)="forgotPasswordOtpCancel()">Cancel</a>
     </div>
@@ -113,14 +128,17 @@
         ></ng-otp-input>
       </div>
       <div class="resend_code">
-        Didn't received the code? <strong>Resend Code</strong>
+        Didn't received the code?
+        <strong>Resend Code</strong>
       </div>
       <button (click)="otpVrify()">Verify</button>
-      <span class="backtologin"
-        ><a (click)="backToLogIn()"
-          ><img src="../../../assets/right-arrow.svg" />Back to login</a
-        ></span
-      >
+      <span class="backtologin">
+        <i class="fa fa-arrow-left"></i>
+        <a class="" (click)="backToLogIn()">
+          <img src="../../../assets/right-arrow.svg" />
+          Back to login
+        </a>
+      </span>
     </div>
   </div>
 </section>
@@ -140,14 +158,18 @@
       </div>
       <div class="form_group">
         <label>Confirm Password</label>
-        <p-password [(ngModel)]="confirmPassword" [toggleMask]="true"></p-password>
+        <p-password
+          [(ngModel)]="confirmPassword"
+          [toggleMask]="true"
+        ></p-password>
       </div>
       <button (click)="passwordReset()">reset password</button>
-      <span class="backtologin"
-        ><a (click)="backToLogIn()"
-          ><img src="../../../assets/right-arrow.svg" />Back to login</a
-        ></span
-      >
+      <span class="backtologin">
+        <a (click)="backToLogIn()">
+          <i class="fa fa-arrow-left"></i>
+          Back to login
+        </a>
+      </span>
     </div>
   </div>
 </section>

@@ -47,6 +47,7 @@ export class InternshipsComponent implements OnInit {
 leftSideListLoadding=false
 rightSideLoadding=false;
   public daysAgo!: number;
+  profileDetails:any
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
@@ -57,6 +58,13 @@ rightSideLoadding=false;
   ) {}
 
   ngOnInit(): void {
+    //profile api call
+    this.internshipService.sendInternshipProfileRequest().subscribe({
+      next:(res)=>{
+this.profileDetails=res;
+ls.set('profileImage',res.data.image)
+      }
+    })
     this.jobService.afterSuccessApplyJobCloseModal.subscribe({
       next: (res) => {
         setTimeout(() => {

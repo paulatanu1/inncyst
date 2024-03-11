@@ -11,7 +11,7 @@ import { InternshipProfileService } from 'src/app/share/service/internship-profi
 })
 export class JobApplyedComponent implements OnInit {
   AppliedJobDetails: any = [];
-loadding=false;
+  loadding = false;
   constructor(
     private internshipService: InternshipProfileService,
     private jobService: JobsService,
@@ -36,15 +36,14 @@ loadding=false;
   }
 
   ngOnInit(): void {
-    this.loadding=true;
+    this.loadding = true;
     this.internshipService.customHeader.next(false);
     this.jobService.applyedJobDetails().subscribe({
       next: (res) => {
         this.AppliedJobDetails = [];
         this.AppliedJobDetails = res.data;
-        this.loadding=false;
-        if(this.AppliedJobDetails.length){
-
+        this.loadding = false;
+        if (this.AppliedJobDetails.length) {
           // console.log(this.AppliedJobDetails, 'applyedJobDetails');
           this.AppliedJobDetails?.forEach((element: any) => {
             // if(element.jobDetails.intranshipName){
@@ -63,7 +62,7 @@ loadding=false;
         // });
       },
       error: (err) => {
-        this.loadding=false;
+        this.loadding = false;
         this._toast.showToaster.next({
           severity: 'error',
           summary: 'error',
@@ -72,8 +71,7 @@ loadding=false;
       },
     });
   }
-  jobOption() {
-  }
+  jobOption() {}
   ngOnDestroy() {
     this.internshipService.customHeader.next(true);
   }
@@ -82,6 +80,5 @@ loadding=false;
     this.jobService.sendAppliedJobId(a);
     this.router.navigate(['/jobs/my-jobs/AppliedJobDetailsComponent', a]);
   }
-  applicationStatus() {
-  }
+  applicationStatus() {}
 }

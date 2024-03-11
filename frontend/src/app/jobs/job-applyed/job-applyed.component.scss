@@ -216,7 +216,30 @@
                     }
                 }  
             }
-            
+            .back_btn {
+                border: 1px solid #E7E6E6;
+                border-radius: 5px;
+                padding: 10px 20px;
+                color: #5E6368;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 24px;
+                background: #eaeaea;
+                margin-bottom: 20px;
+                i {
+                    display: inline-block;
+                    vertical-align: text-bottom;
+                    margin-right: 5px;
+                    font-size: 22px;
+                    transition: all 0.6s ease-in-out;
+                }
+                &:hover {
+                    i {
+                        margin-right: 10px;
+                    }
+                }
+            }
         }
     }
 }

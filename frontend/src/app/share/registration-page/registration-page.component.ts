@@ -113,8 +113,11 @@ export class RegistrationPageComponent implements OnInit {
 
     this.option = [
       // {name: 'Select the option', code: '0'},
-      { optionName: 'student', code: '1' },
-      { optionName: 'industry', code: '2' },
+      { optionName: 'Candidate', code: '01' },
+      { optionName: 'Employer', code: '02' },
+      { optionName: 'Mentor', code: '03' },
+      { optionName: 'Laboratory', code: '04' },
+      { optionName: 'Manufacturing facility', code: '05' },
     ];
 
     this.registrationOption = [
@@ -134,13 +137,13 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    ls.set('questionStep',false)
+    ls.set('questionStep', false);
     this.login.otpPage.subscribe({
-      next:(res)=>{
-        this.otpPageOpen=<boolean>res;
-        this.signupPageHide=false
-      }
-    })
+      next: (res) => {
+        this.otpPageOpen = <boolean>res;
+        this.signupPageHide = false;
+      },
+    });
     window.scrollTo(0, 0);
     this.registerForm = this.fb.group(
       {
@@ -154,7 +157,7 @@ export class RegistrationPageComponent implements OnInit {
           ],
         ],
         password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', [Validators.required,Validators.minLength(6)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
         options: ['student', [Validators.required]],
         agree: [false, [Validators.required, Validators.requiredTrue]],
       },
@@ -197,6 +200,7 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.registerForm.value)
     // console.log(this.registerForm.get('options')?.value);
     this.isSubmited = true;
     if (this.isSubmited && this.registerForm.valid) {
@@ -231,9 +235,9 @@ export class RegistrationPageComponent implements OnInit {
             let severity = '';
             let summary = '';
             let detail = '';
-// if(response.data.question_step == false && response.data.role == 'industry'){
-//   this.router.navigateByUrl('/industry/profile');
-// }
+            // if(response.data.question_step == false && response.data.role == 'industry'){
+            //   this.router.navigateByUrl('/industry/profile');
+            // }
             this._toast.showToaster.next({
               severity: 'success',
               summary: 'success',
@@ -246,7 +250,7 @@ export class RegistrationPageComponent implements OnInit {
             if (err.error.message == 'User Already exist') {
               this.otpPageOpen = false;
               this.signupPageHide = false;
-              this.login.loginFlow.next(true)
+              this.login.loginFlow.next(true);
             }
             this._toast.showToaster.next({
               severity: 'error',
@@ -338,7 +342,7 @@ export class RegistrationPageComponent implements OnInit {
         //  this.otpPageOpen=false
         this.otpVerifivation.logoutSuccess.next(true);
         this.header.userLoggedin.next(true);
-        ls.set('questionStep',res.data.question_step)
+        ls.set('questionStep', res.data.question_step);
         ls.set('logged', true);
         this._toast.showToaster.next({
           severity: 'success',
@@ -352,8 +356,7 @@ export class RegistrationPageComponent implements OnInit {
           this.router.navigate(['industry']);
         }
       },
-      error: (err) => {
-      },
+      error: (err) => {},
     });
   }
   onHide() {
@@ -362,5 +365,42 @@ export class RegistrationPageComponent implements OnInit {
   }
   onOtpChange(event: any) {
     confirm(event);
+  }
+  resendOtp(type: string) {
+    if (type === 'email') {
+      this.reg.resendEmailOtp().subscribe({
+        next: (res) => {
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: res.message,
+          });
+        },
+        error: (err) => {
+          this._toast.showToaster.next({
+            severity: 'error',
+            summary: 'error',
+            detail: err.message,
+          });
+        },
+      });
+    } else {
+      this.reg.resendPhoneOtp().subscribe({
+        next: (res) => {
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: res.message,
+          });
+        },
+        error: (err) => {
+          this._toast.showToaster.next({
+            severity: 'error',
+            summary: 'error',
+            detail: err.message,
+          });
+        },
+      });
+    }
   }
 }

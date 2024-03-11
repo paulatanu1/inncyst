@@ -138,10 +138,14 @@
             h2 {
                 text-transform: capitalize;
                 font-size: 24px;
-                font-weight: 500;
+                font-weight: 600;
+                color: #1E1E1E;
+                margin-top: 20px;
             }
             p {
                 word-wrap: break-word;
+                color: #5E6368;
+                font-size: 13px;
                 a {
                     text-decoration: underline;
                 }
@@ -164,9 +168,16 @@
                         margin-right: 10px;
                     }
                 }
+                label {
+                    text-transform: capitalize;
+                    margin-bottom: 0;
+                }
             }
         }
     }
+}
+::ng-deep .p-dialog .p-dialog-content {
+    padding: 0;
 }
 .myFormSecEdit {
     display: flex;
@@ -175,7 +186,7 @@
     padding: 10px;
 
     .formLeft {
-        flex: 0 0 50%;
+        flex: 0 0 40%;
         text-align: center;
     }
 
@@ -190,12 +201,14 @@
                 border: 1px solid #e5e6e7;
                 padding: 10px;
                 margin-bottom: 10px;
+                position: relative;
 
                 label {
                     display: block;
                     font-size: 14px;
                     font-weight: 600;
                     margin-bottom: 5px;
+                    text-transform: capitalize;
                 }
 
                 input {
@@ -223,6 +236,17 @@
                 }
             }
         }
+        .remove_btn {
+            float: right;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+
+            i {
+                font-size: 20px;
+            }
+        }
 
         &>button {
             background: #522D80;
@@ -234,6 +258,7 @@
             padding: 10px 20px;
             display: block;
             width: 100%;
+            text-transform: capitalize;
         }
     }
 }

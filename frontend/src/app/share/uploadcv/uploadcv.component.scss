@@ -1,0 +1,69 @@
+.uploadResume {
+    label {
+        display: block;
+    }
+    input[type=file]::file-selector-button {
+        margin-right: 20px;
+        border: none;
+        background: #522D80;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        transition: background .2s ease-in-out;
+    }
+    input[type=file]::file-selector-button:hover {
+        background: #382770;
+    }
+    & > div {
+        border:1px solid #E7E6E6;
+        padding: 5px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+    }
+    button {
+        margin-left: auto;
+        background: #04ADE6;
+        color: #FAFAFA;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 20px;
+        padding: 0 30px;
+        height: 35px;
+        line-height: 35px;
+        i {
+            margin-left:7px ;
+        }
+    }
+}
+
+.existingCv {
+    border: 1px solid #D7E6E6;
+    padding: 10px;
+    background: #e7e7e7;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    button {
+        margin-left: auto;
+        background: #04ADE6;
+        color: #FAFAFA;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 20px;
+        padding: 0 30px;
+        height: 40px;
+        line-height: 40px;
+        margin: 40px 0;
+        i {
+            margin-left: 7px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+}

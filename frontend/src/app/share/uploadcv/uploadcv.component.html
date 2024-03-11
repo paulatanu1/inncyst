@@ -1,0 +1,19 @@
+<div *ngIf="!existingCv" class="uploadResume">
+    <label>Upload your resume</label>
+    <div>
+      <input type="file" name="pdfFile" #fileInput id="pdfInput"   (change)="pdfSelected($event)"
+      accept=".pdf" />
+      <button (click)="pdfSubmit()"> Upload Resume<i class="pi pi-upload"></i></button>
+    </div>
+</div>
+
+<div class="existingCv" *ngIf="existingCv">
+    <pdf-viewer
+    [src]="existingCv"
+    [render-text]="true"
+    [original-size]="false"
+    style="width: 80%; height: 500px"
+  ></pdf-viewer>
+  <button (click)="updateCV()">Update Resume <i class="pi pi-check-circle"></i></button>
+</div>
+

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import ls from 'localstorage-slim';
 
 @Component({
   selector: 'app-get-job',
@@ -8,13 +10,19 @@ import { Component, OnInit } from '@angular/core';
 export class GetJobComponent implements OnInit {
   isRegisterModal:boolean = false;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
   openModal(){
-    this.isRegisterModal = true;
+    // this.isRegisterModal = true;
+    if (ls.get('login_token') ) {
+      this.router.navigateByUrl('/jobs/posts');
+    } else if (!ls.get('login_token') ) {
+
+      this.router.navigateByUrl('/registeration');
+    }
   }
   
   onhideModal(){

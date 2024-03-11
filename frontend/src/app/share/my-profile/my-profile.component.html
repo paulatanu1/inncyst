@@ -1,70 +1,62 @@
 <app-header></app-header>
-<section class="my_profile_sec" *ngIf="ProfileDetails">
-  <div class="profile_whole_sec">
-    <div class="my_profile_sec_inner">
-      <div class="profile_img">
-        <figure>
-          <img [src]="imagePath" alt="profile image" />
-          <span>
-            {{ ProfileDetails.status ? 'Active' : 'Deactive' }}
-          </span>
-        </figure>
-      </div>
-      <div class="profile_details">
-        <button (click)="back()" class="back_btn">Back To Job</button>
-        <button (click)="openEdit()" class="edit_btn">Edit</button>
 
-        <h2>{{ ProfileDetails.name }}</h2>
-        <p class="subhead">
-          {{
-            ProfileDetails.location
-              ? ProfileDetails.location
-              : 'Update Your Location'
-          }}
-        </p>
-        <div class="mail_register">
-          <a>
-            <img src="../../../assets/mail-icon.png" />
-            {{ ProfileDetails.email }}
-          </a>
-          <strong>
-            Site Register On
-            <span>{{ ProfileDetails.createdAt | date: 'MMM d, y' }}</span>
-          </strong>
+<div style="margin: 120px auto 40px; max-width: 1200px;">
+  <p-tabView (onChange)="handleChange($event)" [selected]="status == 0">
+
+    <p-tabPanel header="Personal Information"  
+    >
+      <section class="my_profile_sec" *ngIf=" status == 0 && ProfileDetails">
+        <div class="profile_whole_sec">
+          <div class="my_profile_sec_inner">
+            <div class="profile_img">
+              <figure>
+                <img [src]="imagePath" alt="profile image" />
+                <span>
+                  {{ ProfileDetails?.status ? 'Active' : 'Deactive' }}
+                </span>
+              </figure>
+            </div>
+            <div class="profile_details">
+              <button (click)="back()" class="back_btn">Back To Job</button>
+              <button (click)="openEdit()" class="edit_btn">Edit</button>
+      
+              <h2>{{ ProfileDetails.name }}</h2>
+              <p class="subhead">
+                {{
+                  ProfileDetails.location
+                    ? ProfileDetails.location
+                    : 'Update Your Location'
+                }}
+              </p>
+              <div class="mail_register">
+                <a>
+                  <img src="../../../assets/mail-icon.png" />
+                  {{ ProfileDetails.email }}
+                </a>
+                <strong>
+                  Site Register On
+                  <span>{{ ProfileDetails.createdAt | date: 'MMM d, y' }}</span>
+                </strong>
+              </div>
+              <span>
+                <img src="../../../assets/call-icon.png" />
+                +91 {{ ProfileDetails.phone }}
+              </span>
+              <p [innerHTML]="description">
+            
+              </p>
+              <ul class="skills">
+                <li *ngFor="let item of skillSet">{{ item | uppercase }}</li>
+              </ul>
+              <!-- <button (click)="Protfolio()" class="portfolio_btn">
+                My Project
+              </button> -->
+            </div>
+          </div>
         </div>
-        <span>
-          <img src="../../../assets/call-icon.png" />
-          +91 {{ ProfileDetails.phone }}
-        </span>
-        <p>
-          {{ description }}
-        </p>
-        <ul class="skills">
-          <li *ngFor="let item of skillSet">{{ item | uppercase }}</li>
-        </ul>
-        <button (click)="Protfolio()" class="portfolio_btn">
-          My Project
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
-<!-- {
-    "_id": "64ea2b0e919da58a5a9eff3a",
-    "name": "mob bgv",
-    "email": "mnb@mailinator.com",
-    "phone": "8763652622",
-    "image": null,
-    "role": "student",
-    "verified": true,
-    "question_step": false,
-    "status": true,
-    "createdAt": "2023-08-26T16:40:46.227Z",
-    "__v": 0
-} -->
-
-<p-sidebar
+      <p-sidebar
   [(visible)]="editProfile"
   position="right"
   [style]="{ width: '50em' }"
@@ -75,84 +67,204 @@
     class="edit-profile-form"
   >
     <div class="profile-section">
-      <div class="left-section">
-        <div class="profile-pic">
-          <img [src]="imagePath" alt="" />
-          <!-- <p-fileUpload
-            mode="basic"
-            name="demo[]"
-            url="./upload.php"
-            accept="image/*8 5tdx"
-            class="upload-btn"
-            [customUpload]="false"
-            (uploadHandler)="fileChangeEvent($event)"
-          ></p-fileUpload> -->
-          <div class="file-upload-wrapper">
-            <input
-              class="upload-btn"
-              type="file"
-              accept=".jpg, .jpeg, .png,.JPG, .JPEG, .PNG"
-              (change)="fileChangeEvent($event)"
-              #fileInput
-            />
-            <label></label>
-            <button type="button" class="button-upload">Select File</button>
-          </div>
-        </div>
-      </div>
       <div class="right-section">
-        <input
-          type="text"
-          pInputText
-          class="p-inputtext-sm"
-          placeholder="Name"
-          formControlName="name"
-        />
-        <input
+        <p-fieldset legend="Personal Information" [toggleable]="true">
+          <div class="formGroup">
+          <span class="p-float-label">
+            <input id="float-input" type="text" pInputText formControlName="name">
+            <label for="float-input">Name</label>
+          </span> 
+          </div>
+          <div class="formGroup">
+            <p-editor [style]="{'height':'320px'}" formControlName="description"></p-editor>
+          </div>
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your Email" formControlName="email" />
+            </span>
+          </div>
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-phone"></i>
+              <input type="number" pInputText class="p-inputtext-sm" placeholder="Enter your Phone number"
+                formControlName="phone" />
+            </span>
+          </div>
+          <div class="formGroup">
+            <span class="p-float-label">
+            <input id="float-input" type="text" pInputText class="p-inputtext-sm" placeholder="Location" formControlName="location" />
+            <label for="float-input">Location</label>
+            </span>
+          </div>
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <p-dropdown [options]="genderList" optionLabel="name" optionValue="value" formControlName="gender"></p-dropdown>
+          
+              <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your gender" formControlName="gender" /> -->
+            </span>
+          </div>
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+          
+              <p-calendar formControlName="dob" [showTime]="false" dateFormat="dd-mm-yy" dataType="date"
+                (onSelect)="dateSelect($event)" placeholder="select your DOB"></p-calendar>
+              <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your age" formControlName="age" /> -->
+            </span>
+          </div>
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your interest"
+                formControlName="areaOfInterest" />
+            </span>
+          </div>
+        </p-fieldset>
+        
+        
+        
+          <!-- <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your branch" formControlName="branch" />
+            </span>
+          </div> -->
+          <p-fieldset legend="Educational Information" [toggleable]="true">
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <p-dropdown
+              [options]="streamList"
+              optionLabel="name"
+              optionValue="value"
+              formControlName="stream"
+            ></p-dropdown>
+
+              <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your stream" formControlName="stream" /> -->
+            </span>
+          </div>
+
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+
+              <p-dropdown
+              [options]="branchList"
+              optionLabel="name"
+              optionValue="value"
+              formControlName="branch"
+            ></p-dropdown>
+
+              <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your branch" formControlName="branch" /> -->
+            </span>
+          </div>
+
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your institution name" formControlName="institution" />
+            </span>
+          </div>
+
+          <div class="formGroup">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+
+              <p-dropdown
+              [options]="semesterList"
+              optionLabel="name"
+              optionValue="value"
+              formControlName="semester"
+            ></p-dropdown>
+
+              <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your semester" formControlName="semester" /> -->
+            </span>
+          </div>
+
+          </p-fieldset>
+
+        <!-- <p-fieldset legend="Work Experience" [toggleable]="true">
+          <div class="formGroup">
+            <span class="p-float-label">
+              <input id="float-input" type="text" pInputText>
+              <label for="float-input">Designation</label>
+            </span>
+          </div>
+          <div class="formGroup">
+            <span class="p-float-label">
+              <input id="float-input" type="text" pInputText>
+              <label for="float-input">Company Name</label>
+            </span>
+          </div>
+          <div class="formGroup">
+            <span class="p-float-label">
+              <input id="float-input" type="text" pInputText>
+              <label for="float-input">Duration</label>
+            </span>
+          </div>
+          <div class="formGroup">
+            <p-editor [style]="{'height':'320px'}"></p-editor>
+          </div>
+          
+        </p-fieldset> -->
+        <!-- <p-fieldset legend="Education" [toggleable]="true">
+          <div class="formGroup">
+            <span class="p-float-label">
+              <input id="float-input" type="text" pInputText>
+              <label for="float-input">Class Name</label>
+            </span>
+          </div>
+          <div class="formGroup">
+            <span class="p-float-label">
+              <input id="float-input" type="text" pInputText>
+              <label for="float-input">Board Name</label>
+            </span>
+          </div>
+        </p-fieldset> -->
+        <p-fieldset legend="Skills" [toggleable]="true">
+          <div class="formGroup">
+
+            <ng-container formArrayName="skills">
+              <div style="display: block; margin-top: 6px">
+              <span
+                  style="color: red; margin-left: 15px; display: inline-block"
+                  (click)="addnewSkill()"
+                  >Add more</span
+                >
+              </div>
+              <div
+                *ngFor="let skill of getSkillsArrayControls(); let i = index"
+                style="margin-top: 7px"
+              >
+              <button (click)="removeSkill(i)" style="color: red; margin-left: 15px; font-size: 18px">
+                X
+              </button>
+                <input
+                  type="text"
+                  [formControlName]="i"
+                  style="display: inline-block; margin-top: 5px"
+                />
+                
+              </div>
+            </ng-container>
+
+
+
+            <!-- <p-chips separator=" " placeholder="Hint: graphics, html, css" formControlName="skills"></p-chips> -->
+          </div>     
+          <!-- <span>Please add <strong>space</strong> after adding any skills</span> -->
+        </p-fieldset>
+        <!-- <input
           type="text"
           pInputText
           class="p-inputtext-sm"
           placeholder="Short Description"
           formControlName="description"
-        />
-        <p-chips
-          separator=" "
-          placeholder="Hint: graphics, html, css"
-          formControlName="skills"
-        ></p-chips>
-        <h5>
-          Please add
-          <strong>space</strong>
-          after adding any skills
-        </h5>
-        <input
-          type="text"
-          pInputText
-          class="p-inputtext-sm"
-          placeholder="Location"
-          formControlName="location"
-        />
+        /> -->
 
-        <span class="p-input-icon-left">
-          <i class="pi pi-envelope"></i>
-          <input
-            type="email"
-            pInputText
-            class="p-inputtext-sm"
-            placeholder="Enter your Email"
-            formControlName="email"
-          />
-        </span>
-        <span class="p-input-icon-left">
-          <i class="pi pi-phone"></i>
-          <input
-            type="number"
-            pInputText
-            class="p-inputtext-sm"
-            placeholder="Enter your Phone number"
-            formControlName="phone"
-          />
-        </span>
+        
         <!-- <textarea
           rows="5"
           cols="3"
@@ -191,4 +303,24 @@
 
   <button type="submit" (click)="croppedComplete()">Cropped</button>
 </p-dialog>
-<app-footer></app-footer>
+  </p-tabPanel>
+  <p-tabPanel header="Upload your cv" [selected]="status == 1">
+     <app-uploadcv *ngIf=" status == 1"></app-uploadcv>
+
+  </p-tabPanel>
+  <p-tabPanel header="Project"  [selected]="status == 2">
+    <app-protfolio *ngIf=" status == 2"></app-protfolio>
+      <!-- <p>
+          At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+          qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+      </p> -->
+  </p-tabPanel>
+  <p-tabPanel header="Talent/Achievement"  [selected]="status == 3">
+    <p *ngIf=" status == 3">
+      <app-achivment></app-achivment>
+    </p>
+</p-tabPanel>
+
+</p-tabView>
+</div>
+

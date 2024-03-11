@@ -15,129 +15,125 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div *ngIf="customHeader" class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a
-            href="javascript:void(0)"
-            (click)="optionClick('home')"
-            class="nav-link"
-            aria-current="page"
-          >
-            Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="optionClick('about-us')"
-            href="javascript:void(0)"
-          >
-            About Us
-          </a>
-        </li>
-        <li class="nav-item dropdown-itemss">
-          <p-splitButton
-            label=" Product/Services"
-            [model]="dropdownitems"
-            (click)="product()"
-          ></p-splitButton>
-        </li>
-        <li class="nav-item">
-          <a
-            href="javascript:void(0)"
-            (click)="optionClick('contactus')"
-            class="nav-link"
-          >
-            Contact us
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            (click)="optionClick('jobs')"
-            href="javascript:void(0)"
-            class="nav-link"
-          >
-            Jobs
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div *ngIf="!customHeader" class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            href="javascript:void(0)"
-            [routerLink]="['/jobs/posts']"
-          >
-            Jobs
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="optionClick('My Jobs')"
-            href="javascript:void(0)"
-          >
-            My Jobs
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="users-option" *ngIf="!logoutSuccess">
+ 
+      <div *ngIf="customHeader && !logoutSuccess " class="collapse navbar-collapse" id="navbarNav" >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a
+              (click)="optionClick('home')"
+              class="nav-link"
+              aria-current="page"
+            >
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="optionClick('about-us')"> About Us </a>
+          </li>
+          <!-- <li class="nav-item dropdown-itemss">
+            <p-splitButton
+              label=" Product/Services"
+              [model]="dropdownitems"
+              (click)="product()"
+            ></p-splitButton>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" (click)="product()">
+              Product/Services
+              <i class="pi pi-chevron-down"></i>
+            </a>
+            <ul>
+              <li (click)="productOrServicedropdown('Internship')">
+                <a class="nav-link"> Internship </a>
+              </li>
+              <li (click)="productOrServicedropdown('Industry')">
+                <a class="nav-link"> Jobs </a>
+              </li>
+              <li (click)="productOrServicedropdown('')">
+                <a class="nav-link"> Projects </a>
+              </li>
+              <li>
+                <a class="nav-link">
+                  Project Enabler
+                  <i class="pi pi-chevron-right"></i>
+                </a>
+                <ul>
+                  <li (click)="productOrServicedropdown('')">
+                    <a class="nav-link"> Mentors </a>
+                  </li>
+                  <li (click)="productOrServicedropdown('')">
+                    <a class="nav-link"> Laboratory Services </a>
+                  </li>
+                  <li (click)="productOrServicedropdown('')">
+                    <a class="nav-link"> Manufacturing Facilities </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a
+              href="javascript:void(0)"
+              (click)="optionClick('contactus')"
+              class="nav-link"
+            >
+              Contact us
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              (click)="optionClick('jobs')"
+              href="javascript:void(0)"
+              class="nav-link"
+            >
+              Jobs
+            </a>
+          </li>
+        </ul>
+      </div>
       <div
-        class="register"
-        [routerLink]="['/registeration']"
-        (click)="register()"
+        *ngIf="!customHeader && !logoutSuccess"
+        class="collapse navbar-collapse"
+        id="navbarNav"
       >
-        <p-button label="Register"></p-button>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="javascript:void(0)"
+              [routerLink]="['/jobs/posts']"
+            >
+              Jobs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="optionClick('My Jobs')"
+              href="javascript:void(0)"
+            >
+              My Jobs
+            </a>
+          </li>
+        </ul>
       </div>
-      <div class="login">
-        <button
-          (click)="getLoginForm()"
-          pButton
-          type="button"
-          label="Login"
-        ></button>
+      <div class="users-option" *ngIf="!logoutSuccess">
+        <div
+          class="register"
+          [routerLink]="['/registeration']"
+          (click)="register()"
+        >
+          <p-button label="Register"></p-button>
+        </div>
+
+        <div class="login" [routerLink]="['/Login']" (click)="register()">
+          <p-button label="Login"></p-button>
+        </div>
       </div>
-    </div>
-
-    <!-- <div class="profile-menu" *ngIf="logoutSuccess">
-      <button
-        #btn
-        type="button"
-        pButton
-        icon="pi pi-chevron-down"
-        label=""
-        (click)="menu.toggle($event)"
-        class="profile-dropdown-btn"
-      >
-        <p-avatar
-          image="https://www.tm-town.com/assets/default_male600x600-e660e1a712abfc5f638f435f6ef5432c69c6d9250b10cd43bbaa943e55980d5a.png"
-          styleClass="mr-2"
-          size="large"
-          shape="circle"
-        ></p-avatar>
-      </button>
-      <p-slideMenu
-        #menu
-        [model]="Profileitems"
-        [popup]="isMenuOpen"
-        [viewportHeight]="280"
-        [style]="{ 'min-width': '200px' }"
-        appendTo="body"
-        #slideMenu
-      ></p-slideMenu>
-    </div> -->
-
+  
     <div class="profile-container" *ngIf="logoutSuccess">
       <div class="img-wrapper">
-        <img
-          src="https://www.tm-town.com/assets/default_male600x600-e660e1a712abfc5f638f435f6ef5432c69c6d9250b10cd43bbaa943e55980d5a.png"
-          alt="Profile Image"
-          class="profile-image"
-        />
+        <img [src]="profileImage" alt="Profile Image" class="profile-image" />
       </div>
 
       <button mat-icon-button [matMenuTriggerFor]="profileMenu">
@@ -146,7 +142,13 @@
         </mat-icon>
       </button>
       <mat-menu #profileMenu="matMenu">
-        <button mat-menu-item [routerLink]="['/my-profile']">Profile</button>
+        <button
+          mat-menu-item
+          [routerLink]="['/my-profile']"
+          [queryParams]="{ status: 0 }"
+        >
+          Profile
+        </button>
         <button mat-menu-item [routerLink]="['/jobs/my-jobs']">
           Job Applyed
         </button>
@@ -158,189 +160,7 @@
     </div>
   </div>
 </nav>
-<!-- <p-dialog
-  [(visible)]="registration"
-  [blockScroll]="false"
-  [modal]="true"
-  [draggable]="false"
-  [style]="{ width: '60vw' }"
-  (onHide)="onClosePopup('registration')"
->
-  <div class="sign-up-wrapper">
-    <div class="left-section">
-      <div class="left-image-wrapper">
-        <img src="../../../assets/signup-img.svg" alt="" />
-      </div>
-    </div>
-    <div class="right-section">
-      <div class="form-wrapper">
-        <h5>Sign Up</h5>
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-          <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field">
-            <span class="p-float-label">
-              <input
-                id="float-input"
-                type="text"
-                pInputText
-                class=""
-                formControlName="userName"
-              />
-              <label for="float-input">Name</label>
-            </span>
-            <div
-              *ngIf="
-                (isSubmited && registerForm.get('userName')?.invalid) ||
-                (registerForm.get('userName')?.invalid &&
-                  (registerForm.get('userName')?.dirty ||
-                    registerForm.get('userName')?.touched))
-              "
-              class=""
-            >
-              <div *ngIf="registerForm.get('userName')?.errors?.['required']">
-                Name is required.
-              </div>
-              <div *ngIf="registerForm.get('userName')?.errors?.['minlength']">
-                Minimum 4 Charactar Required.
-              </div>
-            </div>
-          </div>
-          <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field">
-            <span class="p-float-label">
-              <input type="email" pInputText formControlName="email" />
-              <label for="float-input">Email</label>
-            </span>
-            <div
-              *ngIf="
-                (isSubmited && registerForm.get('email')?.invalid) ||
-                (registerForm.get('email')?.invalid &&
-                  (registerForm.get('email')?.dirty ||
-                    registerForm.get('email')?.touched))
-              "
-              class=""
-            >
-              <div *ngIf="registerForm.get('email')?.errors?.['required']">
-                Email is required.
-              </div>
-              <div *ngIf="registerForm.get('email')?.errors?.['email']">
-                Not Correct Format
-              </div>
-            </div>
-          </div>
-          <div class="col-12 md:col-12 mt-3 mb-4 full-width-number">
-            <span class="p-float-label">
-              <p-inputNumber
-                formControlName="mobile"
-                inputId="withoutgrouping"
-                [useGrouping]="false"
-                value=""
-              ></p-inputNumber>
-              <label for="float-input">Mobile Number</label>
-            </span>
-            <div
-              *ngIf="
-                (isSubmited && registerForm.get('mobile')?.invalid) ||
-                (registerForm.get('mobile')?.invalid &&
-                  (registerForm.get('mobile')?.dirty ||
-                    registerForm.get('mobile')?.touched))
-              "
-              class=""
-            >
-              <div *ngIf="registerForm.get('mobile')?.errors?.['required']">
-                mobile number is required.
-              </div>
-              <div *ngIf="registerForm.get('mobile')?.errors?.['pattern']">
-                Minimum 10 Charactar Required.
-              </div>
-            </div>
-          </div>
-          <div class="col-12 md:col-12 mt-3 mb-4 full-width">
-            <span class="p-float-label">
-              <p-password
-                formControlName="password"
-                [toggleMask]="true"
-              ></p-password>
-              <label for="float-input">Password</label>
-            </span>
-            <div
-              *ngIf="submitted && registerForm.get('password')?.errors"
-              class="alert alert-danger"
-            >
-              <div *ngIf="registerForm.get('password')?.errors?.['required']">
-                Password is required
-              </div>
-            </div>
-          </div>
-          <div class="col-12 md:col-12 mt-3 mb-4 full-width">
-            <span class="p-float-label">
-              <p-password formControlName="confirmPassword"></p-password>
-              <label for="float-input">Confirm Password</label>
-            </span>
-            <div
-              *ngIf="submitted && registerForm.get('confirmPassword')?.errors"
-              class="alert alert-danger"
-            >
-              <div
-                *ngIf="registerForm.get('confirmPassword')?.errors?.['required']"
-              >
-                Confirm Password is required
-              </div>
 
-              <div
-                *ngIf="registerForm.get('confirmPassword')?.errors?.['confirmPasswordValidator']"
-              >
-                Passsword and Confirm Password didn't match.
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 md:col-12 mt-3 mb-4 dropdown-full-width mt-5">
-            <span class="p-float-label">
-              <p-dropdown
-                [options]="options"
-                optionLabel="optionName"
-                formControlName="options"
-                optionValue="optionName"
-                formControlName="options"
-              ></p-dropdown>
-              <label class="dropdown-lable-field" for="float-input">
-                Select The correct option
-              </label>
-            </span>
-          </div>
-          <div class="col-12 md:col-12 mt-3 mb-3">
-            <span class="checkbox-sec">
-              <input type="checkbox" formControlName="agree" />
-              <label>I have read and agree to the Terms of Service</label>
-            </span>
-            <div
-              *ngIf="isSubmited && registerForm.get('mobile')?.invalid"
-              class=""
-            >
-              <div *ngIf="registerForm.get('agree')?.errors?.['required']">
-                check before submit.
-              </div>
-            </div>
-          </div>
-          <div class="submit-btn">
-            <p-button
-              class="submit-btns"
-              type="submit"
-              label="Sign up"
-            ></p-button>
-          </div>
-        </form>
-
-        <div (click)="registrationLoginOption()" class="login-area mb-3 mt-3">
-          <a href="#">
-            Already registered?
-            <span>Login</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</p-dialog> -->
-<!-- <div *ngIf="logoutSuccess"> -->
 <p-dialog
   [(visible)]="loginflow"
   [blockScroll]="false"

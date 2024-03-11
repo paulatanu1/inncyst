@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { JobListApiService } from '../jobs-management/posts/job-list-api.service';
 import { environment } from 'src/environments/environment';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+
+
 interface Istatus{
   name: string;
   value: string;
@@ -12,7 +14,10 @@ interface Istatus{
   templateUrl: './applied-studen-list.component.html',
   styleUrls: ['./applied-studen-list.component.scss']
 })
+
+
 export class AppliedStudenListComponent implements OnInit {
+
 studentListData:any=[]
 editDialog:boolean=false
 status!:Istatus[]
