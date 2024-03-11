@@ -10,6 +10,7 @@ import ls from 'localstorage-slim';
 import { OtpVerificationService } from './share/registration-otp/otp-verification.service';
 import { ChangeDetectionStrategy } from '@angular/compiler';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

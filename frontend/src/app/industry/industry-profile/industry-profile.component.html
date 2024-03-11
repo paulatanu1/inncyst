@@ -1,361 +1,208 @@
-<div *ngIf="!questionStep">
-  <h1>please {{ profileData ? 'update' : 'complete' }} your profile.</h1>
-  
-  <form
-    [formGroup]="profileForm"
-    (ngSubmit)="submitForm()"
-    class="p-fluid profile-form"
-  >
-    <div class="p-field">
-      <label for="companyName">
-        Company Name
-        <sup>*</sup>
-      </label>
-      <input
-        id="companyName"
-        type="text"
-        pInputText
-        formControlName="companyName"
-      />
+<div *ngIf="!questionStep" class="profileAdd">
+  <h1>{{ profileData ? 'complete' : 'update' }} your profile</h1>
+  <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
+    <div class="form_group">
+      <div class="form_field_group">
+        <label>Compnany Name</label>
+        <input pInputText type="text" formControlName="companyName" />
+      </div>
+      <div class="form_field_group">
+        <label>Compnany Name</label>
+        <input pInputText type="text" formControlName="companyName" />
+      </div>
+      <div class="form_field_group">
+        <label>Compnany established Year</label>
+        <input type="text" formControlName="companyEstdYear" />
+      </div>
+      <div class="form_field_group">
+        <label>Compnany Details</label>
+        <input pInputText type="text" formControlName="aboutCompany" />
+      </div>
+      <div class="form_field_group">
+        <label>Compnany employee</label>
+        <input pInputText type="number" formControlName="empCount" />
+      </div>
+      <div class="form_field_group">
+        <label>Compnany workplace</label>
+        <input pInputText type="text" formControlName="workPlace" />
+      </div>
+      <div class="form_field_group">
+        <label>Branch Office</label>
+        <input pInputText type="text" formControlName="branchOffice" />
+      </div>
+      <div class="form_field_group">
+        <label>Corporate Office</label>
+        <input pInputText type="text" formControlName="corporateOffice" />
+      </div>
+      <div class="form_field_group">
+        <div class="file-input-container">
+          <input type="file" (change)="onFileSelected($event)" class="file-input" id="fileInput">
+          <label for="fileInput" class="custom-button">Choose File</label>
+        </div>
+        <!-- <button (click)="uploadImage()">Upload Image</button> -->
+      </div>
     </div>
-
-    <div class="p-field">
-      <label for="companyEstdYear">
-        Company established Year
-        <sup>*</sup>
-      </label>
-      <input
-        id="companyEstdYear"
-        type="text"
-        pInputText
-        formControlName="companyEstdYear"
-      />
-    </div>
-
-    <div class="p-field">
-      <label for="aboutCompany">
-        Company Details
-        <sup>*</sup>
-      </label>
-      <input
-        id="aboutCompany"
-        type="text"
-        pInputText
-        formControlName="aboutCompany"
-      />
-    </div>
-
-    <div class="p-field">
-      <label for="empCount">
-        Company Employee
-        <sup>*</sup>
-      </label>
-      <input
-        id="empCount"
-        type="number"
-        pInputNumber
-        formControlName="empCount"
-      />
-    </div>
-
-    <div class="p-field">
-      <label for="workPlace">
-        Company Workplace
-        <sup>*</sup>
-      </label>
-      <input
-        id="workPlace"
-        type="text"
-        pInputText
-        formControlName="workPlace"
-      />
-    </div>
-
-    <div class="p-field">
-      <label for="branchOffice">Branch Office</label>
-      <input
-        id="branchOffice"
-        type="text"
-        pInputText
-        formControlName="branchOffice"
-      />
-    </div>
-
-    <div class="p-field">
-      <label for="corporateOffice">Corporate Office</label>
-      <input
-        id="corporateOffice"
-        type="text"
-        pInputText
-        formControlName="corporateOffice"
-      />
-    </div>
-
-    <div class="p-field">
-      <label for="file">
-        Upload Image
-        <sup>*</sup>
-      </label>
-      <p-fileUpload
-        name="file"
-        accept="image/*"
-        (onSelect)="onFileSelected($event)"
-        mode="basic"
-      ></p-fileUpload>
-    </div>
-
-    <button pButton type="submit" label="Submit" class="submit-button"></button>
+    <!-- <div>
+    <img src=""  formControlName="workPlace">
+</div> -->
+    <!-- <button type="submit" *ngIf="submitButton">submit</button> -->
   </form>
-
-  <button (click)="addPortfolio()" *ngIf="!questionStep" class="add-button">
-    add
-  </button>
+  <!-- <button (click)="editProfile()" *ngIf="!submitButton && questionStep">Edit Profile</button> -->
+  <!-- <button (click)="getProfile()">getProfile details</button> -->
+  <div class="form_footer_group">
+    <button (click)="addPortfolio()" *ngIf="!questionStep">Add</button>
+  </div>
 </div>
 
-<!-- <div *ngIf="(profileData | json) != '{}' && viewProfile && questionStep">
-  <p>COMPANNY NAME:- {{ profileData.companyName }}</p>
-  <p>COMPANY established Year:- {{ profileData.companyEstdYear }}</p>
-  <p>Company Details:- {{ profileData.aboutCompany }}</p>
-  <p>Company employee ::- {{ profileData.empCount }}</p>
+<div
+  *ngIf="(profileData | json) != '{}' && viewProfile && questionStep"
+  class="profileAdd profileView"
+>
+  <h3 class="my-4 text-center font-weight-bold">View your profile</h3>
+  <div class="form_group">
+    <div class="form_group_inline">
+      <i class="pi pi-building comapnyName"></i>
+      <div class="form_field_group">
+        <label>Compnany Name</label>
+        <p>{{ profileData.companyName }}</p>
+      </div>
+    </div>
+
+    <div class="form_group_inline">
+      <i class="pi pi-calendar-times estYear"></i>
+      <div class="form_field_group">
+        <label>Company Established Year</label>
+        <p>{{ profileData.companyEstdYear }}</p>
+      </div>
+    </div>
+
+    <div class="form_group_inline">
+      <i class="pi pi-info detailCompany"></i>
+      <div class="form_field_group">
+        <label>Company Details</label>
+        <p>{{ profileData.aboutCompany }}</p>
+      </div>
+    </div>
+
+    <div class="form_group_inline">
+      <i class="pi pi-users employeeCompany"></i>
+      <div class="form_field_group">
+        <label>Compnany Employee</label>
+        <p>{{ profileData.empCount }}</p>
+      </div>
+    </div>
+
+    <div class="form_group_inline">
+      <i class="pi pi-desktop workplaceCompany"></i>
+      <div class="form_field_group">
+        <label>Compnany Workplace</label>
+        <p>{{ profileData.workPlace }}</p>
+      </div>
+    </div>
+
+    <div class="form_group_inline">
+      <i class="pi pi-building branchCompany"></i>
+      <div class="form_field_group">
+        <label>Branch Office</label>
+        <p>{{ profileData.branchOffice }}</p>
+      </div>
+    </div>
+
+    <div class="form_group_inline">
+      <i class="pi pi-building corpoCompany"></i>
+      <div class="form_field_group">
+        <label>Corporate office</label>
+        <p>{{ profileData.corporateOffice }}</p>
+      </div>
+    </div>
+
+    <div class="img-section">
+      <img [src]="profileData.image" alt="" />
+    </div>
+  </div>
+
+  <!-- <p>COMPANY established Year:- {{ profileData.companyEstdYear }}</p>
+  <p>Company Details:-- {{ profileData.aboutCompany }}</p>
+  <p>Company employee ::-- {{ profileData.empCount }}</p>
 
   <p>Company workPlace:- {{ profileData.workPlace }}</p>
-  <p>Branch Office:- {{ profileData.branchOffice }}</p>
-  <p>Corporate Office:- {{ profileData.corporateOffice }}</p>
+  <p>Branch Office:-- {{ profileData.branchOffice }}</p>
+  <p>Corporate Office:-- {{ profileData.corporateOffice }}</p> -->
 
-  <br />
-  <img [src]="profileData.image" alt="" />
-
-  <button (click)="editProfile()" *ngIf="!submitButton && questionStep">
-    Edit Profile
-  </button>
-</div> -->
-
-<!-- YourComponent.component.html -->
-<div
-  *ngIf="(profileData | json) !== '{}' && viewProfile && questionStep"
-  class="profile-container p-shadow-3 p-fluid"
->
-  <div class="image-wrapper-ind">
-    <img [src]="profileData.image" alt="Profile Image" class="profile-image" />
+  <div class="form_footer_group">
+    <button (click)="editProfile()" *ngIf="!submitButton && questionStep">
+      Edit Profile
+    </button>
   </div>
-  <div class="profile-details">
-    <div class="profile-item">
-      <strong>COMPANY NAME:</strong>
-      {{ profileData.companyName }}
-    </div>
-    <div class="profile-item">
-      <strong>COMPANY established Year:</strong>
-      {{ profileData.companyEstdYear }}
-    </div>
-    <div class="profile-item">
-      <strong>Company Details:</strong>
-      {{ profileData.aboutCompany }}
-    </div>
-    <div class="profile-item">
-      <strong>Company employee:</strong>
-      {{ profileData.empCount }}
-    </div>
-    <div class="profile-item">
-      <strong>Company workPlace:</strong>
-      {{ profileData.workPlace }}
-    </div>
-    <div class="profile-item">
-      <strong>Branch Office:</strong>
-      {{ profileData.branchOffice }}
-    </div>
-    <div class="profile-item">
-      <strong>Corporate Office:</strong>
-      {{ profileData.corporateOffice }}
-    </div>
-  </div>
-  <button
-    pButton
-    type="button"
-    (click)="editProfile()"
-    *ngIf="!submitButton && questionStep"
-    class="edit-button p-button-rounded p-button-outlined p-button-text"
-  >
-    Edit Profile
-  </button>
 </div>
-<!-- <div *ngIf="editProfileData && !viewProfile">
-  <h1>please {{ profileData ? 'update' : 'complete' }} your profile........</h1>
-  <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
-    <div>
-      <label>
-        Compnany Name
-        <sup>*</sup>
-      </label>
-      <input pInputText type="text" formControlName="companyName" />
-    </div>
-    <div>
-      <label>
-        Compnany established Year
-        <sup>*</sup>
-      </label>
-      <input pInputText type="text" formControlName="companyEstdYear" />
-    </div>
-    <div>
-      <label>
-        Compnany Details
-        <sup>*</sup>
-      </label>
-      <textarea
-        pInputText
-        type="text"
-        formControlName="aboutCompany"
-      ></textarea>
-    </div>
-    <div>
-      <label>
-        Compnany employee
-        <sup>*</sup>
-      </label>
-      <input pInputText type="number" formControlName="empCount" />
-    </div>
-    <div>
-      <label>
-        Compnany workplace
-        <sup>*</sup>
-      </label>
-      <input pInputText type="text" formControlName="workPlace" />
-    </div>
-    <div>
-      <label>Branch Office</label>
-      <input pInputText type="text" formControlName="branchOffice" />
-    </div>
-    <div>
-      <label>Corporate Office</label>
-      <input pInputText type="text" formControlName="corporateOffice" />
-    </div>
-    <div *ngIf="!openImageUploadButton">
-      <img [src]="profileForm.get('image')?.value" alt="" />
-      <button (click)="removeImage()" *ngIf="profileData.image">X</button>
-    </div>
-    <div>
-      <input
-        type="file"
-        *ngIf="openImageUploadButton"
-        (change)="onFileSelected($event)"
-      />
-    </div>
-    <button type="submit">submit</button>
-  </form>
-</div> -->
 
-<!-- YourComponent.component.html -->
-<div
-  *ngIf="editProfileData && !viewProfile"
-  class="profile-edit-container p-fluid"
->
-  <h1 class="profile-heading">
-    {{ profileData ? 'Update' : 'Complete' }} your profile
-  </h1>
-  <form
-    [formGroup]="profileForm"
-    (ngSubmit)="submitForm()"
-    class="p-fluid profile-form"
-  >
-    <div class="p-field">
-      <label for="companyName">
-        Company Name
-        <sup>*</sup>
-      </label>
-      <input
-        id="companyName"
-        pInputText
-        type="text"
-        formControlName="companyName"
-      />
-    </div>
-    <div class="p-field">
-      <label for="companyEstdYear">
-        Company established Year
-        <sup>*</sup>
-      </label>
-      <input
-        id="companyEstdYear"
-        pInputText
-        type="text"
-        formControlName="companyEstdYear"
-      />
-    </div>
-    <div class="p-field">
-      <label for="aboutCompany">
-        Company Details
-        <sup>*</sup>
-      </label>
-      <textarea
-        id="aboutCompany"
-        pInputTextarea
-        type="text"
-        formControlName="aboutCompany"
-      ></textarea>
-    </div>
-    <div class="p-field">
-      <label for="empCount">
-        Company employee
-        <sup>*</sup>
-      </label>
-      <input
-        id="empCount"
-        pInputNumber
-        type="number"
-        formControlName="empCount"
-      />
-    </div>
-    <div class="p-field">
-      <label for="workPlace">
-        Company workplace
-        <sup>*</sup>
-      </label>
-      <input
-        id="workPlace"
-        pInputText
-        type="text"
-        formControlName="workPlace"
-      />
-    </div>
-    <div class="p-field">
-      <label for="branchOffice">Branch Office</label>
-      <input
-        id="branchOffice"
-        pInputText
-        type="text"
-        formControlName="branchOffice"
-      />
-    </div>
-    <div class="p-field">
-      <label for="corporateOffice">Corporate Office</label>
-      <input
-        id="corporateOffice"
-        pInputText
-        type="text"
-        formControlName="corporateOffice"
-      />
-    </div>
-    <div *ngIf="!openImageUploadButton" class="image-preview">
-      <div class="image-wrapper-ind">
-        <img [src]="profileForm.get('image')?.value" alt="" />
+<div *ngIf="editProfileData && !viewProfile" class="profileAdd">
+  <h3 class="my-4 text-center font-weight-bold">
+    {{ profileData ? 'update' : 'complete' }} your profile
+  </h3>
+  <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
+    <div class="form_group">
+      <div class="form_field_group">
+        <label>Compnany Name</label>
+        <input pInputText type="text" formControlName="companyName" />
       </div>
-      <button
-        pButton
-        type="button"
-        (click)="removeImage()"
-        *ngIf="profileData.image"
-        class="remove-button"
-      >
-        X
-      </button>
+      <div class="form_field_group">
+        <label>Compnany Name</label>
+        <input pInputText type="text" formControlName="companyName" />
+      </div>
+      <div class="form_field_group">
+        <label>Compnany established Year</label>
+        <input pInputText type="text" formControlName="companyEstdYear" />
+      </div>
+      <div class="form_field_group">
+        <label>Compnany Details</label>
+        <textarea
+          pInputText
+          type="text"
+          formControlName="aboutCompany"
+        ></textarea>
+      </div>
+      <div class="form_field_group">
+        <label>Compnany employee</label>
+        <input pInputText type="number" formControlName="empCount" />
+      </div>
+      <div class="form_field_group">
+        <label>Compnany workplace</label>
+        <input pInputText type="text" formControlName="workPlace" />
+      </div>
+      <div class="form_field_group">
+        <label>Branch Office</label>
+        <input pInputText type="text" formControlName="branchOffice" />
+      </div>
+      <div class="form_field_group">
+        <label>Corporate Office</label>
+        <input pInputText type="text" formControlName="corporateOffice" />
+      </div>
+      <div *ngIf="!openImageUploadButton" class="img-section">
+        <img [src]="profileForm.get('image')?.value" alt="" />
+        <button
+          (click)="removeImage()"
+          *ngIf="profileData.image"
+          class="remove-img"
+        >
+          <i class="pi pi-times"></i>
+        </button>
+      </div>
+      <div class="form_field_group">
+
+        <div class="file-input-container edit-container">
+          <input
+          type="file"
+          *ngIf="openImageUploadButton"
+          (change)="onFileSelected($event)" class="file-input" id="fileInput">
+          <label for="fileInput" class="custom-button">Choose File</label>
+        </div>
+        <!-- <button (click)="uploadImage()">Upload Image</button> -->
+      </div>
     </div>
-    <div class="p-field">
-      <input
-        type="file"
-        *ngIf="openImageUploadButton"
-        (change)="onFileSelected($event)"
-      />
+    <div class="form_footer_group">
+      <button type="submit">Update</button>
     </div>
-    <button pButton type="submit" label="Submit" class="submit-button"></button>
   </form>
 </div>
 

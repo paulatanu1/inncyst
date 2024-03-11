@@ -30,6 +30,7 @@ import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
 import { AddProjectComponent } from './share/add-project/add-project.component';
 import { AchivmentComponent } from './share/achivment/achivment.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,7 @@ import { AchivmentComponent } from './share/achivment/achivment.component';
     PdfViewerModule,
     MatSliderModule,
     FieldsetModule,
-    TabViewModule
+    TabViewModule,
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [

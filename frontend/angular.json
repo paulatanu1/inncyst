@@ -50,6 +50,12 @@
               "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.min.js",
               "node_modules/admin-lte/plugins/jquery-mapael/maps/usa_states.min.js",
               "node_modules/quill/dist/quill.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "pdfjs-dist/legacy/build/pdf",
+              "quill",
+              "localstorage-slim",
+              "pdfjs-dist/legacy/web/pdf_viewer"
             ]
           },
           "configurations": {

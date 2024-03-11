@@ -8,6 +8,11 @@ import { ApiService } from 'src/app/common-service/api.service';
 export class JobPostApiService {
   constructor(private apiCall: ApiService) {}
 
+  fetchSkills() {
+    let url = '/industry/skills';
+    return this.apiCall.ApiCallWithLocalization('', url, 'get');
+  }
+
   submitJob(payloadObj: IpostJob) {
     let url = '/industry/add-post';
     const payloadData: Ipayload = {
@@ -28,7 +33,7 @@ export class JobPostApiService {
       durationIn: '',
       experienceTime: '',
       education: '',
-      experience:0
+      experience: 0,
     };
     payloadData.type = payloadObj.type;
     payloadData.details = payloadObj.details;
@@ -42,33 +47,31 @@ export class JobPostApiService {
     payloadData.salary = +payloadObj.salary;
     payloadData.salaryType = payloadObj.salaryType;
     payloadData.perks = payloadObj.perks;
-    payloadData.id=payloadObj.id
-    payloadData.location=payloadObj.location
-    payloadData.durationIn=payloadObj.durationIn
-    payloadData.experienceTime=payloadObj.experienceTime
-    payloadData.education=payloadObj.education
-    payloadData.experience=payloadObj.experience
+    payloadData.id = payloadObj.id;
+    payloadData.location = payloadObj.location;
+    payloadData.durationIn = payloadObj.durationIn;
+    payloadData.experienceTime = payloadObj.experienceTime;
+    payloadData.education = payloadObj.education;
+    payloadData.experience = payloadObj.experience;
 
     return this.apiCall.ApiCallWithLocalization(payloadData, url, 'put');
   }
-internshipSubmit(data:any){
-  let url = '/industry/submit-post'
-  return this.apiCall.ApiCallWithLocalization(data, url, 'post');
-}
-
-
-  saveJob(payloadObj:any){
-    let url = '/industry/add-post';
-    return this.apiCall.ApiCallWithLocalization(payloadObj,url,'post')
+  internshipSubmit(data: any) {
+    let url = '/industry/submit-post';
+    return this.apiCall.ApiCallWithLocalization(data, url, 'post');
   }
 
-  
-  saveJob2(payloadObj:any){
+  saveJob(payloadObj: any) {
     let url = '/industry/add-post';
-    return this.apiCall.ApiCallWithLocalization(payloadObj,url,'post')
+    return this.apiCall.ApiCallWithLocalization(payloadObj, url, 'post');
   }
-  editedJob(id:any,payloadObj:any){
-    let url='/industry/post-edit/'+id
-    return this.apiCall.ApiCallWithLocalization(payloadObj,url,'put')
+
+  saveJob2(payloadObj: any) {
+    let url = '/industry/add-post';
+    return this.apiCall.ApiCallWithLocalization(payloadObj, url, 'post');
+  }
+  editedJob(id: any, payloadObj: any) {
+    let url = '/industry/post-edit/' + id;
+    return this.apiCall.ApiCallWithLocalization(payloadObj, url, 'put');
   }
 }

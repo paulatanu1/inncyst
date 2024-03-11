@@ -1,91 +1,215 @@
 <div *ngIf="studentListData.length > 0">
   <div *ngFor="let item of studentListData">
-    <div class="applicationStatus">
-      <p><label>Application Status</label> <span>{{ item.applicationStatus }}</span></p>
-      <p><label>Availability</label><span>{{ item.availability }}</span></p>
-      <p *ngIf="item.availability_message != null">
-        <label>availability_message</label><span>{{ item.availability_message }}</span>
-      </p>
-      <p><label>email</label><span>{{ item.email }}</span></p>
-      <p><label>job Id</label><span> {{ item.jobId }}</span></p>
-      <p><label>phone</label><span>{{ item.phone }}</span></p>
-      <p><label>status</label><span> {{ item.status }}</span></p>
-      <p><label>student Name</label><span> {{ item.studentName }}</span></p>
-      <p><label>Student Id </label><span>{{ item._id }}</span></p>
-      <p><label>Created At</label><span> {{ item.userId.createdAt }}</span></p>
-      <p><label>location</label><span> {{ item.userId.location }}</span></p>
-      <p *ngFor="let item of item.userId.skills">skills:- {{ item }}</p>
-      <img [src]="item.userId.image" />
-      {{ item.userId.image }}
-      <p>verified:-- {{ item.userId.verifie }}</p>
-      {{ item.userId.image }}
-    </div>
-    pdf:--
-    <pdf-viewer
-      [src]="item.resume"
-      [render-text]="true"
-      [original-size]="false"
-      style="width: 400px; height: 500px"
-    ></pdf-viewer>
-    <ol type="none">
-      <h1>Portfolio Details:----</h1>
-      <li *ngFor="let items of item.portfolioData; let i = index">
-        <p> Portfolio </p>
-        <p>title:-- {{ items.title }}</p>
-   
-        <p [innerHtml]="items.description"></p>
+    <div class="applicationStatus is-applied-student">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
+              <div class="row">
+                <div class="col-12 col-lg-4 col-md-4">
+                  <div class="header-item">
+                    <div class="left-section">
+                      <img [src]="item.userId.image" />
+                    </div>
+                    <div class="right-section">
+                      <p> <i class="pi pi-desktop workplaceCompany"></i><label>Application Status</label> <span>{{
+                          item.applicationStatus }}</span></p>
+                      <p> <i class="pi pi-desktop workplaceCompany"></i><label>Availability</label><span>{{
+                          item.availability }}</span></p>
+                      <p *ngIf="item.availability_message != null">
+                        <i class="pi pi-desktop workplaceCompany"></i>
+                        <label>availability_message</label><span>{{ item.availability_message }}</span>
+                      </p>
+                      <p> <i class="pi pi-desktop workplaceCompany"></i><label>email</label><span>{{ item.email
+                          }}</span>
+                      </p>
+                      <p> <i class="pi pi-desktop workplaceCompany"></i><label>job Id</label><span> {{ item.jobId
+                          }}</span>
+                      </p>
+                      <p> <i class="pi pi-desktop workplaceCompany"></i><label>phone</label><span>{{ item.phone
+                          }}</span>
+                      </p>
+                      <p> <i class="pi pi-desktop workplaceCompany"></i><label>status</label><span> {{ item.status
+                          }}</span>
+                      </p>
+                      <p> <i class="pi pi-desktop workplaceCompany"></i><label>student Name</label><span> {{
+                          item.studentName }}</span></p>
+                      <p> <i class="pi pi-desktop workplaceCompany"></i><label>Student Id </label><span>{{ item._id
+                          }}</span></p>
+                      <p> <i class="pi pi-desktop workplaceCompany"></i><label>Created At</label><span> {{
+                          item.userId.createdAt }}</span></p>
+                      <p> <i class="pi pi-desktop workplaceCompany"></i><label>location</label><span> {{
+                          item.userId.location }}</span></p>
 
-        <p>portfolioStatus:-- {{ items.portfolioStatus }}</p>
-        <ng-container *ngIf="items.image != 'http://localhost:5500null'">
-          <p>Image:--<img [src]="items.image" alt="" /></p>
-        </ng-container>
-        <ng-container *ngIf="items.url">
-          Url:--
-          <a target="blank" [href]="items.description">{{
-            items.url
-          }}</a>
-        </ng-container>
-        <ng-container *ngIf="items.pdf != 'http://localhost:5500null'">
-          <p>Pdf:--</p>
-          <pdf-viewer
-            [src]="items.pdf"
-            [render-text]="true"
-            [original-size]="false"
-            style="width: 400px; height: 500px"
-          ></pdf-viewer>
-        </ng-container>
-        <ng-container *ngIf="items.youtubeUrl ">
-            <P>YOUTUBE</P>
-            <iframe
-              width="560"
-              height="315"
-              [src]="items.youtubeUrl"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
-          </ng-container>
-        <hr />
-      </li>
-    </ol>
+                      <!-- {{ item.userId.image }} -->
 
-    <button (click)="openStatus()">Edit status</button>
-    <button (click)="updateStatus(item._id)">update</button>
-    <p-dialog
-      header="Title"
-      [(visible)]="editDialog"
-      [style]="{ width: '50vw', height: '300px' }"
-    >
-      >
-      <div class="card flex justify-content-center">
-        <p-dropdown
-          [options]="status"
-          [(ngModel)]="selectedStatus"
-          optionLabel="name"
-          placeholder="Select a Status"
-          (onChange)="statusChange($event, item._id)"
-        ></p-dropdown>
+                      <div class="badges">
+                        <div class="flex-section">
+                          <div class="skill-sign">
+                            <p *ngFor="let item of item.userId.skills">skills:- {{ item }}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="flex-section">
+                        <div class="verified-sign">
+                          <i class="pi pi-verified"></i>
+                          <p>verified:-- {{ item.userId.verifie }}</p>
+                        </div>
+
+
+                        <div class="more-details">
+                          <button>
+                            <i class="pi pi-align-center"></i>
+                            See Details
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <!-- {{ item.userId.image }} -->
+                  </div>
+                </div>
+                <div class="col-12 col-lg-8 col-md-8">
+                  <div class="body-item">
+                    <div class="pdf-view" style="width: 100%; height: 700px;">
+                      <pdf-viewer [src]="item.resume" [render-text]="true" [original-size]="false"
+                        style="width: 100%; height: 100%;"></pdf-viewer>
+
+                      <!-- <button pButton type="button" label="View PDF" (click)="openPDFDialog()" class="p-button-raised p-button-info"></button>
+        
+                        <p-dialog [(visible)]="displayPDFDialog" [style]="{width: '100%', height: '100%'}" [modal]="true" [contentStyle]="{height: '100%'}">
+                          <iframe [src]="item.resume" frameborder="0" width="100%" height="100%">
+                            <pdf-viewer [src]="item.resume" [render-text]="true" [original-size]="false"
+                            style="width: 100%; height: 100%;"></pdf-viewer>
+                          </iframe>
+                      </p-dialog> -->
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-12 col-lg-12 col-md-12">
+                  <ol class="details" type="none">
+                    <!-- <h1>Portfolio Details:----</h1> -->
+                    <li *ngFor="let items of item.portfolioData; let i = index">
+                      <div class="text-details">
+                        <p> Projects </p>
+                        <div class="inputs">
+                          <i class="pi pi-info"></i>
+                          <div class="form-input">
+                            <label for="">Title</label>
+                            <p>{{ items.title }}</p>
+                          </div>
+                        </div>
+                        <div class="inputs">
+                          <i class="pi pi-info"></i>
+                          <div class="form-input">
+                            <label for="">Portfolio Description</label>
+                            <p [innerHtml]="items.description"></p>
+                          </div>
+                        </div>
+                        <div class="inputs">
+                          <i class="pi pi-info"></i>
+                          <div class="form-input">
+                            <label for="">Portfolio Status</label>
+                            <p>{{ items.portfolioStatus }}</p>
+                          </div>
+                        </div>
+
+                        <div class="inputs">
+                          <i class="pi pi-info"></i>
+                          <div class="form-input">
+                            <label for="">Portfolio Image</label>
+                            <ng-container *ngIf="items.image != 'http://localhost:5500null'">
+                              <p>Image:--<img [src]="items.image" alt="" /></p>
+                            </ng-container>
+                          </div>
+                        </div>
+
+                        <div class="inputs">
+                          <i class="pi pi-info"></i>
+                          <div class="form-input url-input">
+                            <label for="">Portfolio URL</label>
+                            <p> <ng-container *ngIf="items.url">
+                                <a target="blank" [href]="items.description">{{
+                                  items.url
+                                  }}</a>
+                              </ng-container></p>
+                          </div>
+                        </div>
+                      </div>
+                      <ng-container *ngIf="items.pdf != 'http://localhost:5500'">
+                        <p>Pdf:--</p>
+                        <pdf-viewer [src]="items.pdf" [render-text]="true" [original-size]="false"
+                          style="width: 100%; height: auto; max-height: 500px;"></pdf-viewer>
+                      </ng-container>
+                      <ng-container *ngIf="items.youtubeUrl ">
+                        <P>YOUTUBE</P>
+                        <iframe width="560" height="315" [src]="items.youtubeUrl" frameborder="0"
+                          allowfullscreen></iframe>
+                      </ng-container>
+                      <hr />
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </p-dialog>
+
+
+
+
+
+
+      <!-- <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
+             
+
+
+            </button>
+           
+
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+             
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+    </div>
+
+
+    <div class="action-btns">
+      <button (click)="openStatus()"><i class="pi pi-file-edit"></i>Edit Status</button>
+      <button (click)="updateStatus(item._id)" class="btn-update"><i class="pi pi-upload"></i>Update</button>
+      <p-dialog header="Title" [(visible)]="editDialog" [style]="{ width: '50vw', height: '300px' }">
+
+        <div class="card flex justify-content-center">
+          <p-dropdown [options]="status" [(ngModel)]="selectedStatus" optionLabel="name" placeholder="Select a Status"
+            (onChange)="statusChange($event, item._id)"></p-dropdown>
+        </div>
+      </p-dialog>
+    </div>
+
   </div>
 </div>
 <div *ngIf="studentListData?.length == 0">

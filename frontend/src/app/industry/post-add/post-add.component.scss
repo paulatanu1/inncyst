@@ -9,6 +9,7 @@
         margin: 0 0 70px;
     }
 }
+
 .post_job_form_sec {
     max-width: 735px;
     margin: 40px auto;
@@ -32,9 +33,104 @@
             padding: 32px 25px;
             margin-bottom: 28px;
 
+            .p-inputtext:enabled:focus {
+                border: 1px solid #cfcfcf;
+                box-shadow: none;
+            }
+
+            .p-inputtext {
+
+                &:hover {
+
+                    border: 1px solid #cfcfcf;
+
+                }
+
+            }
+
+
             &>div.form_field_group:last-of-type {
                 margin-bottom: 0;
             }
+
+            div.form_field_group {
+
+                p {
+
+                    line-height: 1.4 !important;
+
+                }
+
+            }
+
+            // Supriya Css
+
+            .form_group_inline {
+
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                white-space: nowrap;
+
+            }
+
+            .contact_group {
+
+                input {
+
+                    width: 100%;
+
+                }
+
+                input:first-child {
+
+                    width: 100px;
+
+                }
+
+
+
+            }
+
+            .form_grid_group {
+
+                display: grid;
+                grid-template-columns: 2fr 2fr;
+                gap: 15px;
+
+
+            }
+
+            .alert {
+                p:first-child {
+                    font-weight: 500;
+                }
+
+                p {
+                    line-height: 1.4 !important;
+                }
+            }
+
+
+            span {
+
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                button {
+                    padding: 5px 7px;
+                    border-radius: 5px;
+                    border: 1px solid #19A6EC;
+                    background: transparent;
+                    color: #19A6EC;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                }
+
+            }
+
             button {
                 padding: 5px 15px;
                 border-radius: 5px;
@@ -45,6 +141,7 @@
                 font-style: normal;
                 font-weight: 500;
             }
+
             .field-radiobutton {
                 display: inline-block;
                 vertical-align: middle;
@@ -73,6 +170,7 @@
                     display: block;
                     margin-bottom: 10px;
                     text-transform: capitalize;
+
                     span {
                         color: #656565;
                         font-size: 14px;
@@ -111,6 +209,7 @@
                     letter-spacing: 0.08px;
                     width: 100%;
                 }
+
                 ::ng-deep .p-dropdown {
                     border-radius: 8px;
                     border: 1px solid rgba(108, 108, 108, 0.55);
@@ -120,10 +219,21 @@
                     font-size: 16px;
                     font-weight: 400;
                     letter-spacing: 0.08px;
+                    width: 100%;
+
                     & .p-dropdown-label {
                         padding: 0 12px;
                     }
+
                 }
+
+                ::ng-deep .p-multiselect {
+
+                    width: 100%;
+
+                }
+
+
                 textarea {
                     border-radius: 8px;
                     border: 1px solid rgba(108, 108, 108, 0.55);
@@ -134,6 +244,7 @@
                     width: 100%;
                     padding: 12px;
                 }
+
                 .twoColForm {
                     display: flex;
 
@@ -157,6 +268,23 @@
                     margin-top: 12px;
                     line-height: 22px;
 
+                    ::ng-deep p-chips {
+
+                        .p-chips {
+
+                            width: 100%;
+
+                            .p-inputtext {
+
+                                width: 100%;
+    
+                            }
+
+                        }
+
+
+                    }
+
                     i {
                         height: 18px;
                         display: inline-block;
@@ -168,13 +296,13 @@
                     }
                 }
 
-                &.stipend {
-                    .twoColForm {
-                        input {
-                            flex: 0 0 236px;
-                        }
-                    }
-                }
+                // &.stipend {
+                //     .twoColForm {
+                //         input {
+                //             // flex: 0 0 236px;
+                //         }
+                //     }
+                // }
 
                 &.perks {
                     .field-checkbox {
@@ -200,6 +328,7 @@
                     font-style: normal;
                     font-weight: 400;
                     line-height: normal;
+
                     &.short_note {
                         margin-top: 5px;
                     }
@@ -297,4 +426,19 @@
         margin-left: 9px;
         margin-bottom: 0;
     }
+}
+
+::ng-deep p-multiselect .p-multiselect-label {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+::ng-deep p-multiselect .p-multiselect-token {
+    margin-bottom: .5rem
+}
+
+::ng-deep .p-multiselect-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
