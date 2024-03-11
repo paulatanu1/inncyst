@@ -111,6 +111,26 @@
                 }
             }
 
+
+            span {
+
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                button {
+                    padding: 5px 7px;
+                    border-radius: 5px;
+                    border: 1px solid #19A6EC;
+                    background: transparent;
+                    color: #19A6EC;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                }
+
+            }
+
             button {
                 padding: 5px 15px;
                 border-radius: 5px;
@@ -199,11 +219,20 @@
                     font-size: 16px;
                     font-weight: 400;
                     letter-spacing: 0.08px;
+                    width: 100%;
 
                     & .p-dropdown-label {
                         padding: 0 12px;
                     }
+
                 }
+
+                ::ng-deep .p-multiselect {
+
+                    width: 100%;
+
+                }
+
 
                 textarea {
                     border-radius: 8px;
@@ -239,6 +268,23 @@
                     margin-top: 12px;
                     line-height: 22px;
 
+                    ::ng-deep p-chips {
+
+                        .p-chips {
+
+                            width: 100%;
+
+                            .p-inputtext {
+
+                                width: 100%;
+    
+                            }
+
+                        }
+
+
+                    }
+
                     i {
                         height: 18px;
                         display: inline-block;
@@ -250,13 +296,13 @@
                     }
                 }
 
-                &.stipend {
-                    .twoColForm {
-                        input {
-                            flex: 0 0 236px;
-                        }
-                    }
-                }
+                // &.stipend {
+                //     .twoColForm {
+                //         input {
+                //             // flex: 0 0 236px;
+                //         }
+                //     }
+                // }
 
                 &.perks {
                     .field-checkbox {

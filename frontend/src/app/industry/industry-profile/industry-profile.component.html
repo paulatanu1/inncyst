@@ -1,5 +1,5 @@
 <div *ngIf="!questionStep" class="profileAdd">
-  <h1>please {{ profileData ? 'complete' : 'update' }} your profile</h1>
+  <h1>{{ profileData ? 'complete' : 'update' }} your profile</h1>
   <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
     <div class="form_group">
       <div class="form_field_group">
@@ -35,7 +35,10 @@
         <input pInputText type="text" formControlName="corporateOffice" />
       </div>
       <div class="form_field_group">
-        <input type="file" (change)="onFileSelected($event)" />
+        <div class="file-input-container">
+          <input type="file" (change)="onFileSelected($event)" class="file-input" id="fileInput">
+          <label for="fileInput" class="custom-button">Choose File</label>
+        </div>
         <!-- <button (click)="uploadImage()">Upload Image</button> -->
       </div>
     </div>
@@ -55,7 +58,7 @@
   *ngIf="(profileData | json) != '{}' && viewProfile && questionStep"
   class="profileAdd profileView"
 >
-  <h3 class="my-4 text-center font-weight-bold">Please view your profile</h3>
+  <h3 class="my-4 text-center font-weight-bold">View your profile</h3>
   <div class="form_group">
     <div class="form_group_inline">
       <i class="pi pi-building comapnyName"></i>
@@ -135,7 +138,7 @@
 
 <div *ngIf="editProfileData && !viewProfile" class="profileAdd">
   <h3 class="my-4 text-center font-weight-bold">
-    Please {{ profileData ? 'update' : 'complete' }} your profile
+    {{ profileData ? 'update' : 'complete' }} your profile
   </h3>
   <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
     <div class="form_group">
@@ -186,11 +189,14 @@
         </button>
       </div>
       <div class="form_field_group">
-        <input
+
+        <div class="file-input-container edit-container">
+          <input
           type="file"
           *ngIf="openImageUploadButton"
-          (change)="onFileSelected($event)"
-        />
+          (change)="onFileSelected($event)" class="file-input" id="fileInput">
+          <label for="fileInput" class="custom-button">Choose File</label>
+        </div>
         <!-- <button (click)="uploadImage()">Upload Image</button> -->
       </div>
     </div>
