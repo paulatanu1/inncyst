@@ -52,14 +52,14 @@
             height: 50px;
             .p-dropdown {
                 border-radius: 5px;
-                background: #F3E9FF;
+                background: #fff;
                 margin-right: 20px;
                 // border-right: 1px solid #d4d4d4;
                 .p-dropdown-label {
-                    color: #522D80;
+                    color: #495057;
                 }
                 .p-dropdown-trigger-icon {
-                    color: #522D80;
+                    color: #495057;
                 }
             }
         }
@@ -68,15 +68,15 @@
             height: 50px;
             .p-dropdown {
                 border-radius: 5px;
-                background: #F3E9FF;
+                background: #fff;
                 margin-right: 20px;
                 // border-left: 1px solid #d4d4d4;
                 margin-left: 20px;
                 .p-dropdown-label {
-                    color: #522D80;
+                    color: #495057;
                 }
                 .p-dropdown-trigger-icon {
-                    color: #522D80;
+                    color: #495057;
                 }
             }
         }
@@ -86,18 +86,21 @@
 
             .p-dropdown {
                 border-radius: 5px;
-                background: #F3E9FF;
+                background: #fff;
                 margin-right: 20px;
                 // border-left: 1px solid #d4d4d4;
                 
                 .p-dropdown-label {
-                    color: #522D80;
+                    color: #495057;
                 }
 
                 .p-dropdown-trigger-icon {
-                    color: #522D80;
+                    color: #495057;
                 }
             }
+        }
+        .slide_range {
+            margin-left: 15px;
         }
     }
     .internship_sec_inner {
