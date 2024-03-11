@@ -29,6 +29,8 @@ import { LoginApiService } from '../login/login-api.service';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
 import { InternshipProfileService } from '../service/internship-profile.service';
 import { SlideMenu } from 'primeng/slidemenu';
+import { ToastServiceService } from 'src/app/service/toast-service.service';
+
 interface options {
   optionName: string;
   code: string;
@@ -90,7 +92,9 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
     private _header: HeaderService,
     private loginApiService: LoginApiService,
     private InternshipService: InternshipProfileService,
-    private cdk: ChangeDetectorRef
+    private cdk: ChangeDetectorRef,
+    private _toast: ToastServiceService,
+
   ) {
     //check allready login user or not
     this.profileImage=ls.get('profileImage')
@@ -307,10 +311,46 @@ this._login.loginFlow.subscribe({
         label: 'Project Enabler',
         icon: 'pi pi-refresh',
         command: () => {
-          alert('comming soon ....');
-        },
+          this._toast.showToaster.next({
+            severity: 'warn',
+            summary: 'Warning',
+            detail: 'comming soon',
+          });        },
       },
     ];
+  }
+  productOrServicedropdown(type:string){
+    this.logInToken = ls.get('login_token');
+    if (this.logInToken) {
+      this.logoutSuccess = true;
+    } else {
+      this.logoutSuccess = false;
+    }
+    if(type ==='Internship'){
+      this.userType = ls.get('userType');
+
+      if (ls.get('login_token') ) {
+        this.router.navigateByUrl('/jobs/posts');
+      } else if (!ls.get('login_token') ) {
+        this.router.navigateByUrl('/registeration');
+      }
+    }
+    
+    if(type === 'Industry'){
+      if (this.logInToken && this.userType == 'industry') {
+        this.router.navigateByUrl('jobs/industry');
+      } else if (!this.logInToken && !this.userType) {
+        this.router.navigateByUrl('/registeration');
+      }
+    }
+if (type == ''){
+  this._toast.showToaster.next({
+    severity: 'warn',
+    summary: 'Important!',
+    detail: 'Coming Soon. Stay Tuned!',
+  }); 
+}
+
   }
   optionClick(url: string) {
     // this.progressBar = true;
