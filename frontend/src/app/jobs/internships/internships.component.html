@@ -92,7 +92,7 @@
                   </h2>
                 </div>
 
-                <h2 [innerHTML]="a.details"></h2>
+                <h2 class="description-details" [innerHTML]="a.details"></h2>
                 <div class="tags">
                  
                   <span *ngIf="a.experience">experience :- {{a.experience}} {{a.experienceTime}}</span>
@@ -107,10 +107,10 @@
                   ><i class="pi pi-map-marker"></i>
                   {{ a.location }}</span
                 >
-                <span><i class="pi pi-briefcase"></i>{{ a.type }}</span>
+                <span><i class="pi pi-briefcase pi-job"></i>{{ a.type }}</span>
                 <span *ngIf="a.duration">{{a.duration}} {{a.durationIn}} </span>
 
-                <span><i class="pi pi-user-plus"></i>{{ a.jobOpening }}</span>
+                <span><i class="pi pi-user-plus pi-user"></i>{{ a.jobOpening }}</span>
               </div>
               <div class="company_tags">
                 <span *ngFor="let b of a.skills">{{ b }}</span>

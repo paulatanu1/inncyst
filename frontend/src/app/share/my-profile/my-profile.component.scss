@@ -1,24 +1,37 @@
 .my_profile_sec {
-    margin-top: 113px;
-    padding-top: 60px;
 
     .profile_whole_sec {
         max-width: 1120px;
         margin: 0 auto;
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .my_profile_sec_inner {
         display: flex;
         flex-direction: row;
+        justify-content: space-around;
+        background-image: linear-gradient(45deg, #f1f1f1, transparent);
+        padding: 28px 25px;
+        border-radius: 20px;
+        border: 1px solid #cccccc29;
 
         .profile_img {
             margin-right: 50px;
 
             figure {
-                background: #D9D9D9;
-                width: 236px;
-                height: 236px;
                 position: relative;
+                
+                img {
+
+                    width: 150px;
+                    height: 150px;
+                    object-fit: contain;
+                    border-radius: 50%;
+
+                }
 
                 span {
                     border-radius: 30px;
@@ -35,6 +48,7 @@
                     right: -15px;
                     top: 20px;
                 }
+
             }
         }
 
@@ -59,43 +73,47 @@
             button.edit_btn {
                 color: #fff;
                 border-radius: 30px;
-                border: 1px solid #36A3E4;
-                background: linear-gradient(180deg, #3CAEF2 0%, #299BDF 100%);
+                border: 1px solid #003060;
+                background: #003060;
                 box-shadow: 0px 4px 4px 0px rgba(6, 41, 63, 0.15);
-                font-size: 12px;
+                font-size: 0.6rem;
                 font-style: normal;
-                font-weight: 700;
-                line-height: 16px;
+                font-weight: 500;
                 text-transform: uppercase;
-                padding: 4px 15px;
+                padding: 9px 15px;
                 position: absolute;
-                right: 0;
+                right: 0px;
                 top: 0;
+                display: flex;
+                align-items: center;
+                gap: 7px;
 
-                &:hover {
-                    background: linear-gradient(180deg, #299BDF 0%, #3CAEF2 100%);
-                }
+                // &:hover {
+                //     background: linear-gradient(180deg, #299BDF 0%, #3CAEF2 100%);
+                // }
             }
 
             button.back_btn {
                 color: #fff;
                 border-radius: 30px;
-                border: 1px solid #36A3E4;
-                background: linear-gradient(180deg, #3CAEF2 0%, #299BDF 100%);
+                border: 1px solid #003060;
+                background: #003060;
                 box-shadow: 0px 4px 4px 0px rgba(6, 41, 63, 0.15);
-                font-size: 12px;
+                font-size: 0.6rem;
                 font-style: normal;
-                font-weight: 700;
-                line-height: 16px;
+                font-weight: 500;
                 text-transform: uppercase;
-                padding: 4px 15px;
+                padding: 9px 15px;
                 position: absolute;
-                right: 70px;
+                right: 90px;
                 top: 0;
+                display: flex;
+                align-items: center;
+                gap: 7px;
 
-                &:hover {
-                    background: linear-gradient(180deg, #299BDF 0%, #3CAEF2 100%);
-                }
+                // &:hover {
+                //     background: linear-gradient(180deg, #299BDF 0%, #3CAEF2 100%);
+                // }
             }
 
             h2 {
@@ -103,7 +121,6 @@
                 font-weight: 600;
                 line-height: 30px;
                 color: #373F46;
-                margin-bottom: 20px;
             }
 
             p.subhead {
@@ -120,14 +137,23 @@
                 margin-bottom: 15px;
 
                 a {
-                    color: #3CAEF2;
-                    font-size: 17px;
-                    font-style: normal;
+                    font-size: 0.9rem;
+                    font-weight: 600;
                     text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 7px;
 
-                    img {
-                        margin-right: 10px;
+                    i {
+
+                        background: #05597426;
+                        padding: 8px;
+                        border-radius: 50%;
+                        font-size: 0.8rem;
+                        color: #003060;
+
                     }
+
                 }
 
                 strong {
@@ -141,20 +167,29 @@
                         font-size: 13px;
                         font-style: normal;
                         font-weight: 400;
+
+                       
                     }
                 }
             }
 
             &>span {
-                color: #373F46;
-                font-size: 17px;
-                font-style: normal;
+                font-size: 0.9rem;
                 font-weight: 600;
-                margin-bottom: 10px;
-                display: inline-block;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 7px;
 
-                img {
-                    margin-right: 5px;
+
+                i {
+
+                    background: #1b930438;
+                    padding: 8px;
+                    border-radius: 50%;
+                    font-size: 0.8rem;
+                    color: #1b9304;
+
                 }
             }
 
@@ -163,6 +198,14 @@
                 font-size: 13px;
                 font-style: normal;
                 font-weight: 400;
+            }
+
+            p.profile-description {
+
+                margin: 20px 0;
+                color: #727272;
+                font-size: 0.9rem;
+
             }
         }
     }
@@ -335,17 +378,20 @@
     margin: 0;
     padding: 0;
     margin-bottom: 10px;
+    gap: 10px;
 }
 
 .skills li {
     list-style: none;
-    min-width: 50px;
     width: auto;
-    border: 1px solid #4ab1c9;
-    padding: 3px;
-    border-radius: 3px;
-    background-color: rgb(123 198 216);
-    color: #fff;
+    border: 1px solid #ffffff;
+    background: #fff;
+    padding: 3px 15px;
+    border-radius: 7px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #000;
     margin: 0 3px;
     text-align: center;
+    box-shadow: 3px 2px 7px -1px #00000014;
 }

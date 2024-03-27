@@ -21,7 +21,7 @@
                 padding: 0;
                 margin: 0;
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 flex-wrap: wrap;
             li {
                 list-style-type: none;
@@ -30,7 +30,7 @@
                 background: #FDFDFD;
                 box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.13);
                 padding:15px 0 0;
-                flex: 0 0 48%;
+                flex: 0 0 55%;
                 margin-bottom: 20px;
                 position: relative;
                     .ellipsis_icon {
@@ -50,13 +50,13 @@
                         box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.13);
                         padding: 0 42px 26px;
                         .company_logo {
-                            border-radius: 7px;
-                            width:80px;
-                            height: 78px;
-                            background: #ccc;
-                            margin-right: 20px;
-                            text-align: center;
-                            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                            // border-radius: 7px;
+                            // width:80px;
+                            // height: 78px;
+                            // background: #ccc;
+                            // margin-right: 20px;
+                            // text-align: center;
+                            // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
                             img {
                                 border-radius: 7px;
                                 max-height: 78px;
@@ -66,17 +66,10 @@
                         }
                         .company_details {
                             h2 {
-                                font-size: 24px;
+                                font-size: 0.9rem;
                                 font-style: normal;
                                 font-weight: 600;
                                 color: #000;
-                                strong {
-                                    font-size: 24px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    color: #7E56BA;
-                                    line-height: 28px;
-                                }
                             }
                         }
                         .location_info {
@@ -103,30 +96,41 @@
                     }
                     .company_info_btm {
                         padding: 25px 20px 25px 40px;
+                        display: grid;
+                        gap: 10px 18px;
+                        grid-template-columns: 2fr 2fr;
+
+                        label {
+
+                            font-weight: 500;
+                            font-size: 0.84rem;
+                            color: #727272;
+
+                        }
+
                         p {
-                            font-size: 24px;
+                            font-size: 1rem;
                             font-style: normal;
                             font-weight: 600;
                             color: #000;
-                            strong {
-                                font-size: 24px;
-                                font-style: normal;
-                                font-weight: 600;
-                                color: #7E56BA;
-                                line-height: 28px;
-                            }
+                           
                         }
                     }
                     .app_status {
-                        border-radius: 0px 0px 9px 9px;
-                        background: #7E56BA;
-                        padding: 7px 0;
+                        border-radius: 8px;
+                        background: #dd7f0ef7;
+                        padding: 5px 14px;
                         text-align: center;
                         text-transform: uppercase;
                         font-weight: 600;
-                        font-size: 24px;
+                        font-size: 0.7rem;
                         font-style: normal;
                         color: #fff;
+                        position: absolute;
+                        top: 74px;
+                        right: 10px;
+
+                        
                         strong {
                             font-weight: 800;
                             line-height: 28px;
@@ -227,6 +231,9 @@
                 line-height: 24px;
                 background: #eaeaea;
                 margin-bottom: 20px;
+                position: absolute;
+                left: 10%;
+
                 i {
                     display: inline-block;
                     vertical-align: text-bottom;

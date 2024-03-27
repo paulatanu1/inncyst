@@ -17,8 +17,8 @@
               </figure>
             </div>
             <div class="profile_details">
-              <button (click)="back()" class="back_btn">Back To Job</button>
-              <button (click)="openEdit()" class="edit_btn">Edit</button>
+              <button (click)="back()" class="back_btn"><i class="pi pi-chevron-left"></i>Back To Job</button>
+              <button (click)="openEdit()" class="edit_btn"><i class="pi pi-pencil"></i>Edit</button>
       
               <h2>{{ ProfileDetails.name }}</h2>
               <p class="subhead">
@@ -30,7 +30,7 @@
               </p>
               <div class="mail_register">
                 <a>
-                  <img src="../../../assets/mail-icon.png" />
+                 <i class="pi pi-envelope"></i>
                   {{ ProfileDetails.email }}
                 </a>
                 <strong>
@@ -39,10 +39,10 @@
                 </strong>
               </div>
               <span>
-                <img src="../../../assets/call-icon.png" />
+               <i class="pi pi-phone"></i>
                 +91 {{ ProfileDetails.phone }}
               </span>
-              <p [innerHTML]="description">
+              <p class="profile-description" [innerHTML]="description">
             
               </p>
               <ul class="skills">
