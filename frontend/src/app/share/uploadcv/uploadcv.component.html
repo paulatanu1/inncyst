@@ -8,12 +8,12 @@
 </div>
 
 <div class="existingCv" *ngIf="existingCv">
+  <button (click)="updateCV()">Update Resume <i class="pi pi-check-circle"></i></button>
     <pdf-viewer
     [src]="existingCv"
     [render-text]="true"
     [original-size]="false"
     style="width: 80%; height: 500px"
   ></pdf-viewer>
-  <button (click)="updateCV()">Update Resume <i class="pi pi-check-circle"></i></button>
 </div>
 

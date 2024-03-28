@@ -9,7 +9,7 @@
     margin-bottom: 20px;
     position: absolute;
     left: 45%;
-    top: 50%;
+    top: 30%;
     display: flex;
     align-items: center;
     gap: 7px;
@@ -20,7 +20,8 @@
     }
 }
 .formSection {
-    width: 50%;
+    width: 100%;
+    max-width: 500px;
     border: 1px solid #e5e6e7;
     background: #fff;
     padding: 45px 15px 15px;
