@@ -94,6 +94,7 @@ const routes: Routes = [
     canActivate: [AuthenticateGuard],
   },
   { path: 'newLogin', loadChildren: () => import('./login-module/login-module.module').then(m => m.LoginModuleModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   {
     path: '**',
     component: PageNotFoundComponent,
