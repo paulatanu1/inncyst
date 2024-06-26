@@ -12,7 +12,6 @@ import { LoginPageComponent } from './share/login-page/login-page.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ChangePasswordComponent } from './share/change-password/change-password.component';
 import { MyProfileComponent } from './share/my-profile/my-profile.component';
-import { IndustryModule } from './industry/industry.module';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { LoginDetailsService } from './common-service/login-details.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -24,12 +23,11 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SanitizerUrlPipe } from './pipe/sanitizer-url.pipe';
 import { MatSliderModule } from '@angular/material/slider';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import {FieldsetModule} from 'primeng/fieldset';
+import { FieldsetModule } from 'primeng/fieldset';
 import { TabViewModule } from 'primeng/tabview';
 import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
 import { AddProjectComponent } from './share/add-project/add-project.component';
 import { AchivmentComponent } from './share/achivment/achivment.component';
-
 
 @NgModule({
   declarations: [

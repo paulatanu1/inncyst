@@ -50,6 +50,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { LoaderComponent } from './loader/loader.component';
+import { PricingComponent } from '../share/pricing/pricing.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,9 @@ import { LoaderComponent } from './loader/loader.component';
     LoginComponent,
     RegistrationOtpComponent,
     ProgressBarComponent,
-    RegistrationPageComponent,LoaderComponent
+    RegistrationPageComponent,
+    LoaderComponent,
+    PricingComponent,
   ],
   imports: [
     CommonModule,
@@ -145,7 +148,7 @@ import { LoaderComponent } from './loader/loader.component';
     InputTextareaModule,
     ImageCropperModule,
     OverlayPanelModule,
-    LoaderComponent
+    LoaderComponent,
   ],
   providers: [DatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

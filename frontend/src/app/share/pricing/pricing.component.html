@@ -1,0 +1,73 @@
+<div>
+  <app-header></app-header>
+  <div class="pricing-wrapper">
+    <header>
+      <h1>Find Top Talent. Simplify Hiring.</h1>
+      <p>Choose the right job posting plan for your needs.</p>
+      <img src="hero-image.jpg" alt="Diverse candidates working together" />
+    </header>
+    <section class="pricing">
+      <h2>Pricing Plans</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Basic</td>
+            <td>$99</td>
+            <td>
+              <ul>
+                <li>10 Job Postings</li>
+                <li>14 Day Listing</li>
+                <li>Basic Resume Access</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="popular">Standard</td>
+            <td>$199</td>
+            <td>
+              <ul>
+                <li>25 Job Postings</li>
+                <li>30 Day Listing</li>
+                <li>Featured Job Placement</li>
+                <li>Basic Resume Access + Search Tools</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Premium</td>
+            <td>$299</td>
+            <td>
+              <ul>
+                <li>Unlimited Job Postings</li>
+                <li>60 Day Listing</li>
+                <li>Featured Job Placement + Social Promotion</li>
+                <li>Full Resume Access + Matching Tools</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="paymentBtn()" type="button">Payment</button>
+    </section>
+    <section class="benefits">
+      <h3>Benefits of Using Our Service</h3>
+      <ul>
+        <li>Reach a wider pool of qualified candidates.</li>
+        <li>Save time and resources in the hiring process.</li>
+        <li>Improve the quality of your applicant pool.</li>
+        <li>Easy-to-use platform and applicant tracking system.</li>
+      </ul>
+    </section>
+    <section class="cta">
+      <a href="#" class="button">Get Started Today</a>
+    </section>
+  </div>
+  <app-footer></app-footer>
+</div>
