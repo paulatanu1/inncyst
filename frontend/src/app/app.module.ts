@@ -75,7 +75,7 @@ import { AchivmentComponent } from './share/achivment/achivment.component';
       multi: true,
     },
     NgOtpInputModule,
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    // { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
