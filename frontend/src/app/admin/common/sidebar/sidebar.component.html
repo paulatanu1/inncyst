@@ -8,8 +8,14 @@
         data-widget="treeview"
         role="menu"
       >
-        <li class="nav-item" [routerLink]="['/industry']">
-          <a class="nav-link">Dashboard</a>
+        <li
+          class="nav-item"
+          *ngFor="let item of sidebarMenu"
+          [ngClass]="{ active: activeMenu === item.selfIndex }"
+          (click)="activeClass(item.selfIndex)"
+          [routerLink]="item.route"
+        >
+          <a class="nav-link">{{ item.menuName }}</a>
         </li>
       </ul>
     </nav>

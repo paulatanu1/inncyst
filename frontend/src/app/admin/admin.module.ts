@@ -7,11 +7,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterAdminComponent } from './common/footer-admin/footer-admin.component';
-import { ClientContentComponent } from './pages/client-content/client-content.component';
 import { IndustryListComponent } from './pages/industry-list/industry-list.component';
 import { StudentListComponent } from './pages/student-list/student-list.component';
 import { SubscriptionPlansComponent } from './pages/subscription-plans/subscription-plans.component';
-
 
 @NgModule({
   declarations: [
@@ -20,14 +18,10 @@ import { SubscriptionPlansComponent } from './pages/subscription-plans/subscript
     SidebarComponent,
     HeaderComponent,
     FooterAdminComponent,
-    ClientContentComponent,
     IndustryListComponent,
     StudentListComponent,
-    SubscriptionPlansComponent
+    SubscriptionPlansComponent,
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule
-  ]
+  imports: [CommonModule, AdminRoutingModule],
 })
-export class AdminModule { }
+export class AdminModule {}
