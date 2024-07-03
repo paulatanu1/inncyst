@@ -1,5 +1,17 @@
-<aside
-  class="main-sidebar sidebar-dark-primary is-leftSidebarPanel custom-sidebar"
->
+<aside class="main-sidebar sidebar-dark-primary custom-sidebar">
   <!-- <a class="brand-link logo-switch"></a> -->
+
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar nav-child-indent flex-column"
+        data-widget="treeview"
+        role="menu"
+      >
+        <li class="nav-item" [routerLink]="['/industry']">
+          <a class="nav-link">Dashboard</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </aside>
