@@ -19,7 +19,8 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./homepage/homepage.module').then((m) => m.HomepageModule),canActivate:[IndustryCheckGuard]
+      import('./homepage/homepage.module').then((m) => m.HomepageModule),
+    canActivate: [IndustryCheckGuard],
   },
   {
     path: 'shared',
@@ -39,17 +40,19 @@ const routes: Routes = [
   {
     path: 'contactus',
     loadChildren: () =>
-      import('./contact-us/contact-us.module').then((m) => m.ContactUsModule),canActivate:[OutsideUrlProtectGuard]
+      import('./contact-us/contact-us.module').then((m) => m.ContactUsModule),
+    canActivate: [OutsideUrlProtectGuard],
   },
   {
     path: '',
     redirectTo: '/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'about-us',
     loadChildren: () =>
-      import('./about-us/about-us.module').then((m) => m.AboutUsModule),canActivate:[OutsideUrlProtectGuard]
+      import('./about-us/about-us.module').then((m) => m.AboutUsModule),
+    canActivate: [OutsideUrlProtectGuard],
   },
   {
     path: 'registeration',
@@ -59,15 +62,17 @@ const routes: Routes = [
       ),
   },
   {
-    path:'Login',loadChildren:()=>
-      import('./login-module/login-module.module').then((m)=>m.LoginModuleModule),
-    
+    path: 'Login',
+    loadChildren: () =>
+      import('./login-module/login-module.module').then(
+        (m) => m.LoginModuleModule
+      ),
   },
   // {
   //   path: 'login',
   //   loadChildren: () =>
   //     import('./login/login.module').then((m) => m.LoginModule),
-    
+
   // },
   {
     path: 'industry',
@@ -81,20 +86,32 @@ const routes: Routes = [
     canActivate: [AuthenticateGuard],
   },
   {
-    path:'add-profile',
-    component:AddProjectComponent,
-    canActivate:[AuthenticateGuard]
+    path: 'add-profile',
+    component: AddProjectComponent,
+    canActivate: [AuthenticateGuard],
   },
   {
-    path:'my-profile/protfolio',component:ProtfolioComponent,canActivate: [AuthenticateGuard],
+    path: 'my-profile/protfolio',
+    component: ProtfolioComponent,
+    canActivate: [AuthenticateGuard],
   },
   {
     path: 'change-password',
     component: ChangePasswordComponent,
     canActivate: [AuthenticateGuard],
   },
-  { path: 'newLogin', loadChildren: () => import('./login-module/login-module.module').then(m => m.LoginModuleModule) },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  {
+    path: 'newLogin',
+    loadChildren: () =>
+      import('./login-module/login-module.module').then(
+        (m) => m.LoginModuleModule
+      ),
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/pages/auth/auth.module').then((m) => m.AuthModule),
+  },
   {
     path: '**',
     component: PageNotFoundComponent,
@@ -102,8 +119,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration:'top'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
   exports: [RouterModule],
-
 })
 export class AppRoutingModule {}
