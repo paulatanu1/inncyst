@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   newPassword: any;
   confirmPassword: any;
   closePopup: boolean = false;
-  abc!:string
+  abc!: string;
   //Output
   @Output() openRegisterFlow = new EventEmitter();
 
@@ -54,9 +54,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private _toast: ToastServiceService,
     private loginDetails: LoginDetailsService,
-    private _LoginEnablerService:LoginEnablerService
+    private _LoginEnablerService: LoginEnablerService
   ) {
- this.abc=this.loginService.getPreviousUrl();
+    this.abc = this.loginService.getPreviousUrl();
     this.options = [{ name: 'Select the option', code: '0' }];
 
     this.loginOptionType = [
@@ -71,8 +71,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
     this.loginService.loginModal.subscribe((val) => {
       this.loginModal = <boolean>val;
     });
@@ -135,15 +133,8 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
-          ls.set('questionStep',res.data.question_step)
-          ls.set('id',res.data._id)
-          // ls.set('logoutSuccess',true)
-          // ls.set('loginDetails',{
-          //   name:res.data.name,
-          //   email:res.data.email,
-          //   phone:res.data.phone,
-          //   image:res.data.image
-          // })
+          ls.set('questionStep', res.data.question_step);
+          ls.set('id', res.data._id);
 
           if (res.LOGIN_TYPE == 'student') {
             this.router.navigateByUrl('jobs/posts');
@@ -151,7 +142,6 @@ export class LoginComponent implements OnInit {
 
             // this.router.navigate(['/jobs/internship']);
           } else if (res.LOGIN_TYPE == 'industry') {
-
             ls.set('role', 'industry');
             this.router.navigate(['industry']);
             if (
@@ -163,27 +153,25 @@ export class LoginComponent implements OnInit {
           }
         },
         error: (err) => {
-
-          if(err.error.message == 'Please varify your email and phone'){
-            this._LoginEnablerService.otpPage.next(true)
-            this._LoginEnablerService.loginFlow.next(false)
-            this.loginModal=false
-            this.router.navigateByUrl('/registeration')
+          if (err.error.message == 'Please varify your email and phone') {
+            this._LoginEnablerService.otpPage.next(true);
+            this._LoginEnablerService.loginFlow.next(false);
+            this.loginModal = false;
+            this.router.navigateByUrl('/registeration');
             this._toast.showToaster.next({
               severity: 'error',
               summary: 'error',
               detail: err.error.message,
             });
+          } else {
+            this._toast.showToaster.next({
+              severity: 'error',
+              summary: 'error',
+              detail: err.error.message,
+            });
+            this.otpVerifivation.loginflow.next(false);
+            this.router.navigateByUrl('/home');
           }
-         else{
-
-           this._toast.showToaster.next({
-             severity: 'error',
-             summary: 'error',
-             detail: err.error.message,
-           });          this.otpVerifivation.loginflow.next(false);
-           this.router.navigateByUrl('/home');
-         }
         },
       });
     }

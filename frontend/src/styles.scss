@@ -19,8 +19,8 @@ button:focus:not(:focus-visible) {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 html {
@@ -190,16 +190,16 @@ body.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse .leftbottom-
 
 .is-leftSidebarPanel {
 
-    .os-padding {
+  .os-padding {
 
-      .os-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100% !important;
-      }
-
+    .os-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100% !important;
     }
+
+  }
 
 }
 

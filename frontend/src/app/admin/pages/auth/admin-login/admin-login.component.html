@@ -5,21 +5,26 @@
   <div class="text-center mt-4 name">
     Inncyst Admin
   </div>
-  <form class="p-3 mt-3">
+  <form class="p-3 mt-3" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
     <div class="form-field d-flex align-items-center">
       <span class="fa-solid fa-user"></span>
       <input
-        type="text"
+        type="email"
         name="userName"
-        id="userName"
+        formControlName="email"
         placeholder="User Email"
       />
     </div>
     <div class="form-field d-flex align-items-center">
       <span class="fas fa-key"></span>
-      <input type="password" name="password" id="pwd" placeholder="Password" />
+      <input
+        type="password"
+        name="password"
+        formControlName="password"
+        placeholder="Password"
+      />
     </div>
-    <button class="btn mt-3">Login</button>
+    <button type="submit" class="btn mt-3">Login</button>
   </form>
   <!-- <div class="text-center fs-6">
     <a href="#">Forget password?</a>

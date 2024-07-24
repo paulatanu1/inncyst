@@ -108,9 +108,14 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'admin',
+    path: 'admin-login',
     loadChildren: () =>
       import('./admin/pages/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: '**',
