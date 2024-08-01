@@ -1,0 +1,12 @@
+<div class="NgxEditor__Wrapper">
+  <ngx-editor-menu [editor]="editor"></ngx-editor-menu>
+  <ngx-editor
+    [editor]="editor"
+    [(ngModel)]="html"
+    [disabled]="false"
+    [toolbar]="toolbar"
+    [placeholder]="'Type here...'"
+  ></ngx-editor>
+</div>
+<button (click)="getHtmlContent()" type="button">Save</button>
+{{ html | json }}

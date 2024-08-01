@@ -27,6 +27,7 @@
     "mediaelement": "^7.0.0",
     "ng-otp-input": "^1.8.5",
     "ng2-pdf-viewer": "^7.0.2",
+    "ngx-editor": "^14.2.0",
     "ngx-image-cropper": "^7.0.2",
     "ngx-infinite-scroll": "^14.0.0",
     "ngx-owl-carousel-o": "^14.0.1",

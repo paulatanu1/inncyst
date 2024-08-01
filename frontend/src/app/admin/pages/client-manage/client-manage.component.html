@@ -1,18 +1,18 @@
 <div class="client-content-management">
   <ul>
-    <li class="tiles">
+    <li class="tiles" [routerLink]="['privacy&policy']">
       <h4>Privacy & Policy</h4>
       <div class="action-btn">
         <button type="button">Update Content</button>
       </div>
     </li>
-    <li class="tiles">
+    <li class="tiles" [routerLink]="['refund-policy']">
       <h4>Refund Policy</h4>
       <div class="action-btn">
         <button type="button">Update Content</button>
       </div>
     </li>
-    <li class="tiles">
+    <li class="tiles" [routerLink]="['dashboard-content']">
       <h4>Dashboard Content</h4>
       <div class="action-btn">
         <button type="button">Update Content</button>
@@ -20,3 +20,4 @@
     </li>
   </ul>
 </div>
+<router-outlet></router-outlet>
