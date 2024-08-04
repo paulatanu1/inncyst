@@ -1,12 +1,21 @@
-<div class="NgxEditor__Wrapper">
-  <ngx-editor-menu [editor]="editor"></ngx-editor-menu>
-  <ngx-editor
-    [editor]="editor"
-    [(ngModel)]="html"
-    [disabled]="false"
-    [toolbar]="toolbar"
-    [placeholder]="'Type here...'"
-  ></ngx-editor>
+<div class="wrapper-inner">
+  <div class="nav-area">
+    <p>Update Privacy & Plolicy</p>
+  </div>
+  <div class="NgxEditor__Wrapper editor-wrap">
+    <ngx-editor-menu [editor]="editor"></ngx-editor-menu>
+    <ngx-editor
+      [editor]="editor"
+      [(ngModel)]="html"
+      [disabled]="false"
+      [toolbar]="toolbar"
+      [placeholder]="'Type here...'"
+    ></ngx-editor>
+  </div>
+  <div class="pg-action">
+    <button class="save" (click)="getHtmlContent()" type="button">Save</button>
+    <button class="cancel" (click)="getHtmlContent()" type="button">
+      Cancel
+    </button>
+  </div>
 </div>
-<button (click)="getHtmlContent()" type="button">Save</button>
-{{ html | json }}
