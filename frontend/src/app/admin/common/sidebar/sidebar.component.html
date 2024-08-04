@@ -8,10 +8,16 @@
         data-widget="treeview"
         role="menu"
       >
+        {{
+          activeMenuIndex
+        }}
         <li
           class="nav-item"
           *ngFor="let item of sidebarMenu"
-          [ngClass]="{ active: activeMenu === item.selfIndex }"
+          [ngClass]="{
+            active:
+              activeMenu === item.selfIndex || activeMenu === activeMenuIndex
+          }"
           (click)="activeClass(item.selfIndex)"
           [routerLink]="item.route"
         >

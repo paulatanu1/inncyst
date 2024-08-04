@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -44,7 +45,15 @@ export class SidebarComponent implements OnInit {
     },
   ];
   activeMenu: number = 0;
-  constructor() {}
+  activeMenuIndex!: number;
+  constructor(private _router: Router) {
+    this.sidebarMenu.filter((val) => {
+      let splitUrl = this._router.url.split('/');
+      if (splitUrl[2] === val.route) {
+        this.activeMenu = val.selfIndex;
+      }
+    });
+  }
 
   ngOnInit(): void {}
 
