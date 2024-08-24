@@ -6,16 +6,24 @@
 
   <div class="content">
     <!-- Your content goes here -->
-    <div class="descriprion">
-      <h4>Lab Pool in a Nut Shell</h4>
-      <p>
-        Bringing state of art laboratories/manufacturing facilities under one
-        platform thereby making Innovation easier faster and cheaper
-      </p>
+    <div *ngIf="!labReg && !labUserReg">
+      <div class="descriprion">
+        <h4>Lab Pool in a Nut Shell</h4>
+        <p>
+          Bringing state of art laboratories/manufacturing facilities under one
+          platform thereby making Innovation easier faster and cheaper
+        </p>
+      </div>
+      <div class="options-section">
+        <button type="button" (click)="openRegForm('lab-user')">
+          Register as a User
+        </button>
+        <button type="button" (click)="openRegForm('lab')">
+          Register as a Lab
+        </button>
+      </div>
     </div>
-    <div class="options-section">
-      <button type="button">Register as a User</button>
-      <button type="button">Register as a Lab</button>
-    </div>
+    <div class="lab-user-form" *ngIf="labUserReg"></div>
+    <div class="lab-form" *ngIf="labReg"></div>
   </div>
 </div>
