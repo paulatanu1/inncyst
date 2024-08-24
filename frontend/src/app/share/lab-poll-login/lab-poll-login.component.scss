@@ -1,0 +1,80 @@
+.background-video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    padding: 20px;
+    background: #00000087;
+    border-radius: 15px;
+    width: 850px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-top: 2px solid #009fc3;
+    box-shadow: 2px 2px 13px #522d80;
+    display: flex;
+    align-items: center;
+    min-height: 400px;
+}
+
+.descriprion {
+    width: 60%;
+    text-align: center;
+    text-align: -webkit-center;
+}
+
+.descriprion h4 {
+    font-size: 32px;
+    color: #009fc3;
+    border-bottom: 3px solid #fff;
+    width: fit-content;
+}
+
+.descriprion p {
+    margin: 0;
+    font-size: 23px;
+    margin-top: 50px;
+}
+
+.options-section {
+    width: 40%;
+}
+
+.options-section button {
+    border-radius: 15px;
+    font-size: 19px;
+    padding: 10px;
+    margin: 10px 0;
+    position: relative;
+    min-width: 200px;
+    font-weight: 600;
+}
+
+.options-section button:nth-child(1):before {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+}
