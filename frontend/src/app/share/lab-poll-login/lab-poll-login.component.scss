@@ -78,3 +78,142 @@
     position: absolute;
     bottom: 0;
 }
+
+// .form-controls label {
+//     font-size: 16px;
+//     font-weight: 400;
+// }
+
+// .form-controls select,
+// .form-controls input {
+//     font-size: 16px;
+// }
+
+
+
+/* Basic Styling */
+
+/* Form Layout */
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 500 !important;
+}
+
+.lab-form {
+    max-width: 600px;
+    text-align: left;
+}
+
+/* Form Controls */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #fff;
+    font-size: 16px;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="file"] {
+    border: none;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.error-msg {
+    margin-top: 5px;
+    color: #d9534f;
+    font-size: 14px;
+}
+
+/* Phone Group Styling */
+.phone-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.phone-group select,
+.phone-group input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.remove-btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.remove-btn:hover {
+    background-color: #c9302c;
+}
+
+/* Add Button Styling */
+.add-btn {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.add-btn:hover {
+    background-color: #4cae4c;
+}
+
+/* Submit Button Styling */
+.submit-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:disabled {
+    background-color: #aaa;
+}
+
+.submit-btn:not(:disabled):hover {
+    background-color: #0056b3;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .phone-group {
+        flex-direction: column;
+    }
+
+    .phone-group select,
+    .phone-group input {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

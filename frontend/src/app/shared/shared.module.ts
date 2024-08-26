@@ -50,6 +50,12 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { LoaderComponent } from './loader/loader.component';
+import { LabPollLoginComponent } from '../share/lab-poll-login/lab-poll-login.component';
+import {
+  RECAPTCHA_V3_SITE_KEY,
+  RecaptchaModule,
+  RecaptchaV3Module,
+} from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -70,7 +76,8 @@ import { LoaderComponent } from './loader/loader.component';
     LoginComponent,
     RegistrationOtpComponent,
     ProgressBarComponent,
-    RegistrationPageComponent,LoaderComponent
+    RegistrationPageComponent,
+    LoaderComponent,
   ],
   imports: [
     CommonModule,
@@ -105,6 +112,8 @@ import { LoaderComponent } from './loader/loader.component';
     OverlayPanelModule,
     MatIconModule,
     MatMenuModule,
+    RecaptchaV3Module,
+    RecaptchaModule,
   ],
   exports: [
     HeaderComponent,
@@ -145,9 +154,17 @@ import { LoaderComponent } from './loader/loader.component';
     InputTextareaModule,
     ImageCropperModule,
     OverlayPanelModule,
-    LoaderComponent
+    LoaderComponent,
+    RecaptchaV3Module,
+    RecaptchaModule,
   ],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    {
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: '6Lffbi4qAAAAAKdXwHTjU5qG84pjMyIv-_Q3EFke',
+    },
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule {}
