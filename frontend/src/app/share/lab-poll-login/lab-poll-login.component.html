@@ -4,113 +4,181 @@
     Your browser does not support the video tag.
   </video>
 
-  <div class="content">
+  <div class="content is-sup-content">
     <!-- Your content goes here -->
     <div *ngIf="!labReg && !labUserReg">
-      <div class="descriprion">
-        <h4>Lab Pool in a Nut Shell</h4>
-        <p>
-          Bringing state of art laboratories/manufacturing facilities under one
-          platform thereby making Innovation easier faster and cheaper
-        </p>
-      </div>
-      <div class="options-section">
-        <button type="button" (click)="openRegForm('lab-user')">
-          Register as a User
-        </button>
-        <button type="button" (click)="openRegForm('lab')">
-          Register as a Lab
-        </button>
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-12 col-sm-12">
+          <div class="descriprion">
+            <h4>
+              Lab
+              <span class="highlight-text">Pool</span>
+              in a
+              <span class="highlight-text">Nut</span>
+              Shell
+            </h4>
+            <p>
+              Bringing state of art laboratories/manufacturing facilities under
+              one platform thereby making Innovation easier faster and cheaper
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12 col-sm-12">
+          <div class="options-section">
+            <button type="button" (click)="openRegForm('lab-user')">
+              <i class="fas fa-users"></i>
+              <p>
+                Register as a
+                <span class="highlight-text">User</span>
+              </p>
+            </button>
+            <button type="button" (click)="openRegForm('lab')">
+              <i class="fas fa-flask"></i>
+              <p>
+                Register as a
+                <span class="highlight-text">Lab</span>
+              </p>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="lab-user-form" *ngIf="labUserReg">
-      <form
-        [formGroup]="labUserRegistrationForm"
-        (ngSubmit)="onLabUserSubmit()"
-      >
-        <div>
-          <label for="name">Name*</label>
-          <input id="name" formControlName="name" />
-          <div
-            *ngIf="
-              labUserRegistrationForm.get('name')?.invalid &&
-              labUserRegistrationForm.get('name')?.touched
-            "
-          >
-            Name is required
-          </div>
-        </div>
-
-        <div>
-          <label for="organisation">Organisation</label>
-          <input id="organisation" formControlName="organisation" />
-        </div>
-
-        <div>
-          <label for="location">Location*</label>
-          <input id="location" formControlName="location" />
-          <div
-            *ngIf="
-              labUserRegistrationForm.get('location')?.invalid &&
-              labUserRegistrationForm.get('location')?.touched
-            "
-          >
-            Location is required
-          </div>
-        </div>
-
-        <div>
-          <label for="email">Email Id*</label>
-          <input id="email" formControlName="email" />
-          <div
-            *ngIf="
-              labUserRegistrationForm.get('email')?.invalid &&
-              labUserRegistrationForm.get('email')?.touched
-            "
-          >
+    <div class="grafic-form">
+      <div class="lab-user-form" *ngIf="labUserReg">
+        <form
+          [formGroup]="labUserRegistrationForm"
+          (ngSubmit)="onLabUserSubmit()"
+        >
+          <h2>
+            Registration for
+            <span class="highlight-text">USER</span>
+          </h2>
+          <div class="form-input">
+            <label for="name">Name*</label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="enter name..."
+            />
             <div
-              *ngIf="labUserRegistrationForm.get('email')?.errors?.['required']"
+              *ngIf="
+                labUserRegistrationForm.get('name')?.invalid &&
+                labUserRegistrationForm.get('name')?.touched
+              "
             >
-              Email is required
-            </div>
-            <div
-              *ngIf="labUserRegistrationForm.get('email')?.errors?.['email']"
-            >
-              Invalid email format
+              <span class="error">
+                Name is required
+              </span>
             </div>
           </div>
-        </div>
 
-        <div formArrayName="phoneNumbers">
-          <label>Phone Numbers</label>
-          <div *ngFor="let phone of phoneNumbers.controls; let i = index">
-            <input [formControlName]="i" />
-            <button type="button" (click)="removePhoneNumber(i)">Remove</button>
+          <div class="form-input">
+            <label for="organisation">Organisation</label>
+            <input
+              id="organisation"
+              type="text"
+              formControlName="organisation"
+              placeholder="enter org....."
+            />
           </div>
-          <button type="button" (click)="addPhoneNumber()">
-            Add Phone Number
+
+          <div class="form-input">
+            <label for="location">Location*</label>
+            <input
+              id="location"
+              type="text"
+              formControlName="location"
+              placeholder="enter location...."
+            />
+            <div
+              *ngIf="
+                labUserRegistrationForm.get('location')?.invalid &&
+                labUserRegistrationForm.get('location')?.touched
+              "
+            >
+              <span class="error">
+                Location is required
+              </span>
+            </div>
+          </div>
+
+          <div class="form-input">
+            <label for="email">Email Id*</label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="enter email...."
+            />
+            <div
+              *ngIf="
+                labUserRegistrationForm.get('email')?.invalid &&
+                labUserRegistrationForm.get('email')?.touched
+              "
+            >
+              <div
+                *ngIf="labUserRegistrationForm.get('email')?.errors?.['required']"
+              >
+                <span class="error">
+                  Email is required
+                </span>
+              </div>
+              <div
+                *ngIf="labUserRegistrationForm.get('email')?.errors?.['email']"
+              >
+                <span class="error">
+                  Invalid email format
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-input" formArrayName="phoneNumbers">
+            <label>Phone Numbers</label>
+            <div class="action-btns">
+              <div *ngFor="let phone of phoneNumbers.controls; let i = index">
+                <input
+                  [formControlName]="i"
+                  type="number"
+                  placeholder="enter phone number..."
+                />
+                <!-- <button class="removenumber" type="button" (click)="removePhoneNumber(i)">Remove</button> -->
+              </div>
+              <button
+                class="addnumber"
+                type="button"
+                (click)="addPhoneNumber()"
+              >
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-input">
+            <re-captcha
+              siteKey="6LeRui4qAAAAAHYrB524A-8wIxqLXuqGbOP1fTtn"
+              (resolved)="addTokenLog('Normal mode resolved', $event)"
+            ></re-captcha>
+            <!-- <button (click)="executeImportantAction()">Important action</button> -->
+            <div
+              *ngIf="
+                labUserRegistrationForm.get('recaptcha')?.invalid &&
+                labUserRegistrationForm.get('recaptcha')?.touched
+              "
+            >
+              CAPTCHA is required
+            </div>
+          </div>
+          <button
+            class="user-lab-sumbit-btn"
+            type="submit"
+            [disabled]="labUserRegistrationForm.invalid"
+          >
+            Submit
           </button>
-        </div>
-
-        <div>
-          <re-captcha
-            siteKey="6LeRui4qAAAAAHYrB524A-8wIxqLXuqGbOP1fTtn"
-            (resolved)="addTokenLog('Normal mode resolved', $event)"
-          ></re-captcha>
-          <!-- <button (click)="executeImportantAction()">Important action</button> -->
-          <div
-            *ngIf="
-              labUserRegistrationForm.get('recaptcha')?.invalid &&
-              labUserRegistrationForm.get('recaptcha')?.touched
-            "
-          >
-            CAPTCHA is required
-          </div>
-        </div>
-        <button type="submit" [disabled]="labUserRegistrationForm.invalid">
-          Submit
-        </button>
-      </form>
+        </form>
+      </div>
     </div>
     <div class="lab-form" *ngIf="labReg">
       <form
