@@ -31,6 +31,8 @@ import { AddProjectComponent } from './share/add-project/add-project.component';
 import { AchivmentComponent } from './share/achivment/achivment.component';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { LabPollLoginComponent } from './share/lab-poll-login/lab-poll-login.component';
+import { FacilitesListComponent } from './lab-components/inner-component/facilites-list/facilites-list.component';
+import { FacilitesAddComponent } from './lab-components/inner-component/facilites-add/facilites-add.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { LabPollLoginComponent } from './share/lab-poll-login/lab-poll-login.com
     AddProjectComponent,
     AchivmentComponent,
     LabPollLoginComponent,
+    FacilitesListComponent,
+    FacilitesAddComponent,
   ],
   imports: [
     BrowserModule,
