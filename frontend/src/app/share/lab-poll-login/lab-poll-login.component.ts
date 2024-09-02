@@ -26,14 +26,22 @@ export class LabPollLoginComponent implements OnInit {
     });
 
     this.labForm = this.fb.group({
-      labType: ['Select Lab Type', Validators.required], // Dropdown for Lab Type
-      logo: [null], // Optional logo upload
-      location: ['', Validators.required], // Google Maps location integration
-      state: ['All', Validators.required], // Auto-fill based on location
-      city: ['All', Validators.required], // Auto-fill based on location
-      mobileNumbers: this.fb.array([this.createPhoneNumberField()]), // Multiple phone numbers
-      accreditationValidUpto: ['', Validators.required], // Date picker
-      accreditationCertificate: [null, Validators.required], // File upload
+      nameLab: ['', Validators.required],
+      labType: ['', Validators.required],
+      affiliation: ['', Validators.required],
+      logo: [''],
+      desclab: ['', Validators.required],
+      location: ['', Validators.required],
+      country: ['', Validators.required],
+      state: ['', Validators.required],
+      city: ['', Validators.required],
+      nameContactPerson: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      url: [''],
+      labMobileNumbers: this.fb.array([this.createLabPhoneNumberField()]), // Initial phone field
+      authlab: ['', Validators.required],
+      accreditationValidUpto: ['', Validators.required],
+      accreditationCertificate: [''],
     });
   }
 
@@ -82,37 +90,49 @@ export class LabPollLoginComponent implements OnInit {
   }
 
   //lab form section
-  // Create form group for phone numbers
-  createPhoneNumberField() {
+  get labMobileNumbers(): FormArray {
+    return this.labForm.get('labMobileNumbers') as FormArray;
+  }
+
+  // Create a phone number field with validation
+  createLabPhoneNumberField(): FormGroup {
     return this.fb.group({
-      countryCode: ['', Validators.required], // Dropdown with country codes
+      countryCode: ['+91', Validators.required],
       mobileNumber: [
         '',
-        [Validators.required, Validators.pattern(/^[0-9]{10,15}$/)],
-      ], // Number validation for a single mobile number
+        [Validators.required, Validators.pattern(/^[0-9]{10}$/)],
+      ],
     });
   }
 
-  // Getter for mobileNumbers array
-  get mobileNumbers(): FormArray {
-    return this.labForm.get('mobileNumbers') as FormArray;
+  // Add a new phone number field
+  addLabPhoneNumberField(): void {
+    this.labMobileNumbers.push(this.createLabPhoneNumberField());
   }
 
-  // Method to add new phone number fields
-  addPhoneNumberField() {
-    this.mobileNumbers.push(this.createPhoneNumberField());
+  // Remove a specific phone number field
+  removeLabPhoneNumberField(index: number): void {
+    if (this.labMobileNumbers.length > 1) {
+      this.labMobileNumbers.removeAt(index);
+    }
   }
 
-  // Method to remove a phone number field
-  removePhoneNumberField(index: number) {
-    this.mobileNumbers.removeAt(index);
-  }
+  // Remove blank fields except the first one
+  onLabRegistrationSubmit(): void {
+    const mobileControls = this.labMobileNumbers.controls;
+    if (mobileControls.length > 1) {
+      for (let i = mobileControls.length - 1; i > 0; i--) {
+        const mobileControl = mobileControls[i];
+        if (!mobileControl.get('mobileNumber')?.value) {
+          this.labMobileNumbers.removeAt(i);
+        }
+      }
+    }
+    console.log(this.labForm.value);
 
-  // Submit form method
-  onLabFormSubmit() {
     if (this.labForm.valid) {
-      console.log(this.labForm.value);
-      // Process form data, e.g., submit it to a server
+      // Submit form logic
+      console.log('Form Submitted:', this.labForm.value);
     }
   }
 }
