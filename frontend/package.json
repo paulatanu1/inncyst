@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@types/google.maps": "^3.57.0",
     "admin-lte": "^3.2.0",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.2.3",

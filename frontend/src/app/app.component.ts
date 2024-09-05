@@ -9,7 +9,8 @@ import { LoginApiService } from './share/login/login-api.service';
 import ls from 'localstorage-slim';
 import { OtpVerificationService } from './share/registration-otp/otp-verification.service';
 import { ChangeDetectionStrategy } from '@angular/compiler';
-
+import { UserLocationService } from './global-component/user-location.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,9 @@ export class AppComponent implements OnInit {
     '/industry': { isDashboard: false, isdisable: false },
     '/registeration': { isDashboard: false, isdisable: false },
   };
-
+  city: string = '';
+  state: string = '';
+  googleMapApiKey = environment.GOOGLE_MAP_KEY;
   constructor(
     private _router: Router,
     private spinner: NgxSpinnerService,
@@ -36,7 +39,8 @@ export class AppComponent implements OnInit {
     private _toast: ToastServiceService,
     private messageService: MessageService,
     private otpVerifivation: OtpVerificationService,
-    private cdk: ChangeDetectorRef
+    private cdk: ChangeDetectorRef,
+    private locationService: UserLocationService
   ) {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
@@ -73,6 +77,30 @@ export class AppComponent implements OnInit {
         this.showSuccess(severity, summary, detail);
       },
     });
+
+    //location
+    this.locationService
+      .loadGoogleMapsAndGetLocation(this.googleMapApiKey)
+      .then(({ lat, lng }) => {
+        return this.locationService.getCityAndState(lat, lng);
+      })
+      .then(({ city, state, premise, subLocality, area, Dist, pinCode }) => {
+        this.city = city;
+        this.state = state;
+        console.log(
+          this.city,
+          this.state,
+          premise,
+          subLocality,
+          area,
+          Dist,
+          pinCode
+        );
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    //location
   }
 
   showSuccess(severity: string, summary: string, detail: string) {
