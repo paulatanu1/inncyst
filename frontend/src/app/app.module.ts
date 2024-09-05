@@ -23,6 +23,7 @@ import { EditorModule } from 'primeng/editor';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SanitizerUrlPipe } from './pipe/sanitizer-url.pipe';
 import { MatSliderModule } from '@angular/material/slider';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { FieldsetModule } from 'primeng/fieldset';
 import { TabViewModule } from 'primeng/tabview';
@@ -80,6 +81,7 @@ import { FacilitesAddComponent } from './lab-components/inner-component/facilite
       multi: true,
     },
     NgOtpInputModule,
+    // { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
