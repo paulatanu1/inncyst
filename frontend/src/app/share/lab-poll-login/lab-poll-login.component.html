@@ -5,7 +5,6 @@
   </video>
 
   <div class="content is-sup-content">
-    <!-- Your content goes here -->
     <div *ngIf="!labReg && !labUserReg">
       <div class="row">
         <div class="col-lg-8 col-md-8 col-12 col-sm-12">
@@ -45,7 +44,7 @@
     </div>
     <div class="grafic-form">
       <div class="lab-user-form" *ngIf="labUserReg">
-        <form
+        <!-- <form
           [formGroup]="labUserRegistrationForm"
           (ngSubmit)="onLabUserSubmit()"
         >
@@ -84,7 +83,7 @@
           </div>
 
           <div class="form-input">
-            <label for="location">Location*</label>
+            <label for="location">Location *</label>
             <input
               id="location"
               type="text"
@@ -104,7 +103,7 @@
           </div>
 
           <div class="form-input">
-            <label for="email">Email Id*</label>
+            <label for="email">Email Id *</label>
             <input
               id="email"
               type="email"
@@ -143,7 +142,6 @@
                   type="number"
                   placeholder="enter phone number..."
                 />
-                <!-- <button class="removenumber" type="button" (click)="removePhoneNumber(i)">Remove</button> -->
               </div>
               <button
                 class="addnumber"
@@ -160,7 +158,6 @@
               siteKey="6LeRui4qAAAAAHYrB524A-8wIxqLXuqGbOP1fTtn"
               (resolved)="addTokenLog('Normal mode resolved', $event)"
             ></re-captcha>
-            <!-- <button (click)="executeImportantAction()">Important action</button> -->
             <div
               *ngIf="
                 labUserRegistrationForm.get('recaptcha')?.invalid &&
@@ -177,301 +174,296 @@
           >
             Submit
           </button>
-        </form>
+        </form> -->
       </div>
     </div>
     <div class="lab-form lab-user-form" *ngIf="labReg">
-      <form
-        [formGroup]="labForm"
-        (ngSubmit)="onLabRegistrationSubmit()"
-        class="lab-form"
-      >
-        <h2>
-          Registration for
-          <span class="highlight-text">LAB</span>
-        </h2>
-
-        <div class="form-input">
-          <label for="logo">
-            Name of the Lab
-            <span class="text-danger">*</span>
-          </label>
-          <input type="text" formControlName="nameLab" />
-        </div>
-        <div
-          *ngIf="
-            labForm.get('nameLab')?.invalid && labForm.get('nameLab')?.touched
-          "
-        >
-          <span class="error">Name of the Lab is required</span>
-        </div>
-
-        <!-- Lab Type Dropdown -->
-        <div class="form-input">
-          <label for="labType">Lab Type</label>
-          <select formControlName="labType">
-            <option value="">Select Lab Type</option>
-            <option value="academic">Academic and Research Labs</option>
-            <option value="corporate">Corporate Labs</option>
-            <option value="accredited">Accredited Labs</option>
-          </select>
-          <div
-            *ngIf="
-              labForm.get('labType')?.invalid && labForm.get('labType')?.touched
-            "
-          >
-            <span class="error">Lab Type is required</span>
-          </div>
-        </div>
-
-        <div class="form-input">
-          <label for="logo">
-            Affiliation
-            <span class="text-danger">*</span>
-          </label>
-          <input type="text" formControlName="affiliation" />
-          <div
-            *ngIf="
-              labForm.get('affiliation')?.invalid &&
-              labForm.get('affiliation')?.touched
-            "
-          >
-            <span class="error">Affiliation is required</span>
-          </div>
-        </div>
-
-        <!-- Logo Upload -->
-        <div class="form-input">
-          <label for="logo">Upload Logo</label>
-          <input type="file" formControlName="logo" />
-        </div>
-
-        <div class="form-input">
-          <label for="logo">
-            Brief description about the Lab
-            <span class="text-danger">*</span>
-          </label>
-          <input type="text" formControlName="desclab" />
-          <div
-            *ngIf="
-              labForm.get('desclab')?.invalid && labForm.get('desclab')?.touched
-            "
-          >
-            <span class="error">Description of the Lab is required</span>
-          </div>
-        </div>
-
-        <!-- Location -->
-        <div class="form-input">
-          <label for="location">Location</label>
-          <input type="text" formControlName="location" />
-          <div
-            *ngIf="
-              labForm.get('location')?.invalid &&
-              labForm.get('location')?.touched
-            "
-          >
-            <span class="error">Location is required</span>
-          </div>
-        </div>
-
-        <div class="form-input">
-          <label for="country">
-            Country
-            <span class="text-danger">*</span>
-          </label>
-          <select formControlName="country">
-            <option value="">Select Country</option>
-            <!-- Country options here -->
-          </select>
-          <div
-            *ngIf="
-              labForm.get('country')?.invalid && labForm.get('country')?.touched
-            "
-          >
-            <span class="error">Country is required</span>
-          </div>
-        </div>
-
-        <!-- State Dropdown -->
-        <div class="form-input">
-          <label for="state">State</label>
-          <select formControlName="state">
-            <option value="">Select State</option>
-          </select>
-          <div
-            *ngIf="
-              labForm.get('state')?.invalid && labForm.get('state')?.touched
-            "
-          >
-            <span class="error">State is required</span>
-          </div>
-        </div>
-
-        <!-- City Dropdown -->
-        <div class="form-input">
-          <label for="city">City</label>
-          <select formControlName="city">
-            <option value="">Select City</option>
-          </select>
-          <div
-            *ngIf="labForm.get('city')?.invalid && labForm.get('city')?.touched"
-          >
-            <span class="error">City is required</span>
-          </div>
-        </div>
-
-        <div class="form-input">
-          <label for="logo">
-            Name of Contact Person
-            <span class="text-danger">*</span>
-          </label>
-          <input type="text" formControlName="nameContactPerson" />
-          <div
-            *ngIf="
-              labForm.get('nameContactPerson')?.invalid &&
-              labForm.get('nameContactPerson')?.touched
-            "
-          >
-            <span class="error">Name of Contact Person is required</span>
-          </div>
-        </div>
-
-        <div class="form-input">
-          <label for="logo">
-            Email ID
-            <span class="text-danger">*</span>
-          </label>
-          <input type="email" formControlName="email" />
-          <div
-            *ngIf="
-              labForm.get('email')?.invalid && labForm.get('email')?.touched
-            "
-          >
-            <span class="error">
-              <ng-container *ngIf="labForm.get('email')?.errors?.['required']">
-                Email is required
-              </ng-container>
-              <ng-container *ngIf="labForm.get('email')?.errors?.['email']">
-                Invalid email format
-              </ng-container>
-            </span>
-          </div>
-        </div>
-
-        <div class="form-input">
-          <label for="logo">Website URL</label>
-          <input type="url" formControlName="url" />
-        </div>
-
-        <!-- Phone Numbers with auto country code -->
-        <div class="form-input">
-          <label>Phone Numbers</label>
-          <div formArrayName="labMobileNumbers">
-            <div
-              *ngFor="let phone of labMobileNumbers.controls; let i = index"
-              [formGroupName]="i"
-              class="phone-group"
-            >
-              <div class="action-btns">
-                <select class="w-20" formControlName="countryCode">
-                  <option value="+1">+1 (US)</option>
-                  <option value="+91">+91 (India)</option>
-                </select>
-                <input
-                  type="text"
-                  formControlName="mobileNumber"
-                  placeholder="Phone Number"
-                />
-                <button
-                  type="button"
-                  *ngIf="i > 0"
-                  (click)="removeLabPhoneNumberField(i)"
-                  class="removenumber"
-                >
-                  <i class="fa fa-minus"></i>
-                </button>
-              </div>
+      <div class="form-container">
+        <!-- Step 1: Lab Information -->
+        <!-- Step 1 -->
+        <div *ngIf="currentStep === 1" class="step1 form-step">
+          <form [formGroup]="getStepFormGroup(1)">
+            <div class="form-input">
+              <label for="nameLab">
+                Name of the Lab
+                <span class="text-danger">*</span>
+              </label>
+              <input type="text" id="nameLab" formControlName="nameLab" />
               <div
                 *ngIf="
-                  phone.get('mobileNumber')?.invalid &&
-                  phone.get('mobileNumber')?.touched
+                  getStepFormGroup(1).get('nameLab')?.invalid &&
+                  getStepFormGroup(1).get('nameLab')?.touched
                 "
               >
-                <span class="error">Invalid phone number</span>
+                <span class="error">Name of the Lab is required</span>
               </div>
             </div>
-          </div>
-          <button
-            type="button"
-            (click)="addLabPhoneNumberField()"
-            class="addnumber"
-          >
-            <i class="fa fa-plus"></i>
-          </button>
+            <div class="form-input">
+              <label for="labType">Lab Type</label>
+              <select id="labType" formControlName="labType">
+                <option value="">Select Lab Type</option>
+                <option value="academic">Academic and Research Labs</option>
+                <option value="corporate">Corporate Labs</option>
+                <option value="accredited">Accredited Labs</option>
+              </select>
+              <div
+                *ngIf="
+                  getStepFormGroup(1).get('labType')?.invalid &&
+                  getStepFormGroup(1).get('labType')?.touched
+                "
+              >
+                <span class="error">Lab Type is required</span>
+              </div>
+            </div>
+            <div class="form-input">
+              <label for="affiliation">
+                Affiliation
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                id="affiliation"
+                formControlName="affiliation"
+              />
+              <div
+                *ngIf="
+                  getStepFormGroup(1).get('affiliation')?.invalid &&
+                  getStepFormGroup(1).get('affiliation')?.touched
+                "
+              >
+                <span class="error">Affiliation is required</span>
+              </div>
+            </div>
+            <div class="form-input">
+              <label for="logo">Upload Logo [Optional]</label>
+              <input
+                type="file"
+                id="logo"
+                (change)="onFileSelected($event, 'logo')"
+              />
+            </div>
+            <button type="button" (click)="saveStep(1)">Save</button>
+          </form>
         </div>
 
-        <div class="form-input">
-          <label for="logo">
-            Is the Lab Accredited by Competent Authority
-            <span class="text-danger">*</span>
-          </label>
-          <select formControlName="authlab" id="">
-            <option value="">Yes</option>
-            <option value="">No</option>
-          </select>
-          <div
-            *ngIf="
-              labForm.get('authlab')?.invalid && labForm.get('authlab')?.touched
-            "
-          >
-            <span class="error">This field is required</span>
-          </div>
+        <!-- Step 2 -->
+        <div *ngIf="currentStep === 2" class="step2 form-step">
+          <form [formGroup]="getStepFormGroup(2)">
+            <div class="form-input">
+              <label for="desclab">
+                Brief description about the Lab
+                <span class="text-danger">*</span>
+              </label>
+              <input type="text" id="desclab" formControlName="desclab" />
+              <div
+                *ngIf="
+                  getStepFormGroup(2).get('desclab')?.invalid &&
+                  getStepFormGroup(2).get('desclab')?.touched
+                "
+              >
+                <span class="error">Description of the Lab is required</span>
+              </div>
+            </div>
+            <div class="form-input">
+              <label for="location">Area / Locality</label>
+              <input id="location" type="text" formControlName="location" />
+            </div>
+            <div class="form-input">
+              <label for="city">City</label>
+              <input id="city" type="text" formControlName="city" />
+              <div
+                *ngIf="
+                  getStepFormGroup(2).get('city')?.invalid &&
+                  getStepFormGroup(2).get('city')?.touched
+                "
+              >
+                <span class="error">city is required</span>
+              </div>
+            </div>
+            <div class="form-input">
+              <label for="state">State</label>
+              <input id="state" type="text" formControlName="state" />
+              <div
+                *ngIf="
+                  getStepFormGroup(2).get('state')?.invalid &&
+                  getStepFormGroup(2).get('state')?.touched
+                "
+              >
+                <span class="error">zipcode is required</span>
+              </div>
+            </div>
+            <div class="form-input">
+              <label for="country">
+                Country
+                <span class="text-danger">*</span>
+              </label>
+              <input id="country" type="text" formControlName="country" />
+              <div
+                *ngIf="
+                  getStepFormGroup(2).get('country')?.invalid &&
+                  getStepFormGroup(2).get('country')?.touched
+                "
+              >
+                <span class="error">Country is required</span>
+              </div>
+            </div>
+            <div class="form-input">
+              <label for="zipcode">
+                Zip Code
+                <span class="text-danger">*</span>
+              </label>
+              <input id="zipcode" type="text" formControlName="zipcode" />
+              <div
+                *ngIf="
+                  getStepFormGroup(2).get('zipcode')?.invalid &&
+                  getStepFormGroup(2).get('zipcode')?.touched
+                "
+              >
+                <span class="error">zipcode is required</span>
+              </div>
+            </div>
+            <button type="button" (click)="saveStep(2)">Save</button>
+            <button type="button" (click)="previousStep()">Previous</button>
+          </form>
         </div>
 
-        <!-- Accreditation Valid Upto -->
-        <div class="form-input">
-          <label for="accreditationValidUpto">Accreditation Valid Upto</label>
-          <input type="date" formControlName="accreditationValidUpto" />
-          <div
-            *ngIf="
-              labForm.get('accreditationValidUpto')?.invalid &&
-              labForm.get('accreditationValidUpto')?.touched
-            "
-          >
-            <span class="error">
-              This field is required
-            </span>
-          </div>
+        <!-- Step 3 -->
+        <div *ngIf="currentStep === 3" class="step3 form-step">
+          <form [formGroup]="getStepFormGroup(3)">
+            <div class="form-input">
+              <label for="nameContactPerson">
+                Name of Contact Person
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                id="nameContactPerson"
+                formControlName="nameContactPerson"
+              />
+              <div
+                *ngIf="
+                  getStepFormGroup(3).get('nameContactPerson')?.invalid &&
+                  getStepFormGroup(3).get('nameContactPerson')?.touched
+                "
+              >
+                <span class="error">Name of Contact Person is required</span>
+              </div>
+            </div>
+            <div class="form-input">
+              <label for="url">Website URL</label>
+              <input type="url" id="url" formControlName="url" />
+            </div>
+            <div class="form-input">
+              <label for="email">
+                Email Id
+                <span class="text-danger">*</span>
+              </label>
+              <input id="email" type="email" formControlName="email" />
+              <div
+                *ngIf="
+                  getStepFormGroup(3).get('email')?.invalid &&
+                  getStepFormGroup(3).get('email')?.touched
+                "
+              >
+                <div
+                  *ngIf="getStepFormGroup(3).get('email')?.errors?.['required']"
+                >
+                  <span class="error">Email is required</span>
+                </div>
+                <div
+                  *ngIf="getStepFormGroup(3).get('email')?.errors?.['email']"
+                >
+                  <span class="error">Invalid email format</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-input" formArrayName="phoneNumbers">
+              <label>Phone Numbers</label>
+              <div *ngFor="let phone of phoneNumbers.controls; let i = index">
+                <input
+                  [formControlName]="i"
+                  type="number"
+                  placeholder="enter phone number..."
+                />
+              </div>
+              <button type="button" (click)="addPhoneNumber()">
+                Add Phone Number
+              </button>
+            </div>
+            <button type="button" (click)="saveStep(3)">Save</button>
+            <button type="button" (click)="previousStep()">Previous</button>
+          </form>
         </div>
 
-        <!-- Upload Accreditation Certificate -->
-        <div class="form-input">
-          <label for="accreditationCertificate">
-            Upload Accreditation Certificate
-          </label>
-          <input type="file" formControlName="accreditationCertificate" />
-          <div
-            *ngIf="
-              labForm.get('accreditationCertificate')?.invalid &&
-              labForm.get('accreditationCertificate')?.touched
-            "
-          >
-            <span class="error">
-              Certificate upload is required
-            </span>
-          </div>
+        <!-- Step 4 -->
+        <div *ngIf="currentStep === 4" class="step4 form-step">
+          <form [formGroup]="getStepFormGroup(4)">
+            <div class="form-input">
+              <label for="authlab">
+                Is the Lab Accredited by Competent Authority
+                <span class="text-danger">*</span>
+              </label>
+              <select id="authlab" formControlName="authlab">
+                <option value="">Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+              <div
+                *ngIf="
+                  getStepFormGroup(4).get('authlab')?.invalid &&
+                  getStepFormGroup(4).get('authlab')?.touched
+                "
+              >
+                <span class="error">This field is required</span>
+              </div>
+            </div>
+            <div class="form-input">
+              <label for="accreditationValidUpto">
+                Accreditation Valid Upto
+              </label>
+              <input
+                type="date"
+                id="accreditationValidUpto"
+                formControlName="accreditationValidUpto"
+              />
+              <div
+                *ngIf="
+                  getStepFormGroup(4).get('accreditationValidUpto')?.invalid &&
+                  getStepFormGroup(4).get('accreditationValidUpto')?.touched
+                "
+              >
+                <span class="error">This field is required</span>
+              </div>
+            </div>
+            <div class="form-input">
+              <label for="accreditationCertificate">
+                Upload Accreditation Certificate
+              </label>
+              <input
+                type="file"
+                id="accreditationCertificate"
+                (change)="onFileSelected($event, 'accreditationCertificate')"
+              />
+            </div>
+            <div class="form-input">
+              <re-captcha
+                siteKey="6LeRui4qAAAAAHYrB524A-8wIxqLXuqGbOP1fTtn"
+                (resolved)="addTokenLog('Normal mode resolved', $event)"
+              ></re-captcha>
+              <div
+                *ngIf="
+                  getStepFormGroup(4).get('recaptcha')?.invalid &&
+                  getStepFormGroup(4).get('recaptcha')?.touched
+                "
+              >
+                CAPTCHA is required
+              </div>
+            </div>
+            <button type="button" (click)="submitForm()">Submit</button>
+            <button type="button" (click)="previousStep()">Previous</button>
+          </form>
         </div>
-
-        <!-- Submit Button -->
-        <button
-          class="lab-sumbit-btn user-lab-sumbit-btn"
-          type="submit"
-          [disabled]="labForm.invalid"
-        >
-          Submit
-        </button>
-      </form>
+      </div>
     </div>
   </div>
 </div>

@@ -468,3 +468,27 @@ div#rc-anchor-container {
         margin-bottom: 10px;
     }
 }
+
+mat-horizontal-stepper {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    mat-horizontal-stepper {
+        flex-direction: column;
+    }
+}
+
+
+// .form-step {
+//     transition: transform 0.5s ease;
+//     transform: translateY(100%);
+// }
+
+// .form-step.ng-animating-enter {
+//     transform: translateY(0%);
+// }
+
+// .form-container {
+//     background: #000;
+// }

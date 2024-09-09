@@ -1,5 +1,21 @@
 import { Injectable } from '@angular/core';
+import { from, Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 import { ScriptLoadingService } from './load-script/script-loading.service';
+
+// Define an interface for the location details
+interface LocationDetails {
+  country: string;
+  city: string;
+  state: string;
+  premise: string;
+  subLocality: string;
+  area: string;
+  Dist: string;
+  pinCode: string;
+  lat: number;
+  lng: number;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -7,21 +23,30 @@ import { ScriptLoadingService } from './load-script/script-loading.service';
 export class UserLocationService {
   constructor(private scriptLoader: ScriptLoadingService) {}
 
-  loadGoogleMapsAndGetLocation(
-    apiKey: string
-  ): Promise<{ lat: number; lng: number }> {
-    return this.scriptLoader
-      .loadGoogleMaps(apiKey)
-      .then(() => this.getUserLocation());
+  // Method to return a single observable that emits all location details
+  getLocationDetails(apiKey: string): Observable<LocationDetails> {
+    return from(this.scriptLoader.loadGoogleMaps(apiKey)).pipe(
+      mergeMap(() => from(this.getUserLocation())),
+      mergeMap(({ lat, lng }) =>
+        from(this.getCityAndState(lat, lng)).pipe(
+          mergeMap((addressDetails) => {
+            // Create and return an observable with the combined details
+            return new Observable<LocationDetails>((observer) => {
+              observer.next({ ...addressDetails, lat, lng });
+              observer.complete();
+            });
+          })
+        )
+      )
+    );
   }
 
   // Get the user's current position using the Geolocation API
-  getUserLocation(): Promise<{ lat: number; lng: number }> {
+  private getUserLocation(): Promise<{ lat: number; lng: number }> {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            console.log(position.coords.latitude, position.coords.longitude);
             resolve({
               lat: position.coords.latitude,
               lng: position.coords.longitude,
@@ -38,7 +63,7 @@ export class UserLocationService {
   }
 
   // Use the Google Maps Geocoding API to convert lat/lng into city and state
-  getCityAndState(
+  private getCityAndState(
     lat: number,
     lng: number
   ): Promise<{
@@ -49,6 +74,7 @@ export class UserLocationService {
     area: string;
     Dist: string;
     pinCode: string;
+    country: string;
   }> {
     return new Promise((resolve, reject) => {
       const geocoder = new google.maps.Geocoder();
@@ -70,9 +96,11 @@ export class UserLocationService {
             let area = '';
             let Dist = '';
             let pinCode = '';
+            let country = '';
             // Loop through the address components to find city and state
             addressComponents.forEach(
               (component: google.maps.GeocoderAddressComponent) => {
+                // console.log(component, 'loc');
                 if (component.types.includes('locality')) {
                   city = component.long_name;
                 }
@@ -94,10 +122,22 @@ export class UserLocationService {
                 if (component.types.includes('postal_code')) {
                   pinCode = component.long_name;
                 }
+                if (component.types.includes('country')) {
+                  country = component.long_name;
+                }
               }
             );
 
-            resolve({ city, state, premise, subLocality, area, Dist, pinCode });
+            resolve({
+              city,
+              state,
+              premise,
+              subLocality,
+              area,
+              Dist,
+              pinCode,
+              country,
+            });
           } else {
             reject('Geocoder failed: ' + status);
           }

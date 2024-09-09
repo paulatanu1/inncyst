@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { UserLocationService } from 'src/app/global-component/user-location.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-lab-poll-login',
@@ -11,10 +13,25 @@ export class LabPollLoginComponent implements OnInit {
   labUserReg: boolean = false;
   labReg: boolean = false;
   labUserRegistrationForm!: FormGroup;
-  labForm: FormGroup;
+  country: string = '';
+  state: string = '';
+  city: string = '';
+  pinCode: string = '';
+  areaLocality: string = '';
+  tempToken: string = '';
+  // labForm: FormGroup;
+
+  //step wise form..
+  labRegForm!: FormGroup;
+  fileData: { [key: string]: File } = {};
+  currentStep: number = 1;
+
+  //step wise form..
+
   constructor(
     private fb: FormBuilder,
-    private recaptchaV3Service: ReCaptchaV3Service
+    private recaptchaV3Service: ReCaptchaV3Service,
+    private userLocation: UserLocationService
   ) {
     this.labUserRegistrationForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -25,114 +42,121 @@ export class LabPollLoginComponent implements OnInit {
       recaptcha: ['', Validators.required],
     });
 
-    this.labForm = this.fb.group({
-      nameLab: ['', Validators.required],
-      labType: ['', Validators.required],
-      affiliation: ['', Validators.required],
-      logo: [''],
-      desclab: ['', Validators.required],
-      location: ['', Validators.required],
-      country: ['', Validators.required],
-      state: ['', Validators.required],
-      city: ['', Validators.required],
-      nameContactPerson: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      url: [''],
-      labMobileNumbers: this.fb.array([this.createLabPhoneNumberField()]), // Initial phone field
-      authlab: ['', Validators.required],
-      accreditationValidUpto: ['', Validators.required],
-      accreditationCertificate: [''],
+    this.userLocation.getLocationDetails(environment.GOOGLE_MAP_KEY).subscribe({
+      next: (res) => {
+        console.log(res, 'ressss');
+        this.country = res.country;
+        this.state = res.state;
+        this.city = res.city;
+        this.pinCode = res.pinCode;
+        this.areaLocality = `${res.subLocality} ${res.area}`;
+      },
+    });
+
+    this.labRegForm = this.fb.group({
+      step1: this.fb.group({
+        nameLab: ['', Validators.required],
+        labType: ['', Validators.required],
+        affiliation: ['', Validators.required],
+        logo: [null],
+      }),
+      step2: this.fb.group({
+        desclab: ['', Validators.required],
+        location: [this.areaLocality],
+        city: [this.city, Validators.required],
+        state: [this.state, Validators.required],
+        country: [this.country, Validators.required],
+        zipcode: [this.pinCode, Validators.required],
+      }),
+      step3: this.fb.group({
+        nameContactPerson: ['', Validators.required],
+        url: [''],
+        email: ['', [Validators.required, Validators.email]],
+        phoneNumbers: this.fb.array([this.fb.control('')]),
+      }),
+      step4: this.fb.group({
+        authlab: ['', Validators.required],
+        accreditationValidUpto: [''],
+        accreditationCertificate: [null],
+        recaptcha: [null, Validators.required],
+      }),
     });
   }
 
   public executeImportantAction(): void {
-    this.recaptchaV3Service
-      .execute('importantAction')
-      .subscribe((token) => console.log(token));
+    this.recaptchaV3Service.execute('importantAction').subscribe((token) => {});
   }
 
   public addTokenLog(message: string, token: any) {
     console.log(`${message}:`, token);
+    this.tempToken = token;
+    const step4Group = this.getStepFormGroup(4);
+    step4Group.patchValue({
+      recaptcha: this.tempToken,
+    });
   }
 
   ngOnInit(): void {}
 
-  // Getter for phoneNumbers FormArray
-  get phoneNumbers() {
-    return this.labUserRegistrationForm.get('phoneNumbers') as FormArray;
+  //lab user reg form
+
+  openRegForm(a: any) {
+    this.labReg = true;
+  }
+  onLabUserSubmit() {}
+  //lab user reg form
+
+  //step wise Lab reg form..
+
+  getStepFormGroup(step: number): FormGroup {
+    return this.labRegForm.get(`step${step}`) as FormGroup;
   }
 
-  // Add a new phone number field
+  get phoneNumbers(): FormArray {
+    return this.getStepFormGroup(3).get('phoneNumbers') as FormArray;
+  }
+
+  saveStep(step: number) {
+    if (this.getStepFormGroup(step).valid) {
+      this.currentStep = step + 1;
+      if (step === 1) {
+        this.populateStep2Values();
+      }
+    }
+  }
+
+  previousStep() {
+    this.currentStep--;
+  }
+
   addPhoneNumber() {
     this.phoneNumbers.push(this.fb.control(''));
   }
 
-  // Remove a phone number field
-  removePhoneNumber(index: number) {
-    if (this.phoneNumbers.length > 1) {
-      this.phoneNumbers.removeAt(index);
+  onFileSelected(event: any, fieldName: string) {
+    if (event.target.files.length > 0) {
+      this.fileData[fieldName] = event.target.files[0];
     }
   }
 
-  // Handle form submission
-  onLabUserSubmit() {
-    if (this.labUserRegistrationForm.valid) {
-      console.log(this.labUserRegistrationForm.value);
-    }
-  }
-
-  openRegForm(formView: string) {
-    if (formView === 'lab') {
-      this.labReg = true;
-    } else {
-      this.labUserReg = true;
-    }
-  }
-
-  //lab form section
-  get labMobileNumbers(): FormArray {
-    return this.labForm.get('labMobileNumbers') as FormArray;
-  }
-
-  // Create a phone number field with validation
-  createLabPhoneNumberField(): FormGroup {
-    return this.fb.group({
-      countryCode: ['+91', Validators.required],
-      mobileNumber: [
-        '',
-        [Validators.required, Validators.pattern(/^[0-9]{10}$/)],
-      ],
+  populateStep2Values() {
+    // Populate Step 2 values when this step is shown
+    const step2Group = this.getStepFormGroup(2);
+    step2Group.patchValue({
+      location: this.areaLocality,
+      city: this.city,
+      state: this.state,
+      country: this.country,
+      zipcode: this.pinCode,
     });
   }
 
-  // Add a new phone number field
-  addLabPhoneNumberField(): void {
-    this.labMobileNumbers.push(this.createLabPhoneNumberField());
-  }
-
-  // Remove a specific phone number field
-  removeLabPhoneNumberField(index: number): void {
-    if (this.labMobileNumbers.length > 1) {
-      this.labMobileNumbers.removeAt(index);
+  submitForm() {
+    if (this.labRegForm.valid) {
+      console.log('Form submitted:', this.labRegForm.value);
+    } else {
+      console.log('Form submitted:', this.labRegForm.value);
     }
   }
-
-  // Remove blank fields except the first one
-  onLabRegistrationSubmit(): void {
-    const mobileControls = this.labMobileNumbers.controls;
-    if (mobileControls.length > 1) {
-      for (let i = mobileControls.length - 1; i > 0; i--) {
-        const mobileControl = mobileControls[i];
-        if (!mobileControl.get('mobileNumber')?.value) {
-          this.labMobileNumbers.removeAt(i);
-        }
-      }
-    }
-    console.log(this.labForm.value);
-
-    if (this.labForm.valid) {
-      // Submit form logic
-      console.log('Form Submitted:', this.labForm.value);
-    }
-  }
+  //step wise form..
 }

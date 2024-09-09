@@ -79,27 +79,27 @@ export class AppComponent implements OnInit {
     });
 
     //location
-    this.locationService
-      .loadGoogleMapsAndGetLocation(this.googleMapApiKey)
-      .then(({ lat, lng }) => {
-        return this.locationService.getCityAndState(lat, lng);
-      })
-      .then(({ city, state, premise, subLocality, area, Dist, pinCode }) => {
-        this.city = city;
-        this.state = state;
-        console.log(
-          this.city,
-          this.state,
-          premise,
-          subLocality,
-          area,
-          Dist,
-          pinCode
-        );
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    // this.locationService
+    //   .loadGoogleMapsAndGetLocation(this.googleMapApiKey)
+    //   .then(({ lat, lng }) => {
+    //     return this.locationService.getCityAndState(lat, lng);
+    //   })
+    //   .then(({ city, state, premise, subLocality, area, Dist, pinCode }) => {
+    //     this.city = city;
+    //     this.state = state;
+    //     console.log(
+    //       this.city,
+    //       this.state,
+    //       premise,
+    //       subLocality,
+    //       area,
+    //       Dist,
+    //       pinCode
+    //     );
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //   });
     //location
   }
 

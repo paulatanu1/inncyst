@@ -34,6 +34,7 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { LabPollLoginComponent } from './share/lab-poll-login/lab-poll-login.component';
 import { FacilitesListComponent } from './lab-components/inner-component/facilites-list/facilites-list.component';
 import { FacilitesAddComponent } from './lab-components/inner-component/facilites-add/facilites-add.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -70,8 +71,15 @@ import { FacilitesAddComponent } from './lab-components/inner-component/facilite
     MatSliderModule,
     FieldsetModule,
     TabViewModule,
+    MatStepperModule,
   ],
-  exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
+  exports: [
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgOtpInputModule,
+    MatStepperModule,
+  ],
   providers: [
     SharedModule,
     LoginDetailsService,
