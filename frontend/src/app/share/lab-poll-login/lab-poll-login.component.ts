@@ -153,7 +153,7 @@ export class LabPollLoginComponent implements OnInit {
 
   submitForm() {
     if (this.labRegForm.valid) {
-      console.log('Form submitted:', this.labRegForm.value);
+      // console.log('Form submitted:', this.labRegForm.value);
     } else {
       console.log('Form submitted:', this.labRegForm.value);
     }

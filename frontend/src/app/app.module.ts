@@ -51,8 +51,6 @@ import { MatStepperModule } from '@angular/material/stepper';
     AddProjectComponent,
     AchivmentComponent,
     LabPollLoginComponent,
-    FacilitesListComponent,
-    FacilitesAddComponent,
   ],
   imports: [
     BrowserModule,

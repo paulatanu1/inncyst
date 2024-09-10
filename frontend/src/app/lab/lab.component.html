@@ -1,1 +1,13 @@
-<p>lab works!</p>
+<div>
+  <!-- <app-header (menuToggled)="toggle()"></app-header> -->
+  <app-lab-header (menuToggled)="toggle()"></app-lab-header>
+  <mat-drawer-container>
+    <mat-drawer mode="side" [opened]="opened">
+      <app-lab-menu-item [menu]="menu"></app-lab-menu-item>
+    </mat-drawer>
+
+    <mat-drawer-content [class.margin-left]="opened">
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

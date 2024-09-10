@@ -9,8 +9,21 @@ export class LabLoginRegService {
 
   labRegister() {
     let apiUrl: string = '/lab/register-lab';
-
-    return this.apiService.ApiCallWithLocalization('', apiUrl, 'POST');
+    let payload = {
+      email: '',
+      labName: '',
+      contactPerson: '',
+      phoneNumbers: '',
+      isAccredited: '',
+      accreditionValidUpto: '',
+      category: '',
+      affliation: '',
+      labDescription: '',
+      labWebsite: '',
+      certificate: '',
+      logo: '',
+    };
+    return this.apiService.ApiCallWithLocalization(payload, apiUrl, 'POST');
   }
 
   createFacility() {
