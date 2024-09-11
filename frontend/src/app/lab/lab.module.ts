@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { LabPageHeaderComponent } from './lab-common/lab-page-header/lab-page-header.component';
 import { FacilitesListComponent } from '../lab-components/inner-component/facilites-list/facilites-list.component';
 import { FacilitesAddComponent } from '../lab-components/inner-component/facilites-add/facilites-add.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,8 @@ import { FacilitesAddComponent } from '../lab-components/inner-component/facilit
     MatButtonModule,
     MatMenuModule,
     MatListModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class LabModule {}

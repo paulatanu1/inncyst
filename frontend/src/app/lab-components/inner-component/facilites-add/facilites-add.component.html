@@ -1,5 +1,5 @@
-<app-lab-page-header icon="monetization_on">
-  <h2>Sales</h2>
+<app-lab-page-header icon="workspaces">
+  <h2>Facilites</h2>
 
   <button
     routerLink="/lab/facilites"
@@ -7,11 +7,154 @@
     color="primary"
     class="action"
   >
-    <mat-icon class="mr-2">Facilites List</mat-icon>
-    <span>Go Facilites List</span>
+    <mat-icon class="mr-2">workspaces</mat-icon>
+    <span>Go to Facilites List</span>
   </button>
 </app-lab-page-header>
 
 <div style="padding: 0 20px;">
-  Hello from Sales
+  <form
+    [formGroup]="equipmentForm"
+    (ngSubmit)="onSubmit()"
+    class="form-container"
+  >
+    <!-- Name of the Facility -->
+    <div class="form-header">Name of the Facility</div>
+    <div class="form-field">
+      <input
+        formControlName="facilityName"
+        type="text"
+        placeholder="Name of the Equipment / Calibration facility / computational Facility"
+      />
+      <div
+        *ngIf="
+          equipmentForm.controls['facilityName'].invalid &&
+          equipmentForm.controls['facilityName'].touched
+        "
+        class="error-message"
+      >
+        Facility name is required.
+      </div>
+    </div>
+
+    <!-- Category Dropdown -->
+    <div class="form-header">Category</div>
+    <div class="form-field">
+      <select formControlName="category">
+        <option value="" disabled>Select Category</option>
+        <option value="synthesis">Synthesis Facility</option>
+        <option value="analytical">Analytical Facility</option>
+        <option value="testing">Testing and Measurement Facility</option>
+        <option value="calibration">Calibration Facility</option>
+        <option value="computational">Computational Facility</option>
+        <option value="manufacturing">Manufacturing Facility</option>
+      </select>
+      <div
+        *ngIf="
+          equipmentForm.controls['category'].invalid &&
+          equipmentForm.controls['category'].touched
+        "
+        class="error-message"
+      >
+        Category is required.
+      </div>
+    </div>
+
+    <!-- Brief Description -->
+    <div class="form-header">Brief Description about the Facility*</div>
+    <div class="form-field">
+      <textarea
+        formControlName="description"
+        placeholder="Enter brief description"
+      ></textarea>
+      <div
+        *ngIf="
+          equipmentForm.controls['description'].invalid &&
+          equipmentForm.controls['description'].touched
+        "
+        class="error-message"
+      >
+        Description is required.
+      </div>
+    </div>
+
+    <!-- Model Number -->
+    <div class="form-header">Model Number</div>
+    <div class="form-field">
+      <input
+        formControlName="modelNumber"
+        type="text"
+        placeholder="Enter model number"
+      />
+    </div>
+
+    <!-- Make -->
+    <div class="form-header">Make*</div>
+    <div class="form-field">
+      <input formControlName="make" type="text" placeholder="Enter make" />
+      <div
+        *ngIf="
+          equipmentForm.controls['make'].invalid &&
+          equipmentForm.controls['make'].touched
+        "
+        class="error-message"
+      >
+        Make is required.
+      </div>
+    </div>
+
+    <!-- Year of Manufacture -->
+    <div class="form-header">Year of Manufacture</div>
+    <div class="form-field">
+      <input
+        formControlName="year"
+        type="number"
+        placeholder="Enter year of manufacture"
+      />
+    </div>
+
+    <!-- Key Technical Specifications -->
+    <div class="form-header">
+      Key Technical Specifications / Software Licence Details*
+    </div>
+    <div class="form-field">
+      <textarea
+        formControlName="technicalSpecs"
+        placeholder="Enter key technical specifications or software licence details"
+      ></textarea>
+      <div
+        *ngIf="
+          equipmentForm.controls['technicalSpecs'].invalid &&
+          equipmentForm.controls['technicalSpecs'].touched
+        "
+        class="error-message"
+      >
+        Technical specifications are required.
+      </div>
+    </div>
+
+    <!-- Upload User Manual -->
+    <div class="form-header">Upload User Manual (if available)</div>
+    <div class="form-field">
+      <input type="file" (change)="onFileChange($event)" />
+    </div>
+
+    <!-- Any Specific Guideline for Users -->
+    <div class="form-header">Any Specific Guideline for Users?</div>
+    <div class="form-field">
+      <textarea
+        formControlName="guidelines"
+        placeholder="Type of materials, size of the testing specimen, any other specific test limitations, etc."
+      ></textarea>
+    </div>
+
+    <!-- Submit, Reset, and Exit buttons -->
+    <div class="form-buttons">
+      <button type="submit" class="btn" [disabled]="equipmentForm.invalid">
+        Submit
+      </button>
+      <button type="button" class="btn" (click)="onReset()">Reset</button>
+      <button type="button" class="btn" (click)="onExit()">Exit</button>
+    </div>
+  </form>
 </div>

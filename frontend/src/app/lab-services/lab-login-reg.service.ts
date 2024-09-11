@@ -1,3 +1,14 @@
+interface FacilityFormData {
+  facilityName: string;
+  category: string;
+  description: string;
+  modelNumber: string;
+  make: string;
+  yearOfManufacture: number;
+  technicalSpecifications: string;
+  userManual: File; // or string if you're using a URL
+  guidelines: string;
+}
 import { Injectable } from '@angular/core';
 import { ApiService } from '../common-service/api.service';
 
@@ -26,20 +37,10 @@ export class LabLoginRegService {
     return this.apiService.ApiCallWithLocalization(payload, apiUrl, 'POST');
   }
 
-  createFacility() {
+  createFacility(formData: any) {
     let apiUrl = '/lab/facilities/create-facility';
-    let payload = {
-      facilityName: '',
-      category: '',
-      description: '',
-      modelNumber: '',
-      make: '',
-      yearOfManufacturing: '',
-      softwareLicenceDetails: '',
-      userManual: '',
-      specificGuideline: '',
-    };
-    return this.apiService.ApiCallWithLocalization(payload, apiUrl, 'POST');
+
+    return this.apiService.ApiCallWithLocalization(formData, apiUrl, 'POST');
   }
 
   labLogin() {
@@ -61,7 +62,7 @@ export class LabLoginRegService {
   }
 
   labFacilityList() {
-    let apiUrl = 'lab/facilities/facility-list';
+    let apiUrl = '/lab/facilities/facility-list';
     let payload = {};
     return this.apiService.ApiCallWithLocalization(payload, apiUrl, 'POST');
   }

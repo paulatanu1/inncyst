@@ -17,7 +17,7 @@ export class LabComponent implements OnInit {
     {
       title: 'Dashboard',
       icon: 'dashboard',
-      link: 'lab',
+      link: '/lab',
       color: '#ff7f0e',
     },
     {

@@ -1,0 +1,58 @@
+.form-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.form-header {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.form-field {
+    margin-bottom: 15px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: darkred;
+}
+
+.btn[disabled] {
+    background-color: grey;
+    cursor: not-allowed;
+}
