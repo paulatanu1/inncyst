@@ -29,6 +29,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
 import { AddProjectComponent } from './share/add-project/add-project.component';
 import { AchivmentComponent } from './share/achivment/achivment.component';
+import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { AchivmentComponent } from './share/achivment/achivment.component';
     UploadcvComponent,
     AddProjectComponent,
     AchivmentComponent,
+    ComingSoonComponent,
   ],
   imports: [
     BrowserModule,

@@ -344,11 +344,12 @@ this._login.loginFlow.subscribe({
       }
     }
 if (type == ''){
-  this._toast.showToaster.next({
-    severity: 'warn',
-    summary: 'Important!',
-    detail: 'Coming Soon. Stay Tuned!',
-  }); 
+  // this._toast.showToaster.next({
+  //   severity: 'warn',
+  //   summary: 'Important!',
+  //   detail: 'Coming Soon. Stay Tuned!',
+  // }); 
+  this.router.navigateByUrl('/coming-soon')
 }
 
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -33,9 +34,17 @@ export class SliderComponent implements OnInit {
     },
     nav: true
   }
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
+
+  navigateUrl(url:string){
+    if(url){
+      this.router.navigateByUrl(url)
+    }else{
+      this.router.navigateByUrl('/coming-soon')
+    }
+    }
 
 }

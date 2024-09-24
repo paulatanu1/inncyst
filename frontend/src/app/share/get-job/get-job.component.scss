@@ -5,31 +5,66 @@ button {
 }
 
 .get-your-job-wrapper {
-  background-image: url(../../../assets/bg-job.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   width: 100%;
 }
+
 .section-wrapper {
   display: flex;
   align-items: center;
   width: 100%;
-  margin: 0;
+  margin: 3rem 0;
+
   .internships {
     // background: #522D80;
     // padding: 25px 60px;
     // text-align: center;
+
+    .img-wrapper {
+
+      img {
+        width: 400px;
+      }
+
+    }
   }
+
+  .img-wrapper {
+
+    img {
+      width: 400px;
+      animation: zoomInOut 3s infinite ease-in-out;
+
+    }
+
+  }
+
+  @keyframes zoomInOut {
+    0% {
+      transform: scale(0.9); 
+    }
+    50% {
+      transform: scale(1); 
+    }
+    100% {
+      transform: scale(0.9); 
+    }
+  }
+
   .jobs {
     // background: #8cd3f6;
     padding: 25px 60px;
+
     // text-align: center;
     .cs-padding {
       padding: 10px 0px 10px 20px !important;
     }
+
     .text-wrapper {
       padding: 10px 20px;
+
       .heading {
         font-weight: 600;
         font-size: 36px;
@@ -37,6 +72,7 @@ button {
         color: #522d80;
         position: relative;
       }
+
       .heading::after {
         content: "";
         width: 53px;
@@ -47,48 +83,88 @@ button {
         left: 0;
         //   transform: translate(-50%, 10px);
       }
+
       .description {
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 22px;
-        //   text-align: center;
-        color: #555555;
-        margin-top: 20px;
+        font-weight: 200;
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: #000000;
+        margin: 31px 0;
       }
+
       .check-item {
         padding: 0;
+        margin-top: 30px;
+
         li {
           list-style: none;
-          padding-bottom: 5px;
+          padding-bottom: 14px;
+
           a {
             text-decoration: none;
             font-style: normal;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 0.85rem;
             line-height: 26px;
             color: #292929;
+
             span {
-              color: #19a6ec;
+              color: #522d80;
               padding-right: 10px;
             }
           }
         }
       }
+
       .button-section {
-        background: #522d80;
-        border-radius: 5px;
-        padding: 18px 35px;
+        background-color: #522d80;
+        border: 0;
         color: #ffffff;
+        border-radius: 25px;
+        padding: 10px 25px;
+        font-size: 0.8rem;
         font-weight: 600;
-        font-size: 16px;
-        line-height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        transition: padding-left 0.3s ease-in-out, justify-content 0.3s ease-in-out;
+        width: 150px;
+        position: relative;
+        overflow: hidden;
+  
+        span {
+          transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
+          margin-right: 0;
+        }
+  
+        i {
+          font-size: 0.9rem;
+          opacity: 0;
+          transform: translateX(-5px);
+          transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+          position: absolute;
+          right: 10px;
+        }
+  
+        &:hover {
+          justify-content: center;
+          padding-left: 0px;
+  
+          i {
+            opacity: 1;
+            transform: translateX(-5px);
+          }
+        }
       }
     }
   }
+
   .projects {
     background: #522d80;
     padding: 25px 60px;
     text-align: center;
+
     .heading {
       font-weight: 600;
       font-size: 36px;
@@ -96,6 +172,7 @@ button {
       color: #ffffff;
       position: relative;
     }
+
     .heading::after {
       content: "";
       width: 53px;
@@ -106,6 +183,7 @@ button {
       left: 50%;
       transform: translate(-50%, 10px);
     }
+
     .description {
       font-weight: 400;
       font-size: 16px;
@@ -114,6 +192,7 @@ button {
       color: #ffffff;
       margin-top: 20px;
     }
+
     .button-section {
       background: #ec8e11;
       border-radius: 5px;
@@ -134,11 +213,14 @@ button {
   .section-wrapper {
     .jobs {
       padding: 25px 0;
+
       .text-wrapper {
         padding-left: 10px !important;
+
         .heading {
           font-size: 25px;
         }
+
         .check-item {
           li {
             a {
@@ -155,6 +237,7 @@ button {
   .section-wrapper {
     .jobs {
       padding: 25px 20px;
+
       .text-wrapper {
         .heading {
           font-size: 32px;
