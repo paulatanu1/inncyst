@@ -1,5 +1,5 @@
 .portfolio_sec {
-    margin: 113px auto 0;
+    margin: 0 auto 0;
     padding-top: 60px;
     max-width: 1120px;
     display: flex;
@@ -98,19 +98,22 @@
 .portfolio_sec_modal {
     min-width: 800px;
 }
+
 .portfolio_details_sec {
     padding-top: 60px;
     max-width: 1120px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin:auto;
+    margin: auto;
+
     ul {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         padding: 0;
         justify-content: space-between;
+
         li {
             width: 47%;
             display: inline-block;
@@ -125,16 +128,19 @@
             list-style: none;
             position: relative;
             overflow: hidden;
+
             button {
-                position:absolute;
+                position: absolute;
                 right: 0;
                 display: inline-block;
                 right: 40px;
                 background: none;
+
                 &:first-of-type {
                     right: 10px;
                 }
             }
+
             h2 {
                 text-transform: capitalize;
                 font-size: 24px;
@@ -142,17 +148,20 @@
                 color: #1E1E1E;
                 margin-top: 20px;
             }
+
             p {
                 word-wrap: break-word;
                 color: #5E6368;
                 font-size: 13px;
+
                 a {
                     text-decoration: underline;
                 }
-                span{
+
+                span {
                     &.status {
                         display: inline-block;
-                        background: rgba(235,235,235,1);
+                        background: rgba(235, 235, 235, 1);
                         padding: 5px 8px;
                         font-size: 14px;
                         font-weight: 600;
@@ -160,14 +169,17 @@
                         border-radius: 5px;
                     }
                 }
+
                 &.tags {
                     font-weight: 600;
+
                     i {
                         display: inline-block;
                         vertical-align: middle;
                         margin-right: 10px;
                     }
                 }
+
                 label {
                     text-transform: capitalize;
                     margin-bottom: 0;
@@ -176,9 +188,11 @@
         }
     }
 }
+
 ::ng-deep .p-dialog .p-dialog-content {
     padding: 0;
 }
+
 .myFormSecEdit {
     display: flex;
     justify-content: space-between;
@@ -192,6 +206,7 @@
 
     .formRight {
         flex: 0 0 48%;
+
         ul {
             padding-left: 0;
 
@@ -236,6 +251,7 @@
                 }
             }
         }
+
         .remove_btn {
             float: right;
             position: absolute;
@@ -262,6 +278,7 @@
         }
     }
 }
+
 ::ng-deep .p-dialog .p-dialog-header {
     border: none;
 }
