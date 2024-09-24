@@ -1,5 +1,5 @@
 .my_profile_sec {
-    margin-top: 113px;
+    // margin-top: 113px;
     padding-top: 60px;
 
     .profile_whole_sec {
@@ -195,17 +195,23 @@
     display: flex;
     align-items: flex-start;
     gap: 35px;
+
     .right-section {
         flex: 0 0 100%;
+
         .formGroup {
-            margin-bottom:25px;
-            & > span {
+            margin-bottom: 25px;
+
+            &>span {
                 width: 100%;
             }
+
             .add_skills {
                 margin-bottom: 15px;
+
                 button {
                     background: none;
+
                     i {
                         font-size: 24px;
                         display: inline-block;
@@ -213,18 +219,21 @@
                     }
                 }
             }
-            & input.skill_input  {
-                border:1px solid #ced4da;
+
+            & input.skill_input {
+                border: 1px solid #ced4da;
                 background: #ffffff;
                 color: #495057;
                 border-radius: 6px;
                 padding: 10px;
                 width: 50%;
+
                 &:focus {
                     border-color: #3B82F6;
                     outline: none;
                 }
             }
+
             .add_more_btn {
                 color: #fff;
                 border-radius: 30px;
@@ -240,21 +249,25 @@
                 margin-bottom: 15px;
                 display: inline-block;
                 cursor: pointer;
-                 i {
+
+                i {
                     display: inline-block;
                     vertical-align: text-bottom;
                     padding-left: 5px;
-                 }
+                }
             }
         }
+
         ::ng-deep .p-float-label {
             input {
                 width: 100%;
             }
+
             label {
                 font-size: 13px;
             }
         }
+
         ::ng-deep .p-inputwrapper {
             width: 100%;
 
@@ -266,23 +279,30 @@
                 }
             }
         }
-        ::ng-deep .p-dropdown, ::ng-deep .p-calendar {
+
+        ::ng-deep .p-dropdown,
+        ::ng-deep .p-calendar {
             width: 100%;
         }
+
         ::ng-deep .p-fieldset {
             padding: 10px;
+
             .p-fieldset-legend {
                 float: none;
                 width: auto;
                 font-size: 14px;
+
                 a {
                     text-decoration: none;
                 }
             }
+
             .p-fieldset-content {
                 padding-bottom: 0;
             }
         }
+
         .p-input-icon-left {
             input {
                 width: 100%;
