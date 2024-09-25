@@ -14,6 +14,7 @@ import { LoginModule } from './login/login.module';
 import { LoginModuleComponent } from './login-module/login-module.component';
 import { LoginModuleModule } from './login-module/login-module.module';
 import { AddProjectComponent } from './share/add-project/add-project.component';
+import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
 
 const routes: Routes = [
   {
@@ -94,6 +95,9 @@ const routes: Routes = [
     canActivate: [AuthenticateGuard],
   },
   { path: 'newLogin', loadChildren: () => import('./login-module/login-module.module').then(m => m.LoginModuleModule) },
+  {
+    path: 'coming-soon', component: ComingSoonComponent
+  },
   {
     path: '**',
     component: PageNotFoundComponent,

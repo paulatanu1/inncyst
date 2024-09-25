@@ -44,10 +44,10 @@ export class InternshipsComponent implements OnInit {
   selectedType!: string;
   typeSort: any = [];
   selectedRange: [number, number] = [5000, 30000];
-leftSideListLoadding=false
-rightSideLoadding=false;
+  leftSideListLoadding = false;
+  rightSideLoadding = false;
   public daysAgo!: number;
-  profileDetails:any
+  profileDetails: any;
   constructor(
     private loginDetails: LoginDetailsService,
     private router: Router,
@@ -60,11 +60,11 @@ rightSideLoadding=false;
   ngOnInit(): void {
     //profile api call
     this.internshipService.sendInternshipProfileRequest().subscribe({
-      next:(res)=>{
-this.profileDetails=res;
-ls.set('profileImage',res.data.image)
-      }
-    })
+      next: (res) => {
+        this.profileDetails = res;
+        ls.set('profileImage', res.data.image);
+      },
+    });
     this.jobService.afterSuccessApplyJobCloseModal.subscribe({
       next: (res) => {
         setTimeout(() => {
@@ -99,8 +99,8 @@ ls.set('profileImage',res.data.image)
         name: 'Sort by',
         disabled: true,
       },
-      { name: 'asc' },
-      { name: 'dsc' },
+      { name: 'Ascending', value: 'asc' },
+      { name: 'Descending', value: 'dsc' },
     ];
 
     this.jobTypeSort = [
@@ -109,13 +109,13 @@ ls.set('profileImage',res.data.image)
         disabled: true,
       },
       {
-        name: 'office',
+        name: 'Office',
       },
       {
-        name: 'remote',
+        name: 'Remote',
       },
       {
-        name: 'hybrid',
+        name: 'Hybrid',
       },
     ];
     this.typeSort = [
@@ -124,36 +124,36 @@ ls.set('profileImage',res.data.image)
         disabled: true,
       },
       {
-        name: 'intranship',
+        name: 'Internship',
       },
       {
-        name: 'job',
+        name: 'Job',
       },
     ];
   }
   onRangeChange(e: any) {
     this.salaryFrom = e.values[0].toString();
     this.salaryTo = e.values[1].toString();
-    this.page=0;
+    this.page = 0;
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
 
   selectedJobTypeDropdown(event: any) {
     this.jobType = event.value.name;
-    this.page=0;
+    this.page = 0;
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
   sortDropdown(e: any) {
-    this.sort = e.value.name;
-    this.page=0;
+    this.sort = e.value.value;
+    this.page = 0;
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
   selectedTypeDropdown(e: any) {
     this.type = e.value.name;
-    this.page=0;
+    this.page = 0;
     this.AllJobDetails = [];
     this.AllJbDetaails();
   }
@@ -161,13 +161,13 @@ ls.set('profileImage',res.data.image)
     this.AllJobDetails = [];
     this.location =
       this.location.charAt(0).toUpperCase() + this.location.slice(1);
-      this.page=0;
+    this.page = 0;
     this.AllJbDetaails();
   }
-  clearSearchList(){
-    if(this.location == ''){
+  clearSearchList() {
+    if (this.location == '') {
       this.AllJobDetails = [];
-      this.page=0;
+      this.page = 0;
       this.AllJbDetaails();
     }
   }
@@ -185,8 +185,8 @@ ls.set('profileImage',res.data.image)
     this.AllJbDetaails();
   }
   AllJbDetaails() {
-    this.leftSideListLoadding=true;
-    this.rightSideLoadding=true
+    this.leftSideListLoadding = true;
+    this.rightSideLoadding = true;
     // const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
     const url = `/industry/industry-posts?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
 
@@ -194,7 +194,7 @@ ls.set('profileImage',res.data.image)
       next: (res) => {
         this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];
         this.totalJob = res.data.total;
-        this.leftSideListLoadding=false;
+        this.leftSideListLoadding = false;
         // this.rightSideLoadding=false;
         this.AllJobDetails.forEach((element: any) => {
           element.companyName = element?.companyName?.toUpperCase();
@@ -216,7 +216,7 @@ ls.set('profileImage',res.data.image)
         if (this.jobId) {
           this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
             next: (res) => {
-              this.rightSideLoadding=false;
+              this.rightSideLoadding = false;
               this.singleJobDetails = [];
               this.singleJobDetails.push(res.data);
               this.singleJobDetails.forEach((element: any) => {
@@ -226,13 +226,13 @@ ls.set('profileImage',res.data.image)
               });
             },
             error: (err) => {
-              this.rightSideLoadding=false
+              this.rightSideLoadding = false;
             },
           });
         }
       },
       error: (err) => {
-        this.leftSideListLoadding=false
+        this.leftSideListLoadding = false;
         if (err.error.message == 'jwt expired') {
           ls.clear();
           ls.remove('logoutSuccess');
@@ -253,11 +253,11 @@ ls.set('profileImage',res.data.image)
   }
 
   jobDetails(id: string, i: number) {
-    this.rightSideLoadding=true;
+    this.rightSideLoadding = true;
     this.selectedJob = i;
     this.jobService.getJobDetails(id).subscribe({
       next: (res) => {
-        this.rightSideLoadding=false;
+        this.rightSideLoadding = false;
         let id = res.data._id;
         this.jobService.getSelectedJobId(res.data._id);
         this.singleJobDetails = [];
@@ -269,7 +269,7 @@ ls.set('profileImage',res.data.image)
         });
       },
       error: (err) => {
-        this.rightSideLoadding=false
+        this.rightSideLoadding = false;
       },
     });
   }
@@ -282,7 +282,7 @@ ls.set('profileImage',res.data.image)
       this.AllJbDetaails();
     }
   }
-  detailsPage(id:any){
-    this.router.navigate(['/jobs/details/'+id])
+  detailsPage(id: any) {
+    this.router.navigate(['/jobs/details/' + id]);
   }
 }

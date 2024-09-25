@@ -22,12 +22,12 @@
   }
   .title {
     font-weight: 600;
-    font-size: 40px;
-    line-height: 46px;
+    font-size: 2.2rem;
+    line-height: 1.8;
     text-align: center;
     color: #292929;
-    width: 46%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0 auto 3rem;
     padding-bottom: 30px;
     position: relative;
   }
@@ -49,12 +49,27 @@
   border-radius: 10px;
   padding: 30px;
   margin: 5px 10px;
+  height: 450px;
+  max-height: 100%;
+  position: relative;
+
+  .starts-area {
+    text-align: center;
+    margin: 15px 0;
+
+    i {
+      color: #083b68;
+    }
+  }
   .review-artical {
     p {
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 22px;
-      color: #555555;
+      font-weight: 500;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #171717;
+      text-align: center;
+      margin: 30px 0;
+      font-style: italic;
     }
   }
   .users-section {
@@ -64,17 +79,23 @@
       border-radius: 50%;
     }
     .users-name {
+      text-align: right;
+      position: absolute;
+      bottom: 20px;
+      right: 40px;
       .name {
-        font-weight: 500;
+        font-weight: 700;
         font-size: 16px;
         line-height: 22px;
         color: #292929;
+        margin-bottom: 5px;
+        font-style: italic;
       }
       .post {
-        font-weight: 500;
+        font-weight: 600;
         font-size: 14px;
         line-height: 20px;
-        color: #27ae60;
+        color: #53046a;
       }
     }
   }

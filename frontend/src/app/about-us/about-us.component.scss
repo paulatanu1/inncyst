@@ -242,24 +242,18 @@
         left: -90px;
       }
     }
-    p {
-      color: #808d9e;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 30px;
+    p.last_p {
+      color: #3a3a3a;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.5;
     }
     ul {
       margin: 0;
       padding: 70px 0;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      list-style: none;
+      text-align: left;
       li {
-        flex: 0 0 270px;
-        margin-right: 30px;
-        margin-bottom: 50px;
-        text-align: center;
+        margin: 0 25px 0;
         h4 {
           color: #1d1e25;
           font-weight: 700;

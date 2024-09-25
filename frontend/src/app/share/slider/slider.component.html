@@ -1,49 +1,151 @@
-<owl-carousel-o [options]="customOptions" class="owl-slide-cs">
-    <ng-template carouselSlide>
-        <div class="banner-section">
-            <div class="banner-img-area">
-                <img src="../../../assets/slider.png" alt="banner">
-            </div>
-            <div class="banner-text-area">
-                <p class="text-1">Student Empowerment</p>
-                <h1 class="text-2">Empowering Students for Industry Success</h1>
-                <p class="text-3">reating Collaborative Solutions: Fostering Ecosystems of Industry, Academia, and Individuals for Optimal Resource Utilization.</p>
-                <div class="buttons-area">
-                    <button type="button" class="rate-us">Rate us <span class="icon-hearts"></span></button>
-                    <a class="know-more" href="#">Know more</a>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-12 col-sm-12">
+            <div class="banner-section">
+                <div class="banner-text-area-left">
+                    <p class="text-1">Student Empowerment</p>
+                    <h1 class="text-2">Empowering <b>Students</b> for Industry <b>Success</b>
+                    </h1>
+                    <p class="text-3">reating Collaborative Solutions: Fostering Ecosystems of Industry, Academia, and
+                        Individuals for Optimal Resource Utilization.</p>
                 </div>
             </div>
         </div>
-    </ng-template>  
-    <ng-template carouselSlide>
-        <div class="banner-section">
-        <div class="banner-img-area">
-            <img src="../../../assets/banner1.png" alt="banner">
-        </div>
-        <div class="banner-text-area">
-            <p class="text-1">Student Empowerment</p>
-            <h1 class="text-2">Empowering Students for Industry Success</h1>
-            <p class="text-3">reating Collaborative Solutions: Fostering Ecosystems of Industry, Academia, and Individuals for Optimal Resource Utilization.</p>
-            <!-- <div class="buttons-area">
-                <button type="button" class="rate-us">Rate us</button>
-                <a class="know-more" href="#">Know more</a>
-            </div> -->
-        </div>
-    </div></ng-template>  
-    <ng-template carouselSlide>
-        <div class="banner-section">
-            <div class="banner-img-area">
-                <img src="../../../assets/banner1.png" alt="banner">
-            </div>
-            <div class="banner-text-area">
-                <p class="text-1">Student Empowerment</p>
-                <h1 class="text-2">Empowering Students for Industry Success</h1>
-                <p class="text-3">reating Collaborative Solutions: Fostering Ecosystems of Industry, Academia, and Individuals for Optimal Resource Utilization.</p>
-                <div class="buttons-area">
-                    <button type="button" class="rate-us">Rate us</button>
-                    <a class="know-more" href="#">Know more</a>
+        <div class="col-lg-6 col-md-6 col-12 col-sm-12">
+            <div class="products-grid">
+                <div class="img-intern" (click)="navigateUrl('/Login')">
+                    <i class="pi pi-arrow-right"></i>
+                    <img src="../../../assets/home-banner/incysst-intern-banner.jpg" alt="">
+                </div>
+                <div class="img-job" (click)="navigateUrl('/Login')">
+                    <i class="pi pi-arrow-right"></i>
+                    <img src="../../../assets/home-banner/incysst-job-banner.png" alt="">
+                </div>
+                <div class="img-project" (click)="navigateUrl('')">
+                    <i class="pi pi-arrow-left"></i>
+                    <img src="../../../assets/home-banner/internship-project-banner.jpg" alt="">
+                </div>
+                <div class="img-labservice" (click)="navigateUrl('')">
+                    <i class="pi pi-arrow-right"></i>
+                    <img src="../../../assets/home-banner/incysst-lab-service.jpg" alt="">
+                </div>
+                <div class="img-manufacture" (click)="navigateUrl('')">
+                    <i class="pi pi-arrow-left"></i>
+                    <img src="../../../assets/home-banner/incysst-manufacture-banner.jpg" alt="">
+                </div>
+                <div class="img-mentor" (click)="navigateUrl('')">
+                    <i class="pi pi-arrow-right"></i>
+                    <img src="../../../assets/home-banner/incysst-mentor-banner.jpg" alt="">
                 </div>
             </div>
+            <!-- <owl-carousel-o [options]="customOptions" class="owl-slide-cs">
+                <ng-template carouselSlide>
+                    <div class="banner-section">
+                        <div class="banner-img-area">
+                            <img src="../../../assets/home-banner/incysst-intern-banner.jpg" alt="banner">
+                        </div>
+                        <div class="banner-text-area">
+                            <p class="text-1">Student Empowerment</p>
+                            <h1 class="text-2">Empowering Students for Industry Success</h1>
+                            <p class="text-3">reating Collaborative Solutions: Fostering Ecosystems of Industry,
+                                Academia, and
+                                Individuals for Optimal Resource Utilization.</p>
+                            <div class="buttons-area">
+                                <button type="button" class="rate-us">Rate us <span class="icon-hearts"></span></button>
+                                <a class="know-more" href="#">Know more</a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="banner-section">
+                        <div class="banner-img-area">
+                            <img src="../../../assets/home-banner/incysst-job-banner.png" alt="banner">
+                        </div>
+                        <div class="banner-text-area">
+                            <p class="text-1">Student Empowerment</p>
+                            <h1 class="text-2">Empowering Students for Industry Success</h1>
+                            <p class="text-3">reating Collaborative Solutions: Fostering Ecosystems of Industry,
+                                Academia, and
+                                Individuals for Optimal Resource Utilization.</p>
+                          
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="banner-section">
+                        <div class="banner-img-area">
+                            <img src="../../../assets/home-banner/internship-project-banner.jpg" alt="banner">
+                        </div>
+                        <div class="banner-text-area">
+                            <p class="text-1">Student Empowerment</p>
+                            <h1 class="text-2">Empowering Students for Industry Success</h1>
+                            <p class="text-3">reating Collaborative Solutions: Fostering Ecosystems of Industry,
+                                Academia, and
+                                Individuals for Optimal Resource Utilization.</p>
+                            <div class="buttons-area">
+                                <button type="button" class="rate-us">Rate us</button>
+                                <a class="know-more" href="#">Know more</a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="banner-section">
+                        <div class="banner-img-area">
+                            <img src="../../../assets/home-banner/incysst-lab-service.jpg" alt="banner">
+                        </div>
+                        <div class="banner-text-area">
+                            <p class="text-1">Student Empowerment</p>
+                            <h1 class="text-2">Empowering Students for Industry Success</h1>
+                            <p class="text-3">reating Collaborative Solutions: Fostering Ecosystems of Industry,
+                                Academia, and
+                                Individuals for Optimal Resource Utilization.</p>
+                            <div class="buttons-area">
+                                <button type="button" class="rate-us">Rate us</button>
+                                <a class="know-more" href="#">Know more</a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="banner-section">
+                        <div class="banner-img-area">
+                            <img src="../../../assets/home-banner/incysst-manufacture-banner.jpg" alt="banner">
+                        </div>
+                        <div class="banner-text-area">
+                            <p class="text-1">Student Empowerment</p>
+                            <h1 class="text-2">Empowering Students for Industry Success</h1>
+                            <p class="text-3">reating Collaborative Solutions: Fostering Ecosystems of Industry,
+                                Academia, and
+                                Individuals for Optimal Resource Utilization.</p>
+                            <div class="buttons-area">
+                                <button type="button" class="rate-us">Rate us</button>
+                                <a class="know-more" href="#">Know more</a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="banner-section">
+                        <div class="banner-img-area">
+                            <img src="../../../assets/home-banner/incysst-mentor-banner.jpg" alt="banner">
+                        </div>
+                        <div class="banner-text-area">
+                            <p class="text-1">Student Empowerment</p>
+                            <h1 class="text-2">Empowering Students for Industry Success</h1>
+                            <p class="text-3">reating Collaborative Solutions: Fostering Ecosystems of Industry,
+                                Academia, and
+                                Individuals for Optimal Resource Utilization.</p>
+                            <div class="buttons-area">
+                                <button type="button" class="rate-us">Rate us</button>
+                                <a class="know-more" href="#">Know more</a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </owl-carousel-o> -->
         </div>
-    </ng-template>  
-  </owl-carousel-o>
+    </div>
+
+</div>

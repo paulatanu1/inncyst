@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg">
   <!-- Navbar content -->
-  <div class="container-fluid">
+  <div class="container">
     <a [routerLink]="['/home']" class="navbar-brand" href="#">
-      <img src="../../../assets/brand-logo.png" alt="" />
+      <img src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/inncyst-logo1.png" width="200px" height="80px" alt="" />
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,8 @@
         <li class="nav-item">
           <a class="nav-link" (click)="product()" href="javascript:void(0)">
             Product/Services
-            <i class="pi pi-chevron-down"></i>
+            <!-- <i class="pi pi-chevron-down"></i> -->
+            <i class="fas fa-caret-down"></i>
           </a>
           <ul>
             <li (click)="productOrServicedropdown('Internship')">
@@ -51,7 +52,25 @@
                 <span>Projects</span>
               </a>
             </li>
-            <li>
+            <li (click)="productOrServicedropdown('')">
+              <a class="nav-link">
+                <i class="pi pi-cog"></i>
+                <span>Laboratory Services</span>
+              </a>
+            </li>
+            <li (click)="productOrServicedropdown('')">
+              <a class="nav-link">
+                <i class="pi pi-wrench"></i>
+                <span>Manufacturing Facilities</span>
+              </a>
+            </li>
+            <li (click)="productOrServicedropdown('')">
+              <a class="nav-link">
+                <i class="pi pi-user"></i>
+                <span>Mentors</span>
+              </a>
+            </li>
+            <!-- <li>
               <a class="nav-link">
                 <i class="pi pi-wrench"></i>
                 <span> Project Enabler</span>
@@ -77,7 +96,7 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> -->
           </ul>
         </li>
         <li class="nav-item" (click)="optionClick('contactus')">
@@ -85,11 +104,11 @@
             Contact us
           </a>
         </li>
-        <li class="nav-item" (click)="optionClick('jobs')">
+        <!-- <li class="nav-item" (click)="optionClick('jobs')">
           <a class="nav-link">
             Jobs
           </a>
-        </li>
+        </li> -->
       </ul>
     </div>
     <div *ngIf="!customHeader  && !logoutSuccess" class="collapse navbar-collapse" id="navbarNav">
@@ -124,11 +143,15 @@
     </div>
       <div class="users-option" *ngIf="!logoutSuccess">
         <div class="register" [routerLink]="['/registeration']" (click)="register()">
-          <p-button label="Register"></p-button>
+          <p-button label="Register">
+            <i class="pi pi-user-plus"></i>
+          </p-button>
         </div>
 
         <div class="login" [routerLink]="['/Login']" (click)="register()">
-          <p-button label="Login"></p-button>
+          <p-button label="Login">
+            <i class="pi pi-sign-in"></i>
+          </p-button>
         </div>
       </div>
 
