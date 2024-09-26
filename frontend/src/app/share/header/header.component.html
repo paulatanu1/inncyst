@@ -2,21 +2,46 @@
   <!-- Navbar content -->
   <div class="container">
     <a [routerLink]="['/home']" class="navbar-brand" href="#">
-      <img src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/inncyst-logo1.png" width="200px" height="80px" alt="" />
+      <img
+        src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/inncyst-logo1.png"
+        width="200px"
+        height="80px"
+        alt=""
+      />
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div *ngIf="customHeader && !logoutSuccess " class="collapse navbar-collapse" id="navbarNav">
+    <div
+      *ngIf="customHeader && !logoutSuccess"
+      class="collapse navbar-collapse"
+      id="navbarNav"
+    >
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a href="javascript:void(0)" (click)="optionClick('home')" class="nav-link" aria-current="page">
+          <a
+            href="javascript:void(0)"
+            (click)="optionClick('home')"
+            class="nav-link"
+            aria-current="page"
+          >
             Home
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="optionClick('about-us')" href="javascript:void(0)">
+          <a
+            class="nav-link"
+            (click)="optionClick('about-us')"
+            href="javascript:void(0)"
+          >
             About Us
           </a>
         </li>
@@ -104,6 +129,11 @@
             Contact us
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="sso()">
+            SSO
+          </a>
+        </li>
         <!-- <li class="nav-item" (click)="optionClick('jobs')">
           <a class="nav-link">
             Jobs
@@ -111,84 +141,125 @@
         </li> -->
       </ul>
     </div>
-    <div *ngIf="!customHeader  && !logoutSuccess" class="collapse navbar-collapse" id="navbarNav">
+    <div
+      *ngIf="!customHeader && !logoutSuccess"
+      class="collapse navbar-collapse"
+      id="navbarNav"
+    >
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)" [routerLink]="['/jobs/posts']">
+          <a
+            class="nav-link"
+            href="javascript:void(0)"
+            [routerLink]="['/jobs/posts']"
+          >
             Jobs
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="optionClick('My Jobs')" href="javascript:void(0)">
+          <a
+            class="nav-link"
+            (click)="optionClick('My Jobs')"
+            href="javascript:void(0)"
+          >
             My Jobs
           </a>
         </li>
       </ul>
     </div>
     <div class="users-option" *ngIf="!logoutSuccess">
-      <div *ngIf="!customHeader && !logoutSuccess" class="collapse navbar-collapse" id="navbarNav">
+      <div
+        *ngIf="!customHeader && !logoutSuccess"
+        class="collapse navbar-collapse"
+        id="navbarNav"
+      >
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)" [routerLink]="['/jobs/posts']">
+            <a
+              class="nav-link"
+              href="javascript:void(0)"
+              [routerLink]="['/jobs/posts']"
+            >
               Jobs
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="optionClick('My Jobs')" href="javascript:void(0)">
+            <a
+              class="nav-link"
+              (click)="optionClick('My Jobs')"
+              href="javascript:void(0)"
+            >
               My Jobs
             </a>
           </li>
         </ul>
       </div>
     </div>
-      <div class="users-option" *ngIf="!logoutSuccess">
-        <div class="register" [routerLink]="['/registeration']" (click)="register()">
-          <p-button label="Register">
-            <i class="pi pi-user-plus"></i>
-          </p-button>
-        </div>
-
-        <div class="login" [routerLink]="['/Login']" (click)="register()">
-          <p-button label="Login">
-            <i class="pi pi-sign-in"></i>
-          </p-button>
-        </div>
+    <div class="users-option" *ngIf="!logoutSuccess">
+      <div
+        class="register"
+        [routerLink]="['/registeration']"
+        (click)="register()"
+      >
+        <p-button label="Register">
+          <i class="pi pi-user-plus"></i>
+        </p-button>
       </div>
 
-      <div class="profile-container" *ngIf="logoutSuccess">
-        <div class="img-wrapper">
-          <img [src]="profileImage" alt="Profile Image" class="profile-image" />
-        </div>
-
-        <button mat-icon-button [matMenuTriggerFor]="profileMenu">
-          <mat-icon>
-            <i class="fa fa-chevron-down" aria-hidden="true"></i>
-          </mat-icon>
-        </button>
-        <mat-menu #profileMenu="matMenu">
-          <button mat-menu-item [routerLink]="['/my-profile']" [queryParams]="{ status: 0 }">
-            Profile
-          </button>
-          <button mat-menu-item [routerLink]="['/jobs/my-jobs']">
-            Job Applyed
-          </button>
-          <button mat-menu-item [routerLink]="['/change-password']">
-            Change Password
-          </button>
-          <button mat-menu-item (click)="logOutUser()">Logout</button>
-        </mat-menu>
+      <div class="login" [routerLink]="['/Login']" (click)="register()">
+        <p-button label="Login">
+          <i class="pi pi-sign-in"></i>
+        </p-button>
       </div>
     </div>
-   
+
+    <div class="profile-container" *ngIf="logoutSuccess">
+      <div class="img-wrapper">
+        <img [src]="profileImage" alt="Profile Image" class="profile-image" />
+      </div>
+
+      <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+        <mat-icon>
+          <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        </mat-icon>
+      </button>
+      <mat-menu #profileMenu="matMenu">
+        <button
+          mat-menu-item
+          [routerLink]="['/my-profile']"
+          [queryParams]="{ status: 0 }"
+        >
+          Profile
+        </button>
+        <button mat-menu-item [routerLink]="['/jobs/my-jobs']">
+          Job Applyed
+        </button>
+        <button mat-menu-item [routerLink]="['/change-password']">
+          Change Password
+        </button>
+        <button mat-menu-item (click)="logOutUser()">Logout</button>
+      </mat-menu>
+    </div>
+  </div>
 </nav>
 
-<p-dialog [(visible)]="loginflow" [blockScroll]="false" [modal]="true" [draggable]="false" [style]="{ width: '60vw' }"
-  (onHide)="onClosePopup('login')" (click)="cancel()">
+<p-dialog
+  [(visible)]="loginflow"
+  [blockScroll]="false"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: '60vw' }"
+  (onHide)="onClosePopup('login')"
+  (click)="cancel()"
+>
   <app-login (openRegisterFlow)="openRegisterFlow($event)"></app-login>
 </p-dialog>
 
-<app-sign-up-questions [sidebarEnable]="sidebarEnable" *ngIf="isSignup"
-  (quistionSubmit)="quistionSubmit($event)"></app-sign-up-questions>
+<app-sign-up-questions
+  [sidebarEnable]="sidebarEnable"
+  *ngIf="isSignup"
+  (quistionSubmit)="quistionSubmit($event)"
+></app-sign-up-questions>
 
 <!-- </div> -->
 

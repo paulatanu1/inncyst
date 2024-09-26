@@ -12,6 +12,10 @@ export const environment = {
   API_TIMEOUT: 300000,
   ERROR_REDIRECT: true,
   WHATSAPP_NUMBER: 8918882380,
+  auth: {
+    domain: 'dev-3thdyyavir2s8t4d.us.auth0.com',
+    clientId: 'HHRxHNcmKmx1Zk9sdIRx4qUNtjtSRaZR',
+  },
 };
 
 /*

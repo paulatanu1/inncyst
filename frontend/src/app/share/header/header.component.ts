@@ -30,6 +30,7 @@ import { LoginDetailsService } from 'src/app/common-service/login-details.servic
 import { InternshipProfileService } from '../service/internship-profile.service';
 import { SlideMenu } from 'primeng/slidemenu';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 interface options {
   optionName: string;
@@ -77,7 +78,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   customHeader: boolean = true;
   @ViewChild('slideMenu') slidemenu!: SlideMenu;
   isMenuOpen: boolean = true;
-  profileImage:any;
+  profileImage: any;
   //Outputs
   constructor(
     private otpService: OtpVerificationService,
@@ -94,10 +95,10 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
     private InternshipService: InternshipProfileService,
     private cdk: ChangeDetectorRef,
     private _toast: ToastServiceService,
-
+    private auth: AuthService
   ) {
     //check allready login user or not
-    this.profileImage=ls.get('profileImage')
+    this.profileImage = ls.get('profileImage');
     this.logInToken = ls.get('login_token');
     if (this.logInToken) {
       this.logoutSuccess = true;
@@ -168,11 +169,11 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
         this.customHeader = <boolean>res;
       },
     });
-this._login.loginFlow.subscribe({
-  next:(res)=>{
-    this.loginflow=<boolean>res;
-  }
-})
+    this._login.loginFlow.subscribe({
+      next: (res) => {
+        this.loginflow = <boolean>res;
+      },
+    });
     this.Profileitems = [
       {
         label: 'Profile',
@@ -288,10 +289,9 @@ this._login.loginFlow.subscribe({
         command: () => {
           this.userType = ls.get('userType');
 
-          if (ls.get('login_token') ) {
+          if (ls.get('login_token')) {
             this.router.navigateByUrl('/jobs/posts');
-          } else if (!ls.get('login_token') ) {
-
+          } else if (!ls.get('login_token')) {
             this.router.navigateByUrl('/registeration');
           }
         },
@@ -315,43 +315,43 @@ this._login.loginFlow.subscribe({
             severity: 'warn',
             summary: 'Warning',
             detail: 'comming soon',
-          });        },
+          });
+        },
       },
     ];
   }
-  productOrServicedropdown(type:string){
+  productOrServicedropdown(type: string) {
     this.logInToken = ls.get('login_token');
     if (this.logInToken) {
       this.logoutSuccess = true;
     } else {
       this.logoutSuccess = false;
     }
-    if(type ==='Internship'){
+    if (type === 'Internship') {
       this.userType = ls.get('userType');
 
-      if (ls.get('login_token') ) {
+      if (ls.get('login_token')) {
         this.router.navigateByUrl('/jobs/posts');
-      } else if (!ls.get('login_token') ) {
+      } else if (!ls.get('login_token')) {
         this.router.navigateByUrl('/registeration');
       }
     }
-    
-    if(type === 'Industry'){
+
+    if (type === 'Industry') {
       if (this.logInToken && this.userType == 'industry') {
         this.router.navigateByUrl('jobs/industry');
       } else if (!this.logInToken && !this.userType) {
         this.router.navigateByUrl('/registeration');
       }
     }
-if (type == ''){
-  // this._toast.showToaster.next({
-  //   severity: 'warn',
-  //   summary: 'Important!',
-  //   detail: 'Coming Soon. Stay Tuned!',
-  // }); 
-  this.router.navigateByUrl('/coming-soon')
-}
-
+    if (type == '') {
+      // this._toast.showToaster.next({
+      //   severity: 'warn',
+      //   summary: 'Important!',
+      //   detail: 'Coming Soon. Stay Tuned!',
+      // });
+      this.router.navigateByUrl('/coming-soon');
+    }
   }
   optionClick(url: string) {
     // this.progressBar = true;
@@ -487,6 +487,12 @@ if (type == ''){
       // this.slidemenu.hide();
       this.isMenuOpen = false;
     }
+  }
+
+  sso() {
+    this.auth.loginWithRedirect({
+      connection: 'linkedin',
+    });
   }
 
   ngOnDestroy(): void {
