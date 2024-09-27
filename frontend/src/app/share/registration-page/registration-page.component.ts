@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import {RegistrationTabComponent} from '../../share/registration-tab/registration-tab.component';
 import {
   AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
+  
 } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -107,7 +109,7 @@ export class RegistrationPageComponent implements OnInit {
     private question: QuestionSetEnablerService,
     private _toast: ToastServiceService,
     private header: HeaderService,
-    private otpVerifivation: OtpVerificationService // private _header:HeaderService
+    private otpVerifivation: OtpVerificationService, // private _header:HeaderService
   ) {
     // console.log(window, 'pp');
 

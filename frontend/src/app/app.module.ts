@@ -30,6 +30,7 @@ import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
 import { AddProjectComponent } from './share/add-project/add-project.component';
 import { AchivmentComponent } from './share/achivment/achivment.component';
 import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
     MatSliderModule,
     FieldsetModule,
     TabViewModule,
+    MatTabsModule
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [
