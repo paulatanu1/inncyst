@@ -6,10 +6,12 @@ import { LastUrlService } from './common-service/last-url.service';
 import { ToastServiceService } from './service/toast-service.service';
 import { UrlConfig, urlConfig } from './url-config';
 import { LoginApiService } from './share/login/login-api.service';
-import ls from 'localstorage-slim';
+// import ls from 'localstorage-slim';
 import { OtpVerificationService } from './share/registration-otp/otp-verification.service';
 import { ChangeDetectionStrategy } from '@angular/compiler';
-
+import { LocationScriptService } from './service/location-script.service';
+import { environment } from 'src/environments/environment';
+import { UserLocationService } from './service/user-location.service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +30,11 @@ export class AppComponent implements OnInit {
     '/industry': { isDashboard: false, isdisable: false },
     '/registeration': { isDashboard: false, isdisable: false },
   };
-
+  country: string = '';
+  state: string = '';
+  city: string = '';
+  pinCode: string = '';
+  areaLocality: string = '';
   constructor(
     private _router: Router,
     private spinner: NgxSpinnerService,
@@ -36,13 +42,14 @@ export class AppComponent implements OnInit {
     private _toast: ToastServiceService,
     private messageService: MessageService,
     private otpVerifivation: OtpVerificationService,
-    private cdk: ChangeDetectorRef
+    private cdk: ChangeDetectorRef,
+    private userLocation: UserLocationService
   ) {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
     //Header show and Hide
-    this._router.events.subscribe((val) => {
+    this._router.events.subscribe((val: any) => {
       if (val instanceof NavigationEnd) {
         const url = val.url;
         const config: UrlConfig = urlConfig[url] || {
@@ -52,6 +59,17 @@ export class AppComponent implements OnInit {
         this.isDashboard = config.isDashboard;
         this.isDisable = config.isDisable;
       }
+    });
+    // this.g_script.loadGoogleMaps(environment.GOOGLE_MAP_KEY);
+    this.userLocation.getLocationDetails(environment.GOOGLE_MAP_KEY).subscribe({
+      next: (res) => {
+        console.log(res, 'ressss');
+        this.country = res.country;
+        this.state = res.state;
+        this.city = res.city;
+        this.pinCode = res.pinCode;
+        this.areaLocality = `${res.subLocality} ${res.area}`;
+      },
     });
   }
   ngAfterViewChecked(): void {
@@ -68,7 +86,7 @@ export class AppComponent implements OnInit {
     }, 2000);
 
     this._toast.showToaster.subscribe({
-      next: (res) => {
+      next: (res: any) => {
         const { severity, summary, detail } = res;
         this.showSuccess(severity, summary, detail);
       },
