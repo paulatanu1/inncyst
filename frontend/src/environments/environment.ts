@@ -17,6 +17,8 @@ export const environment = {
     clientId: 'T30L4gAR1jqpRZMgDOk0CcuGQRpnlh12',
     scope: 'openid profile email read:users',
   },
+  RECAPTCHA_SITE_KEY: '6LeRui4qAAAAAHYrB524A-8wIxqLXuqGbOP1fTtn',
+  GOOGLE_MAP_KEY: 'AIzaSyAREQnPqKcssYtNlNQlnG90HqIBz5MyMM4',
 };
 
 /*

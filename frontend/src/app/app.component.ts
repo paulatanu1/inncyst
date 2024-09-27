@@ -6,10 +6,11 @@ import { LastUrlService } from './common-service/last-url.service';
 import { ToastServiceService } from './service/toast-service.service';
 import { UrlConfig, urlConfig } from './url-config';
 import { LoginApiService } from './share/login/login-api.service';
-import ls from 'localstorage-slim';
+// import ls from 'localstorage-slim';
 import { OtpVerificationService } from './share/registration-otp/otp-verification.service';
 import { ChangeDetectionStrategy } from '@angular/compiler';
-
+import { LocationScriptService } from './service/location-script.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -36,13 +37,14 @@ export class AppComponent implements OnInit {
     private _toast: ToastServiceService,
     private messageService: MessageService,
     private otpVerifivation: OtpVerificationService,
-    private cdk: ChangeDetectorRef
+    private cdk: ChangeDetectorRef,
+    private g_script: LocationScriptService
   ) {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
     //Header show and Hide
-    this._router.events.subscribe((val) => {
+    this._router.events.subscribe((val: any) => {
       if (val instanceof NavigationEnd) {
         const url = val.url;
         const config: UrlConfig = urlConfig[url] || {
@@ -53,6 +55,7 @@ export class AppComponent implements OnInit {
         this.isDisable = config.isDisable;
       }
     });
+    this.g_script.loadGoogleMaps(environment.GOOGLE_MAP_KEY);
   }
   ngAfterViewChecked(): void {
     //Called after every check of the component's view. Applies to components only.
@@ -68,7 +71,7 @@ export class AppComponent implements OnInit {
     }, 2000);
 
     this._toast.showToaster.subscribe({
-      next: (res) => {
+      next: (res: any) => {
         const { severity, summary, detail } = res;
         this.showSuccess(severity, summary, detail);
       },

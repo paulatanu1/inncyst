@@ -12,4 +12,6 @@ export const environment = {
     domain: 'dev-inncyst.us.auth0.com',
     clientId: 'T30L4gAR1jqpRZMgDOk0CcuGQRpnlh12',
   },
+  RECAPTCHA_SITE_KEY: '6LeRui4qAAAAAHYrB524A-8wIxqLXuqGbOP1fTtn',
+  GOOGLE_MAP_KEY: 'AIzaSyAREQnPqKcssYtNlNQlnG90HqIBz5MyMM4',
 };
