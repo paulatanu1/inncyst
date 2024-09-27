@@ -13,8 +13,9 @@ export const environment = {
   ERROR_REDIRECT: true,
   WHATSAPP_NUMBER: 8918882380,
   auth: {
-    domain: 'dev-3thdyyavir2s8t4d.us.auth0.com',
-    clientId: 'HHRxHNcmKmx1Zk9sdIRx4qUNtjtSRaZR',
+    domain: 'dev-inncyst.us.auth0.com',
+    clientId: 'T30L4gAR1jqpRZMgDOk0CcuGQRpnlh12',
+    scope: 'openid profile email read:users',
   },
 };
 

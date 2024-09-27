@@ -31,6 +31,7 @@ import { InternshipProfileService } from '../service/internship-profile.service'
 import { SlideMenu } from 'primeng/slidemenu';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { AuthService } from '@auth0/auth0-angular';
+import { SocialAuthService } from 'src/app/service/social-auth.service';
 
 interface options {
   optionName: string;
@@ -95,7 +96,8 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
     private InternshipService: InternshipProfileService,
     private cdk: ChangeDetectorRef,
     private _toast: ToastServiceService,
-    private auth: AuthService
+    private auth: AuthService,
+    private socialAuth: SocialAuthService
   ) {
     //check allready login user or not
     this.profileImage = ls.get('profileImage');
@@ -161,6 +163,14 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   }
   ngOnInit(): void {
     this.closeMenu();
+    // To get user profile
+    this.socialAuth.getUserData();
+
+    // To get ID token (JWT)
+    this.socialAuth.getIdToken();
+
+    // To get access token
+    this.socialAuth.getAccessToken();
     // debugger
     // this.logoutSuccess=true;
     // this.logoutSuccess=<boolean>ls.get('logoutSuccess');
@@ -266,7 +276,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
     });
 
     //for scroll issue
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         // Scroll to the top of the page
         window.scrollTo(0, 0);
@@ -491,7 +501,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
 
   sso() {
     this.auth.loginWithRedirect({
-      connection: 'linkedin',
+      connection: 'google-oauth2',
     });
   }
 
