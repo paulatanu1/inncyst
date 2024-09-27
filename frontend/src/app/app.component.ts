@@ -11,6 +11,7 @@ import { OtpVerificationService } from './share/registration-otp/otp-verificatio
 import { ChangeDetectionStrategy } from '@angular/compiler';
 import { LocationScriptService } from './service/location-script.service';
 import { environment } from 'src/environments/environment';
+import { UserLocationService } from './service/user-location.service';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,11 @@ export class AppComponent implements OnInit {
     '/industry': { isDashboard: false, isdisable: false },
     '/registeration': { isDashboard: false, isdisable: false },
   };
-
+  country: string = '';
+  state: string = '';
+  city: string = '';
+  pinCode: string = '';
+  areaLocality: string = '';
   constructor(
     private _router: Router,
     private spinner: NgxSpinnerService,
@@ -38,7 +43,7 @@ export class AppComponent implements OnInit {
     private messageService: MessageService,
     private otpVerifivation: OtpVerificationService,
     private cdk: ChangeDetectorRef,
-    private g_script: LocationScriptService
+    private userLocation: UserLocationService
   ) {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
@@ -55,7 +60,17 @@ export class AppComponent implements OnInit {
         this.isDisable = config.isDisable;
       }
     });
-    this.g_script.loadGoogleMaps(environment.GOOGLE_MAP_KEY);
+    // this.g_script.loadGoogleMaps(environment.GOOGLE_MAP_KEY);
+    this.userLocation.getLocationDetails(environment.GOOGLE_MAP_KEY).subscribe({
+      next: (res) => {
+        console.log(res, 'ressss');
+        this.country = res.country;
+        this.state = res.state;
+        this.city = res.city;
+        this.pinCode = res.pinCode;
+        this.areaLocality = `${res.subLocality} ${res.area}`;
+      },
+    });
   }
   ngAfterViewChecked(): void {
     //Called after every check of the component's view. Applies to components only.
