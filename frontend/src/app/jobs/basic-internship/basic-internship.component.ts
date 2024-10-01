@@ -37,9 +37,12 @@ export class BasicInternshipComponent implements OnInit {
   selectedType!: string;
   typeSort: any = [];
   selectedRange: [number, number] = [5000, 30000];
-  daysAgo!:number
-  constructor(private jobService: JobsService,private _LoginEnablerService:LoginEnablerService,
-    private _toast:ToastServiceService) {}
+  daysAgo!: number;
+  constructor(
+    private jobService: JobsService,
+    private _LoginEnablerService: LoginEnablerService,
+    private _toast: ToastServiceService
+  ) {}
 
   ngOnInit(): void {
     // this.jobService.basicIntershipList().subscribe({
@@ -55,7 +58,6 @@ export class BasicInternshipComponent implements OnInit {
         routerLink: 'skills',
         command: (event: any) => {
           this.activeIndex = 0;
-          // this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
         },
       },
       {
@@ -63,7 +65,6 @@ export class BasicInternshipComponent implements OnInit {
         routerLink: 'uploadresume',
         command: (event: any) => {
           this.activeIndex = 1;
-          // this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
         },
       },
     ];
@@ -107,12 +108,10 @@ export class BasicInternshipComponent implements OnInit {
     ];
   }
   AllJbDetaails() {
-    // const url = `/job/all-jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
     const url = `/industry/industry-posts?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
 
     this.jobService.basicIntershipList(url).subscribe({
       next: (res) => {
-        
         this.AllJobDetails = [...this.AllJobDetails, ...res.data.items];
         this.totalJob = res.data.total;
         this.AllJobDetails.forEach((element: any) => {
@@ -129,7 +128,6 @@ export class BasicInternshipComponent implements OnInit {
           // Convert the difference to days
           this.daysAgo = Math.floor(timeDifference / (1000 * 3600 * 24));
           element.createdAt = this.daysAgo;
-
         });
         this.jobId = this.AllJobDetails[0]._id;
         // single job details1st for 1st job and1st time
@@ -153,7 +151,7 @@ export class BasicInternshipComponent implements OnInit {
   //reset url
   resetUrl() {
     this.type = '';
-    this.location=''
+    this.location = '';
     this.jobType = '';
     this.salaryFrom = '';
     this.salaryTo = '';
@@ -206,7 +204,6 @@ export class BasicInternshipComponent implements OnInit {
           element.companyName = element.companyName?.toUpperCase();
           element.intranshipName = element.intranshipName?.toUpperCase();
           element.salary = (element.salary * 12) / 100000;
-        
         });
       },
       error: (err) => {},
@@ -218,7 +215,7 @@ export class BasicInternshipComponent implements OnInit {
       this.AllJbDetaails();
     }
   }
-  gotoLogin(){
+  gotoLogin() {
     // this._LoginEnablerService.loginFlow.next(true)
     this._toast.showToaster.next({
       severity: 'success',

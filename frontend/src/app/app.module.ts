@@ -34,6 +34,7 @@ import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CareerComponent } from './share/product-showcase/career/career.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     AddProjectComponent,
     AchivmentComponent,
     ComingSoonComponent,
+    CareerComponent,
   ],
   imports: [
     BrowserModule,
