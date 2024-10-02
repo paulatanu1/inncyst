@@ -17,20 +17,65 @@ export class RegistrationTabComponent implements OnInit {
   constructor(private fb: FormBuilder, private dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.initForms();
+  }
+
+  initForms() {
     this.registrationForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.minLength(4)]],
+      userName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      mobile: [
-        null,
-        [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
+      mobile: [null, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: [
+        '',
+        [Validators.required, this.matchPassword('password')],
+      ],
+      agree: [false, [Validators.requiredTrue]],
+    });
+
+    this.registrationFormCollege = this.fb.group({
+      collegeName: ['', [Validators.required]],
+      collegeEmail: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: [
+        '',
+        [Validators.required, this.matchPassword('password')],
+      ],
+      agree: [false, [Validators.requiredTrue]],
+    });
+
+    this.registrationFormCompany = this.fb.group({
+      organizationName: ['', [Validators.required]],
+      organizationEmail: ['', [Validators.required, Validators.email]],
+      organizationPhone: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]{10}$')],
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-      options: ['student', [Validators.required]],
-      agree: [false, [Validators.required, Validators.requiredTrue]],
+      confirmPassword: [
+        '',
+        [Validators.required, this.matchPassword('password')],
+      ],
+      agree: [false, [Validators.requiredTrue]],
+    });
+
+    this.registrationFormMentor = this.fb.group({
+      mentorName: ['', [Validators.required]],
+      mentorEmail: ['', [Validators.required, Validators.email]],
+      mentorPhone: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]{10}$')],
+      ],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: [
+        '',
+        [Validators.required, this.matchPassword('password')],
+      ],
+      agree: [false, [Validators.requiredTrue]],
     });
   }
 
+  //term and condition open and close logic
   openDialog(): void {
     const dialogRef = this.dialog.open(RegistrationAgreeDialogComponent, {
       width: '600px',
@@ -45,5 +90,35 @@ export class RegistrationTabComponent implements OnInit {
         this.registrationForm.patchValue({ agree: result });
       }
     });
+  }
+
+  matchPassword(passwordKey: string) {
+    return (control: any) => {
+      if (control.parent) {
+        const password = control.parent.get(passwordKey);
+        return password && control.value === password.value
+          ? null
+          : { mismatch: true };
+      }
+      return null;
+    };
+  }
+
+  isFieldInvalid(form: FormGroup, field: string): boolean {
+    const control = form.get(field);
+    return !!control?.invalid && (control?.dirty || control?.touched);
+  }
+
+  onSubmit(form: FormGroup) {
+    if (form.invalid) {
+      // Mark all fields as touched to show validation errors
+      form.markAllAsTouched();
+      console.log('Form is invalid');
+      return;
+    }
+
+    // If form is valid, process the form data
+    const formData = form.value;
+    console.log('Form Submitted Successfully:', formData);
   }
 }

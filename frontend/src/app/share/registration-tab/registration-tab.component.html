@@ -1,7 +1,10 @@
 <mat-tab-group mat-align-tabs="center" dynamicHeight>
   <mat-tab label="Candiate">
     <div class="container">
-      <form action="" [formGroup]="registrationForm">
+      <form
+        [formGroup]="registrationForm"
+        (ngSubmit)="onSubmit(registrationForm)"
+      >
         <div class="row">
           <div class="col-lg-12 col-md-12 col-12">
             <span class="p-float-label">
@@ -14,12 +17,24 @@
               />
               <label for="float-input">Enter your name</label>
             </span>
+            <div
+              *ngIf="isFieldInvalid(registrationForm, 'userName')"
+              class="error-message"
+            >
+              Name is required.
+            </div>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <span class="p-float-label">
               <input type="email" pInputText formControlName="email" />
               <label for="float-input">Enter your email</label>
             </span>
+            <div
+              *ngIf="isFieldInvalid(registrationForm, 'email')"
+              class="error-message"
+            >
+              Valid email is required.
+            </div>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <span class="p-float-label">
@@ -27,9 +42,16 @@
                 formControlName="mobile"
                 inputId="withoutgrouping"
                 [useGrouping]="false"
+                [maxlength]="10"
               ></p-inputNumber>
               <label for="withoutgrouping">Enter your mobile number</label>
             </span>
+            <div
+              *ngIf="isFieldInvalid(registrationForm, 'mobile')"
+              class="error-message"
+            >
+              A valid mobile number is required.
+            </div>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <span class="p-float-label">
@@ -40,6 +62,12 @@
               ></p-password>
               <label for="float-input">Enter your password</label>
             </span>
+            <div
+              *ngIf="isFieldInvalid(registrationForm, 'password')"
+              class="error-message"
+            >
+              Password is required (min 6 characters).
+            </div>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <span class="p-float-label">
@@ -50,6 +78,12 @@
               ></p-password>
               <label for="float-input">Confirm your password</label>
             </span>
+            <div
+              *ngIf="isFieldInvalid(registrationForm, 'confirmPassword')"
+              class="error-message"
+            >
+              Please confirm your password.
+            </div>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <span class="checkbox-sec" (click)="openDialog()">
@@ -63,10 +97,20 @@
                 <a href="#">Terms of Service</a>
               </p>
             </span>
+            <div
+              *ngIf="isFieldInvalid(registrationForm, 'agree')"
+              class="error-message"
+            >
+              You must agree to the terms and conditions.
+            </div>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <div class="signup-btn">
-              <button type="button" class="button-section w-100 disabled">
+              <button
+                [ngClass]="!registrationForm.valid ? 'disabled' : ''"
+                type="button"
+                class="button-section w-100"
+              >
                 <span>Sign up</span>
                 <i class="pi pi-arrow-right"></i>
               </button>
@@ -77,31 +121,73 @@
     </div>
   </mat-tab>
   <mat-tab label="College">
-    <form action="" [formGroup]="registrationFormCollege">
+    <form
+      action=""
+      [formGroup]="registrationFormCollege"
+      (ngSubmit)="onSubmit(registrationFormCollege)"
+    >
       <div class="row">
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <input id="float-input" type="text" pInputText class="" />
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+              formControlName="collegeName"
+            />
             <label for="float-input">Enter college name</label>
+            <div
+              *ngIf="isFieldInvalid(registrationForm, 'collegeName')"
+              class="error-message"
+            >
+              College Name is required.
+            </div>
           </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <input type="email" pInputText />
+            <input type="email" pInputText formControlName="collegeEmail" />
             <label for="float-input">Enter college email</label>
+            <div
+              *ngIf="isFieldInvalid(registrationForm, 'collegeEmail')"
+              class="error-message"
+            >
+              Valid email is required.
+            </div>
           </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <p-password [toggleMask]="true" [feedback]="false"></p-password>
+            <p-password
+              [toggleMask]="true"
+              [feedback]="false"
+              formControlName="password"
+            ></p-password>
             <label for="float-input">Enter your password</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'password')"
+            class="error-message"
+          >
+            Password is required (min 6 characters).
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <p-password [feedback]="false" [toggleMask]="true"></p-password>
+            <p-password
+              [feedback]="false"
+              [toggleMask]="true"
+              formControlName="confirmPassword"
+            ></p-password>
             <label for="float-input">Confirm your password</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'confirmPassword')"
+            class="error-message"
+          >
+            Please confirm your password.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="checkbox-sec">
@@ -112,6 +198,12 @@
             />
             <p>I have read and agree to the Terms of Service</p>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'agree')"
+            class="error-message"
+          >
+            You must agree to the terms and conditions.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <div class="signup-btn">
@@ -125,37 +217,93 @@
     </form>
   </mat-tab>
   <mat-tab label="Company">
-    <form action="" [formGroup]="registrationFormCompany">
+    <form
+      action=""
+      [formGroup]="registrationFormCompany"
+      (ngSubmit)="onSubmit(registrationFormCompany)"
+    >
       <div class="row">
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <input id="float-input" type="text" pInputText class="" />
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+              formControlName="organizationName"
+            />
             <label for="float-input">Enter organization name</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'organizationName')"
+            class="error-message"
+          >
+            Organization Name is required.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <input type="email" pInputText />
+            <input
+              type="email"
+              pInputText
+              formControlName="organizationEmail"
+            />
             <label for="float-input">Enter organization email</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'organizationEmail')"
+            class="error-message"
+          >
+            Valid email is required.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <input type="number" pInputText />
+            <input
+              type="number"
+              pInputText
+              formControlName="organizationPhone"
+            />
             <label for="float-input">Enter organization phone</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'organizationPhone')"
+            class="error-message"
+          >
+            A valid mobile number is required.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <p-password [toggleMask]="true" [feedback]="false"></p-password>
+            <p-password
+              [toggleMask]="true"
+              [feedback]="false"
+              formControlName="password"
+            ></p-password>
             <label for="float-input">Enter your password</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'password')"
+            class="error-message"
+          >
+            Password is required (min 6 characters).
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <p-password [feedback]="false" [toggleMask]="true"></p-password>
+            <p-password
+              [feedback]="false"
+              [toggleMask]="true"
+              formControlName="confirmPassword"
+            ></p-password>
             <label for="float-input">Confirm your password</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'confirmPassword')"
+            class="error-message"
+          >
+            Please confirm your password.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="checkbox-sec">
@@ -166,6 +314,12 @@
             />
             <p>I have read and agree to the Terms of Service</p>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'agree')"
+            class="error-message"
+          >
+            You must agree to the terms and conditions.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <div class="signup-btn">
@@ -179,37 +333,85 @@
     </form>
   </mat-tab>
   <mat-tab label="Mentor">
-    <form action="" [formGroup]="registrationFormMentor">
+    <form
+      action=""
+      [formGroup]="registrationFormMentor"
+      (ngSubmit)="onSubmit(registrationFormMentor)"
+    >
       <div class="row">
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <input id="float-input" type="text" pInputText class="" />
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+              formControlName="mentorName"
+            />
             <label for="float-input">Enter mentor name</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'mentorName')"
+            class="error-message"
+          >
+            Name is required.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <input type="email" pInputText />
+            <input type="email" pInputText formControlName="mentorEmail" />
             <label for="float-input">Enter mentor email</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'mentorEmail')"
+            class="error-message"
+          >
+            Valid email is required.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <input type="number" pInputText />
+            <input type="number" pInputText formControlName="mentorPhone" />
             <label for="float-input">Enter mentor phone</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'mentorPhone')"
+            class="error-message"
+          >
+            A valid mobile number is required.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <p-password [toggleMask]="true" [feedback]="false"></p-password>
+            <p-password
+              [toggleMask]="true"
+              [feedback]="false"
+              formControlName="password"
+            ></p-password>
             <label for="float-input">Enter your password</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'password')"
+            class="error-message"
+          >
+            Password is required (min 6 characters).
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
-            <p-password [feedback]="false" [toggleMask]="true"></p-password>
+            <p-password
+              [feedback]="false"
+              [toggleMask]="true"
+              formControlName="confirmPassword"
+            ></p-password>
             <label for="float-input">Confirm your password</label>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'confirmPassword')"
+            class="error-message"
+          >
+            Please confirm your password.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="checkbox-sec">
@@ -220,6 +422,12 @@
             />
             <p>I have read and agree to the Terms of Service</p>
           </span>
+          <div
+            *ngIf="isFieldInvalid(registrationForm, 'agree')"
+            class="error-message"
+          >
+            You must agree to the terms and conditions.
+          </div>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <div class="signup-btn">
