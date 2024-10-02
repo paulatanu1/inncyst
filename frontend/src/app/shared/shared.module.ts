@@ -52,6 +52,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LoaderComponent } from './loader/loader.component';
 import { RegistrationTabComponent } from '../share/registration-tab/registration-tab.component';
+import { RegistrationNavComponent } from '../share/registration-nav/registration-nav.component';
+import { RegistrationFooterComponent } from '../share/registration-footer/registration-footer.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegistrationAgreeDialogComponent } from '../share/registration-agree-dialog/registration-agree-dialog.component';
 
@@ -77,6 +79,8 @@ import { RegistrationAgreeDialogComponent } from '../share/registration-agree-di
     RegistrationPageComponent,
     LoaderComponent,
     RegistrationTabComponent,
+    RegistrationNavComponent,
+    RegistrationFooterComponent,
     RegistrationAgreeDialogComponent,
   ],
   imports: [
@@ -156,6 +160,8 @@ import { RegistrationAgreeDialogComponent } from '../share/registration-agree-di
     OverlayPanelModule,
     LoaderComponent,
     RegistrationTabComponent,
+    RegistrationNavComponent,
+    RegistrationFooterComponent,
     RegistrationAgreeDialogComponent,
   ],
   providers: [DatePipe],

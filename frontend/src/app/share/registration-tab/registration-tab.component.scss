@@ -1,3 +1,4 @@
+div,
 label,
 p,
 .p-inputnumber,
@@ -85,24 +86,44 @@ form {
             margin: 15px 0;
         }
 
-        .p-float-label>label {
-            font-weight: 300;
-            font-size: 0.87rem;
-        }
+        
 
-        .p-float-label input:focus~label,
-        .p-float-label input.p-filled~label,
-        .p-float-label .p-inputwrapper-focus~label,
-        .p-float-label .p-inputwrapper-filled~label {
-            font-size: 0.8rem;
-            font-weight: 600 !important;
-            left: 14px;
-            top: 0;
-            background: #fff;
-            padding: 0 5px;
-            color: #270345;
-        }
+        .p-float-label {
 
+            position: static;
+
+            label {
+                font-weight: 300;
+                font-size: 0.87rem;
+                left: 2rem;
+            }
+    
+            input:focus~label,
+            input.p-filled~label,
+            .p-inputwrapper-focus~label,
+            .p-inputwrapper-filled~label {
+                font-size: 0.8rem;
+                font-weight: 600 !important;
+                left: 25px;
+                top: 15px;
+                background: #fff;
+                padding: 0 5px;
+                color: #270345;
+            }
+
+            .error-message {
+                position: absolute;
+                top: 50px;
+                right: 15px;
+                font-size: 0.75rem;
+                color: red;
+                margin: 8px 0;
+            }
+    
+
+        }
+        
+      
     }
 
     .checkbox-sec {

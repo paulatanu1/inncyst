@@ -16,25 +16,25 @@
                 formControlName="userName"
               />
               <label for="float-input">Enter your name</label>
-            </span>
-            <div
+               <div
               *ngIf="isFieldInvalid(registrationForm, 'userName')"
               class="error-message"
             >
               Name is required.
             </div>
+            </span>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <span class="p-float-label">
               <input type="email" pInputText formControlName="email" />
               <label for="float-input">Enter your email</label>
-            </span>
-            <div
+              <div
               *ngIf="isFieldInvalid(registrationForm, 'email')"
               class="error-message"
             >
               Valid email is required.
             </div>
+            </span>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <span class="p-float-label">
@@ -45,13 +45,13 @@
                 [maxlength]="10"
               ></p-inputNumber>
               <label for="withoutgrouping">Enter your mobile number</label>
-            </span>
-            <div
+              <div
               *ngIf="isFieldInvalid(registrationForm, 'mobile')"
               class="error-message"
             >
               A valid mobile number is required.
             </div>
+            </span>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <span class="p-float-label">
@@ -61,13 +61,13 @@
                 [feedback]="false"
               ></p-password>
               <label for="float-input">Enter your password</label>
-            </span>
-            <div
+              <div
               *ngIf="isFieldInvalid(registrationForm, 'password')"
               class="error-message"
             >
               Password is required (min 6 characters).
             </div>
+            </span>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <span class="p-float-label">
@@ -77,13 +77,13 @@
                 [toggleMask]="true"
               ></p-password>
               <label for="float-input">Confirm your password</label>
-            </span>
-            <div
+              <div
               *ngIf="isFieldInvalid(registrationForm, 'confirmPassword')"
               class="error-message"
             >
               Please confirm your password.
             </div>
+            </span>
           </div>
           <div class="col-lg-12 col-md-12 col-12">
             <span class="checkbox-sec" (click)="openDialog(registrationForm)">
