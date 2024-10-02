@@ -31,24 +31,13 @@ import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
 import { AddProjectComponent } from './share/add-project/add-project.component';
 import { AchivmentComponent } from './share/achivment/achivment.component';
 import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { AuthModule } from '@auth0/auth0-angular';
-import { environment } from 'src/environments/environment';
-import { MatTabsModule } from '@angular/material/tabs';
-import { CareerComponent } from './share/product-showcase/career/career.component';
-=======
-import {MatTabsModule} from '@angular/material/tabs';
-
->>>>>>> f2638c3 (Working on registration form UI)
-=======
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
->>>>>>> e66867a (Modification of registration and login page UI in progress)
+import { CareerComponent } from './share/product-showcase/career/career.component';
 
 @NgModule({
   declarations: [
@@ -65,12 +54,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AddProjectComponent,
     AchivmentComponent,
     ComingSoonComponent,
-<<<<<<< HEAD
     CareerComponent,
   ],
-=======
-],
->>>>>>> e66867a (Modification of registration and login page UI in progress)
   imports: [
     BrowserModule,
     NgOtpInputModule,
@@ -88,19 +73,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSliderModule,
     FieldsetModule,
     TabViewModule,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     MatTabsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,
->>>>>>> e66867a (Modification of registration and login page UI in progress)
     AuthModule.forRoot(environment.auth),
     MatTabsModule,
-=======
-    MatTabsModule
->>>>>>> f2638c3 (Working on registration form UI)
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [
