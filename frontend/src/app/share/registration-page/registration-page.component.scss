@@ -9,10 +9,13 @@ button {
 .sup-signup-wrapper {
   height: 100vh;
   display: flex;
+  justify-self: center;
+  align-items: center;
+  overflow: hidden;
   // background-color: #000;
 
   .row {
-    align-items: center;
+    align-items: flex-start;
 
     .left-section {
       padding: 2rem;
@@ -62,7 +65,9 @@ button {
     }
 
     .right-section {
-      padding: 2rem 0;
+      padding: 0;
+      transform: scale(0.9);
+      height: 100vh;
 
       .social-signup-btns {
         display: flex;
@@ -108,13 +113,19 @@ button {
         }
       }
     }
-
   }
-
-
-
-
 }
+
+
+// @media only screen and (min-width:768px) and (max-width:1023px) {
+//   .sup-signup-wrapper {
+//     .row {
+//       .right-section {
+//         transform: scale(0.8);
+//       }
+//     }
+//   }
+// }
 
 
 ::ng-deep .p-inputtext {
@@ -390,7 +401,8 @@ button {
   padding: 0 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  height: 100%;
 
   h3 {
     text-align: center;
@@ -418,7 +430,8 @@ button {
     align-items: center;
     justify-content: center;
     gap: 15px;
-    margin-top: 4rem;
+    margin-top: 5rem;
+    width: 80%;
 
     .social-icon-sign {
       height: 40px;
@@ -427,8 +440,10 @@ button {
       padding: 5px 20px;
       font-size: 0.8rem;
       font-weight: 600;
+      width: 100%;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 1rem;
       cursor: pointer;
     }
