@@ -41,6 +41,7 @@ export class RegistrationTabComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result !== undefined) {
+        console.log(result);
         this.registrationForm.patchValue({ agree: result });
       }
     });
