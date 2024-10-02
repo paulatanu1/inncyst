@@ -52,6 +52,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LoaderComponent } from './loader/loader.component';
 import { RegistrationTabComponent } from '../share/registration-tab/registration-tab.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RegistrationAgreeDialogComponent } from '../share/registration-agree-dialog/registration-agree-dialog.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { RegistrationTabComponent } from '../share/registration-tab/registration
     ProgressBarComponent,
     RegistrationPageComponent,
     LoaderComponent,
-    RegistrationTabComponent
+    RegistrationTabComponent,
+    RegistrationAgreeDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -109,7 +112,8 @@ import { RegistrationTabComponent } from '../share/registration-tab/registration
     OverlayPanelModule,
     MatIconModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule,
   ],
   exports: [
     HeaderComponent,
@@ -151,7 +155,8 @@ import { RegistrationTabComponent } from '../share/registration-tab/registration
     ImageCropperModule,
     OverlayPanelModule,
     LoaderComponent,
-    RegistrationTabComponent
+    RegistrationTabComponent,
+    RegistrationAgreeDialogComponent,
   ],
   providers: [DatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
