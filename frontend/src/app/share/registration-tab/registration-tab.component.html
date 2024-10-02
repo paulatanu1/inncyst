@@ -159,6 +159,18 @@
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
+            <input type="numner" pInputText formControlName="collegePhone" />
+            <label for="float-input">Enter college phone</label>
+            <!-- <div
+              *ngIf="isFieldInvalid(registrationFormCollege, 'collegeEmail')"
+              class="error-message"
+            >
+              Valid email is required.
+            </div> -->
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
             <p-password
               [toggleMask]="true"
               [feedback]="false"
