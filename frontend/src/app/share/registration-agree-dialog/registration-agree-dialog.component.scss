@@ -1,0 +1,116 @@
+ ::ng-deep {
+
+    .mat-dialog-container {
+        overflow: hidden;
+        border-radius: 25px;
+        min-height: 50vh;
+
+        .checkbox-sec {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+
+            p {
+              margin-bottom: 0;
+              font-size: 0.8rem;
+              font-weight: 600;
+            }
+        }
+
+        .mat-dialog-actions {
+                justify-content: flex-end;
+                gap: 10px;
+
+                .button-section {
+                    background-color: #003060;
+                    border: 0;
+                    color: #ffffff;
+                    border-radius: 25px;
+                    padding: 10px 25px;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0;
+                    transition: padding-left 0.3s ease-in-out, justify-content 0.3s ease-in-out;
+                    width: auto;
+                    position: relative;
+                    overflow: hidden;
+                    margin: 0.5rem 0;
+              
+                    span {
+                      transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
+                      margin-right: 0;
+                    }
+              
+                    i {
+                      font-size: 0.9rem;
+                      opacity: 0;
+                      transform: translateX(-5px);
+                      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+                      position: absolute;
+                      right: 10rem;
+                    }
+              
+                    &:hover {
+                      justify-content: center;
+                      padding-left: 0px;
+              
+                      i {
+                        opacity: 1;
+                        transform: translateX(-5px);
+                      }
+                    }
+                  }
+        }
+
+        // .mat-dialog-actions {
+        //     justify-content: flex-end;
+        //     gap: 10px;
+
+        //     // .button-section {
+        //     //     background-color: #522d80;
+        //     //     border: 0;
+        //     //     color: #ffffff;
+        //     //     border-radius: 25px;
+        //     //     padding: 10px 25px;
+        //     //     font-size: 0.8rem;
+        //     //     font-weight: 600;
+        //     //     display: flex;
+        //     //     align-items: center;
+        //     //     justify-content: center;
+        //     //     gap: 0;
+        //     //     transition: padding-left 0.3s ease-in-out, justify-content 0.3s ease-in-out;
+        //     //     width: 150px;
+        //     //     position: relative;
+        //     //     overflow: hidden;
+        //     //     margin: 2rem 0;
+          
+        //     //     span {
+        //     //       transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
+        //     //       margin-right: 0;
+        //     //     }
+          
+        //     //     i {
+        //     //       font-size: 0.9rem;
+        //     //       opacity: 0;
+        //     //       transform: translateX(-5px);
+        //     //       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        //     //       position: absolute;
+        //     //       right: 10rem;
+        //     //     }
+          
+        //     //     &:hover {
+        //     //       justify-content: center;
+        //     //       padding-left: 0px;
+          
+        //     //       i {
+        //     //         opacity: 1;
+        //     //         transform: translateX(-5px);
+        //     //       }
+        //     //     }
+        //     //   }
+        // }
+    }
+ }

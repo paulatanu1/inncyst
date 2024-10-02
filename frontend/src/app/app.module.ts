@@ -31,9 +31,11 @@ import { AddProjectComponent } from './share/add-project/add-project.component';
 import { AchivmentComponent } from './share/achivment/achivment.component';
 import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
 import { MatTabsModule } from '@angular/material/tabs';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,7 @@ import { environment } from 'src/environments/environment';
     AddProjectComponent,
     AchivmentComponent,
     ComingSoonComponent,
-  ],
+],
   imports: [
     BrowserModule,
     NgOtpInputModule,
@@ -69,6 +71,9 @@ import { environment } from 'src/environments/environment';
     FieldsetModule,
     TabViewModule,
     MatTabsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule,
     AuthModule.forRoot(environment.auth),
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],

@@ -23,11 +23,24 @@
 
 
           <div class="form-wrapper">
-            <div class="badge">
-              Create your account 
-            </div>
-            <h3>Sign Up As</h3>
-            <p>Enter your data to connect with us</p>
+            <h3>SIGN UP <span>as</span></h3>
+            <!-- <p>Enter your data to connect with us</p> -->
+
+            <div class="social-signup">
+              <div class="social-icon-sign google-sign">
+                <img src="../../../assets/icon/google.png" width="30px" height="30px" alt="google-signup">
+                Sign up with Google 
+              </div>
+              <div class="social-icon-sign linkdin-sign">
+                <img src="../../../assets/icon/linkedin.png" width="25px" height="25px" alt="linkedin-signup">
+                Sign up with Linkdin 
+              </div>
+          </div>
+
+          <p class="divider">
+            <span>or</span>
+          </p>
+
             <app-registration-tab></app-registration-tab>
 
             <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
