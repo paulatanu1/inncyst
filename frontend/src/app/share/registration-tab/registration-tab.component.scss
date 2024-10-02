@@ -104,7 +104,6 @@ form {
             color: #270345;
         }
 
-    
     }
 
     .checkbox-sec {
@@ -137,34 +136,34 @@ form {
         position: relative;
         overflow: hidden;
         margin: 2rem 0;
-  
+
         span {
-          transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
-          margin-right: 0;
+            transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
+            margin-right: 0;
         }
-  
+
         i {
-          font-size: 0.9rem;
-          opacity: 0;
-          transform: translateX(-5px);
-          transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-          position: absolute;
-          right: 10rem;
-        }
-  
-        &:hover {
-          justify-content: center;
-          padding-left: 0px;
-  
-          i {
-            opacity: 1;
+            font-size: 0.9rem;
+            opacity: 0;
             transform: translateX(-5px);
-          }
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            position: absolute;
+            right: 10rem;
         }
-      }
+
+        &:hover {
+            justify-content: center;
+            padding-left: 0px;
+
+            i {
+                opacity: 1;
+                transform: translateX(-5px);
+            }
+        }
+    }
 
 
-      .button-section.disabled {
+    .button-section.disabled {
         background-color: #bcbcbc;
         border: 0;
         color: #ffffff;
@@ -182,6 +181,26 @@ form {
         overflow: hidden;
         margin: 2rem 0;
         pointer-events: none;
-}
+    }
+
+    .button-section.disabled {
+        background-color: #bcbcbc;
+        border: 0;
+        color: #ffffff;
+        border-radius: 25px;
+        padding: 10px 25px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        transition: padding-left 0.3s ease-in-out, justify-content 0.3s ease-in-out;
+        width: 150px;
+        position: relative;
+        overflow: hidden;
+        margin: 2rem 0;
+        pointer-events: none;
+    }
 
 }

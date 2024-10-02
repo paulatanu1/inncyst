@@ -55,7 +55,6 @@ import { RegistrationTabComponent } from '../share/registration-tab/registration
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegistrationAgreeDialogComponent } from '../share/registration-agree-dialog/registration-agree-dialog.component';
 
-
 @NgModule({
   declarations: [
     SharedComponent,
@@ -78,7 +77,7 @@ import { RegistrationAgreeDialogComponent } from '../share/registration-agree-di
     RegistrationPageComponent,
     LoaderComponent,
     RegistrationTabComponent,
-    RegistrationAgreeDialogComponent
+    RegistrationAgreeDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -157,7 +156,7 @@ import { RegistrationAgreeDialogComponent } from '../share/registration-agree-di
     OverlayPanelModule,
     LoaderComponent,
     RegistrationTabComponent,
-    RegistrationAgreeDialogComponent
+    RegistrationAgreeDialogComponent,
   ],
   providers: [DatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

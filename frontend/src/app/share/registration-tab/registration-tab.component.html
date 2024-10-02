@@ -1,200 +1,235 @@
 <mat-tab-group mat-align-tabs="center" dynamicHeight>
-    <mat-tab label="Candiate">
-        <div class="container">
-            <form action="" [formGroup]="registrationForm">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <span class="p-float-label">
-                            <input id="float-input" type="text" pInputText class="" formControlName="userName" />
-                            <label for="float-input">Enter your name</label>
-                        </span>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <span class="p-float-label">
-                            <input type="email" pInputText formControlName="email" />
-                            <label for="float-input">Enter your email</label>
-                        </span>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <span class="p-float-label">
-                            <p-inputNumber formControlName="mobile" inputId="withoutgrouping"
-                                [useGrouping]="false"></p-inputNumber>
-                            <label for="withoutgrouping">Enter your mobile number</label>
-                        </span>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <span class="p-float-label">
-                            <p-password formControlName="password" [toggleMask]="true" [feedback]="false"></p-password>
-                            <label for="float-input">Enter your password</label>
-                        </span>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <span class="p-float-label">
-                            <p-password formControlName="confirmPassword" [feedback]="false"
-                                [toggleMask]="true"></p-password>
-                            <label for="float-input">Confirm your password</label>
-                        </span>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <span class="checkbox-sec">
-                            <input type="checkbox" formControlName="agree" (click)="openDialog()" />
-                            <p>I have read and agree to the <a href="#">Terms of Service</a></p>
-                        </span>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <div class="signup-btn">
-                            <button type="button" class="button-section w-100 disabled">
-                                <span>Sign up</span>
-                                <i class="pi pi-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+  <mat-tab label="Candiate">
+    <div class="container">
+      <form action="" [formGroup]="registrationForm">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="p-float-label">
+              <input
+                id="float-input"
+                type="text"
+                pInputText
+                class=""
+                formControlName="userName"
+              />
+              <label for="float-input">Enter your name</label>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="p-float-label">
+              <input type="email" pInputText formControlName="email" />
+              <label for="float-input">Enter your email</label>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="p-float-label">
+              <p-inputNumber
+                formControlName="mobile"
+                inputId="withoutgrouping"
+                [useGrouping]="false"
+              ></p-inputNumber>
+              <label for="withoutgrouping">Enter your mobile number</label>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="p-float-label">
+              <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+              ></p-password>
+              <label for="float-input">Enter your password</label>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="p-float-label">
+              <p-password
+                formControlName="confirmPassword"
+                [feedback]="false"
+                [toggleMask]="true"
+              ></p-password>
+              <label for="float-input">Confirm your password</label>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="checkbox-sec">
+              <input
+                type="checkbox"
+                formControlName="agree"
+                (click)="openDialog()"
+              />
+              <p>
+                I have read and agree to the
+                <a href="#">Terms of Service</a>
+              </p>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <div class="signup-btn">
+              <button type="button" class="button-section w-100 disabled">
+                <span>Sign up</span>
+                <i class="pi pi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
         </div>
-    </mat-tab>
-    <mat-tab label="College">
-        <form action="" [formGroup]="registrationFormCollege">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <input id="float-input" type="text" pInputText class="" />
-                        <label for="float-input">Enter college name</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <input type="email" pInputText />
-                        <label for="float-input">Enter college email</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <p-password [toggleMask]="true" [feedback]="false"></p-password>
-                        <label for="float-input">Enter your password</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <p-password [feedback]="false" [toggleMask]="true"></p-password>
-                        <label for="float-input">Confirm your password</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="checkbox-sec">
-                        <input type="checkbox" formControlName="agree" (click)="openDialog()" />
-                        <p>I have read and agree to the Terms of Service</p>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <div class="signup-btn">
-                        <button type="button" class="button-section w-100 disabled">
-                            <span>Sign up</span>
-                            <i class="pi pi-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </mat-tab>
-    <mat-tab label="Company">
-        <form action="" [formGroup]="registrationFormCompany">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <input id="float-input" type="text" pInputText class="" />
-                        <label for="float-input">Enter organization name</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <input type="email" pInputText />
-                        <label for="float-input">Enter organization email</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <input type="number" pInputText />
-                        <label for="float-input">Enter organization phone</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <p-password [toggleMask]="true" [feedback]="false"></p-password>
-                        <label for="float-input">Enter your password</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <p-password [feedback]="false" [toggleMask]="true"></p-password>
-                        <label for="float-input">Confirm your password</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="checkbox-sec">
-                        <input type="checkbox" formControlName="agree" (click)="openDialog()" />
-                        <p>I have read and agree to the Terms of Service</p>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <div class="signup-btn">
-                        <button type="button" class="button-section w-100 disabled">
-                            <span>Sign up</span>
-                            <i class="pi pi-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </mat-tab>
-    <mat-tab label="Mentor">
-        <form action="" [formGroup]="registrationFormMentor">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <input id="float-input" type="text" pInputText class="" />
-                        <label for="float-input">Enter mentor name</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <input type="email" pInputText />
-                        <label for="float-input">Enter mentor email</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <input type="number" pInputText />
-                        <label for="float-input">Enter mentor phone</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <p-password [toggleMask]="true" [feedback]="false"></p-password>
-                        <label for="float-input">Enter your password</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="p-float-label">
-                        <p-password [feedback]="false" [toggleMask]="true"></p-password>
-                        <label for="float-input">Confirm your password</label>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <span class="checkbox-sec">
-                        <input type="checkbox" formControlName="agree" (click)="openDialog()" />
-                        <p>I have read and agree to the Terms of Service</p>
-                    </span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-12">
-                    <div class="signup-btn">
-                        <button type="button" class="button-section w-100 disabled">
-                            <span>Sign up</span>
-                            <i class="pi pi-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </mat-tab>
+      </form>
+    </div>
+  </mat-tab>
+  <mat-tab label="College">
+    <form action="" [formGroup]="registrationFormCollege">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input id="float-input" type="text" pInputText class="" />
+            <label for="float-input">Enter college name</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input type="email" pInputText />
+            <label for="float-input">Enter college email</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password [toggleMask]="true" [feedback]="false"></p-password>
+            <label for="float-input">Enter your password</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password [feedback]="false" [toggleMask]="true"></p-password>
+            <label for="float-input">Confirm your password</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="checkbox-sec">
+            <input
+              type="checkbox"
+              formControlName="agree"
+              (click)="openDialog()"
+            />
+            <p>I have read and agree to the Terms of Service</p>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <div class="signup-btn">
+            <button type="button" class="button-section w-100 disabled">
+              <span>Sign up</span>
+              <i class="pi pi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab label="Company">
+    <form action="" [formGroup]="registrationFormCompany">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input id="float-input" type="text" pInputText class="" />
+            <label for="float-input">Enter organization name</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input type="email" pInputText />
+            <label for="float-input">Enter organization email</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input type="number" pInputText />
+            <label for="float-input">Enter organization phone</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password [toggleMask]="true" [feedback]="false"></p-password>
+            <label for="float-input">Enter your password</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password [feedback]="false" [toggleMask]="true"></p-password>
+            <label for="float-input">Confirm your password</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="checkbox-sec">
+            <input
+              type="checkbox"
+              formControlName="agree"
+              (click)="openDialog()"
+            />
+            <p>I have read and agree to the Terms of Service</p>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <div class="signup-btn">
+            <button type="button" class="button-section w-100 disabled">
+              <span>Sign up</span>
+              <i class="pi pi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab label="Mentor">
+    <form action="" [formGroup]="registrationFormMentor">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input id="float-input" type="text" pInputText class="" />
+            <label for="float-input">Enter mentor name</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input type="email" pInputText />
+            <label for="float-input">Enter mentor email</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input type="number" pInputText />
+            <label for="float-input">Enter mentor phone</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password [toggleMask]="true" [feedback]="false"></p-password>
+            <label for="float-input">Enter your password</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password [feedback]="false" [toggleMask]="true"></p-password>
+            <label for="float-input">Confirm your password</label>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="checkbox-sec">
+            <input
+              type="checkbox"
+              formControlName="agree"
+              (click)="openDialog()"
+            />
+            <p>I have read and agree to the Terms of Service</p>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <div class="signup-btn">
+            <button type="button" class="button-section w-100 disabled">
+              <span>Sign up</span>
+              <i class="pi pi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-tab>
 </mat-tab-group>
