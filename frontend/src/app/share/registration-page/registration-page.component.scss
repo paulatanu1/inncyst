@@ -12,7 +12,7 @@ button {
   // background-color: #000;
 
   .row {
-    align-items: center;
+    align-items: flex-start;
 
     .left-section {
       padding: 2rem;
@@ -62,7 +62,8 @@ button {
     }
 
     .right-section {
-      padding: 2rem 0;
+      padding: 0;
+      transform: scale(0.9);
 
       .social-signup-btns {
         display: flex;
@@ -108,13 +109,19 @@ button {
         }
       }
     }
-
   }
-
-
-
-
 }
+
+
+// @media only screen and (min-width:768px) and (max-width:1023px) {
+//   .sup-signup-wrapper {
+//     .row {
+//       .right-section {
+//         transform: scale(0.8);
+//       }
+//     }
+//   }
+// }
 
 
 ::ng-deep .p-inputtext {
