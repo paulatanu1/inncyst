@@ -32,6 +32,7 @@ import { AddProjectComponent } from './share/add-project/add-project.component';
 import { AchivmentComponent } from './share/achivment/achivment.component';
 import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -40,6 +41,14 @@ import { CareerComponent } from './share/product-showcase/career/career.componen
 import {MatTabsModule} from '@angular/material/tabs';
 
 >>>>>>> f2638c3 (Working on registration form UI)
+=======
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment } from 'src/environments/environment';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+>>>>>>> e66867a (Modification of registration and login page UI in progress)
 
 @NgModule({
   declarations: [
@@ -56,8 +65,12 @@ import {MatTabsModule} from '@angular/material/tabs';
     AddProjectComponent,
     AchivmentComponent,
     ComingSoonComponent,
+<<<<<<< HEAD
     CareerComponent,
   ],
+=======
+],
+>>>>>>> e66867a (Modification of registration and login page UI in progress)
   imports: [
     BrowserModule,
     NgOtpInputModule,
@@ -76,6 +89,13 @@ import {MatTabsModule} from '@angular/material/tabs';
     FieldsetModule,
     TabViewModule,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    MatTabsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule,
+>>>>>>> e66867a (Modification of registration and login page UI in progress)
     AuthModule.forRoot(environment.auth),
     MatTabsModule,
 =======
