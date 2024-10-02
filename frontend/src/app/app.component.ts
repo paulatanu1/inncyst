@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     '/dashboard': { isDashboard: false, isdisable: false },
     '/industry/': { isDashboard: false, isdisable: false },
     '/industry': { isDashboard: false, isdisable: false },
-    '/registeration': { isDashboard: false, isdisable: false },
+    '/registration': { isDashboard: false, isdisable: false },
   };
   country: string = '';
   state: string = '';

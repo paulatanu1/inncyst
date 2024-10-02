@@ -302,7 +302,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
           if (ls.get('login_token')) {
             this.router.navigateByUrl('/jobs/posts');
           } else if (!ls.get('login_token')) {
-            this.router.navigateByUrl('/registeration');
+            this.router.navigateByUrl('/registration');
           }
         },
       },
@@ -343,7 +343,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
       if (ls.get('login_token')) {
         this.router.navigateByUrl('/jobs/posts');
       } else if (!ls.get('login_token')) {
-        this.router.navigateByUrl('/registeration');
+        this.router.navigateByUrl('/registration');
       }
     }
 
@@ -351,7 +351,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
       if (this.logInToken && this.userType == 'industry') {
         this.router.navigateByUrl('jobs/industry');
       } else if (!this.logInToken && !this.userType) {
-        this.router.navigateByUrl('/registeration');
+        this.router.navigateByUrl('/registration');
       }
     }
     if (type == '') {

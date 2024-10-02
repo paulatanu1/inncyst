@@ -5,29 +5,24 @@ import ls from 'localstorage-slim';
 @Component({
   selector: 'app-apply-section',
   templateUrl: './apply-section.component.html',
-  styleUrls: ['./apply-section.component.scss']
+  styleUrls: ['./apply-section.component.scss'],
 })
 export class ApplySectionComponent implements OnInit {
-  isRegisterModal:boolean = false;
-  constructor(private router:Router) { }
+  isRegisterModal: boolean = false;
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-
-  openModal(){
-if(ls.get('login_token')){
-  this.router.navigateByUrl('/jobs/posts')
-}
-  else{
-    this.router.navigateByUrl('/registeration')
-
-  }
+  openModal() {
+    if (ls.get('login_token')) {
+      this.router.navigateByUrl('/jobs/posts');
+    } else {
+      this.router.navigateByUrl('/registration');
+    }
     // this.isRegisterModal = true;
   }
 
-
-  onhideModal(){
+  onhideModal() {
     this.isRegisterModal = false;
   }
 }

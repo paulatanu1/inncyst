@@ -57,7 +57,7 @@ const routes: Routes = [
     canActivate: [OutsideUrlProtectGuard],
   },
   {
-    path: 'registeration',
+    path: 'registration',
     loadChildren: () =>
       import('./registeration/registeration.module').then(
         (m) => m.RegisterationModule
