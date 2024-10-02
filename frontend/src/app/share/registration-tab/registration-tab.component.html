@@ -138,7 +138,7 @@
             />
             <label for="float-input">Enter college name</label>
             <div
-              *ngIf="isFieldInvalid(registrationForm, 'collegeName')"
+              *ngIf="isFieldInvalid(registrationFormCollege, 'collegeName')"
               class="error-message"
             >
               College Name is required.
@@ -150,7 +150,7 @@
             <input type="email" pInputText formControlName="collegeEmail" />
             <label for="float-input">Enter college email</label>
             <div
-              *ngIf="isFieldInvalid(registrationForm, 'collegeEmail')"
+              *ngIf="isFieldInvalid(registrationFormCollege, 'collegeEmail')"
               class="error-message"
             >
               Valid email is required.
@@ -167,7 +167,7 @@
             <label for="float-input">Enter your password</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'password')"
+            *ngIf="isFieldInvalid(registrationFormCollege, 'password')"
             class="error-message"
           >
             Password is required (min 6 characters).
@@ -183,7 +183,7 @@
             <label for="float-input">Confirm your password</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'confirmPassword')"
+            *ngIf="isFieldInvalid(registrationFormCollege, 'confirmPassword')"
             class="error-message"
           >
             Please confirm your password.
@@ -199,7 +199,7 @@
             <p>I have read and agree to the Terms of Service</p>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'agree')"
+            *ngIf="isFieldInvalid(registrationFormCollege, 'agree')"
             class="error-message"
           >
             You must agree to the terms and conditions.
@@ -235,7 +235,7 @@
             <label for="float-input">Enter organization name</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'organizationName')"
+            *ngIf="isFieldInvalid(registrationFormCompany, 'organizationName')"
             class="error-message"
           >
             Organization Name is required.
@@ -251,7 +251,7 @@
             <label for="float-input">Enter organization email</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'organizationEmail')"
+            *ngIf="isFieldInvalid(registrationFormCompany, 'organizationEmail')"
             class="error-message"
           >
             Valid email is required.
@@ -267,7 +267,7 @@
             <label for="float-input">Enter organization phone</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'organizationPhone')"
+            *ngIf="isFieldInvalid(registrationFormCompany, 'organizationPhone')"
             class="error-message"
           >
             A valid mobile number is required.
@@ -283,7 +283,7 @@
             <label for="float-input">Enter your password</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'password')"
+            *ngIf="isFieldInvalid(registrationFormCompany, 'password')"
             class="error-message"
           >
             Password is required (min 6 characters).
@@ -299,7 +299,7 @@
             <label for="float-input">Confirm your password</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'confirmPassword')"
+            *ngIf="isFieldInvalid(registrationFormCompany, 'confirmPassword')"
             class="error-message"
           >
             Please confirm your password.
@@ -315,7 +315,7 @@
             <p>I have read and agree to the Terms of Service</p>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'agree')"
+            *ngIf="isFieldInvalid(registrationFormCompany, 'agree')"
             class="error-message"
           >
             You must agree to the terms and conditions.
@@ -351,7 +351,7 @@
             <label for="float-input">Enter mentor name</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'mentorName')"
+            *ngIf="isFieldInvalid(registrationFormMentor, 'mentorName')"
             class="error-message"
           >
             Name is required.
@@ -363,7 +363,7 @@
             <label for="float-input">Enter mentor email</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'mentorEmail')"
+            *ngIf="isFieldInvalid(registrationFormMentor, 'mentorEmail')"
             class="error-message"
           >
             Valid email is required.
@@ -375,7 +375,7 @@
             <label for="float-input">Enter mentor phone</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'mentorPhone')"
+            *ngIf="isFieldInvalid(registrationFormMentor, 'mentorPhone')"
             class="error-message"
           >
             A valid mobile number is required.
@@ -391,7 +391,7 @@
             <label for="float-input">Enter your password</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'password')"
+            *ngIf="isFieldInvalid(registrationFormMentor, 'password')"
             class="error-message"
           >
             Password is required (min 6 characters).
@@ -407,7 +407,7 @@
             <label for="float-input">Confirm your password</label>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'confirmPassword')"
+            *ngIf="isFieldInvalid(registrationFormMentor, 'confirmPassword')"
             class="error-message"
           >
             Please confirm your password.
@@ -423,7 +423,7 @@
             <p>I have read and agree to the Terms of Service</p>
           </span>
           <div
-            *ngIf="isFieldInvalid(registrationForm, 'agree')"
+            *ngIf="isFieldInvalid(registrationFormMentor, 'agree')"
             class="error-message"
           >
             You must agree to the terms and conditions.
