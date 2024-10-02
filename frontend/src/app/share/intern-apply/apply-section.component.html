@@ -1,24 +1,51 @@
 <div class="container">
-    <div class="row section-wrapper">
-        <div class="col-sm-6 internships">
-            <div class="img-wrapper text-center">
-                <img src="../../../assets/illus-1.svg" alt="">
-            </div>
-        </div>
-        <div class="col-sm-6 jobs sky-color">
-            <h2 class="heading">INTERNSHIP</h2>
-            <ul class="check-item">
-                <li><a href=""><span class="icon-group-check"></span>Connects recruiters with interns based on their projects, skills, and achievements.</a></li>
-                <li><a href=""><span class="icon-group-check"></span>A comprehensive pool of unscreened candidates for quick hiring needs.</a></li>
-                <li><a href=""><span class="icon-group-check"></span>Candidates evaluated through two levels of expert screening for targeted needs.</a></li>
-            </ul>
-            <button class="button-section" type="button" (click)="openModal()"><span>Click Here</span>
-                <i class="pi pi-arrow-right"></i>
-            </button>
-        </div>
+  <div class="row section-wrapper">
+    <div class="col-sm-6 internships">
+      <div class="img-wrapper text-center">
+        <img
+          src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/illus-1.svg"
+          alt=""
+        />
+      </div>
     </div>
+    <div class="col-sm-6 jobs sky-color">
+      <h2 class="heading">INTERNSHIP</h2>
+      <ul class="check-item">
+        <li>
+          <a href="">
+            <span class="icon-group-check"></span>
+            Connects recruiters with interns based on their projects, skills,
+            and achievements.
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <span class="icon-group-check"></span>
+            A comprehensive pool of unscreened candidates for quick hiring
+            needs.
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <span class="icon-group-check"></span>
+            Candidates evaluated through two levels of expert screening for
+            targeted needs.
+          </a>
+        </li>
+      </ul>
+      <button class="button-section" type="button" (click)="openModal()">
+        <span>Click Here</span>
+        <i class="pi pi-arrow-right"></i>
+      </button>
+    </div>
+  </div>
 </div>
 
-<p-dialog [(visible)]="isRegisterModal" [style]="{width: '50vw'}" [transitionOptions]="'100ms'" (onHide)="onhideModal()">
-    <app-mini-header></app-mini-header>
+<p-dialog
+  [(visible)]="isRegisterModal"
+  [style]="{ width: '50vw' }"
+  [transitionOptions]="'100ms'"
+  (onHide)="onhideModal()"
+>
+  <app-mini-header></app-mini-header>
 </p-dialog>
