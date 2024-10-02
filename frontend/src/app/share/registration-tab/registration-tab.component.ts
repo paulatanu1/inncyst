@@ -76,18 +76,18 @@ export class RegistrationTabComponent implements OnInit {
   }
 
   //term and condition open and close logic
-  openDialog(): void {
+  openDialog(form: FormGroup): void {
     const dialogRef = this.dialog.open(RegistrationAgreeDialogComponent, {
       width: '600px',
       height: '600px',
       panelClass: 'custom-dialog-container',
-      data: { checked: this.registrationForm.get('agree')?.value },
+      data: { checked: form.get('agree')?.value },
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result !== undefined) {
         console.log(result);
-        this.registrationForm.patchValue({ agree: result });
+        form.patchValue({ agree: result });
       }
     });
   }
@@ -113,7 +113,7 @@ export class RegistrationTabComponent implements OnInit {
     if (form.invalid) {
       // Mark all fields as touched to show validation errors
       form.markAllAsTouched();
-      console.log('Form is invalid');
+      console.log('Form is invalid', form.value);
       return;
     }
 
