@@ -1,5 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegistrationTabComponent } from '../../share/registration-tab/registration-tab.component';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
@@ -228,6 +235,7 @@ export class RegistrationPageComponent implements OnInit {
         )
         .subscribe(
           (response) => {
+            this.reg.loginResponse.next(response);
             this.otpPageOpen = true;
             this.signupPageHide = false;
             this.registrationId = response.data._id;

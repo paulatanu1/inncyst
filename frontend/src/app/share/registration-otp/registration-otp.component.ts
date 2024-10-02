@@ -1,118 +1,133 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgOtpInputComponent } from 'ng-otp-input';
 import { OtpVerificationService } from './otp-verification.service';
 
-import ls from 'localstorage-slim'
+import ls from 'localstorage-slim';
 import { HeaderService } from '../module-service/header.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { Router } from '@angular/router';
-// interface Iotpset{
-//   email:string ;
-//   phone:string ;
-// }
+import { RegistrationService } from 'src/app/registration-service/registration.service';
+
 @Component({
   selector: 'app-registration-otp',
   templateUrl: './registration-otp.component.html',
-  styleUrls: ['./registration-otp.component.scss']
+  styleUrls: ['./registration-otp.component.scss'],
 })
 export class RegistrationOtpComponent implements OnInit {
-  // @ViewChild('ngOtpInput1') ngOtpInput1: any;
-  // @ViewChild('ngOtpInput2') ngOtpInput2: any;
+  @ViewChild('ngOtpInput1') ngOtpInput1: any;
+  @ViewChild('ngOtpInput2') ngOtpInput2: any;
+  isphoneOtp: string = '';
+  isemailOtp: string = '';
+  registrationId: string = '';
+  otpSet: { email: string; phone: string; registrationId: string } = {
+    email: '',
+    phone: '',
+    registrationId: '',
+  };
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private otpVerifivation: OtpVerificationService,
+    private _header: HeaderService,
+    private _toast: ToastServiceService,
+    private reg: RegistrationService
+  ) {}
 
-  // @Input() isOtpPage: boolean = false;
-  // verifyRegistration!:FormGroup;
-  // otpSet:Iotpset={
-  //   email: '',
-  //   phone: ''
-  // }
-  // config = {
-  //   allowNumbersOnly: false,
-  //   length: 4,
-  //   isPasswordInput: false,
-  //   disableAutoFocus: false,
-  //   placeholder: '',
-  //   inputStyles: {
-  //     'width': '50px',
-  //     'height': '50px'
-  //   }
-  // };
-  // isOtp:boolean = true;
-  // visible:boolean = true;
-  // userEmails:string | null= '';
-  // userMobileNumber:string | null = ''
-  // isphoneOtp:string = '';
-  // isemailOtp:string = '';
-  // userRole:any='';
-  constructor( private router: Router,private fb:FormBuilder,
-    private otpVerifivation:OtpVerificationService,private _header:HeaderService,private _toast:ToastServiceService) {
-    // this.verifyRegistration = this.fb.group({
-    //   emailOtp:['',[Validators.required]],
-    //   phoneOtp:['',[Validators.required]]
-    // })
-  }
-
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     // this.isOtp = false;
   }
 
   ngOnInit(): void {
-    // this.userEmails = ls.get('userEmail')
-    // this.userMobileNumber = ls.get('phone')
-    // this.userRole= (ls.get('userRole'))
-    // // setTimeout(() => {
-    // //   this.isOtp = this.isOtpPage;
-    // // }, 500);
+    this.reg.loginResponse.subscribe({
+      next: (resp) => {
+        console.log(resp);
+        // this.registrationId =resp?.data?._id
+      },
+    });
   }
-  ngOnChanges(){
+  ngOnChanges() {}
+
+  onEmailOtpChange(event: any) {
+    this.isemailOtp = event;
   }
-  
+  onPhoneOtpChange(event: any) {
+    this.isphoneOtp = event;
+  }
 
-  // onHide(){
-  //   this.isOtp = false;
-  //   this.OtpModal.emit(false)
-  // }
+  resendOtp(type: string) {
+    if (type === 'email') {
+      this.reg.resendEmailOtp().subscribe({
+        next: (res) => {
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: res.message,
+          });
+        },
+        error: (err) => {
+          this._toast.showToaster.next({
+            severity: 'error',
+            summary: 'error',
+            detail: err.message,
+          });
+        },
+      });
+    } else {
+      this.reg.resendPhoneOtp().subscribe({
+        next: (res) => {
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: res.message,
+          });
+        },
+        error: (err) => {
+          this._toast.showToaster.next({
+            severity: 'error',
+            summary: 'error',
+            detail: err.message,
+          });
+        },
+      });
+    }
+  }
 
-  // onPhoneOtpChange(event:string){
-  //   console.log(event , 'onPhoneOtpChange')
-  //   this.isphoneOtp= event
-  // }
-
-  // onEmailOtpChange(event:string){
-  //   console.log(event , 'onemailOtpChange')
-  //   this.isemailOtp = event
-  // }
-
-  // onSubmitOtp(){
-  //   // debugger;
-  //   console.log('click')
-  //   // if(this.verifyRegistration.valid){
-  //     this.otpSet = {
-  //       email:this.isemailOtp,
-  //       phone:this.isphoneOtp
-  //     }
-  //     console.log(this.otpSet)
-  //     this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
-  //       next: (res)=>{
-  //         console.log(res,'otp response')
-  //         this.OtpModal.emit(false);
-  //         this._header.userLoggedin.next(true)
-  //         ls.set('logged',true)
-  //         this._toast.showToaster.next({severity:'success',summary:'success',detail:res.message});
-  //         //set route logic for user 
-  //         if(this.userRole === 'Student'){
-  //           this.router.navigate(['jobs/internship']);
-  //         }
-  //         else if(this.userRole === 'Industry')
-  //         {
-  //           this.router.navigate(['industry']);
-  //         }
-  //       },
-  //       error: (err)=>{
-  //         console.log(err,'otp response')
-  //       }
-  //     })
-  //   // }
-  // }
-
+  onSubmitOtp() {
+    this.otpSet = {
+      email: this.isemailOtp,
+      phone: this.isphoneOtp,
+      registrationId: this.registrationId,
+    };
+    this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
+      next: (res) => {
+        // this.OtpModal = false;
+        // this.redirectToOtp = false;
+        // //  this.otpPageOpen=false
+        // this.otpVerifivation.logoutSuccess.next(true);
+        // this.header.userLoggedin.next(true);
+        ls.set('questionStep', res.data.question_step);
+        ls.set('logged', true);
+        this._toast.showToaster.next({
+          severity: 'success',
+          summary: 'success',
+          detail: res.message,
+        });
+        //set route logic for user
+        // if (this.userRole === 'student') {
+        //   this.router.navigate(['/jobs/posts']);
+        // } else if (this.userRole === 'industry') {
+        //   this.router.navigate(['industry']);
+        // }
+      },
+      error: (err) => {},
+    });
+  }
 }

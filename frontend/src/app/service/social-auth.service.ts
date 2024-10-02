@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { catchError, of, tap } from 'rxjs';
-
+import ls from 'localstorage-slim';
 @Injectable({
   providedIn: 'root',
 })
@@ -34,6 +34,7 @@ export class SocialAuthService {
   getIdToken() {
     this.auth.idTokenClaims$.subscribe((claims: any) => {
       console.log('ID Token:', claims?.__raw); // Full raw token (JWT)
+      ls.set('authIDToken', claims?.__raw);
     });
   }
 
@@ -43,7 +44,8 @@ export class SocialAuthService {
       .getAccessTokenSilently()
       .pipe(
         tap((token: any) => {
-          console.log('Access Token:', token);
+          ls.set('authAccessToken', token);
+          console.log('Access Token--:', ls.get('authAccessToken'));
         }),
         catchError((error: any) => {
           console.error('Error fetching access token', error);

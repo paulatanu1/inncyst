@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../common-service/api.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegistrationService {
+  loginResponse = new Subject();
   constructor(private api: ApiService) {}
 
   sendRegistrationRequest(
