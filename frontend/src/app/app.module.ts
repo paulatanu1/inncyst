@@ -31,10 +31,15 @@ import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
 import { AddProjectComponent } from './share/add-project/add-project.component';
 import { AchivmentComponent } from './share/achivment/achivment.component';
 import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
+<<<<<<< HEAD
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CareerComponent } from './share/product-showcase/career/career.component';
+=======
+import {MatTabsModule} from '@angular/material/tabs';
+
+>>>>>>> f2638c3 (Working on registration form UI)
 
 @NgModule({
   declarations: [
@@ -70,8 +75,12 @@ import { CareerComponent } from './share/product-showcase/career/career.componen
     MatSliderModule,
     FieldsetModule,
     TabViewModule,
+<<<<<<< HEAD
     AuthModule.forRoot(environment.auth),
     MatTabsModule,
+=======
+    MatTabsModule
+>>>>>>> f2638c3 (Working on registration form UI)
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [
