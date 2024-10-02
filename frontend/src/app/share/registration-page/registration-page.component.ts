@@ -1,13 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {RegistrationTabComponent} from '../../share/registration-tab/registration-tab.component';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-  
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ConfirmPasswordValidator } from 'src/app/common-service/passwordValidators';
@@ -17,11 +9,12 @@ import ls from 'localstorage-slim';
 import { LoginEnablerService } from 'src/app/service/login-enabler.service';
 import { QuestionSetEnablerService } from 'src/app/service/question-set-enabler.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
 import { HeaderService } from '../module-service/header.service';
 import { OtpVerificationService } from '../registration-otp/otp-verification.service';
-import { NgOtpInputComponent, NgOtpInputModule } from 'ng-otp-input';
+import { NgOtpInputModule } from 'ng-otp-input';
+import { AuthService } from '@auth0/auth0-angular';
+import { SocialAuthService } from 'src/app/service/social-auth.service';
+import { catchError, of, switchMap, take } from 'rxjs';
 interface options {
   optionName: string;
   code: string;
@@ -110,6 +103,8 @@ export class RegistrationPageComponent implements OnInit {
     private _toast: ToastServiceService,
     private header: HeaderService,
     private otpVerifivation: OtpVerificationService, // private _header:HeaderService
+    private auth: AuthService,
+    private socialAuth: SocialAuthService
   ) {
     // console.log(window, 'pp');
 
@@ -181,6 +176,15 @@ export class RegistrationPageComponent implements OnInit {
         window.scrollTo(0, 0);
       }
     });
+
+    // To get user profile
+    this.socialAuth.getUserData();
+
+    // To get ID token (JWT)
+    this.socialAuth.getIdToken();
+
+    // To get access token
+    this.socialAuth.getAccessToken();
   }
 
   optionClick(url: string) {
@@ -403,5 +407,52 @@ export class RegistrationPageComponent implements OnInit {
         },
       });
     }
+  }
+
+  // ssoLogin(param: string) {
+  //   this.auth.loginWithPopup({ connection: param });
+  // }
+  ssoLogin(param: string) {
+    this.auth.user$
+      .pipe(
+        take(1), // Get the latest user data once
+        switchMap((user: any) => {
+          // Check if the user is blocked
+          if (user?.app_metadata?.isBlocked) {
+            console.warn('Access denied: User is blocked.');
+            alert(
+              'Access denied. Your account is blocked. Please contact support.'
+            );
+            return of(null); // Return a null observable to prevent further processing
+          } else {
+            // If not blocked, proceed with the login
+            return this.auth.loginWithPopup({ connection: param });
+          }
+        }),
+        catchError((error) => {
+          console.error('Login failed:', { error });
+          let errorMessage = 'Login failed. Please try again.';
+
+          if (error?.error) {
+            if (error.error === 'invalid_grant') {
+              errorMessage =
+                'Invalid credentials. Please check your username and password.';
+            } else if (error.error === 'blocked_user') {
+              errorMessage = 'Your account is blocked. Please contact support.';
+            } else if (error.error === 'network_error') {
+              errorMessage =
+                'Network error. Please check your internet connection and try again.';
+            } else {
+              errorMessage = error.error_description || errorMessage;
+            }
+          }
+
+          console.log(errorMessage);
+          this.auth.logout({ localOnly: true });
+          this.router.navigate(['/home']);
+          return of(null);
+        })
+      )
+      .subscribe();
   }
 }
