@@ -136,6 +136,14 @@ form {
             margin-bottom: 0;
             font-weight: 600;
         }
+        .error-message {
+            position: absolute;
+            top: 55px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: red;
+            margin: 8px 0;
+        }
     }
 
 
