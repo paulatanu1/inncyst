@@ -29,6 +29,7 @@ button {
         background-position: bottom;
         background-repeat: no-repeat;
         border-radius: 20px;
+        position: relative;
 
         .intro {
           display: flex;
@@ -117,15 +118,34 @@ button {
 }
 
 
-// @media only screen and (min-width:768px) and (max-width:1023px) {
-//   .sup-signup-wrapper {
-//     .row {
-//       .right-section {
-//         transform: scale(0.8);
-//       }
-//     }
-//   }
-// }
+@media only screen and (max-width:1023px) {
+  .sup-signup-wrapper {
+    overflow: auto;
+    align-items: flex-start;
+
+    .row {
+
+      .left-section {
+        padding: 1.5rem 0;
+      }
+
+      .form-wrapper {
+        .social-signup {
+          width: 100%;
+
+          .social-icon-sign {
+            font-size: 0;
+            width: 70px;
+            gap: 0;
+            padding: 10px;
+          }
+        }
+      }
+
+    }
+
+  }
+}
 
 
 ::ng-deep .p-inputtext {
@@ -434,9 +454,9 @@ button {
     width: 80%;
 
     .social-icon-sign {
-      height: 40px;
-      border: 1px solid #ccc;
-      border-radius: 15px;
+      height: 46px;
+      border: 1px solid rgba(204, 204, 204, 0.6392156863);
+      border-radius: 25px;
       padding: 5px 20px;
       font-size: 0.8rem;
       font-weight: 600;
@@ -446,6 +466,16 @@ button {
       justify-content: center;
       gap: 1rem;
       cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+
+      &:hover {
+        border-color: #cccccc59;
+        box-shadow: 1px 5px 8px -1px #9e9e9e36;
+        transform: scale(1.05);
+      }
+
+
     }
 
   }
