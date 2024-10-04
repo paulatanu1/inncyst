@@ -161,12 +161,12 @@
           <span class="p-float-label">
             <input type="numner" pInputText formControlName="collegePhone" />
             <label for="float-input">Enter college phone</label>
-            <!-- <div
+            <div
               *ngIf="isFieldInvalid(registrationFormCollege, 'collegeEmail')"
               class="error-message"
             >
               Valid email is required.
-            </div> -->
+            </div>
           </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
@@ -177,13 +177,14 @@
               formControlName="password"
             ></p-password>
             <label for="float-input">Enter your password</label>
-          </span>
+          
           <div
             *ngIf="isFieldInvalid(registrationFormCollege, 'password')"
             class="error-message"
           >
             Password is required (min 6 characters).
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
@@ -193,13 +194,14 @@
               formControlName="confirmPassword"
             ></p-password>
             <label for="float-input">Confirm your password</label>
-          </span>
+          
           <div
             *ngIf="isFieldInvalid(registrationFormCollege, 'confirmPassword')"
             class="error-message"
           >
             Please confirm your password.
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="checkbox-sec">
@@ -209,13 +211,14 @@
               (click)="openDialog(registrationFormCollege)"
             />
             <p>I have read and agree to the Terms of Service</p>
-          </span>
+          
           <div
             *ngIf="isFieldInvalid(registrationFormCollege, 'agree')"
             class="error-message"
           >
             You must agree to the terms and conditions.
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <div class="signup-btn">
@@ -249,13 +252,13 @@
               formControlName="organizationName"
             />
             <label for="float-input">Enter organization name</label>
-          </span>
-          <div
+            <div
             *ngIf="isFieldInvalid(registrationFormCompany, 'organizationName')"
             class="error-message"
           >
             Organization Name is required.
           </div>
+          </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
@@ -265,13 +268,13 @@
               formControlName="organizationEmail"
             />
             <label for="float-input">Enter organization email</label>
-          </span>
-          <div
+            <div
             *ngIf="isFieldInvalid(registrationFormCompany, 'organizationEmail')"
             class="error-message"
           >
             Valid email is required.
           </div>
+          </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
@@ -281,13 +284,13 @@
               formControlName="organizationPhone"
             />
             <label for="float-input">Enter organization phone</label>
-          </span>
-          <div
+            <div
             *ngIf="isFieldInvalid(registrationFormCompany, 'organizationPhone')"
             class="error-message"
           >
             A valid mobile number is required.
           </div>
+          </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
@@ -297,13 +300,13 @@
               formControlName="password"
             ></p-password>
             <label for="float-input">Enter your password</label>
-          </span>
           <div
             *ngIf="isFieldInvalid(registrationFormCompany, 'password')"
             class="error-message"
           >
             Password is required (min 6 characters).
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
@@ -313,13 +316,13 @@
               formControlName="confirmPassword"
             ></p-password>
             <label for="float-input">Confirm your password</label>
-          </span>
           <div
             *ngIf="isFieldInvalid(registrationFormCompany, 'confirmPassword')"
             class="error-message"
           >
             Please confirm your password.
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="checkbox-sec">
@@ -329,13 +332,13 @@
               (click)="openDialog(registrationFormCompany)"
             />
             <p>I have read and agree to the Terms of Service</p>
-          </span>
           <div
             *ngIf="isFieldInvalid(registrationFormCompany, 'agree')"
             class="error-message"
           >
             You must agree to the terms and conditions.
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <div class="signup-btn">
@@ -369,37 +372,40 @@
               formControlName="mentorName"
             />
             <label for="float-input">Enter mentor name</label>
-          </span>
+         
           <div
             *ngIf="isFieldInvalid(registrationFormMentor, 'mentorName')"
             class="error-message"
           >
             Name is required.
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
             <input type="email" pInputText formControlName="mentorEmail" />
             <label for="float-input">Enter mentor email</label>
-          </span>
+         
           <div
             *ngIf="isFieldInvalid(registrationFormMentor, 'mentorEmail')"
             class="error-message"
           >
             Valid email is required.
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
             <input type="number" pInputText formControlName="mentorPhone" />
             <label for="float-input">Enter mentor phone</label>
-          </span>
+         
           <div
             *ngIf="isFieldInvalid(registrationFormMentor, 'mentorPhone')"
             class="error-message"
           >
             A valid mobile number is required.
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
@@ -409,13 +415,14 @@
               formControlName="password"
             ></p-password>
             <label for="float-input">Enter your password</label>
-          </span>
+         
           <div
             *ngIf="isFieldInvalid(registrationFormMentor, 'password')"
             class="error-message"
           >
             Password is required (min 6 characters).
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="p-float-label">
@@ -425,13 +432,14 @@
               formControlName="confirmPassword"
             ></p-password>
             <label for="float-input">Confirm your password</label>
-          </span>
+         
           <div
             *ngIf="isFieldInvalid(registrationFormMentor, 'confirmPassword')"
             class="error-message"
           >
             Please confirm your password.
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <span class="checkbox-sec">
@@ -441,13 +449,14 @@
               (click)="openDialog(registrationFormMentor)"
             />
             <p>I have read and agree to the Terms of Service</p>
-          </span>
+         
           <div
             *ngIf="isFieldInvalid(registrationFormMentor, 'agree')"
             class="error-message"
           >
             You must agree to the terms and conditions.
           </div>
+        </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <div class="signup-btn">
