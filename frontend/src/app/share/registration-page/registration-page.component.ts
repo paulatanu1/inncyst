@@ -456,8 +456,8 @@ export class RegistrationPageComponent implements OnInit {
           }
 
           console.log(errorMessage);
-          this.auth.logout({ localOnly: true });
-          this.router.navigate(['/home']);
+          // this.auth.logout();
+          // this.router.navigate();
           return of(null);
         })
       )
