@@ -2,18 +2,19 @@
 <div class="container-fluid" *ngIf="loginModal">
   <div class="sup-login-wrapper">
     <div class="row">
-      <div class="col-lg-7 col-md-6 col-sm-12 col-12">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
         <div class="left-section">
           <div class="left-image-wrapper">
+            <app-registration-nav></app-registration-nav>
             <div class="intro">
-              <div class="logo">
+              <!-- <div class="logo">
                 <img
                   src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/inncyst-logo-white.png "
                   width="350px"
                   height="auto"
                   alt=""
                 />
-              </div>
+              </div> -->
               <div class="desc text-center">
                 <h1>Get Started With Us</h1>
                 <p>
@@ -26,14 +27,18 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-5 col-md-6 col-sm-12 col-12">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
         <div class="right-section">
           <div class="form-wrapper">
             <h3>Log In</h3>
-            <!-- <p>Enter your data to connect with us</p> -->
-
+            <p>Stay connected with us</p>
+            <div class="conncted-users">
+              <img src="../../../assets/icon/login-icon.png" width="40px" height="40px" loading="lazy" alt="">
+              <img src="../../../assets/icon/login-icon-2.png" width="60px" height="60px" loading="lazy" alt="">
+              <img src="../../../assets/icon/login-icon-3.png" width="40px" height="40px" loading="lazy" alt="">
+            </div>
             <div class="social-login">
-              <div class="social-icon-sign google-sign">
+              <div class="social-icon-login google-login">
                 <img
                   src="../../../assets/icon/google.png"
                   width="30px"
@@ -42,7 +47,7 @@
                 />
                 Login with Google
               </div>
-              <div class="social-icon-sign linkdin-sign">
+              <div class="social-icon-login linkdin-login">
                 <img
                   src="../../../assets/icon/linkedin.png"
                   width="25px"
@@ -60,15 +65,15 @@
             <!-- <app-registration-tab></app-registration-tab> -->
 
             <form [formGroup]="loginForm">
-              <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field">
+              <div class="row">
+              <div class="col-lg-12 col-md-12 col-12">
                 <span class="p-float-label">
                   <input type="email" pInputText formControlName="email" />
                   <label for="float-input">Email</label>
                 </span>
               </div>
               <div
-                class="col-12 md:col-12 mt-3 mb-4 full-width"
-                style="position: relative;"
+                class="col-lg-12 col-md-12 col-12"
               >
                 <span class="p-float-label">
                   <p-password
@@ -78,7 +83,17 @@
                   ></p-password>
                   <label for="float-input">Password</label>
                 </span>
+                <div class="password-action">
+                  <div class="check-pass">
+                    <input type="checkbox">
+                    <span>Remember me</span>
+                  </div>
+                  <a href="">
+                    <span>Forgot password</span>
+                  </a>
+                </div>
               </div>
+
               <div class="col-lg-12 col-md-12 col-12">
                 <div class="login-btn">
                   <button type="button" class="button-section w-100">
@@ -87,6 +102,7 @@
                   </button>
                 </div>
               </div>
+            </div>
             </form>
           </div>
 
@@ -344,3 +360,4 @@
     </div>
   </div>
 </section>
+<app-registration-footer></app-registration-footer>
