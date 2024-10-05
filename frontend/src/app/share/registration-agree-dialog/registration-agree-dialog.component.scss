@@ -3,7 +3,7 @@
    .mat-dialog-container {
      overflow: hidden;
      border-radius: 25px;
-     min-height: 50vh;
+     position: relative;
 
      .checkbox-sec {
        display: flex;
@@ -17,9 +17,19 @@
        }
      }
 
+     .mat-dialog-content {
+       max-height: 456px;
+     }
+
      .mat-dialog-actions {
        justify-content: flex-end;
        gap: 10px;
+       //  position: absolute;
+       //  bottom: 24px;
+       //  width: 100%;
+       //  right: auto;
+       //  left: -34px;
+       //  background: #fff;
 
        .button-section {
          background-color: #003060;
