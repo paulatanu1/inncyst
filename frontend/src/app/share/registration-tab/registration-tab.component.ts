@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RegistrationAgreeDialogComponent } from '../../../app/share/registration-agree-dialog/registration-agree-dialog.component';
@@ -16,6 +22,7 @@ export class RegistrationTabComponent implements OnInit {
   registrationFormCompany!: FormGroup;
   registrationFormMentor!: FormGroup;
   activeTabName = 'candidate';
+  @Output() currentTabInfo = new EventEmitter();
   constructor(
     private fb: FormBuilder,
     private dialog: MatDialog,
@@ -25,6 +32,7 @@ export class RegistrationTabComponent implements OnInit {
   ngOnInit(): void {
     // this.initForms();
     this.initCandidateForm();
+    this.currentTabInfo.emit(this.activeTabName);
   }
 
   // initForms() {
@@ -86,6 +94,7 @@ export class RegistrationTabComponent implements OnInit {
 
   onTabChange(event: MatTabChangeEvent) {
     this.activeTabName = event.tab.textLabel.toLowerCase();
+    this.currentTabInfo.emit(this.activeTabName);
     this.resetForms();
 
     // Initialize form based on the selected tab

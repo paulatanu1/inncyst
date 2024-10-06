@@ -98,6 +98,9 @@ export class RegistrationPageComponent implements OnInit {
       height: '50px',
     },
   };
+  authData: any;
+  userRegRole: string = '';
+  ssoType: string = '';
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
@@ -185,13 +188,14 @@ export class RegistrationPageComponent implements OnInit {
     });
 
     // To get user profile
-    this.socialAuth.getUserData();
+    // this.socialAuth.getUserData();
 
     // To get ID token (JWT)
-    this.socialAuth.getIdToken();
+    // this.socialAuth.getIdToken();
 
     // To get access token
-    this.socialAuth.getAccessToken();
+    // this.socialAuth.getAccessToken();
+    this.getSsoDetailsFromAuth();
   }
 
   optionClick(url: string) {
@@ -421,6 +425,7 @@ export class RegistrationPageComponent implements OnInit {
   //   this.auth.loginWithPopup({ connection: param });
   // }
   ssoLogin(param: string) {
+    this.ssoType = param;
     this.auth.user$
       .pipe(
         take(1), // Get the latest user data once
@@ -462,5 +467,36 @@ export class RegistrationPageComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  currentTab(event: string) {
+    console.log(event);
+    this.userRegRole = event;
+  }
+  getSsoDetailsFromAuth() {
+    this.auth.user$.subscribe({
+      next: (res) => {
+        console.log(res);
+        this.authData = res;
+        let loginType = res?.sub?.includes('google-oauth2')
+          ? 'google'
+          : 'linkedin';
+        this.ssoRegistration(this.userRegRole, this.authData, loginType);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  ssoRegistration(role: string, authData: {}, loginType: string) {
+    this.reg.ssoProcress(role, authData, loginType).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

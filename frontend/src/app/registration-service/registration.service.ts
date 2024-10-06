@@ -28,11 +28,23 @@ export class RegistrationService {
 
   resendEmailOtp() {
     let url = '/auth/reset-email-otp';
+    let userId = '';
     return this.api.ApiCallWithLocalization('', url, 'PUT');
   }
 
   resendPhoneOtp() {
     let url = '/auth/reset-phone-otp';
+    let userId = '';
     return this.api.ApiCallWithLocalization('', url, 'PUT');
+  }
+
+  ssoProcress(role: string, userData: {}, loginType: string) {
+    let url = '/auth/social/login';
+    let payload = {
+      loginType: loginType,
+      role: role,
+      userData: userData,
+    };
+    return this.api.ApiCallWithLocalization(payload, url, 'POST');
   }
 }
