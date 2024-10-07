@@ -10,6 +10,7 @@ button {
   height: 100vh;
   display: flex;
   // background-color: #000;
+  transform: scale(0.95) translateY(-10px);
 
   .row {
     align-items: center;
