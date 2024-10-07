@@ -252,9 +252,7 @@ export class RegistrationPageComponent implements OnInit {
             let severity = '';
             let summary = '';
             let detail = '';
-            // if(response.data.question_step == false && response.data.role == 'industry'){
-            //   this.router.navigateByUrl('/industry/profile');
-            // }
+            this.router.navigate(['/otp-verification']);
             this._toast.showToaster.next({
               severity: 'success',
               summary: 'success',
@@ -493,6 +491,7 @@ export class RegistrationPageComponent implements OnInit {
     this.reg.ssoProcress(role, authData, loginType).subscribe({
       next: (res) => {
         console.log(res);
+        this.router.navigate(['/otp-verification']);
       },
       error: (error) => {
         console.log(error);

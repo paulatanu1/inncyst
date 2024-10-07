@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -15,6 +16,9 @@ import { HeaderService } from '../module-service/header.service';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { Router } from '@angular/router';
 import { RegistrationService } from 'src/app/registration-service/registration.service';
+import { regResponse } from '../models/register.model';
+import { AuthService } from '@auth0/auth0-angular';
+import { SocialAuthService } from 'src/app/service/social-auth.service';
 
 @Component({
   selector: 'app-registration-otp',
@@ -26,19 +30,27 @@ export class RegistrationOtpComponent implements OnInit {
   @ViewChild('ngOtpInput2') ngOtpInput2: any;
   isphoneOtp: string = '';
   isemailOtp: string = '';
-  registrationId: string = '';
+  registration_id: any = '';
   otpSet: { email: string; phone: string; registrationId: string } = {
     email: '',
     phone: '',
     registrationId: '',
   };
+  verifyRegistration!: FormGroup;
+  regId: string | undefined = undefined;
+  isPhoneVerify: boolean = false;
+  isEmailVerify: boolean = false;
+  userEmails: string = '';
+  userMobileNumber: string = '';
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private otpVerifivation: OtpVerificationService,
     private _header: HeaderService,
     private _toast: ToastServiceService,
-    private reg: RegistrationService
+    private reg: RegistrationService,
+    private auth: SocialAuthService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngAfterViewInit() {
@@ -46,20 +58,55 @@ export class RegistrationOtpComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('iiii');
+    this.verifyRegistration = this.fb.group({});
     this.reg.loginResponse.subscribe({
       next: (resp) => {
         console.log(resp);
-        // this.registrationId =resp?.data?._id
+        const response = resp as regResponse;
+        this.regId = response.data._id;
+        this.isPhoneVerify = response.data.phoneVerified;
+        this.isEmailVerify = response.data.emailVerified;
+        this.userEmails = response.data.email;
+        this.userMobileNumber = response.data.phone;
+        console.log(this.isEmailVerify, 'vvv');
+        if (!this.isEmailVerify) {
+          console.log('email');
+          this.verifyRegistration.addControl(
+            'emailOtp',
+            this.fb.control('', [
+              Validators.required,
+              Validators.pattern(/^\d{4}$/),
+            ])
+          );
+        }
+
+        if (!this.isPhoneVerify) {
+          this.verifyRegistration.addControl(
+            'phoneOtp',
+            this.fb.control('', [
+              Validators.required,
+              Validators.pattern(/^\d{4}$/),
+            ])
+          );
+        }
+        console.log(this.verifyRegistration);
+        this.cd.detectChanges();
       },
     });
+
+    // if (!this.regId) {
+    //   this.auth.logout();
+    // }
   }
-  ngOnChanges() {}
 
   onEmailOtpChange(event: any) {
     this.isemailOtp = event;
+    this.verifyRegistration.get('emailOtp')?.setValue(event);
   }
   onPhoneOtpChange(event: any) {
     this.isphoneOtp = event;
+    this.verifyRegistration.get('phoneOtp')?.setValue(event);
   }
 
   resendOtp(type: string) {
@@ -101,33 +148,24 @@ export class RegistrationOtpComponent implements OnInit {
   }
 
   onSubmitOtp() {
-    this.otpSet = {
-      email: this.isemailOtp,
-      phone: this.isphoneOtp,
-      registrationId: this.registrationId,
-    };
-    this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
-      next: (res) => {
-        // this.OtpModal = false;
-        // this.redirectToOtp = false;
-        // //  this.otpPageOpen=false
-        // this.otpVerifivation.logoutSuccess.next(true);
-        // this.header.userLoggedin.next(true);
-        ls.set('questionStep', res.data.question_step);
-        ls.set('logged', true);
-        this._toast.showToaster.next({
-          severity: 'success',
-          summary: 'success',
-          detail: res.message,
-        });
-        //set route logic for user
-        // if (this.userRole === 'student') {
-        //   this.router.navigate(['/jobs/posts']);
-        // } else if (this.userRole === 'industry') {
-        //   this.router.navigate(['industry']);
-        // }
-      },
-      error: (err) => {},
-    });
+    if (this.verifyRegistration.valid) {
+      const otpData = this.verifyRegistration.value;
+      console.log(otpData);
+      this.otpVerifivation.otpSubmit(otpData).subscribe({
+        next: (res) => {
+          ls.set('logged', true);
+          this._toast.showToaster.next({
+            severity: 'success',
+            summary: 'success',
+            detail: res.message,
+          });
+        },
+        error: (err) => {},
+      });
+    }
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

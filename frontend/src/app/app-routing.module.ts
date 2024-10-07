@@ -16,6 +16,7 @@ import { LoginModuleModule } from './login-module/login-module.module';
 import { AddProjectComponent } from './share/add-project/add-project.component';
 import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
 import { CareerComponent } from './share/product-showcase/career/career.component';
+import { RegistrationOtpComponent } from './share/registration-otp/registration-otp.component';
 
 const routes: Routes = [
   {
@@ -120,6 +121,10 @@ const routes: Routes = [
   {
     path: 'coming-soon',
     component: ComingSoonComponent,
+  },
+  {
+    path: 'otp-verification',
+    component: RegistrationOtpComponent,
   },
   {
     path: '**',

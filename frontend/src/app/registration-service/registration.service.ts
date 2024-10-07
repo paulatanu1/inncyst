@@ -43,7 +43,7 @@ export class RegistrationService {
     let payload = {
       loginType: loginType,
       role: role,
-      userData: userData,
+      userdata: userData,
     };
     return this.api.ApiCallWithLocalization(payload, url, 'POST');
   }

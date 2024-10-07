@@ -10,6 +10,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RegistrationAgreeDialogComponent } from '../../../app/share/registration-agree-dialog/registration-agree-dialog.component';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { RegistrationService } from 'src/app/registration-service/registration.service';
+import { OtpVerificationService } from '../registration-otp/otp-verification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration-tab',
@@ -26,7 +28,9 @@ export class RegistrationTabComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialog: MatDialog,
-    private reg: RegistrationService
+    private reg: RegistrationService,
+    private otpService: OtpVerificationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -289,6 +293,8 @@ export class RegistrationTabComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log('Registration Success', response);
+          this.reg.loginResponse.next(response);
+          this.router.navigate(['/otp-verification']);
         },
         error: (error) => {
           console.error('Registration Error:', error);

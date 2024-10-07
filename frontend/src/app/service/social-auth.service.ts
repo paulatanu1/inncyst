@@ -64,6 +64,7 @@ export class SocialAuthService {
 
   // Method to handle logout
   logout() {
-    this.auth.logout({ returnTo: window.location.origin });
+    localStorage.clear();
+    this.auth.logout();
   }
 }
