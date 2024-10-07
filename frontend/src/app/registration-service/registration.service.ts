@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../common-service/api.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegistrationService {
+  loginResponse = new Subject();
   constructor(private api: ApiService) {}
 
   sendRegistrationRequest(
@@ -26,11 +28,23 @@ export class RegistrationService {
 
   resendEmailOtp() {
     let url = '/auth/reset-email-otp';
+    let userId = '';
     return this.api.ApiCallWithLocalization('', url, 'PUT');
   }
 
   resendPhoneOtp() {
     let url = '/auth/reset-phone-otp';
+    let userId = '';
     return this.api.ApiCallWithLocalization('', url, 'PUT');
+  }
+
+  ssoProcress(role: string, userData: {}, loginType: string) {
+    let url = '/auth/social/login';
+    let payload = {
+      loginType: loginType,
+      role: role,
+      userData: userData,
+    };
+    return this.api.ApiCallWithLocalization(payload, url, 'POST');
   }
 }

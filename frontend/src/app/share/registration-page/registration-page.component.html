@@ -36,7 +36,10 @@
             <!-- <p>Enter your data to connect with us</p> -->
 
             <div class="social-signup">
-              <div class="social-icon-sign google-sign">
+              <div
+                class="social-icon-sign google-sign"
+                (click)="ssoLogin('google-oauth2')"
+              >
                 <img
                   src="../../../assets/icon/google.png"
                   width="30px"
@@ -45,7 +48,10 @@
                 />
                 Sign up with Google
               </div>
-              <div class="social-icon-sign linkdin-sign">
+              <div
+                class="social-icon-sign linkdin-sign"
+                (click)="ssoLogin('linkedin')"
+              >
                 <img
                   src="../../../assets/icon/linkedin.png"
                   width="25px"
@@ -60,7 +66,9 @@
               <span>or</span>
             </p>
 
-            <app-registration-tab></app-registration-tab>
+            <app-registration-tab
+              (currentTabInfo)="currentTab($event)"
+            ></app-registration-tab>
 
             <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
               <div class="col-12 md:col-12 mt-3 mb-4 full-width-number-field">
@@ -328,7 +336,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="otp-wrapper" *ngIf="otpPageOpen">

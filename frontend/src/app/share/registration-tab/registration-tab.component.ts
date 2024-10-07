@@ -1,7 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RegistrationAgreeDialogComponent } from '../../../app/share/registration-agree-dialog/registration-agree-dialog.component';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { RegistrationService } from 'src/app/registration-service/registration.service';
 
 @Component({
   selector: 'app-registration-tab',
@@ -13,14 +21,120 @@ export class RegistrationTabComponent implements OnInit {
   registrationFormCollege!: FormGroup;
   registrationFormCompany!: FormGroup;
   registrationFormMentor!: FormGroup;
-
-  constructor(private fb: FormBuilder, private dialog: MatDialog) {}
+  activeTabName = 'candidate';
+  @Output() currentTabInfo = new EventEmitter();
+  constructor(
+    private fb: FormBuilder,
+    private dialog: MatDialog,
+    private reg: RegistrationService
+  ) {}
 
   ngOnInit(): void {
-    this.initForms();
+    // this.initForms();
+    this.initCandidateForm();
+    this.currentTabInfo.emit(this.activeTabName);
   }
 
-  initForms() {
+  // initForms() {
+  //   this.registrationForm = this.fb.group({
+  //     userName: ['', [Validators.required, Validators.minLength(3)]],
+  //     email: ['', [Validators.required, Validators.email]],
+  //     mobile: [null, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+  //     password: ['', [Validators.required, Validators.minLength(6)]],
+  //     confirmPassword: [
+  //       '',
+  //       [Validators.required, this.matchPassword('password')],
+  //     ],
+  //     agree: [false, [Validators.requiredTrue]],
+  //   });
+
+  //   this.registrationFormCollege = this.fb.group({
+  //     collegeName: ['', [Validators.required]],
+  //     collegeEmail: ['', [Validators.required, Validators.email]],
+  //     collegePhone: [null, [Validators.required, Validators.email]],
+
+  //     password: ['', [Validators.required, Validators.minLength(6)]],
+  //     confirmPassword: [
+  //       '',
+  //       [Validators.required, this.matchPassword('password')],
+  //     ],
+  //     agree: [false, [Validators.requiredTrue]],
+  //   });
+
+  //   this.registrationFormCompany = this.fb.group({
+  //     organizationName: ['', [Validators.required]],
+  //     organizationEmail: ['', [Validators.required, Validators.email]],
+  //     organizationPhone: [
+  //       '',
+  //       [Validators.required, Validators.pattern('^[0-9]{10}$')],
+  //     ],
+  //     password: ['', [Validators.required, Validators.minLength(6)]],
+  //     confirmPassword: [
+  //       '',
+  //       [Validators.required, this.matchPassword('password')],
+  //     ],
+  //     agree: [false, [Validators.requiredTrue]],
+  //   });
+
+  //   this.registrationFormMentor = this.fb.group({
+  //     mentorName: ['', [Validators.required]],
+  //     mentorEmail: ['', [Validators.required, Validators.email]],
+  //     mentorPhone: [
+  //       '',
+  //       [Validators.required, Validators.pattern('^[0-9]{10}$')],
+  //     ],
+  //     password: ['', [Validators.required, Validators.minLength(6)]],
+  //     confirmPassword: [
+  //       '',
+  //       [Validators.required, this.matchPassword('password')],
+  //     ],
+  //     agree: [false, [Validators.requiredTrue]],
+  //   });
+  // }
+
+  onTabChange(event: MatTabChangeEvent) {
+    this.activeTabName = event.tab.textLabel.toLowerCase();
+    this.currentTabInfo.emit(this.activeTabName);
+    this.resetForms();
+
+    // Initialize form based on the selected tab
+    switch (event.index) {
+      case 0:
+        this.initCandidateForm();
+        break;
+      case 1:
+        this.initCollegeForm();
+        break;
+      case 2:
+        this.initCompanyForm();
+        break;
+      case 3:
+        this.initMentorForm();
+        break;
+    }
+  }
+
+  // Reset all forms
+  resetForms() {
+    if (this.registrationForm) {
+      this.registrationForm.reset();
+    }
+
+    if (this.registrationFormCollege) {
+      this.registrationFormCollege.reset();
+    }
+
+    if (this.registrationFormCompany) {
+      this.registrationFormCompany.reset();
+    }
+
+    if (this.registrationFormMentor) {
+      this.registrationFormMentor.reset();
+    }
+  }
+
+  // Initialize each form individually
+  initCandidateForm() {
     this.registrationForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -32,10 +146,16 @@ export class RegistrationTabComponent implements OnInit {
       ],
       agree: [false, [Validators.requiredTrue]],
     });
+  }
 
+  initCollegeForm() {
     this.registrationFormCollege = this.fb.group({
       collegeName: ['', [Validators.required]],
       collegeEmail: ['', [Validators.required, Validators.email]],
+      collegePhone: [
+        null,
+        [Validators.required, Validators.pattern('^[0-9]{10}$')],
+      ],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: [
         '',
@@ -43,7 +163,9 @@ export class RegistrationTabComponent implements OnInit {
       ],
       agree: [false, [Validators.requiredTrue]],
     });
+  }
 
+  initCompanyForm() {
     this.registrationFormCompany = this.fb.group({
       organizationName: ['', [Validators.required]],
       organizationEmail: ['', [Validators.required, Validators.email]],
@@ -58,7 +180,9 @@ export class RegistrationTabComponent implements OnInit {
       ],
       agree: [false, [Validators.requiredTrue]],
     });
+  }
 
+  initMentorForm() {
     this.registrationFormMentor = this.fb.group({
       mentorName: ['', [Validators.required]],
       mentorEmail: ['', [Validators.required, Validators.email]],
@@ -110,15 +234,65 @@ export class RegistrationTabComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
+    console.log(form.value, this.activeTabName);
     if (form.invalid) {
-      // Mark all fields as touched to show validation errors
-      form.markAllAsTouched();
-      console.log('Form is invalid', form.value);
+      console.log(form.value);
+      form.markAllAsTouched(); // Mark all fields as touched to show validation errors
       return;
     }
 
-    // If form is valid, process the form data
+    // Extract the common form data fields
     const formData = form.value;
-    console.log('Form Submitted Successfully:', formData);
+
+    // Set up the user name, email, phone, and password based on the role
+    let userName = '',
+      userEmail = '',
+      userPhone = '',
+      password = '';
+    switch (this.activeTabName) {
+      case 'candidate':
+        userName = formData.userName;
+        userEmail = formData.email;
+        userPhone = formData.mobile;
+        password = formData.password;
+        break;
+      case 'college':
+        userName = formData.collegeName;
+        userEmail = formData.collegeEmail;
+        userPhone = formData.collegePhone;
+        password = formData.password;
+        break;
+      case 'company':
+        userName = formData.organizationName;
+        userEmail = formData.organizationEmail;
+        userPhone = formData.organizationPhone;
+        password = formData.password;
+        break;
+      case 'mentor':
+        userName = formData.mentorName;
+        userEmail = formData.mentorEmail;
+        userPhone = formData.mentorPhone;
+        password = formData.password;
+        break;
+      default:
+        console.error('Unknown role');
+        return;
+    }
+    this.reg
+      .sendRegistrationRequest(
+        userName,
+        userEmail,
+        userPhone,
+        password,
+        this.activeTabName
+      )
+      .subscribe({
+        next: (response) => {
+          console.log('Registration Success', response);
+        },
+        error: (error) => {
+          console.error('Registration Error:', error);
+        },
+      });
   }
 }
