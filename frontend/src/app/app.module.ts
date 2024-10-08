@@ -25,13 +25,19 @@ import { SanitizerUrlPipe } from './pipe/sanitizer-url.pipe';
 import { MatSliderModule } from '@angular/material/slider';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import {FieldsetModule} from 'primeng/fieldset';
+import { FieldsetModule } from 'primeng/fieldset';
 import { TabViewModule } from 'primeng/tabview';
 import { UploadcvComponent } from './share/uploadcv/uploadcv.component';
 import { AddProjectComponent } from './share/add-project/add-project.component';
 import { AchivmentComponent } from './share/achivment/achivment.component';
 import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment } from 'src/environments/environment';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CareerComponent } from './share/product-showcase/career/career.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +54,7 @@ import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
     AddProjectComponent,
     AchivmentComponent,
     ComingSoonComponent,
+    CareerComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +73,12 @@ import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
     MatSliderModule,
     FieldsetModule,
     TabViewModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    AuthModule.forRoot(environment.auth),
+    MatTabsModule,
   ],
   exports: [SharedModule, FormsModule, ReactiveFormsModule, NgOtpInputModule],
   providers: [

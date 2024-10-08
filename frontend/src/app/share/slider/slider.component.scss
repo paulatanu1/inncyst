@@ -42,9 +42,10 @@ button {
   h1 {
     font-size: 3.5rem;
     font-weight: 300;
-    background-image: linear-gradient(53deg, #300369, #47c9e7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #300369;
+    // background-image: linear-gradient(53deg, #300369, #47c9e7);
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
 
     b {
       font-weight: 600;
@@ -53,7 +54,7 @@ button {
 
   p.text-1 {
     max-width: 200px;
-    background: rgb(27 188 222);
+    background: rgb(67 129 241);
     color: #ffffff;
     font-size: 0.8rem;
     text-align: center;
@@ -63,7 +64,7 @@ button {
   }
 
   p.text-3 {
-    font-weight: 200;
+    font-weight: 500;
     font-size: 0.9rem;
     line-height: 1.7;
     color: #000000;

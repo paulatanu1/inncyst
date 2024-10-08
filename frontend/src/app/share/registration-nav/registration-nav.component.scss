@@ -1,0 +1,39 @@
+a,
+p,
+div,
+span {
+    font-family: "Poppins", sans-serif !important;
+}
+
+.navbar {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    padding: 10px 25px;
+
+    img {
+        filter: drop-shadow(-4px 6px 6px #000) brightness(1.4);
+    }
+
+    ul {
+        li {
+            a {
+                font-size: 0.75rem;
+                font-weight: 400;
+                color: #fff;
+            }
+
+            .dropdown-menu {
+                border-radius: 18px;
+                top: 2rem;
+                left: -14px;
+
+                a {
+                    color: #414141;
+                    font-size: 0.7rem;
+                    margin: 10px 0;
+                }
+            }
+        }
+    }
+}

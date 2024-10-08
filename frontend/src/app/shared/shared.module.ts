@@ -49,7 +49,13 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
 import { LoaderComponent } from './loader/loader.component';
+import { RegistrationTabComponent } from '../share/registration-tab/registration-tab.component';
+import { RegistrationNavComponent } from '../share/registration-nav/registration-nav.component';
+import { RegistrationFooterComponent } from '../share/registration-footer/registration-footer.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RegistrationAgreeDialogComponent } from '../share/registration-agree-dialog/registration-agree-dialog.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +76,12 @@ import { LoaderComponent } from './loader/loader.component';
     LoginComponent,
     RegistrationOtpComponent,
     ProgressBarComponent,
-    RegistrationPageComponent,LoaderComponent
+    RegistrationPageComponent,
+    LoaderComponent,
+    RegistrationTabComponent,
+    RegistrationNavComponent,
+    RegistrationFooterComponent,
+    RegistrationAgreeDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -105,6 +116,8 @@ import { LoaderComponent } from './loader/loader.component';
     OverlayPanelModule,
     MatIconModule,
     MatMenuModule,
+    MatTabsModule,
+    MatDialogModule,
   ],
   exports: [
     HeaderComponent,
@@ -145,7 +158,11 @@ import { LoaderComponent } from './loader/loader.component';
     InputTextareaModule,
     ImageCropperModule,
     OverlayPanelModule,
-    LoaderComponent
+    LoaderComponent,
+    RegistrationTabComponent,
+    RegistrationNavComponent,
+    RegistrationFooterComponent,
+    RegistrationAgreeDialogComponent,
   ],
   providers: [DatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

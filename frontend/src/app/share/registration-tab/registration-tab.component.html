@@ -1,0 +1,487 @@
+<mat-tab-group
+  mat-align-tabs="center"
+  dynamicHeight
+  (selectedTabChange)="onTabChange($event)"
+>
+  <mat-tab label="Candidate">
+    <div class="container">
+      <form
+        *ngIf="registrationForm"
+        [formGroup]="registrationForm"
+        (ngSubmit)="onSubmit(registrationForm)"
+      >
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="p-float-label">
+              <input
+                id="float-input"
+                type="text"
+                pInputText
+                class=""
+                formControlName="userName"
+              />
+              <label for="float-input">Enter your name</label>
+              <div
+                *ngIf="isFieldInvalid(registrationForm, 'userName')"
+                class="error-message"
+              >
+                Name is required.
+              </div>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="p-float-label">
+              <input type="email" pInputText formControlName="email" />
+              <label for="float-input">Enter your email</label>
+              <div
+                *ngIf="isFieldInvalid(registrationForm, 'email')"
+                class="error-message"
+              >
+                Valid email is required.
+              </div>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="p-float-label">
+              <p-inputNumber
+                formControlName="mobile"
+                inputId="withoutgrouping"
+                [useGrouping]="false"
+                [maxlength]="10"
+              ></p-inputNumber>
+              <label for="withoutgrouping">Enter your mobile number</label>
+              <div
+                *ngIf="isFieldInvalid(registrationForm, 'mobile')"
+                class="error-message"
+              >
+                A valid mobile number is required.
+              </div>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="p-float-label">
+              <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+              ></p-password>
+              <label for="float-input">Enter your password</label>
+              <div
+                *ngIf="isFieldInvalid(registrationForm, 'password')"
+                class="error-message"
+              >
+                Password is required (min 6 characters).
+              </div>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="p-float-label">
+              <p-password
+                formControlName="confirmPassword"
+                [feedback]="false"
+                [toggleMask]="true"
+              ></p-password>
+              <label for="float-input">Confirm your password</label>
+              <div
+                *ngIf="isFieldInvalid(registrationForm, 'confirmPassword')"
+                class="error-message"
+              >
+                Please confirm your password.
+              </div>
+            </span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <span class="checkbox-sec" (click)="openDialog(registrationForm)">
+              <input
+                class="not-allowed"
+                type="checkbox"
+                formControlName="agree"
+              />
+              <p>
+                I have read and agree to the
+                <a>Terms of Service</a>
+              </p>
+            </span>
+            <div
+              *ngIf="isFieldInvalid(registrationForm, 'agree')"
+              class="error-message"
+            >
+              You must agree to the terms and conditions.
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-12">
+            <div class="signup-btn">
+              <button
+                [ngClass]="!registrationForm.valid ? 'disabled' : ''"
+                type="submit"
+                class="button-section w-100"
+              >
+                <span>Sign up</span>
+                <i class="pi pi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </mat-tab>
+  <mat-tab label="College">
+    <form
+      *ngIf="registrationFormCollege"
+      [formGroup]="registrationFormCollege"
+      (ngSubmit)="onSubmit(registrationFormCollege)"
+    >
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+              formControlName="collegeName"
+            />
+            <label for="float-input">Enter college name</label>
+            <div
+              *ngIf="isFieldInvalid(registrationFormCollege, 'collegeName')"
+              class="error-message"
+            >
+              College Name is required.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input type="email" pInputText formControlName="collegeEmail" />
+            <label for="float-input">Enter college email</label>
+            <div
+              *ngIf="isFieldInvalid(registrationFormCollege, 'collegeEmail')"
+              class="error-message"
+            >
+              Valid email is required.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input type="number" pInputText formControlName="collegePhone" />
+            <label for="float-input">Enter college phone</label>
+            <div
+              *ngIf="isFieldInvalid(registrationFormCollege, 'collegePhone')"
+              class="error-message"
+            >
+              Valid email is required.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password
+              [toggleMask]="true"
+              [feedback]="false"
+              formControlName="password"
+            ></p-password>
+            <label for="float-input">Enter your password</label>
+
+            <div
+              *ngIf="isFieldInvalid(registrationFormCollege, 'password')"
+              class="error-message"
+            >
+              Password is required (min 6 characters).
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password
+              [feedback]="false"
+              [toggleMask]="true"
+              formControlName="confirmPassword"
+            ></p-password>
+            <label for="float-input">Confirm your password</label>
+
+            <div
+              *ngIf="isFieldInvalid(registrationFormCollege, 'confirmPassword')"
+              class="error-message"
+            >
+              Please confirm your password.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <label class="checkbox-sec">
+            <input
+              type="checkbox"
+              formControlName="agree"
+              (click)="openDialog(registrationFormCollege)"
+            />
+            <p>I have read and agree to the <a>Terms of Service</a></p>
+
+            <div
+              *ngIf="isFieldInvalid(registrationFormCollege, 'agree')"
+              class="error-message"
+            >
+              You must agree to the terms and conditions.
+            </div>
+          </label>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <div class="signup-btn">
+            <button
+              [ngClass]="!registrationFormCollege.valid ? 'disabled' : ''"
+              type="button"
+              class="button-section w-100"
+            >
+              <span>Sign up</span>
+              <i class="pi pi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab label="Company">
+    <form
+      *ngIf="registrationFormCompany"
+      [formGroup]="registrationFormCompany"
+      (ngSubmit)="onSubmit(registrationFormCompany)"
+    >
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+              formControlName="organizationName"
+            />
+            <label for="float-input">Enter organization name</label>
+            <div
+              *ngIf="
+                isFieldInvalid(registrationFormCompany, 'organizationName')
+              "
+              class="error-message"
+            >
+              Organization Name is required.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input
+              type="email"
+              pInputText
+              formControlName="organizationEmail"
+            />
+            <label for="float-input">Enter organization email</label>
+            <div
+              *ngIf="
+                isFieldInvalid(registrationFormCompany, 'organizationEmail')
+              "
+              class="error-message"
+            >
+              Valid email is required.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input
+              type="number"
+              pInputText
+              formControlName="organizationPhone"
+            />
+            <label for="float-input">Enter organization phone</label>
+            <div
+              *ngIf="
+                isFieldInvalid(registrationFormCompany, 'organizationPhone')
+              "
+              class="error-message"
+            >
+              A valid mobile number is required.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password
+              [toggleMask]="true"
+              [feedback]="false"
+              formControlName="password"
+            ></p-password>
+            <label for="float-input">Enter your password</label>
+            <div
+              *ngIf="isFieldInvalid(registrationFormCompany, 'password')"
+              class="error-message"
+            >
+              Password is required (min 6 characters).
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password
+              [feedback]="false"
+              [toggleMask]="true"
+              formControlName="confirmPassword"
+            ></p-password>
+            <label for="float-input">Confirm your password</label>
+            <div
+              *ngIf="isFieldInvalid(registrationFormCompany, 'confirmPassword')"
+              class="error-message"
+            >
+              Please confirm your password.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <label class="checkbox-sec">
+            <input
+              type="checkbox"
+              formControlName="agree"
+              (click)="openDialog(registrationFormCompany)"
+            />
+            <p>I have read and agree to the <a>Terms of Service</a></p>
+            <div
+              *ngIf="isFieldInvalid(registrationFormCompany, 'agree')"
+              class="error-message"
+            >
+              You must agree to the Terms and Conditions.
+            </div>
+          </label>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <div class="signup-btn">
+            <button
+              [ngClass]="!registrationFormCompany.valid ? 'disabled' : ''"
+              type="button"
+              class="button-section w-100"
+            >
+              <span>Sign up</span>
+              <i class="pi pi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab label="Mentor">
+    <form
+      *ngIf="registrationFormMentor"
+      [formGroup]="registrationFormMentor"
+      (ngSubmit)="onSubmit(registrationFormMentor)"
+    >
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+              formControlName="mentorName"
+            />
+            <label for="float-input">Enter mentor name</label>
+
+            <div
+              *ngIf="isFieldInvalid(registrationFormMentor, 'mentorName')"
+              class="error-message"
+            >
+              Name is required.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input type="email" pInputText formControlName="mentorEmail" />
+            <label for="float-input">Enter mentor email</label>
+
+            <div
+              *ngIf="isFieldInvalid(registrationFormMentor, 'mentorEmail')"
+              class="error-message"
+            >
+              Valid email is required.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <input type="number" pInputText formControlName="mentorPhone" />
+            <label for="float-input">Enter mentor phone</label>
+
+            <div
+              *ngIf="isFieldInvalid(registrationFormMentor, 'mentorPhone')"
+              class="error-message"
+            >
+              A valid mobile number is required.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password
+              [toggleMask]="true"
+              [feedback]="false"
+              formControlName="password"
+            ></p-password>
+            <label for="float-input">Enter your password</label>
+
+            <div
+              *ngIf="isFieldInvalid(registrationFormMentor, 'password')"
+              class="error-message"
+            >
+              Password is required (min 6 characters).
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <span class="p-float-label">
+            <p-password
+              [feedback]="false"
+              [toggleMask]="true"
+              formControlName="confirmPassword"
+            ></p-password>
+            <label for="float-input">Confirm your password</label>
+
+            <div
+              *ngIf="isFieldInvalid(registrationFormMentor, 'confirmPassword')"
+              class="error-message"
+            >
+              Please confirm your password.
+            </div>
+          </span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <label class="checkbox-sec">
+            <input
+              type="checkbox"
+              formControlName="agree"
+              (click)="openDialog(registrationFormMentor)"
+            />
+            <p>I have read and agree to the <a>Terms of Service</a></p>
+
+            <div
+              *ngIf="isFieldInvalid(registrationFormMentor, 'agree')"
+              class="error-message"
+            >
+              You must agree to the terms and conditions.
+            </div>
+          </label>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <div class="signup-btn">
+            <button
+              [ngClass]="!registrationFormMentor.valid ? 'disabled' : ''"
+              type="button"
+              class="button-section w-100"
+            >
+              <span>Sign up</span>
+              <i class="pi pi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-tab>
+</mat-tab-group>

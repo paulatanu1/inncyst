@@ -5,27 +5,25 @@ import ls from 'localstorage-slim';
 @Component({
   selector: 'app-get-job',
   templateUrl: './get-job.component.html',
-  styleUrls: ['./get-job.component.scss']
+  styleUrls: ['./get-job.component.scss'],
 })
 export class GetJobComponent implements OnInit {
-  isRegisterModal:boolean = false;
+  isRegisterModal: boolean = false;
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  openModal(){
+  openModal() {
     // this.isRegisterModal = true;
-    if (ls.get('login_token') ) {
+    if (ls.get('login_token')) {
       this.router.navigateByUrl('/jobs/posts');
-    } else if (!ls.get('login_token') ) {
-
-      this.router.navigateByUrl('/registeration');
+    } else if (!ls.get('login_token')) {
+      this.router.navigateByUrl('/registration');
     }
   }
-  
-  onhideModal(){
+
+  onhideModal() {
     this.isRegisterModal = false;
   }
 }
