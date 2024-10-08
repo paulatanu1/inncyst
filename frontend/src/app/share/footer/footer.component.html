@@ -37,8 +37,8 @@
         <li class="menu-items">
           <a [routerLink]="['/contactus']">Email us</a>
         </li>
-        <li class="menu-items"><a href="#">Privacy policy</a></li>
-        <li class="menu-items"><a href="#">Terms and conditions</a></li>
+        <li class="menu-items"><a>Privacy policy</a></li>
+        <li class="menu-items"><a>Terms and conditions</a></li>
       </ul>
     </div>
     <div class="second-menu">
@@ -46,16 +46,16 @@
         <li (click)="whatsappConnect()" class="menu-heading">
           <a>Our Product</a>
         </li>
-        <li class="menu-items">
+        <li [routerLink]="['/internships']" class="menu-items">
           <a>Internship</a>
         </li>
         <li class="menu-items">
-          <a [routerLink]="['/contactus']">Jobs</a>
+          <a [routerLink]="['/jobs']">Jobs</a>
         </li>
-        <li class="menu-items"><a href="#">Projects</a></li>
-        <li class="menu-items"><a href="#">Laboratory Service</a></li>
-        <li class="menu-items"><a href="#">Manufacturing Facilities</a></li>
-        <li class="menu-items"><a href="#">Mentors</a></li>
+        <li  [routerLink]="['/coming-soon']" class="menu-items"><a>Projects</a></li>
+        <li [routerLink]="['/coming-soon']" class="menu-items"><a>Laboratory Service</a></li>
+        <li [routerLink]="['/coming-soon']" class="menu-items"><a>Manufacturing Facilities</a></li>
+        <li [routerLink]="['/coming-soon']" class="menu-items"><a>Mentors</a></li>
       </ul>
     </div>
   </div>

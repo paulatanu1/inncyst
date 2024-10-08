@@ -59,13 +59,13 @@
             <i class="fas fa-caret-down"></i>
           </a>
           <ul>
-            <li (click)="productOrServicedropdown('Internship')">
+            <li [routerLink]="['/internships']">
               <a class="nav-link">
                 <i class="pi pi-briefcase"></i>
-                <span>Internship</span>
+                <span>Internships</span>
               </a>
             </li>
-            <li (click)="productOrServicedropdown('Industry')">
+            <li [routerLink]="['/jobs']">
               <a class="nav-link">
                 <i class="pi pi-briefcase"></i>
                 <span>Jobs</span>

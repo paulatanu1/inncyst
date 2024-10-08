@@ -99,7 +99,7 @@
               />
               <p>
                 I have read and agree to the
-                <a href="#">Terms of Service</a>
+                <a>Terms of Service</a>
               </p>
             </span>
             <div
@@ -209,13 +209,13 @@
           </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
-          <span class="checkbox-sec">
+          <label class="checkbox-sec">
             <input
               type="checkbox"
               formControlName="agree"
               (click)="openDialog(registrationFormCollege)"
             />
-            <p>I have read and agree to the Terms of Service</p>
+            <p>I have read and agree to the <a>Terms of Service</a></p>
 
             <div
               *ngIf="isFieldInvalid(registrationFormCollege, 'agree')"
@@ -223,7 +223,7 @@
             >
               You must agree to the terms and conditions.
             </div>
-          </span>
+          </label>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <div class="signup-btn">
@@ -336,20 +336,20 @@
           </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
-          <span class="checkbox-sec">
+          <label class="checkbox-sec">
             <input
               type="checkbox"
               formControlName="agree"
               (click)="openDialog(registrationFormCompany)"
             />
-            <p>I have read and agree to the Terms of Service</p>
+            <p>I have read and agree to the <a>Terms of Service</a></p>
             <div
               *ngIf="isFieldInvalid(registrationFormCompany, 'agree')"
               class="error-message"
             >
-              You must agree to the terms and conditions.
+              You must agree to the Terms and Conditions.
             </div>
-          </span>
+          </label>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <div class="signup-btn">
@@ -453,13 +453,13 @@
           </span>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
-          <span class="checkbox-sec">
+          <label class="checkbox-sec">
             <input
               type="checkbox"
               formControlName="agree"
               (click)="openDialog(registrationFormMentor)"
             />
-            <p>I have read and agree to the Terms of Service</p>
+            <p>I have read and agree to the <a>Terms of Service</a></p>
 
             <div
               *ngIf="isFieldInvalid(registrationFormMentor, 'agree')"
@@ -467,7 +467,7 @@
             >
               You must agree to the terms and conditions.
             </div>
-          </span>
+          </label>
         </div>
         <div class="col-lg-12 col-md-12 col-12">
           <div class="signup-btn">

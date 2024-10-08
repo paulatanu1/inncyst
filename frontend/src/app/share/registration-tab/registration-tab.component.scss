@@ -130,11 +130,16 @@ form {
         display: flex;
         align-items: center;
         gap: 7px;
+        cursor: pointer;
 
         p {
             font-size: 0.8rem;
             margin-bottom: 0;
             font-weight: 600;
+
+            a {
+                color: #6b15b0;
+            }
         }
         .error-message {
             position: absolute;
