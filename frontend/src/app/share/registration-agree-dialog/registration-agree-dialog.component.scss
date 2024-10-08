@@ -1,3 +1,8 @@
+ input:focus {
+   outline: 0;
+   box-shadow: none;
+ }
+
  ::ng-deep {
 
    .mat-dialog-container {
@@ -9,11 +14,17 @@
        display: flex;
        align-items: center;
        gap: 7px;
+       cursor: pointer;
 
        p {
          margin-bottom: 0;
          font-size: 0.8rem;
          font-weight: 600;
+
+         a {
+           color: #6b15b0;
+         }
+
        }
      }
 
