@@ -9,7 +9,7 @@
       <div class="info-inner-section">
         <div class="info-header-section">
           <h4>Contact Information</h4>
-          <p>Say something to start a live chat!</p>
+          <p>Say something to start relation</p>
         </div>
         <div class="info-mid-section">
           <ul>
@@ -46,7 +46,7 @@
                     fill="white"
                   />
                 </svg>
-                +1012 3456 789
+                +91 99162 91977
               </a>
             </li>
             <li>
@@ -64,7 +64,7 @@
                     fill="white"
                   />
                 </svg>
-                demo@gmail.com
+                contactus&#64;inncyst.com
               </a>
             </li>
             <li>
@@ -84,7 +84,7 @@
                     fill="white"
                   ></path>
                 </svg>
-                132 Dartmouth Street Boston, Massachusetts 02156 United States
+                1D , 1st floor, Friend flat 4th cross, AECS layout, Geddellahalli, Bengaluru 560094
               </a>
             </li>
           </ul>
@@ -158,12 +158,13 @@
     <div class="form-section">
       <form [formGroup]="contactUsForm" (ngSubmit)="onSubmitContactForm()">
         <div class="input-area-sm">
-          <label>First Name</label>
-          <input
-            placeholder="Enter Your First Name"
-            type="text"
-            formControlName="firstName"
-          />
+          <span class="p-float-label">
+            <input pInputText
+          placeholder="Enter Your First Name"
+          type="text"
+          formControlName="firstName"
+        />
+          <label for="float-input">First Name</label>
           <div
             *ngIf="
               contactUsForm?.get('firstName')?.hasError('required') &&
@@ -173,14 +174,16 @@
           >
             First Name is required.
           </div>
+          </span>
         </div>
         <div class="input-area-sm">
-          <label>Last Name</label>
-          <input
+          <span class="p-float-label">
+            <input pInputText
             placeholder="Enter Your Last Name"
             type="text"
             formControlName="lastName"
           />
+          <label for="float-input">Last Name</label>
           <div
             *ngIf="
               contactUsForm?.get('lastName')?.hasError('required') &&
@@ -188,16 +191,20 @@
             "
             class="error-message"
           >
-            First Name is required.
+            Last Name is required.
           </div>
+          </span>
+         
         </div>
         <div class="input-area-sm">
-          <label>Email</label>
-          <input
+          <span class="p-float-label">
+            <input pInputText
             placeholder="Enter Your Email"
             type="text"
             formControlName="email"
           />
+          <label for="float-input">Email</label>
+
           <div
             *ngIf="
               contactUsForm?.get('email')?.hasError('required') &&
@@ -205,16 +212,18 @@
             "
             class="error-message"
           >
-            First Name is required.
+            Email is required.
           </div>
+          </span>
         </div>
         <div class="input-area-sm">
-          <label>Phone Number</label>
-          <input
+          <span class="p-float-label">
+            <input pInputText
             placeholder="Enter Your Mobile No."
             type="text"
             formControlName="phone"
           />
+          <label for="float-input">Phone Number</label>
           <div
             *ngIf="
               contactUsForm.get('phone')?.hasError('pattern') &&
@@ -244,13 +253,14 @@
           >
             Phone Number must not exceed 10 digits.
           </div>
+          </span>
         </div>
         <div class="input-area-lg">
-          <label>Message</label>
-          <textarea
+          <span class="p-float-label">
+            <textarea pInputText
             formControlName="message"
-            placeholder="Enter Your Message"
           ></textarea>
+          <label for="float-input">Message</label>
           <div
             *ngIf="
               contactUsForm.get('message')?.hasError('required') &&
@@ -260,6 +270,8 @@
           >
             Message is required.
           </div>
+          </span>
+          
         </div>
         <div class="submit-area">
           <input type="submit" placeholder="Submit" />
