@@ -14,12 +14,15 @@ export class ApplySectionComponent implements OnInit {
   ngOnInit(): void {}
 
   openModal() {
-    if (ls.get('login_token')) {
-      this.router.navigateByUrl('/jobs/posts');
-    } else {
-      this.router.navigateByUrl('/registration');
-    }
+    // if (ls.get('login_token')) {
+    //   this.router.navigateByUrl('/jobs/posts');
+    // } else {
+    //   this.router.navigateByUrl('/registration');
+    // }
     // this.isRegisterModal = true;
+
+    this.router.navigateByUrl('/internships');
+
   }
 
   onhideModal() {

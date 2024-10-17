@@ -11,7 +11,7 @@
             <b>Success</b>
           </h1>
           <p class="text-3">
-            reating Collaborative Solutions: Fostering Ecosystems of Industry,
+            Creating Collaborative Solutions: Fostering Ecosystems of Industry,
             Academia, and Individuals for Optimal Resource Utilization.
           </p>
         </div>
@@ -19,17 +19,22 @@
     </div>
     <div class="col-lg-6 col-md-6 col-12 col-sm-12">
       <div class="products-grid">
-        <div class="img-intern" (click)="navigateUrl('/Login')">
+        <div class="img-intern" (click)="navigateUrl('/internships')">
           <i class="pi pi-arrow-right"></i>
           <img
             loading="lazy"
             width="240"
             height="150"
-            src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/home-banner/incysst-intern-banner.jpg"
+            src="../../../assets/bg/internship.jpg"
             alt=""
           />
+
+          <div class="img-name">
+            <p>Internship</p>
+          </div>
+
         </div>
-        <div class="img-job" (click)="navigateUrl('/Login')">
+        <div class="img-job" (click)="navigateUrl('/jobs')">
           <i class="pi pi-arrow-right"></i>
           <img
             loading="lazy"
@@ -38,8 +43,14 @@
             src="../../../assets/bg/jobs.jpg"
             alt=""
           />
+
+
+          <div class="img-name">
+            <p>Jobs</p>
+          </div>
+
         </div>
-        <div class="img-project" (click)="navigateUrl('')">
+        <div class="img-project" (click)="navigateUrl('/coming-soon')">
           <i class="pi pi-arrow-left"></i>
           <img
             loading="lazy"
@@ -48,8 +59,12 @@
             src="../../../assets/bg/mentor.jpg"
             alt=""
           />
+
+          <div class="img-name">
+            <p>Mentor</p>
+          </div>
         </div>
-        <div class="img-labservice" (click)="navigateUrl('')">
+        <div class="img-labservice" (click)="navigateUrl('/coming-soon')">
           <i class="pi pi-arrow-right"></i>
           <img
             loading="lazy"
@@ -58,8 +73,13 @@
             src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/home-banner/incysst-lab-service.jpg"
             alt=""
           />
+
+          <div class="img-name">
+            <p>Lab Services</p>
+          </div>
+
         </div>
-        <div class="img-manufacture" (click)="navigateUrl('')">
+        <div class="img-manufacture" (click)="navigateUrl('/coming-soon')">
           <i class="pi pi-arrow-left"></i>
           <img
             width="250"
@@ -67,6 +87,11 @@
             src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/home-banner/incysst-manufacture-banner.jpg"
             alt=""
           />
+
+          <div class="img-name">
+            <p>Manufacturing</p>
+          </div>
+
         </div>
         <!-- <div class="img-mentor" (click)="navigateUrl('')">
                     <i class="pi pi-arrow-right"></i>

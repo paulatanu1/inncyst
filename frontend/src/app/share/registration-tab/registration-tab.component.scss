@@ -168,7 +168,7 @@ form {
         width: 150px;
         position: relative;
         overflow: hidden;
-        margin: 2rem 0;
+        margin: 1rem 0 10px;
 
         span {
             transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -212,30 +212,20 @@ form {
         width: 150px;
         position: relative;
         overflow: hidden;
-        margin: 2rem 0;
+        margin: 1rem 0 10px;
         pointer-events: none;
     }
 
-    .button-section.disabled {
-        background-color: #bcbcbc;
-        border: 0;
-        color: #ffffff;
-        border-radius: 25px;
-        padding: 10px 25px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0;
-        transition: padding-left 0.3s ease-in-out, justify-content 0.3s ease-in-out;
-        width: 150px;
-        position: relative;
-        overflow: hidden;
-        margin: 2rem 0;
-        pointer-events: none;
-    }
+}
 
+
+.route-login {
+    text-align: center;
+    font-size: 0.95rem;
+
+        a {
+            margin-left: 5px;
+        }
 }
 
 .not-allowed {

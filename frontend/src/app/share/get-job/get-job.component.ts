@@ -16,11 +16,14 @@ export class GetJobComponent implements OnInit {
 
   openModal() {
     // this.isRegisterModal = true;
-    if (ls.get('login_token')) {
-      this.router.navigateByUrl('/jobs/posts');
-    } else if (!ls.get('login_token')) {
-      this.router.navigateByUrl('/registration');
-    }
+    // if (ls.get('login_token')) {
+    //   this.router.navigateByUrl('/jobs/posts');
+    // } else if (!ls.get('login_token')) {
+    //   this.router.navigateByUrl('/registration');
+    // }
+
+    this.router.navigateByUrl('/jobs')
+
   }
 
   onhideModal() {
