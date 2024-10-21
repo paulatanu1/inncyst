@@ -26,14 +26,13 @@
                 #ngOtpInput1
                 [config]="{ length: 4 }"
                 (onInputChange)="onEmailOtpChange($event)"
-                formControlName="emailOtp"
               ></ng-otp-input>
             </span>
           </div>
 
           <div class="resend-section">
             Didn’t received the code?
-            <a href="#">Resend Code</a>
+            <a>Resend Code</a>
           </div>
         </div>
         <div class="devider"></div>
@@ -55,7 +54,6 @@
                 #ngOtpInput2
                 [config]="{ length: 4 }"
                 (onInputChange)="onPhoneOtpChange($event)"
-                formControlName="phoneOtp"
               ></ng-otp-input>
             </span>
           </div>

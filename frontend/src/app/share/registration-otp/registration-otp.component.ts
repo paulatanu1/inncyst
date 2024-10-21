@@ -51,7 +51,12 @@ export class RegistrationOtpComponent implements OnInit {
     private reg: RegistrationService,
     private auth: SocialAuthService,
     private cd: ChangeDetectorRef
-  ) {}
+  ) {
+    this.verifyRegistration = this.fb.group({
+      emailOtp: [null, [Validators.required, Validators.pattern(/^\d{4}$/)]],
+      phoneOtp: [null, [Validators.required, Validators.pattern(/^\d{4}$/)]],
+    });
+  }
 
   ngAfterViewInit() {
     // this.isOtp = false;
@@ -59,7 +64,7 @@ export class RegistrationOtpComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('iiii');
-    this.verifyRegistration = this.fb.group({});
+
     this.reg.loginResponse.subscribe({
       next: (resp) => {
         console.log(resp);
@@ -70,37 +75,12 @@ export class RegistrationOtpComponent implements OnInit {
         this.userEmails = response.data.email;
         this.userMobileNumber = response.data.phone;
         console.log(this.isEmailVerify, 'vvv');
-        if (!this.isEmailVerify) {
-          console.log('email');
-          this.verifyRegistration.addControl(
-            'emailOtp',
-            this.fb.control('', [
-              Validators.required,
-              Validators.pattern(/^\d{4}$/),
-            ])
-          );
-        }
-
-        if (!this.isPhoneVerify) {
-          this.verifyRegistration.addControl(
-            'phoneOtp',
-            this.fb.control('', [
-              Validators.required,
-              Validators.pattern(/^\d{4}$/),
-            ])
-          );
-        }
-        console.log(this.verifyRegistration);
-        this.cd.detectChanges();
       },
     });
-
-    // if (!this.regId) {
-    //   this.auth.logout();
-    // }
   }
 
   onEmailOtpChange(event: any) {
+    console.log('otppp');
     this.isemailOtp = event;
     this.verifyRegistration.get('emailOtp')?.setValue(event);
   }

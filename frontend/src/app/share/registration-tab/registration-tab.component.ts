@@ -39,63 +39,6 @@ export class RegistrationTabComponent implements OnInit {
     this.currentTabInfo.emit(this.activeTabName);
   }
 
-  // initForms() {
-  //   this.registrationForm = this.fb.group({
-  //     userName: ['', [Validators.required, Validators.minLength(3)]],
-  //     email: ['', [Validators.required, Validators.email]],
-  //     mobile: [null, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-  //     password: ['', [Validators.required, Validators.minLength(6)]],
-  //     confirmPassword: [
-  //       '',
-  //       [Validators.required, this.matchPassword('password')],
-  //     ],
-  //     agree: [false, [Validators.requiredTrue]],
-  //   });
-
-  //   this.registrationFormCollege = this.fb.group({
-  //     collegeName: ['', [Validators.required]],
-  //     collegeEmail: ['', [Validators.required, Validators.email]],
-  //     collegePhone: [null, [Validators.required, Validators.email]],
-
-  //     password: ['', [Validators.required, Validators.minLength(6)]],
-  //     confirmPassword: [
-  //       '',
-  //       [Validators.required, this.matchPassword('password')],
-  //     ],
-  //     agree: [false, [Validators.requiredTrue]],
-  //   });
-
-  //   this.registrationFormCompany = this.fb.group({
-  //     organizationName: ['', [Validators.required]],
-  //     organizationEmail: ['', [Validators.required, Validators.email]],
-  //     organizationPhone: [
-  //       '',
-  //       [Validators.required, Validators.pattern('^[0-9]{10}$')],
-  //     ],
-  //     password: ['', [Validators.required, Validators.minLength(6)]],
-  //     confirmPassword: [
-  //       '',
-  //       [Validators.required, this.matchPassword('password')],
-  //     ],
-  //     agree: [false, [Validators.requiredTrue]],
-  //   });
-
-  //   this.registrationFormMentor = this.fb.group({
-  //     mentorName: ['', [Validators.required]],
-  //     mentorEmail: ['', [Validators.required, Validators.email]],
-  //     mentorPhone: [
-  //       '',
-  //       [Validators.required, Validators.pattern('^[0-9]{10}$')],
-  //     ],
-  //     password: ['', [Validators.required, Validators.minLength(6)]],
-  //     confirmPassword: [
-  //       '',
-  //       [Validators.required, this.matchPassword('password')],
-  //     ],
-  //     agree: [false, [Validators.requiredTrue]],
-  //   });
-  // }
-
   onTabChange(event: MatTabChangeEvent) {
     this.activeTabName = event.tab.textLabel.toLowerCase();
     this.currentTabInfo.emit(this.activeTabName);

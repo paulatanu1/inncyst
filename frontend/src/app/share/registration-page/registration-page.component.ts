@@ -195,7 +195,7 @@ export class RegistrationPageComponent implements OnInit {
 
     // To get access token
     // this.socialAuth.getAccessToken();
-    this.getSsoDetailsFromAuth();
+    // this.getSsoDetailsFromAuth();
   }
 
   optionClick(url: string) {
