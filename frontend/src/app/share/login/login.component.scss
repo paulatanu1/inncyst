@@ -240,7 +240,7 @@ button {
         width: 150px;
         position: relative;
         overflow: hidden;
-        margin: 2rem 0;
+        margin: 1rem 0 10px;
 
         span {
           transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -284,10 +284,19 @@ button {
         width: 150px;
         position: relative;
         overflow: hidden;
-        margin: 2rem 0;
+        margin: 1rem 0 10px;
         pointer-events: none;
       }
 
+    }
+
+    .route-login {
+      text-align: center;
+      font-size: 0.95rem;
+
+      a {
+        margin-left: 5px;
+      }
     }
 
 

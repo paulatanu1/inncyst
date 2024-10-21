@@ -232,13 +232,44 @@ button {
     width: 300px;
     height: 187px;
 
-    img {
-
     &:hover {
-      filter: brightness(0.6);
-      transform: scale(0.9);
+
+      img {
+
+        filter: brightness(0.6);
+      }
+
+
+      .img-name {
+        opacity: 1;
+        transform: translateY(-15px) scale(0.9);
+      }
+
+
     }
+
+    .img-name {
+      position: absolute;
+      bottom: 0;
+      left: 12px;
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      color: #fff;
+      border-radius: 15px;
+      width: 92%;
+      text-align: center;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      background: #00000069;
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+
+      p {
+        margin-bottom: 0;
+      }
+
     }
+
   }
 
   .img-job {
@@ -247,14 +278,49 @@ button {
     right: 0;
     width: 321px;
     height: 170px;
+    overflow: hidden;
+    cursor: pointer;
 
-    img {
-    
     &:hover {
-      filter: brightness(0.6);
-      transform: scale(0.9);
+
+      img {
+
+        filter: brightness(0.6);
+      }
+
+
+      .img-name {
+        opacity: 1;
+        transform: translateY(-15px) scale(0.9);
+      }
+
+
     }
+
+
+    .img-name {
+      position: absolute;
+      bottom: 0;
+      left: 0px;
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      color: #fff;
+      border-radius: 15px;
+      width: 100%;
+      text-align: center;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      background: #00000069;
+      transition: all 0.3s ease-in-out;
+      transform: translateY(0);
+      opacity: 0;
+
+      p {
+        margin-bottom: 0;
+      }
+
     }
+
   }
 
   .img-project {
@@ -264,12 +330,42 @@ button {
     width: 320px;
     height: 200px;
 
-    img {
-    
     &:hover {
-      filter: brightness(0.6);
-      transform: scale(0.9);
+
+      img {
+
+        filter: brightness(0.6);
+      }
+
+
+      .img-name {
+        opacity: 1;
+        transform: translateY(-15px) scale(0.9);
+      }
+
+
     }
+
+    .img-name {
+      position: absolute;
+      bottom: 0;
+      left: 12px;
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      color: #fff;
+      border-radius: 15px;
+      width: 92%;
+      text-align: center;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      background: #00000069;
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+
+      p {
+        margin-bottom: 0;
+      }
+
     }
   }
 
@@ -279,12 +375,42 @@ button {
     width: 300px;
     height: 352px;
 
-    img {
-    
     &:hover {
-      filter: brightness(0.6);
-      transform: scale(0.9);
+
+      img {
+
+        filter: brightness(0.6);
+      }
+
+
+      .img-name {
+        opacity: 1;
+        transform: translateY(-15px) scale(0.9);
+      }
+
+
     }
+
+    .img-name {
+      position: absolute;
+      bottom: 0;
+      left: 12px;
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      color: #fff;
+      border-radius: 15px;
+      width: 92%;
+      text-align: center;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      background: #00000069;
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+
+      p {
+        margin-bottom: 0;
+      }
+
     }
   }
 
@@ -294,13 +420,44 @@ button {
     top: 28rem;
     width: 313px;
     height: 181px;
+    cursor: pointer;
 
-    img {
-    
     &:hover {
-      filter: brightness(0.6);
-      transform: scale(0.9);
+
+      img {
+
+        filter: brightness(0.6);
+      }
+
+
+      .img-name {
+        opacity: 1;
+        transform: translateY(-15px) scale(0.9);
+      }
+
+
     }
+
+    .img-name {
+      position: absolute;
+      bottom: 0;
+      left: 12px;
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      color: #fff;
+      border-radius: 15px;
+      width: 92%;
+      text-align: center;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      background: #00000069;
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+
+      p {
+        margin-bottom: 0;
+      }
+
     }
   }
 
