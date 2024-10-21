@@ -8,4 +8,10 @@ export const environment = {
   API_TIMEOUT: 300000,
   ERROR_REDIRECT: true,
   WHATSAPP_NUMBER: 8918882380,
+  auth: {
+    domain: 'dev-inncyst.us.auth0.com',
+    clientId: 'T30L4gAR1jqpRZMgDOk0CcuGQRpnlh12',
+  },
+  RECAPTCHA_SITE_KEY: '6LeRui4qAAAAAHYrB524A-8wIxqLXuqGbOP1fTtn',
+  GOOGLE_MAP_KEY: 'AIzaSyAREQnPqKcssYtNlNQlnG90HqIBz5MyMM4',
 };

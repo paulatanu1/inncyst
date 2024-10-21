@@ -68,9 +68,9 @@ h3 {
   padding: 4rem;
 
   h2 {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 36px;
-    line-height: 37px;
+    line-height: 1.5;
     color: #522d80;
     position: relative;
 
@@ -98,12 +98,15 @@ h3 {
         font-style: normal;
         font-weight: 600;
         font-size: 0.85rem;
-        line-height: 26px;
+        line-height: 1.7;
         color: #292929;
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
 
         span {
           color: #522d80;
-          padding-right: 10px;
+          padding-top: 5px;
         }
       }
     }

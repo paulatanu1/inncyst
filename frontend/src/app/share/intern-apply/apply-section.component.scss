@@ -75,19 +75,22 @@ button {
 
       li {
         list-style: none;
-        padding-bottom: 14px;
+        margin-bottom: 20px;
 
         a {
           text-decoration: none;
           font-style: normal;
           font-weight: 600;
           font-size: 0.85rem;
-          line-height: 26px;
+          line-height: 1.7;
           color: #292929;
+          display: flex;
+          align-items: flex-start;
+          gap: 7px;
 
           span {
             color: #522d80;
-            padding-right: 10px;
+            padding-top: 5px;
           }
         }
       }

@@ -1,0 +1,352 @@
+<app-header></app-header>
+
+<div class="container">
+
+  <section class="internship_sec internship_sec_list">
+    <section class="internship_sec_inner">
+      <section class="left_aside_part">
+        <div class="company_lists">
+          <div
+            class="search-results-container"
+            infiniteScroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="250"
+            (scrolled)="onScroll()"
+            [scrollWindow]="false"
+          >
+            <ul>
+              <li
+                *ngFor="let a of AllJobDetails; let i = index"
+                (click)="gotoLogin()"
+              >
+                <div class="company_details_head">
+                  <div class="comapny_details">
+                    <span>
+                      <img
+                        src="{{
+                          a.company.image
+                            ? a.company.image
+                            : '../../../assets/no-image.svg'
+                        }}"
+                        width="130"
+                        height="50"
+                        loading="lazy"
+                      />
+                    </span>
+                    <h2>
+                      {{ a.companyName }}
+                      <span class="posted_time">
+                        Posted {{ a.createdAt }} days ago
+                      </span>
+                    </h2>
+                  </div>
+  
+                  <h2>{{a.details}}</h2>
+                  <div class="tags">
+                    <span>1-3 Years</span>
+                    <span>Graduation/Diploma</span>
+                    <span>{{ a.salary }} Lpa</span>
+                    <span>{{ a.intranshipType }}</span>
+                  </div>
+                </div>
+  
+                <div class="location">
+                  <p>
+                    <i class="pi pi-map-marker"></i>
+                    {{ a.location }}Kolkata
+                  </p>
+                  <p>
+                    <i class="pi pi-briefcase"></i>
+                    {{ a.type }}
+                  </p>
+                  <p>
+                    <i class="pi pi-user-plus"></i>
+                    {{ a.jobOpening }}
+                  </p>
+                </div>
+                <div class="company_tags">
+                  <span *ngFor="let b of a.skills">{{ b }}</span>
+                </div>
+              </li>
+  
+            </ul>
+            <section class="noData" *ngIf="AllJobDetails.length == 0">
+              <h3>
+                Exciting opportunities ahead!
+                {{ CurrentUrl === '/job' ? 'Jobs' : 'Internships' }} are coming
+                soon, your chance to learn, grow, and make an impact awaits.
+              </h3>
+            </section>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section>
+  
+  <!-- <section class="internship_sec internship_sec_list">
+    <section class="internship_sec_inner">
+      <section class="left_aside_part">
+        <div class="company_lists">
+          <div class="search-results-container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="250"
+            (scrolled)="onScroll()" [scrollWindow]="false">
+            <ul>
+              <li 
+              *ngFor="let a of AllJobDetails; let i = index"
+              (click)="gotoLogin()"
+            >
+                <div class="company_details_head">
+                  <div class="comapny_details">
+                    <span>
+                      <img src="https://vitwo.finance/assets/logo/vitwo-logo.png" width="130" height="50" loading="lazy" />
+                    </span>
+                    <h2 title=" {{ a.companyName }}">
+                      {{ a.companyName }}
+                      <span class="posted_time">
+                        Posted {{ a.createdAt }} days ago
+                      </span>
+                    </h2>
+                  </div>
+  
+                  <h2>{{a.title}}</h2>
+                  <div class="location">
+                    <span>
+                      <i class="pi pi-map-marker"></i>
+                      {{a.location}} Kolkata
+                    </span>
+                    <span>
+                      <i class="pi pi-briefcase"></i>
+                      {{a.type}}
+                    </span>
+                    <span>
+                      <i class="pi pi-user-plus"></i>
+                      {{a.jobOpening}}
+                    </span>
+                  </div>
+                  <div class="tags">
+                    <span>1-3 Years</span>
+                    <span>Graduation/Diploma</span>
+                    <span>{{a.salary}} Lpa</span>
+                    <span>{{ a.intranshipType }}</span>
+                  </div>
+                </div>
+  
+              
+                <div class="company_tags">
+                   <span *ngFor="let b of a.skills">{{ b }}</span>
+                </div>
+              </li>
+              <li>
+                <div class="company_details_head">
+                  <div class="comapny_details">
+                    <span>
+                      <img src="https://vitwo.ai/erp/assets/logo/Vitwo-AI-LOGO.png " width="130" height="50" loading="lazy" />
+                    </span>
+                    <h2>
+                      a.companyName
+                      <span class="posted_time">
+                        Posted 20 days ago
+                      </span>
+                    </h2>
+                  </div>
+  
+                  <h2>details</h2>
+                  <div class="tags">
+                    <span>1-3 Years</span>
+                    <span>Graduation/Diploma</span>
+                    <span>a.salary Lpa</span>
+                    <span>intranshipType</span>
+                  </div>
+                </div>
+  
+                <div class="location">
+                  <span>
+                    <i class="pi pi-map-marker"></i>
+                    a.location Kolkata
+                  </span>
+                  <span>
+                    <i class="pi pi-briefcase"></i>
+                    a.type
+                  </span>
+                  <span>
+                    <i class="pi pi-user-plus"></i>
+                    a.jobOpening
+                  </span>
+                </div>
+                <div class="company_tags">
+                  <span>skills </span>
+                </div>
+              </li>
+              <li>
+                <div class="company_details_head">
+                  <div class="comapny_details">
+                    <span>
+                      <img src="https://vitwo.finance/assets/images/new-clients/kanelle.webp" width="100" height="50" loading="lazy" />
+                    </span>
+                    <h2>
+                      a.companyName
+                      <span class="posted_time">
+                        Posted 20 days ago
+                      </span>
+                    </h2>
+                  </div>
+  
+                  <h2 title="example">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit qui quae eveniet molestiae, cupiditate eos corrupti ipsam asperiores at, dolores modi deserunt, quam ad commodi. Commodi iste deleniti minima nisi at beatae repudiandae corrupti odio.</h2>
+                  <div class="tags">
+                    <span>1-3 Years</span>
+                    <span>Graduation/Diploma</span>
+                    <span>a.salary Lpa</span>
+                    <span>intranshipType</span>
+                  </div>
+                </div>
+  
+                <div class="location">
+                  <div class="details">
+                    <i class="pi pi-map-marker"></i>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                  </div>
+                  <span>
+                    <i class="pi pi-briefcase"></i>
+                    a.type
+                  </span>
+                  <span>
+                    <i class="pi pi-user-plus"></i>
+                    a.jobOpening
+                  </span>
+                </div>
+                <div class="company_tags">
+                  <span>skills </span>
+                </div>
+              </li>
+              <li>
+                <div class="company_details_head">
+                  <div class="comapny_details">
+                    <span>
+                      <img src="https://vitwo.finance/assets/images/new-clients/actia.webp" width="100" height="50" loading="lazy" />
+                    </span>
+                    <h2>
+                      a.companyName
+                      <span class="posted_time">
+                        Posted 20 days ago
+                      </span>
+                    </h2>
+                  </div>
+  
+                  <h2>details</h2>
+                  <div class="tags">
+                    <span>1-3 Years</span>
+                    <span>Graduation/Diploma</span>
+                    <span>a.salary Lpa</span>
+                    <span>intranshipType</span>
+                  </div>
+                </div>
+  
+                <div class="location">
+                  <span>
+                    <i class="pi pi-map-marker"></i>
+                    a.location Kolkata
+                  </span>
+                  <span>
+                    <i class="pi pi-briefcase"></i>
+                    a.type
+                  </span>
+                  <span>
+                    <i class="pi pi-user-plus"></i>
+                    a.jobOpening
+                  </span>
+                </div>
+                <div class="company_tags">
+                  <span>skills </span>
+                </div>
+              </li>
+              <li>
+                <div class="company_details_head">
+                  <div class="comapny_details">
+                    <span>
+                      <img src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/inncyst-logo1.png" width="100" height="50" loading="lazy" />
+                    </span>
+                    <h2>
+                      a.companyName
+                      <span class="posted_time">
+                        Posted 20 days ago
+                      </span>
+                    </h2>
+                  </div>
+  
+                  <h2>details</h2>
+                  <div class="tags">
+                    <span>1-3 Years</span>
+                    <span>Graduation/Diploma</span>
+                    <span>a.salary Lpa</span>
+                    <span>intranshipType</span>
+                  </div>
+                </div>
+  
+                <div class="location">
+                  <span>
+                    <i class="pi pi-map-marker"></i>
+                    a.location Kolkata
+                  </span>
+                  <span>
+                    <i class="pi pi-briefcase"></i>
+                    a.type
+                  </span>
+                  <span>
+                    <i class="pi pi-user-plus"></i>
+                    a.jobOpening
+                  </span>
+                </div>
+                <div class="company_tags">
+                  <span>skills </span>
+                </div>
+              </li>
+              <li>
+                <div class="company_details_head">
+                  <div class="comapny_details">
+                    <span>
+                      <img src="https://vitwo.finance/assets/images/new-clients/car-trends.jpg" width="100" height="50" loading="lazy" />
+                    </span>
+                    <h2>
+                      a.companyName
+                      <span class="posted_time">
+                        Posted 20 days ago
+                      </span>
+                    </h2>
+                  </div>
+  
+                  <h2>details</h2>
+                  <div class="tags">
+                    <span>1-3 Years</span>
+                    <span>Graduation/Diploma</span>
+                    <span>a.salary Lpa</span>
+                    <span>intranshipType</span>
+                  </div>
+                </div>
+  
+                <div class="location">
+                  <span>
+                    <i class="pi pi-map-marker"></i>
+                    a.location Kolkata
+                  </span>
+                  <span>
+                    <i class="pi pi-briefcase"></i>
+                    a.type
+                  </span>
+                  <span>
+                    <i class="pi pi-user-plus"></i>
+                    a.jobOpening
+                  </span>
+                </div>
+                <div class="company_tags">
+                  <span>skills </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section> -->
+
+</div>
+
+<app-footer></app-footer>
