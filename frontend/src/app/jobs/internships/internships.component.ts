@@ -189,6 +189,7 @@ export class InternshipsComponent implements OnInit {
     this.rightSideLoadding = true;
     // const url = `/job/jobs?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
     const url = `/industry/industry-posts?type=${this.type}&jobType=${this.jobType}&location=${this.location}&salaryFrom=${this.salaryFrom}&salaryTo=${this.salaryTo}&sort=${this.sort}&limit=${this.limit}&page=${this.page}`;
+    console.log(url);
 
     this.jobService.getAllJobDetails('', url).subscribe({
       next: (res) => {

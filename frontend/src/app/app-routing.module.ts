@@ -25,21 +25,21 @@ const routes: Routes = [
       import('./homepage/homepage.module').then((m) => m.HomepageModule),
     canActivate: [IndustryCheckGuard],
   },
-  {
-    path: 'shared',
-    loadChildren: () =>
-      import('./shared/shared.module').then((m) => m.SharedModule),
-  },
+  // {
+  //   path: 'shared',
+  //   loadChildren: () =>
+  //     import('./shared/shared.module').then((m) => m.SharedModule),
+  // },
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     canActivate: [AuthenticateGuard],
   },
-  // {
-  //   path: 'jobs',
-  //   loadChildren: () => import('./jobs/jobs.module').then((m) => m.JobsModule),
-  // },
+  {
+    path: 'jobs',
+    loadChildren: () => import('./jobs/jobs.module').then((m) => m.JobsModule),
+  },
   {
     path: 'contactus',
     loadChildren: () =>
@@ -111,7 +111,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'jobs',
+    path: 'job-career',
     component: CareerComponent,
   },
   {

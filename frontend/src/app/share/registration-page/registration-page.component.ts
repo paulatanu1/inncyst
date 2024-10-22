@@ -239,7 +239,8 @@ export class RegistrationPageComponent implements OnInit {
         )
         .subscribe(
           (response) => {
-            this.reg.loginResponse.next(response);
+            console.log(response, 'response');
+            // this.reg.loginResponse.next(response);
             this.otpPageOpen = true;
             this.signupPageHide = false;
             this.registrationId = response.data._id;

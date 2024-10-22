@@ -92,7 +92,6 @@ export class IndustryProfileComponent implements OnInit {
             this.submitButton = false;
             this.viewProfile = true;
             this.getProfile();
-            ls.set('questionStep', true);
           },
           error: (err) => {
             this._toast.showToaster.next({
@@ -145,7 +144,6 @@ export class IndustryProfileComponent implements OnInit {
         this._ProfileService.profileName.next(this.profileData.companyName);
         this.loading = false;
         localStorage.setItem('industry-phone', res.data?.industryId.phone);
-        ls.set('questionStep', res.data.industryId.question_step);
         if (this.profileData) {
           this.profileForm.get('companyName')?.setValue(res.data?.companyName);
           this.profileForm
@@ -204,7 +202,6 @@ export class IndustryProfileComponent implements OnInit {
   addPortfolio() {
     this._ProfileService.profile(this.profileForm.value).subscribe({
       next: (res) => {
-        ls.set('questionStep', true);
         this._toast.showToaster.next({
           severity: 'success',
           summary: 'success',
@@ -212,7 +209,6 @@ export class IndustryProfileComponent implements OnInit {
         });
         // this.router.navigateByUrl('/industry/jobs');
         this.submitButton = false;
-        ls.set('questionStep', true);
         this.getProfile();
       },
       error: (err) => {

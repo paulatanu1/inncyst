@@ -12,6 +12,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { RegistrationService } from 'src/app/registration-service/registration.service';
 import { OtpVerificationService } from '../registration-otp/otp-verification.service';
 import { Router } from '@angular/router';
+import ls from 'localstorage-slim';
 
 @Component({
   selector: 'app-registration-tab',
@@ -236,7 +237,11 @@ export class RegistrationTabComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log('Registration Success', response);
+          response.role = this.activeTabName;
           this.reg.loginResponse.next(response);
+          ls.set('user-email', response.data.email);
+          ls.set('user-phone', response.data.phone);
+          ls.set('role', response.data.role);
           this.router.navigate(['/otp-verification']);
         },
         error: (error) => {

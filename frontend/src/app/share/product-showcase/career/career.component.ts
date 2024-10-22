@@ -45,16 +45,16 @@ export class CareerComponent implements OnInit {
     private router: Router
   ) {
     this.CurrentUrl = this.router.url;
-    console.log(this.router.url);
   }
 
   ngOnInit(): void {
-    if (this.CurrentUrl === '/jobs') {
+    if (this.CurrentUrl === '/job-career') {
       this.type = 'job';
+      this.allJobDetails();
     } else {
       this.type = 'internship';
+      this.allJobDetails();
     }
-    this.allJobDetails();
   }
 
   allJobDetails() {
@@ -79,20 +79,22 @@ export class CareerComponent implements OnInit {
           this.daysAgo = Math.floor(timeDifference / (1000 * 3600 * 24));
           element.createdAt = this.daysAgo;
         });
-        this.jobId = this.AllJobDetails[0]._id;
-        // single job details1st for 1st job and1st time
-        this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
-          next: (res) => {
-            this.singleJobDetails = [];
-            this.singleJobDetails.push(res.data);
-            this.singleJobDetails.forEach((element: any) => {
-              element.companyName = element.companyName?.toUpperCase();
-              element.intranshipName = element.intranshipName?.toUpperCase();
-              element.salary = (element.salary * 12) / 100000;
-            });
-          },
-          error: (err) => {},
-        });
+        if (this.AllJobDetails.length) {
+          this.jobId = this.AllJobDetails[0]._id;
+          // single job details1st for 1st job and1st time
+          this.jobService.getJobDetails(this.AllJobDetails[0]?._id).subscribe({
+            next: (res) => {
+              this.singleJobDetails = [];
+              this.singleJobDetails.push(res.data);
+              this.singleJobDetails.forEach((element: any) => {
+                element.companyName = element.companyName?.toUpperCase();
+                element.intranshipName = element.intranshipName?.toUpperCase();
+                element.salary = (element.salary * 12) / 100000;
+              });
+            },
+            error: (err) => {},
+          });
+        }
       },
       error: (err) => {},
     });

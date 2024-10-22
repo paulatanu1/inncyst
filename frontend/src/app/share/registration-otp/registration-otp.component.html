@@ -12,7 +12,11 @@
           <div class="text-area">
             <p class="heading-line">
               Enter the 4 digit OTP code sent at your email
-              <b>{{ userEmails }}</b>
+              <b>
+                <ng-container *ngIf="userEmails">
+                  {{ userEmails }}
+                </ng-container>
+              </b>
             </p>
             <a class="cancel-btn" herf="#">Cancel</a>
           </div>
