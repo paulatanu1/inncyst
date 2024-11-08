@@ -56,6 +56,8 @@ import { RegistrationNavComponent } from '../share/registration-nav/registration
 import { RegistrationFooterComponent } from '../share/registration-footer/registration-footer.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegistrationAgreeDialogComponent } from '../share/registration-agree-dialog/registration-agree-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -118,6 +120,8 @@ import { RegistrationAgreeDialogComponent } from '../share/registration-agree-di
     MatMenuModule,
     MatTabsModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   exports: [
     HeaderComponent,
@@ -163,6 +167,7 @@ import { RegistrationAgreeDialogComponent } from '../share/registration-agree-di
     RegistrationNavComponent,
     RegistrationFooterComponent,
     RegistrationAgreeDialogComponent,
+    MatFormFieldModule,
   ],
   providers: [DatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

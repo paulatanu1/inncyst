@@ -16,7 +16,6 @@ export class OtpVerificationService {
   otpSubmit(otpSet: Iotpset) {
     let url: string = '/auth/verify';
     const payload: any = new Object();
-    console.log(otpSet);
     payload.otp_email = otpSet.email;
     payload.otp_phone = otpSet.phone;
     payload.id = otpSet.registrationId;

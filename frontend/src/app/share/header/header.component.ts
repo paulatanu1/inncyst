@@ -32,6 +32,7 @@ import { SlideMenu } from 'primeng/slidemenu';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { AuthService } from '@auth0/auth0-angular';
 import { SocialAuthService } from 'src/app/service/social-auth.service';
+import { ISocialData } from '../login/auth-model/auth.model';
 
 interface options {
   optionName: string;
@@ -282,7 +283,17 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
         window.scrollTo(0, 0);
       }
     });
+
+    this.socialAuth.socialData.subscribe({
+      next: (res) => {
+        let data = res as ISocialData;
+        if (data) {
+          this.profileImage = data.picture;
+        }
+      },
+    });
   }
+
   product() {
     //check allready login user or not
     this.logInToken = ls.get('login_token');
@@ -485,7 +496,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
     //this.isUserLogged = true;
     this.logoutSuccess = false;
     ls.remove('logoutSuccess');
-    this.router.navigateByUrl('/home');
+    this.socialAuth.logout();
   }
   cancel() {
     this.forgotPassword = false;

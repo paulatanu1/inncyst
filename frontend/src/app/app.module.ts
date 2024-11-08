@@ -38,6 +38,7 @@ import { environment } from 'src/environments/environment';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CareerComponent } from './share/product-showcase/career/career.component';
+import { CallbackComponent } from './share/callback/callback.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { CareerComponent } from './share/product-showcase/career/career.componen
     AchivmentComponent,
     ComingSoonComponent,
     CareerComponent,
+    CallbackComponent,
   ],
   imports: [
     BrowserModule,

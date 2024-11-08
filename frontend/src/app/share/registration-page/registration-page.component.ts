@@ -239,7 +239,6 @@ export class RegistrationPageComponent implements OnInit {
         )
         .subscribe(
           (response) => {
-            console.log(response, 'response');
             // this.reg.loginResponse.next(response);
             this.otpPageOpen = true;
             this.signupPageHide = false;
@@ -431,7 +430,7 @@ export class RegistrationPageComponent implements OnInit {
         switchMap((user: any) => {
           // Check if the user is blocked
           if (user?.app_metadata?.isBlocked) {
-            console.warn('Access denied: User is blocked.');
+            alert('Access denied: User is blocked.');
             alert(
               'Access denied. Your account is blocked. Please contact support.'
             );
@@ -442,7 +441,7 @@ export class RegistrationPageComponent implements OnInit {
           }
         }),
         catchError((error) => {
-          console.error('Login failed:', { error });
+          // console.error('Login failed:', { error });
           let errorMessage = 'Login failed. Please try again.';
 
           if (error?.error) {
@@ -459,7 +458,6 @@ export class RegistrationPageComponent implements OnInit {
             }
           }
 
-          console.log(errorMessage);
           // this.auth.logout();
           // this.router.navigate();
           return of(null);
@@ -469,34 +467,27 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   currentTab(event: string) {
-    console.log(event);
     this.userRegRole = event;
   }
   getSsoDetailsFromAuth() {
     this.auth.user$.subscribe({
       next: (res) => {
-        console.log(res);
         this.authData = res;
         let loginType = res?.sub?.includes('google-oauth2')
           ? 'google'
           : 'linkedin';
         this.ssoRegistration(this.userRegRole, this.authData, loginType);
       },
-      error: (err) => {
-        console.log(err);
-      },
+      error: (err) => {},
     });
   }
 
   ssoRegistration(role: string, authData: {}, loginType: string) {
     this.reg.ssoProcress(role, authData, loginType).subscribe({
       next: (res) => {
-        console.log(res);
         this.router.navigate(['/otp-verification']);
       },
-      error: (error) => {
-        console.log(error);
-      },
+      error: (error) => {},
     });
   }
 }

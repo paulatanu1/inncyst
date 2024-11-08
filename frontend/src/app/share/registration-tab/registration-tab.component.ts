@@ -158,7 +158,6 @@ export class RegistrationTabComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result !== undefined) {
-        console.log(result);
         form.patchValue({ agree: result });
       }
     });
@@ -182,9 +181,7 @@ export class RegistrationTabComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    console.log(form.value, this.activeTabName);
     if (form.invalid) {
-      console.log(form.value);
       form.markAllAsTouched(); // Mark all fields as touched to show validation errors
       return;
     }
@@ -223,7 +220,6 @@ export class RegistrationTabComponent implements OnInit {
         password = formData.password;
         break;
       default:
-        console.error('Unknown role');
         return;
     }
     this.reg
@@ -236,7 +232,6 @@ export class RegistrationTabComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          console.log('Registration Success', response);
           response.role = this.activeTabName;
           this.reg.loginResponse.next(response);
           ls.set('user-email', response.data.email);
@@ -244,9 +239,7 @@ export class RegistrationTabComponent implements OnInit {
           ls.set('role', response.data.role);
           this.router.navigate(['/otp-verification']);
         },
-        error: (error) => {
-          console.error('Registration Error:', error);
-        },
+        error: (error) => {},
       });
   }
 }

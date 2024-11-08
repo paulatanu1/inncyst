@@ -23,7 +23,6 @@ export class RegistrationAgreeDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.dialogRef.componentInstance.data.checked);
     if (this.dialogRef.componentInstance.data.checked) {
       this.isConditionChecked = true;
       this.disabledCheckbox = true;

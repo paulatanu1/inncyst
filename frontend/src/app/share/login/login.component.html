@@ -18,24 +18,44 @@
               <div class="desc text-center">
                 <h1>Get Started With Us</h1>
                 <p>
-                  Unlock a world of opportunities with our comprehensive platform to help you achieve your career goals and drive innovation
+                  Unlock a world of opportunities with our comprehensive
+                  platform to help you achieve your career goals and drive
+                  innovation
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-12" *ngIf="userRole">
         <div class="right-section">
           <div class="form-wrapper">
             <h3>Log In</h3>
             <p>Stay connected with us</p>
             <div class="conncted-users">
-              <img src="../../../assets/icon/login-icon.png" width="40px" height="40px" loading="lazy" alt="">
-              <img src="../../../assets/icon/login-icon-2.png" width="60px" height="60px" loading="lazy" alt="">
-              <img src="../../../assets/icon/login-icon-3.png" width="40px" height="40px" loading="lazy" alt="">
+              <img
+                src="../../../assets/icon/login-icon.png"
+                width="40px"
+                height="40px"
+                loading="lazy"
+                alt=""
+              />
+              <img
+                src="../../../assets/icon/login-icon-2.png"
+                width="60px"
+                height="60px"
+                loading="lazy"
+                alt=""
+              />
+              <img
+                src="../../../assets/icon/login-icon-3.png"
+                width="40px"
+                height="40px"
+                loading="lazy"
+                alt=""
+              />
             </div>
-            <div class="social-login">
+            <div class="social-login" (click)="ssoLogin('google-oauth2')">
               <div class="social-icon-login google-login">
                 <img
                   src="../../../assets/icon/google.png"
@@ -45,7 +65,10 @@
                 />
                 Login with Google
               </div>
-              <div class="social-icon-login linkdin-login">
+              <div
+                class="social-icon-login linkdin-login"
+                (click)="ssoLogin('linkedin')"
+              >
                 <img
                   src="../../../assets/icon/linkedin.png"
                   width="25px"
@@ -62,51 +85,53 @@
 
             <!-- <app-registration-tab></app-registration-tab> -->
 
-            <form [formGroup]="loginForm">
+            <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
               <div class="row">
-              <div class="col-lg-12 col-md-12 col-12">
-                <span class="p-float-label">
-                  <input type="email" pInputText formControlName="email" />
-                  <label for="float-input">Email</label>
-                </span>
-              </div>
-              <div
-                class="col-lg-12 col-md-12 col-12"
-              >
-                <span class="p-float-label">
-                  <p-password
-                    formControlName="password"
-                    [toggleMask]="true"
-                    [feedback]="false"
-                  ></p-password>
-                  <label for="float-input">Password</label>
-                </span>
-                <div class="password-action">
-                  <div class="check-pass">
-                    <input type="checkbox">
-                    <span>Remember me</span>
+                <div class="col-lg-12 col-md-12 col-12">
+                  <span class="p-float-label">
+                    <input type="email" pInputText formControlName="email" />
+                    <label for="float-input">Email</label>
+                  </span>
+                </div>
+                <div class="col-lg-12 col-md-12 col-12">
+                  <span class="p-float-label">
+                    <p-password
+                      formControlName="password"
+                      [toggleMask]="true"
+                      [feedback]="false"
+                    ></p-password>
+                    <label for="float-input">Password</label>
+                  </span>
+                  <div class="password-action">
+                    <div class="check-pass">
+                      <input type="checkbox" />
+                      <span>Remember me</span>
+                    </div>
+                    <a href="">
+                      <span>Forgot password</span>
+                    </a>
                   </div>
-                  <a href="">
-                    <span>Forgot password</span>
-                  </a>
                 </div>
-              </div>
 
-              <div class="col-lg-12 col-md-12 col-12">
-                <div class="login-btn">
-                  <button type="button" class="button-section w-100">
-                    <span>Log in</span>
-                    <i class="pi pi-arrow-right"></i>
-                  </button>
+                <div class="col-lg-12 col-md-12 col-12">
+                  <div class="login-btn">
+                    <button
+                      type="submit"
+                      class="button-section w-100"
+                      [ngClass]="!loginForm.valid ? 'disabled' : ''"
+                    >
+                      <span>Log in</span>
+                      <i class="pi pi-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="route-login">
+                    <span>Don't have an account?</span>
+                    <a [routerLink]="['/registration']">Sign Up</a>
+                  </div>
                 </div>
               </div>
-              <div class="">
-                <div class="route-login">
-                <span>Don't have an account?</span>
-                <a [routerLink]="['/registration']">Sign Up</a>
-                </div>
-              </div>
-            </div>
             </form>
           </div>
 
@@ -248,6 +273,27 @@
               </div>
             </div>
           </div> -->
+        </div>
+      </div>
+      <div
+        class="col-lg-6 col-md-6 col-sm-12 col-12"
+        *ngIf="userRole === false"
+      >
+        <div>
+          <h4>Sign up as</h4>
+          <mat-form-field appearance="fill">
+            <mat-label>Select Your Role</mat-label>
+            <mat-select [(ngModel)]="selectedRole">
+              <mat-option value="candidate">Candidate</mat-option>
+              <mat-option value="college">College</mat-option>
+              <mat-option value="company">Company</mat-option>
+              <mat-option value="mentor">Mentor</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button type="button" (click)="saveRole()">Save</button>
+
+          <button type="button" (click)="logoutFromAuth()">Logout</button>
         </div>
       </div>
     </div>

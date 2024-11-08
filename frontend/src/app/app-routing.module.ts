@@ -17,6 +17,7 @@ import { AddProjectComponent } from './share/add-project/add-project.component';
 import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
 import { CareerComponent } from './share/product-showcase/career/career.component';
 import { RegistrationOtpComponent } from './share/registration-otp/registration-otp.component';
+import { CallbackComponent } from './share/callback/callback.component';
 
 const routes: Routes = [
   {
@@ -113,6 +114,10 @@ const routes: Routes = [
   {
     path: 'job-career',
     component: CareerComponent,
+  },
+  {
+    path: 'callback',
+    component: CallbackComponent,
   },
   {
     path: 'internships',

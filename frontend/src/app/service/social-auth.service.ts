@@ -1,24 +1,37 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { catchError, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import ls from 'localstorage-slim';
+import { ISocialData } from '../share/login/auth-model/auth.model';
 @Injectable({
   providedIn: 'root',
 })
 export class SocialAuthService {
+  socialData = new BehaviorSubject<ISocialData | null>(null);
   constructor(private auth: AuthService) {}
 
   // Method to subscribe to the user data observable
+  // getUserData() {
+  //   this.auth.user$.subscribe(
+  //     (user: any) => {
+  //       console.log('User data:', user);
+  //       this.checkUserStatus(user); // Check user status without blocking
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching user data:', error);
+  //     }
+  //   );
+  // }
+
   getUserData() {
-    this.auth.user$.subscribe(
-      (user: any) => {
-        console.log('User data:', user);
-        this.checkUserStatus(user); // Check user status without blocking
+    this.auth.user$.subscribe({
+      next: (user) => {
+        this.checkUserStatus(user);
       },
-      (error) => {
-        console.error('Error fetching user data:', error);
-      }
-    );
+      error: (err) => {
+        console.error('Error fetching user data:', err);
+      },
+    });
   }
 
   // Method to check if the user is blocked
@@ -33,7 +46,6 @@ export class SocialAuthService {
   // Method to get the ID token (JWT)
   getIdToken() {
     this.auth.idTokenClaims$.subscribe((claims: any) => {
-      console.log('ID Token:', claims?.__raw); // Full raw token (JWT)
       ls.set('authIDToken', claims?.__raw);
     });
   }
@@ -45,10 +57,10 @@ export class SocialAuthService {
       .pipe(
         tap((token: any) => {
           ls.set('authAccessToken', token);
-          console.log('Access Token--:', ls.get('authAccessToken'));
+          // console.log('Access Token--:', ls.get('authAccessToken'));
         }),
         catchError((error: any) => {
-          console.error('Error fetching access token', error);
+          // console.error('Error fetching access token', error);
           return of(null); // Handle the error gracefully
         })
       )

@@ -72,31 +72,20 @@ export class RegistrationOtpComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('iiii');
-
     this.reg.loginResponse.subscribe({
       next: (resp) => {
-        console.log(resp);
         const response = resp as unknown as regResponse;
         this.regId = response.data._id;
-        console.log();
         this.isPhoneVerify = response.data.phoneVerified;
         this.isEmailVerify = response.data.emailVerified;
         this.userEmails = response.data.email;
         this.userMobileNumber = response.data.phone;
         this.role = response.data.role;
-        console.log(
-          this.isEmailVerify,
-          'vvv',
-          this.userEmails,
-          this.userMobileNumber
-        );
       },
     });
   }
 
   onEmailOtpChange(event: any) {
-    console.log('otppp');
     this.isemailOtp = event;
     this.verifyRegistration.get('emailOtp')?.setValue(event);
   }
@@ -146,11 +135,9 @@ export class RegistrationOtpComponent implements OnInit {
   onSubmitOtp() {
     this.ngOtpInput1.otpForm.disable();
     this.ngOtpInput2.otpForm.disable();
-    console.log(this.verifyRegistration.value);
     if (this.verifyRegistration.valid) {
       const otpData = this.verifyRegistration.value;
       otpData.registrationId = this.regId;
-      console.log(otpData);
       let otpset: Iotpset = {
         email: otpData.emailOtp,
         phone: otpData.phoneOtp,
@@ -168,7 +155,6 @@ export class RegistrationOtpComponent implements OnInit {
           });
           this.ngOtpInput1.setValue(null);
           this.ngOtpInput2.setValue(null);
-          console.log(this.role);
           switch (this.role) {
             case 'college':
               this._toast.showToaster.next({
