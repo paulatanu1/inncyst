@@ -132,6 +132,10 @@ const routes: Routes = [
     component: RegistrationOtpComponent,
   },
   {
+    path: 'verify-phone',
+    component: RegistrationOtpComponent,
+  },
+  {
     path: '**',
     component: PageNotFoundComponent,
   },

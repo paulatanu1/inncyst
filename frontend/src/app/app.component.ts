@@ -63,7 +63,6 @@ export class AppComponent implements OnInit {
     // this.g_script.loadGoogleMaps(environment.GOOGLE_MAP_KEY);
     this.userLocation.getLocationDetails(environment.GOOGLE_MAP_KEY).subscribe({
       next: (res) => {
-        console.log(res, 'ressss');
         this.country = res.country;
         this.state = res.state;
         this.city = res.city;

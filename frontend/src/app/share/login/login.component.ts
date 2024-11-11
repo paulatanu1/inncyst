@@ -293,21 +293,23 @@ export class LoginComponent implements OnInit {
     };
     this.loginService.socialLogin(payload).subscribe({
       next: (res) => {
-        if (res.LOGIN_TYPE == 'candidate') {
-          this.router.navigateByUrl('jobs/posts');
-          ls.set('role', 'student');
+        console.log(res, 'resss');
+        this.router.navigate(['/verify-phone']);
+        // if (res.LOGIN_TYPE == 'candidate') {
+        //   this.router.navigateByUrl('jobs/posts');
+        //   ls.set('role', 'student');
 
-          // this.router.navigate(['/jobs/internship']);
-        } else if (res.LOGIN_TYPE == 'industry') {
-          ls.set('role', 'industry');
-          this.router.navigate(['industry']);
-          if (
-            res.LOGIN_TYPE === 'industry' &&
-            res.data.question_step == false
-          ) {
-            this.router.navigateByUrl('/industry/profile');
-          }
-        }
+        //   // this.router.navigate(['/jobs/internship']);
+        // } else if (res.LOGIN_TYPE == 'industry') {
+        //   ls.set('role', 'industry');
+        //   this.router.navigate(['industry']);
+        //   if (
+        //     res.LOGIN_TYPE === 'industry' &&
+        //     res.data.question_step == false
+        //   ) {
+        //     this.router.navigateByUrl('/industry/profile');
+        //   }
+        // }
       },
       error: (err) => {
         this.userRole = err.error.data.isUserRole;
@@ -331,7 +333,7 @@ export class LoginComponent implements OnInit {
       next: (user) => {
         // this.checkUserStatus(user);
         this.socialUser = user as ISocialData;
-
+        console.log(this.socialUser, 'social user');
         if (this.socialUser) {
           let payload = {
             type: this.ssoType,
@@ -340,6 +342,7 @@ export class LoginComponent implements OnInit {
           };
           this.loginService.socialLogin(payload).subscribe({
             next: (res) => {
+              console.log(res, 'ressss');
               this.socialAuth.socialData.next(this.socialUser);
               if (res.LOGIN_TYPE == 'candidate') {
                 this.router.navigateByUrl('jobs/posts');
