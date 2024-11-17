@@ -21,7 +21,8 @@ import { OtpVerificationService } from '../registration-otp/otp-verification.ser
 import { NgOtpInputModule } from 'ng-otp-input';
 import { AuthService } from '@auth0/auth0-angular';
 import { SocialAuthService } from 'src/app/service/social-auth.service';
-import { catchError, of, switchMap, take } from 'rxjs';
+import { catchError, filter, of, switchMap, take, tap } from 'rxjs';
+import { LoginApiService } from '../login/login-api.service';
 interface options {
   optionName: string;
   code: string;
@@ -114,7 +115,8 @@ export class RegistrationPageComponent implements OnInit {
     private header: HeaderService,
     private otpVerifivation: OtpVerificationService, // private _header:HeaderService
     private auth: AuthService,
-    private socialAuth: SocialAuthService
+    private socialAuth: SocialAuthService,
+    private loginService: LoginApiService
   ) {
     // console.log(window, 'pp');
 
@@ -196,6 +198,53 @@ export class RegistrationPageComponent implements OnInit {
     // To get access token
     // this.socialAuth.getAccessToken();
     // this.getSsoDetailsFromAuth();
+
+    this.auth.user$
+      .pipe(
+        // Ensure the filter predicate always returns a boolean
+        filter((response) => !!(response?.email_verified && response?.email)),
+        tap((response) => {
+          console.log(response, 'response');
+        }),
+        // Map the response to the payload and call the socialLogin API
+        switchMap((response) => {
+          const payload = {
+            type: this.ssoType ? this.ssoType : ls.get('ssoType'),
+            role: this.userRegRole,
+            auth0Data: response,
+          };
+          return this.loginService.socialLogin(payload).pipe(
+            tap((res) => {
+              // Handle successful response
+              console.log(res, 'login successful');
+              ls.set('login_token', res.token);
+              ls.set('role', res.LOGIN_TYPE);
+              this.socialAuth.socialData.next(res);
+              if (res.data.phoneVerified) {
+                if (res.data.role == 'candidate') {
+                  this.router.navigateByUrl('jobs/posts');
+                } else if (res.data.role == 'industry') {
+                  this.router.navigate(['industry']);
+                  if (res.data.role === 'industry') {
+                    this.router.navigateByUrl('/industry/profile');
+                  }
+                }
+              }
+            }),
+            catchError((err) => {
+              // Handle errors within socialLogin
+              console.error(err, 'login failed');
+              return of(null); // Return a fallback value to continue the stream
+            })
+          );
+        }),
+        catchError((err) => {
+          // Handle errors from user$ observable
+          console.error(err.error, 'user$ error');
+          return of(null); // Return a fallback value to continue the stream
+        })
+      )
+      .subscribe();
   }
 
   optionClick(url: string) {
@@ -423,7 +472,8 @@ export class RegistrationPageComponent implements OnInit {
   //   this.auth.loginWithPopup({ connection: param });
   // }
   ssoLogin(param: string) {
-    this.ssoType = param;
+    this.ssoType = param === 'google-oauth2' ? 'google' : 'linkedin';
+    ls.set('ssoType', this.ssoType);
     this.auth.user$
       .pipe(
         take(1), // Get the latest user data once
@@ -468,6 +518,8 @@ export class RegistrationPageComponent implements OnInit {
 
   currentTab(event: string) {
     this.userRegRole = event;
+    console.log(this.userRegRole, 'role');
+    ls.set('role', this.userRegRole);
   }
   getSsoDetailsFromAuth() {
     this.auth.user$.subscribe({

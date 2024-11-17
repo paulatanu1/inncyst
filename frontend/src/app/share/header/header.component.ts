@@ -43,6 +43,16 @@ interface IregistrationOption {
   option: string;
   id: number;
 }
+
+interface IResponse<T> {
+  success: boolean;
+  data: T;
+  message: string;
+  LOGIN_TYPE: string;
+  token: string;
+  status: number;
+}
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -81,6 +91,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('slideMenu') slidemenu!: SlideMenu;
   isMenuOpen: boolean = true;
   profileImage: any;
+  allData: any;
   //Outputs
   constructor(
     private otpService: OtpVerificationService,
@@ -102,6 +113,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   ) {
     //check allready login user or not
     this.profileImage = ls.get('profileImage');
+    // console.log(this.profileImage, 'PI');
     this.logInToken = ls.get('login_token');
     if (this.logInToken) {
       this.logoutSuccess = true;
@@ -286,9 +298,14 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
 
     this.socialAuth.socialData.subscribe({
       next: (res) => {
-        let data = res as ISocialData;
+        console.log(res, 'data---1');
+        let data = (res as unknown as IResponse<ISocialData>).data;
+
         if (data) {
-          this.profileImage = data.picture;
+          console.log(data, 'data---');
+          this.allData = data;
+          this.profileImage = this.allData.image;
+          console.log(this.profileImage);
         }
       },
     });

@@ -18,6 +18,7 @@ import { ComingSoonComponent } from './share/coming-soon/coming-soon.component';
 import { CareerComponent } from './share/product-showcase/career/career.component';
 import { RegistrationOtpComponent } from './share/registration-otp/registration-otp.component';
 import { CallbackComponent } from './share/callback/callback.component';
+import { MobileVerificationComponent } from './share/mobile-verification/mobile-verification.component';
 
 const routes: Routes = [
   {
@@ -133,7 +134,7 @@ const routes: Routes = [
   },
   {
     path: 'verify-phone',
-    component: RegistrationOtpComponent,
+    component: MobileVerificationComponent,
   },
   {
     path: '**',

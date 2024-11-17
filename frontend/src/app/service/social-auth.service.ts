@@ -8,6 +8,7 @@ import { ISocialData } from '../share/login/auth-model/auth.model';
 })
 export class SocialAuthService {
   socialData = new BehaviorSubject<ISocialData | null>(null);
+  loginGlobalData = new BehaviorSubject(Object);
   constructor(private auth: AuthService) {}
 
   // Method to subscribe to the user data observable
@@ -26,6 +27,7 @@ export class SocialAuthService {
   getUserData() {
     this.auth.user$.subscribe({
       next: (user) => {
+        console.log(user, 'userr');
         this.checkUserStatus(user);
       },
       error: (err) => {
@@ -55,10 +57,7 @@ export class SocialAuthService {
     this.auth
       .getAccessTokenSilently()
       .pipe(
-        tap((token: any) => {
-          ls.set('authAccessToken', token);
-          // console.log('Access Token--:', ls.get('authAccessToken'));
-        }),
+        tap((token: any) => {}),
         catchError((error: any) => {
           // console.error('Error fetching access token', error);
           return of(null); // Handle the error gracefully

@@ -294,6 +294,8 @@ export class LoginComponent implements OnInit {
     this.loginService.socialLogin(payload).subscribe({
       next: (res) => {
         console.log(res, 'resss');
+        ls.set('role', this.selectedRole);
+        ls.set('login_token', res.token);
         this.router.navigate(['/verify-phone']);
         // if (res.LOGIN_TYPE == 'candidate') {
         //   this.router.navigateByUrl('jobs/posts');
@@ -343,21 +345,34 @@ export class LoginComponent implements OnInit {
           this.loginService.socialLogin(payload).subscribe({
             next: (res) => {
               console.log(res, 'ressss');
+              ls.set('login_token', res.token);
+              ls.set('role', res.data.role);
+              this.socialAuth.socialData.next(res);
               this.socialAuth.socialData.next(this.socialUser);
-              if (res.LOGIN_TYPE == 'candidate') {
-                this.router.navigateByUrl('jobs/posts');
-                ls.set('role', 'student');
+              if (res) {
+                this.socialAuth.loginGlobalData.next({
+                  ...res,
+                  ...this.socialUser,
+                });
+              }
+              if (res.data.phoneVerified) {
+                if (res.LOGIN_TYPE == 'candidate') {
+                  this.router.navigateByUrl('jobs/posts');
+                  ls.set('role', 'student');
 
-                // this.router.navigate(['/jobs/internship']);
-              } else if (res.LOGIN_TYPE == 'industry') {
-                ls.set('role', 'industry');
-                this.router.navigate(['industry']);
-                if (
-                  res.LOGIN_TYPE === 'industry' &&
-                  res.data.question_step == false
-                ) {
-                  this.router.navigateByUrl('/industry/profile');
+                  // this.router.navigate(['/jobs/internship']);
+                } else if (res.LOGIN_TYPE == 'industry') {
+                  ls.set('role', 'industry');
+                  this.router.navigate(['industry']);
+                  if (
+                    res.LOGIN_TYPE === 'industry' &&
+                    res.data.question_step == false
+                  ) {
+                    this.router.navigateByUrl('/industry/profile');
+                  }
                 }
+              } else {
+                this.router.navigateByUrl('verify-phone');
               }
             },
             error: (err) => {

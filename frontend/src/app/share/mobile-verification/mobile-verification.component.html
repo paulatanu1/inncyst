@@ -1,1 +1,96 @@
-<p>mobile-verification works!</p>
+<div class="otp-wrapper">
+  <div class="left-section">
+    <div class="left-image-wrapper">
+      <img src="../../../assets/signup-img.svg" alt="" />
+    </div>
+  </div>
+  <div class="right-section" *ngIf="mobileVerification">
+    <div class="mobile-number">
+      <div class="col-lg-12 col-md-12 col-12">
+        <form [formGroup]="verifyPhoneNumber" (ngSubmit)="sendOTP()">
+          <span class="p-float-label">
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              class=""
+              formControlName="phoneNumber"
+            />
+            <label for="float-input">Enter Mobile Number</label>
+          </span>
+
+          <div
+            *ngIf="
+              verifyPhoneNumber.get('phoneNumber')?.touched &&
+              verifyPhoneNumber.get('phoneNumber')?.invalid
+            "
+          >
+            <div
+              *ngIf="verifyPhoneNumber.get('phoneNumber')?.errors?.['required']"
+            >
+              Phone OTP is required.
+            </div>
+            <div
+              *ngIf="verifyPhoneNumber.get('phoneNumber')?.errors?.['pattern']"
+            >
+              Phone OTP must be exactly 10 digits.
+            </div>
+          </div>
+
+          <div class="submit-btn">
+            <p-button class="submit-btns" type="submit" label="Save"></p-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="right-section" *ngIf="!mobileVerification">
+    <div class="form-wrapper">
+      <h5>Mobile Verification</h5>
+      <form [formGroup]="verifyOTP" (ngSubmit)="onSubmitOtp()">
+        <div class="devider"></div>
+        <div class="col-12 md:col-12 mt-3 mb-4 form-wrapper-section">
+          <div class="text-area">
+            <p class="heading-line">
+              Enter the 4 digit OTP code sent at your Number
+              <b>+91 {{ currentMobileNumber }}</b>
+            </p>
+            <a class="cancel-btn">Cancel</a>
+          </div>
+          <div class="otp-input-section">
+            <label class="field-label">
+              Enter OTP
+              <sup>*</sup>
+            </label>
+            <span class="p-float-label">
+              <ng-otp-input
+                #ngOtpInput1
+                [config]="{ length: 4 }"
+                (onInputChange)="onPhoneOtpChange($event)"
+              ></ng-otp-input>
+            </span>
+          </div>
+
+          <div class="resend-section">
+            Didn’t received the code?
+            <a href="">Resend Code</a>
+          </div>
+        </div>
+        <div class="submit-btn">
+          <p-button class="submit-btns" type="submit" label="verify"></p-button>
+        </div>
+      </form>
+      <div class="login-area mb-3 mt-3">
+        <a (click)="logout()">
+          <span>logout</span>
+        </a>
+      </div>
+
+      <div class="login-area mb-3 mt-3">
+        <a [routerLink]="['/registration']">
+          <span>Back to login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

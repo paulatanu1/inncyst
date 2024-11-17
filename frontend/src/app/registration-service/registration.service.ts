@@ -32,6 +32,25 @@ export class RegistrationService {
     return this.api.ApiCallWithLocalization('', url, 'PUT');
   }
 
+  verifyPhone(phone: string) {
+    let url = '/auth/verify-social-phone';
+    let payload = {
+      phone: phone,
+    };
+    return this.api.ApiCallWithLocalization(payload, url, 'post');
+  }
+
+  phoneVerifyOTP(payload: any) {
+    console.log(payload, 'payload');
+    let data = {
+      otp: payload.otp['phoneOtp'],
+      phone: payload.phone['phoneNumber'],
+    };
+    let url = '/auth/phone-otp-verify';
+    // let data = {phone:payload.phoneOtp}
+    return this.api.ApiCallWithLocalization(data, url, 'post');
+  }
+
   resendPhoneOtp() {
     let url = '/auth/reset-phone-otp';
     let userId = '';
