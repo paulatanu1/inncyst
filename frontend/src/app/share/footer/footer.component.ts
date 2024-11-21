@@ -9,7 +9,11 @@ import { environment } from 'src/environments/environment';
 export class FooterComponent implements OnInit {
   message = encodeURIComponent('Hello Support Team,I want help regarding - ');
   whatsappURL: string = '';
-  constructor() {}
+  currentYear: Number;
+  constructor() {
+    const year = new Date();
+    this.currentYear = year.getFullYear();
+  }
 
   ngOnInit(): void {}
 

@@ -1,0 +1,233 @@
+div,
+label,
+p,
+.p-inputnumber,
+.p-password,
+.p-inputtext,
+p-inputnumber {
+    font-family: "Poppins", sans-serif;
+}
+
+::ng-deep {
+
+    .mat-tab-group {
+        width: 100%;
+
+        .mat-tab-header {
+            border-bottom: 0;
+            display: flex;
+            overflow: hidden;
+            position: absolute !important;
+            top: 3rem;
+            left: 0;
+            flex-shrink: 0;
+            width: 100%;
+        }
+
+        .mat-tab-body-wrapper {
+            top: -40px;
+        }
+
+        .mat-ink-bar {
+            background-color: transparent !important;
+        }
+
+        .mat-tab-labels {
+            .mat-tab-label {
+                background-color: #f5f5f5;
+                color: #270345;
+                font-size: 0.8rem;
+                padding: 5px 15px;
+                border-radius: 15px;
+                margin: 0 5px;
+                min-width: 90px !important;
+                height: 35px !important;
+            }
+
+            .mat-tab-label.mat-tab-label-active {
+                background-color: #270345;
+                color: #fff;
+                font-weight: 600;
+            }
+
+            .mat-tab-label:hover {
+                background-color: #e0e0e0;
+                cursor: pointer;
+            }
+
+            .social-signup {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+            }
+
+        }
+
+    }
+
+}
+
+
+
+
+form {
+    width: 80%;
+    margin: 2rem auto;
+
+    ::ng-deep {
+
+        .p-inputtext,
+        p-inputnumber,
+        .p-inputnumber,
+        .p-password {
+            display: block;
+            width: 100% !important;
+            margin: 15px 0;
+        }
+
+        
+
+        .p-float-label {
+
+            position: static;
+
+            label {
+                font-weight: 300;
+                font-size: 0.87rem;
+                left: 2rem;
+            }
+    
+            input:focus~label,
+            input.p-filled~label,
+            .p-inputwrapper-focus~label,
+            .p-inputwrapper-filled~label {
+                font-size: 0.8rem;
+                font-weight: 600 !important;
+                left: 25px;
+                top: 15px;
+                background: #fff;
+                padding: 0 5px;
+                color: #270345;
+            }
+
+            .error-message {
+                position: absolute;
+                top: 55px;
+                right: 15px;
+                font-size: 0.75rem;
+                color: red;
+                margin: 8px 0;
+            }
+    
+
+        }
+        
+      
+    }
+
+    .checkbox-sec {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        cursor: pointer;
+
+        p {
+            font-size: 0.8rem;
+            margin-bottom: 0;
+            font-weight: 600;
+
+            a {
+                color: #6b15b0;
+            }
+        }
+        .error-message {
+            position: absolute;
+            top: 55px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: red;
+            margin: 8px 0;
+        }
+    }
+
+
+    .button-section {
+        background-color: #522d80;
+        border: 0;
+        color: #ffffff;
+        border-radius: 25px;
+        padding: 10px 25px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        transition: padding-left 0.3s ease-in-out, justify-content 0.3s ease-in-out;
+        width: 150px;
+        position: relative;
+        overflow: hidden;
+        margin: 1rem 0 10px;
+
+        span {
+            transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
+            margin-right: 0;
+        }
+
+        i {
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            position: absolute;
+            right: 10rem;
+        }
+
+        &:hover {
+            justify-content: center;
+            padding-left: 0px;
+
+            i {
+                opacity: 1;
+                transform: translateX(-5px);
+            }
+        }
+    }
+
+
+    .button-section.disabled {
+        background-color: #bcbcbc;
+        border: 0;
+        color: #ffffff;
+        border-radius: 25px;
+        padding: 10px 25px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        transition: padding-left 0.3s ease-in-out, justify-content 0.3s ease-in-out;
+        width: 150px;
+        position: relative;
+        overflow: hidden;
+        margin: 1rem 0 10px;
+        pointer-events: none;
+    }
+
+}
+
+
+.route-login {
+    text-align: center;
+    font-size: 0.95rem;
+
+        a {
+            margin-left: 5px;
+        }
+}
+
+.not-allowed {
+    pointer-events: none;
+}

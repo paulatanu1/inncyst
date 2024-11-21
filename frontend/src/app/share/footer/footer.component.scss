@@ -2,103 +2,159 @@
   background: #262626;
   padding: 35px 120px;
   margin-top: 100px;
-  z-index: 99;
   display: block;
   position: relative;
+  font-family: "Poppins", sans-serif;
 }
 
-.footer-section-top {
-  .nav-footer {
-    display: flex;
-    align-items: center;
-    padding-left: 0;
+.footer-flex {
 
-    .logo-section {
-      width: 214px;
-      height: 90px;
-      list-style: none;
-      margin-right: 50px;
-    }
-
-    .menu-item {
-      list-style: none;
-      padding: 0 20px;
-
-      a {
-        text-decoration: none;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 170.53%;
-        letter-spacing: 0.5px;
-        color: #e0e0e0;
-      }
-    }
-  }
-}
-
-.first-menu,
-.second-menu {
-  ul {
-    .menu-heading {
-      list-style: none;
-
-      a {
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 170.53%;
-        letter-spacing: 0.5px;
-        color: #8b8b8b;
-        text-decoration: none;
-      }
-    }
-
-    .menu-items {
-      list-style: none;
-      padding-bottom: 15px;
-
-      a {
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 170.53%;
-        letter-spacing: 0.5px;
-        color: #e0e0e0;
-        text-decoration: none;
-      }
-    }
-  }
-}
-
-.footer-mid-section {
   display: flex;
-  width: 100%;
+  align-items: flex-start;
+
+  .footer-section-top {
+    .nav-footer {
+      display: flex;
+      align-items: center;
+      padding-left: 0;
+
+      .logo-section {
+        width: 300px;
+        height: auto;
+        list-style: none;
+        margin-right: 50px;
+      }
+
+
+      .menu-item {
+        list-style: none;
+        padding: 0 20px;
+
+        a {
+          text-decoration: none;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 170.53%;
+          letter-spacing: 0.5px;
+          color: #e0e0e0;
+        }
+      }
+
+
+
+
+
+    }
+  }
 
   .left-sec-text {
-    width: 53%;
+    width: 100%;
 
     h4 {
-      font-weight: 800;
-      font-size: 72px;
-      line-height: 100px;
-      color: #ffffff;
+      font-size: 2.5rem;
+      line-height: 50px;
+      font-family: "Lobster", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      color: #fff;
+      padding-left: 2rem;
+      white-space: nowrap;
+      margin: 2rem 0;
     }
   }
-}
 
-.footer-bottom-section {
-  p {
-    text-align: center;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 25px;
-    letter-spacing: 0.5px;
-    color: #e0e0e0;
+  .first-menu,
+  .second-menu {
+    ul {
+      .menu-heading {
+        list-style: none;
+        padding-bottom: 1rem;
+
+        a {
+          font-weight: 500;
+          font-size: 1.3rem;
+          line-height: 170.53%;
+          letter-spacing: 0.5px;
+          color: #ffffff;
+          text-decoration: none;
+        }
+      }
+
+      .menu-items {
+        list-style: none;
+
+        a {
+          font-weight: 200;
+          font-size: 14px;
+          line-height: 2.5;
+          letter-spacing: 0.5px;
+          color: #e0e0e0;
+          text-decoration: none;
+        }
+      }
+    }
   }
+
+  .footer-mid-section {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 1rem;
+
+    .left-sec-text {
+      width: 53%;
+
+      h4 {
+        font-weight: 800;
+        font-size: 63px;
+        line-height: 68px;
+        color: #ffffff;
+      }
+    }
+  }
+
 }
 
-.powred-by {
-  color: #ffffff;
-  text-align: center;
+
+
+
+.footer-copyright {
+
+  background: #262626;
+  border-top: 1px solid #ccc;
+  width: 100%;
+  z-index: 9999;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 50px;
+
+  .footer-bottom-section {
+    p {
+      text-align: center;
+      font-weight: 400;
+      font-size: 0.9rem;
+      line-height: 25px;
+      letter-spacing: 0;
+      color: #e0e0e0;
+      margin-bottom: 0;
+    }
+  }
+
+
+  .powred-by {
+    color: #ffffff;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
 }
+
+
+
+
 
 @media only screen and (min-width:320px) and (max-width:767px) {
   .footer-wrapper {
@@ -123,15 +179,6 @@
     .footer-mid-section {
       display: block;
 
-      .left-sec-text {
-        width: 100%;
-
-        h4 {
-          font-size: 40px;
-          line-height: 50px;
-          margin-bottom: 20px;
-        }
-      }
     }
   }
 }

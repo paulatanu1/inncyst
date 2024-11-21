@@ -30,6 +30,9 @@ import { LoginDetailsService } from 'src/app/common-service/login-details.servic
 import { InternshipProfileService } from '../service/internship-profile.service';
 import { SlideMenu } from 'primeng/slidemenu';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
+import { AuthService } from '@auth0/auth0-angular';
+import { SocialAuthService } from 'src/app/service/social-auth.service';
+import { ISocialData } from '../login/auth-model/auth.model';
 
 interface options {
   optionName: string;
@@ -40,6 +43,16 @@ interface IregistrationOption {
   option: string;
   id: number;
 }
+
+interface IResponse<T> {
+  success: boolean;
+  data: T;
+  message: string;
+  LOGIN_TYPE: string;
+  token: string;
+  status: number;
+}
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -77,7 +90,8 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   customHeader: boolean = true;
   @ViewChild('slideMenu') slidemenu!: SlideMenu;
   isMenuOpen: boolean = true;
-  profileImage:any;
+  profileImage: any;
+  allData: any;
   //Outputs
   constructor(
     private otpService: OtpVerificationService,
@@ -94,10 +108,12 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
     private InternshipService: InternshipProfileService,
     private cdk: ChangeDetectorRef,
     private _toast: ToastServiceService,
-
+    private auth: AuthService,
+    private socialAuth: SocialAuthService
   ) {
     //check allready login user or not
-    this.profileImage=ls.get('profileImage')
+    this.profileImage = ls.get('profileImage');
+    // console.log(this.profileImage, 'PI');
     this.logInToken = ls.get('login_token');
     if (this.logInToken) {
       this.logoutSuccess = true;
@@ -160,6 +176,14 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   }
   ngOnInit(): void {
     this.closeMenu();
+    // To get user profile
+    this.socialAuth.getUserData();
+
+    // To get ID token (JWT)
+    this.socialAuth.getIdToken();
+
+    // To get access token
+    this.socialAuth.getAccessToken();
     // debugger
     // this.logoutSuccess=true;
     // this.logoutSuccess=<boolean>ls.get('logoutSuccess');
@@ -168,11 +192,11 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
         this.customHeader = <boolean>res;
       },
     });
-this._login.loginFlow.subscribe({
-  next:(res)=>{
-    this.loginflow=<boolean>res;
-  }
-})
+    this._login.loginFlow.subscribe({
+      next: (res) => {
+        this.loginflow = <boolean>res;
+      },
+    });
     this.Profileitems = [
       {
         label: 'Profile',
@@ -265,13 +289,28 @@ this._login.loginFlow.subscribe({
     });
 
     //for scroll issue
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         // Scroll to the top of the page
         window.scrollTo(0, 0);
       }
     });
+
+    this.socialAuth.socialData.subscribe({
+      next: (res) => {
+        console.log(res, 'data---1');
+        let data = (res as unknown as IResponse<ISocialData>).data;
+
+        if (data) {
+          console.log(data, 'data---');
+          this.allData = data;
+          this.profileImage = this.allData.image;
+          console.log(this.profileImage);
+        }
+      },
+    });
   }
+
   product() {
     //check allready login user or not
     this.logInToken = ls.get('login_token');
@@ -288,11 +327,10 @@ this._login.loginFlow.subscribe({
         command: () => {
           this.userType = ls.get('userType');
 
-          if (ls.get('login_token') ) {
+          if (ls.get('login_token')) {
             this.router.navigateByUrl('/jobs/posts');
-          } else if (!ls.get('login_token') ) {
-
-            this.router.navigateByUrl('/registeration');
+          } else if (!ls.get('login_token')) {
+            this.router.navigateByUrl('/registration');
           }
         },
       },
@@ -315,43 +353,43 @@ this._login.loginFlow.subscribe({
             severity: 'warn',
             summary: 'Warning',
             detail: 'comming soon',
-          });        },
+          });
+        },
       },
     ];
   }
-  productOrServicedropdown(type:string){
+  productOrServicedropdown(type: string) {
     this.logInToken = ls.get('login_token');
     if (this.logInToken) {
       this.logoutSuccess = true;
     } else {
       this.logoutSuccess = false;
     }
-    if(type ==='Internship'){
+    if (type === 'Internship') {
       this.userType = ls.get('userType');
 
-      if (ls.get('login_token') ) {
+      if (ls.get('login_token')) {
         this.router.navigateByUrl('/jobs/posts');
-      } else if (!ls.get('login_token') ) {
-        this.router.navigateByUrl('/registeration');
+      } else if (!ls.get('login_token')) {
+        this.router.navigateByUrl('/registration');
       }
     }
-    
-    if(type === 'Industry'){
+
+    if (type === 'Industry') {
       if (this.logInToken && this.userType == 'industry') {
         this.router.navigateByUrl('jobs/industry');
       } else if (!this.logInToken && !this.userType) {
-        this.router.navigateByUrl('/registeration');
+        this.router.navigateByUrl('/registration');
       }
     }
-if (type == ''){
-  // this._toast.showToaster.next({
-  //   severity: 'warn',
-  //   summary: 'Important!',
-  //   detail: 'Coming Soon. Stay Tuned!',
-  // }); 
-  this.router.navigateByUrl('/coming-soon')
-}
-
+    if (type == '') {
+      // this._toast.showToaster.next({
+      //   severity: 'warn',
+      //   summary: 'Important!',
+      //   detail: 'Coming Soon. Stay Tuned!',
+      // });
+      this.router.navigateByUrl('/coming-soon');
+    }
   }
   optionClick(url: string) {
     // this.progressBar = true;
@@ -475,7 +513,7 @@ if (type == ''){
     //this.isUserLogged = true;
     this.logoutSuccess = false;
     ls.remove('logoutSuccess');
-    this.router.navigateByUrl('/home');
+    this.socialAuth.logout();
   }
   cancel() {
     this.forgotPassword = false;
@@ -487,6 +525,12 @@ if (type == ''){
       // this.slidemenu.hide();
       this.isMenuOpen = false;
     }
+  }
+
+  sso() {
+    this.auth.loginWithRedirect({
+      connection: 'google-oauth2',
+    });
   }
 
   ngOnDestroy(): void {

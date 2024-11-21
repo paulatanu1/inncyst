@@ -99,24 +99,44 @@
                 .input-area-lg {
                     padding-bottom: 20px;
 
-                    label {
-                        padding-right: 10px;
-                        color: #787878;
-                    }
+                    ::ng-deep {
 
-                    input,
-                    textarea {
-                        border: none;
-                        border-bottom: 1px solid gray;
-                        background-color: transparent;
-                        width: 100%;
-                        resize: none;
-                    }
+                        .p-inputtext,
+                        p-inputnumber,
+                        .p-inputnumber,
+                        .p-password {
+                          display: block;
+                          width: 100% !important;
+                          margin: 15px 0;
+                        }
+          
+                        .p-float-label>label {
+                          font-weight: 300;
+                          font-size: 0.87rem;
+                          top: 20px;
+                        }
+          
+                        .p-float-label input:focus~label,
+                        .p-float-label input.p-filled~label,
+                        .p-float-label .p-inputwrapper-focus~label,
+                        .p-float-label .p-inputwrapper-filled~label {
+                          font-size: 0.8rem;
+                          font-weight: 600 !important;
+                          left: 14px;
+                          top: 0;
+                          background: #fff;
+                          padding: 0 5px;
+                          color: #270345;
+                        }
 
-                    input,
-                    textarea:focus {
-                        outline: none;
-                    }
+                        input {
+
+                            width: 100%;
+
+                        }
+          
+          
+                      }
                 }
 
                 .input-area-lg {
@@ -151,5 +171,7 @@
 .error-message {
     color: red;
     font-size: 12px;
-    margin-top: 5px;
+    margin-top: 0;
+    position: relative;
+    top: -11px;
 }

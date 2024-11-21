@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { map } from 'rxjs';
+import { catchError, EMPTY, map, switchMap, take } from 'rxjs';
 import { of } from 'rxjs/internal/observable/of';
 import { LoginApiService } from './login-api.service';
 import { OtpVerificationService } from '../registration-otp/otp-verification.service';
@@ -14,6 +14,10 @@ import { ToastServiceService } from 'src/app/service/toast-service.service';
 import ls from 'localstorage-slim';
 import { LoginDetailsService } from 'src/app/common-service/login-details.service';
 import { LoginEnablerService } from 'src/app/service/login-enabler.service';
+import { AuthService } from '@auth0/auth0-angular';
+import { SocialAuthService } from 'src/app/service/social-auth.service';
+import { RegistrationService } from 'src/app/registration-service/registration.service';
+import { ISocialData } from './auth-model/auth.model';
 interface options {
   name: string;
   code: string;
@@ -43,20 +47,25 @@ export class LoginComponent implements OnInit {
   newPassword: any;
   confirmPassword: any;
   closePopup: boolean = false;
-  abc!:string
+  abc!: string;
+  socialUser!: ISocialData;
   //Output
   @Output() openRegisterFlow = new EventEmitter();
-
+  userRole: boolean = true;
+  selectedRole: string = 'candidate';
+  ssoType: string = '';
   constructor(
     private fb: FormBuilder,
     private loginService: LoginApiService,
     private otpVerifivation: OtpVerificationService,
     private router: Router,
     private _toast: ToastServiceService,
-    private loginDetails: LoginDetailsService,
-    private _LoginEnablerService:LoginEnablerService
+    private registration: RegistrationService,
+    private _LoginEnablerService: LoginEnablerService,
+    private auth: AuthService,
+    private socialAuth: SocialAuthService
   ) {
- this.abc=this.loginService.getPreviousUrl();
+    this.abc = this.loginService.getPreviousUrl();
     this.options = [{ name: 'Select the option', code: '0' }];
 
     this.loginOptionType = [
@@ -71,8 +80,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
     this.loginService.loginModal.subscribe((val) => {
       this.loginModal = <boolean>val;
     });
@@ -97,11 +104,6 @@ export class LoginComponent implements OnInit {
       {
         email: ['', [Validators.required, Validators.email]],
         password: [null, [Validators.required, Validators.minLength(6)]],
-        options: [
-          'Student',
-          [Validators.required],
-          this.validPassword.bind(this),
-        ],
       },
       {
         // validators: MustMatch('password', 'confirmPassword')
@@ -135,23 +137,13 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
-          ls.set('questionStep',res.data.question_step)
-          ls.set('id',res.data._id)
-          // ls.set('logoutSuccess',true)
-          // ls.set('loginDetails',{
-          //   name:res.data.name,
-          //   email:res.data.email,
-          //   phone:res.data.phone,
-          //   image:res.data.image
-          // })
-
+          ls.set('id', res.data._id);
           if (res.LOGIN_TYPE == 'student') {
             this.router.navigateByUrl('jobs/posts');
             ls.set('role', 'student');
 
             // this.router.navigate(['/jobs/internship']);
           } else if (res.LOGIN_TYPE == 'industry') {
-
             ls.set('role', 'industry');
             this.router.navigate(['industry']);
             if (
@@ -163,27 +155,25 @@ export class LoginComponent implements OnInit {
           }
         },
         error: (err) => {
-
-          if(err.error.message == 'Please varify your email and phone'){
-            this._LoginEnablerService.otpPage.next(true)
-            this._LoginEnablerService.loginFlow.next(false)
-            this.loginModal=false
-            this.router.navigateByUrl('/registeration')
+          if (err.error.message == 'Please varify your email and phone') {
+            this._LoginEnablerService.otpPage.next(true);
+            this._LoginEnablerService.loginFlow.next(false);
+            this.loginModal = false;
+            this.router.navigateByUrl('/registration');
             this._toast.showToaster.next({
               severity: 'error',
               summary: 'error',
               detail: err.error.message,
             });
+          } else {
+            this._toast.showToaster.next({
+              severity: 'error',
+              summary: 'error',
+              detail: err.error.message,
+            });
+            this.otpVerifivation.loginflow.next(false);
+            // this.router.navigateByUrl('/home')
           }
-         else{
-
-           this._toast.showToaster.next({
-             severity: 'error',
-             summary: 'error',
-             detail: err.error.message,
-           });          this.otpVerifivation.loginflow.next(false);
-           this.router.navigateByUrl('/home');
-         }
         },
       });
     }
@@ -293,6 +283,153 @@ export class LoginComponent implements OnInit {
     if (event.length == 4) {
       this.emailOtp = event;
     }
+  }
+
+  saveRole() {
+    let payload = {
+      type: this.ssoType,
+      role: this.selectedRole,
+      auth0Data: this.socialUser,
+    };
+    this.loginService.socialLogin(payload).subscribe({
+      next: (res) => {
+        console.log(res, 'resss');
+        ls.set('role', this.selectedRole);
+        ls.set('login_token', res.token);
+        this.router.navigate(['/verify-phone']);
+        // if (res.LOGIN_TYPE == 'candidate') {
+        //   this.router.navigateByUrl('jobs/posts');
+        //   ls.set('role', 'student');
+
+        //   // this.router.navigate(['/jobs/internship']);
+        // } else if (res.LOGIN_TYPE == 'industry') {
+        //   ls.set('role', 'industry');
+        //   this.router.navigate(['industry']);
+        //   if (
+        //     res.LOGIN_TYPE === 'industry' &&
+        //     res.data.question_step == false
+        //   ) {
+        //     this.router.navigateByUrl('/industry/profile');
+        //   }
+        // }
+      },
+      error: (err) => {
+        this.userRole = err.error.data.isUserRole;
+        if (this.userRole === false) {
+        }
+      },
+    });
+  }
+
+  logoutFromAuth() {
+    this.socialAuth.logout();
+  }
+
+  ssoLogin(param: string) {
+    // this.socialAuth.getUserData();
+    this.ssoType = param === 'google-oauth2' ? 'google' : 'linkedin';
+
+    // let roles = this.ssoType === 'google-oauth2' ? 'google' : 'linkedin';
+
+    this.auth.user$.subscribe({
+      next: (user) => {
+        // this.checkUserStatus(user);
+        this.socialUser = user as ISocialData;
+        console.log(this.socialUser, 'social user');
+        if (this.socialUser) {
+          let payload = {
+            type: this.ssoType,
+            role: '',
+            auth0Data: this.socialUser,
+          };
+          this.loginService.socialLogin(payload).subscribe({
+            next: (res) => {
+              console.log(res, 'ressss');
+              ls.set('login_token', res.token);
+              ls.set('role', res.data.role);
+              this.socialAuth.socialData.next(res);
+              this.socialAuth.socialData.next(this.socialUser);
+              if (res) {
+                this.socialAuth.loginGlobalData.next({
+                  ...res,
+                  ...this.socialUser,
+                });
+              }
+              if (res.data.phoneVerified) {
+                if (res.LOGIN_TYPE == 'candidate') {
+                  this.router.navigateByUrl('jobs/posts');
+                  ls.set('role', 'student');
+
+                  // this.router.navigate(['/jobs/internship']);
+                } else if (res.LOGIN_TYPE == 'industry') {
+                  ls.set('role', 'industry');
+                  this.router.navigate(['industry']);
+                  if (
+                    res.LOGIN_TYPE === 'industry' &&
+                    res.data.question_step == false
+                  ) {
+                    this.router.navigateByUrl('/industry/profile');
+                  }
+                }
+              } else {
+                this.router.navigateByUrl('verify-phone');
+              }
+            },
+            error: (err) => {
+              this.userRole = err.error.data.isUserRole;
+              if (this.userRole === false) {
+              }
+            },
+          });
+        }
+      },
+      error: (err) => {},
+    });
+
+    this.auth.user$
+      .pipe(
+        take(1), // Get the latest user data once
+        switchMap((user: any) => {
+          if (user) {
+          }
+          // Check if the user is blocked
+          if (user?.app_metadata?.isBlocked) {
+            alert('Access denied: User is blocked.');
+            alert(
+              'Access denied. Your account is blocked. Please contact support.'
+            );
+            return of(null); // Return a null observable to prevent further processing
+          } else {
+            // If not blocked, proceed with the login
+            if (!this.socialUser) {
+              return this.auth.loginWithPopup({ connection: param });
+            }
+            return EMPTY;
+          }
+        }),
+        catchError((error) => {
+          let errorMessage = 'Login failed. Please try again.';
+
+          if (error?.error) {
+            if (error.error === 'invalid_grant') {
+              errorMessage =
+                'Invalid credentials. Please check your username and password.';
+            } else if (error.error === 'blocked_user') {
+              errorMessage = 'Your account is blocked. Please contact support.';
+            } else if (error.error === 'network_error') {
+              errorMessage =
+                'Network error. Please check your internet connection and try again.';
+            } else {
+              errorMessage = error.error_description || errorMessage;
+            }
+          }
+
+          // this.auth.logout();
+          // this.router.navigate();
+          return of(null);
+        })
+      )
+      .subscribe();
   }
 }
 function observableOf(arg0: boolean) {

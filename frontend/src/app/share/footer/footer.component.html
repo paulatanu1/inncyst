@@ -1,48 +1,96 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+  rel="stylesheet"
+/>
+
 <div class="footer-wrapper">
-  <div class="footer-section-top">
-    <ul class="nav-footer">
-      <li class="logo-section">
-        <img src="../../../assets/brand-logo.png" alt="logo" />
-      </li>
-      <li class="menu-item">
-        <a [routerLink]="['/']">Home</a>
-      </li>
-      <li class="menu-item">
-        <a [routerLink]="['/about-us']">About Us</a>
-      </li>
-      <li class="menu-item">
-        <a [routerLink]="['/jobs']">Jobs</a>
-      </li>
-      <li class="menu-item">
-        <a [routerLink]="['/']">Post a job</a>
-      </li>
-    </ul>
-  </div>
-  <div class="footer-mid-section">
-    <div class="left-sec-text">
-      <h4>Find your dream job here</h4>
-    </div>
-    <div class="second-menu">
-      <ul>
-        <li (click)="whatsappConnect()" class="menu-heading"><a>Support</a></li>
-        <li class="menu-items">
-          <a>Customer services</a>
+  <div class="footer-flex">
+    <div class="footer-section-top">
+      <ul class="nav-footer">
+        <li class="logo-section">
+          <img
+            loading="lazy"
+            width="300"
+            height="90"
+            src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/inncyst-logo-white.png"
+            alt="logo"
+          />
         </li>
-        <li class="menu-items">
-          <a [routerLink]="['/contactus']">Email us</a>
-        </li>
-        <li class="menu-items"><a href="#">Privacy policy</a></li>
-        <li class="menu-items"><a href="#">Terms and conditions</a></li>
       </ul>
+
+      <div class="left-sec-text">
+        <h4>Find your dream job here</h4>
+      </div>
+    </div>
+    <div class="footer-mid-section">
+      <div class="second-menu">
+        <ul>
+          <li class="menu-heading"><a>Quick Links</a></li>
+          <li class="menu-items">
+            <a [routerLink]="['/']">Home</a>
+          </li>
+          <li class="menu-items">
+            <a [routerLink]="['/about-us']">About Us</a>
+          </li>
+          <li class="menu-items">
+            <a [routerLink]="['/contactus']">Contact Us</a>
+          </li>
+          <li class="menu-items">
+            <a [routerLink]="['/registration']">Login/Sign up</a>
+          </li>
+        </ul>
+      </div>
+      <div class="second-menu">
+        <ul>
+          <li (click)="whatsappConnect()" class="menu-heading">
+            <a>Support</a>
+          </li>
+          <li class="menu-items">
+            <a>Customer services</a>
+          </li>
+          <li class="menu-items">
+            <a [routerLink]="['/contactus']">Email us</a>
+          </li>
+          <li class="menu-items"><a>Privacy policy</a></li>
+          <li class="menu-items"><a>Terms and conditions</a></li>
+        </ul>
+      </div>
+      <div class="second-menu">
+        <ul>
+          <li (click)="whatsappConnect()" class="menu-heading">
+            <a>Our Product</a>
+          </li>
+          <li [routerLink]="['/internships']" class="menu-items">
+            <a>Internship</a>
+          </li>
+          <li class="menu-items">
+            <a [routerLink]="['/job-career']">Jobs</a>
+          </li>
+          <li [routerLink]="['/coming-soon']" class="menu-items">
+            <a>Projects</a>
+          </li>
+          <li [routerLink]="['/coming-soon']" class="menu-items">
+            <a>Laboratory Service</a>
+          </li>
+          <li [routerLink]="['/coming-soon']" class="menu-items">
+            <a>Manufacturing Facilities</a>
+          </li>
+          <li [routerLink]="['/coming-soon']" class="menu-items">
+            <a>Mentors</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
+</div>
+<div class="footer-copyright">
   <div class="footer-bottom-section">
-    <p>2023 Allright reserved</p>
+    <p>{{ currentYear }} Allright reserved</p>
   </div>
   <div class="powred-by">
     <a>
       Powered By:-
-      <i>Beta</i>
+      <i>Betas</i>
       Technology
     </a>
   </div>
