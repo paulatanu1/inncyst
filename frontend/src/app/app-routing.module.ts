@@ -136,6 +136,7 @@ const routes: Routes = [
     path: 'verify-phone',
     component: MobileVerificationComponent,
   },
+  { path: 'mentors', loadChildren: () => import('./mentors/mentors.module').then(m => m.MentorsModule) },
   {
     path: '**',
     component: PageNotFoundComponent,
