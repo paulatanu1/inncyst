@@ -1,0 +1,29 @@
+<nav class="navbar navbar-light bg-light justify-content-between px-4">
+  <a [routerLink]="['/home']" class="navbar-brand" href="#">
+    <img
+      src="https://inncyst-staging-bucket.s3.ap-south-1.amazonaws.com/inncyst-logo1.png"
+      width="130px"
+      height="50px"
+      alt=""
+    />
+  </a>
+  <form class="form-inline">
+    <button mat-icon-button class="user-icon">
+      <i class="far fa-user" aria-hidden="true" style="font-size: 1.2rem;"></i>
+      <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+    </button>
+    <ul class="mat-dropdown-menu">
+      <li>
+        <a class="mat-dropdown-item" href="#">
+          View Profile
+        </a>
+      </li>
+      <hr />
+      <li>
+        <a class="mat-dropdown-item" href="#">
+          Logout
+        </a>
+      </li>
+    </ul>
+  </form>
+</nav>
