@@ -221,14 +221,18 @@ export class RegistrationPageComponent implements OnInit {
               ls.set('role', res.LOGIN_TYPE);
               this.socialAuth.socialData.next(res);
               if (res.data.phoneVerified) {
-                if (res.data.role == 'candidate') {
+                console.log(res.LOGIN_TYPE == 'college');
+                if (res.LOGIN_TYPE == 'candidate') {
                   this.router.navigateByUrl('jobs/posts');
-                } else if (res.data.role == 'industry') {
+                } else if (res.LOGIN_TYPE == 'college') {
                   this.router.navigate(['industry']);
-                  if (res.data.role === 'industry') {
+                  if (res.LOGIN_TYPE === 'industry') {
                     this.router.navigateByUrl('/industry/profile');
                   }
                 }
+              } else {
+                // this.otpPageOpen = true;
+                // this.signupPageHide = false;
               }
             }),
             catchError((err) => {
