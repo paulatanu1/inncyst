@@ -2,7 +2,17 @@ import { Component } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DialogAddExperienceComponent } from './add-experience-dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MentorApiService } from '../mentor-services/mentor-api.service';
 
+interface MentorAboutPayload {
+  name: string;
+  heading: string;
+  workRole: string;
+  about: string;
+  location: string;
+  state: string;
+  language: string;
+}
 @Component({
   selector: 'mentor-add-profile',
   templateUrl: 'mentor-add-profile.html',
@@ -14,7 +24,8 @@ export class DialogMentorProfile {
   constructor(
     public dialogRef: MatDialogRef<DialogMentorProfile>,
     public dialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private mentorService: MentorApiService
   ) {}
 
   openExperienceDialog() {
@@ -32,10 +43,8 @@ export class DialogMentorProfile {
       profileHeading: ['', Validators.required],
       whatDoYouDo: ['', Validators.required],
       about: ['', [Validators.required, Validators.minLength(20)]],
-      location: this.fb.group({
-        country: ['', Validators.required],
-        state: ['', Validators.required],
-      }),
+      country: ['', Validators.required],
+      state: ['', Validators.required],
       languages: ['', Validators.required],
     });
   }
@@ -45,6 +54,21 @@ export class DialogMentorProfile {
   onSubmit() {
     if (this.mentorForm.valid) {
       console.log('Form Data:', this.mentorForm.value);
+      const formData = this.mentorForm.value;
+      const payload: MentorAboutPayload = {
+        name: formData.fullname,
+        heading: formData.profileHeading,
+        workRole: formData.whatDoYouDo,
+        about: formData.about,
+        location: formData.country,
+        state: formData.state,
+        language: formData.languages,
+      };
+      this.mentorService.saveMentorAbout(payload).subscribe({
+        next: (res) => {
+          console.log(res, 'response');
+        },
+      });
     } else {
       console.log('Form is invalid');
     }

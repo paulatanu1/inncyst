@@ -1,0 +1,50 @@
+.request-list {
+
+    padding-top: 7rem;
+
+    table {
+        width: 80%;
+        border-radius: 25px;
+
+        .success {
+            color: green;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background-color: rgba(0, 128, 0, 0.29);
+        }
+
+        .failure {
+            color: red;
+            font-size: 0.8rem;
+            font-weight: 200;
+            background-color: rgba(255, 0, 0, 0.201);
+        }
+
+        .in-progress {
+            color: orange;
+            font-size: 0.8rem;
+            font-weight: 200;
+            background-color: rgba(255, 166, 0, 0.212);
+        }
+
+        .status-label {
+            padding: 3px 7px;
+            border-radius: 7px;
+            text-align: center;
+            display: inline-block;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        td {
+
+            p {
+
+                text-align: left;
+                margin-bottom: 0;
+
+            }
+        }
+    }
+
+}

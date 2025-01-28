@@ -22,6 +22,8 @@ import { DialogAddExperienceComponent } from './mentor-dashboard/add-experience-
 import { ViewRequestComponent } from './view-request/view-request.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MentorHomeComponent } from './mentor-home/mentor-home.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DialogMentorProfile,
     DialogAddExperienceComponent,
     ViewRequestComponent,
+    MentorHomeComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatProgressSpinnerModule,
     MatTableModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
 })
 export class MentorsModule {}

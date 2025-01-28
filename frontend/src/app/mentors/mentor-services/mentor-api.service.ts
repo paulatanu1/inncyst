@@ -47,16 +47,16 @@ export class MentorApiService {
   //save mentor about
   saveMentorAbout(aboutData: IaboutData) {
     let payload = {
-      name: '',
-      heading: '',
-      workRole: '',
-      about: '',
-      location: '',
-      state: '',
-      language: '',
+      name: aboutData.name,
+      heading: aboutData.heading,
+      workRole: aboutData.workRole,
+      about: aboutData.about,
+      location: aboutData.location,
+      state: aboutData.state,
+      language: aboutData.language,
     };
     let url: string = '/mentor/submit-about';
-    return this.apiService.ApiCallWithLocalization(payload, url, 'get');
+    return this.apiService.ApiCallWithLocalization(payload, url, 'post');
   }
 
   //getting mentor contact
