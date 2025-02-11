@@ -146,58 +146,53 @@
                   <div class="col-lg-12 col-md-12 col-12">
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-12 px-4">
-                        <div class="form-input">
-                          <label for="">Email</label>
-                          <input type="text" class="form-control" name="fullNameMentor">
-                        </div>
-
-                        <div class="form-input">
-                          <label for="">Phone Number</label>
-                          <input type="text" class="form-control" name="fullNameMentor">
-                        </div>
-
-                        <hr>
-
-                        <div class="form-input">
-                          <label for="">Linkedin</label>
-                          <input type="text" class="form-control" name="fullNameMentor"
-                            placeholder="https://www.linkedin.com/in/test/">
-                        </div>
-
-                        <div class="form-input">
-                          <label for="">Github</label>
-                          <input type="text" class="form-control" name="fullNameMentor"
-                            placeholder="https://www.github.com/in/test/">
-
-                        </div>
-
-                        <div class="form-input">
-                          <label for="">Dribble</label>
-                          <input type="text" class="form-control" name="fullNameMentor"
-                            placeholder="https://www.dribbble.com/in/test/">
-
-                        </div>
-
-                        <div class="form-input">
-                          <label for="">Youtube</label>
-                          <input type="text" class="form-control" name="fullNameMentor"
-                            placeholder="https://www.youtube.com/in/test/">
-
-                        </div>
-
-                        <div class="form-input">
-                          <label for="">Behance</label>
-                          <input type="text" class="form-control" name="fullNameMentor"
-                            placeholder="https://www.instagram.com/in/test/">
-
-                        </div>
-
-                        <div class="form-input">
-                          <label for="">Instagram</label>
-                          <input type="text" class="form-control" name="fullNameMentor"
-                            placeholder="https://www.instagram.com/in/test/">
-
-                        </div>
+                        <form [formGroup]="mentorContactForm" (ngSubmit)="onSubmitContact()">
+                          <div class="form-input">
+                            <label for="">Email</label>
+                            <input type="text" class="form-control" name="Email" formControlName="mentorEmail">
+                          </div>
+                          <div class="form-input">
+                            <label for="">Phone Number</label>
+                            <input type="text" class="form-control" name="Phone Number" formControlName="mentorPhone">
+                          </div>
+                          <hr>
+                          <div class="form-input">
+                            <label for="">Linkedin</label>
+                            <input type="text" class="form-control" name="Linkedin" formControlName="linkedinUrl"
+                              placeholder="https://www.linkedin.com/in/test/">
+                          </div>
+                          <div class="form-input">
+                            <label for="">Github</label>
+                            <input type="text" class="form-control" name="Github" formControlName="gitHubUrl"
+                              placeholder="https://www.github.com/in/test/">
+                          </div>
+                          <div class="form-input">
+                            <label for="">Dribble</label>
+                            <input type="text" class="form-control" name="Dribble" formControlName="dribbleUrl"
+                              placeholder="https://www.dribbble.com/in/test/">
+                          </div>
+                          <div class="form-input">
+                            <label for="">Youtube</label>
+                            <input type="text" class="form-control" name="Youtube" formControlName="youtubeUrl"
+                              placeholder="https://www.youtube.com/in/test/">
+                          </div>
+                          <div class="form-input">
+                            <label for="">Behance</label>
+                            <input type="text" class="form-control" name="Behance" formControlName="behanceUrl"
+                              placeholder="https://www.instagram.com/in/test/">
+                          </div>
+                          <div class="form-input">
+                            <label for="">Instagram</label>
+                            <input type="text" class="form-control" name="Instagram" formControlName="instaUrl"
+                              placeholder="https://www.instagram.com/in/test/">
+                          </div>
+                          <div class="final-submission-btn float-right d-flex gap-3">
+                            <button type="button" class="btn btn-transparent btn-sm"
+                              (click)="mentorForm.reset()">Clear</button>
+                            <button type="submit" class="btn btn-submit btn-sm"
+                              [disabled]="mentorForm.invalid">Submit</button>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -208,17 +203,9 @@
               <div class="input-field about-details">
                 <div class="head">
                   <h3 class="d-flex justify-content-between">Work Experience
-                    <!-- <button mat-button data-bs-toggle="modal" data-bs-target="#experienceDialog">
-                      <i class="fa fa-plus"></i>
-                      Add Mentor Profile
-                    </button> -->
                     <button mat-button (click)="openExperienceDialog()">Add Experience</button>
                   </h3>
                 </div>
-
-
-
-
                 <div class="row">
                   <div class="col-lg-12 col-md-12 col-12 px-4">
                     <div class="form-input">
@@ -226,11 +213,7 @@
                       <input type="date" class="form-control" name="fullNameMentor">
                     </div>
                   </div>
-
                   <hr>
-
-
-
                   <div class="col-lg-12 col-md-12 col-12 px-4">
                     <div class="form-input">
                       <h3>Experiences</h3>
@@ -349,28 +332,52 @@
                   <h3>Skills and Tools</h3>
                 </div>
                 <div class="row">
-                  <div class="col-lg-12 col-md-12 col-12 px-4">
-                    <div class="form-input">
-                      <label for="">Technical Skills</label>
-                      <select name="" id="" class="form-control">
-                        <option value="">HTML</option>
-                        <option value="">CSS</option>
-                        <option value="">Js</option>
-                      </select>
+                  <form [formGroup]="skillsAndToolsForm" (ngSubmit)="onSubmitSkillAndTools()">
+                    <div class="col-lg-12 col-md-12 col-12 px-4">
+                      <div class="form-input">
+                        <label for="">Technical Skills</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label>Select Qualification</mat-label>
+                          <input type="text" matInput formControlName="qualificationControl"
+                            [matAutocomplete]="autoQual">
+                          <mat-autocomplete #autoQual="matAutocomplete">
+                            <mat-option *ngFor="let qual of qualifications | async" [value]="qual.label">
+                              {{ qual.label }}
+                            </mat-option>
+                          </mat-autocomplete>
+                          <mat-error
+                            *ngIf="skillsAndToolsForm.get('qualificationControl')?.invalid && skillsAndToolsForm.get('qualificationControl')?.touched">
+                            Qualification selection is required
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
                     </div>
-                  </div>
-
-                  <hr>
-
-                  <div class="col-lg-12 col-md-12 col-12 px-4">
-                    <div class="form-input">
-                      <label for="">Tools</label>
-                      <select name="" id="" class="form-control">
-                        <option value="">VS Code</option>
-                        <option value="">Github</option>
-                      </select>
+                    <hr>
+                    <div class="col-lg-12 col-md-12 col-12 px-4">
+                      <div class="form-input">
+                        <label for="">Tools</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label>Select a Tool</mat-label>
+                          <input type="text" matInput formControlName="toolControl" [matAutocomplete]="autoTools">
+                          <mat-autocomplete #autoTools="matAutocomplete">
+                            <mat-option *ngFor="let tool of filteredTools | async" [value]="tool.label">
+                              {{ tool.label }}
+                            </mat-option>
+                          </mat-autocomplete>
+                          <mat-error
+                            *ngIf="skillsAndToolsForm.get('toolControl')?.invalid && skillsAndToolsForm.get('toolControl')?.touched">
+                            Tool selection is required
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
                     </div>
-                  </div>
+                    <div class="final-submission-btn float-right d-flex gap-3">
+                      <button type="button" class="btn btn-transparent btn-sm"
+                        (click)="mentorForm.reset()">Clear</button>
+                      <button type="submit" class="btn btn-submit btn-sm"
+                        [disabled]="mentorForm.invalid">Submit</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -523,10 +530,10 @@
         </div>
       </div>
     </div>
-    <div class="final-submission-btn float-right d-flex gap-3">
+    <!-- <div class="final-submission-btn float-right d-flex gap-3">
       <button class="btn btn-transparent btn-sm">Close</button>
       <button class="btn btn-submit btn-sm">Submit</button>
-    </div>
+    </div> -->
   </div>
 </div>
 

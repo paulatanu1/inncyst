@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/common-service/api.service';
 
-interface IaboutData {
+export interface IaboutData {
   name: string;
   heading: string;
   workRole: string;
@@ -11,7 +11,7 @@ interface IaboutData {
   language: string;
 }
 
-interface IcontactData {
+export interface IcontactData {
   email: String;
   phone: String;
   linkedin: String;
@@ -22,7 +22,7 @@ interface IcontactData {
   instagram: String;
 }
 
-interface IExprienceData {
+export interface IExprienceData {
   jobTitle: String;
   company: String;
   startDate: Date;

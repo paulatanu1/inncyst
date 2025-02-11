@@ -387,3 +387,16 @@ h1 small {
 .overflow-hidden {
     overflow: hidden;
 }
+
+.full-width {
+    width: 100%;
+}
+
+.custom-panel {
+    max-height: 300px !important;
+    /* Prevents oversized dropdowns */
+}
+
+mat-form-field {
+    width: 100%;
+}

@@ -24,6 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MentorHomeComponent } from './mentor-home/mentor-home.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SharedModule } from '../shared/shared.module';
     MatTableModule,
     ReactiveFormsModule,
     SharedModule,
+    MatAutocompleteModule,
   ],
 })
 export class MentorsModule {}
