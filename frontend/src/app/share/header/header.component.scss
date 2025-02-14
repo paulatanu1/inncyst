@@ -73,6 +73,7 @@
             animation: rotateY 300ms ease-in-out forwards;
             transform-origin: top center;
             padding: 10px;
+            z-index: 9;
           }
 
           &:hover>ul {
@@ -381,7 +382,8 @@
 }
 
 
-@media only screen and (min-width:375px) and (max-width:767px) {
+@media only screen and (max-width: 1023px) {
+
   .navbar-brand {
     width: 160px;
     height: auto;
@@ -403,7 +405,64 @@
     background: white;
     width: 100%;
     box-shadow: 4px 3px 9px 0px #999;
+
   }
+
+  .users-option {
+    gap: 5px;
+  }
+
+  :host ::ng-deep .p-button {
+    background-color: #522d80;
+    border: 0;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 10px 15px;
+    gap: 12px;
+    font-weight: 500;
+
+
+    &:hover {
+      background-color: #0697bf;
+    }
+
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    span {
+      display: none;
+    }
+
+
+  }
+}
+
+@media only screen and (min-width:320px) and (max-width:767px) {
+
+  .navbar-collapse {
+
+    .navbar-nav {
+
+      li {
+
+        ul {
+
+          width: 200px !important;
+          top: 0;
+          right: 0;
+          left: auto !important;
+
+        }
+
+      }
+
+    }
+
+  }
+
+
 }
 
 .profile-menu {

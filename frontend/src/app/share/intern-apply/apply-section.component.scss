@@ -27,13 +27,15 @@ button {
 
   @keyframes zoomInOut {
     0% {
-      transform: scale(0.9); 
+      transform: scale(0.9);
     }
+
     50% {
-      transform: scale(1); 
+      transform: scale(1);
     }
+
     100% {
-      transform: scale(0.9); 
+      transform: scale(0.9);
     }
   }
 
@@ -193,8 +195,21 @@ button {
 
 @media only screen and (min-width:320px) and (max-width:767px) {
   .section-wrapper {
+    flex-direction: column;
+    margin-top: -3rem;
+
+    .internships {
+      padding-top: 0rem;
+      width: 100%;
+
+      .heading {
+        font-size: 32px;
+      }
+    }
+
     .jobs {
       padding: 25px;
+      width: 100%;
     }
   }
 }

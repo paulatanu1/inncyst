@@ -5,7 +5,10 @@ h3 {
 }
 
 .row {
+  display: flex;
   align-items: center;
+  width: 100%;
+  margin: 3rem 0;
 }
 
 .we-do-left-section {
@@ -84,7 +87,7 @@ h3 {
       left: 0;
     }
   }
-  
+
   .check-item {
     padding: 0;
     margin-top: 30px;
@@ -185,22 +188,45 @@ h3 {
 }
 
 @media only screen and (min-width:320px) and (max-width:767px) {
-    .we-do-right-section {
-      padding: 30px 20px;
+  .section-wrapper {
+    flex-direction: column-reverse;
+  }
 
-      .heading-main {
-        font-size: 30px;
-        line-height: 36px;
-      }
+  .lab-section-wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .we-do-left-section {
+    height: 300px;
+
+    .lab-info-box {
+      top: -4rem;
+      left: 0;
     }
+  }
+
+  .we-do-right-section {
+    padding: 30px 20px;
+
+    .heading-main {
+      font-size: 30px;
+      line-height: 36px;
+    }
+  }
+
+  .mentor-section-wrapper {
+    flex-direction: column-reverse;
+    margin-bottom: 2rem;
+  }
+
 
 }
 
 @media only screen and (min-width:768px) and (max-width:1023px) {
-    .row {
-      &>div {
-        flex: 0 0 100%;
-      }
+  .row {
+    &>div {
+      flex: 0 0 100%;
     }
+  }
 
 }

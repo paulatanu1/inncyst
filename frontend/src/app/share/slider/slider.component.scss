@@ -482,7 +482,7 @@ button {
 
 
 
-@media only screen and (min-width: 375px) and (max-width: 767px) {
+@media only screen and (min-width:320px) and (max-width:767px) {
   .banner-section {
     .banner-img-area {
       height: auto;
@@ -521,6 +521,66 @@ button {
       }
     }
   }
+
+  .banner-text-area-left {
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: #300369;
+    }
+  }
+
+  .products-grid {
+    height: 100vh;
+    margin-bottom: 3rem;
+
+    .img-intern {
+      width: 100%;
+      height: 200px;
+      top: -6rem;
+    }
+
+    .img-job {
+      width: 100%;
+      height: 200px;
+      top: 44.2rem;
+    }
+
+    .img-project {
+      width: 100%;
+      height: 200px;
+      top: 7.5rem;
+    }
+
+    .img-labservice {
+      width: 100%;
+      top: 21rem;
+    }
+
+    .img-manufacture {
+      width: 100%;
+      top: 58rem;
+    }
+
+    .img-mentor {
+      display: none;
+    }
+
+
+    img {
+      width: 100%;
+      height: 100%;
+      gap: 2rem;
+      border-radius: 40px;
+      object-fit: cover;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+
+    }
+
+
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -552,4 +612,63 @@ button {
       }
     }
   }
+
+  .banner-text-area-left {
+
+    h1 {
+      font-size: 2.8rem;
+    }
+  }
+
+  .products-grid {
+
+    .img-intern {
+      width: 150px;
+      height: 150px;
+      top: 3rem;
+    }
+
+    .img-job {
+      width: 160px;
+      height: 180px;
+      left: 0;
+      top: 26rem;
+    }
+
+    .img-project {
+      width: 170px;
+      height: 150px;
+      top: 3rem;
+    }
+
+    .img-labservice {
+      width: 100%;
+      height: 200px;
+    }
+
+    .img-manufacture {
+      width: 170px;
+      height: 180px;
+      top: 26rem;
+    }
+
+    .img-mentor {
+      display: none;
+    }
+
+
+    img {
+      width: 100%;
+      height: 100%;
+      gap: 2rem;
+      border-radius: 40px;
+      object-fit: cover;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+
+    }
+
+
+  }
+
 }
