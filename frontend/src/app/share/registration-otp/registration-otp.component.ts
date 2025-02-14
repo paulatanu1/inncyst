@@ -48,7 +48,7 @@ export class RegistrationOtpComponent implements OnInit {
   userEmails: string | null;
   userMobileNumber: string | null;
   role: string = '';
-  authMobileVerified=false
+  authMobileVerified = false;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -57,22 +57,22 @@ export class RegistrationOtpComponent implements OnInit {
     private _toast: ToastServiceService,
     private reg: RegistrationService,
     private auth: SocialAuthService,
-    private cd: ChangeDetectorRef,private activatedRoute:ActivatedRoute
+    private cd: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute
   ) {
     this.userEmails = ls.get('user-email');
     this.userMobileNumber = ls.get('user-phone');
-console.log(this.role,'oootttppp',ls.get('role'),)
+    console.log(this.role, 'oootttppp', ls.get('role'));
     this.verifyRegistration = this.fb.group({
       emailOtp: [null, [Validators.required, Validators.pattern(/^\d{4}$/)]],
       phoneOtp: [null, [Validators.required, Validators.pattern(/^\d{4}$/)]],
     });
 
     //
-    this.activatedRoute.queryParamMap.subscribe(params => { 
-     this.authMobileVerified = !!params.get('phoneverified'); 
+    this.activatedRoute.queryParamMap.subscribe((params) => {
+      this.authMobileVerified = !!params.get('phoneverified');
       console.log(this.authMobileVerified); // This should now print 'true'
     });
-  
   }
 
   ngAfterViewInit() {
@@ -81,22 +81,23 @@ console.log(this.role,'oootttppp',ls.get('role'),)
 
   ngOnInit(): void {
     this.reg.loginResponse.subscribe({
-      next: (resp:any) => {
-        console.log(resp)
+      next: (resp: any) => {
+        console.log(resp);
         const response = resp as unknown as regResponse;
         this.regId = response.data._id;
-        console.log(response,response.data);
+        console.log(response, response.data);
         this.isPhoneVerify = response.data.phoneVerified;
         this.isEmailVerify = response.data.emailVerified;
         this.userEmails = response.data.email;
         this.userMobileNumber = response.data.phone;
         this.role = resp.role;
-        console.log(resp.role)
+        console.log(resp.role);
         console.log(
           this.isEmailVerify,
           'vvv',
           this.userEmails,
-          this.userMobileNumber,this.role
+          this.userMobileNumber,
+          this.role
         );
       },
     });
@@ -151,7 +152,7 @@ console.log(this.role,'oootttppp',ls.get('role'),)
   }
 
   onSubmitOtp() {
-    console.log('jjj')
+    console.log('jjj');
     this.ngOtpInput1.otpForm.disable();
     this.ngOtpInput2.otpForm.disable();
     console.log(this.verifyRegistration.value);
@@ -166,10 +167,11 @@ console.log(this.role,'oootttppp',ls.get('role'),)
       };
       this.otpVerifivation.otpSubmit(otpset).subscribe({
         next: (res) => {
-          console.log(res,'oooo')
-          debugger;
+          console.log(res, 'oooo');
           ls.set('token', res.token);
           ls.set('user-verified', res.data.verified);
+          ls.set('questionStep', res.data.question_step);
+          ls.set('logged', true);
           this._toast.showToaster.next({
             severity: 'success',
             summary: 'success',
@@ -188,11 +190,10 @@ console.log(this.role,'oootttppp',ls.get('role'),)
               });
               break;
             case 'candidate':
-             
               this.router.navigateByUrl('/jobs/posts');
               break;
             case 'company':
-              this.router.navigateByUrl('/industry');
+              this.router.navigateByUrl('/industry/profile');
               break;
             case 'mentor':
               // this._toast.showToaster.next({

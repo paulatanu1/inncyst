@@ -135,7 +135,8 @@ export class LoginComponent implements OnInit {
       // let userRole = this.loginForm.get('options')?.value;
       this.loginService.login(userEmail, password).subscribe({
         next: (res) => {
-          console.log(res,'login')
+          console.log(res, 'login');
+          ls.set('companyName', res.data.name);
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
           ls.set('id', res.data._id);

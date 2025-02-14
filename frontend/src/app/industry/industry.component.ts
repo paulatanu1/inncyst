@@ -11,7 +11,7 @@ export class IndustryComponent implements OnInit {
   constructor(private _ProfileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.getProfile();
+    // this.getProfile();
   }
 
   getProfile() {

@@ -49,6 +49,7 @@ export class IndustryProfileComponent implements OnInit {
   openImageUploadButton = false;
   viewProfile = true;
   loading = false;
+  companyName = '';
   constructor(
     private fb: FormBuilder,
     private _ProfileService: ProfileService,
@@ -60,14 +61,16 @@ export class IndustryProfileComponent implements OnInit {
     if (this.questionStep) {
       this.getProfile();
     }
+    this.companyName = String(ls.get('companyName'));
+    console;
   }
 
   ngOnInit(): void {
     this._menuHandel.leftMenuActive.next(3);
     this.id = ls.get('id');
     this.profileForm = this.fb.group({
-      companyName: [''],
-      companyEstdYear: [undefined],
+      companyName: [this.companyName],
+      companyEstdYear: [''],
       aboutCompany: [''],
       empCount: [undefined],
       workPlace: [''],
@@ -75,9 +78,12 @@ export class IndustryProfileComponent implements OnInit {
       branchOffice: [''],
       corporateOffice: [''],
     });
+    this.getProfile();
   }
   submitForm() {
-    const form_Data = new Object();
+    return;
+    this.profileData.control['companyEstdYear'].value.toString();
+    console.log(this.profileData, 'data');
     if (!this.questionStep) {
       this._ProfileService
         .EditProfile(this.profileForm.value, this.id)
@@ -143,7 +149,8 @@ export class IndustryProfileComponent implements OnInit {
         this._ProfileService.profileImage.next(this.profileData.image);
         this._ProfileService.profileName.next(this.profileData.companyName);
         this.loading = false;
-        localStorage.setItem('industry-phone', res.data?.industryId.phone);
+        ls.set('industry-phone', res.data?.industryId.phone);
+        ls.set('questionStep', res.data?.industryId.question_step);
         if (this.profileData) {
           this.profileForm.get('companyName')?.setValue(res.data?.companyName);
           this.profileForm
@@ -202,6 +209,7 @@ export class IndustryProfileComponent implements OnInit {
   addPortfolio() {
     this._ProfileService.profile(this.profileForm.value).subscribe({
       next: (res) => {
+        ls.set('role', res.data?.user?.role);
         this._toast.showToaster.next({
           severity: 'success',
           summary: 'success',

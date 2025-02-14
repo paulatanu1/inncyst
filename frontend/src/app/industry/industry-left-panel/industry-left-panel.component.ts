@@ -3,6 +3,7 @@ import { LeftMenuHandelService } from '../left-menu-handel.service';
 import ls from 'localstorage-slim';
 import { Router } from '@angular/router';
 import { ProfileService } from '../jobs-management/jobs-management-service/profile.service';
+import { SocialAuthService } from 'src/app/service/social-auth.service';
 @Component({
   selector: 'app-industry-left-panel',
   templateUrl: './industry-left-panel.component.html',
@@ -15,7 +16,8 @@ export class IndustryLeftPanelComponent implements OnInit {
   constructor(
     private _menuHandel: LeftMenuHandelService,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private socialAuth: SocialAuthService
   ) {}
 
   ngOnInit(): void {
@@ -42,5 +44,6 @@ export class IndustryLeftPanelComponent implements OnInit {
   logout() {
     ls.clear();
     this.router.navigateByUrl('/');
+    this.socialAuth.logout();
   }
 }

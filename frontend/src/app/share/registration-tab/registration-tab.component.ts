@@ -185,7 +185,7 @@ export class RegistrationTabComponent implements OnInit {
       form.markAllAsTouched(); // Mark all fields as touched to show validation errors
       return;
     }
-console.log(form.value,this.activeTabName)
+    console.log(form.value, this.activeTabName);
     // Extract the common form data fields
     const formData = form.value;
 
@@ -193,51 +193,51 @@ console.log(form.value,this.activeTabName)
     let userName = '',
       userEmail = '',
       userPhone = '',
-      password = '';
+      password = '',
+      role = '';
     switch (this.activeTabName) {
       case 'candidate':
         userName = formData.userName;
         userEmail = formData.email;
         userPhone = formData.mobile;
         password = formData.password;
+        role = '01';
         break;
       case 'college':
         userName = formData.collegeName;
         userEmail = formData.collegeEmail;
         userPhone = formData.collegePhone;
         password = formData.password;
+        role = '';
         break;
       case 'company':
         userName = formData.organizationName;
         userEmail = formData.organizationEmail;
         userPhone = formData.organizationPhone;
         password = formData.password;
+        role = '02';
         break;
       case 'mentor':
         userName = formData.mentorName;
         userEmail = formData.mentorEmail;
         userPhone = formData.mentorPhone;
         password = formData.password;
+        role = '03';
         break;
       default:
         return;
     }
     this.reg
-      .sendRegistrationRequest(
-        userName,
-        userEmail,
-        userPhone,
-        password,
-        this.activeTabName
-      )
+      .sendRegistrationRequest(userName, userEmail, userPhone, password, role)
       .subscribe({
         next: (response) => {
-          console.log(response,'235')
+          console.log(response, '235');
           response.role = this.activeTabName;
           this.reg.loginResponse.next(response);
           ls.set('user-email', response.data.email);
           ls.set('user-phone', response.data.phone);
-          ls.set('role', response.role);
+          ls.set('role', response.data.role);
+          ls.set('companyName', response.data.name);
           this.router.navigate(['/otp-verification']);
         },
         error: (error) => {},

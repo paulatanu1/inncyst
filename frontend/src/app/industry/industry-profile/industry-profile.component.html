@@ -7,10 +7,6 @@
         <input pInputText type="text" formControlName="companyName" />
       </div>
       <div class="form_field_group">
-        <label>Compnany Name</label>
-        <input pInputText type="text" formControlName="companyName" />
-      </div>
-      <div class="form_field_group">
         <label>Compnany established Year</label>
         <input type="text" formControlName="companyEstdYear" />
       </div>
@@ -20,7 +16,7 @@
       </div>
       <div class="form_field_group">
         <label>Compnany employee</label>
-        <input pInputText type="number" formControlName="empCount" />
+        <input pInputText type="text" formControlName="empCount" />
       </div>
       <div class="form_field_group">
         <label>Compnany workplace</label>
@@ -54,10 +50,7 @@
   </div>
 </div>
 
-<div
-  *ngIf="(profileData | json) != '{}' && viewProfile && questionStep"
-  class="profileAdd profileView"
->
+<div *ngIf="(profileData | json) != '{}' && viewProfile && questionStep" class="profileAdd profileView">
   <h3 class="my-4 text-center font-weight-bold">View your profile</h3>
   <div class="form_group">
     <div class="form_group_inline">
@@ -156,11 +149,7 @@
       </div>
       <div class="form_field_group">
         <label>Compnany Details</label>
-        <textarea
-          pInputText
-          type="text"
-          formControlName="aboutCompany"
-        ></textarea>
+        <textarea pInputText type="text" formControlName="aboutCompany"></textarea>
       </div>
       <div class="form_field_group">
         <label>Compnany employee</label>
@@ -180,21 +169,15 @@
       </div>
       <div *ngIf="!openImageUploadButton" class="img-section">
         <img [src]="profileForm.get('image')?.value" alt="" />
-        <button
-          (click)="removeImage()"
-          *ngIf="profileData.image"
-          class="remove-img"
-        >
+        <button (click)="removeImage()" *ngIf="profileData.image" class="remove-img">
           <i class="pi pi-times"></i>
         </button>
       </div>
       <div class="form_field_group">
 
         <div class="file-input-container edit-container">
-          <input
-          type="file"
-          *ngIf="openImageUploadButton"
-          (change)="onFileSelected($event)" class="file-input" id="fileInput">
+          <input type="file" *ngIf="openImageUploadButton" (change)="onFileSelected($event)" class="file-input"
+            id="fileInput">
           <label for="fileInput" class="custom-button">Choose File</label>
         </div>
         <!-- <button (click)="uploadImage()">Upload Image</button> -->

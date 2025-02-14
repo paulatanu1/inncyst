@@ -229,11 +229,8 @@ export class RegistrationPageComponent implements OnInit {
                     this.router.navigateByUrl('/industry/profile');
                   }
                 }
-              }
-              else{
-               
+              } else {
                 this.router.navigate(['/verify-phone']);
-                
               }
             }),
             catchError((err) => {
@@ -271,7 +268,7 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this,this.registerForm.value,'hhh')
+    console.log(this, this.registerForm.value, 'hhh');
     // console.log(this.registerForm.get('options')?.value);
     this.isSubmited = true;
     if (this.isSubmited && this.registerForm.valid) {
@@ -303,7 +300,7 @@ export class RegistrationPageComponent implements OnInit {
             ls.set('userName', name);
             ls.set('registerId', _id);
             ls.set('phone', phone);
-            console.log(this.userRegRole,300)
+            console.log(this.userRegRole, 300);
             ls.set('role', this.userRole);
             let severity = '';
             let summary = '';
@@ -401,34 +398,35 @@ export class RegistrationPageComponent implements OnInit {
     this.isphoneOtp = event;
   }
   onSubmitOtp() {
-    this.otpSet = {
-      email: this.isemailOtp,
-      phone: this.isphoneOtp,
-      registrationId: this.registrationId,
-    };
-    this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
-      next: (res) => {
-        this.OtpModal = false;
-        this.redirectToOtp = false;
-        //  this.otpPageOpen=false
-        this.otpVerifivation.logoutSuccess.next(true);
-        this.header.userLoggedin.next(true);
-        ls.set('questionStep', res.data.question_step);
-        ls.set('logged', true);
-        this._toast.showToaster.next({
-          severity: 'success',
-          summary: 'success',
-          detail: res.message,
-        });
-        //set route logic for user
-        if (this.userRole === 'candidate') {
-          this.router.navigate(['/jobs/posts']);
-        } else if (this.userRole === 'industry') {
-          this.router.navigate(['industry']);
-        }
-      },
-      error: (err) => {},
-    });
+    // this.otpSet = {
+    //   email: this.isemailOtp,
+    //   phone: this.isphoneOtp,
+    //   registrationId: this.registrationId,
+    // };
+    // this.otpVerifivation.otpSubmit(this.otpSet).subscribe({
+    //   next: (res) => {
+    //     console.log(res, 'otp');
+    //     this.OtpModal = false;
+    //     this.redirectToOtp = false;
+    //     //  this.otpPageOpen=false
+    //     this.otpVerifivation.logoutSuccess.next(true);
+    //     this.header.userLoggedin.next(true);
+    //     ls.set('questionStep', res.data.question_step);
+    //     ls.set('logged', true);
+    //     this._toast.showToaster.next({
+    //       severity: 'success',
+    //       summary: 'success',
+    //       detail: res.message,
+    //     });
+    //     //set route logic for user
+    //     if (this.userRole === 'candidate') {
+    //       this.router.navigate(['/jobs/posts']);
+    //     } else if (this.userRole === 'industry') {
+    //       this.router.navigate(['industry']);
+    //     }
+    //   },
+    //   error: (err) => {},
+    // });
   }
   onHide() {
     this.isOtp = false;

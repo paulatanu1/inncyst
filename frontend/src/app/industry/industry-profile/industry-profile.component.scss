@@ -52,7 +52,7 @@
         overflow: auto;
         display: grid;
 
-       
+
 
         .p-inputtext:enabled:focus {
             border: 1px solid #cfcfcf;
@@ -118,14 +118,15 @@
             gap: 15px;
             white-space: nowrap;
 
-                label, p {
+            label,
+            p {
 
-                    margin-bottom: 0;
+                margin-bottom: 0;
 
-                }
+            }
 
         }
-        
+
 
 
         button {
@@ -145,7 +146,7 @@
             color: #ccc;
         }
 
-       
+
         .form_field_group {
             margin-bottom: 22px;
 
@@ -196,6 +197,7 @@
                 font-weight: 400;
                 letter-spacing: 0.08px;
                 width: 100%;
+                padding: 10px;
             }
 
             ::ng-deep .p-dropdown {
@@ -311,7 +313,7 @@
         display: flex;
         justify-content: center;
 
-         button{
+        button {
 
             float: right;
             background-color: #fff;
@@ -323,7 +325,7 @@
             line-height: 1;
             font-size: 0.8rem;
 
-         }
+        }
 
     }
 
@@ -371,17 +373,19 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-    
+
             }
 
-            .comapnyName, .employeeCompany {
+            .comapnyName,
+            .employeeCompany {
 
                 color: #003060;
                 background: #0030601a;
 
             }
 
-            .detailCompany, .branchCompany {
+            .detailCompany,
+            .branchCompany {
 
                 color: #04ac32;
                 background: rgba(6, 239, 24, 0.1215686275);
@@ -412,7 +416,7 @@
 
             }
 
-                    
+
 
             p {
 
@@ -435,7 +439,7 @@
 
         }
 
-    }    
+    }
 
 }
 
