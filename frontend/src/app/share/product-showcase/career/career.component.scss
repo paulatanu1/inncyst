@@ -323,7 +323,7 @@
                             font-size: 0.75rem;
                             font-weight: 600;
                             width: 300px;
-                            height: 20px;
+                            // height: 20px;
                             white-space: nowrap;
                             overflow: hidden;
                             text-overflow: ellipsis;
@@ -604,6 +604,7 @@
 
 .search-results-container {
     margin: 40px 0 0;
+    margin-top: 100px;
     // height: 1094px;
     max-height: 1094px;
     width: 100%;

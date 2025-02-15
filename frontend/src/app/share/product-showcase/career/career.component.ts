@@ -110,9 +110,9 @@ export class CareerComponent implements OnInit {
   gotoLogin() {
     // this._LoginEnablerService.loginFlow.next(true)
     this._toast.showToaster.next({
-      severity: 'success',
-      summary: 'success',
-      detail: 'please login to view the page',
+      severity: 'warn',
+      summary: 'Warning',
+      detail: 'You need to log in to access this page',
     });
   }
 }

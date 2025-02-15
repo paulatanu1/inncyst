@@ -13,6 +13,7 @@ import { JobListApiService } from '../jobs-management/posts/job-list-api.service
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
 import { JobPostListService } from '../jobs-management/jobs-management-service/job-post-list.service';
+import { ApiService } from 'src/app/common-service/api.service';
 
 interface cities {
   optionName: string;
@@ -149,7 +150,8 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     private _JobListApiService: JobListApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private _JobPostListService: JobPostListService
+    private _JobPostListService: JobPostListService,
+    private apiCall: ApiService
   ) {
     this.cities = [
       { optionName: 'monthly', code: 'M' },
@@ -249,6 +251,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
         if (this.editedJobType == 'intranship') {
           this.industryType = 'internship';
         }
+        this.apiCall.HandleErrorCode(res);
         if (this.editedJobId != undefined) {
           this._JobPostListService
             .getSinglePortfolio(this.editedJobId)
@@ -383,6 +386,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
                       this.editedJobData?.coverLetter?.moreQuestions
                     );
                 }
+                this.apiCall.HandleErrorCode(res);
               },
             });
         }
@@ -400,6 +404,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
     this.jobPost.fetchSkills().subscribe({
       next: (res) => {
         this.skillList = res.result.map((skill: any) => ({ skills: skill }));
+        this.apiCall.HandleErrorCode(res);
       },
       error: (err) => {},
     });
@@ -502,6 +507,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
               // this.  savedDraftCoverLetterData=res.data.
             },
           });
+        this.apiCall.HandleErrorCode(res);
       },
       error: (err) => {
         this._toast.showToaster.next({
@@ -757,10 +763,11 @@ export class PostAddComponent implements OnInit, AfterViewInit {
 
   submitFormjob() {
     if (this.jobForm.valid) {
-      this.jobForm.value.skills = this.jobForm.value.skills.map(
-        (skillObject: { skills: any }) => skillObject.skills
-      );
-
+      // this.jobForm.value.skills = this.jobForm.value.skills.map(
+      //   (skillObject: { skills: any }) => {
+      //     skillObject.skills
+      //   }
+      // );
       this.jobForm.value.ctcFrom = this.jobForm.value.ctcFrom.toString();
       this.jobForm.value.ctcTo = this.jobForm.value.ctcTo.toString();
       let formData = this.jobForm.value;
@@ -841,6 +848,7 @@ export class PostAddComponent implements OnInit, AfterViewInit {
           this.display = false;
           this.industryForm.disable();
           this.EditInternship = true;
+          this.apiCall.HandleErrorCode(resp);
         },
         error: (err) => {
           this.display = false;

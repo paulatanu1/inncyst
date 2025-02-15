@@ -52,111 +52,71 @@
         </div>
       </section>
 
-      <p-sidebar
-        [(visible)]="editProfile"
-        position="right"
-        [style]="{ width: '50em' }"
-      >
-        <form
-          [formGroup]="profileForm"
-          (ngSubmit)="onSubmit()"
-          class="edit-profile-form"
-        >
+      <p-sidebar [(visible)]="editProfile" position="right" [style]="{ width: '50em' }">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="edit-profile-form">
           <div class="profile-section">
             <div class="right-section">
               <p-fieldset legend="Personal Information" [toggleable]="true">
                 <div class="formGroup">
+                  <label for="float-input">Name</label>
                   <span class="p-float-label">
-                    <input
-                      id="float-input"
-                      type="text"
-                      pInputText
-                      formControlName="name"
-                    />
-                    <label for="float-input">Name</label>
+                    <input id="float-input" type="text" pInputText formControlName="name" />
                   </span>
                 </div>
                 <div class="formGroup">
-                  <p-editor
-                    [style]="{ height: '320px' }"
-                    formControlName="description"
-                  ></p-editor>
+                  <label for="float-input">Description</label>
+                  <p-editor [style]="{ height: '320px' }" formControlName="description"></p-editor>
                 </div>
                 <div class="formGroup">
+                  <label for="float-input">Email</label>
                   <span class="p-input-icon-left">
                     <i class="pi pi-envelope"></i>
-                    <input
-                      type="email"
-                      pInputText
-                      class="p-inputtext-sm"
-                      placeholder="Enter your Email"
-                      formControlName="email"
-                    />
+                    <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your Email"
+                      formControlName="email" />
                   </span>
                 </div>
                 <div class="formGroup">
+                  <label for="float-input">Mobile Number</label>
                   <span class="p-input-icon-left">
                     <i class="pi pi-phone"></i>
-                    <input
-                      type="number"
-                      pInputText
-                      class="p-inputtext-sm"
-                      placeholder="Enter your Phone number"
-                      formControlName="phone"
-                    />
+                    <input type="number" pInputText class="p-inputtext-sm" placeholder="Enter your Phone number"
+                      formControlName="phone" />
                   </span>
                 </div>
                 <div class="formGroup">
+                  <label for="float-input">Location</label>
                   <span class="p-float-label">
-                    <input
-                      id="float-input"
-                      type="text"
-                      pInputText
-                      class="p-inputtext-sm"
-                      placeholder="Location"
-                      formControlName="location"
-                    />
+                    <input id="float-input" type="text" pInputText class="p-inputtext-sm" placeholder="Location"
+                      formControlName="location" />
                     <label for="float-input">Location</label>
                   </span>
                 </div>
                 <div class="formGroup">
+                  <label for="float-input">Gender</label>
                   <span class="p-input-icon-left">
                     <i class="pi pi-envelope"></i>
-                    <p-dropdown
-                      [options]="genderList"
-                      optionLabel="name"
-                      optionValue="value"
-                      formControlName="gender"
-                    ></p-dropdown>
+                    <p-dropdown [options]="genderList" optionLabel="name" optionValue="value" formControlName="gender">
+                    </p-dropdown>
 
                     <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your gender" formControlName="gender" /> -->
                   </span>
                 </div>
                 <div class="formGroup">
+                  <label for="float-input">DOB (DD-MM-YYYY)</label>
                   <span class="p-input-icon-left">
                     <i class="pi pi-envelope"></i>
 
-                    <p-calendar
-                      formControlName="dob"
-                      [showTime]="false"
-                      dateFormat="dd-mm-yy"
-                      dataType="date"
-                      (onSelect)="dateSelect($event)"
-                      placeholder="select your DOB"
-                    ></p-calendar>
+                    <p-calendar formControlName="dob" [showTime]="false" dateFormat="dd-mm-yy" dataType="date"
+                      (onSelect)="dateSelect($event)" placeholder="select your DOB"></p-calendar>
                     <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your age" formControlName="age" /> -->
                   </span>
                 </div>
                 <div class="formGroup">
+                  <label for="float-input">Area of Interest</label>
                   <span class="p-input-icon-left">
                     <i class="pi pi-envelope"></i>
-                    <input
-                      type="email"
-                      pInputText
-                      class="p-inputtext-sm"
-                      placeholder="Enter your interest"
-                      formControlName="areaOfInterest"
-                    />
+                    <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your interest"
+                      formControlName="areaOfInterest" />
                   </span>
                 </div>
               </p-fieldset>
@@ -169,57 +129,41 @@
           </div> -->
               <p-fieldset legend="Educational Information" [toggleable]="true">
                 <div class="formGroup">
+                  <label for="float-input">Stream</label>
                   <span class="p-input-icon-left">
                     <i class="pi pi-envelope"></i>
-                    <p-dropdown
-                      [options]="streamList"
-                      optionLabel="name"
-                      optionValue="value"
-                      formControlName="stream"
-                    ></p-dropdown>
+                    <p-dropdown [options]="streamList" optionLabel="name" optionValue="value" formControlName="stream">
+                    </p-dropdown>
 
                     <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your stream" formControlName="stream" /> -->
                   </span>
                 </div>
 
                 <div class="formGroup">
+                  <label for="float-input">Branch</label>
                   <span class="p-input-icon-left">
                     <i class="pi pi-envelope"></i>
-
-                    <p-dropdown
-                      [options]="branchList"
-                      optionLabel="name"
-                      optionValue="value"
-                      formControlName="branch"
-                    ></p-dropdown>
-
-                    <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your branch" formControlName="branch" /> -->
+                    <p-dropdown [options]="branchList" optionLabel="name" optionValue="value" formControlName="branch">
+                    </p-dropdown>
                   </span>
                 </div>
 
                 <div class="formGroup">
+                  <label for="float-input">Institution</label>
                   <span class="p-input-icon-left">
                     <i class="pi pi-envelope"></i>
-                    <input
-                      type="email"
-                      pInputText
-                      class="p-inputtext-sm"
-                      placeholder="Enter your institution name"
-                      formControlName="institution"
-                    />
+                    <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your institution name"
+                      formControlName="institution" />
                   </span>
                 </div>
 
                 <div class="formGroup">
+                  <label for="float-input">Semester</label>
                   <span class="p-input-icon-left">
                     <i class="pi pi-envelope"></i>
 
-                    <p-dropdown
-                      [options]="semesterList"
-                      optionLabel="name"
-                      optionValue="value"
-                      formControlName="semester"
-                    ></p-dropdown>
+                    <p-dropdown [options]="semesterList" optionLabel="name" optionValue="value"
+                      formControlName="semester"></p-dropdown>
 
                     <!-- <input type="email" pInputText class="p-inputtext-sm" placeholder="Enter your semester" formControlName="semester" /> -->
                   </span>
@@ -273,22 +217,12 @@
                         <i class="pi pi-plus-circle"></i>
                       </span>
                     </div>
-                    <div
-                      *ngFor="
+                    <div *ngFor="
                         let skill of getSkillsArrayControls();
                         let i = index
-                      "
-                      class="add_skills"
-                    >
-                      <input
-                        type="text"
-                        [formControlName]="i"
-                        class="skill_input"
-                      />
-                      <button
-                        (click)="removeSkill(i)"
-                        style="color: red; margin-left: 15px; font-size: 18px;"
-                      >
+                      " class="add_skills">
+                      <input type="text" [formControlName]="i" class="skill_input" />
+                      <button (click)="removeSkill(i)" style="color: red; margin-left: 15px; font-size: 18px;">
                         <i class="pi pi-times-circle"></i>
                       </button>
                     </div>
@@ -322,25 +256,11 @@
 
       <!-- <img [src]="croppedImage" /> -->
 
-      <p-dialog
-        header="Title"
-        [(visible)]="cropperModal"
-        [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
-        [style]="{ width: '50vw' }"
-      >
-        <image-cropper
-          [imageChangedEvent]="imageChangedEvent"
-          [maintainAspectRatio]="true"
-          [aspectRatio]="1 / 1"
-          format="png"
-          (imageCropped)="imageCropped($event)"
-          [resizeToWidth]="236"
-          [resizeToHeight]="236"
-          [cropperMinWidth]="236"
-          [cropperMinHeight]="236"
-          [autoCrop]="true"
-          [output]="'base64'"
-        ></image-cropper>
+      <p-dialog header="Title" [(visible)]="cropperModal" [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+        [style]="{ width: '50vw' }">
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1"
+          format="png" (imageCropped)="imageCropped($event)" [resizeToWidth]="236" [resizeToHeight]="236"
+          [cropperMinWidth]="236" [cropperMinHeight]="236" [autoCrop]="true" [output]="'base64'"></image-cropper>
 
         <button type="submit" (click)="croppedComplete()">Cropped</button>
       </p-dialog>

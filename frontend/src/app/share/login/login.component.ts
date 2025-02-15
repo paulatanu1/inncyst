@@ -140,6 +140,7 @@ export class LoginComponent implements OnInit {
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
           ls.set('id', res.data._id);
+          ls.set('questionStep', res.data?.question_step);
           if (res.LOGIN_TYPE == 'candidate') {
             this.router.navigateByUrl('jobs/posts');
             ls.set('role', 'candidate');
