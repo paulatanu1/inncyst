@@ -18,21 +18,19 @@ export class UploadcvComponent implements OnInit {
   pdfMaxSize: number = 26214400;
   pdfObj: any;
   resume: any;
-  cvObject:any
+  cvObject: any;
   existingCv: any;
   editedCv: boolean = false;
-  updateCv=false;
+  updateCv = false;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   ngOnInit(): void {
     this.internship.getCv().subscribe({
       next: (res) => {
-        this.cvObject=res.data[0]
+        this.cvObject = res.data[0];
         this.existingCv = res.data[0].resume;
       },
     });
-
-   
   }
   pdfSelected(e: any) {
     const selectedFile = e.target.files[0];
@@ -50,23 +48,22 @@ export class UploadcvComponent implements OnInit {
       this.fileInput.nativeElement.value = '';
     }
   }
-  updateCV(){
+  updateCV() {
     this.existingCv = '';
-    this.updateCv=true
+    this.updateCv = true;
   }
   pdfSubmit() {
     // const file = e.target.files[0];
 
-
-    if(this.updateCv == false){
+    if (this.updateCv == false) {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64String = reader.result as string;
         this.resume = base64String;
         this.internship.uploadResume(this.resume).subscribe({
           next: (res) => {
-            this.existingCv=res.body.data.resume
-            this.updateCv=false
+            this.existingCv = res.body.data.resume;
+            this.updateCv = false;
           },
         });
       };
@@ -74,23 +71,33 @@ export class UploadcvComponent implements OnInit {
         reader.readAsDataURL(this.pdfObj);
       }
     }
-  if(this.updateCv == true){
-    const reader = new FileReader();
+    if (this.updateCv == true) {
+      const reader = new FileReader();
       reader.onloadend = () => {
         const base64String = reader.result as string;
         this.resume = base64String;
-        this.internship.editResume(this.resume,this.cvObject._id).subscribe({
+        this.internship.editResume(this.resume, this.cvObject._id).subscribe({
           next: (res) => {
-            this.existingCv=res.body.data.resume
-            this.updateCv=false
+            this.existingCv = res.body.data.resume;
+            this.updateCv = false;
+            this._toast.showToaster.next({
+              severity: 'success',
+              summary: 'success',
+              detail: res.message,
+            });
+          },
+          error: (err) => {
+            this._toast.showToaster.next({
+              severity: 'error',
+              summary: 'error',
+              detail: err.message,
+            });
           },
         });
       };
       if (this.pdfObj) {
         reader.readAsDataURL(this.pdfObj);
       }
+    }
   }
-  }
-
- 
 }

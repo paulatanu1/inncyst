@@ -27,37 +27,37 @@ export class UploadResumeStepComponent implements OnInit {
   fileName!: string;
   base64!: string;
   jobId: any;
-  appliedJobId!:string;
-  resumeUploadSucess: boolean=false;
+  appliedJobId!: string;
+  resumeUploadSucess: boolean = false;
   // fileName!:string;
   constructor(
     private loginDetails: LoginDetailsService,
     private _toast: ToastServiceService,
     private jobService: JobsService,
-    private router:Router,
-    private api:ApiService,
+    private router: Router,
+    private api: ApiService,
     private internship: InternshipProfileService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-// this.jobService.sendSelectedJobId().subscribe({
-//   next:(res=>{
-//     this.appliedJobId=<string>res;
-//     alert(res)
-//   })
-// })
-this.activatedRoute.params.subscribe({
-  next:(res=>{
-    this.appliedJobId=res['id']
-  })}
-)
+    // this.jobService.sendSelectedJobId().subscribe({
+    //   next:(res=>{
+    //     this.appliedJobId=<string>res;
+    //     alert(res)
+    //   })
+    // })
+    this.activatedRoute.params.subscribe({
+      next: (res) => {
+        this.appliedJobId = res['id'];
+      },
+    });
     this.internship.sendInternshipProfileRequest().subscribe({
-      next:(res=>{
-        this.userLoginDetails=res.data;
-        this.jobId=res.data._id
-      })
-    })
+      next: (res) => {
+        this.userLoginDetails = res.data;
+        this.jobId = res.data._id;
+      },
+    });
   }
   addTextArea() {
     this.availability = '1';
@@ -65,8 +65,8 @@ this.activatedRoute.params.subscribe({
   }
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-     this.fileName=this.selectedFile.name;
-     this.convertToBase64();
+    this.fileName = this.selectedFile.name;
+    this.convertToBase64();
   }
 
   convertToBase64() {
@@ -76,7 +76,7 @@ this.activatedRoute.params.subscribe({
 
     const reader = new FileReader();
 
-    reader.onload = (e:any) => {
+    reader.onload = (e: any) => {
       this.base64 = e.target.result as string;
     };
 
@@ -91,34 +91,32 @@ this.activatedRoute.params.subscribe({
       });
       return;
     } else {
-    
-      const form_data:any = new Object();
-      alert(this.appliedJobId)
-      form_data.jobId=this.appliedJobId;
-      form_data.resume=this.base64;
+      const form_data: any = new Object();
+      alert(this.appliedJobId);
+      form_data.jobId = this.appliedJobId;
+      form_data.resume = this.base64;
       this.jobService.uploadResume(form_data).subscribe({
-        next: ((res:any) => {
+        next: (res: any) => {
           this.resumeUploadSucess = true;
           this._toast.showToaster.next({
             severity: 'success',
             summary: 'success',
             detail: res.message,
           });
-         
-        }),
-        error:((err:any)=>{
+        },
+        error: (err: any) => {
           this._toast.showToaster.next({
             severity: 'error',
             summary: 'error',
-            detail: err.success,
+            detail: err.message,
           });
-        })
+        },
       });
       return this.selectedFile;
-    }}
+    }
+  }
 
   submitApplication() {
-
     let details = {
       email: this.userLoginDetails.email,
       phone: this.userLoginDetails.phone,
@@ -128,7 +126,7 @@ this.activatedRoute.params.subscribe({
     };
     if (this.resumeUploadSucess) {
       this.jobService.applyJob(details).subscribe({
-        next: (res:any) => {
+        next: (res: any) => {
           this._toast.showToaster.next({
             severity: 'success',
             summary: 'success',
@@ -136,18 +134,16 @@ this.activatedRoute.params.subscribe({
           });
           this.jobService.afterSuccessApplyJobCloseModal.next(true);
         },
-        error: (res:any) => {
-            this._toast.showToaster.next({
-              severity: 'error',
-              summary: 'error',
-              detail:res.error.message?res.error.message:'Please upload a resume',
-            });
-        
+        error: (res: any) => {
+          this._toast.showToaster.next({
+            severity: 'error',
+            summary: 'error',
+            detail: res.error.message
+              ? res.error.message
+              : 'Please upload a resume',
+          });
         },
-      },
-
-      
-      );
+      });
     }
   }
   addavailability() {
@@ -155,7 +151,7 @@ this.activatedRoute.params.subscribe({
     this.availability_messageValue = '';
     this.inputFieldEnable = false;
   }
-  back(){
+  back() {
     this.router.navigate(['jobs/internships/skills']);
   }
 }
