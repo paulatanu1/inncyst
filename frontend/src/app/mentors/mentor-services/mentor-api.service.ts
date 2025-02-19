@@ -46,6 +46,7 @@ export class MentorApiService {
 
   //save mentor about
   saveMentorAbout(aboutData: IaboutData) {
+    console.log(aboutData, 'payload');
     let payload = {
       name: aboutData.name,
       heading: aboutData.heading,
