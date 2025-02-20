@@ -81,7 +81,7 @@ export class IndustryProfileComponent implements OnInit {
     this.getProfile();
   }
   submitForm() {
-    return;
+    // return;
     this.profileData.control['companyEstdYear'].value.toString();
     console.log(this.profileData, 'data');
     if (!this.questionStep) {

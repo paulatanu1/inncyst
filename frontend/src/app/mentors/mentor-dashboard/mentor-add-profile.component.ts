@@ -6,7 +6,7 @@ import {
   IcontactData,
   MentorApiService,
 } from '../mentor-services/mentor-api.service';
-import { map, Observable, startWith } from 'rxjs';
+import { forkJoin, map, Observable, startWith } from 'rxjs';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 
 interface MentorAboutPayload {
@@ -524,6 +524,7 @@ export class DialogMentorProfile {
   ];
 
   aboutMentorSubmited = false;
+  educationList: any;
   // filteredTools = [...this.tools];
   filteredTools!: Observable<{ value: string; label: string }[]>;
   qualifications!: Observable<{ value: string; label: string }[]>;
@@ -547,7 +548,7 @@ export class DialogMentorProfile {
   }
 
   ngOnInit(): void {
-    this.gettingMentorAbout();
+    this.getInitailFormData();
     this.mentorForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.minLength(3)]],
       profileHeading: ['', Validators.required],
@@ -726,30 +727,81 @@ export class DialogMentorProfile {
     console.log(this.educationForm.value);
     if (this.educationForm.valid) {
       console.log(this.educationForm.value);
+      this.mentorService
+        .mentorEducationAdd(this.educationForm.value)
+        .subscribe({
+          next: (res) => {
+            this._toast.showToaster.next({
+              severity: 'success',
+              summary: 'success',
+              detail: res.message,
+            });
+          },
+          error: (err) => {
+            this._toast.showToaster.next({
+              severity: 'error',
+              summary: 'error',
+              detail: err.message,
+            });
+          },
+        });
     }
   }
 
-  gettingMentorAbout() {
-    // this.mentorForm.disable();
-    this.mentorService.getMentorAbout().subscribe({
+  // gettingMentorAbout() {
+  //   // this.mentorForm.disable();
+  //   this.mentorService.getMentorAbout().subscribe({
+  //     next: (res) => {
+  //       console.log(res);
+  //       if (res.data) {
+  //         this.mentorForm.patchValue({
+  //           fullName: res.data.name,
+  //           profileHeading: res.data.heading,
+  //           whatDoYouDo: res.data.workRole,
+  //           about: res.data.about,
+  //           country: res.data.location,
+  //           state: res.data.state,
+  //           languages: res.data.language,
+  //         });
+  //         // this.mentorForm.disable();
+  //         this.aboutMentorSubmited = true;
+  //       }
+  //     },
+  //     error: (err) => {
+  //       console.error(err);
+  //     },
+  //   });
+  // }
+
+  getEdicationList() {
+    this.mentorService.getMentorEducations().subscribe({
       next: (res) => {
-        console.log(res);
-        if (res.data) {
+        console.log(res, 'res');
+      },
+    });
+  }
+
+  getInitailFormData() {
+    forkJoin({
+      education: this.mentorService.getMentorEducations(),
+      about: this.mentorService.getMentorAbout(),
+    }).subscribe({
+      next: ({ education, about }) => {
+        if (education.data) {
+          this.educationList = education.data;
+        }
+        if (about.data) {
           this.mentorForm.patchValue({
-            fullName: res.data.name,
-            profileHeading: res.data.heading,
-            whatDoYouDo: res.data.workRole,
-            about: res.data.about,
-            country: res.data.location,
-            state: res.data.state,
-            languages: res.data.language,
+            fullName: about.data.name,
+            profileHeading: about.data.heading,
+            whatDoYouDo: about.data.workRole,
+            about: about.data.about,
+            country: about.data.location,
+            state: about.data.state,
+            languages: about.data.language,
           });
-          // this.mentorForm.disable();
           this.aboutMentorSubmited = true;
         }
-      },
-      error: (err) => {
-        console.error(err);
       },
     });
   }

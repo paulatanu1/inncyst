@@ -34,9 +34,14 @@ export interface IExprienceData {
 
 export interface IEducationAdd {
   degree: string;
-  organization: string;
-  studyField: string;
-  completionYear: string;
+  institute: string;
+  fieldOfStudy: string;
+  yearOfCompletion: string;
+}
+
+export interface ISkillSet {
+  skills: [];
+  tools: [];
 }
 
 @Injectable({
@@ -126,30 +131,40 @@ export class MentorApiService {
   mentorEducationAdd(data: IEducationAdd) {
     const payload = {
       degree: data.degree,
-      organization: data.organization,
-      studyField: data.studyField,
-      completionYear: data.completionYear,
+      organization: data.institute,
+      studyField: data.fieldOfStudy,
+      completionYear: data.yearOfCompletion,
     };
-    let url: string = 'mentor/mentor-education';
+    let url: string = '/mentor/mentor-education';
+    return this.apiService.ApiCallWithLocalization(payload, url, 'post');
+  }
+
+  setMentorSkill(data: ISkillSet) {
+    const payload = {
+      skills: [...data.skills],
+      tools: [...data.tools],
+    };
+    let url: string = '/mentor/mentor-skills-post';
+    return this.apiService.ApiCallWithLocalization(payload, url, 'post');
+  }
+
+  getMentorSkill() {
+    let url: string = '/mentor/mentor-skills';
     return this.apiService.ApiCallWithLocalization('', url, 'get');
   }
 
-  //   http://localhost:5500/api/mentor/mentor-skills --- GET --- (list)
-  // http://localhost:5500/api/mentor/mentor-skills-post   --- POST -- payload--->
-  // {
-  //     "skills": ["nodejs", "java", "py"],
-  //     "tools": ["vscode", "test"]
-  // }
+  getMentorEducations() {
+    let url: string = '/mentor/mentor-education-list';
+    return this.apiService.ApiCallWithLocalization('', url, 'get');
+  }
 
-  // http://localhost:5500/api/mentor/mentor-education   ---- POST  -- payload--->
-  // {
-  //     "degree": "test",
-  //     "organization": "test",
-  //     "studyField": "test",
-  //     "completionYear": "12/02/2025"
-  // }
+  viewMentorEducations(id: string) {
+    let url: string = `/mentor/education/${id}`;
+    return this.apiService.ApiCallWithLocalization('', url, 'get');
+  }
 
-  // http://localhost:5500/api/mentor/mentor-education-list  ----- GET --- (list)
-  // http://localhost:5500/api/mentor/education/:id  ----  GET --- (get by id)
-  // http://localhost:5500/api/mentor/edit-mentor-education/:id  ---- PUT -- (same payload as add)
+  updateMentorEducations(id: string) {
+    let url: string = `/mentor/edit-mentor-education/${id}`;
+    return this.apiService.ApiCallWithLocalization('', url, 'put');
+  }
 }
