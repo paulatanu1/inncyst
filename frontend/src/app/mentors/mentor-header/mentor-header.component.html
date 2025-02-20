@@ -6,11 +6,13 @@
 
   <form class="form-inline">
     <button mat-icon-button class="user-icon">
-      <button class="view-rqst" mat-menu-item [routerLink]="['/mentors/mentors-details']">
+      <button class="view-rqst" mat-menu-item [routerLink]="['/mentors/mentors-details']"
+        *ngIf="url == '/mentors/view-request'">
         <i class="fas fa-chevron-left" aria-hidden="true" style="font-size: 1rem;"></i>
         Back to Mentor
       </button>
-      <button class=" view-rqst" mat-menu-item [routerLink]="['/mentors/view-request']">
+      <button class=" view-rqst" mat-menu-item [routerLink]="['/mentors/view-request']"
+        *ngIf="url !== '/mentors/view-request'">
         <i class="far fa-bell fa-noti" aria-hidden="true" style="font-size: 1rem;"></i>
         View Request
       </button>
@@ -24,7 +26,7 @@
             </a>
           </li>
           <hr />
-          <li>
+          <li (click)="logOutUser()">
             <a class="mat-dropdown-item">
               Logout
             </a>

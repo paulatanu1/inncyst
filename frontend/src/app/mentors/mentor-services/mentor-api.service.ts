@@ -32,6 +32,13 @@ export interface IExprienceData {
   url: String;
 }
 
+export interface IEducationAdd {
+  degree: string;
+  organization: string;
+  studyField: string;
+  completionYear: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -115,4 +122,34 @@ export class MentorApiService {
     let url: string = `update-delete/${id}`;
     return this.apiService.ApiCallWithLocalization('', url, 'get');
   }
+
+  mentorEducationAdd(data: IEducationAdd) {
+    const payload = {
+      degree: data.degree,
+      organization: data.organization,
+      studyField: data.studyField,
+      completionYear: data.completionYear,
+    };
+    let url: string = 'mentor/mentor-education';
+    return this.apiService.ApiCallWithLocalization('', url, 'get');
+  }
+
+  //   http://localhost:5500/api/mentor/mentor-skills --- GET --- (list)
+  // http://localhost:5500/api/mentor/mentor-skills-post   --- POST -- payload--->
+  // {
+  //     "skills": ["nodejs", "java", "py"],
+  //     "tools": ["vscode", "test"]
+  // }
+
+  // http://localhost:5500/api/mentor/mentor-education   ---- POST  -- payload--->
+  // {
+  //     "degree": "test",
+  //     "organization": "test",
+  //     "studyField": "test",
+  //     "completionYear": "12/02/2025"
+  // }
+
+  // http://localhost:5500/api/mentor/mentor-education-list  ----- GET --- (list)
+  // http://localhost:5500/api/mentor/education/:id  ----  GET --- (get by id)
+  // http://localhost:5500/api/mentor/edit-mentor-education/:id  ---- PUT -- (same payload as add)
 }

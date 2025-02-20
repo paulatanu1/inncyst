@@ -135,7 +135,8 @@ export class LoginComponent implements OnInit {
       // let userRole = this.loginForm.get('options')?.value;
       this.loginService.login(userEmail, password).subscribe({
         next: (res) => {
-          console.log(res, 'login');
+          console.log(res, 'login', res.token);
+          ls.set('login_token', res.token);
           ls.set('companyName', res.data.name);
           this.otpVerifivation.loginflow.next(false);
           this.otpVerifivation.logoutSuccess.next(true);
@@ -153,8 +154,12 @@ export class LoginComponent implements OnInit {
               res.LOGIN_TYPE === 'industry' &&
               res.data.question_step == false
             ) {
+              ls.set('role', 'industry');
               this.router.navigateByUrl('/industry/profile');
             }
+          } else if (res.LOGIN_TYPE == 'mentor') {
+            ls.set('role', 'mentor');
+            this.router.navigateByUrl('/mentors/mentors-details');
           }
         },
         error: (err) => {

@@ -39,6 +39,7 @@ export class ApiService {
 
     let httpHeaderValue = new HttpHeaders();
     if (headertoken == undefined) {
+      console.log(ls.get('login_token'));
       if (ls.get('role') != null) {
         httpHeaderValue = httpHeaderValue.set(
           'Authorization',

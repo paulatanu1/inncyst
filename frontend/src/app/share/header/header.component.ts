@@ -92,6 +92,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   isMenuOpen: boolean = true;
   profileImage: any;
   allData: any;
+  userRole: string | null = '';
   //Outputs
   constructor(
     private otpService: OtpVerificationService,
@@ -115,7 +116,8 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
     this.profileImage = ls.get('profileImage');
     // console.log(this.profileImage, 'PI');
     this.logInToken = ls.get('login_token');
-    if (this.logInToken) {
+    this.userRole = ls.get('role');
+    if (this.logInToken && this.userRole == 'candidate') {
       this.logoutSuccess = true;
     } else {
       this.logoutSuccess = false;
@@ -459,7 +461,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
   login(type: string) {
-    console.log(type,'login type')
+    console.log(type, 'login type');
     if (type === 'candidate') {
       this.registration = true;
       this.isStudent = true;
