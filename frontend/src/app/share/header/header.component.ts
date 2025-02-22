@@ -117,7 +117,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
     // console.log(this.profileImage, 'PI');
     this.logInToken = ls.get('login_token');
     this.userRole = ls.get('role');
-    if (this.logInToken && this.userRole == 'candidate') {
+    if (this.logInToken && this.userRole == 'student') {
       this.logoutSuccess = true;
     } else {
       this.logoutSuccess = false;
@@ -129,7 +129,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
       {
         label: 'As a Student',
         command: () => {
-          this.login('candidate');
+          this.login('student');
         },
       },
       {
@@ -149,13 +149,13 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
       // {name: 'Select the option', code: '0'},
       { optionName: 'Intern', code: '1' },
       { optionName: 'Job', code: '2' },
-      { optionName: 'candidate', code: '3' },
+      { optionName: 'student', code: '3' },
       { optionName: 'Industry', code: '3' },
     ];
 
     this.registrationOption = [
       {
-        option: 'candidate',
+        option: 'student',
         id: 1,
       },
       {
@@ -462,7 +462,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   }
   login(type: string) {
     console.log(type, 'login type');
-    if (type === 'candidate') {
+    if (type === 'student') {
       this.registration = true;
       this.isStudent = true;
     } else {

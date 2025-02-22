@@ -33,48 +33,17 @@
             <h3>Log In</h3>
             <p>Stay connected with us</p>
             <div class="conncted-users">
-              <img
-                src="../../../assets/icon/login-icon.png"
-                width="40px"
-                height="40px"
-                loading="lazy"
-                alt=""
-              />
-              <img
-                src="../../../assets/icon/login-icon-2.png"
-                width="60px"
-                height="60px"
-                loading="lazy"
-                alt=""
-              />
-              <img
-                src="../../../assets/icon/login-icon-3.png"
-                width="40px"
-                height="40px"
-                loading="lazy"
-                alt=""
-              />
+              <img src="../../../assets/icon/login-icon.png" width="40px" height="40px" loading="lazy" alt="" />
+              <img src="../../../assets/icon/login-icon-2.png" width="60px" height="60px" loading="lazy" alt="" />
+              <img src="../../../assets/icon/login-icon-3.png" width="40px" height="40px" loading="lazy" alt="" />
             </div>
             <div class="social-login" (click)="ssoLogin('google-oauth2')">
               <div class="social-icon-login google-login">
-                <img
-                  src="../../../assets/icon/google.png"
-                  width="30px"
-                  height="30px"
-                  alt="google-signup"
-                />
+                <img src="../../../assets/icon/google.png" width="30px" height="30px" alt="google-signup" />
                 Login with Google
               </div>
-              <div
-                class="social-icon-login linkdin-login"
-                (click)="ssoLogin('linkedin')"
-              >
-                <img
-                  src="../../../assets/icon/linkedin.png"
-                  width="25px"
-                  height="25px"
-                  alt="linkedin-signup"
-                />
+              <div class="social-icon-login linkdin-login" (click)="ssoLogin('linkedin')">
+                <img src="../../../assets/icon/linkedin.png" width="25px" height="25px" alt="linkedin-signup" />
                 Login with Linkdin
               </div>
             </div>
@@ -95,11 +64,7 @@
                 </div>
                 <div class="col-lg-12 col-md-12 col-12">
                   <span class="p-float-label">
-                    <p-password
-                      formControlName="password"
-                      [toggleMask]="true"
-                      [feedback]="false"
-                    ></p-password>
+                    <p-password formControlName="password" [toggleMask]="true" [feedback]="false"></p-password>
                     <label for="float-input">Password</label>
                   </span>
                   <div class="password-action">
@@ -115,11 +80,7 @@
 
                 <div class="col-lg-12 col-md-12 col-12">
                   <div class="login-btn">
-                    <button
-                      type="submit"
-                      class="button-section w-100"
-                      [ngClass]="!loginForm.valid ? 'disabled' : ''"
-                    >
+                    <button type="submit" class="button-section w-100" [ngClass]="!loginForm.valid ? 'disabled' : ''">
                       <span>Log in</span>
                       <i class="pi pi-arrow-right"></i>
                     </button>
@@ -275,16 +236,13 @@
           </div> -->
         </div>
       </div>
-      <div
-        class="col-lg-6 col-md-6 col-sm-12 col-12"
-        *ngIf="userRole === false"
-      >
+      <div class="col-lg-6 col-md-6 col-sm-12 col-12" *ngIf="userRole === false">
         <div>
           <h4>Sign up as</h4>
           <mat-form-field appearance="fill">
             <mat-label>Select Your Role</mat-label>
             <mat-select [(ngModel)]="selectedRole">
-              <mat-option value="candidate">Candidate</mat-option>
+              <mat-option value="student">Candidate</mat-option>
               <mat-option value="college">College</mat-option>
               <mat-option value="company">Company</mat-option>
               <mat-option value="mentor">Mentor</mat-option>
@@ -357,12 +315,8 @@
     <div class="formFields">
       <div class="form_group">
         <span>Enter OTP*</span>
-        <ng-otp-input
-          #ngOtpInput1
-          [config]="{ length: 4 }"
-          (onInputChange)="onEmailOtpChange($event)"
-          formControlName="emailOtp"
-        ></ng-otp-input>
+        <ng-otp-input #ngOtpInput1 [config]="{ length: 4 }" (onInputChange)="onEmailOtpChange($event)"
+          formControlName="emailOtp"></ng-otp-input>
       </div>
       <div class="resend_code">
         Didn't received the code?
@@ -395,10 +349,7 @@
       </div>
       <div class="form_group">
         <label>Confirm Password</label>
-        <p-password
-          [(ngModel)]="confirmPassword"
-          [toggleMask]="true"
-        ></p-password>
+        <p-password [(ngModel)]="confirmPassword" [toggleMask]="true"></p-password>
       </div>
       <button (click)="passwordReset()">reset password</button>
       <span class="backtologin">

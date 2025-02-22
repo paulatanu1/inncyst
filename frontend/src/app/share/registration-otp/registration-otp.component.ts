@@ -189,7 +189,7 @@ export class RegistrationOtpComponent implements OnInit {
                 detail: 'Please try again!',
               });
               break;
-            case 'candidate':
+            case 'student':
               this.router.navigateByUrl('/jobs/posts');
               break;
             case 'company':

@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
   //Output
   @Output() openRegisterFlow = new EventEmitter();
   userRole: boolean = true;
-  selectedRole: string = 'candidate';
+  selectedRole: string = 'student';
   ssoType: string = '';
   constructor(
     private fb: FormBuilder,
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
     this.options = [{ name: 'Select the option', code: '0' }];
 
     this.loginOptionType = [
-      { title: 'candidate', code: 0 },
+      { title: 'student', code: 0 },
       { title: 'Industry', code: 1 },
     ];
   }
@@ -142,9 +142,9 @@ export class LoginComponent implements OnInit {
           this.otpVerifivation.logoutSuccess.next(true);
           ls.set('id', res.data._id);
           ls.set('questionStep', res.data?.question_step);
-          if (res.LOGIN_TYPE == 'candidate') {
+          if (res.LOGIN_TYPE == 'student') {
             this.router.navigateByUrl('jobs/posts');
-            ls.set('role', 'candidate');
+            ls.set('role', 'student');
 
             // this.router.navigate(['/jobs/internship']);
           } else if (res.LOGIN_TYPE == 'industry') {
@@ -364,9 +364,9 @@ export class LoginComponent implements OnInit {
                 });
               }
               if (res.data.phoneVerified) {
-                if (res.LOGIN_TYPE == 'candidate') {
+                if (res.LOGIN_TYPE == 'student') {
                   this.router.navigateByUrl('jobs/posts');
-                  ls.set('role', 'candidate');
+                  ls.set('role', 'student');
 
                   // this.router.navigate(['/jobs/internship']);
                 } else if (res.LOGIN_TYPE == 'industry') {

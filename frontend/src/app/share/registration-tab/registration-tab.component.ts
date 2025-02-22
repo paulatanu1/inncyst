@@ -24,7 +24,7 @@ export class RegistrationTabComponent implements OnInit {
   registrationFormCollege!: FormGroup;
   registrationFormCompany!: FormGroup;
   registrationFormMentor!: FormGroup;
-  activeTabName = 'candidate';
+  activeTabName = 'student';
   @Output() currentTabInfo = new EventEmitter();
   constructor(
     private fb: FormBuilder,
@@ -196,7 +196,7 @@ export class RegistrationTabComponent implements OnInit {
       password = '',
       role = '';
     switch (this.activeTabName) {
-      case 'candidate':
+      case 'student':
         userName = formData.userName;
         userEmail = formData.email;
         userPhone = formData.mobile;

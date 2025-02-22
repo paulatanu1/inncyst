@@ -18,18 +18,22 @@ export class MentorHeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   // Method to show the menu
-  showMenu(): void {
+  showMenu(e: MouseEvent): void {
+    e.preventDefault();
     this.isMenuVisible = true;
   }
 
   // Method to hide the menu
-  hideMenu(): void {
+  hideMenu(e: MouseEvent): void {
+    e.preventDefault();
     this.isMenuVisible = false;
   }
 
-  logOutUser() {
+  logOutUser(e: MouseEvent) {
+    e.preventDefault();
     ls.clear();
     ls.remove('logoutSuccess');
+    this.router.navigate(['/']);
     this.socialAuth.logout();
   }
 }

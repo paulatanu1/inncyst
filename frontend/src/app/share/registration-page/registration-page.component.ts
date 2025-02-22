@@ -131,7 +131,7 @@ export class RegistrationPageComponent implements OnInit {
 
     this.registrationOption = [
       {
-        option: 'candidate',
+        option: 'student',
         id: 1,
       },
       {
@@ -167,7 +167,7 @@ export class RegistrationPageComponent implements OnInit {
         ],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-        options: ['candidate', [Validators.required]],
+        options: ['student', [Validators.required]],
         agree: [false, [Validators.required, Validators.requiredTrue]],
       },
       {
@@ -221,7 +221,7 @@ export class RegistrationPageComponent implements OnInit {
               ls.set('role', res.LOGIN_TYPE);
               this.socialAuth.socialData.next(res);
               if (res.data.phoneVerified) {
-                if (res.data.role == 'candidate') {
+                if (res.data.role == 'student') {
                   this.router.navigateByUrl('jobs/posts');
                 } else if (res.data.role == 'industry') {
                   this.router.navigate(['industry']);

@@ -40,7 +40,7 @@ interface IprofileDetails {
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.scss'],
 })
-export class MyProfileComponent implements OnInit{
+export class MyProfileComponent implements OnInit {
   croppedImage: any;
   @ViewChild('cropper') cropper!: ElementRef;
   ProfileDetails: any;
@@ -87,7 +87,7 @@ export class MyProfileComponent implements OnInit{
     private router: Router,
     private _toast: ToastServiceService,
     private datePipe: DatePipe,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -109,18 +109,18 @@ export class MyProfileComponent implements OnInit{
   }
 
   ngOnInit(): void {
-//get querryParams
-this.activatedRoute.queryParamMap.subscribe({
-  next: (param) => {
-    this.status =<any> param.get('status');
-  },
-});
+    //get querryParams
+    this.activatedRoute.queryParamMap.subscribe({
+      next: (param) => {
+        this.status = <any>param.get('status');
+      },
+    });
 
-this.profileForm.get('skills')?.valueChanges.subscribe({
-  next:(res)=>{
-    this.skillSet=res
-  }
-})
+    this.profileForm.get('skills')?.valueChanges.subscribe({
+      next: (res) => {
+        this.skillSet = res;
+      },
+    });
 
     this.getProfileDetails();
     //for scroll issue
@@ -188,7 +188,6 @@ this.profileForm.get('skills')?.valueChanges.subscribe({
 
           if (this.skillLength) {
             for (let i = 1; i <= this.skillLength; i++) {
-             
               this.addnewSkill();
               if (i == this.skillLength) {
                 this.profileForm
@@ -213,7 +212,7 @@ this.profileForm.get('skills')?.valueChanges.subscribe({
     this.editProfile = true;
   }
   dateSelect(e: any) {
-    const date = this.datePipe.transform(e,'dd-MM-yyy');
+    const date = this.datePipe.transform(e, 'dd-MM-yyy');
     this.profileForm.get('dob')?.setValue(date);
   }
 
@@ -221,6 +220,7 @@ this.profileForm.get('skills')?.valueChanges.subscribe({
     if (this.imagePath) {
       this.profileForm.get('image')?.setValue(this.imagePath);
     }
+    this.profileForm.controls['email'].value?.toLowerCase();
     if (this.profileForm.valid) {
       this.internship.EditProfile(this.profileForm.value).subscribe({
         next: (res) => {
@@ -269,11 +269,11 @@ this.profileForm.get('skills')?.valueChanges.subscribe({
   ngOnDestroy() {
     this.profile?.unsubscribe();
   }
- 
-  handleChange(e:any){
-this.status=e.index  
-const urlTree=this.router.parseUrl(this.router.url);
-    urlTree.queryParams['status']=e.index ;   
+
+  handleChange(e: any) {
+    this.status = e.index;
+    const urlTree = this.router.parseUrl(this.router.url);
+    urlTree.queryParams['status'] = e.index;
     this.router.navigateByUrl(urlTree);
-}
+  }
 }

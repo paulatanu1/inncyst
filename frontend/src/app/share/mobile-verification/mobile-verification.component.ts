@@ -70,7 +70,8 @@ export class MobileVerificationComponent implements OnInit {
     private auth: SocialAuthService,
     private reg: RegistrationService,
     private _toast: ToastServiceService,
-    private router: Router,private loginService:LoginApiService
+    private router: Router,
+    private loginService: LoginApiService
   ) {
     this.verifyOTP = this.fb.group({
       phoneOtp: [null, [Validators.required, Validators.pattern(/^\d{4}$/)]],
@@ -99,8 +100,6 @@ export class MobileVerificationComponent implements OnInit {
         }
       },
     });
-
-    
   }
 
   onPhoneOtpChange(event: any) {
@@ -115,7 +114,7 @@ export class MobileVerificationComponent implements OnInit {
     };
     this.reg.phoneVerifyOTP(payload).subscribe({
       next: (res) => {
-        if (res.data.role == 'candidate') {
+        if (res.data.role == 'student') {
           this.router.navigateByUrl('jobs/posts');
         } else if (res.data.role == 'industry') {
           this.router.navigate(['industry']);
@@ -150,7 +149,7 @@ export class MobileVerificationComponent implements OnInit {
       .verifyPhone(this.verifyPhoneNumber.value['phoneNumber'])
       .subscribe({
         next: (res) => {
-          console.log(res)
+          console.log(res);
           this.mobileVerification = false;
         },
         error: (err) => {
