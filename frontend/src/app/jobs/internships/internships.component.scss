@@ -480,7 +480,7 @@
     overflow: hidden;
 
     .p-dialog-header {
-        padding: 56px 70px;
+        // padding: 56px 70px;
         border-bottom: 0.5px solid #C4C4C4;
         background: #f8f8f8;
         position: relative;
@@ -490,6 +490,7 @@
             position: absolute;
             right: 25px;
             top: 25px;
+            z-index: 99;
         }
 
         h2 {

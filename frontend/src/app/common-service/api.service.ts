@@ -158,7 +158,7 @@ export class ApiService {
     if (err.status == 401) {
       StatusCode = 401;
       this.DeleteAdminUserInfoFromLocalStorage();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/Login']);
     } else if (err.status == 404 && ERROR_REDIRECT == true) {
       this.router.navigate(['/page-not-found']);
     } else if (err.status == 500 && ERROR_REDIRECT == true) {

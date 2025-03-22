@@ -1,76 +1,51 @@
 <div class="modal-content">
-  <section class="contact_info"  *ngIf="userLoginDetails">
-    <h2>Contact Info</h2>
+  <section class="contact_info" *ngIf="userLoginDetails">
+    <h2>Information</h2>
     <div class="contact_img_details">
       <div class="contact_img">
-        <span
-          ><img
-          src="{{
+        <span><img src="{{
             userLoginDetails.image ? 'userLoginDetails.image' : '../../../assets/no-image.svg'
-          }}"
-        /></span>
+          }}" /></span>
       </div>
       <div class="contact_details">
         <h3>{{ userLoginDetails ?. name }}</h3>
-        <span>
-          Graphic designer | Web Designer | UI/UX Designer | Web developer
-        </span>
+        <div>
+          <span *ngFor="let skill of userLoginDetails.skills">
+            {{skill}} <i *ngIf="userLoginDetails.skills.length > 1">|</i>
+          </span>
+        </div>
         <strong>{{userLoginDetails.location}}</strong>
       </div>
     </div>
-    <div class="uploadresume_form" >
+    <div class="uploadresume_form">
       <div class="inputGroup">
         <label>Email</label>
-        <input
-       
-          type="text"
-          pInputText
-          disabled
-          [value]="userLoginDetails.email"
-        />
+        <input type="text" pInputText disabled [value]="userLoginDetails.email" />
       </div>
       <div class="inputGroup mobile_num">
         <label>Mobile Number</label>
-        <input
-          type="text"
-          placeholder="+91"
-          class="smallInput"
-          pInputText
-          disabled
-        />
-        <input
-          type="text"
-          pInputText
-          disabled
-          [value]="userLoginDetails.phone"
-        />
+        <input type="text" placeholder="+91" class="smallInput" pInputText disabled />
+        <input type="text" pInputText disabled [value]="userLoginDetails.phone" />
       </div>
       <div class="upload_resume">
         <h3>Resume</h3>
-        <div class="uploadField">
-          <input
-            type="file"
-            (change)="onFileSelected($event)"
-            size="5000000"
-            accept=".pdf, .doc, .docx"
-          />
-         
+        <div class="uploadField" *ngIf="userLoginDetails.resume ===null">
+          <input type="file" (change)="onFileSelected($event)" size="5000000" accept=".pdf, .doc, .docx" />
+        </div>
+        <div *ngIf="userLoginDetails.resume" class="">
+          <a class="view-resume" [href]="userLoginDetails.resume.resume" download="resume.pdf" target="_blank">
+            View your Resume</a>
         </div>
         <strong> {{fileName}}</strong>
-        <button class="upload_btn" (click)="uploadFile()">Upload Resume</button>
-        <span class="fileTypes">DOC, DOCX, PDF (5 MB)</span>
+        <button class="upload_btn" (click)="uploadFile()" *ngIf="userLoginDetails.resume ===null">Upload Resume</button>
+        <span *ngIf="userLoginDetails.resume ===null" class="fileTypes">DOC, DOCX, PDF (5 MB)</span>
       </div>
       <div class="availability">
         <h3>Your availability</h3>
         <span>Confirm your availability</span>
         <div class="inputGroup">
           <div class="p-field-radiobutton">
-            <input
-              type="radio"
-              name="availability"
-              id="city1"
-              (click)="addavailability()"
-            />
+            <input type="radio" name="availability" id="city1" (click)="addavailability()" />
             <!-- <p-radioButton
               name="availability"
               value="Chicago"
@@ -84,12 +59,7 @@
             </label>
           </div>
           <div class="p-field-radiobutton">
-            <input
-              type="radio"
-              id="city2"
-              (click)="addTextArea()"
-              name="availability"
-            />
+            <input type="radio" id="city2" (click)="addTextArea()" name="availability" />
             <!-- <p-radioButton
               name="availability_message"
               value="Chicago2"
@@ -100,7 +70,8 @@
             <label for="city2">No (Please specify your availability)</label>
           </div>
           <div>
-            <textarea type="text" rows="5" cols="50" *ngIf="inputFieldEnable" [(ngModel)]="availability_messageValue"></textarea>
+            <textarea type="text" rows="5" cols="50" *ngIf="inputFieldEnable"
+              [(ngModel)]="availability_messageValue"></textarea>
           </div>
         </div>
       </div>
@@ -110,5 +81,7 @@
 <div class="dialog-footer">
   <a class="back_link" (click)="back()">Back</a>
   <!-- {{resumeUploadSucess}} -->
-  <button (click)="submitApplication()" [disabled]="!resumeUploadSucess">Submit Application</button>
+  {{!resumeUploadSucess  }} {{!userLoginDetails.resume}}
+  <button (click)="submitApplication()" [disabled]="!userLoginDetails.resume ||!resumeUploadSucess">Submit
+    Application</button>
 </div>

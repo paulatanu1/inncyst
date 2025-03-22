@@ -20,6 +20,8 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
+import { UserLocationService } from 'src/app/service/user-location.service';
+import { ApiService } from 'src/app/common-service/api.service';
 
 interface IprofileDetails {
   name: string;
@@ -87,7 +89,9 @@ export class MyProfileComponent implements OnInit {
     private router: Router,
     private _toast: ToastServiceService,
     private datePipe: DatePipe,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private userLocation: UserLocationService,
+    private api: ApiService
   ) {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -109,6 +113,13 @@ export class MyProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userLocation.getLocationDetails(environment.GOOGLE_MAP_KEY).subscribe({
+      next: (res) => {
+        this.profileForm.controls['location'].patchValue(
+          `${res.subLocality} ${res.area} ${res.city} ${res.state}`
+        );
+      },
+    });
     //get querryParams
     this.activatedRoute.queryParamMap.subscribe({
       next: (param) => {
@@ -146,9 +157,9 @@ export class MyProfileComponent implements OnInit {
   }
 
   getProfileDetails() {
-    this.profile = this.internship
-      .sendInternshipProfileRequest()
-      .subscribe((response) => {
+    this.profile = this.internship.sendInternshipProfileRequest().subscribe(
+      (response) => {
+        this.api.HandleSuccessCode(response);
         this.ProfileDetails = response.data;
         this.imagePath = this.ProfileDetails?.image;
         if (this.ProfileDetails) {
@@ -197,7 +208,12 @@ export class MyProfileComponent implements OnInit {
             }
           }
         }
-      });
+      },
+      (err) => {
+        console.log(err, 'err');
+        this.api.HandleErrorCode(err);
+      }
+    );
 
     //for scroll issue
     this.router.events.subscribe((event) => {
@@ -224,6 +240,9 @@ export class MyProfileComponent implements OnInit {
     if (this.profileForm.valid) {
       this.internship.EditProfile(this.profileForm.value).subscribe({
         next: (res) => {
+          this.ProfileDetails = res.body.data;
+          this.description = this.ProfileDetails?.description;
+          console.log(res, 'rrr');
           this._toast.showToaster.next({
             severity: 'success',
             summary: 'success',

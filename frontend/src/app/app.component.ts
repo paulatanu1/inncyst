@@ -68,6 +68,7 @@ export class AppComponent implements OnInit {
         this.city = res.city;
         this.pinCode = res.pinCode;
         this.areaLocality = `${res.subLocality} ${res.area}`;
+        console.log(this.areaLocality);
       },
     });
   }

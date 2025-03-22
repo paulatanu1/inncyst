@@ -11,6 +11,7 @@ import { ToastServiceService } from 'src/app/service/toast-service.service';
 import { LoginApiService } from 'src/app/share/login/login-api.service';
 import { InternshipProfileService } from 'src/app/share/service/internship-profile.service';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-upload-resume-step',
@@ -29,6 +30,9 @@ export class UploadResumeStepComponent implements OnInit {
   jobId: any;
   appliedJobId!: string;
   resumeUploadSucess: boolean = false;
+  profile: Subscription | undefined;
+  ProfileDetails: any;
+  imagePath: string = '';
   // fileName!:string;
   constructor(
     private loginDetails: LoginDetailsService,
@@ -47,6 +51,8 @@ export class UploadResumeStepComponent implements OnInit {
     //     alert(res)
     //   })
     // })
+    console.log('call');
+    this.getProfileDetails();
     this.activatedRoute.params.subscribe({
       next: (res) => {
         this.appliedJobId = res['id'];
@@ -55,6 +61,7 @@ export class UploadResumeStepComponent implements OnInit {
     this.internship.sendInternshipProfileRequest().subscribe({
       next: (res) => {
         this.userLoginDetails = res.data;
+        console.log(this.userLoginDetails, 'resss');
         this.jobId = res.data._id;
       },
     });
@@ -124,7 +131,11 @@ export class UploadResumeStepComponent implements OnInit {
       availability_message: this.availability_messageValue,
       jobId: this.appliedJobId,
     };
-    if (this.resumeUploadSucess) {
+    console.log(
+      this.resumeUploadSucess || this.userLoginDetails.resume,
+      details
+    );
+    if (this.resumeUploadSucess || this.userLoginDetails.resume) {
       this.jobService.applyJob(details).subscribe({
         next: (res: any) => {
           this._toast.showToaster.next({
@@ -153,5 +164,20 @@ export class UploadResumeStepComponent implements OnInit {
   }
   back() {
     this.router.navigate(['jobs/internships/skills']);
+  }
+  getProfileDetails() {
+    console.log('call 2');
+    this.profile = this.internship.sendInternshipProfileRequest().subscribe(
+      (response) => {
+        console.log(this.ProfileDetails, 'details');
+        this.api.HandleSuccessCode(response);
+        this.ProfileDetails = response.data;
+        this.imagePath = this.ProfileDetails?.image;
+      },
+      (err) => {
+        console.log(err, 'err');
+        this.api.HandleErrorCode(err);
+      }
+    );
   }
 }
