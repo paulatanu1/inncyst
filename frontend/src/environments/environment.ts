@@ -12,9 +12,14 @@ export const environment = {
   API_TIMEOUT: 300000,
   ERROR_REDIRECT: true,
   WHATSAPP_NUMBER: 8918882380,
+  // auth: {
+  //   domain: 'dev-inncyst.us.auth0.com',
+  //   clientId: 'T30L4gAR1jqpRZMgDOk0CcuGQRpnlh12',
+  //   scope: 'openid profile email read:users',
+  // },
   auth: {
-    domain: 'dev-inncyst.us.auth0.com',
-    clientId: 'T30L4gAR1jqpRZMgDOk0CcuGQRpnlh12',
+    domain: 'dev-3thdyyavir2s8t4d.us.auth0.com',
+    clientId: 'oqLuYzpfTPOB946NxvOnBWRuGznLGA98',
     scope: 'openid profile email read:users',
   },
   RECAPTCHA_SITE_KEY: '6LeRui4qAAAAAHYrB524A-8wIxqLXuqGbOP1fTtn',

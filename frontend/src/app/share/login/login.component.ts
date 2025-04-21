@@ -364,7 +364,10 @@ export class LoginComponent implements OnInit {
                 });
               }
               if (res.data.phoneVerified) {
-                if (res.LOGIN_TYPE == 'student') {
+                if (
+                  res.LOGIN_TYPE == 'student' ||
+                  res.LOGIN_TYPE == 'candidate'
+                ) {
                   this.router.navigateByUrl('jobs/posts');
                   ls.set('role', 'student');
 

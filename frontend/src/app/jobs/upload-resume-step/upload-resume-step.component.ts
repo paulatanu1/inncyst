@@ -99,12 +99,12 @@ export class UploadResumeStepComponent implements OnInit {
       return;
     } else {
       const form_data: any = new Object();
-      alert(this.appliedJobId);
       form_data.jobId = this.appliedJobId;
       form_data.resume = this.base64;
       this.jobService.uploadResume(form_data).subscribe({
         next: (res: any) => {
           this.resumeUploadSucess = true;
+          console.log(res, 'upload');
           this._toast.showToaster.next({
             severity: 'success',
             summary: 'success',

@@ -308,6 +308,15 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
           this.allData = data;
           this.profileImage = this.allData.image;
           console.log(this.profileImage);
+          this.loginApiService.socialLogin(data).subscribe({
+            next: (res) => {
+              console.log(res, 'res3');
+              // ls.set('role', );
+              ls.set('login_token', res.token);
+              this.router.navigate(['/verify-phone']);
+            },
+            error: (err) => {},
+          });
         }
       },
     });

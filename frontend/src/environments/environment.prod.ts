@@ -11,6 +11,7 @@ export const environment = {
   auth: {
     domain: 'dev-3thdyyavir2s8t4d.us.auth0.com',
     clientId: 'oqLuYzpfTPOB946NxvOnBWRuGznLGA98',
+    scope: 'openid profile email read:users',
   },
   RECAPTCHA_SITE_KEY: '6LeRui4qAAAAAHYrB524A-8wIxqLXuqGbOP1fTtn',
   GOOGLE_MAP_KEY: 'AIzaSyAREQnPqKcssYtNlNQlnG90HqIBz5MyMM4',

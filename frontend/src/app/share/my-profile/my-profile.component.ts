@@ -115,6 +115,7 @@ export class MyProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userLocation.getLocationDetails(environment.GOOGLE_MAP_KEY).subscribe({
       next: (res) => {
+        console.log(res, 'location');
         this.profileForm.controls['location'].patchValue(
           `${res.subLocality} ${res.area} ${res.city} ${res.state}`
         );

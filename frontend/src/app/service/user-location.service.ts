@@ -29,21 +29,43 @@ export class UserLocationService {
   // Get the user's current position using the Geolocation API
   private getUserLocation(): Promise<{ lat: number; lng: number }> {
     return new Promise((resolve, reject) => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            resolve({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          (error) => {
-            reject('Geolocation failed: ' + error.message);
-          }
-        );
-      } else {
+      if (!navigator.geolocation) {
         reject('Geolocation is not supported by this browser.');
+        return;
       }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        (error) => {
+          let errorMsg = '';
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              errorMsg = 'User denied the request for Geolocation.';
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMsg = 'Location information is unavailable.';
+              break;
+            case error.TIMEOUT:
+              errorMsg = 'The request to get user location timed out.';
+              break;
+            default:
+              errorMsg = 'An unknown error occurred.';
+              break;
+          }
+          console.error('Geolocation failed:', errorMsg);
+          reject(`Geolocation failed: ${errorMsg}`);
+        },
+        {
+          enableHighAccuracy: true, // <-- Add this
+          timeout: 10000,
+          maximumAge: 0,
+        }
+      );
     });
   }
 
